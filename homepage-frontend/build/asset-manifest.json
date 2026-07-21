@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e5446ba7.css",
+    "main.js": "/static/js/main.e4affdd1.js",
+    "static/js/787.3740189b.chunk.js": "/static/js/787.3740189b.chunk.js",
+    "static/media/earf.gif": "/static/media/earf.aa3d98c8104f4472e5ea.gif",
+    "static/media/rocket.gif": "/static/media/rocket.a9ce456503213c2f9bf3.gif",
+    "static/media/20240227_211318.jpg": "/static/media/20240227_211318.135c096e84b023e4f04e.jpg",
+    "static/media/SchedulingSystemImage.png": "/static/media/SchedulingSystemImage.44f50563ecee9ea8a154.png",
+    "static/media/DisasterRecoveryBotProjectImage.png": "/static/media/DisasterRecoveryBotProjectImage.aaac15c317f2bd480ee5.png",
+    "static/media/ChatBotProjectImage.png": "/static/media/ChatBotProjectImage.7afcd2308d1ef92c7e44.png",
+    "static/media/ManagementSystemImage.png": "/static/media/ManagementSystemImage.7732c61f5d306ec2abb1.png",
+    "static/media/DeliveryRouteProjectImage.png": "/static/media/DeliveryRouteProjectImage.a740d7b6f0c2f7e7cf83.png",
+    "static/media/ComputerScienceCapstoneProjectImage.png": "/static/media/ComputerScienceCapstoneProjectImage.b5c3502989f57dd3f6db.png",
+    "static/media/PipeLineResponsiveSmall.png": "/static/media/PipeLineResponsiveSmall.3ae6da5ca3b9c7707537.png",
+    "static/media/AdvancedDataManagementImage.png": "/static/media/AdvancedDataManagementImage.cb87eef65a9733e3105e.png",
+    "static/media/BeatBoxResponsiveSmall.png": "/static/media/BeatBoxResponsiveSmall.6f359e490be5d2238fc4.png",
+    "static/media/MerchStoreResponsiveSmall.png": "/static/media/MerchStoreResponsiveSmall.2eb0222d206b5b5371ab.png",
+    "static/media/FullstackgrubImage.png": "/static/media/FullstackgrubImage.14b1f2373024eec8eb1c.png",
+    "static/media/VDMDemoTranSmall.png": "/static/media/VDMDemoTranSmall.0da1b0f51efbcd0850a6.png",
+    "static/media/TaskAppResponsiveSmall.png": "/static/media/TaskAppResponsiveSmall.d7c1413a3fd240f0789a.png",
+    "static/media/EsignatureResponsiveSmall.png": "/static/media/EsignatureResponsiveSmall.50f220f19b3323bbbf92.png",
+    "static/media/ITILv4FoundationLogo.png": "/static/media/ITILv4FoundationLogo.8acda96817faf622acff.png",
+    "static/media/AlgoAppResponsiveSmall.png": "/static/media/AlgoAppResponsiveSmall.eb8288d2cb10b2722b28.png",
+    "static/media/ConfidentialScreensDarkResponsiveSmall.png": "/static/media/ConfidentialScreensDarkResponsiveSmall.9b676c34a388a6d11030.png",
+    "static/media/HomePageLogoFixed.png": "/static/media/HomePageLogoFixed.44270534a06f8c578059.png",
+    "static/media/greenstaarWhite.db7e6195.png": "/static/media/greenstaarWhite.db7e6195.db7e6195e66e369c5e02.png",
+    "static/media/CompTIAProjectPluslogo.webp": "/static/media/CompTIAProjectPluslogo.d30d39ac90fec90d3cf0.webp",
+    "static/media/github-mark-white.svg": "/static/media/github-mark-white.97ed8e7eef60d61ca469881dd6f34511.svg",
+    "index.html": "/index.html",
+    "main.e5446ba7.css.map": "/static/css/main.e5446ba7.css.map",
+    "main.e4affdd1.js.map": "/static/js/main.e4affdd1.js.map",
+    "787.3740189b.chunk.js.map": "/static/js/787.3740189b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e5446ba7.css",
+    "static/js/main.e4affdd1.js"
+  ]
+}

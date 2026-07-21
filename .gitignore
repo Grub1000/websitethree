@@ -1,0 +1,46 @@
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Environment variables
+.env
+
+# SQLite database
+db.sqlite3
+
+# Django collected static files
+staticfiles/
+
+# Python packaging
+*.egg-info/
+dist/
+
+# -------------------------
+# React
+# -------------------------
+homepage-frontend/node_modules/
+homepage-react-frontend-parallax-semantic/node_modules/
+
+# Uncomment these later if GitHub Actions will build React
+# homepage-frontend/build/
+# homepage-react-frontend-parallax-semantic/build/
+
+# -------------------------
+# IDEs
+# -------------------------
+.vscode/
+.idea/
+
+# -------------------------
+# Operating System
+# -------------------------
+.DS_Store
+Thumbs.db

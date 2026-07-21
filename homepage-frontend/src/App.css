@@ -1,0 +1,2067 @@
+body {
+  margin: 0;
+  font-family: 'Julius Sans One', sans-serif;
+  color: white;
+  /* color: rgb(0, 0, 0); */
+  background-color: black;
+  overflow: hidden;
+  cursor: default;
+}
+hr {
+  width: 70px;
+}
+.SuperWrapper {
+  position: absolute;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  /* background-color: rgb(15, 15, 15); */
+  /* background-image: linear-gradient(to right, #FFC371, #FF5F6D); */
+  background-image: linear-gradient(to right, rgb(0, 0, 0), rgb(24, 28, 37));
+  overflow: hidden;
+}
+br{
+  line-height: 1.5em;
+}
+a:hover{
+  /* color: rgb(0, 0, 0) */
+}
+/* -------------------------------------------------------------------------------------------- */
+/* Transition CSS VVVV */
+.TransitionSuperWrapper {
+  z-index: 1;                                 /* Ensure the transition wrapper overlaps my name during animation, This wrapper will expand to 100vw to overlap the animation*/
+  right: 0;
+  position: absolute;
+  width: 50vw;
+  height: 100vh;
+  margin: auto;
+  /* background-color: rgb(153, 44, 44); */
+  overflow: hidden;
+  transition: opacity 1s ease;
+
+}
+.Transition {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  width: 750px;
+  height: 100vh;
+  border: 0px;
+  float: right;
+  border-top-left-radius: 50%; 
+  border-bottom-left-radius: 50%; 
+  transition: width 0.5s linear, height 1s ease;
+  background-color: rgb(0,0,0);
+}
+.TransitionCircle{
+  z-index: 1;
+  position: relative;
+  top: calc(50% - 574px);
+  width: 1070px;
+  height: 1070px;
+  border: solid 40px rgb(49,49,49);
+  border-radius: 50%;
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 0%;
+  border-right: solid 40px transparent;
+  background-color: rgb(0, 0, 0);
+  transition: all 0.5s ease;
+}
+.TransitionCompButton{
+  transition: all .2s ease;
+}
+.TransitionCompButtonOne{
+  position: relative;
+  top: 170px;
+  left: 95px;
+  width: 25px;
+  height: 25px;
+  /* background-color: beige; */
+  cursor: pointer;
+  color: white;
+}
+.TransitionCompButtonTwo{
+  position: relative;
+  top: 240px;
+  left: 32px;
+  width: 25px;
+  height: 25px;
+  /* background-color: beige; */
+  cursor: pointer;
+  color: white;
+}
+.TransitionCompButtonThree{
+  position: relative;
+  top: 470px;
+  left: -32px;
+  width: 25px;
+  height: 25px;
+  /* background-color: beige; */
+  cursor: pointer;
+  color: white;
+}
+.TransitionCompButtonFour{
+  position: relative;
+  top: 705px;
+  left: 32px;
+  width: 25px;
+  height: 25px;
+  /* background-color: beige; */
+  cursor: pointer;
+  color: white;
+}
+.TransitionCompButtonFive{
+  position: relative;
+  top: 775px;
+  left: 95px;
+  width: 25px;
+  height: 25px;
+  /* background-color: beige; */
+  cursor: pointer;
+  color: white;
+}
+.TransitionInnerCircle{
+  position: relative;
+  top: -124px;
+  width: 1070px;
+  height: 1070px;
+  border-radius: 50%;
+  margin: auto;
+  /* background-color: rgb(0, 0, 0); */
+}
+/* Transition CSS ^^^^ */
+/* -------------------------------------------------------------------------------------------- */
+
+
+
+/* -------------------------------------------------------------------------------------------- */
+/* Header CSS VVVV */
+.HeaderSuperWrapper {
+  /* z-index: ; */
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  /* background-color: rgb(101, 175, 175); */
+}
+
+.HeaderLogoWrapper {
+   z-index: 3;
+  position: relative;
+  /* position: absolute; */
+  top: 10px;
+  left: 25px;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(13, 17, 23);
+  background-image: url(assets/HomePageLogoFixed.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+
+}
+/* Header CSS ^^^^ */
+/* -------------------------------------------------------------------------------------------- */
+
+
+
+/* -------------------------------------------------------------------------------------------- */
+/* Home Screen CSS VVVV*/
+.HomeScreenSuperWrapper {
+  /* z-index: 9; */
+  width: 100%;
+  height: 100%;
+  /* background-color: rgb(213, 32, 4); */
+}
+.HomeScreenMidInfoWrapper {
+  /* z-index: 9; */
+  position: relative;
+  /* top: 400px; */
+  top: calc(50% - 60px);
+  left: 100px;
+  width: 750px;
+  height: 200px;
+  transform: scale(1);
+  transition: all 1s ease;
+  /* background-color: blue; */
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.HomeScreenMidNameWrapper {
+  width: 100%;
+  height: 70px;
+  /* background-color: greenyellow; */
+}
+.HomeScreenMidName {
+  display: flex;
+  flex-direction: row;
+  font-size: 70px;
+  letter-spacing: 12px;
+  cursor: default;
+}
+.HomeScreenLetterWrapper {}
+.HomeScreenLetterF {
+  position: relative;
+  top: 0px;
+  width: fit-content;
+  height: 30px;
+  overflow: hidden;
+  line-height: 88px;
+  /* background-color: aquamarine; */
+  transition: top .2s ease;
+  color: white;
+}
+.HomeScreenLetterS {
+  position: relative;
+  top: 0px;
+  width: fit-content;
+  height: 30px;
+  line-height: 28px;
+  overflow: hidden;
+  /* background-color: aquamarine; */
+  color: white;
+}
+.HomeScreenLetterT {
+  position: relative;
+  top: 0px;
+  width: fit-content;
+  height: 30px;
+  overflow: hidden;
+  transition: top .2s ease;
+  color: white;
+  /* background-color: aquamarine; */
+}
+.HomeScreenLetterTSub {
+  position: relative;
+  top: -54px;
+}
+.HomeScreenMidProfWrapper {
+  width: 100%;
+  height: 40px;
+  /* background-color: aqua; */
+
+}
+.HomeScreenMidProf {
+  position: relative;
+  top: 25px;
+  left: -2px;
+  width: 100%;
+  height: 20px;
+  font-size: 18px;
+  color: white;
+  /* font-family: 'Inter', sans-serif; */
+  /* background-color: blueviolet; */
+}
+.HomeScreenMidAboutMeButWrapper {
+  position: relative;
+  top: 20px;
+  width: 145px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 22px;
+  font-style: italic;
+  box-shadow: 5px 5px 0px 0px rgb(6, 6, 6);
+  background-color: rgb(40, 93, 140);
+}
+/* -------------------------------------------------------------------------------------------- */
+/* Home Screen CSS ^^^^ */
+
+
+
+/* -------------------------------------------------------------------------------------------- */
+/* Custom Compass Feature CSS VVVV */
+.HomeScreenCompassSuperWrapper {
+  /* display: none; */
+  width: 100%;
+  height: 100%;
+}
+.CompOuterCircle {
+  z-index: 2;
+  position: relative;
+  float: right;
+  top: calc(50% - 774px);
+  left: 400px;
+  width: 1150px;
+  height: 1150px;
+  border-radius: 50%;
+  background-color: rgb(49, 49, 49);
+  transform: scale(1);
+  transition: all .4s ease;
+  /* box-shadow:  100px 100px  10x  10px  black  20px ; */
+  box-shadow: 6px 6px 20px rgba(58, 109, 167, 0.4) inset; /* 5px horizontal offset, 5px vertical, 10px blur */
+  /* box-shadow: 6px 6px 20px rgba(58, 109, 167, 0.4); */
+} 
+.CompInnerCircle {
+  position: relative;
+  top: 40px;
+  left: 40px;
+  width: 1070px;
+  height: 1070px;
+  border-radius: 50%;
+  background-color: rgb(0, 0, 0);
+}
+.CompRotater {
+  position: relative;
+  top: 5px;
+  left: 5px;
+  width: 1060px;
+  height: 1060px;
+  border-radius: 50%;
+  transform: rotate(0deg);
+}
+.CompRotaterSubOne {
+  position: relative;
+  margin: auto;
+  top: 380px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  /* background-color: rgb(165, 37, 126); */
+  background-image: url(assets/earf.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: rotate(0deg);
+  /* transition: all .01s ease; */
+  transition: opacity .3s linear;
+}
+.CompRotaterArm {
+  position: relative;
+  top: 0px;
+  height: 40px;
+  width: 40px;
+  margin: auto;
+  /* background-color: white; */
+  background-image: url(assets/rocket.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* transform: rotate(-90deg); */
+  transition: top 1.5s ease;
+
+}
+.CompRotaterArmTwo {
+  position: relative;
+  top: -500px;
+  width: 5px;
+  height: 5px;
+  margin: auto;
+  border-radius: 50%;
+  background-color: rgb(199, 130, 130);
+  transition: all .6s ease;
+}
+.CompRotaterArmTwoDescFeatureWrapper {
+  opacity: 0;
+  position: relative;
+  top: -99px;
+  left: -99px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid transparent;
+  /* background-color: rgb(255, 0, 0); */
+
+}
+.CompRotaterArmTwoDescArm {
+  position: relative;
+  top: 89px;
+  left: 83px;
+  width: 15px;
+  height: 1px;
+  transform: rotate(45deg);
+  background-color: rgb(105, 105, 105);
+}
+.CompRotaterArmTwoDescBox {
+  position: relative;
+  top: 64px;
+  left: -40px;
+  width: 120px;
+  height: 15px;
+  border: 1px solid transparent;
+  text-align: right;
+  /* transform: rotate(45deg); */
+  /* background-color: rgb(255, 255, 255); */
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  color: rgb(255, 255, 255);
+}
+.CompButton {
+  transition: all .2s ease;
+  transform: rotate(0deg);
+}
+.CompButton:hover {
+  color: rgb(160, 160, 160);
+
+}
+.CompButtonOne {
+  position: relative;
+  top: -860px;
+  left: 134px;
+  width: 25px;
+  height: 25px;
+  /* background-color: beige; */
+  cursor: pointer;
+  color: white;
+}
+.CompButtonTwo {
+  position: relative;
+  top: -790px;
+  left: 72px;
+  width: 25px;
+  height: 25px;
+  /* background-color: beige; */
+  cursor: pointer;
+  color: white;
+}
+.CompButtonThree {
+  position: relative;
+  top: -560px;
+  left: 8px;
+  width: 25px;
+  height: 25px;
+  /* background-color: beige; */
+  cursor: pointer;
+  color: white;
+}
+.CompButtonFour {
+  position: relative;
+  top: -325px;
+  left: 72px;
+  width: 25px;
+  height: 25px;
+  /* background-color: beige; */
+  cursor: pointer;
+  color: white;
+}
+.CompButtonFive {
+  position: relative;
+  top: -255px;
+  left: 134px;
+  width: 25px;
+  height: 25px;
+  /* background-color: beige; */
+  cursor: pointer;
+  color: white;
+}
+/* Custom Compass Feature CSS ^^^^ */
+/* -------------------------------------------------------------------------------------------- */
+
+
+.FooterContactPullTabWrapper {
+  position: absolute;
+  top: calc(100vh - 40px);
+  left: 400px;
+  width: 100px;
+  height: 40px;
+  background-color: rgb(255, 0, 0);
+}
+
+
+
+@media(max-height: 875px) {
+
+  .CompOuterCircle {
+    top: calc(50% - 774px);
+  }
+
+  .CompButtonOne {
+    top: -820px;
+    left: 104px;
+  }
+
+  .CompButtonTwo {
+    top: -750px;
+    left: 52px;
+  }
+
+  .CompButtonFour {
+    top: -365px;
+    left: 52px;
+  }
+
+  .CompButtonFive {
+    top: -295px;
+    left: 104px;
+  }
+  .TransitionCompButtonOne{
+    top: 210px;
+    left: 60px;
+  }
+  .TransitionCompButtonTwo{
+    top: 280px;
+    left: 10px;
+  }
+  .TransitionCompButtonThree{
+    top: 470px;
+    left: -32px;
+  }
+  .TransitionCompButtonFour{
+    top: 665px;
+    left: 10px;
+  }
+  .TransitionCompButtonFive{
+    top: 735px;
+    left: 70px;
+  }
+}
+
+
+@media(max-height: 815px) {
+  .CompButtonOne {
+    top: -800px;
+    left: 91px;
+
+  }
+
+  .CompButtonTwo {
+    top: -730px;
+    left: 44px;
+
+  }
+
+  .CompButtonFour {
+    top: -385px;
+    left: 44px;
+
+  }
+
+  .CompButtonFive {
+    top: -315px;
+    left: 91px;
+  }
+
+  .TransitionCompButtonOne{
+    top: 230px;
+    left: 52px;
+  }
+  .TransitionCompButtonTwo{
+    top: 300px;
+    left: 5px;
+  }
+  .TransitionCompButtonThree{
+    top: 470px;
+    left: -32px;
+  }
+  .TransitionCompButtonFour{
+    top: 645px;
+    left: 5px;
+  }
+  .TransitionCompButtonFive{
+    top: 715px;
+    left: 52px;
+  }
+}
+
+@media(max-height: 750px) {
+  .CompButtonOne {
+    top: -780px;
+    left: 79px;
+
+  }
+  .CompButtonTwo {
+    top: -710px;
+    left: 37px;
+
+  }
+
+  .CompButtonFour {
+    top: -405px;
+    left: 37px;
+
+  }
+
+  .CompButtonFive {
+    top: -335px;
+    left: 79px;
+  }
+
+  .TransitionCompButtonOne{
+    top: 250px;
+    left: 40px;
+  }
+  .TransitionCompButtonTwo{
+    top: 320px;
+    left: -2px;
+  }
+  .TransitionCompButtonThree{
+    top: 470px;
+    left: -32px;
+  }
+  .TransitionCompButtonFour{
+    top: 625px;
+    left: -2px;
+  }
+  .TransitionCompButtonFive{
+    top: 695px;
+    left: 40px;
+  }
+}
+
+@media(max-height: 710px) {
+  .CompButtonOne {
+    top: -760px;
+    left: 68px;
+
+  }
+
+  .CompButtonTwo {
+    top: -690px;
+    left: 31px;
+
+  }
+
+  .CompButtonFour {
+    top: -425px;
+    left: 31px;
+
+  }
+
+  .CompButtonFive {
+    top: -355px;
+    left: 68px;
+  }
+
+  .TransitionCompButtonOne{
+    top: 270px;
+    left: 32px;
+  }
+  .TransitionCompButtonTwo{
+    top: 340px;
+    left: -9px;
+  }
+  .TransitionCompButtonThree{
+    top: 470px;
+    left: -32px;
+  }
+  .TransitionCompButtonFour{
+    top: 605px;
+    left: -9px;
+  }
+  .TransitionCompButtonFive{
+    top: 675px;
+    left: 32px;
+  }
+}
+
+@media(max-height: 645px) {
+  .CompButtonOne {
+    top: -740px;
+    left: 59px;
+
+  }
+
+  .CompButtonTwo {
+    top: -670px;
+    left: 25px;
+
+  }
+
+  .CompButtonFour {
+    top: -445px;
+    left: 25px;
+
+  }
+
+  .CompButtonFive {
+    top: -375px;
+    left: 59px;
+  }
+
+  .TransitionCompButtonOne{
+    top: 290px;
+    left: 25px;
+  }
+  .TransitionCompButtonTwo{
+    top: 360px;
+    left: -16px;
+  }
+  .TransitionCompButtonThree{
+    top: 470px;
+    left: -32px;
+  }
+  .TransitionCompButtonFour{
+    top: 585px;
+    left: -16px;
+  }
+  .TransitionCompButtonFive{
+    top: 655px;
+    left: 25px;
+  }
+}
+
+@media(max-height: 600px) {
+  .CompButtonOne {
+    top: -710px;
+    left: 46px;
+
+  }
+
+  .CompButtonTwo {
+    top: -640px;
+    left: 18px;
+
+  }
+
+  .CompButtonFour {
+    top: -475px;
+    left: 18px;
+
+  }
+
+  .CompButtonFive {
+    top: -405px;
+    left: 46px;
+  }
+
+  .TransitionCompButtonOne{
+    top: 320px;
+    left: 18px;
+  }
+  .TransitionCompButtonTwo{
+    top: 390px;
+    left: -23px;
+  }
+  .TransitionCompButtonThree{
+    top: 470px;
+    left: -32px;
+  }
+  .TransitionCompButtonFour{
+    top: 555px;
+    left: -23px;
+  }
+  .TransitionCompButtonFive{
+    top: 625px;
+    left: 18px;
+  }
+}
+
+
+@media(max-height: 522px) {
+  .CompButtonOne {
+    top: -675px;
+    left: 34px;
+
+  }
+
+  .CompButtonTwo {
+    top: -630px;
+    left: 17px;
+
+  }
+
+  .CompButtonFour {
+    top: -485px;
+    left: 17px;
+
+  }
+
+  .CompButtonFive {
+    top: -440px;
+    left: 34px;
+  }
+
+  .TransitionCompButtonOne{
+    top: 355px;
+    left: 18px;
+  }
+  .TransitionCompButtonTwo{
+    top: 400px;
+    left: -23px;
+  }
+  .TransitionCompButtonThree{
+    top: 470px;
+    left: -32px;
+  }
+  .TransitionCompButtonFour{
+    top: 545px;
+    left: -23px;
+  }
+  .TransitionCompButtonFive{
+    top: 590px;
+    left: 18px;
+  }
+}
+
+/* @media(max-height: 455px) {
+  .CompButtonOne {
+    top: -630px;
+    left: 22px;
+
+  }
+
+  .CompButtonTwo {
+    top: -596px;
+    left: 12px;
+
+  }
+
+  .CompButtonFour {
+    top: -519px;
+    left: 12px;
+
+  }
+
+  .CompButtonFive {
+    top: -485px;
+    left: 22px;
+  }
+} */
+
+/* @media(max-width: 1260px) {
+  .HomeScreenMidInfoWrapper {
+    float: right;
+    top: calc(50% - 75px);
+    left: -200px;
+    margin: auto;
+    transform: scale(.5);
+  }
+  .CompOuterCircle {
+    left: 300px;
+    transform: scale(.9);
+  }
+}
+
+@media(max-width: 960px) {
+  .HomeScreenMidInfoWrapper {
+    left: -100px;
+    margin: auto;
+    transform: scale(.5);
+
+  }
+
+  .CompOuterCircle {
+    left: 400px;
+    transform: scale(1);
+  }
+}
+
+@media(max-width: 860px) {
+  .HomeScreenMidInfoWrapper {
+    float: right;
+    top: calc(50% - 75px);
+    left: -20px;
+    margin: auto;
+    transform: scale(.4);
+
+  }
+
+  .CompOuterCircle {
+    left: 450px;
+    transform: scale(.9);
+  }
+}
+
+@media(max-width: 730px) {
+  .HomeScreenMidInfoWrapper {
+    float: right;
+    top: calc(50% - 75px);
+    left: 10px;
+    margin: auto;
+    transform: scale(.4);
+  }
+
+  .CompOuterCircle {
+    left: 450px;
+    transform: scale(.8);
+  }
+}
+
+@media(max-width: 645px) {
+  .HomeScreenMidInfoWrapper {
+    float: none;
+    top: calc(50% - 75px);
+    left: -125px;
+    width: 20px;
+    margin: auto;
+    transform: scale(.4);
+  }
+
+  .HomeScreenMidNameWrapper {
+    width: 700px;
+  }
+
+  .HomeScreenMidProfWrapper {
+    width: 600px;
+  }
+
+  .HomeScreenCompassSuperWrapper {
+    width: 100px;
+    margin: auto;
+  }
+
+  .CompOuterCircle {
+    float: none;
+    top: calc(50% - 600px);
+    left: -523px;
+    transform: scale(.8) rotate(90deg);
+  }
+
+  .CompButton {
+    transition: all .2s ease;
+    transform: rotate(-90deg);
+  }
+
+  .CompRotater {
+    transform: rotate(-90deg);
+  }
+}
+
+@media(max-width: 490px) {
+
+  .HomeScreenMidInfoWrapper {
+    float: none;
+    top: calc(50% - 75px);
+    left: -125px;
+    width: 20px;
+    margin: auto;
+    transform: scale(.4);
+  }
+
+  .HomeScreenMidNameWrapper {
+    width: 700px;
+  }
+
+  .CompRotater {
+    transform: rotate(-90deg);
+  }
+
+  .HomeScreenMidProfWrapper {
+    width: 600px;
+  }
+
+  .HomeScreenCompassSuperWrapper {
+    width: 100px;
+    margin: auto;
+  }
+
+  .CompOuterCircle {
+    float: none;
+    top: calc(50% - 600px);
+    left: -523px;
+    transform: scale(.8) rotate(90deg);
+  }
+
+  .CompButton {
+    transition: all .2s ease;
+    transform: rotate(-90deg);
+  }
+
+  .CompRotater {
+    transform: rotate(-90deg);
+  }
+
+}
+
+@media(max-width: 400px) {
+  .HomeScreenMidInfoWrapper {
+    float: none;
+    top: calc(50% - 75px);
+    left: -110px;
+    width: 20px;
+    margin: auto;
+    transform: scale(.35);
+  }
+
+  .HomeScreenMidNameWrapper {
+    width: 700px;
+  }
+
+  .HomeScreenMidProfWrapper {
+    width: 600px;
+  }
+
+  .HomeScreenCompassSuperWrapper {
+    width: 100px;
+    margin: auto;
+  }
+
+  .CompOuterCircle {
+    float: none;
+    top: calc(50% - 600px);
+    left: -523px;
+    transform: scale(.8) rotate(90deg);
+  }
+
+  .CompButton {
+    transition: all .2s ease;
+    transform: rotate(-90deg);
+  }
+
+  .CompRotater {
+    transform: rotate(-90deg);
+  }
+}
+
+@media(max-width: 645px) {
+  .CompButtonOne {
+    top: -740px;
+    left: 59px;
+
+  }
+
+  .CompButtonTwo {
+    top: -670px;
+    left: 25px;
+
+  }
+
+  .CompButtonFour {
+    top: -445px;
+    left: 25px;
+
+  }
+
+  .CompButtonFive {
+    top: -375px;
+    left: 59px;
+  }
+}
+
+@media(max-width: 600px) {
+  .CompButtonOne {
+    top: -710px;
+    left: 46px;
+
+  }
+
+  .CompButtonTwo {
+    top: -640px;
+    left: 18px;
+
+  }
+
+  .CompButtonFour {
+    top: -475px;
+    left: 18px;
+
+  }
+
+  .CompButtonFive {
+    top: -405px;
+    left: 46px;
+  }
+}
+
+@media(max-width: 522px) {
+  .CompButtonOne {
+    top: -675px;
+    left: 34px;
+
+  }
+
+  .CompButtonTwo {
+    top: -630px;
+    left: 17px;
+
+  }
+
+  .CompButtonFour {
+    top: -485px;
+    left: 17px;
+
+  }
+
+  .CompButtonFive {
+    top: -440px;
+    left: 34px;
+  }
+}
+
+@media(max-width: 455px) {
+  .CompButtonOne {
+    top: -630px;
+    left: 22px;
+
+  }
+
+  .CompButtonTwo {
+    top: -596px;
+    left: 12px;
+
+  }
+
+  .CompButtonFour {
+    top: -519px;
+    left: 12px;
+
+  }
+
+  .CompButtonFive {
+    top: -485px;
+    left: 22px;
+  }
+}
+
+@media(max-height: 700px) and (max-width: 645px) {
+  .HomeScreenMidInfoWrapper {
+    float: none;
+    top: calc(50% - 80px);
+    left: -125px;
+    width: 20px;
+    margin: auto;
+    transform: scale(.4);
+  }
+
+  .HomeScreenMidNameWrapper {
+    width: 700px;
+  }
+
+  .HomeScreenMidProfWrapper {
+    width: 600px;
+  }
+
+  .HomeScreenCompassSuperWrapper {
+    width: 100px;
+    margin: auto;
+  }
+
+  .CompOuterCircle {
+    float: none;
+    top: calc(50% - 600px);
+    left: -523px;
+    transform: scale(.65) rotate(90deg);
+  }
+}
+
+@media(max-height: 700px) and (max-width: 490px) {
+  .HomeScreenMidInfoWrapper {
+    float: none;
+    top: calc(50% - 80px);
+    left: -125px;
+    width: 20px;
+    margin: auto;
+    transform: scale(.4);
+  }
+
+  .HomeScreenMidNameWrapper {
+    width: 700px;
+  }
+
+  .HomeScreenMidProfWrapper {
+    width: 600px;
+  }
+
+  .HomeScreenCompassSuperWrapper {
+    width: 100px;
+    margin: auto;
+  }
+
+  .CompOuterCircle {
+    float: none;
+    top: calc(50% - 600px);
+    left: -523px;
+    transform: scale(.65) rotate(90deg);
+  }
+
+}
+
+@media(max-height: 700px) and (max-width: 400px) {
+  .HomeScreenMidInfoWrapper {
+    float: none;
+    top: calc(50% - 80px);
+    left: -110px;
+    width: 20px;
+    margin: auto;
+    transform: scale(.35);
+  }
+
+  .HomeScreenMidNameWrapper {
+    width: 700px;
+  }
+
+  .HomeScreenMidProfWrapper {
+    width: 600px;
+  }
+
+  .HomeScreenCompassSuperWrapper {
+    width: 100px;
+    margin: auto;
+  }
+
+  .CompOuterCircle {
+    float: none;
+    top: calc(50% - 600px);
+    left: -523px;
+    transform: scale(.65) rotate(90deg);
+  }
+
+
+}
+
+@media(max-height: 522px) and (max-width: 645px) {
+  .CompButtonOne {
+    top: -675px;
+    left: 34px;
+
+  }
+
+  .CompButtonTwo {
+    top: -630px;
+    left: 17px;
+
+  }
+
+  .CompButtonFour {
+    top: -485px;
+    left: 17px;
+
+  }
+
+  .CompButtonFive {
+    top: -440px;
+    left: 34px;
+  }
+
+  .HomeScreenMidInfoWrapper {
+    float: right;
+    top: calc(50% - 75px);
+    left: -460px;
+    margin: auto;
+    transform: scale(.38);
+  }
+
+  .HomeScreenCompassSuperWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: none;
+  }
+
+  .CompOuterCircle {
+    float: right;
+    top: calc(50% - 774px);
+    left: 450px;
+    transform: scale(.7);
+  }
+
+  .CompRotater {
+    transform: rotate(0deg);
+  }
+}
+
+@media(max-height: 455px) {
+  .CompButtonOne {
+    top: -630px;
+    left: 22px;
+
+  }
+
+  .CompButtonTwo {
+    top: -596px;
+    left: 12px;
+
+  }
+
+  .CompButtonFour {
+    top: -519px;
+    left: 12px;
+
+  }
+
+  .CompButtonFive {
+    top: -485px;
+    left: 22px;
+  }
+} */
+
+/* HomePage CSS ^^^^ */
+
+
+/* ProjectsPage CSS ^^^^ */
+
+
+
+
+.NavigationSuperWrapper{
+  z-index: 2;
+  display: none;
+  position: absolute;
+  /* padding-top: 0px; */
+  /* top: 0; */
+  width: 40px;
+  height: 100vh;
+  background-color: rgb(49,49,49);
+
+}
+
+.NavigationButton{
+  transition: top 1s ease;
+  width: 25px;
+  height: 25px;
+  margin: auto;
+  cursor: pointer;
+  color: white;
+}
+.NavigationButton:hover{
+  color: rgb(201, 201, 201);
+}
+.NavigationButtonOne{
+  position: relative;
+  /* top: 92px; */
+  left: 0px;
+}
+.NavigationButtonTwo{
+  position: relative;
+  /* top: 162px; */
+  left: 0px;
+}
+.NavigationButtonThree{
+  position: relative;
+  /* top: 392px; */
+  left: 0px;
+}
+.NavigationButtonFour{
+  position: relative;
+  /* top: 627px; */
+  left: 0px;
+}
+.NavigationButtonFive{
+  position: relative;
+  /* top: 697px; */
+  left: 0px;
+}
+
+
+
+
+
+
+.MyProjectsSuperWrapper{
+  position: absolute;
+  right: 0; 
+  width: 100vw;
+  height: 100vh; 
+  /* column-count: 5;
+  column-gap: 20px; */
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: all 1s ease;
+  /* padding-top: 200px; */
+  /* margin-top: 100px; */
+  overflow: scroll;
+  overflow-x: hidden;
+  /* background-color: brown; */
+}
+.MyProjectsSuperWrapper::-webkit-scrollbar{
+  width: 0px;
+  background-color: transparent;
+  color: transparent;
+}
+.MyProjectsHeaderWrapper{
+  /* position: absolute; */
+  text-align: center;
+  vertical-align: bottom;
+  width:100%;
+  height: 100px;
+  padding-top: 100px;
+  padding-left: 20px;
+  /* background-color: aqua; */
+}
+.MyProjectsCardsMasonryWrapper{
+  position: relative;
+  width: 90%;
+  margin: auto;
+  left: 20px;
+  column-count: 5;
+  column-gap: 20px;
+}
+.MyProjectsTitleWrapper{
+  /* position: relative; */
+  display: none;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  width: fit-content;
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  font-size: 25px;
+  /* background-color: aqua; */
+}
+.MyProjectsCardWrapper{
+  /* position: relative; */
+  display: inline-block;
+  /* background-color: rgb(33, 39, 46); */
+  background-color: rgba(255, 255, 255, 0.02);
+  color: rgb(58, 58, 58);
+  padding: 20px;
+  margin: 0 0 20px;
+  width: auto;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+}
+.MyProjectCardHeader{
+  position: relative;
+  width: 100%;
+  height: 240px;
+  margin: auto;
+  background-color: rgb(255, 255, 255);
+  background-image: url(assets/VDMDemoTranSmall.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.MyProjectCardHeaderButtonsWrapper{
+}
+.MyProjectCardHeaderButtonWrapperTop{
+  position: relative;
+  background-color: rgba(160, 160, 160, 0.5);
+  width: 100%;
+  height: 35px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+  padding-top: 15px;
+}
+.MyProjectCardHeaderButtonWrapperBottom{
+  position: relative;
+  background-color: rgba(160, 160, 160, 0.5);
+  width: 40%;
+  height: 24px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+  padding-top: 8px;
+  top: 158px;
+  margin: auto;
+  font-size: 16px;
+}
+.MyProjectCardMiddle{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  border-top: 1px solid rgb(90, 90, 90);
+  border-Bottom: 1px solid rgb(51, 51, 51);
+  margin-top: 10px;
+  /* height: 200px; */
+  /* background-color: blue; */
+}
+.MyProjectCardTechTag{
+  /* width: 57px; */
+  height: 19px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-right: 2px;
+  border-radius: 6px;
+  /* background-color: rgb(3, 3, 3); */
+  background-image: linear-gradient(to right, rgb(26, 26, 26), rgb(26, 27, 31));
+  color: rgb(134, 134, 134);
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 7px;
+  padding-bottom: 0px;
+}
+.MyProjectCardFooter{
+  width: 100%;
+  border-Bottom: 1px solid rgb(31, 31, 31);
+  /* height: 200px; */
+  /* background-color: teal; */
+}
+.MyProjectCardFooterText{
+  text-align: center;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px;
+}
+.MyProjectCardFooterLinksWrapper{
+  /* background-color: aqua; */
+  display: flex;
+  width: fit-content;
+  margin: auto;
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(119, 134, 136);
+}
+.MyProjectCardFooterLinkWrapper{
+  width: 27px;
+  /* width: fit-content; */
+
+  height: 26px;
+  color: rgb(141, 141, 141);
+  cursor: pointer;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  /* background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  fill: currentColor; */
+  /* background-color: black; */
+}
+.MyProjectCardFooterLinkWrapper:hover{
+  color: rgb(224, 224, 224);
+}
+.fa{
+  font-size: 25px;
+}
+
+
+
+
+
+
+
+
+/* The typewriter and cursor effect */
+@keyframes typing {
+  from { width: 0% }
+  to { width: 250px}
+}
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgb(173, 173, 173); }
+}
+/* The typewriter and cursor effect */
+
+/* Adjust For the removal of the bookmarks bar */
+/* @media(min-height: 912px){
+  .NavigationSuperWrapper{
+    padding-top: 16px;
+  }
+}
+@media(max-height: 911px){
+  .NavigationSuperWrapper{
+    padding-top: 0px;
+  }
+} */
+/* Adjust For the removal of the bookmarks bar */
+
+
+
+
+
+
+.EducationSuperWrapper{
+  position: absolute;
+  right: 0; 
+  width: 100vw;
+  height: 100vh; 
+  /* column-count: 5;
+  column-gap: 20px; */
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: all 1s ease;
+  /* padding-top: 200px; */
+  /* margin-top: 100px; */
+  overflow: scroll;
+  overflow-x: hidden;
+  /* background-color: greenyellow; */
+}
+.EducationSuperWrapper::-webkit-scrollbar{
+  width: 0px;
+  background-color: transparent;
+  color: transparent;
+}
+.EducationHeaderWrapper{
+  text-align: center;
+  vertical-align: bottom;
+  width:100%;
+  height: 100px;
+  padding-top: 100px;
+  padding-left: 20px;
+}
+.EducationTitleWrapper{
+  font-size: 25px;
+}
+.EducationMidWrapper{
+  /* background-color: green; */
+  width: 100%;
+}
+.EducationCard{
+  display: flex;
+  width: fit-content;
+  margin: auto;
+  padding-left: 30px;
+  /* background-color: aqua; */
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+.EducationImage{
+  width: 55px;
+  height: 55px;
+  margin-right: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.EducationText{
+  padding-top: 5px;
+  /* background-color: blueviolet; */
+  height: 100px;
+  width: 310px;
+  font-size: 16px;
+}
+.EducationCredentialID{
+  cursor: pointer;
+  color: rgb(184, 184, 184);
+}
+.EducationCredentialID:hover{
+  color: aqua;
+}
+
+@media(max-width: 450px){
+  .EducationMidWrapper {
+    transform: scale(0.8);
+  }
+}
+@media(max-width: 350px){
+  .EducationMidWrapper {
+    transform: scale(0.7);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.AboutMeSuperWrapper{
+  position: absolute;
+  right: 0; 
+  width: 100vw;
+  height: 100vh; 
+  /* column-count: 5;
+  column-gap: 20px; */
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: all 1s ease;
+  /* padding-top: 200px; */
+  /* margin-top: 100px; */
+  overflow: scroll;
+  overflow-x: hidden;
+  /* background-color: rgb(218, 218, 218); */
+}
+.AboutMeSuperWrapper::-webkit-scrollbar{
+  width: 0px;
+  background-color: transparent;
+  color: transparent;
+}
+.AboutMeHeaderWrapper{
+  text-align: center;
+  vertical-align: bottom;
+  width:100%;
+  height: 100px;
+  padding-top: 100px;
+  padding-left: 20px;
+}
+.AboutMeTitleWrapper{
+  font-size: 25px;
+}
+.AboutMeMidWrapper{
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  /* background-color: rgb(41, 41, 41); */
+}
+.AboutMeHeadShot{
+  margin-left: 40px;
+  width: 230px;
+  height: 270px;
+  /* background-color: coral; */
+  background-image: url(../src/assets/20240227_211318.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.AboutMeDescription{
+  padding-left: 10px;
+  width: 330px;
+  font-family: Verdana;
+  font-size: 14px;
+  line-height: 20px;
+  text-indent: 10px;
+}
+.AboutMeExperienceHeaderWrapper{
+  text-align: center;
+  vertical-align: bottom;
+  width:100%;
+  height: 50px;
+  padding-top: 50px;
+  padding-left: 20px;
+}
+.AboutMeExperienceTitleWrapper{
+  font-size: 25px;
+}
+.AboutMeExperienceWrapper{
+  width: 100%;
+}
+.AboutMeExperienceCard{
+  position: relative;
+  margin: auto;
+  left: 20px;
+  display: flex;
+  width: 500px;
+  /* background-color: bisque; */
+}
+.AboutMeExperienceImage{
+  width: 120px;
+  height: 34px;
+  background-size: contain;
+  /* background-color: aqua; */
+  background-repeat: no-repeat;
+}
+.AboutMeExperienceLocation{
+  padding-top: 8px;
+  padding-left: 6px;
+  font-size: 14px;
+  color: rgb(160, 158, 125);
+  font-family: Arial, Helvetica, sans-serif;
+}
+.AboutMeExperienceDate{
+  padding-top: 8px;
+  padding-left: 100px;
+  font-size: 14px;
+  color: rgb(154, 187, 201);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.AboutMeSkillsHeaderWrapper{
+  text-align: center;
+  vertical-align: bottom;
+  width:100%;
+  height: 30px;
+  padding-top: 30px;
+  padding-left: 20px;
+}
+.AboutMeSkillsTitleWrapper{
+  font-size: 25px;
+}
+.AboutMeSkillsWrapper{
+  margin-top: 25px;
+  width: 100%;
+  /* background-color: aqua; */
+}
+.AboutMeSkillsCardWrapper{
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  width: 600px;
+  height: 100px;
+  margin: auto;
+  left: 20px;
+  /* background-color: darkolivegreen; */
+}
+.AboutMeSkillCard{
+  width: fit-content;
+  height: 20px;
+  padding: 4px;
+  padding-bottom: 1px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 4px;
+  /* background-color: rgb(26, 26, 26); */
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: bisque;
+}
+
+
+
+@media(max-width: 670px){
+
+.AboutMeMidWrapper{
+  width: 330px;
+}
+.AboutMeHeadShot{
+  /* margin-left: 50px; */
+  /* border-left: 20px; */
+  /* margin-left: auto; */
+  margin-left: 70px;
+}
+.AboutMeDescription{
+  /* width: 300px;
+  font-family: Arial, Helvetica, sans-serif; */
+  padding-top: 20px;
+  padding-left: 40px;
+}
+.AboutMeExperienceCard{
+  width: 410px;
+  left: 10px;
+  transform: scale(0.9);
+}
+.AboutMeExperienceDate{
+  padding-left: 12px;
+}
+.AboutMeSkillsCardWrapper{
+  width: 400px;
+}
+}
+
+@media(max-width: 435px){
+  .AboutMeExperienceCard{
+  left: 0px;
+  transform: scale(0.75);
+}
+.AboutMeSkillsCardWrapper{
+  width: 330px;
+}
+}
+
+
+
+
+
+
+
+.LinksSuperWrapper{
+  position: absolute;
+  right: 0; 
+  width: 100vw;
+  height: 100vh; 
+  /* column-count: 5;
+  column-gap: 20px; */
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: all 1s ease;
+  /* padding-top: 200px; */
+  /* margin-top: 100px; */
+  overflow: scroll;
+  overflow-x: hidden;
+  /* background-color: rgb(47, 189, 255); */
+}
+.LinksSuperWrapper::-webkit-scrollbar{
+  width: 0px;
+  background-color: transparent;
+  color: transparent;
+}
+.LinksHeaderWrapper{
+  text-align: center;
+  vertical-align: bottom;
+  width:100%;
+  height: 100px;
+  padding-top: 100px;
+  padding-left: 20px;
+}
+.LinksTitleWrapper{
+  font-size: 25px;
+}
+.LinksWrapper{
+  width: 100%;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width: 6000px) {
+   .HomeScreenMidInfoWrapper {
+    top: calc(50% - 60px);
+    left: 800px;
+    transform: scale(2.4);
+  }
+  .CompOuterCircle {
+    transform: scale(2.9);
+    left: 100px;
+  }
+  .Transition{
+    width: 2100px;
+  }
+  .TransitionCircle{
+    transform: scale(2.9);
+    left: 1090px;
+  }
+  .NavigationSuperWrapper{
+    width: 110px
+  }
+  .NavigationButton{
+    transform: scale(2.9);
+  }
+}
+@media(max-width: 4600px) {
+   .HomeScreenMidInfoWrapper {
+    top: calc(50% - 60px);
+    left: 500px;
+    transform: scale(1.8);
+  }
+
+  .CompOuterCircle {
+    transform: scale(2.0);
+    left: 100px;
+  }
+    .Transition{
+    width: 1500px;
+  }
+    .TransitionCircle{
+    transform: scale(2.0);
+    left: 574px;
+  }
+  .NavigationSuperWrapper{
+    width: 78px
+  }
+  .NavigationButton{
+    transform: scale(2.0);
+  }
+}
+@media(max-width: 3600px) {
+   .HomeScreenMidInfoWrapper {
+    top: calc(50% - 60px);
+    left: 300px;
+    transform: scale(1.5);
+  }
+
+  .CompOuterCircle {
+    transform: scale(1.6);
+  }
+  .Transition{
+    width: 1220px;
+  }
+  .TransitionCircle{
+    transform: scale(1.6);
+    left: 344px;
+  }
+  .NavigationSuperWrapper{
+    width: 61px
+  }
+  .NavigationButton{
+    transform: scale(1.6);
+  }
+}
+@media(max-width: 2600px) {
+  .HomeScreenMidInfoWrapper {
+    top: calc(50% - 60px);
+    left: 200px;
+    transform: scale(1.2);
+  }
+
+  .CompOuterCircle {
+    transform: scale(1.2);
+    left: 400px;
+  }
+  .Transition{
+    width: 750px;
+  }
+  .TransitionCircle{
+    transform: scale(1.2);
+    left: 114px;
+  }
+  .NavigationSuperWrapper{
+    width: 46px
+  }
+  .NavigationButton{
+    transform: scale(1.2);
+  } 
+}
+@media(max-width: 1980px) {
+  .HomeScreenMidInfoWrapper {
+    top: calc(50% - 60px);
+    left: 100px;
+    transform: scale(1);
+  }
+
+  .CompOuterCircle {
+    transform: scale(1);
+    left: 400px;
+  }
+  .Transition{
+    width: 750px;
+  }
+  .TransitionCircle{
+    transform: scale(1);
+    left: 0px;
+  }
+  .NavigationSuperWrapper{
+    width: 40px
+  }
+  .NavigationButton{
+    transform: scale(1);
+  }
+}
+@media(max-width: 1640px) {
+  .HomeScreenMidInfoWrapper {
+    top: calc(50% - 68px);
+    left: 30px;
+    transform: scale(.8);
+  }
+
+  .CompOuterCircle {
+    transform: scale(.9);
+  }
+  .Transition{
+    width: 40vw;
+  }
+  .TransitionCircle{
+    transform: scale(.9);
+  }
+  .NavigationButton{
+    transform: scale(.9);
+  }
+}
+
+@media(max-width: 1440px) {
+  .HomeScreenMidInfoWrapper {
+    top: calc(50% - 75px);
+    left: -40px;
+    transform: scale(.7);
+  }
+
+  .CompOuterCircle {
+    transform: scale(.86);
+  }
+  .Transition{
+    width: 40vw;
+  }
+  .TransitionCircle{
+    transform: scale(.9);
+  }
+}
+
+@media(max-width: 768px){
+    .HomeScreenMidInfoWrapper {
+    top: calc(50% - 100px);
+    left: -140px;
+    transform: scale(.45);
+  }
+  .MyProjectsCardsMasonryWrapper{
+    column-count: 1;
+  }
+}
+
+@media(min-width: 769px){
+  .MyProjectsCardsMasonryWrapper{
+    column-count: 2;
+  }
+}
+
+@media(min-width: 1080px){
+  .MyProjectsCardsMasonryWrapper{
+    column-count: 3;
+  }
+}
+
+@media(min-width: 1300px){
+  .MyProjectsCardsMasonryWrapper{
+    column-count: 4;
+  }
+}
+
+@media(min-width: 1800px){
+  .MyProjectsCardsMasonryWrapper{
+    column-count: 5;
+  }
+}
+
+
+
+
