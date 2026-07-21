@@ -2,8 +2,8 @@
 
 echo "Starting deployment..."
 
-# Stop if any command fails
-set -e
+echo "Moving to project directory..."
+cd /website-folder/src/websitethree || exit
 
 echo "Pulling latest code..."
 git pull origin main
