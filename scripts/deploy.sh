@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Stop if any command fails
+set -e
+
 echo "Starting deployment..."
 
 echo "Moving to project directory..."
