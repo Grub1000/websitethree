@@ -280,8 +280,8 @@ export default class App extends React.Component{
           <main className="MainContentWrapper" id="mainContentWrapper">
             <section className="HomepageSuperWrapper">
               <div className="HomepageTitleWrapper">
-                <h1 className="HomepageTitle">Full Stack Software Developer / CompSci Graduate Student</h1>
-                <p className="HomepageTitleDescription">If you are looking for a skilled software / web developer to bring an idea to life from inception and design to development and deployment - let's talk. </p>
+                <h1 className="HomepageTitle">Full Stack Software Developer & CompSci Graduate Student</h1>
+                <p className="HomepageTitleDescription">Let’s collaborate to turn your vision into reality. I provide full-cycle digital product creation, taking your idea from initial concept and UI/UI design through robust development to a successful deployment.</p>
                 <a href="mailto:jorgeramirezsoftware@gmail.com?subject=Subject%20Line&body=Body%20Text"><button className="HomepageTitleDescriptionEmailButton">jorgeramirezsoftware@gmail.com</button></a>
               </div>
               <div className="HomepageRightSectionWrapper">

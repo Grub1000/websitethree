@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.c16c2f52.css",
-    "main.js": "/static/js/main.77a0b58e.js",
+    "main.css": "/static/css/main.a870f6b0.css",
+    "main.js": "/static/js/main.84003cf0.js",
     "static/js/453.eb1b5922.chunk.js": "/static/js/453.eb1b5922.chunk.js",
     "static/media/20240227_211318.jpg": "/static/media/20240227_211318.135c096e84b023e4f04e.jpg",
     "static/media/SchedulingSystemImage.png": "/static/media/SchedulingSystemImage.44f50563ecee9ea8a154.png",
@@ -23,12 +23,12 @@
     "static/media/HomePageLogoFixed.png": "/static/media/HomePageLogoFixed.44270534a06f8c578059.png",
     "static/media/CompTIAProjectPluslogo.webp": "/static/media/CompTIAProjectPluslogo.d30d39ac90fec90d3cf0.webp",
     "index.html": "/index.html",
-    "main.c16c2f52.css.map": "/static/css/main.c16c2f52.css.map",
-    "main.77a0b58e.js.map": "/static/js/main.77a0b58e.js.map",
+    "main.a870f6b0.css.map": "/static/css/main.a870f6b0.css.map",
+    "main.84003cf0.js.map": "/static/js/main.84003cf0.js.map",
     "453.eb1b5922.chunk.js.map": "/static/js/453.eb1b5922.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c16c2f52.css",
-    "static/js/main.77a0b58e.js"
+    "static/css/main.a870f6b0.css",
+    "static/js/main.84003cf0.js"
   ]
 }

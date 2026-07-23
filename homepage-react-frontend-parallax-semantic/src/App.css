@@ -11,7 +11,9 @@ body {
   /* overflow-y: scroll; */
 }
 h1{
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+  font-family: monospace;
   font-weight: lighter;
   /* letter-spacing: 1px; */
   color: rgba(180, 9, 23, 0.432);
@@ -19,6 +21,8 @@ h1{
 }
 h2{
   /* font-size: 15px; */
+  /* font-family: monospace; */
+  /* font-size: 12px; */
   font-weight: lighter;
 }
 hr {
@@ -425,7 +429,7 @@ width: 12px;
 .HomepageProjectsSectionCardTitle{
   margin-top: 10px;
   margin-left: 10px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: lighter;
   letter-spacing: 1px;
   color: white;
@@ -734,7 +738,7 @@ width: 12px;
     width: 359px;
   }
   .HomepageProjectsSectionCardTitle{
-    font-size: 20px;
+    font-size: 18px;
   }
   .HomepageProjectsSectionCardImage{
     width: 360px;
