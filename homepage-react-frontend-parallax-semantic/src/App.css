@@ -259,7 +259,7 @@ width: 12px;
   color: white;
   cursor: pointer;
   text-shadow: 0px 1px 2px #000000;
-  background-color: rgb(110, 60, 60);
+  background-color: rgb(213, 111, 62);
 
 }
 .HeaderHamburgerDropdownWrapper{
@@ -388,7 +388,12 @@ width: 12px;
   text-shadow: 0px 1px 2px #000000;
   /* background-color: #505050; */
   cursor: pointer;
+  transition: border-bottom 0.3s ease;
 
+}
+.HomepageProjectsSectionNavButton:hover{
+  /* background-color: rgb(141, 153, 153); */
+  border-bottom: 1px solid rgb(65, 193, 197);
 }
 .HomepageProjectsSectionCardWrapper{
   display: flex;
@@ -646,7 +651,7 @@ width: 12px;
 
 @media(max-width: 1620px){
   #root{
-  box-shadow: 0px 0px 210px 190px rgb(0, 0, 0) inset;
+  /* box-shadow: 0px 0px 210px 190px rgb(0, 0, 0) inset; */
   }
   .ParallaxTitle{
     margin-top: 200px;
@@ -719,7 +724,7 @@ width: 12px;
 
 @media(max-width: 900px){
   #root{
-  box-shadow: 0px 0px 210px 160px rgb(0, 0, 0) inset;
+  /* box-shadow: 0px 0px 210px 160px rgb(0, 0, 0) inset; */
   }
   .ParallaxTitle{
     margin-top: 250px;
@@ -762,7 +767,7 @@ width: 12px;
 
 @media(max-width: 800px){
   #root{
-    box-shadow: 0px 0px 200px 135px rgb(0, 0, 0) inset;
+    /* box-shadow: 0px 0px 200px 135px rgb(0, 0, 0) inset; */
   }
   .HomepageProjectsSectionCard{
     width: 300px;
@@ -779,7 +784,7 @@ width: 12px;
 
 @media(max-width: 670px){
   #root{
-    box-shadow: 0px 0px 200px 110px rgb(0, 0, 0) inset;
+    /* box-shadow: 0px 0px 200px 110px rgb(0, 0, 0) inset; */
   }
   .ParallaxTitle{
     margin-top: 250px;
@@ -852,7 +857,7 @@ width: 12px;
 
 @media(max-width: 450px){
   #root{
-    box-shadow: 0px 0px 200px 100px rgb(0, 0, 0) inset;
+    /* box-shadow: 0px 0px 200px 100px rgb(0, 0, 0) inset; */
   }
   .ParallaxTitle{
     margin-top: 100px;

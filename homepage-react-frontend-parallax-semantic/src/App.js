@@ -345,16 +345,13 @@ export default class App extends React.Component{
                   <div className="HomepageAboutUpperSectionWrapper">
                     <img className="HomepageAboutPortraitImage" src={myPortrait}></img>
                     <p className="HomepageAboutDescription">
-                      Dynamic Full-Stack Developer with over 6 years of experience in programming / web development.
-                      While working at Greenstaar.ca I successfully designed 
-                      a web-based PDF Editor that streamlined THC product label creation. Adept 
-                      in Agile methodologies and IT project management, I excel in delivering 
-                      innovative software solutions while enhancing user experience through 
-                      responsive design. <br></br> <br></br>
-                      Energetic problem-solver with knack for creative and efficient coding solutions. Proficient in 
-                      modern web technologies including JavaScript, PHP, Python and Web Frameworks such as Laravel and
-                      ReactJS with experience in developing robust server-side architecture. Dedicated to leveraging 
-                      skills to build impactful, scalable Software. </p>
+                      Full-Stack Software Developer and AWS Certified Machine Learning Engineer with a 
+                      strong foundation in modern engineering ecosystems. Proficient in building scalable, 
+                      secure web architectures using Python, Django, C#, .Net, MySQL, and React. Backed by 
+                      Comptia Project+ and ITIL v4 certifications, ensuring clean code delivery aligns 
+                      seamlessly with Agile engineering workflows and IT service standards. Proven track 
+                      record at Greenstaar.ca designing workflow streamlining software, including a custom 
+                      web-based PDF editor.<br></br></p>
                   </div>
                   <div className="HomepageAboutSkillsSuperWrapper">
                     <h2 className="HomepageAboutSkillTitle">Skills:</h2>
@@ -362,19 +359,23 @@ export default class App extends React.Component{
                       <p className="HomePageAboutSkillCard">Javascript</p>
                       <p className="HomePageAboutSkillCard">Python</p>
                       <p className="HomePageAboutSkillCard">Java</p>
+                      <p className="HomePageAboutSkillCard">C#</p>
                       <p className="HomePageAboutSkillCard">C++</p>
                       <p className="HomePageAboutSkillCard">CSS</p>
                       <p className="HomePageAboutSkillCard">HTML5</p>
                       <p className="HomePageAboutSkillCard">Django</p>
+                      <p className="HomePageAboutSkillCard">.Net</p>
                       <p className="HomePageAboutSkillCard">ReactJS</p>
                       <p className="HomePageAboutSkillCard">Laravel</p>
                       <p className="HomePageAboutSkillCard">MySQL</p>
                       <p className="HomePageAboutSkillCard">SQL</p>
                       <p className="HomePageAboutSkillCard">Apache2</p>
                       <p className="HomePageAboutSkillCard">Webserver Config</p>
+                      <p className="HomePageAboutSkillCard">AWS</p>
                       <p className="HomePageAboutSkillCard">EC2</p>
                       <p className="HomePageAboutSkillCard">S3</p>
                       <p className="HomePageAboutSkillCard">Git/GitHub</p>
+                      <p className="HomePageAboutSkillCard">Github Actions</p>
                       <p className="HomePageAboutSkillCard">Machine Learning</p>
                       <p className="HomePageAboutSkillCard">Tensorflow</p>
                       <p className="HomePageAboutSkillCard">Neural Networks</p>
@@ -388,6 +389,7 @@ export default class App extends React.Component{
                       <p className="HomePageAboutSkillCard">Development</p>
                       <p className="HomePageAboutSkillCard">Deployment</p>
                       <p className="HomePageAboutSkillCard">Windows/Linux</p>
+                      <p className="HomePageAboutSkillCard">CI / CD</p>
                     </div>
                   </div>
                 </section>
