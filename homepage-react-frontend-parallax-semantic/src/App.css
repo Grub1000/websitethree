@@ -5,7 +5,8 @@ body {
   font-family: 'Julius Sans One', sans-serif;
   color: white;
   color: rgb(0, 0, 0);
-  background-color: rgb(19, 19, 19);
+  /* background-color: rgb(19, 19, 19); */
+  background: linear-gradient(45deg,rgba(19, 19, 19) 20%, rgb(32, 32, 32) 40%, rgba(19, 19, 19) 70%);
   overflow: hidden;
   cursor: default;
   /* overflow-y: scroll; */
@@ -16,7 +17,7 @@ h1{
   font-family: monospace;
   font-weight: lighter;
   /* letter-spacing: 1px; */
-  color: rgba(180, 9, 23, 0.432);
+  /* color: rgba(180, 9, 23, 0.432); */
   font-size: 30px;
 }
 h2{
@@ -124,7 +125,7 @@ width: 12px;
   height: 60px;
   padding-left: calc(16.5vw + 83px);
   /* background-color: rgb(31, 31, 31); */
-  border-bottom: 1px solid rgb(129, 129, 129);
+  border-bottom: 1px solid rgb(70, 70, 70);
 }
 .HeaderLogoWrapper{
   position: absolute;
@@ -477,7 +478,8 @@ width: 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background-color: rgb(65, 193, 197);
+  /* background-color: rgb(65, 193, 197); */
+  background-color: rgb(189, 199, 204);
   transition: left .4s ease;
   /* background-color: rgb(255, 124, 124); */
 }
@@ -485,7 +487,8 @@ width: 12px;
   font-size: 20px;
 }
 .HomepageProjectsSectionCardDescButton:hover{
-  background-color: rgb(229, 240, 85);
+  /* background-color: rgb(229, 240, 85); */
+  background-color: rgb(65, 193, 197);
 }
 .HomepageProjectsSectionCardDescButtonIcon{
   transition: all 1.2s ease;
@@ -904,5 +907,3 @@ width: 12px;
     top: 50px;
   }
 }
-
-

@@ -31,9 +31,11 @@ import merchStoreProImage from "./assets/MerchStoreResponsiveSmall.png"
 import taskAppImage from "./assets/TaskAppResponsiveSmall.png"
 import eSigProImage from "./assets/EsignatureResponsiveSmall.png"
 
+// Cert & University Logos
 import wguLogo from "./assets/WGULogo.png"
 import iTILv4Logo from "./assets/ITILv4FoundationLogo.png"
 import compTIALogo from "./assets/CompTIAProjectPluslogo.webp"
+import awsMLEnigneerLogo from "./assets/AWS_Machine_Learning_Engineer_Logo.png"
 
 export default class App extends React.Component{
   constructor(){
@@ -280,7 +282,9 @@ export default class App extends React.Component{
           <main className="MainContentWrapper" id="mainContentWrapper">
             <section className="HomepageSuperWrapper">
               <div className="HomepageTitleWrapper">
-                <h1 className="HomepageTitle">Full Stack Software Developer & CompSci Graduate Student</h1>
+                <div class="typing-container">
+                  <h1 className="HomepageTitle">Full Stack Software Developer & MSCS Graduate</h1>
+                </div>
                 <p className="HomepageTitleDescription">Let’s collaborate to turn your vision into reality. I provide full-cycle digital product creation, taking your idea from initial concept and UI/UI design through robust development to a successful deployment.</p>
                 <a href="mailto:jorgeramirezsoftware@gmail.com?subject=Subject%20Line&body=Body%20Text"><button className="HomepageTitleDescriptionEmailButton">jorgeramirezsoftware@gmail.com</button></a>
               </div>
@@ -303,6 +307,15 @@ export default class App extends React.Component{
                   {myProjectFavoriteCardList}
                 </section>
                 <section className="HomepageEducationSectionWrapper" id="homepageEducationSectionWrapper">
+                  <div className="EducationCard" style={{marginBottom: "20px", marginTop: "50px"}}> 
+                    <div className="EducationImage" style={{backgroundImage: "url(" + wguLogo + ")"}}></div>
+                    <div className="EducationText" >
+                      <div style={{marginBottom: "10px"}}>Western Governors University</div> 
+                      <div style={{fontSize: "13px", marginBottom: "8px", lineHeight: "18px"}}>Master of Science - MS, Computer Science, Artificial Intelligence and Machine Learning </div> 
+                      <div style={{fontSize: "13px", color: "rgb(184, 184, 184)", marginBottom: "10px"}}>August 2025 - July 2026</div> 
+                      {/* <div style={{}}>ABET-accredited CS Program</div> */}
+                    </div>
+                  </div>
                   <div className="EducationCard"> 
                     <div className="EducationImage" style={{backgroundImage: "url(" + wguLogo + ")"}}></div>
                     <div className="EducationText" >
@@ -312,16 +325,16 @@ export default class App extends React.Component{
                       {/* <div style={{}}>ABET-accredited CS Program</div> */}
                     </div>
                   </div>
-                  <div className="EducationCard" style={{marginBottom: "35px"}}> 
-                    <div className="EducationImage" style={{backgroundImage: "url(" + wguLogo + ")"}}></div>
+                  <div className="EducationCard" style={{marginBottom: "38px", marginLeft: "6px"}}> 
+                    <div className="EducationImage" style={{backgroundImage: "url(" + awsMLEnigneerLogo + ")", width: "46px", height: "46px"}}></div>
                     <div className="EducationText" >
-                      <div style={{marginBottom: "10px"}}>Western Governors University</div> 
-                      <div style={{fontSize: "13px", marginBottom: "8px", lineHeight: "15px"}}>Master of Science - MS, Computer Science, Artificial Intelligence and Machine Learning </div> 
-                      <div style={{fontSize: "13px", color: "rgb(184, 184, 184)", marginBottom: "10px"}}>August 2025 - Expected June 2026</div> 
+                      <div style={{marginBottom: "2px"}}>AWS Certified Machine Learning Engineer – Associate</div> 
+                      <div className="EducationCredentialID" style={{fontSize: "13px", marginBottom: "8px"}} onClick={() => window.open("https://www.credly.com/badges/72468fe3-5bce-4cbe-b051-2f348025d216/linked_in_profile", "_blank")}>Credential ID 72468fe3-5bce-4cbe-b051-2f348025d216  </div> 
+                      <div style={{fontSize: "13px", color: "rgb(184, 184, 184)", marginBottom: "10px"}}>Issued Jun 2026 · Expires Jun 2029</div> 
                       {/* <div style={{}}>ABET-accredited CS Program</div> */}
                     </div>
                   </div>
-                  <div className="EducationCard" style={{marginBottom: "38px"}}> 
+                  <div className="EducationCard" style={{marginBottom: "35px", marginLeft: "6px"}}> 
                     <div className="EducationImage" style={{backgroundImage: "url(" + iTILv4Logo + ")", width: "38px", height: "38px", marginRight: "10px"}}></div>
                     <div className="EducationText" style={{paddingTop: "0px"}}>
                       <div style={{marginBottom: "10px"}}>ITIL® 4 Foundation Certificate in IT Service Management</div> 
@@ -331,7 +344,7 @@ export default class App extends React.Component{
                       {/* <div style={{}}>ABET-accredited CS Program</div> */}
                     </div>
                   </div>
-                  <div className="EducationCard"> 
+                  <div className="EducationCard" style={{marginLeft: "6px"}}> 
                     <div className="EducationImage" style={{backgroundImage: "url(" + compTIALogo + ")", width: "46px", height: "46px"}}></div>
                     <div className="EducationText" >
                       <div style={{marginBottom: "2px"}}>CompTIA Project+ Certification</div> 

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.47e6ad3e.css",
-    "main.js": "/static/js/main.cc9cdd73.js",
+    "main.css": "/static/css/main.1bb4058c.css",
+    "main.js": "/static/js/main.0e700620.js",
     "static/js/453.eb1b5922.chunk.js": "/static/js/453.eb1b5922.chunk.js",
     "static/media/20240227_211318.jpg": "/static/media/20240227_211318.135c096e84b023e4f04e.jpg",
     "static/media/SchedulingSystemImage.png": "/static/media/SchedulingSystemImage.44f50563ecee9ea8a154.png",
@@ -21,14 +21,15 @@
     "static/media/AlgoAppResponsiveSmall.png": "/static/media/AlgoAppResponsiveSmall.eb8288d2cb10b2722b28.png",
     "static/media/ConfidentialScreensDarkResponsiveSmall.png": "/static/media/ConfidentialScreensDarkResponsiveSmall.9b676c34a388a6d11030.png",
     "static/media/HomePageLogoFixed.png": "/static/media/HomePageLogoFixed.44270534a06f8c578059.png",
+    "static/media/AWS_Machine_Learning_Engineer_Logo.png": "/static/media/AWS_Machine_Learning_Engineer_Logo.50c5b4a1f3e448cb3c87.png",
     "static/media/CompTIAProjectPluslogo.webp": "/static/media/CompTIAProjectPluslogo.d30d39ac90fec90d3cf0.webp",
     "index.html": "/index.html",
-    "main.47e6ad3e.css.map": "/static/css/main.47e6ad3e.css.map",
-    "main.cc9cdd73.js.map": "/static/js/main.cc9cdd73.js.map",
+    "main.1bb4058c.css.map": "/static/css/main.1bb4058c.css.map",
+    "main.0e700620.js.map": "/static/js/main.0e700620.js.map",
     "453.eb1b5922.chunk.js.map": "/static/js/453.eb1b5922.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.47e6ad3e.css",
-    "static/js/main.cc9cdd73.js"
+    "static/css/main.1bb4058c.css",
+    "static/js/main.0e700620.js"
   ]
 }
