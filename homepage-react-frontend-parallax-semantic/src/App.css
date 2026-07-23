@@ -31,7 +31,7 @@ h5{
 /* width */
 ::-webkit-scrollbar{
   width: 10px;
-  background-color: rgb(204, 78, 69);
+  background-color: rgb(65, 193, 197);
 }
 ::-webkit-scrollbar-thumb{
   background-color: rgb(31,31,31);
@@ -40,7 +40,7 @@ h5{
 width: 12px;
 }
 ::-webkit-scrollbar-button{
- background-color: rgb(167, 78, 78);
+ background-color: rgb(65, 193, 197);
  width: 10px;
  height: 10px;
 }
@@ -131,7 +131,12 @@ width: 12px;
   height: 40px;
   border-radius: 8px;
   cursor:pointer;
-  background-color: rgb(110, 60, 60);
+  /* background-color: rgb(110, 60, 60); */
+  background-color: rgb(213, 111, 62);
+  transition: border-radius .4s ease;
+}
+.HeaderLogoWrapper:hover{
+  border-radius: 0px;
 }
 .HeaderLogoImage{
   /* margin-top: 5px; */
@@ -205,7 +210,7 @@ width: 12px;
   height: 30px;
   margin-top: 15px;
   margin-left: 4px;
-  background-color: rgb(197, 78, 65);
+  background-color: rgb(213, 111, 62);
 }
 .HeaderButtonDropdownButtonTopText{
   margin-top: 14px;
@@ -314,9 +319,11 @@ width: 12px;
   margin-left: 2px;
   padding: 16px;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
   font-size: 14px;
   color: rgb(0, 0, 0);
+  /* background-color: transparent; */
+  /* border: 1px solid white; */
   cursor: pointer;
   box-shadow: -1px 1px 4px 1px rgb(0, 0, 0);
   text-shadow: 0px 1px 1px #d8d8d8;
@@ -324,9 +331,12 @@ width: 12px;
 
 }
 .HomepageTitleDescriptionEmailButton:hover{
-  background-color: rgb(199, 239, 0);
+  background-color: rgb(65, 193, 197);
+  /* color: white; */
   font-size: 15px;
+  text-shadow: 0px 1px 1px rgb(51, 186, 190);
   left: -5px;
+  /* border-radius: 10px; */
   padding: 17px;
    /* color: rgb(47, 51, 45); */
    box-shadow: -1px 1px 1px 1px rgb(5, 5, 5)
@@ -458,7 +468,7 @@ width: 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background-color: rgb(196, 95, 83);
+  background-color: rgb(65, 193, 197);
   transition: left .4s ease;
   /* background-color: rgb(255, 124, 124); */
 }
@@ -466,7 +476,7 @@ width: 12px;
   font-size: 20px;
 }
 .HomepageProjectsSectionCardDescButton:hover{
-  background-color: rgb(196, 206, 48);
+  background-color: rgb(229, 240, 85);
 }
 .HomepageProjectsSectionCardDescButtonIcon{
   transition: all 1.2s ease;
