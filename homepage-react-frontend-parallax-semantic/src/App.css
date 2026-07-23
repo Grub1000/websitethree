@@ -68,32 +68,39 @@ width: 12px;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  /* background-color: aqua; */
 
 }
 .ParallaxImage{
   position: absolute;
-  width: 100%;
-  height: 100%;
+  /* width: 100%; */
+  /* height: 100%; */
 }
 #parallaxImageOne{
-
+  top: -80px;
 }
 #parallaxImageTwo{
+  top: -80px;
 
 }
 #parallaxImageThree{
+  top: -80px;
 
 }
 #parallaxImageFour{
+  top: -80px;
    
 }
 #parallaxImageFive{
+  top: -80px;
   
 }
 #parallaxImageSix{
+  top: -80px;
   
 }
 #parallaxImageSeven{
+  top: -80px;
   
 }
 .ParallaxTitle{
@@ -101,7 +108,7 @@ width: 12px;
   top: 20px;
   /* margin-top: -300px; */
   font-size: 200px;
-  color: rgba(197, 72, 72, 0.363);
+  /* color: rgba(197, 72, 72, 0.363); */
 }
 
 .ParallaxImageBuffer{
@@ -110,7 +117,7 @@ width: 12px;
   width: 100%;
   height: 100%;
   margin-top: 100vh;
-  background-color: rgb(33, 19, 20);
+  /* background-color: rgb(33, 19, 20); */
 }
 
 
@@ -655,6 +662,9 @@ width: 12px;
 @media(max-width: 1620px){
   #root{
   /* box-shadow: 0px 0px 210px 190px rgb(0, 0, 0) inset; */
+  }
+  .ParallaxWrapper{
+    width: 1800px;
   }
   .ParallaxTitle{
     margin-top: 200px;

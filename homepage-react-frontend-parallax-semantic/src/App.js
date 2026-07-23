@@ -7,12 +7,12 @@ import logo from "./assets/HomePageLogoFixed.png"
 import myPortrait from "./assets/20240227_211318.jpg"
 
 // Parallax Feature Images
-import parallaxOne from "./assets/1.png"
-import parallaxTwo from "./assets/2.png"
-import parallaxThree from "./assets/3.png"
-import parallaxFour from "./assets/4.png"
-import parallaxFive from "./assets/5.png"
-import parallaxSix from "./assets/7.png"
+import parallaxOne from "./assets/1.svg"
+import parallaxTwo from "./assets/2.svg"
+import parallaxThree from "./assets/3.svg"
+import parallaxFour from "./assets/4.svg"
+import parallaxFive from "./assets/5.svg"
+import parallaxSix from "./assets/7.svg"
 
 // Ordered Newest to Oldest
 import compSciImage from "./assets/ComputerScienceCapstoneProjectImage.png"
@@ -75,27 +75,27 @@ export default class App extends React.Component{
     this.updateClock();
     let mainContentWrapper = document.getElementById("mainContentWrapper")
     // let parallaxOne = document.getElementById("parallaxImageOne")
-    // let parallaxTwo = document.getElementById("parallaxImageTwo")
-    // let parallaxThree = document.getElementById("parallaxImageThree")
-    // let parallaxFour = document.getElementById("parallaxImageFour")
-    // let parallaxFive = document.getElementById("parallaxImageFive")
-    // let parallaxSix = document.getElementById("parallaxImageSix")
+    let parallaxTwo = document.getElementById("parallaxImageTwo")
+    let parallaxThree = document.getElementById("parallaxImageThree")
+    let parallaxFour = document.getElementById("parallaxImageFour")
+    let parallaxFive = document.getElementById("parallaxImageFive")
+    let parallaxSix = document.getElementById("parallaxImageSix")
     // let parallaxTitle = document.getElementById("parallaxTitle")
-    // let parallaxImageBuffer = document.getElementById("parallaxImageBuffer")
-    // mainContentWrapper.addEventListener("scroll", ()=>{  
-    //     let value = mainContentWrapper.scrollTop
-    //     // parallaxOne.style.top = value * -1.0 + "px"
-    //     parallaxTwo.style.top = value * -0.01 + "px"
-    //     parallaxThree.style.top = value * -0.02 + "px"
-    //     parallaxFour.style.top = value * -0.03 + "px"
-    //     parallaxFour.style.right = value * -0.03 + "px"
-    //     parallaxFive.style.top = value * -0.04 + "px"
-    //     parallaxFive.style.left = value * -0.04 + "px"
-    //     parallaxSix.style.top = value * -0.05 + "px"
-    //     parallaxTitle.style.top = 20 + (value * 1) + "px"
-    //     parallaxImageBuffer.style.top = value * -0.05 + "px"
-    //     console.log(value)
-    // })
+    let parallaxImageBuffer = document.getElementById("parallaxImageBuffer")
+    mainContentWrapper.addEventListener("scroll", ()=>{  
+        let value = mainContentWrapper.scrollTop
+        // parallaxOne.style.top = value * -1.0 + "px"
+        parallaxTwo.style.top = value * -0.05 - 80 + "px"
+        parallaxThree.style.top = value * -0.06 - 80 + "px"
+        parallaxFour.style.top = value * -0.07 - 80 + "px"
+        parallaxFour.style.top = value * -0.07 - 80 + "px"
+        parallaxFive.style.top = value * -0.08 - 80 + "px"
+        parallaxFive.style.top = value * -0.09 - 80 + "px"
+        parallaxSix.style.top = value * -0.1 - 80 + "px"
+        // parallaxTitle.style.top = 20 + (value * 1) + "px"
+        parallaxImageBuffer.style.top = value * -0.05 + "px"
+        console.log(value)
+    })
     mainContentWrapper.tabIndex = 1 
   }
   handleDropdown(eventType, ddNum){
@@ -173,16 +173,16 @@ export default class App extends React.Component{
     const  myProjectFavoriteCardList = this.state.favorites.map((i) => <ProjectCard data={i}/>);
     return(
       <React.Fragment>
-          {/* <section className="ParallaxWrapper">
-            <img className="ParallaxImage" id="parallaxImageOne" src={parallaxOne}></img>
+          <section className="ParallaxWrapper">
+            {/* <img className="ParallaxImage" id="parallaxImageOne" src={parallaxOne}></img> */}
             <img className="ParallaxImage" id="parallaxImageTwo" src={parallaxTwo}></img>
             <img className="ParallaxImage" id="parallaxImageThree" src={parallaxThree}></img>
-            <h2 className="ParallaxTitle" id="parallaxTitle">Fullstack Developer</h2>
+            {/* <h2 className="ParallaxTitle" id="parallaxTitle">Fullstack Developer</h2> */}
             <img className="ParallaxImage" id="parallaxImageFour" src={parallaxFour}></img>
             <img className="ParallaxImage" id="parallaxImageFive" src={parallaxFive}></img>
             <img className="ParallaxImage" id="parallaxImageSix" src={parallaxSix}></img>
             <div className="ParallaxImageBuffer" id="parallaxImageBuffer"></div>
-          </section> */}
+          </section>
           <header className="Header">
             <a className="HeaderLogoWrapper" onClick={()=>window.location.reload()}>
               <img src={logo} className="HeaderLogoImage" alt="Website Logo"></img>  

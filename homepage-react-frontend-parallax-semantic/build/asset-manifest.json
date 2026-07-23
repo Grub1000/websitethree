@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.1bb4058c.css",
-    "main.js": "/static/js/main.a9227510.js",
+    "main.css": "/static/css/main.a2d4ab68.css",
+    "main.js": "/static/js/main.dca08b83.js",
     "static/js/453.eb1b5922.chunk.js": "/static/js/453.eb1b5922.chunk.js",
     "static/media/20240227_211318.jpg": "/static/media/20240227_211318.135c096e84b023e4f04e.jpg",
     "static/media/SchedulingSystemImage.png": "/static/media/SchedulingSystemImage.44f50563ecee9ea8a154.png",
@@ -23,13 +23,19 @@
     "static/media/HomePageLogoFixed.png": "/static/media/HomePageLogoFixed.44270534a06f8c578059.png",
     "static/media/AWS_Machine_Learning_Engineer_Logo.png": "/static/media/AWS_Machine_Learning_Engineer_Logo.50c5b4a1f3e448cb3c87.png",
     "static/media/CompTIAProjectPluslogo.webp": "/static/media/CompTIAProjectPluslogo.d30d39ac90fec90d3cf0.webp",
+    "static/media/5.svg": "/static/media/5.93708dbdc6b1826904779d0b39e018ff.svg",
+    "static/media/3.svg": "/static/media/3.4620ecc6f418a7742314fd7a7b939612.svg",
+    "static/media/2.svg": "/static/media/2.6778bbac585347789478d0b85bc33af4.svg",
+    "static/media/7.svg": "/static/media/7.1d4fd23210dd6a973f452f4ea73eba98.svg",
+    "static/media/4.svg": "/static/media/4.77e24f3d0eb086b38a8a031780465122.svg",
     "index.html": "/index.html",
-    "main.1bb4058c.css.map": "/static/css/main.1bb4058c.css.map",
-    "main.a9227510.js.map": "/static/js/main.a9227510.js.map",
+    "static/media/1.svg": "/static/media/1.018a1e39c474e704b3c8cf6108063bbd.svg",
+    "main.a2d4ab68.css.map": "/static/css/main.a2d4ab68.css.map",
+    "main.dca08b83.js.map": "/static/js/main.dca08b83.js.map",
     "453.eb1b5922.chunk.js.map": "/static/js/453.eb1b5922.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1bb4058c.css",
-    "static/js/main.a9227510.js"
+    "static/css/main.a2d4ab68.css",
+    "static/js/main.dca08b83.js"
   ]
 }
