@@ -663,7 +663,10 @@ width: 12px;
   #root{
   /* box-shadow: 0px 0px 210px 190px rgb(0, 0, 0) inset; */
   }
-  .ParallaxWrapper{
+  /* .ParallaxWrapper{
+    width: 1800px;
+  } */
+  .ParallaxImage{
     width: 1800px;
   }
   .ParallaxTitle{
