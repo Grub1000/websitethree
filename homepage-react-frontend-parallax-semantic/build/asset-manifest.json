@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.15219a12.css",
+    "main.css": "/static/css/main.cf687a6f.css",
     "main.js": "/static/js/main.77a0b58e.js",
     "static/js/453.eb1b5922.chunk.js": "/static/js/453.eb1b5922.chunk.js",
     "static/media/20240227_211318.jpg": "/static/media/20240227_211318.135c096e84b023e4f04e.jpg",
@@ -23,12 +23,12 @@
     "static/media/HomePageLogoFixed.png": "/static/media/HomePageLogoFixed.44270534a06f8c578059.png",
     "static/media/CompTIAProjectPluslogo.webp": "/static/media/CompTIAProjectPluslogo.d30d39ac90fec90d3cf0.webp",
     "index.html": "/index.html",
-    "main.15219a12.css.map": "/static/css/main.15219a12.css.map",
+    "main.cf687a6f.css.map": "/static/css/main.cf687a6f.css.map",
     "main.77a0b58e.js.map": "/static/js/main.77a0b58e.js.map",
     "453.eb1b5922.chunk.js.map": "/static/js/453.eb1b5922.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.15219a12.css",
+    "static/css/main.cf687a6f.css",
     "static/js/main.77a0b58e.js"
   ]
 }
