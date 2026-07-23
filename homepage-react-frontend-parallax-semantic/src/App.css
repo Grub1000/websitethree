@@ -114,8 +114,6 @@ width: 12px;
 
 
 
-
-
 /* ---------------------------------------------------------------------------------------------- Header VVVV */
 .Header{
   width: 100vw;
@@ -459,6 +457,9 @@ width: 12px;
 }
 .HomepageProjectsSectionCardDescButton:hover{
   background-color: rgb(196, 206, 48);
+}
+.HomepageProjectsSectionCardDescButtonIcon{
+  transition: all 1.2s ease;
 }
 .HomepageProjectsSectionCardDescSlider{
   position: relative;

@@ -12,11 +12,13 @@ export default class App extends React.Component{
     this.handleSliderAnim = this.handleSliderAnim.bind(this)
     this.buttonRef = React.createRef()
     this.sliderRef = React.createRef()
+    this.chevronIconRef = React.createRef()
   }
   handleSliderAnim(){
     if(!this.state.sliderOpen){
         this.buttonRef.current.style.left = "0px"
         this.sliderRef.current.style.left = "0px"
+        this.chevronIconRef.current.style.transform = "rotate(180deg)"
         this.setState({
             sliderOpen: true,
         })
@@ -25,6 +27,7 @@ export default class App extends React.Component{
         // this.sliderRef.current.style.left = "330px"
         this.buttonRef.current.style.left = "calc(100% - 29px)"
         this.sliderRef.current.style.left = "calc(100% - 29px)"
+        this.chevronIconRef.current.style.transform = "rotate(0deg)"
         this.setState({
             sliderOpen: false,
         })
@@ -47,7 +50,7 @@ export default class App extends React.Component{
             {this.props.data.notAvailable != 0 && <a><img className="HomepageProjectsSectionCardImage" src={this.props.data.image}></img></a>}
             {/* <a><img className="HomepageProjectsSectionCardImage" src={this.props.data.image}></img></a> */}
             <div className="HomepageProjectsSectionCardCardFooter">
-                <button className="HomepageProjectsSectionCardDescButton" ref={this.buttonRef} onClick={()=>this.handleSliderAnim()}><i class=" fa fa-solid fa-bars"></i></button>
+                <button className="HomepageProjectsSectionCardDescButton" ref={this.buttonRef} onClick={()=>this.handleSliderAnim()}><i class="fa fa-solid fa-chevron-left HomepageProjectsSectionCardDescButtonIcon" ref={this.chevronIconRef}></i></button>
                 <div className="HomepageProjectsSectionCardDescSlider" ref={this.sliderRef}>
                     {this.props.data.description}
                     <div style={{color: "Yellow", textAlign: "center", padding: "20px"}}>Tech List:</div>
