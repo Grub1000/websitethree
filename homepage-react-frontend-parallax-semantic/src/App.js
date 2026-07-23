@@ -237,6 +237,11 @@ export default class App extends React.Component{
                       <h5 className="HeaderButtonDropdownButtonTopText">About</h5>
                       <p className="HeaderButtonDropdownButtonBottomText">Information about me / Skills  </p>
                     </button>
+                    <button className="HeaderButtonDropdownButton" onClick={() => window.open("https://jorgeramirez.net/home", "_blank")}>
+                      <div className="HeaderButtonDropdownButtonColorPad"></div>
+                      <h5 className="HeaderButtonDropdownButtonTopText">Alternate View</h5>
+                      <p className="HeaderButtonDropdownButtonBottomText">Home Page View - Outdated</p>
+                    </button>
                   </div>
                 </div>
                 <button className="HeaderButton" onMouseEnter={()=>this.handleDropdown("mouseIn", 3)} onMouseLeave={()=>this.handleDropdown("mouseOut", 3)} onClick={(e)=>this.handleSectionChange(e, "education")}>Education</button>
