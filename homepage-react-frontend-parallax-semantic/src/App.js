@@ -6,6 +6,10 @@ import ProjectCard from "./ProjectCard"
 import logo from "./assets/HomePageLogoFixed.png"
 import myPortrait from "./assets/20240227_211318.jpg"
 
+// Website Tab Logo
+
+import newIconUrl from "./assets/website_tab_logo.png"
+
 // Parallax Feature Images
 import parallaxOne from "./assets/1.svg"
 import parallaxTwo from "./assets/2.svg"
@@ -97,6 +101,20 @@ export default class App extends React.Component{
         console.log(value)
     })
     mainContentWrapper.tabIndex = 1 
+
+
+
+    let link = document.querySelector("link[rel~='icon']");
+  
+    // If it doesn't exist, create a new one
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    
+    // Update the icon path
+    link.href = newIconUrl;
   }
   handleDropdown(eventType, ddNum){
     if(eventType == "mouseIn"){
