@@ -314,8 +314,25 @@ width: 12px;
   margin-top: 85px;
 }
 .HomepageTitle{
-  color: white;
-  text-shadow: 0px 1px 2px #000000;
+  /* color: white; */
+  font-size: 30px;
+  /* text-shadow: 0px 1px 2px #00000060; */
+}
+
+/* Class used for typing animations*/
+.type{
+  font-family: monospace;
+  color:#b3323200;
+  background:
+    linear-gradient(-90deg,white 5px,#ffffff00 0) 10px 0,
+    linear-gradient(white 0 0) 0 0;
+  background-size:calc(var(--n)*1ch) 200%;
+  -webkit-background-clip:padding-box,text;
+  background-clip:padding-box,text;
+  background-repeat:no-repeat;
+  animation: 
+    b .7s infinite steps(1),   
+    t calc(var(--n)*.07s) steps(var(--n)) forwards;
 }
 .HomepageTitleDescription{
   margin-top: 25px;
@@ -919,4 +936,12 @@ width: 12px;
     position: relative;
     top: 50px;
   }
+}
+
+@keyframes t{
+  from {background-size:0 200%}
+  
+}
+@keyframes b{
+  50% {background-position:0 -100%,0 0}
 }

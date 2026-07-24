@@ -288,7 +288,9 @@ export default class App extends React.Component{
             <section className="HomepageSuperWrapper">
               <div className="HomepageTitleWrapper">
                 <div class="typing-container">
-                  <h1 className="HomepageTitle">Full Stack Software Developer & MSCS Graduate</h1>
+                  {/* <h1 className="HomepageTitle" style={{'--n': 45}}>Full Stack Software Developer & MSCS Graduate</h1> */}
+                  <span class="HomepageTitle type" style={{'--n': 45}} aria-level="1">Full Stack Software Developer & MSCS Graduate</span>
+
                 </div>
                 <p className="HomepageTitleDescription">Let’s collaborate to turn your vision into reality. I provide full-cycle digital product creation, taking your idea from initial concept and UI/UI design through robust development to a successful deployment.</p>
                 <a href="mailto:jorgeramirezsoftware@gmail.com?subject=Subject%20Line&body=Body%20Text"><button className="HomepageTitleDescriptionEmailButton">jorgeramirezsoftware@gmail.com</button></a>
