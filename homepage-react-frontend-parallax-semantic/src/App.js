@@ -395,6 +395,7 @@ export default class App extends React.Component{
                     <h2 className="HomepageAboutSkillTitle">Skills:</h2>
                     <div className="HomepageAboutSkillsWrapper">
                       <p className="HomePageAboutSkillCard">Javascript</p>
+                      <p className="HomePageAboutSkillCard">Typescript</p>
                       <p className="HomePageAboutSkillCard">Python</p>
                       <p className="HomePageAboutSkillCard">Java</p>
                       <p className="HomePageAboutSkillCard">C#</p>
