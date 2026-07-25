@@ -115,6 +115,11 @@ export default class App extends React.Component{
     
     // Update the icon path
     link.href = newIconUrl;
+
+
+    setTimeout(()=> {
+      document.getElementById("homepageProjectsSectionSuperWrapper").style.transform = "scale(100%)"
+    }, 1);
   }
   handleDropdown(eventType, ddNum){
     if(eventType == "mouseIn"){
@@ -318,7 +323,7 @@ export default class App extends React.Component{
                 <p className="TimeAndLocationText" id="timeAndLocationTextTwo"></p>
                 <p className="TimeAndLocationText" id="timeAndLocationTextThree">(available 8am - 9pm)</p>
               </div>
-              <div className="HomepageProjectsSectionSuperWrapper">
+              <div className="HomepageProjectsSectionSuperWrapper" id="homepageProjectsSectionSuperWrapper">
                 <nav className="HomepageProjectsSectionNav">
                   <button className="HomepageProjectsSectionNavButton" id="homepageProjectsSectionNavButtonAll" onClick={(e)=>this.handleSectionChange(e, "all")} style={{borderColor: "white"}}>All</button>
                   <button className="HomepageProjectsSectionNavButton" id="homepageProjectsSectionNavButtonFavorites" onClick={(e)=>this.handleSectionChange(e, "favorites")}>Favorites</button>
