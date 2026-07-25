@@ -21,13 +21,14 @@ staticfiles/
 
 # Python packaging
 *.egg-info/
-dist/
+# dist/
 
 # -------------------------
 # React
 # -------------------------
 homepage-frontend/node_modules/
 homepage-react-frontend-parallax-semantic/node_modules/
+resume-analyzer-app/node_modules/
 
 # Uncomment these later if GitHub Actions will build React
 # homepage-frontend/build/

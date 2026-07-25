@@ -1,0 +1,56 @@
+.InfiniteCarouselTrack{
+  /* animation: scrollInfinite 25s linear infinite; */
+}
+ul {
+  width: calc(100vw - 40px);
+  height: 600px;
+  padding: 20px;
+  display: flex;
+  gap: 40px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  anchor-name: --my-carousel;
+  scroll-marker-group: after;
+
+  text-align: center;
+  columns: 1;
+
+  /* width: 100vw; */
+  /* height: 300px; */
+  padding: 10px;
+
+  /* overflow-x: scroll; */
+  scroll-snap-type: x mandatory;
+
+  columns: 1;
+  /* column-width: 600px; */
+  text-align: center; 
+  /* transition: all 1s ease; */
+
+}
+
+li {
+  list-style-type: none;
+  display: block;
+  scroll-snap-align: center;
+  height: 100%;
+  width: 350px;
+  flex-shrink: 0;
+  background-color: #ced3d3;
+  border: 1px solid #dddddd;
+  padding: 20px;
+  margin: 0 10px;
+  text-align: left;
+  /* transition: all 1s ease; */
+  animation: scrollInfinite 100s linear infinite;
+}
+
+li:nth-child(even) {
+  background-color: rgb(173, 247, 247);
+}
+
+ul::column {
+  scroll-snap-align: center;
+  /* transition: all 1s ease; */
+}

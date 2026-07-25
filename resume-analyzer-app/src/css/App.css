@@ -1,0 +1,177 @@
+.TestButton{
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  /* margin: auto; */
+}
+body {
+  /* width: 100vw;
+  height: 100vh; */
+  margin: 0;
+  font-family: 'Julius Sans One', sans-serif;
+  color: white;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  /* background: linear-gradient(45deg,rgba(19, 19, 19) 20%, rgb(32, 32, 32) 40%, rgba(19, 19, 19) 70%); */
+  overflow: hidden;
+  cursor: default;
+  overflow-y: scroll;
+
+}
+h1{
+  /* font-family: "Inter", sans-serif; */
+  font-weight: 700;
+  font-size: 65px;
+}
+.Btn{
+  z-index: 10;
+  border: none;
+  margin-right: 10px;
+  margin-top: 15px;
+  padding: 12px;
+  font-size: 16px;
+  /* border-bottom: 4px solid rgb(31, 31, 31); */
+  border-radius: 5px;
+  letter-spacing: .7px;
+  background-color: transparent;
+  color: rgb(51, 51, 51);
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  transition: background-color 0.1s ease;
+}
+
+
+.Header{
+  display: flex;
+  width: 100vw;
+  height: 70px;
+  border-bottom: 2px solid rgb(233, 233, 233);
+  padding-left: calc(220px);
+}
+.HeaderLogoWrapper{
+  position: absolute;
+  left: 20px;          /* Controls position of top left website logo */
+  cursor: pointer;
+}
+.HeaderLogoImage{
+  width: 200px;
+}
+.HeaderButtonsWrapper{
+  /* background-color: aqua; */
+  /* width: calc(100vw - 288px); */
+}
+.HeaderSignInLogInButtonsWrapper{
+ position:absolute;
+ right: 20px;
+ top: -3px
+ /* background-color:aquamarine */
+}
+.HeaderSignInButton{
+  border: 2px solid rgb(51, 51, 51);
+  transition: background-color 0.5s ease;
+}
+.HeaderSignInButton:hover{
+  background-color: rgba(179, 179, 179, 0.3);
+}
+.HeaderGetStartedButton{
+  background-color: rgba(8, 160, 206, 0.781);
+  border: 2px solid rgba(8, 160, 206, 0);
+  color: white;
+  transition: background-color 0.5s ease;
+}
+.HeaderGetStartedButton:hover{
+  background-color: rgba(8, 193, 206, 0.637);
+}
+
+
+
+
+.Main{
+
+}
+.HomePageMainSectionWrapper{
+  /* background-color: rgba(94, 85, 180, 0.315); */
+  /* position: relative; */
+  width: 1300px;
+  height: 600px;
+  /* height: fit-content; */
+  margin: auto;
+  /* font-family: "Inter", sans-serif; */
+}
+.HomePageMainSectionDescriptionTitle{
+
+}
+.HomePageMainSectionDescriptionText{
+  position: relative;
+  top: -15px;
+  color: rgba(48, 58, 61, 0.897);
+}
+.HomePageMainSectionDescriptionWrapper{
+  color: rgb(48, 58, 61);
+  position: relative;
+  float: left;
+  width: 750px;
+  height: 500px;
+  margin-top: 50px;
+}
+.Highlight{
+  color: rgba(14, 95, 116, 0.658);
+}
+.HomePageMainSectionDescriptionResumeScoreButton{
+  margin-right: 25px;
+  background-color: rgba(8, 160, 206, 0.781);
+  border: 2px solid rgba(8, 160, 206, 0);
+  color: white;
+  transition: background-color 0.5s ease;
+}
+.HomePageMainSectionDescriptionResumeScoreButton:hover{
+  background-color: rgba(8, 193, 206, 0.637);
+}
+.HomePageMainSectionDescriptionJobMatchButton{
+  /* background-color: rgba(179, 179, 179, 0); */
+  border: 2px solid rgb(51, 51, 51);
+  transition: background-color 0.5s ease;
+}
+.HomePageMainSectionDescriptionJobMatchButton:hover{
+  background-color: rgba(179, 179, 179, 0.3);
+}
+
+
+.HomePageMainSectionDescriptionImageWrapper{
+  position: relative;
+  float: right;
+  width: 500px;
+  height: 500px;
+  margin-top: 100px
+}
+.HomePageMainSectionDescriptionImage{
+  transform: scale(0%);
+  transition: transform 0.7s ease;
+}
+
+
+
+
+
+.HomePageMainSectionLowerWrapper{
+  width: 100vw;
+  height: 700px;
+  margin: auto;
+  background-color: rgba(227, 234, 236, 0.658);
+}
+
+.Footer{
+  width: 100vw;
+  height: 500px;
+  background-color: rgb(93, 107, 126);
+}
+
+@keyframes scrollInfinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-1384%);
+  }
+}
