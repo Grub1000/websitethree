@@ -112,11 +112,10 @@ export default class App extends React.Component{
       link.rel = 'icon';
       document.head.appendChild(link);
     }
-    
+  
     // Update the icon path
     link.href = newIconUrl;
-
-
+    
     setTimeout(()=> {
       document.getElementById("homepageProjectsSectionSuperWrapper").style.transform = "scale(100%)"
     }, 1);
