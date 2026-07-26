@@ -163,8 +163,17 @@ h1{
 
 .Footer{
   width: 100vw;
-  height: 500px;
-  background-color: rgb(93, 107, 126);
+  height: 100px;
+  background-color: rgb(48, 61, 82);
+}
+.FooterCopyRightMessage{
+  text-align: center;
+  width: 100%;
+  height:20px;
+  padding-top: 20px;
+  /* background-color: rgb(40, 101, 199); */
+  color: white;
+  /* margin-top: 30px; */
 }
 
 @keyframes scrollInfinite {
