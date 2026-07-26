@@ -1,13 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.ea3fbd02.css",
-    "main.js": "/static/js/main.a991f0f0.js",
+    "main.js": "/static/js/main.07125958.js",
     "static/js/453.eb1b5922.chunk.js": "/static/js/453.eb1b5922.chunk.js",
     "static/media/20240227_211318.jpg": "/static/media/20240227_211318.135c096e84b023e4f04e.jpg",
     "static/media/SchedulingSystemImage.png": "/static/media/SchedulingSystemImage.44f50563ecee9ea8a154.png",
     "static/media/DisasterRecoveryBotProjectImage.png": "/static/media/DisasterRecoveryBotProjectImage.aaac15c317f2bd480ee5.png",
     "static/media/ChatBotProjectImage.png": "/static/media/ChatBotProjectImage.7afcd2308d1ef92c7e44.png",
     "static/media/ManagementSystemImage.png": "/static/media/ManagementSystemImage.7732c61f5d306ec2abb1.png",
+    "static/media/active_project.png": "/static/media/active_project.36c94aab40ec5b848ca3.png",
     "static/media/DeliveryRouteProjectImage.png": "/static/media/DeliveryRouteProjectImage.a740d7b6f0c2f7e7cf83.png",
     "static/media/ComputerScienceCapstoneProjectImage.png": "/static/media/ComputerScienceCapstoneProjectImage.b5c3502989f57dd3f6db.png",
     "static/media/AdvancedDataManagementImage.png": "/static/media/AdvancedDataManagementImage.cb87eef65a9733e3105e.png",
@@ -31,11 +32,11 @@
     "index.html": "/index.html",
     "static/media/1.svg": "/static/media/1.018a1e39c474e704b3c8cf6108063bbd.svg",
     "main.ea3fbd02.css.map": "/static/css/main.ea3fbd02.css.map",
-    "main.a991f0f0.js.map": "/static/js/main.a991f0f0.js.map",
+    "main.07125958.js.map": "/static/js/main.07125958.js.map",
     "453.eb1b5922.chunk.js.map": "/static/js/453.eb1b5922.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ea3fbd02.css",
-    "static/js/main.a991f0f0.js"
+    "static/js/main.07125958.js"
   ]
 }

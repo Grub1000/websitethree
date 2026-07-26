@@ -19,6 +19,7 @@ import parallaxFive from "./assets/5.svg"
 import parallaxSix from "./assets/7.svg"
 
 // Ordered Newest to Oldest
+import activeProject from "./assets/active_project.png"
 import compSciImage from "./assets/ComputerScienceCapstoneProjectImage.png"
 import disasterRecoImage from "./assets/DisasterRecoveryBotProjectImage.png"
 import careerBotImage from "./assets/ChatBotProjectImage.png"
@@ -47,6 +48,7 @@ export default class App extends React.Component{
     this.state = {
       burgerDropDown: false,
       projects: [
+        {  title: "Work In Progress ...",image: activeProject, description: "Come see what I'm currently developing!", techUsed: ["Typescript", "React", "Python", "Django Backend", "MySQL" ],  dateCreated: "2025", link: "https://jorgeramirez.net/resuscan", gitHub: "", youtube: "", notAvailable: 0},
         {  title: "Computer Science Capstone",image: compSciImage, description: "I created a neural network that takes in raw image data that I pre-process, normalize, and then flatten to work with the input layer of a convolutional neural network. The neural network consists of two hidden layers with 128 neurons each. Every neuron runs a Rectified Linear Unit (ReLU) activation function on output. The output layer consists of 2 neurons that, after ran through a SoftMax activation function, are ran through a Loss function and at the end of a 16 image batch the neural network would run its backpropagation step. The backpropagation optimization function is Stochastic Gradient Descent with Momentum. After 100 epochs of training the application then allows the user to submit an image of a particular type of metal product the networks never seen and tell the user whether that product has any defects or not. This type of software has applications in quality control systems around the world", techUsed: ["Tensorflow", "Convolutional-Neural-Network", "Python", "Machine Learning", "Image-Recognition", "Defect-Detection", "Deep-Learning"],  dateCreated: "2025", link: "", gitHub: "", youtube: "", notAvailable: 1},
         {  title: "Disaster Recovery Robot",image: disasterRecoImage, description: "I developed a robot for real-time search-and-rescue operations. Using the CoppeliaSim platform I designed a robot that can maneuver through a disaster ridden office building and find survivors of a natural disaster. Leveraging python scripts, motors, and sensors I came up with a solution that found it's way around the disaster ridden area efficiently.", techUsed: ["CoppeliaSim", "Simulations", "Python", "Robotics"],  dateCreated: "2025", link: "", gitHub: "", youtube: "https://www.youtube.com/watch?v=yrlYvvaAcVM", notAvailable: 0 },
         {  title: "Career Chat-Bot",image: careerBotImage, description: "Programmed a chatbot using the Pandorabots platform. Using AIML I wrote a chatbot capable of asking the user a series of questions to find a profession in computing. This project was made for students that don't know the exact career they want but do know their strengths and interests.", techUsed: ["PandoraBots-Platform", "AIML"],  dateCreated: "2025", link: "", gitHub: "", youtube: "", notAvailable: 1},
