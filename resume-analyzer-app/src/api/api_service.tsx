@@ -1,7 +1,7 @@
 import { refreshAccessToken } from "./auth_service";
 
 const API_URL =
-    "http://jorgeramirez.net/resume-analyzer-app-api";
+    "https://jorgeramirez.net/resume-analyzer-app-api";
 
 
 export async function apiFetch(

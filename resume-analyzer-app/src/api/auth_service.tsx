@@ -1,5 +1,5 @@
 const API_URL =
-    "http://jorgeramirez.net/resume-analyzer-app-api";
+    "https://jorgeramirez.net/resume-analyzer-app-api";
 
 
 export async function refreshAccessToken() {
