@@ -1,6 +1,9 @@
 import { useState, useEffect} from 'react'
 import '../css/App.css'
 
+// React Router imports
+import { Link } from "react-router-dom";
+
 // Image imports
 import logo from "../assets/website_logo_new.png"
 import homepageMainSectionDescriptionImage from "../assets/Resume.svg"
@@ -82,8 +85,8 @@ function HomePage() {
           </section>
         </nav>
         <section className="HeaderSignInLogInButtonsWrapper">
-          <button className="HeaderSignInButton Btn">Sign In</button>
-          <button className="HeaderGetStartedButton Btn">Get Started</button>
+          <Link to="/login" className="HeaderSignInButton Btn">Sign In</Link>
+          <Link to="/analyzer" className="HeaderGetStartedButton Btn">Get Started</Link>
         </section>
       </header>
 

@@ -1,9 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 
-import HomePage from "../page_components/HomePage";
-import LoginPage from "../page_components/LoginPage";
-import RegisterPage from "../page_components/RegisterPage";
-import NotFoundPage from "../page_components/NotFoundPage";
+import HomePage from "../page_components/HomePage.tsx";
+import LoginPage from "../page_components/LoginPage.tsx";
+import RegisterPage from "../page_components/RegisterPage.tsx";
+import NotFoundPage from "../page_components/NotFoundPage.tsx";
+import Profile from "../page_components/Profile.tsx";
+
+import ProtectedRoute from "../routes/ProtectedRoute";
 
 
 function AppRouter() {
@@ -25,6 +28,19 @@ function AppRouter() {
                 path="/register"
                 element={<RegisterPage />}
             />
+
+            {/* Protected Routes */}
+
+            <Route
+                path="/profile"
+                element={
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute>
+                }
+            />
+
+            {/* 404 */}
 
             <Route
                 path="*"

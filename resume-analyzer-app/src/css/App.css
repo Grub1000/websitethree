@@ -32,6 +32,7 @@ h1{
   cursor: pointer;
   font-family: "Inter", sans-serif;
   font-weight: 500;
+  text-decoration: none;
   transition: background-color 0.1s ease;
 }
 
@@ -57,7 +58,8 @@ h1{
 .HeaderSignInLogInButtonsWrapper{
  position:absolute;
  right: 20px;
- top: -3px
+ /* top: -3px */
+ top: 24px;
  /* background-color:aquamarine */
 }
 .HeaderSignInButton{
