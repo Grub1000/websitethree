@@ -22,7 +22,20 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', TemplateView.as_view(template_name= 'homepage-frontend/build/index.html')),
     path('', TemplateView.as_view(template_name= 'homepage-react-frontend-parallax-semantic/build/index.html')),
-    
+
     path("resume-analyzer-app-api/", include("resume_analyzer_app_api.urls")),
-    path("resuscan", TemplateView.as_view(template_name="resume-analyzer-app/dist/index.html")),
+    # Resume Analyzer React app
+    path(
+        "resuscan/",
+        TemplateView.as_view(
+            template_name="resume-analyzer-app/dist/index.html"
+        )
+    ),
+
+    path(
+        "resuscan/<path:path>",
+        TemplateView.as_view(
+            template_name="resume-analyzer-app/dist/index.html"
+        )
+    ),
 ]
