@@ -106,7 +106,7 @@ function App() {
       </main>
 
       <footer className='Footer'>
-            <p className="FooterCopyRightMessage">© 2026 Jorge Ramirez. All rights reserved.</p>
+        <p className="FooterCopyRightMessage">© 2026 Jorge Ramirez. All rights reserved.</p>
       </footer>
 
     </section>
