@@ -7,6 +7,9 @@ export async function refreshAccessToken() {
     const refreshToken =
         localStorage.getItem("refresh");
 
+    if (!refreshToken) {
+        throw new Error("No refresh token found");
+    }
 
     const response = await fetch(
         `${API_URL}/auth/refresh/`,
@@ -83,5 +86,5 @@ export async function loginUser(
 
 
     return await response.json();
-
+    
 }

@@ -34,10 +34,21 @@ export async function apiFetch(
     if (response.status === 401) {
 
 
-        accessToken =
-            await refreshAccessToken();
+        try {
 
+            accessToken =
+                await refreshAccessToken();
 
+        } catch {
+
+            localStorage.removeItem("access");
+            localStorage.removeItem("refresh");
+
+            window.location.href = "/resuscan/login";
+
+            throw new Error("Session expired");
+
+        }
         response = await fetch(
             `${API_URL}${endpoint}`,
             {
