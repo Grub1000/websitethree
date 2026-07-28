@@ -33,23 +33,13 @@ export default function Profile() {
 
 }
 
-import { apiFetch } from "../api/api_service";
+import { getCurrentUser } from "../api/user_service"
 
 async function testCurrentUser() {
 
     try {
 
-        const response = await apiFetch(
-            "/user/me/"
-        );
-
-        if (!response.ok) {
-            throw new Error(
-                "Unable to retrieve current user."
-            );
-        }
-
-        const user = await response.json();
+        const user = await getCurrentUser();
 
         console.log("Current User:", user);
 

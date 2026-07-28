@@ -8,7 +8,6 @@ import Profile from "../page_components/Profile.tsx";
 
 import ProtectedRoute from "../routes/ProtectedRoute";
 
-
 function AppRouter() {
 
     return (

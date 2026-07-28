@@ -2,16 +2,22 @@ import {
     createContext,
     useContext,
     useState,
+    useEffect,
 } from "react";
 
 import type {ReactNode} from "react";
 
 // Api Auth Services Imports
 import { loginUser } from "../api/auth_service";
+import {getCurrentUser} from "../api/user_service"
 
 interface AuthContextType {
 
     isAuthenticated:boolean;
+
+    currentUser: User | null;
+
+    loading: boolean;
 
     login:(
         username:string,
@@ -22,6 +28,13 @@ interface AuthContextType {
 
 }
 
+interface User {
+    id: number;
+    username: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+}
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -38,9 +51,58 @@ export function AuthProvider({
 }: AuthProviderProps) {
 
 
-    const [isAuthenticated, setIsAuthenticated] = useState(
-        Boolean(localStorage.getItem("access"))
-    );
+    // const [isAuthenticated, setIsAuthenticated] = useState(
+    //     Boolean(localStorage.getItem("access"))
+    // );
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+    const [loading, setLoading] = useState(true);
+
+    async function initializeAuth() {
+
+    const accessToken = localStorage.getItem("access");
+
+    if (!accessToken) {
+
+        setIsAuthenticated(false);
+        setLoading(false);
+
+        return;
+    }
+
+
+    try {
+
+        const user = await getCurrentUser();
+
+        setCurrentUser(user);
+
+        setIsAuthenticated(true);
+
+    } catch (error) {
+
+        console.error(
+            "Authentication verification failed:",
+            error
+        );
+
+        localStorage.removeItem("access");
+        localStorage.removeItem("refresh");
+
+        setCurrentUser(null);
+
+        setIsAuthenticated(false);
+
+    } finally {
+
+        setLoading(false);
+
+    }
+    }   
+
 
 
     async function login(
@@ -66,6 +128,10 @@ export function AuthProvider({
     );
 
 
+    const user = await getCurrentUser();
+
+    setCurrentUser(user);
+
     setIsAuthenticated(true);
 
     }
@@ -81,8 +147,17 @@ export function AuthProvider({
 
         setIsAuthenticated(false);
 
+        setCurrentUser(null);
+
+        setLoading(false);
+
     }
 
+    useEffect(() => {
+
+    initializeAuth();
+
+    }, []);
 
 
     return (
@@ -90,8 +165,10 @@ export function AuthProvider({
         <AuthContext.Provider
             value={{
                 isAuthenticated,
+                currentUser,
+                loading,
                 login,
-                logout
+                logout,
             }}
         >
 
