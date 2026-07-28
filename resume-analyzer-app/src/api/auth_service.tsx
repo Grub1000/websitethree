@@ -7,6 +7,11 @@ export async function refreshAccessToken() {
     const refreshToken =
         localStorage.getItem("refresh");
 
+    console.log(
+    "Refresh Token:",
+    refreshToken
+    );    
+
     if (!refreshToken) {
         throw new Error("No refresh token found");
     }
@@ -86,5 +91,5 @@ export async function loginUser(
 
 
     return await response.json();
-    
+
 }

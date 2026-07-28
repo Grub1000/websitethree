@@ -421,6 +421,7 @@ export default class App extends React.Component{
                       <p className="HomePageAboutSkillCard">S3</p>
                       <p className="HomePageAboutSkillCard">Git/GitHub</p>
                       <p className="HomePageAboutSkillCard">Github Actions</p>
+                      <p className="HomePageAboutSkillCard">Postman</p>
                       <p className="HomePageAboutSkillCard">Machine Learning</p>
                       <p className="HomePageAboutSkillCard">Tensorflow</p>
                       <p className="HomePageAboutSkillCard">Neural Networks</p>
