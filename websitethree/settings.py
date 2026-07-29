@@ -168,6 +168,8 @@ SIMPLE_JWT = {
     "UPDATE_LAST_LOGIN": True, 
 }
 
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:8000"
