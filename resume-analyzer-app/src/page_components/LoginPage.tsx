@@ -10,7 +10,7 @@ export default function LoginPage(){
 
     const { login } = useAuth();
 
-    const [username,setUsername] = useState("");
+    const [email,setEmail] = useState("");
 
     const [password,setPassword] = useState("");
 
@@ -25,7 +25,7 @@ export default function LoginPage(){
 
 
         await login(
-            username,
+            email,
             password
         );
 
@@ -55,9 +55,9 @@ export default function LoginPage(){
 
                 }}/>
                 <input className="LoginPageInput"
-                    value={username}
+                    value={email}
                     onChange={
-                        e => setUsername(e.target.value)
+                        e => setEmail(e.target.value)
                     }
                 />
                 <input className="LoginPageInput"

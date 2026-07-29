@@ -60,7 +60,7 @@ export async function refreshAccessToken() {
 }
 
 export async function loginUser(
-    username: string,
+    email: string,
     password: string
 ){
 
@@ -74,7 +74,7 @@ export async function loginUser(
             },
 
             body: JSON.stringify({
-                username,
+                email,
                 password
             })
         }
