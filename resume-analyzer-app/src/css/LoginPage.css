@@ -1,6 +1,56 @@
+.LoginPageWrapper{
+    position: relative;
+    width: 480px;
+    padding: 10px;
+    top: 20vh;
+    margin: auto;
+    height: fit-content;
+    background-color: white;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, .1);
+    
+}
 
+.LoginPageForm{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    /* padding: 20px; */
+    /* padding-left: 45px; */
+}
 
+.LoginPageInput{
+    position: relative;
+    left: -10px;
+    width: 400px;
+    height: 40px;
+    border: 1px solid #e7e7e7;
+    margin: auto;
+    margin-bottom: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+}
 
+.LoginPageForgotPasswordLink{
+    position: relative;
+    left: 124px;
+    margin: auto;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
 
-
-
+.LoginPageButton{
+    position: relative;
+    left: -10px;
+    width: 400px;
+    height: 50px;
+    margin: auto;
+    margin-bottom: 50px;
+    background-color: rgba(8, 160, 206, 0.781);
+    border: 10px solid rgba(8, 160, 206, 0) !important;
+    padding: 10px;
+    border: none;
+    /* background-color: #fff; */
+    color: white;
+    font-weight: bold;
+}

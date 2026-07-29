@@ -418,6 +418,7 @@ export default class App extends React.Component{
                       <p className="HomePageAboutSkillCard">Webserver Config</p>
                       <p className="HomePageAboutSkillCard">AWS</p>
                       <p className="HomePageAboutSkillCard">EC2</p>
+                      <p className="HomePageAboutSkillCard">Google OAuth</p>
                       <p className="HomePageAboutSkillCard">S3</p>
                       <p className="HomePageAboutSkillCard">Git/GitHub</p>
                       <p className="HomePageAboutSkillCard">Github Actions</p>

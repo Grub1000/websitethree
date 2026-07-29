@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+
+import "../css/LoginPage.css"
 
 
 export default function LoginPage(){
@@ -29,36 +32,49 @@ export default function LoginPage(){
         navigate("/profile")
     }
 
+    function handleForgotPassword(){
+        navigate("/forgot-password")
 
+    }
 
     return (
+        <section className="LoginPageWrapper">
+            <form  className="LoginPageForm" onSubmit={handleSubmit} >
+                <GoogleLogin onSuccess={(credentialResponse) => {
+                    console.log(
+                        "credential",
+                        credentialResponse.credential
+                    );
 
-        <form onSubmit={handleSubmit}>
+                }}
+                onError={() => {
 
+                    console.log(
+                        "Google Login Failed"
+                    );
 
-            <input
-                value={username}
-                onChange={
-                    e => setUsername(e.target.value)
-                }
-            />
-
-
-            <input
-                type="password"
-                value={password}
-                onChange={
-                    e => setPassword(e.target.value)
-                }
-            />
-
-
-            <button type="submit">
-                Login
-            </button>
-
-
-        </form>
+                }}/>
+                <input className="LoginPageInput"
+                    value={username}
+                    onChange={
+                        e => setUsername(e.target.value)
+                    }
+                />
+                <input className="LoginPageInput"
+                    type="password"
+                    value={password}
+                    onChange={
+                        e => setPassword(e.target.value)
+                    }
+                />
+                <a className="LoginPageForgotPasswordLink" href="#" onClick={handleForgotPassword}>
+                    Forgot Password?
+                </a>
+                <button  className="LoginPageButton Btn" type="submit">
+                    Login
+                </button>
+            </form>
+        </section>
 
     );
 
