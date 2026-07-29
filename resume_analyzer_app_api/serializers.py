@@ -6,6 +6,8 @@ from rest_framework_simplejwt.serializers import (
     TokenObtainPairSerializer
 )
 
+User = get_user_model()
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -18,7 +20,6 @@ class UserSerializer(serializers.ModelSerializer):
         ]
 
 
-User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer): 
     password = serializers.CharField( write_only=True ) 
@@ -97,6 +98,68 @@ class CustomEmailTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 
         refresh = self.get_token(user)
+
+
+        return {
+            "refresh": str(refresh),
+            "access": str(refresh.access_token),
+        }
+
+
+from google.oauth2 import id_token
+from google.auth.transport import requests
+
+from rest_framework_simplejwt.tokens import RefreshToken
+
+# from django.contrib.auth import get_user_model
+
+
+# User = get_user_model()
+
+
+class GoogleLoginSerializer(serializers.Serializer):
+
+    credential = serializers.CharField()
+
+
+    def validate(self, attrs):
+
+        credential = attrs["credential"]
+
+        try:
+            google_user = id_token.verify_oauth2_token(
+                credential,
+                requests.Request(),
+            )
+
+        except Exception:
+            raise serializers.ValidationError(
+                "Invalid Google credential"
+            )
+
+
+        email = google_user.get("email")
+        first_name = google_user.get("given_name", "")
+        last_name = google_user.get("family_name", "")
+
+
+        if not email:
+            raise serializers.ValidationError(
+                "Google account has no email"
+            )
+
+
+        user, created = User.objects.get_or_create(
+            email=email,
+            defaults={
+                "username": email.split("@")[0],
+                "first_name": first_name,
+                "last_name": last_name,
+            }
+        )
+
+
+        refresh = RefreshToken.for_user(user)
 
 
         return {

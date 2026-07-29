@@ -14,6 +14,10 @@ from .serializers import UserSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import CustomEmailTokenObtainPairSerializer
 
+from .serializers import GoogleLoginSerializer
+
+from rest_framework.response import Response
+
 class CurrentUserView(generics.RetrieveAPIView): 
     serializer_class = UserSerializer 
     permission_classes = [ IsAuthenticated ] 
@@ -27,3 +31,25 @@ class CustomEmailTokenObtainPairView(TokenObtainPairView):
 class RegisterView(generics.CreateAPIView): 
     serializer_class = RegisterSerializer 
     permission_classes = [ AllowAny ]
+
+class GoogleLoginView(generics.GenericAPIView):
+
+    serializer_class = GoogleLoginSerializer
+
+    permission_classes = [
+        AllowAny
+    ]
+
+    def post(self, request):
+
+        serializer = self.get_serializer(
+            data=request.data
+        )
+
+        serializer.is_valid(
+            raise_exception=True
+        )
+
+        return Response(
+            serializer.validated_data
+        )

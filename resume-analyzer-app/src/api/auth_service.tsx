@@ -7,11 +7,6 @@ export async function refreshAccessToken() {
     const refreshToken =
         localStorage.getItem("refresh");
 
-    console.log(
-    "Refresh Token:",
-    refreshToken
-    );    
-
     if (!refreshToken) {
         throw new Error("No refresh token found");
     }
@@ -92,4 +87,52 @@ export async function loginUser(
 
     return await response.json();
 
+}
+
+export async function googleLogin(
+    credential: string
+) {
+
+    const response = await fetch(
+        `${API_URL}/auth/google/`,
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                    "application/json",
+            },
+
+            body: JSON.stringify({
+                credential,
+            }),
+        }
+    );
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            "Google login failed"
+        );
+
+    }
+
+
+    const data =
+        await response.json();
+
+
+    localStorage.setItem(
+        "access",
+        data.access
+    );
+
+    localStorage.setItem(
+        "refresh",
+        data.refresh
+    );
+
+
+    return data;
 }

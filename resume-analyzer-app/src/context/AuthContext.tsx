@@ -8,7 +8,7 @@ import {
 import type {ReactNode} from "react";
 
 // Api Auth Services Imports
-import { loginUser } from "../api/auth_service";
+import { loginUser, googleLogin } from "../api/auth_service";
 import {getCurrentUser} from "../api/user_service"
 
 interface AuthContextType {
@@ -25,6 +25,10 @@ interface AuthContextType {
     ) => Promise<void>;
 
     logout:()=>void;
+
+    loginWithGoogle:(
+        credential: string
+    ) => Promise<void>;
 
 }
 
@@ -106,12 +110,12 @@ export function AuthProvider({
 
 
     async function login(
-    username:string,
+    email:string,
     password:string
     ){
 
     const tokens = await loginUser(
-        username,
+        email,
         password
     );
 
@@ -135,6 +139,23 @@ export function AuthProvider({
     setIsAuthenticated(true);
 
     }
+
+    const loginWithGoogle =
+    async (
+        credential: string
+    ) => {
+
+        await googleLogin(
+            credential
+        );
+
+        const user =
+            await getCurrentUser();
+
+        setCurrentUser(user);
+
+        setIsAuthenticated(true);
+    };
 
 
 
@@ -167,8 +188,10 @@ export function AuthProvider({
                 isAuthenticated,
                 currentUser,
                 loading,
+                loginWithGoogle,
                 login,
                 logout,
+                
             }}
         >
 

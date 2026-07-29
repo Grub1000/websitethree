@@ -8,7 +8,8 @@ import "../css/LoginPage.css"
 
 export default function LoginPage(){
 
-    const { login } = useAuth();
+    const { login, loginWithGoogle } = useAuth();
+
 
     const [email,setEmail] = useState("");
 
@@ -40,13 +41,13 @@ export default function LoginPage(){
     return (
         <section className="LoginPageWrapper">
             <form  className="LoginPageForm" onSubmit={handleSubmit} >
-                <GoogleLogin onSuccess={(credentialResponse) => {
-                    console.log(
-                        "credential",
-                        credentialResponse.credential
-                    );
-
-                }}
+                <GoogleLogin onSuccess={async (credentialResponse) => {
+                if (!credentialResponse.credential) {return}
+                try {await loginWithGoogle(credentialResponse.credential);
+                navigate("/profile");
+                }catch {
+                    alert("Google login failed.");
+                }}}
                 onError={() => {
 
                     console.log(
