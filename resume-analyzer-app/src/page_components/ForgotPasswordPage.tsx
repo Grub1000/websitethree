@@ -8,7 +8,7 @@ function ForgotPasswordPage() {
     const [error, setError] = useState(""); 
     const [loading, setLoading] = useState(false); 
 
-    const API_URL = "http://127.0.0.1:8000/resume-analyzer-app-api";
+    const API_URL = import.meta.env.VITE_API_URL;
 
     async function handleSubmit( event: React.FormEvent ) { 
         event.preventDefault(); 
