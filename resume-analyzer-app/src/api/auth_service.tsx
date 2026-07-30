@@ -1,5 +1,4 @@
-const API_URL =
-    "https://jorgeramirez.net/resume-analyzer-app-api";
+const API_URL = import.meta.env.VITE_API_URL;
 
 
 export async function refreshAccessToken() {

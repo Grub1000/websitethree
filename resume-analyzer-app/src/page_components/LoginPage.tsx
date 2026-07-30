@@ -5,6 +5,9 @@ import { GoogleLogin } from "@react-oauth/google";
 
 import "../css/LoginPage.css"
 
+// React Router imports
+import { Link } from "react-router-dom";
+
 
 export default function LoginPage(){
 
@@ -33,10 +36,10 @@ export default function LoginPage(){
         navigate("/profile")
     }
 
-    function handleForgotPassword(){
-        navigate("/forgot-password")
+    // function handleForgotPassword(){
+    //     navigate("/forgot-password")
 
-    }
+    // }
 
     return (
         <section className="LoginPageWrapper">
@@ -68,9 +71,10 @@ export default function LoginPage(){
                         e => setPassword(e.target.value)
                     }
                 />
-                <a className="LoginPageForgotPasswordLink" href="#" onClick={handleForgotPassword}>
+                <Link className="LoginPageForgotPasswordLink" to="/forgot-password">
                     Forgot Password?
-                </a>
+                </Link>
+
                 <button  className="LoginPageButton Btn" type="submit">
                     Login
                 </button>

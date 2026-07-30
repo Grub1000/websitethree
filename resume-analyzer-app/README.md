@@ -42,6 +42,7 @@ Typescript
 React
 CSS
 HTML
+Google OAuth
 
 
 
