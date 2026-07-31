@@ -44,25 +44,29 @@ export default function LoginPage(){
     return (
         <section className="LoginPageWrapper">
             <form  className="LoginPageForm" onSubmit={handleSubmit} >
-                <GoogleLogin onSuccess={async (credentialResponse) => {
-                if (!credentialResponse.credential) {return}
-                try {await loginWithGoogle(credentialResponse.credential);
-                navigate("/profile");
-                }catch {
-                    alert("Google login failed.");
-                }}}
-                onError={() => {
-
-                    console.log(
-                        "Google Login Failed"
-                    );
-
-                }}/>
+                <h2 className="LoginPageHeadingText">Welcome Back</h2>
+                <p className="LoginPageSignUpLinkText">Don't have an account? <Link to="/register">Sign up</Link></p>
+                <div className="LoginPageGoogleLoginButtonWrapper">
+                    <GoogleLogin onSuccess={async (credentialResponse) => {
+                    if (!credentialResponse.credential) {return}
+                    try {await loginWithGoogle(credentialResponse.credential);
+                        navigate("/profile");
+                    }catch {
+                        alert("Google login failed.");
+                    }}}
+                    onError={() => {
+                        console.log(
+                            "Google Login Failed"
+                        );
+                    }} />
+                </div>
+                <p className="LoginPageOrContinueText">or continue with</p>
                 <input className="LoginPageInput"
                     value={email}
                     onChange={
                         e => setEmail(e.target.value)
                     }
+                    placeholder="Your email address"
                 />
                 <input className="LoginPageInput"
                     type="password"
@@ -70,14 +74,13 @@ export default function LoginPage(){
                     onChange={
                         e => setPassword(e.target.value)
                     }
+                    placeholder="Enter your password"
                 />
                 <Link className="LoginPageForgotPasswordLink" to="/forgot-password">
                     Forgot Password?
                 </Link>
 
-                <button  className="LoginPageButton Btn" type="submit">
-                    Login
-                </button>
+                <button  className="LoginPageButton Btn" type="submit">Login</button>
             </form>
         </section>
 
