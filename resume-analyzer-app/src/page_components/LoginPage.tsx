@@ -36,15 +36,10 @@ export default function LoginPage(){
         navigate("/profile")
     }
 
-    // function handleForgotPassword(){
-    //     navigate("/forgot-password")
-
-    // }
-
     return (
         <section className="LoginPageWrapper">
             <form  className="LoginPageForm" onSubmit={handleSubmit} >
-                <h2 className="LoginPageHeadingText">Welcome Back</h2>
+                <h1 className="LoginPageHeadingText">Welcome Back</h1>
                 <p className="LoginPageSignUpLinkText">Don't have an account? <Link to="/register">Sign up</Link></p>
                 <div className="LoginPageGoogleLoginButtonWrapper">
                     <GoogleLogin onSuccess={async (credentialResponse) => {
@@ -87,6 +82,3 @@ export default function LoginPage(){
     );
 
 }
-
-
-// export default LoginPage;
