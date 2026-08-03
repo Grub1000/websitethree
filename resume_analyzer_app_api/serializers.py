@@ -35,23 +35,29 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class RegisterSerializer(serializers.ModelSerializer): 
-    password = serializers.CharField( write_only=True ) 
-
-
-
+    password = serializers.CharField( write_only=True, min_length=8)  # Sets a minimum length for the password of 8 characters
 
     class Meta: 
         model = User 
-
-        fields = [ "username", 
-                  "email", 
-                  "password", 
+        fields = [   
+            "email", 
+            "password", 
         ] 
 
     def create(self, validated_data): 
 
+        username_base = validated_data["email"].split("@")[0]
+        username = username_base
+        counter = 1
+
+        while User.objects.filter(username=username).exists():
+            username = (
+                f"{username_base}{counter}"
+            )
+            counter += 1
+
         user = User.objects.create_user( 
-            username=validated_data["username"], 
+            username=username, 
             email=validated_data["email"], 
             password=validated_data["password"], 
         ) 
