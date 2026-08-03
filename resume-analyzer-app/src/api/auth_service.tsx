@@ -135,3 +135,56 @@ export async function googleLogin(
 
     return data;
 }
+
+
+export type RegisterData = {
+    email: string;
+    password: string;
+};
+
+export async function registerUser({
+    email,
+    password,
+}: RegisterData) {
+    const response = await fetch(
+        `${API_URL}/auth/register/`,
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+                email,
+                password,
+            }),
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        const emailError = Array.isArray(data.email)
+            ? data.email[0]
+            : data.email;
+
+        const passwordError = Array.isArray(data.password)
+            ? data.password[0]
+            : data.password;
+
+        const generalError = Array.isArray(data.non_field_errors)
+            ? data.non_field_errors[0]
+            : data.non_field_errors;
+
+        throw new Error(
+            emailError ||
+            passwordError ||
+            generalError ||
+            data.detail ||
+            "Registration failed."
+        );
+    }
+
+    return data;
+}

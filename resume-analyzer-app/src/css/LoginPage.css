@@ -19,6 +19,21 @@
     /* padding-left: 45px; */
 }
 
+.LoginPageRegisterSuccessText{
+    position: relative;
+    width: 300px;
+    left: -10px;
+    padding: 10px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 8px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    color: rgb(8, 193, 206);
+    background-color: #f5f5f5fb;
+}
+
 .LoginPageHeadingText{
     position: relative;
     width: fit-content;

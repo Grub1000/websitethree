@@ -6,13 +6,14 @@ import { GoogleLogin } from "@react-oauth/google";
 import "../css/LoginPage.css"
 
 // React Router imports
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 
 export default function LoginPage(){
 
     const { login, loginWithGoogle } = useAuth();
 
+    const location = useLocation();
 
     const [email,setEmail] = useState("");
 
@@ -20,6 +21,7 @@ export default function LoginPage(){
 
     const navigate = useNavigate();
 
+    const successMessage = location.state?.successMessage;
 
     async function handleSubmit(
         e: React.FormEvent
@@ -39,6 +41,8 @@ export default function LoginPage(){
     return (
         <section className="LoginPageWrapper">
             <form  className="LoginPageForm" onSubmit={handleSubmit} >
+                {successMessage && ( <p className="LoginPageRegisterSuccessText">{successMessage}</p>)}
+                {/* <p className="LoginPageRegisterSuccessText">Account successfully created! You may now log in using your credentials.</p> */}
                 <h1 className="LoginPageHeadingText">Welcome Back</h1>
                 <p className="LoginPageSignUpLinkText">Don't have an account? <Link to="/register">Sign up</Link></p>
                 <div className="LoginPageGoogleLoginButtonWrapper">
@@ -74,7 +78,7 @@ export default function LoginPage(){
                 <Link className="LoginPageForgotPasswordLink" to="/forgot-password">
                     Forgot Password?
                 </Link>
-
+                    
                 <button  className="LoginPageButton Btn" type="submit">Login</button>
             </form>
         </section>

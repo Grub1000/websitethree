@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
+import {registerUser} from "../api/auth_service";
 
 import '../css/RegisterPage.css';
 
@@ -19,6 +20,10 @@ export default function RegisterPage() {
 
   const [password,setPassword] = useState("");
 
+  const [error, setError] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
   const securePasswordRegex: RegExp =  /^(?=.{8,64}$)(?=\S+$)(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$])[A-Za-z\d!@#$]+$/;
 
   let passwordIsValid = password.length >= 8 && password.length <= 64 && securePasswordRegex.test(password);
@@ -26,20 +31,36 @@ export default function RegisterPage() {
   const navigate = useNavigate();
 
   async function handleSubmit(
-        e: React.FormEvent
+        e: React.FormEvent<HTMLFormElement>
     ){
+      e.preventDefault();
+      setError("");
+      setLoading(true);
       if(passwordIsValid) {
-        e.preventDefault();
-        console.log(email, password);
+       try {
+            await registerUser({
+                email,
+                password,
+            });
 
-        // await login(
-        //     email,
-        //     password
-        // );
-
-        // navigate("/profile")
+            navigate("/login", {
+              state: {
+                successMessage: "Account successfully created! You may now log in using your credentials.",
+              },
+            });
+        } catch (error) {
+            setError(
+                error instanceof Error
+                    ? error.message
+                    : "Registration failed."
+            );
+            console.log(error);
+            // setLoading(false)
+        } finally {
+            setLoading(false);
+        }
       } else {
-        e.preventDefault();
+        setLoading(false);
         alert("Please fix the errors in the form before submitting.");
       }
     }
@@ -70,7 +91,9 @@ export default function RegisterPage() {
         <input className="RegisterPageInput" type="password" id="password" placeholder="Enter your password" onChange={
                         e => setPassword(e.target.value)
                     }/>
-        <button className="RegisterPageButton Btn" type="submit">Register</button>
+        <button className="RegisterPageButton Btn" type="submit" disabled={loading}>{loading ? "Creating account..." : "Register"}</button>
+
+        {/* Messages for secure password requirements */}
         {password.length >= 8 && password.length <= 64 || password === "" ? null : <p className="RegisterPageErrorText">password must be between 8 and 64 characters long.</p>}
         {/^\S+$/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">password cannot contain whitespace</p>}
         {/[A-Z]/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one uppercase letter</p>}
@@ -78,6 +101,13 @@ export default function RegisterPage() {
         {/\d/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one number</p>}
         {/[!@#$]/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one special character !,@,#,$</p>}
         {passwordIsValid || password === "" ? null : <p className="RegisterPageErrorText">password does not meet all requirements</p>}
+
+        {/* Error message from registration api */}
+        {error && (
+                <p className="RegisterPageErrorText">
+                    {error}
+                </p>
+            )}
       </form>
     </section>
   );
