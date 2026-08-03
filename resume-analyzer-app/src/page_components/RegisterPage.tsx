@@ -1,32 +1,68 @@
-// import { useState } from "react";
-// import { useAuth } from "../context/AuthContext";
-// import { useNavigate } from "react-router-dom";
-// import { GoogleLogin } from "@react-oauth/google";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
 
 import '../css/RegisterPage.css';
 
 // React Router imports
 import { Link } from "react-router-dom";
 
+
 export default function RegisterPage() {
+
+  const { loginWithGoogle } = useAuth();
+
+  // const { login, loginWithGoogle } = useAuth();
+  // const navigate = useNavigate();
+  const [email,setEmail] = useState("");
+
+  const [password,setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  async function handleSubmit(
+        e: React.FormEvent
+    ){
+
+        e.preventDefault();
+        console.log(email, password);
+
+        // await login(
+        //     email,
+        //     password
+        // );
+
+        // navigate("/profile")
+    }
+
   return (
    <section className="RegisterPageWrapper">
-      <form>
-        <h1 className="RegisterPageHeadingText">Register</h1>
-        <p className="RegisterPageSignUpLinkText">Don't have an account? <Link to="/register">Sign up</Link></p>
-        <div>
-          <label htmlFor="userName">Username:</label>
-          <input type="text" id="userName" />
+      <form className="RegisterPageForm" onSubmit={handleSubmit}>
+        <h1 className="RegisterPageHeadingText">Register free account</h1>
+        <p className="RegisterPageSignUpLinkText">Already have an account? <Link to="/login">Log in</Link></p>
+        <div className="RegisterPageGoogleLoginButtonWrapper">
+          <GoogleLogin text="signup_with" onSuccess={async (credentialResponse) => {
+          if (!credentialResponse.credential) {return}
+          try {await loginWithGoogle(credentialResponse.credential);
+              navigate("/profile");
+          }catch {
+              alert("Google login failed.");
+          }}}
+          onError={() => {
+              console.log(
+                  "Google Login Failed"
+              );
+          }} />
         </div>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" />
-        </div>
-        <button type="submit">Register</button>
+        <p className="RegisterPageOrContinueText">or continue with</p>
+        <input className="RegisterPageInput" type="email" id="email" placeholder="Your email address" onChange={
+                        e => setEmail(e.target.value)
+                    }/>
+        <input className="RegisterPageInput" type="password" id="password" placeholder="Enter your password" onChange={
+                        e => setPassword(e.target.value)
+                    }/>
+        <button className="RegisterPageButton Btn" type="submit">Register</button>
       </form>
     </section>
   );
