@@ -19,12 +19,16 @@ export default function RegisterPage() {
 
   const [password,setPassword] = useState("");
 
+  const securePasswordRegex: RegExp =  /^(?=.{8,64}$)(?=\S+$)(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$])[A-Za-z\d!@#$]+$/;
+
+  let passwordIsValid = password.length >= 8 && password.length <= 64 && securePasswordRegex.test(password);
+
   const navigate = useNavigate();
 
   async function handleSubmit(
         e: React.FormEvent
     ){
-
+      if(passwordIsValid) {
         e.preventDefault();
         console.log(email, password);
 
@@ -34,6 +38,10 @@ export default function RegisterPage() {
         // );
 
         // navigate("/profile")
+      } else {
+        e.preventDefault();
+        alert("Please fix the errors in the form before submitting.");
+      }
     }
 
   return (
@@ -63,6 +71,13 @@ export default function RegisterPage() {
                         e => setPassword(e.target.value)
                     }/>
         <button className="RegisterPageButton Btn" type="submit">Register</button>
+        {password.length >= 8 && password.length <= 64 || password === "" ? null : <p className="RegisterPageErrorText">password must be between 8 and 64 characters long.</p>}
+        {/^\S+$/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">password cannot contain whitespace</p>}
+        {/[A-Z]/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one uppercase letter</p>}
+        {/[a-z]/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one lowercase letter</p>}
+        {/\d/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one number</p>}
+        {/[!@#$]/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one special character !,@,#,$</p>}
+        {passwordIsValid || password === "" ? null : <p className="RegisterPageErrorText">password does not meet all requirements</p>}
       </form>
     </section>
   );

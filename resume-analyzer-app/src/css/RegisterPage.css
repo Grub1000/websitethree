@@ -141,3 +141,10 @@
 .RegisterPageButton:hover{
     background-color: rgba(8, 193, 206, 0.637);
 }
+.RegisterPageErrorText{
+    width: fit-content;
+    margin: auto;
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 5px;
+}
