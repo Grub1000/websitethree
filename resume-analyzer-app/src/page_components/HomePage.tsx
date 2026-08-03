@@ -1,6 +1,9 @@
 import { useState, useEffect} from 'react'
 import '../css/App.css'
 
+// Auth Context import
+import { useAuth } from "../context/AuthContext";
+
 // React Router imports
 import { Link } from "react-router-dom";
 
@@ -25,6 +28,7 @@ import carouselImageNine from "../assets/Carousel Images/carousel_image_9.png"
 import carouselImageTen from "../assets/Carousel Images/carousel_image_10.png"
 import carouselImageEleven from "../assets/Carousel Images/carousel_image_11.png"
 import carouselImageTwelve from "../assets/Carousel Images/carousel_image_12.png"
+
 
 function HomePage() {
   // const [count, setCount] = useState(0)
@@ -70,6 +74,8 @@ function HomePage() {
   const headerButtonsArray = Object.values(buttons);
   const carouselImagesArray = carouselImages;
 
+  const { isAuthenticated } = useAuth();
+
   return (
     <section className="HomePage"> 
 
@@ -85,8 +91,16 @@ function HomePage() {
           </section>
         </nav>
         <section className="HeaderSignInLogInButtonsWrapper">
-          <Link to="/login" className="HeaderSignInButton Btn">Sign In</Link>
-          <Link to="/analyzer" className="HeaderGetStartedButton Btn">Get Started</Link>
+          {isAuthenticated ? (
+          <Link to="/profile" className="HeaderSignInButton Btn">My Profile</Link>
+        ) : (
+          <Link to="/login" className="HeaderSignInButton Btn">Sign In</Link>)}
+          
+          {isAuthenticated ? (
+            <Link to="/resume-analyzer" className="HeaderGetStartedButton Btn">Get Started</Link>
+          ) : (
+            <Link to="/login" className="HeaderGetStartedButton Btn">Get Started</Link>
+          )}
         </section>
       </header>
 

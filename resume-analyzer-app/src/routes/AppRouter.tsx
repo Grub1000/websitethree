@@ -7,6 +7,7 @@ import NotFoundPage from "../page_components/NotFoundPage.tsx";
 import Profile from "../page_components/Profile.tsx";
 import ForgotPasswordPage from "../page_components/ForgotPasswordPage.tsx";
 import ResetPasswordPage from "../page_components/ResetPasswordPage.tsx"
+import ResumeAnalyzerToolPage from "../page_components/ResumeAnalyzerToolPage.tsx"
 
 import ProtectedRoute from "../routes/ProtectedRoute";
 
@@ -46,7 +47,14 @@ function AppRouter() {
                     </ProtectedRoute>
                 }
             />
-
+            <Route
+                path="/resume-analyzer"
+                element={
+                    <ProtectedRoute>
+                        <ResumeAnalyzerToolPage />
+                    </ProtectedRoute>
+                }
+            />
             {/* 404 */}
 
             <Route
