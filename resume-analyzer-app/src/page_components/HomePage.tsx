@@ -72,10 +72,22 @@ function HomePage() {
     carouselImageSix,
   ]);
 
+
+
   const headerButtonsArray = Object.values(buttons);
+
   const carouselImagesArray = carouselImages;
 
   const { isAuthenticated } = useAuth();
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+
+  const handleBurgerDropdown = (dropdownOpen: boolean) => {
+    const hamburgerDropdown = document.getElementById("headerBurgerDropdownWrapper") as HTMLElement;
+    hamburgerDropdown.style.display = dropdownOpen ? "block" : "none";
+    setDropdownOpen(dropdownOpen);
+}
 
   return (
     <section className="HomePage"> 
@@ -94,9 +106,9 @@ function HomePage() {
         <section className="HeaderSignInLogInButtonsWrapper">
           {isAuthenticated ? (
           // <Link to="/profile" className="HeaderSignInButton Btn">My Profile</Link>
-          null
-        ) : (
-          <Link to="/login" className="HeaderSignInButton Btn">Sign In</Link>)}
+            null
+          ) : (
+            <Link to="/login" className="HeaderSignInButton Btn">Sign In</Link>)}
           
           {isAuthenticated ? (
             <Link to="/resume-analyzer" className="HeaderGetStartedButton Btn">My Documents</Link>
@@ -106,10 +118,29 @@ function HomePage() {
         </section>
         <section className="HeaderBurgerButtonWrapper">
           <button className="HeaderBurgerButton Btn">
-            <img className="HeaderBurgerButtonIconImage" src={burgerMenuIconSVG} alt="Burger Icon" />
+            <img className="HeaderBurgerButtonIconImage" src={burgerMenuIconSVG} alt="Burger Icon" onClick={() => handleBurgerDropdown(!dropdownOpen)}/>
           </button>
           {/* <button className="HeaderSignInButton Btn">Burger</button> */}
         </section>
+        <div className="HeaderBurgerDropdownWrapper" id="headerBurgerDropdownWrapper">
+          <nav className="HeaderBurgerDropdownButtonWrapper">
+            <button className="HeaderBurgerDropdownButton">Templates</button>
+            <button className="HeaderBurgerDropdownButton">Projects</button>
+            <button className="HeaderBurgerDropdownButton">About</button>
+            <button className="HeaderBurgerDropdownButton">Education</button>
+            {isAuthenticated ? (
+          // <Link to="/profile" className="HeaderSignInButton Btn">My Profile</Link>
+              null
+            ) : (
+              <Link to="/login" className="HeaderBurgerDropdownSignInButton Btn">Sign In</Link>)}
+          
+            {isAuthenticated ? (
+              <Link to="/resume-analyzer" className="HeaderBurgerDropdownGetStartedButton Btn">My Documents</Link>
+            ) : (
+              <Link to="/login" className="HeaderBurgerDropdownGetStartedButton Btn">Get Started</Link>
+            )}
+          </nav> 
+        </div>
       </header>
 
       <main className='Main'>

@@ -131,9 +131,49 @@ h1{
   transform: scale(130%);
   /* background-color: aquamarine; */
 }
+.HeaderBurgerDropdownWrapper{
+  display: none;
+  width: 100%;
+  height: 500px;
+  /* height: fit-content; */
+  background-color: rgb(214, 216, 216);
+  /* display: none; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  position: absolute;
+  top: 62px;
+  right: 0px;
+}
+.HeaderBurgerDropdownButtonWrapper{
+  display: flex;
+  flex-direction: column;
+}
 
-
-
+.HeaderBurgerDropdownButton{
+  height: 50px;
+  background-color: rgb(159, 220, 240);
+  border: none;
+  outline: none;
+}
+.HeaderBurgerDropdownButton:hover{
+  background-color: rgba(8, 160, 206, 0.781);
+}
+.HeaderBurgerDropdownSignInButton{
+  /* background-color: rgba(179, 179, 179, 0); */
+  width: 100%;
+  text-align: center;
+  border: 2px solid rgb(51, 51, 51);
+  transition: background-color 0.5s ease;
+}
+.HeaderBurgerDropdownGetStartedButton{
+  width: 100%;
+  text-align: center;
+  margin-right: 25px;
+  background-color: rgba(8, 160, 206, 0.781);
+  border: 2px solid rgba(8, 160, 206, 0);
+  color: white;
+  transition: background-color 0.5s ease;
+}
 
 .Main{
   /* overflow-x: hidden; */
