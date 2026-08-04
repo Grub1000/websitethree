@@ -1,8 +1,12 @@
 .InfiniteCarouselTrack{
   /* animation: scrollInfinite 25s linear infinite; */
+  /* width: ; */
+  /* width: calc(100vw - 40px); */
 }
 ul {
-  width: calc(100vw - 40px);
+  /* width: calc(100vw - 40px); */
+  /* position: relative; */
+  /* width: 100%; */
   height: 600px;
   padding: 20px;
   display: flex;
@@ -27,6 +31,7 @@ ul {
   /* column-width: 600px; */
   text-align: center; 
   /* transition: all 1s ease; */
+  /* background-color: blue; */
 
 }
 
@@ -53,4 +58,49 @@ li:nth-child(even) {
 ul::column {
   scroll-snap-align: center;
   /* transition: all 1s ease; */
+}
+
+@media (max-width: 1400px) {
+  ul{
+    height: 480px;
+  }
+  li{
+    width: 280px;
+  }
+  .InfiniteCarouselImage{
+    height: 100%;
+  }
+}
+@media (max-width: 1020px) {
+  ul{
+    height: 440px;
+  }
+  li{
+    width: 250px;
+  }
+  .InfiniteCarouselImage{
+    height: 100%;
+  }
+}
+@media (max-width: 760px) {
+  ul{
+    height: 400px;
+  }
+  li{
+    width: 230px;
+  }
+  .InfiniteCarouselImage{
+    height: 100%;
+  }
+}
+@media (max-width: 480px){
+  ul{
+    height: 360px;
+  }
+  li{
+    width: 210px;
+  }
+  .InfiniteCarouselImage{
+    height: 100%;
+  }
 }

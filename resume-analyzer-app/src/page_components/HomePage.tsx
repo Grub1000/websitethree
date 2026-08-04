@@ -10,12 +10,13 @@ import { Link } from "react-router-dom";
 // Image imports
 import logo from "../assets/website_logo_new.png"
 import homepageMainSectionDescriptionImage from "../assets/Resume.svg"
+import burgerMenuIconSVG from "../assets/burger_menu_svg.svg" 
 
 // Component imports
 import HeaderButton from '../components/HeaderButton'
 import InfiniteCarouselTrack from '../components/InfiniteCarouselTrack'
 
-// Image Imports
+// CarouselImage Imports
 import carouselImageOne from "../assets/Carousel Images/carousel_image_1.png"
 import carouselImageTwo from "../assets/Carousel Images/carousel_image_2.png"
 import carouselImageThree from "../assets/Carousel Images/carousel_image_3.png"
@@ -92,15 +93,22 @@ function HomePage() {
         </nav>
         <section className="HeaderSignInLogInButtonsWrapper">
           {isAuthenticated ? (
-          <Link to="/profile" className="HeaderSignInButton Btn">My Profile</Link>
+          // <Link to="/profile" className="HeaderSignInButton Btn">My Profile</Link>
+          null
         ) : (
           <Link to="/login" className="HeaderSignInButton Btn">Sign In</Link>)}
           
           {isAuthenticated ? (
-            <Link to="/resume-analyzer" className="HeaderGetStartedButton Btn">Get Started</Link>
+            <Link to="/resume-analyzer" className="HeaderGetStartedButton Btn">My Documents</Link>
           ) : (
             <Link to="/login" className="HeaderGetStartedButton Btn">Get Started</Link>
           )}
+        </section>
+        <section className="HeaderBurgerButtonWrapper">
+          <button className="HeaderBurgerButton Btn">
+            <img className="HeaderBurgerButtonIconImage" src={burgerMenuIconSVG} alt="Burger Icon" />
+          </button>
+          {/* <button className="HeaderSignInButton Btn">Burger</button> */}
         </section>
       </header>
 
@@ -108,7 +116,7 @@ function HomePage() {
         <section className="HomePageMainSectionWrapper">
           <div className="HomePageMainSectionDescriptionWrapper">
             <h1 className="HomePageMainSectionDescriptionTitle">Land more interviews with ResuScan <span className="Highlight">Analyzer</span></h1>
-            <p className="HomePageMainSectionDescriptionText">Get instant feedback on your resume and increase your chances of landing interviews.</p>
+            <p className="HomePageMainSectionDescriptionText">Get instant feedback on your resume and increase your chances of landing interviews. Powered by AI technology.</p>
             <button className="HomePageMainSectionDescriptionResumeScoreButton Btn">Get Your Resume Score</button>
             <button className="HomePageMainSectionDescriptionJobMatchButton Btn">Get A Job Match</button>
           </div>

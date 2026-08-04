@@ -47,12 +47,12 @@ export default function HeaderButton({
             <button className="HeaderButtonDropdownButton">
                 <div className="HeaderButtonDropdownButtonColorPad"></div>
                 <h5 className="HeaderButtonDropdownButtonTopText">Coming Soon...</h5>
-                <p className="HeaderButtonDropdownButtonBottomText">Merch-store mock up example</p>
+                <p className="HeaderButtonDropdownButtonBottomText">ResuScan button</p>
             </button>
             <button className="HeaderButtonDropdownButton">
                 <div className="HeaderButtonDropdownButtonColorPad"></div>
                 <h5 className="HeaderButtonDropdownButtonTopText">Coming Soon...</h5>
-                <p className="HeaderButtonDropdownButtonBottomText">Porfolio site mock up example</p>
+                <p className="HeaderButtonDropdownButtonBottomText">ResuScan button</p>
             </button>
         </div>
     </div>

@@ -1,6 +1,6 @@
 body {
-  /* width: 100vw;
-  height: 100vh; */
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   font-family: 'Julius Sans One', sans-serif;
   color: white;
@@ -10,8 +10,22 @@ body {
   overflow: hidden;
   cursor: default;
   overflow-y: scroll;
+  overflow-x: hidden;
 
 }
+:root{
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
+}
+#root{
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
+}
+
 h1{
   /* font-family: "Inter", sans-serif; */
   font-weight: 700;
@@ -37,19 +51,24 @@ h1{
 }
 
 .Header{
+  position:fixed;
+  z-index: 100;
   display: flex;
-  width: 100vw;
+  width: calc(100vw - 220px);
   height: 70px;
   border-bottom: 2px solid rgb(233, 233, 233);
+  background-color: white;
   padding-left: calc(220px);
 }
 .HeaderLogoWrapper{
   position: absolute;
   left: 20px;          /* Controls position of top left website logo */
   cursor: pointer;
+  /* background-color: rgb(8, 248, 88); */
 }
 .HeaderLogoImage{
   width: 200px;
+  /* background-color: rgb(248, 8, 8); */
 }
 .HeaderButtonsWrapper{
   /* background-color: aqua; */
@@ -78,31 +97,64 @@ h1{
 .HeaderGetStartedButton:hover{
   background-color: rgba(8, 193, 206, 0.637);
 }
-
-
+.HeaderBurgerButtonWrapper{
+  display: none;
+  position:absolute;
+  right: 5px;
+  /* top: -3px */
+  top: 0px;
+  /* background-color:aquamarine */
+}
+.HeaderBurgerButton{
+  /* display: none; */
+  position: relative;
+  width: 48px;
+  height: 48px;
+  top: -8px;
+  background-color: transparent;
+  border: 2px solid rgba(8, 160, 206, 0);
+  color: white;
+  transition: background-color 0.1s ease;
+}
+.HeaderBurgerButton:hover{
+  background-color: rgba(8, 160, 206, 0.082);
+}
+.HeaderBurgerButtonIconImage{
+  position: relative;
+  width: 20px;
+  height: 20px;
+  /* margin-top: 2px; */
+  margin: none;
+  padding: none;
+  left: 0px;
+  top: 0px;
+  transform: scale(130%);
+  /* background-color: aquamarine; */
+}
 
 
 
 
 .Main{
-
+  /* overflow-x: hidden; */
+  /* margin-top: -100px; */
+  /* background-color: rgb(200, 162, 212); */
+  /* margin: none; */
+  /* top: -100px; */
 }
 .HomePageMainSectionWrapper{
+  /* z-index: 5; */
   /* background-color: rgba(94, 85, 180, 0.315); */
   /* position: relative; */
   width: 1300px;
-  height: 600px;
+  height: 700px;
+  /* height: fit-content;
+  margin-bottom: 50px; */
   /* height: fit-content; */
+  /* margin-bottom: 50px; */
   margin: auto;
   /* font-family: "Inter", sans-serif; */
-}
-.HomePageMainSectionDescriptionTitle{
-
-}
-.HomePageMainSectionDescriptionText{
-  position: relative;
-  top: -15px;
-  color: rgba(48, 58, 61, 0.897);
+  /* background-color: rgb(212, 162, 162); */
 }
 .HomePageMainSectionDescriptionWrapper{
   color: rgb(48, 58, 61);
@@ -110,7 +162,18 @@ h1{
   float: left;
   width: 750px;
   height: 500px;
-  margin-top: 50px;
+  margin-top: 120px;
+  /* background-color: rgba(18, 185, 163, 0.473); */
+}
+.HomePageMainSectionDescriptionTitle{
+  /* padding-top: 0px; */
+  /* background-color: rgba(125, 194, 128, 0.473); */
+}
+.HomePageMainSectionDescriptionText{
+  position: relative;
+  top: -15px;
+  color: rgba(48, 58, 61, 0.897);
+  /* background-color: rgba(162, 212, 201, 0.473); */
 }
 .Highlight{
   color: rgba(14, 95, 116, 0.658);
@@ -140,11 +203,15 @@ h1{
   float: right;
   width: 500px;
   height: 500px;
-  margin-top: 100px
+  margin-top: 175px;
+  /* background-color: rgba(160, 185, 18, 0.473); */
 }
 .HomePageMainSectionDescriptionImage{
+  position: relative;
+  top: 0;
   transform: scale(0%);
   transition: transform 0.7s ease;
+  /* background-color: rgba(160, 185, 18, 0.473); */
 }
 
 
@@ -153,8 +220,9 @@ h1{
 
 .HomePageMainSectionLowerWrapper{
   width: 100vw;
-  height: 700px;
-  margin: auto;
+  /* height: 700px; */
+  height: fit-content;
+  /* margin: auto; */
   background-color: rgba(227, 234, 236, 0.658);
 }
 
@@ -179,5 +247,174 @@ h1{
   }
   100% {
     transform: translateX(-1384%);
+  }
+}
+
+@media (max-width: 1400px) {
+  .HomePageMainSectionWrapper {
+    width: 950px;
+    height: 600px;
+    margin: auto;
+  }
+
+  .HomePageMainSectionDescriptionWrapper {
+    width: 600px;
+    height: 500px;
+    /* margin-top: 0px; */
+    margin-top: 70px;
+  }
+
+  .HomePageMainSectionDescriptionImageWrapper {
+    width: 350px;
+    height: 500px;
+    margin-top: 100px
+  }
+}
+
+@media (max-width: 1020px) {
+  .HomePageMainSectionWrapper {
+    width: 700px;
+    height: 1000px;
+    margin: auto;
+  }
+
+  .HomePageMainSectionDescriptionWrapper {
+    float: none;
+    width: 700px;
+    height: 500px;
+    /* top: -150px; */
+    /* margin-top: 50px; */
+    margin-top: 0px;
+    padding-top: 70px;
+  }
+
+  .HomePageMainSectionDescriptionImageWrapper {
+    float: none;
+    /* top: -150px; */
+    width: 400px;
+    height: 400px;
+    margin:auto;
+    margin-top: 0px
+  }
+  .HomePageMainSectionDescriptionTitle{
+    margin-top: 0px;
+    /* font-size: 30px;
+    text-align: center; */
+  /* padding-top: 0px; */
+  }
+  .Header{
+    height: 60px;
+  }
+  .HeaderLogoImage{
+    width: 170px;
+    /* height: 60px; */
+  }
+  .HeaderButtonsWrapper{
+    display: none;
+  }
+  .HeaderSignInLogInButtonsWrapper{
+    display: none;
+  }
+  /* .HeaderGetStartedButton{
+    display: none;
+  }
+  .HeaderSignInButton{
+    display: none;
+  } */
+  .HeaderBurgerButtonWrapper{
+    display: block;
+  }
+  /* .HeaderBurgerButton {
+    display: block;
+  } */
+}
+
+@media (max-width: 760px) {
+  .HeaderLogoImage{
+    margin-top: 4px;
+    width: 160px;
+    /* height: 60px; */
+  }
+
+  .HomePageMainSectionWrapper {
+    width: calc(100% - 50px);
+    /* height: 700px; */
+    margin: auto;
+    height: fit-content;
+    margin-bottom: 150px;
+    /* margin-top: none; */
+  }
+
+  .HomePageMainSectionDescriptionWrapper {
+    float: none;
+    width: 100%;
+    height: fit-content;
+    /* top: -150px; */
+    /* margin-top: 50px; */
+  }
+
+  .HomePageMainSectionDescriptionImageWrapper {
+    float: none;
+    /* top: -150px; */
+    width: 400px;
+    /* width: calc(100% - 50px); */
+    height: 300px;
+    margin:auto;
+    margin-top: 20px
+  }
+
+  .HomePageMainSectionDescriptionTitle{
+    font-size: 30px;
+    text-align: center;
+  /* padding-top: 0px; */
+  }
+  .HomePageMainSectionDescriptionText{
+    /* position: relative;
+    top: -15px;
+    color: rgba(48, 58, 61, 0.897); */
+    /* font-size: 24px; */
+    top: 0px;
+    text-align: center;
+    margin-top: 20px;
+
+
+  }
+  .HomePageMainSectionDescriptionWrapper{
+    color: rgb(48, 58, 61);
+    position: relative;
+    /* float: left; */
+    /* width: 750px; */
+    width: 100%;
+    height: fit-content;
+    /* margin-top: 50px; */
+    /* top: -10px; */
+  }
+  .HomePageMainSectionDescriptionResumeScoreButton{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .HomePageMainSectionDescriptionJobMatchButton{
+    width: 100%;
+    margin-top: 20px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .HeaderLogoImage{
+    margin-left: -20px;
+  }
+  .HomePageMainSectionDescriptionImageWrapper {
+    width: calc(100% - 50px);  
+    /* height: 300px; */
+    height: fit-content;
+  }
+  .HomePageMainSectionWrapper {
+    width: calc(100% - 50px);
+    /* height: 700px */
+    height: fit-content;
+    margin-bottom: 50px;
+    /* margin-top: none; */
   }
 }

@@ -1,3 +1,5 @@
+import "../css/InfiniteCarousel.css"
+
 export default function InfiniteCarouselItem({
   src
 }: {
@@ -5,7 +7,7 @@ export default function InfiniteCarouselItem({
 }) {
   return (
     <li className="InfiniteCarouselItem">
-      <img src={src} alt="Carousel" />
+      <img className="InfiniteCarouselImage" src={src} alt="Carousel" />
     </li>
   );
 }
