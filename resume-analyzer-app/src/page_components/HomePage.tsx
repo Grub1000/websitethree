@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/website_logo_new.png"
 import homepageMainSectionDescriptionImage from "../assets/Resume.svg"
 import burgerMenuIconSVG from "../assets/burger_menu_svg.svg" 
+import burgerMenuExitIconSVG from "../assets/burger_menu_exit_svg.svg"
 
 // Component imports
 import HeaderButton from '../components/HeaderButton'
@@ -95,6 +96,17 @@ function HomePage() {
   }
 
 
+  // If window width > 760px go ahead and remove the burger button dropdown menu and set the state of dropdownOpen to false.
+  const hamburgerDropdown = document.getElementById('headerBurgerDropdownWrapper') as HTMLSelectElement;
+  window.addEventListener('resize', () => {
+    const isBigScreen = window.innerWidth > 760;
+    if (hamburgerDropdown && isBigScreen) {
+      hamburgerDropdown.style.display = "none"
+      setDropdownOpen(false);
+    }
+  });
+
+
   return (
     <section className="HomePage"> 
 
@@ -123,32 +135,36 @@ function HomePage() {
           )}
         </section>
         <section className="HeaderBurgerButtonWrapper">
-          <button className="HeaderBurgerButton Btn">
-            <img className="HeaderBurgerButtonIconImage" src={burgerMenuIconSVG} alt="Burger Icon" onClick={() => handleBurgerDropdown(!dropdownOpen)}/>
+          <button className="HeaderBurgerButton Btn" onClick={() => handleBurgerDropdown(!dropdownOpen)}>
+            {dropdownOpen ? (
+              <img className="HeaderBurgerButtonIconImage"  style={{ transform: 'scale(90%)', opacity: 0.7 }} src={burgerMenuExitIconSVG} alt="Exit Icon"/>
+            ) : (
+              <img className="HeaderBurgerButtonIconImage"  src={burgerMenuIconSVG} alt="Burger Icon"/>
+            )}
           </button>
           {/* <button className="HeaderSignInButton Btn">Burger</button> */}
         </section>
         <div className="HeaderBurgerDropdownWrapper" id="headerBurgerDropdownWrapper">
           <nav className="HeaderBurgerDropdownButtonWrapper">
-            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(0)}>Templates</button>
+            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(0)}>Resume</button>
             <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
-              <button className="HeaderBurgerDropdownButton">Submenu 1</button>
-              <button className="HeaderBurgerDropdownButton">Submenu 2</button>
+              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 1</button>
+              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button>
             </div>
-            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(1)}>Projects</button>
+            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(1)}>Tools</button>
             <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
-              <button className="HeaderBurgerDropdownButton">Submenu 1</button>
-              <button className="HeaderBurgerDropdownButton">Submenu 2</button>
+              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 1</button>
+              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button>
             </div>
-            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(2)}>About</button>
+            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(2)}>Examples</button>
             <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
-              <button className="HeaderBurgerDropdownButton">Submenu 1</button>
-              <button className="HeaderBurgerDropdownButton">Submenu 2</button>
+              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 1</button>
+              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button>
             </div>
-            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(3)}>Education</button>
+            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(3)}>Pricing</button>
             <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
-              <button className="HeaderBurgerDropdownButton">Submenu 1</button>
-              <button className="HeaderBurgerDropdownButton">Submenu 2</button>
+              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 1</button>
+              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button>
             </div>
             {isAuthenticated ? (
           // <Link to="/profile" className="HeaderSignInButton Btn">My Profile</Link>
