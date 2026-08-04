@@ -82,12 +82,18 @@ function HomePage() {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-
   const handleBurgerDropdown = (dropdownOpen: boolean) => {
     const hamburgerDropdown = document.getElementById("headerBurgerDropdownWrapper") as HTMLElement;
     hamburgerDropdown.style.display = dropdownOpen ? "block" : "none";
     setDropdownOpen(dropdownOpen);
-}
+  }
+
+  const handleBurgerSubMenuDropdown = (buttonIndex: number) =>{
+    const submenuWrapperElement = document.querySelectorAll('.HeaderBurgerDropdownButtonSubmenuWrapper')[buttonIndex] as HTMLElement; // Grab the submenu wrapper element by class occurance order (index order of elements in this class).
+    const currentDisplay = window.getComputedStyle(submenuWrapperElement).display; // Surpasses inline html limitation, we grab the computed css styled elements display property.
+    submenuWrapperElement.style.display = currentDisplay == "none" ? "flex" : "none"; // style.display only checks inline html styles, therefore we use the current computed styled element(computed with CSS styles element).
+  }
+
 
   return (
     <section className="HomePage"> 
@@ -124,10 +130,26 @@ function HomePage() {
         </section>
         <div className="HeaderBurgerDropdownWrapper" id="headerBurgerDropdownWrapper">
           <nav className="HeaderBurgerDropdownButtonWrapper">
-            <button className="HeaderBurgerDropdownButton">Templates</button>
-            <button className="HeaderBurgerDropdownButton">Projects</button>
-            <button className="HeaderBurgerDropdownButton">About</button>
-            <button className="HeaderBurgerDropdownButton">Education</button>
+            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(0)}>Templates</button>
+            <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
+              <button className="HeaderBurgerDropdownButton">Submenu 1</button>
+              <button className="HeaderBurgerDropdownButton">Submenu 2</button>
+            </div>
+            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(1)}>Projects</button>
+            <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
+              <button className="HeaderBurgerDropdownButton">Submenu 1</button>
+              <button className="HeaderBurgerDropdownButton">Submenu 2</button>
+            </div>
+            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(2)}>About</button>
+            <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
+              <button className="HeaderBurgerDropdownButton">Submenu 1</button>
+              <button className="HeaderBurgerDropdownButton">Submenu 2</button>
+            </div>
+            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(3)}>Education</button>
+            <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
+              <button className="HeaderBurgerDropdownButton">Submenu 1</button>
+              <button className="HeaderBurgerDropdownButton">Submenu 2</button>
+            </div>
             {isAuthenticated ? (
           // <Link to="/profile" className="HeaderSignInButton Btn">My Profile</Link>
               null
