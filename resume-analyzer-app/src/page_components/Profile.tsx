@@ -1,18 +1,18 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function Profile() {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const { logout } = useAuth();
 
     function handleLogout() {
-
+        // navigate("/");
         logout();
 
-        navigate("/login");
-
+        // navigate("resuscan/");
+        window.location.href = "/resuscan/";
     }
     
     return (
