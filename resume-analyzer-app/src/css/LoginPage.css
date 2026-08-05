@@ -156,3 +156,94 @@
 .LoginPageButton:hover{
     background-color: rgba(8, 193, 206, 0.637);
 }
+
+@media (max-width: 768px) {
+    .LoginPageWrapper{
+        width: calc(100vw - 55px);
+        /* box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.158); */
+    }
+    .LoginPageForm{
+        /* background-color: #f0f0f0; */
+        width: 100%;
+        /* padding: 20px; */
+        /* padding-left: 45px; */
+    }
+    .LoginPageRegisterSuccessText{
+        position: relative;
+        width: 200px;
+    }
+
+    .LoginPageHeadingText{
+        position: relative;
+        /* width: 170px; */
+        white-space: nowrap;
+        /* padding-left: 100px; */
+        /* padding-right: 10px; */
+        left: -10px;
+        margin: auto;
+        margin-top: 80px;
+        color: #272727;
+        font-size: 24px;
+        /* background-color: #5db7d3; */
+    }
+    .LoginPageSignUpLinkText{
+        position: relative;
+        width: fit-content;
+        white-space: nowrap;
+        left: -10px;
+        margin: auto;
+        margin-top: 8px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        /* background-color: #5db7d3; */
+    }
+    .LoginPageOrContinueText{
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        position: relative;
+        /* width: fit-content; */
+        left: -10px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: #33333377;
+        /* background-color: #5db7d3; */
+        
+    }
+    .LoginPageOrContinueText::before{
+        margin-right: 20px;
+        margin-left: 10px;
+    }
+    .LoginPageOrContinueText::after{
+        margin-left: 20px;
+        margin-right: -10px;
+    }
+
+    .LoginPageGoogleLoginButtonWrapper{
+        width: 100%;
+        left: 0px;
+    }
+    .nsm7Bb-HzV7m-LgbsSe-bN97Pc-sM5MNb{
+        text-align: center;
+    }
+
+    .LoginPageInput{
+        left: 0px;
+        width: calc(100% - 30px);
+    }
+
+    .LoginPageForgotPasswordLink{
+        left: 0px;
+        right: 0px;
+        width: 100%;
+        text-align: end;
+    }
+
+    .LoginPageButton{
+        left: 0px;
+        width: 100%;  
+    }
+    .LoginPageButton:hover{
+        background-color: rgba(8, 193, 206, 0.637);
+    }
+}
