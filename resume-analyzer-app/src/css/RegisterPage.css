@@ -148,3 +148,100 @@
     font-size: 14px;
     margin-top: 5px;
 }
+
+@media (max-width: 768px) {
+    .RegisterPageWrapper{
+        width: calc(100vw - 55px);
+        /* box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.158); */
+    }
+    .RegisterPageForm{
+        /* background-color: #f0f0f0; */
+        width: 100%;
+        /* padding: 20px; */
+        /* padding-left: 45px; */
+    }
+    .RegisterPageRegisterSuccessText{
+        position: relative;
+        width: 200px;
+    }
+
+    .RegisterPageHeadingText{
+        position: relative;
+        /* width: 170px; */
+        white-space: nowrap;
+        /* padding-left: 100px; */
+        /* padding-right: 10px; */
+        left: -10px;
+        margin: auto;
+        margin-top: 80px;
+        color: #272727;
+        font-size: 24px;
+        /* background-color: #5db7d3; */
+    }
+    .RegisterPageSignUpLinkText{
+        position: relative;
+        width: fit-content;
+        white-space: nowrap;
+        left: -10px;
+        margin: auto;
+        margin-top: 8px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        /* background-color: #5db7d3; */
+    }
+    .RegisterPageOrContinueText{
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        position: relative;
+        /* width: fit-content; */
+        left: -10px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: #33333377;
+        /* background-color: #5db7d3; */
+        
+    }
+    .RegisterPageOrContinueText::before{
+        margin-right: 20px;
+        margin-left: 10px;
+    }
+    .RegisterPageOrContinueText::after{
+        margin-left: 20px;
+        margin-right: -10px;
+    }
+
+    .RegisterPageGoogleLoginButtonWrapper{
+        width: 100%;
+        left: 0px;
+    }
+    .nsm7Bb-HzV7m-LgbsSe-bN97Pc-sM5MNb{
+        text-align: center;
+    }
+
+    .RegisterPageInput{
+        left: 0px;
+        width: calc(100% - 30px);
+    }
+
+    .RegisterPageForgotPasswordLink{
+        left: 0px;
+        right: 0px;
+        width: 100%;
+        text-align: end;
+    }
+
+    .RegisterPageButton{
+        left: 0px;
+        width: 100%;  
+    }
+    .RegisterPageButton:hover{
+        background-color: rgba(8, 193, 206, 0.637);
+    }
+   .RegisterPageErrorText{
+        text-align: start;
+        color: #ff0000;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+}

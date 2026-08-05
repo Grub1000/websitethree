@@ -95,12 +95,12 @@ export default function RegisterPage() {
 
         {/* Messages for secure password requirements */}
         {password.length >= 8 && password.length <= 64 || password === "" ? null : <p className="RegisterPageErrorText">password must be between 8 and 64 characters long.</p>}
-        {/^\S+$/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">password cannot contain whitespace</p>}
-        {/[A-Z]/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one uppercase letter</p>}
-        {/[a-z]/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one lowercase letter</p>}
-        {/\d/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one number</p>}
-        {/[!@#$]/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one special character !,@,#,$</p>}
-        {passwordIsValid || password === "" ? null : <p className="RegisterPageErrorText">password does not meet all requirements</p>}
+        {/^\S+$/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">password cannot contain whitespace.</p>}
+        {/[A-Z]/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one uppercase letter.</p>}
+        {/[a-z]/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one lowercase letter.</p>}
+        {/\d/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one number.</p>}
+        {/[!@#$]/.test(password) || password === "" ? null : <p className="RegisterPageErrorText">at least one special character !,@,#,$.</p>}
+        {passwordIsValid || password === "" ? null : <p className="RegisterPageErrorText">password does not meet all requirements.</p>}
 
         {/* Error message from registration api */}
         {error && (
