@@ -12,11 +12,11 @@ import logo from "../assets/website_logo_new.png"
 import homepageMainSectionDescriptionImage from "../assets/Resume.svg"
 import burgerMenuIconSVG from "../assets/burger_menu_svg.svg" 
 import burgerMenuExitIconSVG from "../assets/burger_menu_exit_svg.svg"
-import burgerMenuSubmenuChevronIconSVG from "../assets/burger_menu_submenu_chevron_icon_svg.svg"
 
 // Component imports
 import HeaderButton from '../components/HeaderButton'
 import InfiniteCarouselTrack from '../components/InfiniteCarouselTrack'
+import HeaderBurgerDropdownNav from '../components/HeaderBurgerDropdownNav';
 
 // CarouselImage Imports
 import carouselImageOne from "../assets/Carousel Images/carousel_image_1.png"
@@ -83,31 +83,13 @@ function HomePage() {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const handleBurgerDropdown = (dropdownOpen: boolean) => {
     const hamburgerDropdown = document.getElementById("headerBurgerDropdownWrapper") as HTMLElement;
     hamburgerDropdown.style.display = dropdownOpen ? "block" : "none";
     setDropdownOpen(dropdownOpen);
   }
-
-  const handleBurgerSubMenuDropdown = (buttonIndex: number) =>{
-    setIsLoading(true);
-
-    const submenuWrapperElement = document.querySelectorAll('.HeaderBurgerDropdownButtonSubmenuWrapper')[buttonIndex] as HTMLElement; // Grab the submenu wrapper element by class occurance order (index order of elements in this class).
-    const headerBurgerDropdownButtonChevronIconElement = document.querySelectorAll('.HeaderBurgerDropdownButtonIcon')[buttonIndex] as HTMLElement; // Grab the submenu wrapper element by class occurance order (index order of elements in this class).
-    const currentDisplay = window.getComputedStyle(submenuWrapperElement).display; // Surpasses inline html limitation, we grab the computed css styled elements display property.
-    const iconCurrentTransform = window.getComputedStyle(headerBurgerDropdownButtonChevronIconElement).transform;
-    console.log(iconCurrentTransform);
-    submenuWrapperElement.style.display = currentDisplay == "none" ? "flex" : "none"; // style.display only checks inline html styles, therefore we use the current computed styled element(computed with CSS styles element).
-    headerBurgerDropdownButtonChevronIconElement.style.transform = iconCurrentTransform === "none" || iconCurrentTransform === "matrix(0, -1, 1, 0, 0, 0)" ? "rotate(90deg)" : "rotate(-90deg)";
-    
-    // Allows enough time for the icon rotation transition to complete before more buttons can be clicked
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 100);
-  }
-
 
   // If window width > 760px go ahead and remove the burger button dropdown menu and set the state of dropdownOpen to false.
   const hamburgerDropdown = document.getElementById('headerBurgerDropdownWrapper') as HTMLSelectElement;
@@ -118,8 +100,6 @@ function HomePage() {
       setDropdownOpen(false);
     }
   });
-
-
 
 
   return (
@@ -160,51 +140,7 @@ function HomePage() {
           {/* <button className="HeaderSignInButton Btn">Burger</button> */}
         </section>
         <div className="HeaderBurgerDropdownWrapper" id="headerBurgerDropdownWrapper">
-          <nav className="HeaderBurgerDropdownButtonWrapper">
-            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(0)} disabled={isLoading}>
-              <p className="HeaderBurgerDropdownButtonText">Resume</p>
-              <img className="HeaderBurgerDropdownButtonIcon" src={burgerMenuSubmenuChevronIconSVG} alt="Dropdown Icon"/>
-            </button>
-            <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
-              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 1</button>
-              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button>
-            </div>
-            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(1)} disabled={isLoading}>
-              <p className="HeaderBurgerDropdownButtonText">Tools</p>
-              <img className="HeaderBurgerDropdownButtonIcon" src={burgerMenuSubmenuChevronIconSVG} alt="Dropdown Icon"/>
-            </button>
-            <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
-              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 1</button>
-              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button>
-            </div>
-            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(2)} disabled={isLoading}>
-              <p className="HeaderBurgerDropdownButtonText">Examples</p>
-              <img className="HeaderBurgerDropdownButtonIcon" src={burgerMenuSubmenuChevronIconSVG} alt="Dropdown Icon"/>
-            </button>
-            <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
-              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 1</button>
-              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button>
-            </div>
-            <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(3)} disabled={isLoading}>
-              <p className="HeaderBurgerDropdownButtonText">Pricing</p>
-              <img className="HeaderBurgerDropdownButtonIcon" src={burgerMenuSubmenuChevronIconSVG} alt="Dropdown Icon"/>
-            </button>
-            <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
-              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 1</button>
-              <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button>
-            </div>
-            {isAuthenticated ? (
-          // <Link to="/profile" className="HeaderSignInButton Btn">My Profile</Link>
-              null
-            ) : (
-              <Link to="/login" className="HeaderBurgerDropdownSignInButton Btn">Sign In</Link>)}
-          
-            {isAuthenticated ? (
-              <Link to="/resume-analyzer" className="HeaderBurgerDropdownGetStartedButton Btn">My Documents</Link>
-            ) : (
-              <Link to="/login" className="HeaderBurgerDropdownGetStartedButton Btn">Get Started</Link>
-            )}
-          </nav> 
+          <HeaderBurgerDropdownNav />
         </div>
       </header>
 
