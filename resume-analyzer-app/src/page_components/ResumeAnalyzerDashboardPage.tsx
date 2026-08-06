@@ -1,5 +1,6 @@
 // import { useNavigate } from "react-router-dom";
 // import { useAuth } from "../context/AuthContext";
+import ResumeUploadSection from "../components/ResumeUploadSection.tsx";
 
 export default function ResumeAnalyzerDashboardPage() {
 
@@ -7,6 +8,7 @@ export default function ResumeAnalyzerDashboardPage() {
 
         <div>
             This is the resume analyzer dashboard.
+            <ResumeUploadSection/>
         </div>
 
     );
