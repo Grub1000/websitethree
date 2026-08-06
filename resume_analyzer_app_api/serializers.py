@@ -19,6 +19,10 @@ from django.utils import timezone
 from datetime import timedelta
 from .utils import send_password_reset_email
 
+# Imports Needed For Resume Upload Request Validation
+from pathlib import Path
+from django.conf import settings
+
 User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
@@ -217,3 +221,95 @@ class ResetPasswordSerializer(serializers.Serializer):
         reset_token.save() 
 
         return user
+
+
+
+
+
+class ResumeUploadRequestSerializer(serializers.Serializer):
+
+    filename = serializers.CharField(
+        max_length=255,
+    )
+
+    content_type = serializers.CharField(
+        max_length=100,
+    )
+
+    file_size = serializers.IntegerField(
+        min_value=1,
+    )
+
+
+    def validate_filename(self, value):
+
+        # Remove any directory information supplied by the browser.
+        clean_filename = Path(value).name.strip()
+
+        if not clean_filename:
+            raise serializers.ValidationError(
+                "A valid filename is required."
+            )
+
+        return clean_filename
+
+
+    def validate_file_size(self, value):
+
+        if value > settings.RESUME_MAX_FILE_SIZE:
+            max_size_mb = (
+                settings.RESUME_MAX_FILE_SIZE
+                // (1024 * 1024)
+            )
+
+            raise serializers.ValidationError(
+                f"Résumé files cannot exceed {max_size_mb} MB."
+            )
+
+        return value
+
+
+    def validate(self, attrs):
+
+        filename = attrs["filename"]
+        content_type = attrs["content_type"]
+
+        expected_extension = (
+            settings.RESUME_ALLOWED_CONTENT_TYPES.get(
+                content_type
+            )
+        )
+
+        if expected_extension is None:
+            raise serializers.ValidationError(
+                {
+                    "content_type": (
+                        "Only PDF and DOCX résumé files "
+                        "are currently supported."
+                    )
+                }
+            )
+
+        actual_extension = (
+            Path(filename).suffix.lower()
+        )
+
+        if actual_extension != expected_extension:
+            raise serializers.ValidationError(
+                {
+                    "filename": (
+                        "The filename extension does not "
+                        "match the submitted content type."
+                    )
+                }
+            )
+
+        attrs["extension"] = expected_extension
+
+        return attrs
+
+
+class ResumeUploadCompleteSerializer(
+    serializers.Serializer
+):
+    resume_id = serializers.UUIDField()

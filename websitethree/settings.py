@@ -231,3 +231,15 @@ AWS_S3_UPLOAD_PREFIX = os.getenv(
     "AWS_S3_UPLOAD_PREFIX",
     "resumes",
 )
+
+
+
+
+RESUME_MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
+
+RESUME_ALLOWED_CONTENT_TYPES = {
+    "application/pdf": ".pdf", # pdf file type
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx", # docx file type
+}
+
+RESUME_UPLOAD_URL_EXPIRATION = 300  # 5 minutes
