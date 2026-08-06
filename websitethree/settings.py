@@ -214,3 +214,20 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = os.getenv(
     "DEFAULT_FROM_EMAIL"
 )
+
+
+
+
+AWS_STORAGE_BUCKET_NAME = os.getenv(
+    "AWS_STORAGE_BUCKET_NAME"
+)
+
+AWS_S3_REGION_NAME = os.getenv(
+    "AWS_S3_REGION_NAME",
+    "us-west-1",
+)
+
+AWS_S3_UPLOAD_PREFIX = os.getenv(
+    "AWS_S3_UPLOAD_PREFIX",
+    "resumes",
+)

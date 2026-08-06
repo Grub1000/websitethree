@@ -16,11 +16,8 @@ export default function Profile() {
     }
     
     return (
-
         <div>
-
             <h1>Profile</h1>
-
             <button onClick={handleLogout}>
                 Logout
             </button>
@@ -28,7 +25,6 @@ export default function Profile() {
                 Test User
             </button>
         </div>
-
     );
 
 }
