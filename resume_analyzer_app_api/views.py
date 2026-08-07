@@ -44,6 +44,13 @@ from .services.s3_service import (
     resume_object_exists,
 )
 
+# Imports Needed For Resume Text Extraction
+from .services.extraction_service import (
+    ResumeExtractionError,
+    extract_resume_text,
+)
+from .services.s3_service import download_resume_file
+
 
 
 class CurrentUserView(generics.RetrieveAPIView): 
@@ -315,6 +322,119 @@ class ResumeUploadCompleteView(
                 "status": resume.status,
                 "uploaded_at": (
                     resume.uploaded_at
+                ),
+            },
+            status=status.HTTP_200_OK,
+        )
+
+class ResumeExtractTextView(generics.GenericAPIView):
+    permission_classes = [
+        IsAuthenticated,
+    ]
+
+    def post(
+        self,
+        request,
+        resume_id,
+    ):
+        resume = get_object_or_404(
+            Resume,
+            public_id=resume_id,
+            owner=request.user,
+        )
+
+        allowed_statuses = {
+            Resume.Status.UPLOADED,
+            Resume.Status.EXTRACTED,
+            Resume.Status.FAILED,
+        }
+
+        if resume.status not in allowed_statuses:
+            return Response(
+                {
+                    "detail": (
+                        "This résumé is not ready "
+                        "for text extraction."
+                    ),
+                    "current_status": resume.status,
+                },
+                status=status.HTTP_409_CONFLICT,
+            )
+
+        resume.status = Resume.Status.PROCESSING
+        resume.extraction_error = ""
+
+        resume.save(
+            update_fields=[
+                "status",
+                "extraction_error",
+                "updated_at",
+            ]
+        )
+
+        try:
+            file_buffer = download_resume_file(
+                s3_key=resume.s3_key,
+            )
+
+            extracted_text = extract_resume_text(
+                file_buffer=file_buffer,
+                content_type=resume.content_type,
+            )
+
+        except (
+            RuntimeError,
+            ResumeExtractionError,
+        ) as error:
+            resume.status = Resume.Status.FAILED
+            resume.extraction_error = str(error)
+
+            resume.save(
+                update_fields=[
+                    "status",
+                    "extraction_error",
+                    "updated_at",
+                ]
+            )
+
+            return Response(
+                {
+                    "resume_id": str(
+                        resume.public_id
+                    ),
+                    "status": resume.status,
+                    "detail": str(error),
+                },
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            )
+
+        resume.extracted_text = extracted_text
+        resume.extraction_error = ""
+        resume.status = Resume.Status.EXTRACTED
+
+        resume.save(
+            update_fields=[
+                "extracted_text",
+                "extraction_error",
+                "status",
+                "updated_at",
+            ]
+        )
+
+        return Response(
+            {
+                "resume_id": str(
+                    resume.public_id
+                ),
+                "status": resume.status,
+                "character_count": len(
+                    resume.extracted_text
+                ),
+                "word_count": len(
+                    resume.extracted_text.split()
+                ),
+                "preview": (
+                    resume.extracted_text[:500]
                 ),
             },
             status=status.HTTP_200_OK,

@@ -66,11 +66,16 @@ class Resume(models.Model):
             "Completed",
         )
 
+        EXTRACTED = (
+                "extracted",
+                "Extracted",
+                )
+
         FAILED = (
             "failed",
             "Failed",
         )
-
+        
 
     public_id = models.UUIDField(
         default=uuid.uuid4,

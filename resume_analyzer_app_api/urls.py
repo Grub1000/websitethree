@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import CurrentUserView, ResumeUploadRequestView, ResumeUploadCompleteView
+from .views import CurrentUserView, ResumeUploadRequestView, ResumeUploadCompleteView, ResumeExtractTextView
 
 urlpatterns = [
     path(
@@ -22,4 +22,9 @@ urlpatterns = [
         ResumeUploadCompleteView.as_view(),
         name="resume-upload-complete",
         ),
+    path(
+        "resumes/<uuid:resume_id>/extract/",
+        ResumeExtractTextView.as_view(),
+        name="resume-extract-text",
+    ),
 ]

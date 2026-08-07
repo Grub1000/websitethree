@@ -8,6 +8,11 @@ import boto3
 from botocore.exceptions import BotoCoreError, ClientError
 from django.conf import settings
 
+# Imports Needed for Resume PDF/DOCX File Text Extractions
+from io import BytesIO
+
+
+
 
 def get_s3_client():
     """
@@ -97,3 +102,34 @@ def resume_object_exists(*, s3_key: str) -> bool:
         raise RuntimeError(
             "Unable to verify the résumé upload."
         ) from error
+
+
+def download_resume_file(
+    *,
+    s3_key: str,
+) -> BytesIO:
+    """
+    Download a private résumé from S3 into memory.
+
+    Résumés are limited to 10 MB, so an in-memory buffer
+    is acceptable for the initial implementation.
+    """
+
+    s3_client = get_s3_client()
+    file_buffer = BytesIO()
+
+    try:
+        s3_client.download_fileobj(
+            settings.AWS_STORAGE_BUCKET_NAME,
+            s3_key,
+            file_buffer,
+        )
+
+    except (BotoCoreError, ClientError) as error:
+        raise RuntimeError(
+            "Unable to download the résumé from storage."
+        ) from error
+
+    file_buffer.seek(0)
+
+    return file_buffer
