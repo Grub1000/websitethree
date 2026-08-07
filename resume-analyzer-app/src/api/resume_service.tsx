@@ -145,3 +145,34 @@ export async function uploadResume(
         uploadRequest.resume_id
     );
 }
+
+export type ResumeExtractionResponse = {
+    resume_id: string;
+    status: string;
+    character_count: number;
+    word_count: number;
+    preview: string;
+};
+
+export async function extractResumeText(
+    resumeId: string
+): Promise<ResumeExtractionResponse> {
+
+    const response = await apiFetch(
+        `/resumes/${resumeId}/extract/`,
+        {
+            method: "POST",
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(
+            data.detail ??
+            "Unable to extract résumé text."
+        );
+    }
+
+    return data;
+}

@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { uploadResume } from "../api/resume_service";
+import { uploadResume, extractResumeText } from "../api/resume_service";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
@@ -59,14 +59,46 @@ function ResumeUploadSection() {
         setSelectedFile(file);
     }
 
-    async function handleUpload() {
+    // async function handleUpload() {
+    //     if (!selectedFile) {
+    //         setError("Select a résumé before uploading.");
+    //         return;
+    //     }
+
+    //     setUploading(true);
+    //     setMessage("");
+    //     setError("");
+    //     setResumeId("");
+
+    //     try {
+    //         const result = await uploadResume(selectedFile);
+
+    //         setResumeId(result.resume_id);
+    //         setMessage("Résumé uploaded successfully.");
+    //         setSelectedFile(null);
+
+    //         if (fileInputRef.current) {
+    //             fileInputRef.current.value = "";
+    //         }
+    //     } catch (error) {
+    //         setError(
+    //             error instanceof Error
+    //                 ? error.message
+    //                 : "The résumé upload failed."
+    //         );
+    //     } finally {
+    //         setUploading(false);
+    //     }
+    // }
+
+    async function handleUploadAndExtract() {
         if (!selectedFile) {
             setError("Select a résumé before uploading.");
             return;
         }
 
         setUploading(true);
-        setMessage("");
+        setMessage("Uploading Resume...");
         setError("");
         setResumeId("");
 
@@ -75,11 +107,27 @@ function ResumeUploadSection() {
 
             setResumeId(result.resume_id);
             setMessage("Résumé uploaded successfully.");
-            setSelectedFile(null);
+            
 
             if (fileInputRef.current) {
                 fileInputRef.current.value = "";
             }
+            setMessage("Processing Resume Text...");
+
+            try{
+                const extractionResult = await extractResumeText(result.resume_id);
+                setMessage("Résumé Ready for Analysis.");
+                console.log("Extracted Resume Text:", extractionResult);
+                setSelectedFile(null);
+                
+            } catch (error) {
+                setError(
+                    error instanceof Error
+                        ? error.message
+                        : "Failed to extract resume text."
+                );
+            }
+
         } catch (error) {
             setError(
                 error instanceof Error
@@ -120,7 +168,7 @@ function ResumeUploadSection() {
 
                 <button
                     type="button"
-                    onClick={handleUpload}
+                    onClick={handleUploadAndExtract}
                     disabled={uploading || !selectedFile}
                 >
                     {uploading ? "Uploading..." : "Upload Résumé"}
