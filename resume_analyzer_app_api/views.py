@@ -83,6 +83,8 @@ from .services.s3_service import (
     generate_presigned_thumbnail_url,
 )
 
+# Imports Needed For Resume List Retrieval
+from .serializers import ResumeListSerializer
 
 
 
@@ -843,4 +845,21 @@ class ResumeThumbnailURLView(
                 "expires_in": 300,
             },
             status=status.HTTP_200_OK,
+        )
+
+
+class ResumeListView(
+    generics.ListAPIView
+):
+    serializer_class = ResumeListSerializer
+
+    permission_classes = [
+        IsAuthenticated,
+    ]
+
+    def get_queryset(self):
+        return (
+            Resume.objects
+            .filter(owner=self.request.user)
+            .order_by("-created_at")
         )

@@ -3,7 +3,7 @@ import token
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
-from .models import User
+from .models import Resume, User
 from .models import PasswordResetToken
 from rest_framework_simplejwt.serializers import (
     TokenObtainPairSerializer
@@ -328,3 +328,30 @@ class ResumeAnalysisRequestSerializer(
         required=False,
         allow_blank=True,
     )
+
+
+
+class ResumeListSerializer(serializers.ModelSerializer):
+    resume_id = serializers.UUIDField(
+        source="public_id",
+        read_only=True,
+    )
+
+    has_thumbnail = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Resume
+        fields = [
+            "resume_id",
+            "original_filename",
+            "content_type",
+            "file_size",
+            "status",
+            "has_thumbnail",
+            "created_at",
+            "uploaded_at",
+            "updated_at",
+        ]
+
+    def get_has_thumbnail(self, obj):
+        return bool(obj.thumbnail_s3_key)

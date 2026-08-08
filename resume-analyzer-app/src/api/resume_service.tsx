@@ -230,3 +230,63 @@ export async function analyzeResume(
 
     return data;
 }
+
+export type ResumeListItem = {
+    resume_id: string;
+    original_filename: string;
+    content_type: string;
+    file_size: number;
+    status: string;
+    has_thumbnail: boolean;
+    created_at: string;
+    uploaded_at: string | null;
+    updated_at: string;
+};
+
+export async function getUserResumes(): Promise<ResumeListItem[]> {
+    const response = await apiFetch(
+        "/resumes/",
+        {
+            method: "GET",
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(
+            data.detail ??
+            "Unable to load résumés."
+        );
+    }
+
+    return data;
+}
+
+export type ResumeThumbnailResponse = {
+    resume_id: string;
+    thumbnail_url: string;
+    expires_in: number;
+};
+
+export async function getResumeThumbnailUrl(
+    resumeId: string
+): Promise<ResumeThumbnailResponse> {
+    const response = await apiFetch(
+        `/resumes/${resumeId}/thumbnail-url/`,
+        {
+            method: "GET",
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(
+            data.detail ??
+            "Unable to load résumé thumbnail."
+        );
+    }
+
+    return data;
+}
