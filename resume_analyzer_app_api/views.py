@@ -59,6 +59,15 @@ from .serializers import (
 from .services.analysis_service import (
     ResumeAnalysisError,
 )
+from .services.analysis_service import (
+    parse_analysis_result,
+)
+
+from .services.llm_service import (
+    ResumeLLMError,
+    analyze_resume_with_llm,
+)
+
 
 class CurrentUserView(generics.RetrieveAPIView): 
     serializer_class = UserSerializer 
@@ -512,18 +521,170 @@ class ResumeAnalyzeView(
                 )
             ),
         )
+        analysis.status = (ResumeAnalysis.Status.PROCESSING)
+        analysis.save(
+            update_fields=[
+                "status",
+            ]
+        )
+
+        try:
+            llm_result = analyze_resume_with_llm(
+                resume_text=resume.extracted_text,
+
+                job_title=analysis.job_title,
+
+                job_description=(
+                    analysis.job_description
+                ),
+            )
+
+            parsed_result = parse_analysis_result(llm_result)
+
+        except (
+            ResumeLLMError,
+            ResumeAnalysisError,
+        ) as error:
+
+            analysis.status = (
+                ResumeAnalysis.Status.FAILED
+            )
+
+            analysis.error_message = str(error)
+
+            analysis.save(
+                update_fields=[
+                    "status",
+                    "error_message",
+                ]
+            )
+
+            return Response(
+                {
+                    "analysis_id": str(
+                        analysis.public_id
+                    ),
+
+                    "status": analysis.status,
+
+                    "detail": str(error),
+                },
+
+                status=(
+                    status.HTTP_502_BAD_GATEWAY
+                ),
+            )
+        
+        analysis.overall_score = (
+            parsed_result.overall_score
+        )
+
+        analysis.ats_score = (
+            parsed_result.ats_score
+        )
+
+        analysis.keyword_score = (
+            parsed_result.keyword_score
+        )
+
+        analysis.experience_score = (
+            parsed_result.experience_score
+        )
+
+        analysis.skills_score = (
+            parsed_result.skills_score
+        )
+
+        analysis.strengths = (
+            parsed_result.strengths
+        )
+
+        analysis.weaknesses = (
+            parsed_result.weaknesses
+        )
+
+        analysis.missing_keywords = (
+            parsed_result.missing_keywords
+        )
+
+        analysis.recommendations = (
+            parsed_result.recommendations
+        )
+
+        analysis.raw_result = (
+            parsed_result.raw_result
+        )
+
+        analysis.model_provider = "OpenAI"
+
+        analysis.model_name = (
+            settings.OPENAI_RESUME_MODEL
+        )
+
+        analysis.prompt_version = "1.0"
+
+        analysis.status = (
+            ResumeAnalysis.Status.COMPLETED
+        )
+
+        analysis.completed_at = timezone.now()
+
+        analysis.error_message = ""
+
+        analysis.save()
 
         return Response(
-            {
-                "analysis_id": str(
-                    analysis.public_id
-                ),
+        {
+        "analysis_id": str(
+            analysis.public_id
+        ),
 
-                "resume_id": str(
-                    resume.public_id
-                ),
+        "resume_id": str(
+            resume.public_id
+        ),
 
-                "status": analysis.status,
-            },
-            status=status.HTTP_201_CREATED,
+        "status": analysis.status,
+
+        "scores": {
+            "overall": (
+                analysis.overall_score
+            ),
+
+            "ats": (
+                analysis.ats_score
+            ),
+
+            "keywords": (
+                analysis.keyword_score
+            ),
+
+            "experience": (
+                analysis.experience_score
+            ),
+
+            "skills": (
+                analysis.skills_score
+            ),
+        },
+
+        "strengths": (
+            analysis.strengths
+        ),
+
+        "weaknesses": (
+            analysis.weaknesses
+        ),
+
+        "missing_keywords": (
+            analysis.missing_keywords
+        ),
+
+        "recommendations": (
+            analysis.recommendations
+        ),
+        },
+
+        status=status.HTTP_200_OK,
         )
+
+

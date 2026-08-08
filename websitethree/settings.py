@@ -243,3 +243,15 @@ RESUME_ALLOWED_CONTENT_TYPES = {
 }
 
 RESUME_UPLOAD_URL_EXPIRATION = 300  # 5 minutes
+
+
+
+
+OPENAI_API_KEY = os.getenv(
+    "OPENAI_API_KEY"
+)
+
+OPENAI_RESUME_MODEL = os.getenv(
+    "OPENAI_RESUME_MODEL",
+    "gpt-5-mini",
+)
