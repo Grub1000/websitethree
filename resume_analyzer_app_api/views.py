@@ -78,6 +78,13 @@ from .services.thumbnail_service import (
     generate_pdf_thumbnail,
 )
 
+# Import Needed For Secure Resume Thumbnail Retrieval
+from .services.s3_service import (
+    generate_presigned_thumbnail_url,
+)
+
+
+
 
 class CurrentUserView(generics.RetrieveAPIView): 
     serializer_class = UserSerializer 
@@ -775,6 +782,65 @@ class ResumeThumbnailView(
             {
                 "resume_id": str(resume.public_id),
                 "thumbnail_created": True,
+            },
+            status=status.HTTP_200_OK,
+        )
+
+
+class ResumeThumbnailURLView(
+    generics.GenericAPIView
+):
+    permission_classes = [
+        IsAuthenticated,
+    ]
+
+    def get(
+        self,
+        request,
+        resume_id,
+    ):
+        resume = get_object_or_404(
+            Resume,
+            public_id=resume_id,
+            owner=request.user,
+        )
+
+        if not resume.thumbnail_s3_key:
+            return Response(
+                {
+                    "detail": (
+                        "This résumé does not have "
+                        "a thumbnail yet."
+                    )
+                },
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        try:
+            thumbnail_url = (
+                generate_presigned_thumbnail_url(
+                    s3_key=resume.thumbnail_s3_key,
+                    expires_in=300,
+                )
+            )
+
+        except RuntimeError as error:
+            return Response(
+                {
+                    "detail": str(error),
+                },
+                status=(
+                    status.HTTP_503_SERVICE_UNAVAILABLE
+                ),
+            )
+
+        return Response(
+            {
+                "resume_id": str(
+                    resume.public_id
+                ),
+                "thumbnail_url": thumbnail_url,
+                "expires_in": 300,
             },
             status=status.HTTP_200_OK,
         )

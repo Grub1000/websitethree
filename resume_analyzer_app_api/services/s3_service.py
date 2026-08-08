@@ -155,3 +155,27 @@ def upload_resume_thumbnail(
         raise RuntimeError(
             "Unable to upload résumé thumbnail."
         ) from error
+
+
+
+def generate_presigned_thumbnail_url(
+    *,
+    s3_key: str,
+    expires_in: int = 300,
+) -> str:
+    s3_client = get_s3_client()
+
+    try:
+        return s3_client.generate_presigned_url(
+            "get_object",
+            Params={
+                "Bucket": settings.AWS_STORAGE_BUCKET_NAME,
+                "Key": s3_key,
+            },
+            ExpiresIn=expires_in,
+        )
+
+    except (BotoCoreError, ClientError) as error:
+        raise RuntimeError(
+            "Unable to generate résumé thumbnail URL."
+        ) from error
