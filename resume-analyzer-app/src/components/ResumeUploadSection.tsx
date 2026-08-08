@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { uploadResume, extractResumeText } from "../api/resume_service";
+import { uploadResume, extractResumeText, analyzeResume } from "../api/resume_service";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
@@ -118,8 +118,27 @@ function ResumeUploadSection() {
                 const extractionResult = await extractResumeText(result.resume_id);
                 setMessage("Résumé Ready for Analysis.");
                 console.log("Extracted Resume Text:", extractionResult);
-                setSelectedFile(null);
-                
+
+                try{
+                    setMessage("Analyzing résumé...");
+
+                    const analysisResult = await analyzeResume(result.resume_id);
+
+                    setMessage("Résumé analysis complete.");
+
+                    console.log(
+                        "Resume Analysis:",
+                        analysisResult
+                    );
+                    setSelectedFile(null);
+                } catch (error) {
+                    setError(
+                        error instanceof Error
+                            ? error.message
+                            : "Failed to analyze resume."
+                    );
+                }
+
             } catch (error) {
                 setError(
                     error instanceof Error

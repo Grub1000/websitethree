@@ -176,3 +176,57 @@ export async function extractResumeText(
 
     return data;
 }
+
+export type ResumeAnalysisResponse = {
+    analysis_id: string;
+    resume_id: string;
+    status: string;
+
+    scores: {
+        overall: number;
+        ats: number;
+        keywords: number;
+        experience: number;
+        skills: number;
+    };
+
+    strengths: string[];
+    weaknesses: string[];
+    missing_keywords: string[];
+    recommendations: string[];
+};
+
+
+export async function analyzeResume(
+    resumeId: string,
+    jobTitle: string = "",
+    jobDescription: string = ""
+): Promise<ResumeAnalysisResponse> {
+
+    const response = await apiFetch(
+        `/resumes/${resumeId}/analyze/`,
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+                job_title: jobTitle,
+                job_description: jobDescription,
+            }),
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(
+            data.detail ??
+            "Unable to analyze résumé."
+        );
+    }
+
+    return data;
+}
