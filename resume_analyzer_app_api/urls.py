@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import CurrentUserView, ResumeAnalyzeView, ResumeUploadRequestView, ResumeUploadCompleteView, ResumeExtractTextView
+from .views import CurrentUserView, ResumeAnalyzeView, ResumeThumbnailView, ResumeUploadRequestView, ResumeUploadCompleteView, ResumeExtractTextView
 
 urlpatterns = [
     path(
@@ -30,5 +30,10 @@ urlpatterns = [
         "resumes/<uuid:resume_id>/analyze/",
         ResumeAnalyzeView.as_view(),
         name="resume-analyze",
-),
+    ),
+    path(
+        "resumes/<uuid:resume_id>/thumbnail/",
+        ResumeThumbnailView.as_view(),
+        name="resume-thumbnail",
+    ),
 ]

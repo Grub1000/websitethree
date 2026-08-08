@@ -142,6 +142,10 @@ class Resume(models.Model):
         auto_now=True,
     )
 
+    thumbnail_s3_key = models.CharField(
+        max_length=512,
+        blank=True,
+    )
 
     class Meta:
         ordering = [

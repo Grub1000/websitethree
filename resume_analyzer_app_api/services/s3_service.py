@@ -133,3 +133,25 @@ def download_resume_file(
     file_buffer.seek(0)
 
     return file_buffer
+
+
+def upload_resume_thumbnail(
+    *,
+    s3_key: str,
+    image_bytes: bytes,
+) -> None:
+    s3_client = get_s3_client()
+
+    try:
+        s3_client.put_object(
+            Bucket=settings.AWS_STORAGE_BUCKET_NAME,
+            Key=s3_key,
+            Body=image_bytes,
+            ContentType="image/jpeg",
+            ServerSideEncryption="AES256",
+        )
+
+    except (BotoCoreError, ClientError) as error:
+        raise RuntimeError(
+            "Unable to upload résumé thumbnail."
+        ) from error

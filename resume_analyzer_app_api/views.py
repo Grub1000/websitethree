@@ -68,6 +68,16 @@ from .services.llm_service import (
     analyze_resume_with_llm,
 )
 
+# Imports Needed For Resume Thumbnail Generation
+from .services.s3_service import (
+    upload_resume_thumbnail,
+)
+
+from .services.thumbnail_service import (
+    ResumeThumbnailError,
+    generate_pdf_thumbnail,
+)
+
 
 class CurrentUserView(generics.RetrieveAPIView): 
     serializer_class = UserSerializer 
@@ -688,3 +698,83 @@ class ResumeAnalyzeView(
         )
 
 
+
+class ResumeThumbnailView(
+    generics.GenericAPIView
+):
+    permission_classes = [
+        IsAuthenticated,
+    ]
+
+    def post(
+        self,
+        request,
+        resume_id,
+    ):
+        resume = get_object_or_404(
+            Resume,
+            public_id=resume_id,
+            owner=request.user,
+        )
+
+        if resume.content_type != "application/pdf":
+            return Response(
+                {
+                    "detail": (
+                        "Thumbnail generation currently "
+                        "supports PDF résumés only."
+                    )
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        try:
+            file_buffer = download_resume_file(
+                s3_key=resume.s3_key,
+            )
+
+            pdf_bytes = file_buffer.getvalue()
+
+            thumbnail_bytes = generate_pdf_thumbnail(
+                pdf_bytes=pdf_bytes,
+            )
+
+            thumbnail_key = (
+                f"{settings.AWS_S3_UPLOAD_PREFIX.strip('/')}/"
+                f"{request.user.id}/"
+                f"{resume.public_id}/"
+                f"thumbnail.jpg"
+            )
+
+            upload_resume_thumbnail(
+                s3_key=thumbnail_key,
+                image_bytes=thumbnail_bytes,
+            )
+
+        except (
+            RuntimeError,
+            ResumeThumbnailError,
+        ) as error:
+            return Response(
+                {
+                    "detail": str(error),
+                },
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            )
+
+        resume.thumbnail_s3_key = thumbnail_key
+
+        resume.save(
+            update_fields=[
+                "thumbnail_s3_key",
+                "updated_at",
+            ]
+        )
+
+        return Response(
+            {
+                "resume_id": str(resume.public_id),
+                "thumbnail_created": True,
+            },
+            status=status.HTTP_200_OK,
+        )

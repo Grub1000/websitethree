@@ -131,6 +131,7 @@ function ResumeUploadSection() {
                         analysisResult
                     );
                     setSelectedFile(null);
+                    
                 } catch (error) {
                     setError(
                         error instanceof Error
