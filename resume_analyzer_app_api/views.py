@@ -51,7 +51,14 @@ from .services.extraction_service import (
 )
 from .services.s3_service import download_resume_file
 
-
+# Imports Needed For Resume Analysis
+from .models import ResumeAnalysis
+from .serializers import (
+    ResumeAnalysisRequestSerializer,
+)
+from .services.analysis_service import (
+    ResumeAnalysisError,
+)
 
 class CurrentUserView(generics.RetrieveAPIView): 
     serializer_class = UserSerializer 
@@ -438,4 +445,85 @@ class ResumeExtractTextView(generics.GenericAPIView):
                 ),
             },
             status=status.HTTP_200_OK,
+        )
+
+class ResumeAnalyzeView(
+    generics.GenericAPIView
+):
+    serializer_class = (
+        ResumeAnalysisRequestSerializer
+    )
+
+    permission_classes = [
+        IsAuthenticated,
+    ]
+
+    def post(
+        self,
+        request,
+        resume_id,
+    ):
+        serializer = self.get_serializer(
+            data=request.data
+        )
+
+        serializer.is_valid(
+            raise_exception=True
+        )
+
+        resume = get_object_or_404(
+            Resume,
+            public_id=resume_id,
+            owner=request.user,
+        )
+
+        if (
+            resume.status != Resume.Status.EXTRACTED
+        ):
+            return Response(
+                {
+                    "detail": (
+                        "This résumé must have "
+                        "extracted text before analysis."
+                    ),
+                    "current_status": resume.status,
+                },
+                status=status.HTTP_409_CONFLICT,
+            )
+
+        analysis = ResumeAnalysis.objects.create(
+            resume=resume,
+
+            status=(
+                ResumeAnalysis.Status.PENDING
+            ),
+
+            job_title=(
+                serializer.validated_data.get(
+                    "job_title",
+                    "",
+                )
+            ),
+
+            job_description=(
+                serializer.validated_data.get(
+                    "job_description",
+                    "",
+                )
+            ),
+        )
+
+        return Response(
+            {
+                "analysis_id": str(
+                    analysis.public_id
+                ),
+
+                "resume_id": str(
+                    resume.public_id
+                ),
+
+                "status": analysis.status,
+            },
+            status=status.HTTP_201_CREATED,
         )

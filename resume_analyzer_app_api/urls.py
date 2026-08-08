@@ -1,12 +1,11 @@
 from django.urls import path, include
-from .views import CurrentUserView, ResumeUploadRequestView, ResumeUploadCompleteView, ResumeExtractTextView
+from .views import CurrentUserView, ResumeAnalyzeView, ResumeUploadRequestView, ResumeUploadCompleteView, ResumeExtractTextView
 
 urlpatterns = [
     path(
         "auth/",
         include("resume_analyzer_app_api.auth_urls")
     ),
-
     path(
         "user/me/",
         CurrentUserView.as_view(),
@@ -27,4 +26,9 @@ urlpatterns = [
         ResumeExtractTextView.as_view(),
         name="resume-extract-text",
     ),
+    path(
+        "resumes/<uuid:resume_id>/analyze/",
+        ResumeAnalyzeView.as_view(),
+        name="resume-analyze",
+),
 ]

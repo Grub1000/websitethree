@@ -75,7 +75,7 @@ class Resume(models.Model):
             "failed",
             "Failed",
         )
-        
+
 
     public_id = models.UUIDField(
         default=uuid.uuid4,

@@ -313,3 +313,18 @@ class ResumeUploadCompleteSerializer(
     serializers.Serializer
 ):
     resume_id = serializers.UUIDField()
+
+
+class ResumeAnalysisRequestSerializer(
+    serializers.Serializer
+):
+    job_title = serializers.CharField(
+        max_length=255,
+        required=False,
+        allow_blank=True,
+    )
+
+    job_description = serializers.CharField(
+        required=False,
+        allow_blank=True,
+    )
