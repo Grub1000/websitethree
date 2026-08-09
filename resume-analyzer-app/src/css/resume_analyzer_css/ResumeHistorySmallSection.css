@@ -60,3 +60,24 @@
 .ResumeHistorySmallSectionRowFeatureFour{
     width: 150px;
 }
+.ResumeHistorySmallSectionRowOptionsButton{
+    width: 30px;
+    height: 30px;
+    /* overflow-x: hidden; */
+    overflow: hidden;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    margin-left: 40px;
+    line-height: 0px;
+    font-size: 24px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 3px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+.ResumeHistorySmallSectionRowOptionsButton:hover{
+    background-color: aliceblue;
+}

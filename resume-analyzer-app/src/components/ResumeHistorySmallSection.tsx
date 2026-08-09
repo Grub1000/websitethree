@@ -78,8 +78,8 @@ export default function ResumeHistorySmallSection(){
             ) : (
                 resumes.map((resume) => (
                         <div className="ResumeHistorySmallSectionRowWrapper">
-                            <div className="ResumeHistorySmallSectionRowFeatureOne ResumeHistorySmallSectionRowFeature">{resume.original_filename}</div>
-                            <div className="ResumeHistorySmallSectionRowFeatureTwo ResumeHistorySmallSectionRowFeature">{resume.content_type}</div>
+                            <div className="ResumeHistorySmallSectionRowFeatureOne ResumeHistorySmallSectionRowFeature">{resume.original_filename.length > 24 ? resume.original_filename.slice(0, 24) + '...' : resume.original_filename}</div>
+                            <div className="ResumeHistorySmallSectionRowFeatureTwo ResumeHistorySmallSectionRowFeature">{resume.content_type.length > 15 ? resume.content_type.slice(0, 15) + '...' : resume.content_type}</div>
                             <div className="ResumeHistorySmallSectionRowFeatureThree ResumeHistorySmallSectionRowFeature">{new Date(resume.created_at).toLocaleDateString("en-US", {
                                 month: "short",
                                 day: "numeric",
@@ -92,6 +92,8 @@ export default function ResumeHistorySmallSection(){
                                 year: "numeric",
                             })}
                             </div>
+                            <button className="ResumeHistorySmallSectionRowOptionsButton">...</button>
+                            
                         </div>
                     ))
             )}
