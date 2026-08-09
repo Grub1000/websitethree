@@ -86,6 +86,9 @@ from .services.s3_service import (
 # Imports Needed For Resume List Retrieval
 from .serializers import ResumeListSerializer
 
+# Imports Needed For Resume Deletion
+from .services.s3_service import delete_s3_object
+
 
 
 class CurrentUserView(generics.RetrieveAPIView): 
@@ -884,4 +887,56 @@ class ResumeListView(
             Resume.objects
             .filter(owner=self.request.user)
             .order_by("-created_at")
+        )
+
+
+
+class ResumeDeleteView(
+    generics.GenericAPIView
+):
+    permission_classes = [
+        IsAuthenticated,
+    ]
+
+    def delete(
+        self,
+        request,
+        resume_id,
+    ):
+        resume = get_object_or_404(
+            Resume,
+            public_id=resume_id,
+            owner=request.user,
+        )
+
+        try:
+            delete_s3_object(
+                resume.s3_key,
+            )
+
+            if resume.thumbnail_s3_key:
+                delete_s3_object(
+                    resume.thumbnail_s3_key,
+                )
+
+        except RuntimeError as error:
+            return Response(
+                {
+                    "detail": str(error),
+                },
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
+            )
+
+        filename = resume.original_filename
+
+        resume.delete()
+
+        return Response(
+            {
+                "detail": (
+                    f'"{filename}" '
+                    "was deleted successfully."
+                )
+            },
+            status=status.HTTP_200_OK,
         )

@@ -291,3 +291,26 @@ export async function getResumeThumbnailUrl(
 
     return data;
 }
+
+export async function deleteResume(
+    resumeId: string
+): Promise<void> {
+
+    const response = await apiFetch(
+        `/resumes/${resumeId}/`,
+        {
+            method: "DELETE",
+        }
+    );
+
+    if (!response.ok) {
+
+        const data =
+            await response.json();
+
+        throw new Error(
+            data.detail ??
+            "Unable to delete résumé."
+        );
+    }
+}

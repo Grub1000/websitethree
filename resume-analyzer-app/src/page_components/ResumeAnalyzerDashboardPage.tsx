@@ -14,7 +14,12 @@ import logo from "../assets/website_tab_logo.png"
 import profileButtonIcon from "../assets/profile_button_icon_svg.svg"
 import profileButtonChevronIcon from "../assets/burger_menu_submenu_chevron_icon_svg.svg"
 
+import { useNavigate } from "react-router-dom";
+
+
 export default function ResumeAnalyzerDashboardPage() {
+    const navigate = useNavigate();
+    
     const [buttons] = useState({
         button1: {order: 0, title: "Dashboard", dropdownButtons: {}},
         button2: {order: 1, title: "Documents", dropdownButtons: {}},
@@ -43,7 +48,7 @@ export default function ResumeAnalyzerDashboardPage() {
                 </section>
                 </nav>
                 <div className="ResumeAnalyzerDashboardHeaderProfileButtonWrapper">
-                    <button className="ResumeAnalyzerDashboardHeaderProfileButton">
+                    <button className="ResumeAnalyzerDashboardHeaderProfileButton" onClick={()=> navigate("/profile")}>
                         <img src={profileButtonIcon} className="ResumeAnalyzerDashboardHeaderProfileButtonImage" alt="Profile Button Image"></img>
                         <img src={profileButtonChevronIcon} className="ResumeAnalyzerDashboardHeaderProfileButtonChevronImage" alt="Profile Button Chevron Image"></img>
                     </button>
@@ -52,7 +57,6 @@ export default function ResumeAnalyzerDashboardPage() {
                     {/* <HeaderBurgerDropdownNav /> */}
                 </div>
             </header>
-
 
 
 

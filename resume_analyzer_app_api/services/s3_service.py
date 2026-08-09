@@ -179,3 +179,25 @@ def generate_presigned_thumbnail_url(
         raise RuntimeError(
             "Unable to generate résumé thumbnail URL."
         ) from error
+
+
+def delete_s3_object(
+    s3_key: str,
+) -> None:
+
+    s3_client = get_s3_client()
+
+    try:
+        s3_client.delete_object(
+            Bucket=settings.AWS_STORAGE_BUCKET_NAME,
+            Key=s3_key,
+        )
+
+    except (
+        BotoCoreError,
+        ClientError,
+    ) as error:
+
+        raise RuntimeError(
+            "Unable to delete the file from S3."
+        ) from error

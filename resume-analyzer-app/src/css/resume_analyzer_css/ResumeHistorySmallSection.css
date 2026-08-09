@@ -81,3 +81,12 @@
 .ResumeHistorySmallSectionRowOptionsButton:hover{
     background-color: aliceblue;
 }
+.ResumeHistorySmallSectionRowOptionsDropdown{
+    display: none;
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 10px;
+    width: 150px;
+    height: 100px;
+    background-color: rgba(212, 130, 23, 0.568);
+}

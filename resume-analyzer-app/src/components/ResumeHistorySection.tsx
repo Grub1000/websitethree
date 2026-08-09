@@ -69,7 +69,7 @@ function ResumeHistorySection() {
     return (
         <section className="ResumeHistorySection">
             <h2>Your Résumés</h2>
-
+            
             {resumes.length === 0 ? (
                 <p>
                     You have not uploaded any résumés yet.
