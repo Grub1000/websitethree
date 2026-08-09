@@ -447,10 +447,32 @@ class ResumeExtractTextView(generics.GenericAPIView):
         resume.extraction_error = ""
         resume.status = Resume.Status.EXTRACTED
 
+        if resume.content_type == "application/pdf":
+            file_buffer.seek(0)
+
+            thumbnail_bytes = generate_pdf_thumbnail(
+                pdf_bytes=file_buffer.getvalue(),
+            )
+
+            thumbnail_key = (
+                f"{settings.AWS_S3_UPLOAD_PREFIX.strip('/')}/"
+                f"{request.user.id}/"
+                f"{resume.public_id}/"
+                f"thumbnail.jpg"
+            )
+
+            upload_resume_thumbnail(
+                s3_key=thumbnail_key,
+                image_bytes=thumbnail_bytes,
+            )
+
+            resume.thumbnail_s3_key = thumbnail_key
+
         resume.save(
             update_fields=[
                 "extracted_text",
                 "extraction_error",
+                "thumbnail_s3_key",
                 "status",
                 "updated_at",
             ]

@@ -1,0 +1,54 @@
+.ResumeUploadSection{
+    width: 900px;
+    height: 240px;
+    top: 0px;
+    margin-top: 0px;
+    background-color: #24b1d428;
+    border: 2px dashed rgba(8, 160, 206, 0.781);
+    border-radius: 8px;
+
+}
+.ResumeUploadIconWrapper{
+    float: left;
+    width: 350px;
+    height: 240px;
+    overflow: hidden;
+}
+.ResumeUploadIconImage{
+    width: 320px;
+    /* height: 240px; */
+}
+
+
+
+
+.ResumeUploadDescriptionWrapper{
+    width: 550px;
+    float: right;
+}
+.ResumeUploadDescriptionTitle{
+    margin-top: 60px;
+    font-size: 22px;
+    font-family: "Inter", sans-serif;
+    color: rgb(31, 32, 32);
+}
+.ResumeUploadDescriptionText{
+    font-size: 15px;
+    font-family: "Inter", sans-serif;
+}
+.ResumeUploadDescriptionButton{
+    margin-top: 10px;
+    width: 200px;
+    height: 40px;
+    background-color: rgba(8, 160, 206, 0.781);
+    border: 2px solid rgba(8, 160, 206, 0);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+}
+.ResumeUploadDescriptionButton:hover{
+    background-color: rgba(8, 193, 206, 0.637);
+}

@@ -1,5 +1,5 @@
 import { useState, useEffect} from 'react'
-import '../css/App.css'
+import '../css/home_page_css/App.css'
 
 // Auth Context import
 import { useAuth } from "../context/AuthContext";
@@ -106,7 +106,7 @@ function HomePage() {
     <section className="HomePage"> 
 
       <header className="Header">
-        <a className="HeaderLogoWrapper">
+        <a className="HeaderLogoWrapper" href="/resuscan/">
           <img src={logo} className="HeaderLogoImage" alt="Website Logo"></img>
         </a>
         <nav>

@@ -1,0 +1,129 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Julius Sans One', sans-serif;
+  color: white;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  /* background: linear-gradient(45deg,rgba(19, 19, 19) 20%, rgb(32, 32, 32) 40%, rgba(19, 19, 19) 70%); */
+  overflow: hidden;
+  cursor: default;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+}
+:root{
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
+}
+#root{
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
+}
+.ResumeAnalyzerDashboardPage{
+    margin: 0;
+    padding: 0; 
+}
+
+
+
+
+.ResumeAnalyzerDashboardHeader{
+    /* margin: 0; */
+    width: 100vw;
+    height: 50px;
+    /* background-color: #ec4e4e; */
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    border-bottom: 2px solid rgb(233, 233, 233);
+    /* background-color: rgb(149, 155, 66); */
+    /* margin-top: 0px; */
+    top: 0px;
+    background-color: rgb(255, 255, 255);
+}
+.ResumeAnalyzerDashboardHeaderLogoWrapper{
+    /* background-color: red; */
+    cursor: pointer;
+}
+.ResumeAnalyzerDashboardHeaderLogo{
+    width: 45px;
+    margin-top: 2px;
+    margin-left: 10px;
+}
+.ResumeAnalyzerDashboardHeaderButtonsWrapper{
+    /* background-color: rgba(0, 255, 234, 0.363); */
+    margin-left: 25px;
+    /* width: 100px;
+    height: 50px; */
+}
+.ResumeAnalyzerDashboardHeaderProfileButtonWrapper{
+    /* display: none; */
+    position:absolute;
+    /* right: 4000px; */
+    right: 5px;
+    top: -3px
+    /* top: 0px; */
+}
+.ResumeAnalyzerDashboardHeaderProfileButton{
+    float: right;
+    position: relative;
+    margin-right: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+.ResumeAnalyzerDashboardHeaderProfileButtonImage{
+    width: 46px;
+    height: 46px;
+    margin-top: 4px;
+    margin-right: 10px;
+    opacity: 0.8;
+    /* background-color: aquamarine; */
+}
+.ResumeAnalyzerDashboardHeaderProfileButtonChevronImage{
+    width: 15px;
+    height: 15px;
+    margin-bottom: 13px;
+    transform: rotate(90deg);
+    opacity: 0.8;
+}
+
+
+
+
+
+.ResumeAnalyzerDashboardMainSection{
+    width: 1310px;
+    height: fit-content;
+    margin: auto;
+    padding-top: 50px;
+    /* background-color: rgba(143, 141, 141, 0.096); */
+}
+.ResumeAnalyzerDashboardMainSectionTitle{
+    margin-top: 50px;
+    font-size: 18px;
+    padding: none;
+    margin: none;
+    color: rgb(80, 80, 80);
+    font-family: "Inter", sans-serif;
+    /* background-color: rgba(255, 0, 0, 0.185); */
+
+}
+
+
+
+
+
+
+
+
+
+.ResumeAnalyzerDashboardFooter{
+
+}

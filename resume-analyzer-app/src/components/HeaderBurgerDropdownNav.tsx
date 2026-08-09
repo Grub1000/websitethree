@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // CSS Styles Import
-import "../css/HeaderBurgerDropdownNav.css"
+import "../css/home_page_css/HeaderBurgerDropdownNav.css"
 
 // Auth Context imports
 import { useAuth } from "../context/AuthContext";

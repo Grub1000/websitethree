@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import {registerUser} from "../api/auth_service";
 
-import '../css/RegisterPage.css';
+import '../css/authentication_pages_css/RegisterPage.css';
 
 // React Router imports
 import { Link } from "react-router-dom";

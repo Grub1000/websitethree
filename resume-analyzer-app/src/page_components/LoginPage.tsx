@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 
-import "../css/LoginPage.css"
+import "../css/authentication_pages_css/LoginPage.css"
 
 // React Router imports
 import { Link, useLocation } from "react-router-dom";

@@ -1,4 +1,4 @@
-import "../css/InfiniteCarousel.css"
+import "../css/home_page_css/InfiniteCarousel.css"
 
 export default function InfiniteCarouselItem({
   src
