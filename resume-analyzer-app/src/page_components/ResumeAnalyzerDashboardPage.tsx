@@ -4,6 +4,7 @@ import { useState } from 'react'
 import ResumeUploadSection from "../components/ResumeUploadSection.tsx";
 // import ResumeHistorySection from "../components/ResumeHistorySection.tsx";
 import ResumeAnalyzerDashboardHeaderButton from "../components/ResumeAnalyzerDashboardHeaderButton.tsx";
+import ResumeHistorySmallSection from "../components/ResumeHistorySmallSection.tsx"
 
 import '../css/resume_analyzer_css/ResumeAnalyzerDashboardPage.css';
 
@@ -62,7 +63,19 @@ export default function ResumeAnalyzerDashboardPage() {
                 {/* <p>This is the resume analyzer dashboard.</p> */}
                 <h2 className="ResumeAnalyzerDashboardMainSectionTitle">New Uploads</h2>
                 <ResumeUploadSection/>
+
+                <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Documents</h2>
+                <ResumeHistorySmallSection/>
+                <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Add Jobs</h2>
+
+                {/* <JobAdditionSection/> */}
+
+                {/* <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Documents</h2> */}
+
             </main>
+
+
+
             <footer className="ResumeAnalyzerDashboardFooter">
                 {/* <p>&copy; 2023 Jorge Ramirez. All rights reserved.</p> */}
             </footer>

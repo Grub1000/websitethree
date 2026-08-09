@@ -1,0 +1,62 @@
+.ResumeHistorySmallSectionWrapper{
+    font-family: "Inter", sans-serif;
+    width:900px;
+    height: fit-content;
+    /* border: 2px dashed ; */
+    /* border-radius: 8px; */
+    /* background-color: rgba(78, 211, 211, 0.219);
+    border: 2px dashed rgba(8, 160, 206, 0.781); */
+}
+.ResumeHistorySmallSectionColumnNamesWrapper{
+    display: flex;
+    /* background-color: aquamarine; */
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-weight: bold;
+}
+.ResumeHistorySmallSectionColumnName{
+    font-size: 14px;
+    width: fit-content;
+    padding: 10px;
+    color: rgba(51, 51, 51, 0.945);
+    /* font-family: "Inter", sans-serif; */
+}
+:nth-child(1 of .ResumeHistorySmallSectionColumnName){
+    width: 250px;
+}
+:nth-child(2 of .ResumeHistorySmallSectionColumnName){
+    width: 150px;
+}
+:nth-child(3 of .ResumeHistorySmallSectionColumnName){
+    width: 150px;
+}
+:nth-child(4 of .ResumeHistorySmallSectionColumnName){
+    width: 150px;
+}
+.ResumeHistorySmallSectionRowWrapper{
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.137);
+    border-left: 1px solid rgba(0, 0, 0, 0.137);
+    border-right: 1px solid rgba(0, 0, 0, 0.137);
+}
+.ResumeHistorySmallSectionRowFeature{
+    font-size: 14px;
+    color: rgba(51, 51, 51, 0.856);
+    overflow-x: hidden;
+    /* font-weight: bold; */
+    padding: 10px;
+}
+.ResumeHistorySmallSectionRowFeatureOne
+{
+    width: 250px;
+}
+.ResumeHistorySmallSectionRowFeatureTwo{
+    width: 150px;
+}
+.ResumeHistorySmallSectionRowFeatureThree{
+    width: 150px;
+}
+.ResumeHistorySmallSectionRowFeatureFour{
+    width: 150px;
+}

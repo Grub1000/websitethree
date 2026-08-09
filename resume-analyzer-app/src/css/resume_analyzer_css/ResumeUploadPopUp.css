@@ -12,11 +12,22 @@
     background-color: rgba(0, 255, 255, 0.212);
 }
 .ResumeUploadPopUp{
-    width: 800px;
+    width: 880px;
     height: 400px;
     margin: auto;
     margin-top: 25vh;
     background-color: aliceblue;
+}
+.ResumeUploadPopUpTitle{
+    width: calc(100% - 80px);
+    margin: auto;
+    font-family: "Inter", sans-serif;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: rgb(51, 51, 51);
 }
 .ResumeUploadPopUpFileUploadDropSquare{
     width: 400px;
@@ -24,18 +35,23 @@
     border: 1px solid #ccc;
     display: flex;
     flex-direction: column;
+    margin-left: 40px;
     /* align-items: center;
     justify-content: center;
     text-align: center; */
     cursor: pointer;
     border-radius: 6px;
     font-family: "Inter", sans-serif;
+    transition: border-color 0.2s ease;
+}
+.ResumeUploadPopUpFileUploadDropSquare:hover{
+    border-color: rgb(0, 204, 255);
 }
 .ResumeUploadPopUpFileUploadInput{
     /* display: block; */
     width: 200px;
     height: 400px;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 .ResumeUploadPopUpFileUploadDropSquareIcon{
     width: 90px;
@@ -43,7 +59,7 @@
     border-radius: 50%;
     margin-top: 15px;
     margin-left: 15px;
-    background-color: aqua;
+    background-color: rgb(0, 204, 255);
 }
 .ResumeUploadPopUpFileUploadDropSquareTitle{
     margin-left: 15px;
@@ -59,7 +75,17 @@
     color: rgba(51, 51, 51, 0.719)
 }
 .ResumeUploadPopUpFileUploadDropSquareArrowIcon{
-    width: 50px;
+    /* height: 30px; */
+    /* float: right; */
+    width: 20px;
+    padding: 5px;
     border-radius: 50%;
-    background-color: aquamarine;
+    margin-top: 6px;
+    margin-left: 355px;
+    background-color: rgb(0, 204, 255);
+    transition: all .2s ease;
+}
+.ResumeUploadPopUpFileUploadDropSquare:hover .ResumeUploadPopUpFileUploadDropSquareArrowIcon {
+  margin-left: 360px;
+  background-color: rgba(0, 204, 255, 0.76);
 }

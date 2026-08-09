@@ -4,6 +4,7 @@ import { uploadResume, extractResumeText, analyzeResume } from "../api/resume_se
 import "../css/resume_analyzer_css/ResumeUploadPopUp.css"
 
 import resumeUploadIconSVG from "../assets/resume_upload_icon_svg.svg"
+import whiteChevronIcon from "../assets/white_arrow_svg.svg"
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
@@ -173,6 +174,7 @@ export default function ResumeUploadPopUp() {
             <div className="ResumeUploadPopUp">
                 {/* <h2>Upload Your Resume</h2>
                 <p>Please select a file to upload:</p> */}
+                <h2 className="ResumeUploadPopUpTitle">Upload your resume</h2>
                 <label className="ResumeUploadPopUpFileUploadDropSquare">
                     <img src={resumeUploadIconSVG} className="ResumeUploadPopUpFileUploadDropSquareIcon"></img>
                     <h2 className="ResumeUploadPopUpFileUploadDropSquareTitle">Upload an Existing Resume</h2>
@@ -186,7 +188,7 @@ export default function ResumeUploadPopUp() {
                         className="ResumeUploadPopUpFileUploadInput"
                         id="file-upload"
                     />
-                    <img className="ResumeUploadPopUpFileUploadDropSquareArrowIcon"></img>
+                    <img src={whiteChevronIcon} className="ResumeUploadPopUpFileUploadDropSquareArrowIcon"></img>
                 </label>
 
                 {selectedFile && (
@@ -199,13 +201,14 @@ export default function ResumeUploadPopUp() {
                     </div>
                 )}
 
-                <button
+                {selectedFile && (<button
                     type="button"
                     onClick={handleUploadAndExtract}
                     disabled={uploading || !selectedFile}
                 >
                     {uploading ? "Uploading..." : "Upload Résumé"}
                 </button>
+                )}
 
                 {message && (
                     <p className="ResumeUploadSuccess">
