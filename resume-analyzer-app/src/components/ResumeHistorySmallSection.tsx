@@ -156,29 +156,29 @@ export default function ResumeHistorySmallSection(){
                 </p>
             ) : (
                 resumes.map((resume: ResumeListItem) => (
-                        <div key={resume.resume_id} className="ResumeHistorySmallSectionRowWrapper">
-                            <div className="ResumeHistorySmallSectionRowFeatureOne ResumeHistorySmallSectionRowFeature">{resume.original_filename.length > 24 ? resume.original_filename.slice(0, 24) + '...' : resume.original_filename}</div>
-                            <div className="ResumeHistorySmallSectionRowFeatureTwo ResumeHistorySmallSectionRowFeature">{resume.content_type.length > 15 ? resume.content_type.slice(0, 15) + '...' : resume.content_type}</div>
-                            <div className="ResumeHistorySmallSectionRowFeatureThree ResumeHistorySmallSectionRowFeature">{new Date(resume.created_at).toLocaleDateString("en-US", {
-                                month: "short",
-                                day: "numeric",
-                                year: "numeric",
-                            })}
-                            </div>
-                            <div className="ResumeHistorySmallSectionRowFeatureFour ResumeHistorySmallSectionRowFeature">{new Date(resume.updated_at).toLocaleDateString("en-US", {
-                                month: "short",
-                                day: "numeric",
-                                year: "numeric",
-                            })}
-                            </div>
-                            <div className="ResumeHistoryResumeHistorySmallSectionRowOptionsButtonWrapper">
-                                <button className="ResumeHistorySmallSectionRowOptionsButton" onClick={()=> handleDropdown(resume.resume_id)}>...</button>
-                                <div className="ResumeHistorySmallSectionRowOptionsDropdown" id={resume.resume_id}>
-                                    <button onClick={()=> handleDelete(resume)}>Delete</button>
-                                </div>
+                    <div key={resume.resume_id} className="ResumeHistorySmallSectionRowWrapper">
+                        <div className="ResumeHistorySmallSectionRowFeatureOne ResumeHistorySmallSectionRowFeature">{resume.original_filename.length > 24 ? resume.original_filename.slice(0, 24) + '...' : resume.original_filename}</div>
+                        <div className="ResumeHistorySmallSectionRowFeatureTwo ResumeHistorySmallSectionRowFeature">{resume.content_type.length > 15 ? resume.content_type.slice(0, 15) + '...' : resume.content_type}</div>
+                        <div className="ResumeHistorySmallSectionRowFeatureThree ResumeHistorySmallSectionRowFeature">{new Date(resume.created_at).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                        })}
+                        </div>
+                        <div className="ResumeHistorySmallSectionRowFeatureFour ResumeHistorySmallSectionRowFeature">{new Date(resume.updated_at).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                        })}
+                        </div>
+                        <div className="ResumeHistoryResumeHistorySmallSectionRowOptionsButtonWrapper">
+                            <button className="ResumeHistorySmallSectionRowOptionsButton" onClick={()=> handleDropdown(resume.resume_id)}>...</button>
+                            <div className="ResumeHistorySmallSectionRowOptionsDropdown" id={resume.resume_id}>
+                                <button onClick={()=> handleDelete(resume)}>Delete</button>
                             </div>
                         </div>
-                    ))
+                    </div>
+                ))
             )}
         </section>
     )
