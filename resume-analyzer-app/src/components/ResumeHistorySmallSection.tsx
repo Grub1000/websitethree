@@ -10,7 +10,8 @@ import trashBinSVG from "../assets/trash_bin_svg.svg"
 import graphSVG from "../assets/graph_svg.svg"
 import documentSVG from "../assets/document_svg.svg"
 
-export default function ResumeHistorySmallSection(){
+export default function ResumeHistorySmallSection(
+){
     const [resumes, setResumes] =
         useState<ResumeListItem[]>([]);
 
@@ -24,6 +25,7 @@ export default function ResumeHistorySmallSection(){
     // const activeContainerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {   
+        console.log("Reloading Resume History")
         function handleClick(event: MouseEvent) {
             const target = event.target as HTMLElement;
             console.log("clicked")

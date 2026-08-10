@@ -18,10 +18,12 @@ const ALLOWED_FILE_TYPES = [
 
 
 export default function ResumeUploadPopUp({  
-        onClose
+        onClose,
+        reloadResumeHistory,
 
     }: { 
-        onClose: (value: boolean) => void;
+        onClose: (value: boolean) => void,
+        reloadResumeHistory: ()=> void,
     }) {
 
         const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -146,6 +148,7 @@ export default function ResumeUploadPopUp({
                             analysisResult
                         );
                         setSelectedFile(null);
+                        reloadResumeHistory()
                         
                     } catch (error) {
                         setError(

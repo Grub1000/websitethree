@@ -32,6 +32,13 @@ export default function ResumeAnalyzerDashboardPage() {
       })
 
     const headerButtonsArray = Object.values(buttons); // Convert the buttons object into an array of button objects
+
+    let [reloadKey, setReloadKey] = useState(0)
+
+    async function reloadResumeHistory(){
+        setReloadKey(reloadKey = reloadKey + 1)
+        console.log("key set to: ", reloadKey)
+    }
     return (
 
         <section className="ResumeAnalyzerDashboardPage">
@@ -66,10 +73,10 @@ export default function ResumeAnalyzerDashboardPage() {
             <main className="ResumeAnalyzerDashboardMainSection">
                 {/* <p>This is the resume analyzer dashboard.</p> */}
                 <h2 className="ResumeAnalyzerDashboardMainSectionTitle">New Uploads</h2>
-                <ResumeUploadSection/>
+                <ResumeUploadSection reloadResumeHistory={reloadResumeHistory} />
 
                 <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Documents</h2>
-                <ResumeHistorySmallSection/>
+                <ResumeHistorySmallSection key={reloadKey}/>
                 <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Add Jobs</h2>
 
                 {/* <JobAdditionSection/> */}

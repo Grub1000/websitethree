@@ -8,7 +8,12 @@ import manPointingRight from "../assets/pointing_right_man.png"
 
 
 
-function ResumeUploadSection() {
+function ResumeUploadSection({
+    reloadResumeHistory,
+}:{
+    reloadResumeHistory: ()=> void
+}
+) {
     const [isVisible, setIsVisible] = useState(false);
 
 
@@ -24,7 +29,7 @@ function ResumeUploadSection() {
                     <button className="ResumeUploadDescriptionButton" onClick={() => setIsVisible(!isVisible)}>Upload Resume</button>
                 </div>
                 {/* <ResumeUploadPopUp /> */}
-                {isVisible && (<ResumeUploadPopUp onClose={setIsVisible}/>)}
+                {isVisible && (<ResumeUploadPopUp onClose={setIsVisible} reloadResumeHistory={reloadResumeHistory}/>)}
             </div>
         </section>
     );
