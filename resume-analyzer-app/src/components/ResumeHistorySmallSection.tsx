@@ -6,6 +6,9 @@ import {getUserResumes, deleteResume, type ResumeListItem,} from "../api/resume_
 
 import "../css/resume_analyzer_css/ResumeHistorySmallSection.css"
 
+import trashBinSVG from "../assets/trash_bin_svg.svg"
+import graphSVG from "../assets/graph_svg.svg"
+import documentSVG from "../assets/document_svg.svg"
 
 export default function ResumeHistorySmallSection(){
     const [resumes, setResumes] =
@@ -136,7 +139,7 @@ export default function ResumeHistorySmallSection(){
             dropdown.style.display = "none"
         })
         const selectedDropdown = document.getElementById(id) as HTMLElement
-        selectedDropdown.style.display = "block"
+        selectedDropdown.style.display = "flex"
     }
     // initiateDropdownListenerHandlers()
     return(
@@ -174,7 +177,15 @@ export default function ResumeHistorySmallSection(){
                         <div className="ResumeHistoryResumeHistorySmallSectionRowOptionsButtonWrapper">
                             <button className="ResumeHistorySmallSectionRowOptionsButton" onClick={()=> handleDropdown(resume.resume_id)}>...</button>
                             <div className="ResumeHistorySmallSectionRowOptionsDropdown" id={resume.resume_id}>
-                                <button onClick={()=> handleDelete(resume)}>Delete</button>
+                                <button className="ResumeHistorySmallSectionRowOptionsDropdownButton">
+                                    <img className="ResumeHistorySmallSectionRowOptionsDropdownButtonIcon ResumeHistorySmallSectionRowOptionsDropdownButtonNewAnalysisIcon" src={graphSVG}></img>
+                                    <p className="ResumeHistorySmallSectionRowOptionsDropdownButtonText ResumeHistorySmallSectionRowOptionsDropdownButtonNewAnalysisText">New Analysis</p></button>
+                                <button className="ResumeHistorySmallSectionRowOptionsDropdownButton">
+                                    <img className="ResumeHistorySmallSectionRowOptionsDropdownButtonIcon ResumeHistorySmallSectionRowOptionsDropdownButtonViewAnalysisIcon" src={documentSVG}></img>
+                                    <p className="ResumeHistorySmallSectionRowOptionsDropdownButtonText ResumeHistorySmallSectionRowOptionsDropdownButtonViewAnalysisText">View Analysis</p></button>
+                                <button className="ResumeHistorySmallSectionRowOptionsDropdownButton ResumeHistorySmallSectionRowOptionsDropdownButtonDelete" onClick={()=> handleDelete(resume)}>
+                                    <img className="ResumeHistorySmallSectionRowOptionsDropdownButtonIcon ResumeHistorySmallSectionRowOptionsDropdownButtonDeleteResumeIcon" src={trashBinSVG} ></img>
+                                    <p className="ResumeHistorySmallSectionRowOptionsDropdownButtonText ResumeHistorySmallSectionRowOptionsDropdownButtonDeleteResumeText">Delete</p></button>
                             </div>
                         </div>
                     </div>
