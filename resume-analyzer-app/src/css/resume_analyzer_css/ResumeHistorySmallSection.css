@@ -34,6 +34,26 @@
 :nth-child(4 of .ResumeHistorySmallSectionColumnName){
     width: 150px;
 }
+
+.ResumeHistorySmallSectionNoUploadsMessage{
+    width: calc(100%-2px);
+    /* background-color: aqua; */
+    /* font */
+    padding: 0px;
+    padding: 4px;
+    padding-left: 10px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    margin: 0px;
+    border: 1px solid rgba(0, 0, 0, 0.164);
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    color: rgba(26, 26, 26, 0.856);
+    background-color: #87e5f18a;
+}
+
+
 .ResumeHistorySmallSectionRowWrapper{
     display: flex;
     border-bottom: 1px solid rgba(0, 0, 0, 0.137);

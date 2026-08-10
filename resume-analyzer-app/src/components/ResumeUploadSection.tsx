@@ -24,7 +24,7 @@ function ResumeUploadSection() {
                     <button className="ResumeUploadDescriptionButton" onClick={() => setIsVisible(!isVisible)}>Upload Resume</button>
                 </div>
                 {/* <ResumeUploadPopUp /> */}
-                {isVisible && (<ResumeUploadPopUp />)}
+                {isVisible && (<ResumeUploadPopUp onClose={setIsVisible}/>)}
             </div>
         </section>
     );

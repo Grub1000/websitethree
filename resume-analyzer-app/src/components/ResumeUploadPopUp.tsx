@@ -4,7 +4,10 @@ import { uploadResume, extractResumeText, analyzeResume } from "../api/resume_se
 import "../css/resume_analyzer_css/ResumeUploadPopUp.css"
 
 import resumeUploadIconSVG from "../assets/resume_upload_icon_svg.svg"
-import whiteChevronIcon from "../assets/white_arrow_svg.svg"
+import whiteArrowIcon from "../assets/white_arrow_svg.svg"
+import exitIcon from "../assets/burger_menu_exit_svg.svg"
+
+import ResumeUploadExtractAnalysisPopUp from "./ResumeUploadExtractAnalysisPopUp"
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
@@ -14,7 +17,12 @@ const ALLOWED_FILE_TYPES = [
 ];
 
 
-export default function ResumeUploadPopUp() {
+export default function ResumeUploadPopUp({  
+        onClose
+
+    }: { 
+        onClose: (value: boolean) => void;
+    }) {
 
         const fileInputRef = useRef<HTMLInputElement | null>(null);
     
@@ -98,9 +106,9 @@ export default function ResumeUploadPopUp() {
         //     }
         // }
     
-        async function handleUploadAndExtract() {
+        async function handleUploadAndExtractAndAnalysis() {
             if (!selectedFile) {
-                setError("Select a résumé before uploading.");
+                setError("Select a resume before uploading.");
                 return;
             }
     
@@ -108,7 +116,7 @@ export default function ResumeUploadPopUp() {
             setMessage("Uploading Resume...");
             setError("");
             setResumeId("");
-    
+            
             try {
                 const result = await uploadResume(selectedFile);
     
@@ -127,7 +135,7 @@ export default function ResumeUploadPopUp() {
                     console.log("Extracted Resume Text:", extractionResult);
     
                     try{
-                        setMessage("Analyzing résumé...");
+                        setMessage("Analyzing Resume...");
     
                         const analysisResult = await analyzeResume(result.resume_id);
     
@@ -171,10 +179,13 @@ export default function ResumeUploadPopUp() {
 
     return(
         <div className="ResumeUploadPopUpWrapper">
+            {uploading && <ResumeUploadExtractAnalysisPopUp message={message}/>}
+            {/* <ResumeUploadExtractAnalysisPopUp message={"Analyzing Resume..."}/> */}
             <div className="ResumeUploadPopUp">
                 {/* <h2>Upload Your Resume</h2>
                 <p>Please select a file to upload:</p> */}
-                <h2 className="ResumeUploadPopUpTitle">Upload your resume</h2>
+                <h2 className="ResumeUploadPopUpTitle">Upload your resume </h2>
+                <button className="ResumeUploadPopUpExitIconButton" onClick={()=> onClose(false)}><img src={exitIcon} className="ResumeUploadPopUpExitIcon"></img></button>
                 <label className="ResumeUploadPopUpFileUploadDropSquare">
                     <img src={resumeUploadIconSVG} className="ResumeUploadPopUpFileUploadDropSquareIcon"></img>
                     <h2 className="ResumeUploadPopUpFileUploadDropSquareTitle">Upload an Existing Resume</h2>
@@ -188,7 +199,7 @@ export default function ResumeUploadPopUp() {
                         className="ResumeUploadPopUpFileUploadInput"
                         id="file-upload"
                     />
-                    <img src={whiteChevronIcon} className="ResumeUploadPopUpFileUploadDropSquareArrowIcon"></img>
+                    <img src={whiteArrowIcon} className="ResumeUploadPopUpFileUploadDropSquareArrowIcon"></img>
                 </label>
 
                 {selectedFile && (
@@ -203,7 +214,7 @@ export default function ResumeUploadPopUp() {
 
                 {selectedFile && (<button
                     type="button"
-                    onClick={handleUploadAndExtract}
+                    onClick={handleUploadAndExtractAndAnalysis}
                     disabled={uploading || !selectedFile}
                 >
                     {uploading ? "Uploading..." : "Upload Résumé"}
@@ -228,7 +239,6 @@ export default function ResumeUploadPopUp() {
                     </p>
                 )}
             </div>
-            
         </div>
     )
 }

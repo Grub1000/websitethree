@@ -9,7 +9,7 @@
     height: 100vh;
     top: 0px;
     left: 0px;
-    background-color: rgba(0, 255, 255, 0.212);
+    background-color: #24b1d43d;
 }
 .ResumeUploadPopUp{
     width: 880px;
@@ -29,6 +29,38 @@
     font-size: 22px;
     color: rgb(51, 51, 51);
 }
+.ResumeUploadPopUpExitIconButton{
+    float: right;
+    position: relative;
+    width: 48px;
+    top: -80px;
+    left: -4px;
+    cursor: pointer;
+    padding: none;
+    outline: none;
+    border: none;
+    /* background-color: rgb(204, 123, 24); */
+    background-color: transparent;
+}
+.ResumeUploadPopUpExitIcon{
+    float: right;
+    position: relative;
+    left: 5px;
+    width: 16px;
+    /* top: -80px;
+    left: -3px; */
+    padding: 15px;
+    opacity: 60%;
+    /* background-color: rgb(0, 108, 202); */
+    transition: all .3s ease;
+    cursor: pointer;
+}
+.ResumeUploadPopUpExitIconButton:hover .ResumeUploadPopUpExitIcon {
+    transform: rotate(90deg);
+}
+/* .ResumeUploadPopUpExitIcon:hover{
+    transform: rotate(90deg);
+} */
 .ResumeUploadPopUpFileUploadDropSquare{
     width: 400px;
     height: 250px;

@@ -154,8 +154,8 @@ export default function ResumeHistorySmallSection(){
                 <div className="ResumeHistorySmallSectionColumnName"></div>
             </div>
             {resumes.length === 0 ? (
-                <p>
-                    You have not uploaded any résumés yet.
+                <p className="ResumeHistorySmallSectionNoUploadsMessage">
+                    Uploaded resumes can be viewed here.
                 </p>
             ) : (
                 resumes.map((resume: ResumeListItem) => (
