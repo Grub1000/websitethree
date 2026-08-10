@@ -314,3 +314,61 @@ export async function deleteResume(
         );
     }
 }
+
+
+
+
+export type ResumeAnalysisResponseListItem = {
+    analysis_id: string;
+    resume_id: string;
+
+    status: string;
+
+    job_title: string;
+
+    scores: {
+        overall: number | null;
+        ats: number | null;
+        keywords: number | null;
+        experience: number | null;
+        skills: number | null;
+    };
+
+    strengths: string[];
+    weaknesses: string[];
+    missing_keywords: string[];
+    recommendations: string[];
+
+    model_provider: string;
+    model_name: string;
+    prompt_version: string;
+
+    error_message: string;
+
+    created_at: string;
+    completed_at: string | null;
+};
+
+
+export async function getResumeAnalyses(
+    resumeId: string
+): Promise<ResumeAnalysisResponseListItem[]> {
+
+    const response = await apiFetch(
+        `/resumes/${resumeId}/analyses/`,
+        {
+            method: "GET",
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(
+            data.detail ??
+            "Unable to load résumé analyses."
+        );
+    }
+
+    return data;
+}

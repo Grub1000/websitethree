@@ -1,0 +1,8 @@
+.ResumeAnalysisPopUpWrapper{
+    /* display: absolute; */
+    z-index: 102;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+}

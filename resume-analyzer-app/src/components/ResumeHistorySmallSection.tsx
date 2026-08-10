@@ -10,7 +10,10 @@ import trashBinSVG from "../assets/trash_bin_svg.svg"
 import graphSVG from "../assets/graph_svg.svg"
 import documentSVG from "../assets/document_svg.svg"
 
-export default function ResumeHistorySmallSection(
+export default function ResumeHistorySmallSection({
+    loadResumeAnalyses
+}:{
+    loadResumeAnalyses: (resumeID:string)=> void}
 ){
     const [resumes, setResumes] =
         useState<ResumeListItem[]>([]);
@@ -182,7 +185,7 @@ export default function ResumeHistorySmallSection(
                                 <button className="ResumeHistorySmallSectionRowOptionsDropdownButton">
                                     <img className="ResumeHistorySmallSectionRowOptionsDropdownButtonIcon ResumeHistorySmallSectionRowOptionsDropdownButtonNewAnalysisIcon" src={graphSVG}></img>
                                     <p className="ResumeHistorySmallSectionRowOptionsDropdownButtonText ResumeHistorySmallSectionRowOptionsDropdownButtonNewAnalysisText">New Analysis</p></button>
-                                <button className="ResumeHistorySmallSectionRowOptionsDropdownButton">
+                                <button className="ResumeHistorySmallSectionRowOptionsDropdownButton" onClick={()=>loadResumeAnalyses(resume.resume_id)}>
                                     <img className="ResumeHistorySmallSectionRowOptionsDropdownButtonIcon ResumeHistorySmallSectionRowOptionsDropdownButtonViewAnalysisIcon" src={documentSVG}></img>
                                     <p className="ResumeHistorySmallSectionRowOptionsDropdownButtonText ResumeHistorySmallSectionRowOptionsDropdownButtonViewAnalysisText">View Analysis</p></button>
                                 <button className="ResumeHistorySmallSectionRowOptionsDropdownButton ResumeHistorySmallSectionRowOptionsDropdownButtonDelete" onClick={()=> handleDelete(resume)}>

@@ -5,8 +5,11 @@ import ResumeUploadSection from "../components/ResumeUploadSection.tsx";
 // import ResumeHistorySection from "../components/ResumeHistorySection.tsx";
 import ResumeAnalyzerDashboardHeaderButton from "../components/ResumeAnalyzerDashboardHeaderButton.tsx";
 import ResumeHistorySmallSection from "../components/ResumeHistorySmallSection.tsx"
+import ResumeAnalysisPopUp from "../components/ResumeAnalysisPopUp.tsx"
 
 import '../css/resume_analyzer_css/ResumeAnalyzerDashboardPage.css';
+
+
 
 
 
@@ -15,6 +18,8 @@ import profileButtonIcon from "../assets/profile_button_icon_svg.svg"
 import profileButtonChevronIcon from "../assets/burger_menu_submenu_chevron_icon_svg.svg"
 
 import { useNavigate } from "react-router-dom";
+
+import { getResumeAnalyses ,type ResumeAnalysisResponseListItem} from "../api/resume_service.tsx"
 
 
 export default function ResumeAnalyzerDashboardPage() {
@@ -39,9 +44,17 @@ export default function ResumeAnalyzerDashboardPage() {
         setReloadKey(reloadKey = reloadKey + 1)
         console.log("key set to: ", reloadKey)
     }
+
+    let [resumeAnalyses, setResumeAnalyses] = useState<ResumeAnalysisResponseListItem[]>([])
+
+    async function loadResumeAnalyses(resumeID: string){
+        setResumeAnalyses(resumeAnalyses = await getResumeAnalyses(resumeID))
+    }
+
     return (
 
         <section className="ResumeAnalyzerDashboardPage">
+            {resumeAnalyses.length === 0 ?  null : <ResumeAnalysisPopUp resumeAnalyses={resumeAnalyses}/>}
             <header className="ResumeAnalyzerDashboardHeader">
                 <a className="ResumeAnalyzerDashboardHeaderLogoWrapper">
                     <img src={logo} className="ResumeAnalyzerDashboardHeaderLogo" alt="Website Logo"></img>
@@ -76,11 +89,10 @@ export default function ResumeAnalyzerDashboardPage() {
                 <ResumeUploadSection reloadResumeHistory={reloadResumeHistory} />
 
                 <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Documents</h2>
-                <ResumeHistorySmallSection key={reloadKey}/>
+                <ResumeHistorySmallSection key={reloadKey} loadResumeAnalyses={loadResumeAnalyses}/>
                 <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Add Jobs</h2>
-
+                
                 {/* <JobAdditionSection/> */}
-
                 {/* <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Documents</h2> */}
 
             </main>

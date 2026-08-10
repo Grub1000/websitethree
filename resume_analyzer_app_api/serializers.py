@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 from .models import Resume, User
 from .models import PasswordResetToken
+from .models import ResumeAnalysis
 from rest_framework_simplejwt.serializers import (
     TokenObtainPairSerializer
 )
@@ -355,3 +356,51 @@ class ResumeListSerializer(serializers.ModelSerializer):
 
     def get_has_thumbnail(self, obj):
         return bool(obj.thumbnail_s3_key)
+
+
+class ResumeAnalysisListSerializer(
+    serializers.ModelSerializer
+):
+    analysis_id = serializers.UUIDField(
+        source="public_id",
+        read_only=True,
+    )
+
+    resume_id = serializers.UUIDField(
+        source="resume.public_id",
+        read_only=True,
+    )
+
+    scores = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ResumeAnalysis
+
+        fields = [
+            "analysis_id",
+            "resume_id",
+            "status",
+            "job_title",
+            "scores",
+            "strengths",
+            "weaknesses",
+            "missing_keywords",
+            "recommendations",
+            "model_provider",
+            "model_name",
+            "prompt_version",
+            "error_message",
+            "created_at",
+            "completed_at",
+        ]
+
+    def get_scores(self, obj):
+        return {
+            "overall": obj.overall_score,
+            "ats": obj.ats_score,
+            "keywords": obj.keyword_score,
+            "experience": obj.experience_score,
+            "skills": obj.skills_score,
+        }
+
+    

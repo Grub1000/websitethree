@@ -89,7 +89,8 @@ from .serializers import ResumeListSerializer
 # Imports Needed For Resume Deletion
 from .services.s3_service import delete_s3_object
 
-
+# Imports Needed For ResumeAnalysis List From Resume ID
+from .serializers import ResumeAnalysisListSerializer
 
 class CurrentUserView(generics.RetrieveAPIView): 
     serializer_class = UserSerializer 
@@ -943,4 +944,29 @@ class ResumeDeleteView(
                 )
             },
             status=status.HTTP_200_OK,
+        )
+
+    
+class ResumeAnalysisListView(
+    generics.ListAPIView
+):
+    serializer_class = (
+        ResumeAnalysisListSerializer
+    )
+
+    permission_classes = [
+        IsAuthenticated,
+    ]
+
+    def get_queryset(self):
+        resume = get_object_or_404(
+            Resume,
+            public_id=self.kwargs["resume_id"],
+            owner=self.request.user,
+        )
+
+        return (
+            ResumeAnalysis.objects
+            .filter(resume=resume)
+            .order_by("-created_at")
         )
