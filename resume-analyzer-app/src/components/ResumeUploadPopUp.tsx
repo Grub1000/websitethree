@@ -16,7 +16,6 @@ const ALLOWED_FILE_TYPES = [
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 ];
 
-
 export default function ResumeUploadPopUp({  
         onClose,
         reloadResumeHistory,

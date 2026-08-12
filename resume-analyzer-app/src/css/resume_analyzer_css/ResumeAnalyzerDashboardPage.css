@@ -10,24 +10,29 @@ body {
   overflow: hidden;
   cursor: default;
   overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  /* background-color: aqua; */
 
 }
 :root{
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   /* overflow-y: hidden; */
 }
 #root{
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   /* overflow-y: hidden; */
 }
 .ResumeAnalyzerDashboardPage{
+    position: relative;
     margin: 0;
     padding: 0; 
+    /* overflow-x: hidden; */
+    /* background-color: blue; */
+    /* overflow: hidden !important; */
 }
 
 
@@ -103,7 +108,9 @@ body {
     height: fit-content;
     margin: auto;
     padding-top: 50px;
-    /* background-color: rgba(143, 141, 141, 0.096); */
+    padding-bottom: 50px;
+    /* overflow: visible; */
+    /* background-color: rgba(204, 27, 27, 0.096); */
 }
 .ResumeAnalyzerDashboardMainSectionTitle{
     margin-top: 50px;
@@ -126,4 +133,54 @@ body {
 
 .ResumeAnalyzerDashboardFooter{
 
+}
+
+@media (max-width: 1380px){
+
+    .ResumeAnalyzerDashboardMainSection{
+        width: 1010px;
+
+
+        /* height: fit-content;
+        margin: auto;
+        padding-top: 50px; */
+        background-color: rgba(204, 27, 27, 0.096);
+    }
+
+}
+
+@media (max-width: 1060px){
+    .ResumeAnalyzerDashboardMainSection{
+        width: 910px;
+        /* height: fit-content;
+        margin: auto;
+        padding-top: 50px; */
+        background-color: rgba(204, 27, 27, 0.192);
+    }
+}
+
+@media (max-width: 960px){
+    .ResumeAnalyzerDashboardMainSection{
+        width: 720px;
+        /* height: fit-content;
+        margin: auto;
+        padding-top: 50px; */
+        background-color: rgba(219, 31, 31, 0.24);
+    }
+}
+@media (max-width: 760px){
+    .ResumeAnalyzerDashboardMainSection{
+        width: calc(100vw - 50px);
+        /* height: fit-content;
+        margin: auto;
+        padding-top: 50px; */
+        background-color: rgba(219, 31, 31, 0);
+    }
+    .ResumeAnalyzerDashboardMainSectionTitle{
+        margin-top: 30px;
+    }
+
+    .ResumeAnalyzerDashboardHeaderButtonsWrapper{
+        display: none;
+    }
 }

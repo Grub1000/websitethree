@@ -152,3 +152,357 @@
 .ResumeHistorySmallSectionRowOptionsDropdownButtonDelete:hover{
     background-color: rgba(255, 0, 0, 0.158);
 }
+
+
+@media(max-width: 1380px){
+    .ResumeHistorySmallSectionWrapper{
+        /* font-family: "Inter", sans-serif; */
+        width: 700px;
+        /* height: fit-content; */
+        /* background-color: aqua; */
+    }
+    :nth-child(1 of .ResumeHistorySmallSectionColumnName){
+    width: 195px;
+    }
+    :nth-child(2 of .ResumeHistorySmallSectionColumnName){
+        width: 118px;
+    }
+    :nth-child(3 of .ResumeHistorySmallSectionColumnName){
+        width: 118px;
+    }
+    :nth-child(4 of .ResumeHistorySmallSectionColumnName){
+        width: 100px;
+    }
+
+    .ResumeHistorySmallSectionRowFeatureOne
+    {
+        width: 218px;
+    }
+    .ResumeHistorySmallSectionRowFeatureTwo{
+        width: 130px;
+    }
+    .ResumeHistorySmallSectionRowFeatureThree{
+        width: 130px;
+    }
+    .ResumeHistorySmallSectionRowFeatureFour{
+        width: 150px;
+    }
+    .ResumeHistorySmallSectionRowOptionsButton{
+        /* width: 30px;
+        height: 30px; */
+        /* overflow-x: hidden; */
+        /* overflow: hidden;
+        padding-bottom: 10px;
+        padding-left: 5px; */
+        margin-left: 0px;
+        margin-right: 20px;
+        /* line-height: 0px;
+        font-size: 24px;
+        background-color: red;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        margin-top: 3px;
+        border-radius: 50%;
+        font-weight: bold; */
+    }
+
+    .ResumeHistorySmallSectionRowOptionsDropdown{
+        /* display: none;
+        flex-direction: column;
+        position: absolute;
+        margin-top: 5px; */
+        margin-left: -33px;
+        /* width: 200px; */
+        /* height: 100px; */
+        /* height: fit-content;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: white;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.212); */
+    }
+
+
+}
+@media (max-width: 1060px){
+    .ResumeHistorySmallSectionWrapper{
+        /* font-family: "Inter", sans-serif; */
+        width: 600px;
+        /* height: fit-content; */
+        /* background-color: aqua; */
+    }
+    :nth-child(1 of .ResumeHistorySmallSectionColumnName){
+        width: 229px;
+    }
+    :nth-child(2 of .ResumeHistorySmallSectionColumnName){
+        /* width: 118px; */
+        display: none;
+    }
+    :nth-child(3 of .ResumeHistorySmallSectionColumnName){
+        width: 120px;
+    }
+    :nth-child(4 of .ResumeHistorySmallSectionColumnName){
+        width: 100px;
+    }
+
+    .ResumeHistorySmallSectionRowFeatureOne
+    {
+        width: 248px;
+    }
+    .ResumeHistorySmallSectionRowFeatureTwo{
+        /* width: 130px; */
+        display: none;
+    }
+    .ResumeHistorySmallSectionRowFeatureThree{
+        width: 130px;
+    }
+    .ResumeHistorySmallSectionRowFeatureFour{
+        width: 150px;
+    }
+    .ResumeHistorySmallSectionRowOptionsButton{
+        /* width: 30px;
+        height: 30px; */
+        /* overflow-x: hidden; */
+        /* overflow: hidden;
+        padding-bottom: 10px;
+        padding-left: 5px; */
+        margin-left: 0px;
+        margin-right: 20px;
+        /* line-height: 0px;
+        font-size: 24px;
+        background-color: red;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        margin-top: 3px;
+        border-radius: 50%;
+        font-weight: bold; */
+    }
+
+    .ResumeHistorySmallSectionRowOptionsDropdown{
+        /* display: none;
+        flex-direction: column;
+        position: absolute;
+        margin-top: 5px; */
+        margin-left: -33px;
+        /* width: 200px; */
+        /* height: 100px; */
+        /* height: fit-content;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: white;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.212); */
+    }
+
+}
+@media (max-width: 960px){
+    .ResumeHistorySmallSectionWrapper{
+        /* font-family: "Inter", sans-serif; */
+        width: 720px;
+        /* height: fit-content; */
+        /* background-color: aqua; */
+    }
+    :nth-child(1 of .ResumeHistorySmallSectionColumnName){
+        width: 453px;
+    }
+    :nth-child(2 of .ResumeHistorySmallSectionColumnName){
+        /* width: 118px; */
+        display: none;
+    }
+    :nth-child(3 of .ResumeHistorySmallSectionColumnName){
+        width: 120px;
+    }
+    :nth-child(4 of .ResumeHistorySmallSectionColumnName){
+        /* width: 100px; */
+        display: none;
+    }
+
+    .ResumeHistorySmallSectionRowFeatureOne
+    {
+        width: 453px;
+    }
+    .ResumeHistorySmallSectionRowFeatureTwo{
+        /* width: 130px; */
+        display: none;
+    }
+    .ResumeHistorySmallSectionRowFeatureThree{
+        width: 150px;
+    }
+    .ResumeHistorySmallSectionRowFeatureFour{
+        /* width: 150px; */
+        display: none;
+    }
+    .ResumeHistorySmallSectionRowOptionsButton{
+        /* width: 30px;
+        height: 30px; */
+        /* overflow-x: hidden; */
+        /* overflow: hidden;
+        padding-bottom: 10px;
+        padding-left: 5px; */
+        margin-left: 0px;
+        margin-right: 20px;
+        /* line-height: 0px;
+        font-size: 24px;
+        background-color: red;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        margin-top: 3px;
+        border-radius: 50%;
+        font-weight: bold; */
+    }
+
+    .ResumeHistorySmallSectionRowOptionsDropdown{
+        /* display: none;
+        flex-direction: column;
+        position: absolute;
+        margin-top: 5px; */
+        margin-left: -60px;
+        /* width: 200px; */
+        /* height: 100px; */
+        /* height: fit-content;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: white;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.212); */
+    }
+
+}
+
+@media (max-width: 760px){
+    .ResumeHistorySmallSectionWrapper{
+        /* font-family: "Inter", sans-serif; */
+        width: calc(100% - 0px);
+        /* height: fit-content; */
+        /* background-color: aqua; */
+    }
+    :nth-child(1 of .ResumeHistorySmallSectionColumnName){
+        width: 60%;
+        /* background-color: bisque; */
+    }
+    :nth-child(2 of .ResumeHistorySmallSectionColumnName){
+        /* width: 118px; */
+        display: none;
+    }
+    :nth-child(3 of .ResumeHistorySmallSectionColumnName){
+        width: 210px;
+        /* background-color: beige; */
+        /* width: 36%; */
+    }
+    :nth-child(4 of .ResumeHistorySmallSectionColumnName){
+        /* width: 100px; */
+        display: none;
+    }
+
+    .ResumeHistorySmallSectionRowFeatureOne
+    {
+        /* width: 401px; */
+        width: 60%;
+        /* background-color: rgb(103, 117, 117); */
+    }
+    .ResumeHistorySmallSectionRowFeatureTwo{
+        /* width: 130px; */
+        display: none;
+    }
+    .ResumeHistorySmallSectionRowFeatureThree{
+        width: 150px;
+        /* background-color: red; */
+        /* width: 25%; */
+    }
+    .ResumeHistorySmallSectionRowFeatureFour{
+        /* width: 150px; */
+        display: none;
+    }
+    .ResumeHistorySmallSectionRowOptionsButton{
+        /* width: 30px;
+        height: 30px; */
+        /* overflow-x: hidden; */
+        /* overflow: hidden;
+        padding-bottom: 10px;
+        padding-left: 5px; */
+        margin-left: 25px;
+        margin-right: 20px;
+        /* line-height: 0px;
+        font-size: 24px;
+        background-color: red;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        margin-top: 3px;
+        border-radius: 50%;
+        font-weight: bold; */
+        /* background-color: blue; */
+        padding-bottom: 13px;
+        /* background-color: aliceblue; */
+    }
+
+    .ResumeHistorySmallSectionRowOptionsDropdown{
+        /* display: none;
+        flex-direction: column;
+        position: absolute;
+        margin-top: 5px; */
+        margin-left: -63px;
+        /* width: 200px; */
+        /* height: 100px; */
+        /* height: fit-content;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: white;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.212); */
+    }
+
+}
+@media (max-width: 575px){
+    /* :nth-child(1 of .ResumeHistorySmallSectionColumnName){
+        width: 300px;
+    } */
+    /* .ResumeHistorySmallSectionRowFeatureOne
+    {
+        width: 302px;
+    } */
+    /* :nth-child(3 of .ResumeHistorySmallSectionColumnName){
+        width: 218px;
+        background-color: beige;
+        
+    } */
+     .ResumeHistorySmallSectionRowFeatureOne
+    {
+        /* width: 401px; */
+        width: 90%;
+        /* background-color: rgb(103, 117, 117); */
+    }
+    :nth-child(3 of .ResumeHistorySmallSectionColumnName){
+        display: none;
+        /* width: 210px; */
+        /* background-color: beige; */
+        /* width: 36%; */
+    }
+    .ResumeHistorySmallSectionRowFeatureThree{
+        display: none;
+        width: 150px;
+        /* background-color: red; */
+        /* width: 25%; */
+    }
+    .ResumeHistorySmallSectionRowOptionsButton{
+        padding-bottom: 13px;
+        /* margin: auto; */
+        margin-left: 0px;
+        /* margin-left: 40px; */
+        /* right: 110px; */
+        /* background-color: aliceblue; */
+    }
+    .ResumeHistorySmallSectionRowOptionsDropdown{
+        /* display: none;
+        flex-direction: column;
+        position: absolute;
+        margin-top: 5px; */
+        margin-left: -73px;
+        /* width: 200px; */
+        /* height: 100px; */
+        /* height: fit-content;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: white;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.212); */
+    }
+}

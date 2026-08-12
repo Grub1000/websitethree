@@ -1,9 +1,10 @@
 .ResumeUploadSection{
     width: 900px;
+    min-width: 250px;
     height: 240px;
     top: 0px;
     margin-top: 0px;
-    background-color: #24b1d428;
+    /* background-color: #24b1d428; */
     border: 2px dashed rgba(8, 160, 206, 0.781);
     border-radius: 8px;
 
@@ -47,4 +48,195 @@
 }
 .ResumeUploadDescriptionButton:hover{
     background-color: rgba(8, 193, 206, 0.637);
+}
+
+@media (max-width: 1380px){
+    .ResumeUploadSection{
+        width: 700px;
+
+
+
+        /* height: 240px;
+        top: 0px;
+        margin-top: 0px;
+        background-color: #24b1d428; */
+        /* border: 2px dashed rgba(8, 160, 206, 0.781); */
+        /* border-radius: 8px; */
+    }
+
+    .ResumeUploadIconWrapper{
+        /* float: left; */
+        width: 250px;
+        /* height: 240px; */
+        /* overflow: hidden; */
+        /* background-color: rgb(9, 255, 0); */
+    }
+
+    .ResumeUploadIconImage{
+        width: 250px;
+        margin-top: 31px;
+        /* height: 240px; */
+    }
+
+    .ResumeUploadDescriptionWrapper{
+        width: 450px;
+
+
+
+
+        /* float: right;
+        background-color: brown; */
+    }
+    .ResumeUploadDescriptionTitle{
+        margin-top: 50px;
+
+
+
+/* 
+        font-size: 22px;
+        font-family: "Inter", sans-serif;
+        color: rgb(31, 32, 32); */
+    }
+}
+
+@media (max-width: 1060px){
+    .ResumeUploadSection{
+        width: 600px;
+
+
+
+        /* height: 240px;
+        top: 0px;
+        margin-top: 0px;
+        background-color: #24b1d428; */
+        /* border: 2px dashed rgba(8, 160, 206, 0.781); */
+        /* border-radius: 8px; */
+    }
+
+    .ResumeUploadIconWrapper{
+        /* float: left; */
+        width: 220px;
+        /* height: 240px; */
+        /* overflow: hidden; */
+        /* background-color: rgb(9, 255, 0); */
+    }
+
+    .ResumeUploadIconImage{
+        width: 220px;
+        margin-top: 56px;
+        /* height: 240px; */
+    }
+
+    .ResumeUploadDescriptionWrapper{
+        width: 380px;
+
+
+
+
+        /* float: right;
+        background-color: brown; */
+    }
+    .ResumeUploadDescriptionTitle{
+        margin-top: 50px;
+
+
+
+/* 
+        font-size: 22px;
+        font-family: "Inter", sans-serif;
+        color: rgb(31, 32, 32); */
+    }
+}
+@media (max-width: 960px){
+    /* .ResumeUploadDescriptionTitle{
+        margin-top: 0px;
+    } */
+    .ResumeUploadSection{
+        width: 715px;
+        
+
+        /* height: 240px;
+        top: 0px;
+        margin-top: 0px;
+        background-color: #24b1d428; */
+        /* border: 2px dashed rgba(8, 160, 206, 0.781); */
+        /* border-radius: 8px; */
+    }
+
+    .ResumeUploadIconWrapper{
+        /* float: left; */
+        width: 250px;
+        /* height: 240px; */
+        /* overflow: hidden; */
+        /* background-color: rgb(9, 255, 0); */
+    }
+
+    .ResumeUploadIconImage{
+        width: 250px;
+        margin-top: 35px;
+        /* height: 240px; */
+    }
+
+    .ResumeUploadDescriptionWrapper{
+        width: 440px;
+
+        /* float: right;
+        background-color: brown; */
+    }
+    .ResumeUploadDescriptionTitle{
+        margin-top: 50px;
+        /* 
+        font-size: 22px;
+        font-family: "Inter", sans-serif;
+        color: rgb(31, 32, 32); */
+    }
+}
+@media (max-width: 760px){
+    .ResumeUploadSection{
+        width: calc(100% - 10px);
+        height: fit-content;
+        /* height: 240px;
+        top: 0px;
+        margin-top: 0px;
+        background-color: #24b1d428; */
+        /* border: 2px dashed rgba(8, 160, 206, 0.781); */
+        /* border-radius: 8px; */
+    }
+
+    .ResumeUploadIconWrapper{
+        float: none;
+        width: 50vw;
+        height: 50vw;
+        margin-left: 40%;
+        /* height: 240px; */
+        /* overflow: scroll; */
+        text-align: center;
+        /* background-color: rgb(9, 255, 0); */
+    }
+
+    .ResumeUploadIconImage{
+        /* width: 50%; */
+        width: 50vw;
+        height: 100%;
+        margin-top: 17%;
+        margin-left: 0px;
+        /* height: 240px; */
+        transform: scaleX(-1);
+        /* background-color: rgb(245, 255, 240); */
+    }
+
+    .ResumeUploadDescriptionWrapper{
+        width: calc(100% - 40px);
+        margin-top: -30px;
+        padding-left: 20px;
+        float: none;
+        /* background-color: brown; */
+    }
+    .ResumeUploadDescriptionTitle{
+        margin-top: 50px;
+        /* 
+        font-size: 22px;
+        font-family: "Inter", sans-serif;
+        color: rgb(31, 32, 32); */
+    }
 }
