@@ -7,10 +7,8 @@ import ResumeAnalyzerDashboardHeaderButton from "../components/ResumeAnalyzerDas
 import ResumeHistorySmallSection from "../components/ResumeHistorySmallSection.tsx"
 import ResumeAnalysisPopUp from "../components/ResumeAnalysisPopUp.tsx"
 
+
 import '../css/resume_analyzer_css/ResumeAnalyzerDashboardPage.css';
-
-
-
 
 
 import logo from "../assets/website_tab_logo.png"
@@ -96,6 +94,9 @@ export default function ResumeAnalyzerDashboardPage() {
                 {/* <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Documents</h2> */}
 
             </main>
+
+
+
 
 
 

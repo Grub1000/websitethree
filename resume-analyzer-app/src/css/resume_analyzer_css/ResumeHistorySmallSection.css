@@ -2,10 +2,7 @@
     font-family: "Inter", sans-serif;
     width:900px;
     height: fit-content;
-    /* border: 2px dashed ; */
-    /* border-radius: 8px; */
-    /* background-color: rgba(78, 211, 211, 0.219);
-    border: 2px dashed rgba(8, 160, 206, 0.781); */
+    /* background-color: aqua; */
 }
 .ResumeHistorySmallSectionColumnNamesWrapper{
     display: flex;

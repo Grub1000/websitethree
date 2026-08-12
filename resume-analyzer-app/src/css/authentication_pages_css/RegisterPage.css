@@ -1,10 +1,10 @@
 .RegisterPageWrapper{
     position: relative;
     width: 480px;
-    padding: 10px;
-    top: 15vh;
-    margin: auto;
     height: fit-content;
+    top: 15vh;
+    padding: 10px;
+    margin: auto;
     border-radius: 15px;
     background-color: white;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.158);
@@ -41,10 +41,10 @@
 }
 .RegisterPageOrContinueText{
     display: flex;
-    align-items: center;
     position: relative;
     /* width: fit-content; */
     left: -10px;
+    align-items: center;
     margin-bottom: 20px;
     font-size: 14px;
     color: #33333377;
@@ -81,17 +81,17 @@
 
 .RegisterPageInput{
     position: relative;
-    left: -10px;
     width: 370px;
     height: 40px;
+    left: -10px;
+    /* padding: 5px; */
+    padding-left: 15px;
+    padding-right: 15px;
     border: 1px solid #e7e7e7;
     margin: auto;
     margin-bottom: 10px;
     font-size: 15px;
     border-radius: 5px;
-    /* padding: 5px; */
-    padding-left: 15px;
-    padding-right: 15px;
     outline: none;
     color: #272727;
     
@@ -118,9 +118,10 @@
     position: relative;
     left: 124px;
     margin: auto;
-    font-size: 12px;
     margin-top: 10px;
     margin-bottom: 20px;
+    font-size: 12px;
+    
 }
 
 .RegisterPageButton{
@@ -128,14 +129,14 @@
     left: -10px;
     width: 400px;
     height: 50px;
+    padding-top: 5px;
     margin: auto;
     margin-bottom: 50px;
-    background-color: rgba(8, 160, 206, 0.781);
     border: 10px solid rgba(8, 160, 206, 0) !important;
-    padding-top: 5px;
     border: none;
     color: white;
     font-weight: bold;
+    background-color: rgba(8, 160, 206, 0.781);
     transition: background-color 0.5s ease;
 }
 .RegisterPageButton:hover{
@@ -144,9 +145,9 @@
 .RegisterPageErrorText{
     width: fit-content;
     margin: auto;
+    margin-top: 5px;
     color: #ff0000;
     font-size: 14px;
-    margin-top: 5px;
 }
 
 @media (max-width: 768px) {
@@ -181,8 +182,8 @@
     .RegisterPageSignUpLinkText{
         position: relative;
         width: fit-content;
-        white-space: nowrap;
         left: -10px;
+        white-space: nowrap;
         margin: auto;
         margin-top: 8px;
         margin-bottom: 20px;
@@ -190,12 +191,12 @@
         /* background-color: #5db7d3; */
     }
     .RegisterPageOrContinueText{
-        white-space: nowrap;
         display: flex;
-        align-items: center;
         position: relative;
         /* width: fit-content; */
         left: -10px;
+        white-space: nowrap;
+        align-items: center;
         margin-bottom: 20px;
         font-size: 14px;
         color: #33333377;
@@ -225,9 +226,9 @@
     }
 
     .RegisterPageForgotPasswordLink{
+        width: 100%;
         left: 0px;
         right: 0px;
-        width: 100%;
         text-align: end;
     }
 
@@ -239,9 +240,9 @@
         background-color: rgba(8, 193, 206, 0.637);
     }
    .RegisterPageErrorText{
+        margin-top: 5px;
         text-align: start;
         color: #ff0000;
         font-size: 14px;
-        margin-top: 5px;
     }
 }

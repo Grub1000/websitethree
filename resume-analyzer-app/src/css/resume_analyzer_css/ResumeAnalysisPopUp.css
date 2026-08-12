@@ -155,7 +155,7 @@
 .ResumeAnalysisPopUpDashboardOverallScoreCard,
 .ResumeAnalysisPopUpDashboardScoreCard,
 .ResumeAnalysisPopUpDashboardAnalysisCard,
-.analysis-footer {
+.ResumeAnalysisPopUpDashboardAnalysisFooter {
     border: 1px solid #33333a;
     background: #17171b;
     /* width: calc(100% - 38px); */
@@ -385,7 +385,7 @@
 }
 
 
-.analysis-list {
+.ResumeAnalysisPopUpDashboardAnalysisCardAnalysisList {
     display: grid;
     gap: 14px;
 
@@ -400,7 +400,7 @@
 }
 
 
-.analysis-list li {
+.ResumeAnalysisPopUpDashboardAnalysisCardAnalysisList li {
     position: relative;
 
     padding-left: 20px;
@@ -416,7 +416,7 @@
 }
 
 
-.analysis-list li::before {
+.ResumeAnalysisPopUpDashboardAnalysisCardAnalysisList li::before {
     content: "";
 
     position: absolute;
@@ -432,25 +432,25 @@
 
 
 .StrengthsCard
-.analysis-list li::before {
+.ResumeAnalysisPopUpDashboardAnalysisCardAnalysisList li::before {
     background: #49d17d;
 }
 
 
 .WeaknessCard
-.analysis-list li::before {
+.ResumeAnalysisPopUpDashboardAnalysisCardAnalysisList li::before {
     background: #ff8b61;
 }
 
 
-.keyword-list {
+.ResumeAnalysisPopUpDashboardKeywordList {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
 
 
-.keyword-chip {
+.ResumeAnalysisPopUpDashboardKeywordChip {
     padding: 8px 13px;
 
     border: 1px solid #35353d;
@@ -463,13 +463,13 @@
 }
 
 
-.recommendation-list {
+.ResumeAnalysisPopUpDashboardRecommendationList {
     display: grid;
     gap: 14px;
 }
 
 
-.recommendation-item {
+.ResumeAnalysisPopUpDashboardRecommendationItem {
     display: grid;
 
     grid-template-columns:
@@ -486,7 +486,7 @@
 }
 
 
-.recommendation-number {
+.ResumeAnalysisPopUpDashboardRecommendationNumber {
     color: #7c5cff;
 
     font-size: 0.78rem;
@@ -494,14 +494,14 @@
 }
 
 
-.recommendation-item h3 {
+.ResumeAnalysisPopUpDashboardRecommendationItem h3 {
     margin: 0 0 7px;
 
     font-size: 0.96rem;
 }
 
 
-.recommendation-item p {
+.ResumeAnalysisPopUpDashboardRecommendationItem p {
     margin: 0;
 
     color: #9f9fa6;
@@ -510,7 +510,7 @@
 }
 
 
-.analysis-footer {
+.ResumeAnalysisPopUpDashboardAnalysisFooter {
     display: grid;
 
     grid-template-columns:
@@ -522,7 +522,7 @@
 }
 
 
-.analysis-footer > div {
+.ResumeAnalysisPopUpDashboardAnalysisFooter > div {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -533,7 +533,7 @@
 }
 
 
-.analysis-footer span {
+.ResumeAnalysisPopUpDashboardAnalysisFooter span {
     color: #777780;
 
     font-size: 0.76rem;
@@ -541,7 +541,7 @@
 }
 
 
-.analysis-footer strong {
+.ResumeAnalysisPopUpDashboardAnalysisFooter strong {
     color: #d7d7db;
 
     font-size: 0.88rem;
@@ -562,7 +562,7 @@
     }
 
 
-    .analysis-footer {
+    .ResumeAnalysisPopUpDashboardAnalysisFooter {
         grid-template-columns:
             repeat(2, 1fr);
     }
@@ -607,12 +607,12 @@
     }
 
 
-    .analysis-footer {
+    .ResumeAnalysisPopUpDashboardAnalysisFooter {
         grid-template-columns: 1fr;
     }
 
 
-    .recommendation-item {
+    .ResumeAnalysisPopUpDashboardRecommendationItem {
         grid-template-columns: 1fr;
     }
 

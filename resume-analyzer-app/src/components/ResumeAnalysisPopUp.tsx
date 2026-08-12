@@ -1,4 +1,3 @@
-// import { resume } from "react-dom/server"
 import {type ResumeAnalysisResponseListItem} from "../api/resume_service"
 import "../css/resume_analyzer_css/ResumeAnalysisPopUp.css"
 
@@ -217,29 +216,29 @@ export default function ResumeAnalysisPopUp({
                         </span>
                     </div>
 
-                    <ul className="analysis-list">
-                        {/* <li className="analysis-list-item">
+                    <ul className="ResumeAnalysisPopUpDashboardAnalysisCardAnalysisList">
+                        {/* <li className="ResumeAnalysisPopUpDashboardAnalysisCardAnalysisListItem">
                             Strong full-stack development background with
                             modern frontend and backend technologies.
                         </li>
 
-                        <li className="analysis-list-item">
+                        <li className="ResumeAnalysisPopUpDashboardAnalysisCardAnalysisListItem">
                             Relevant machine learning and artificial intelligence
                             project experience.
                         </li >
 
-                        <li className="analysis-list-item">
+                        <li className="ResumeAnalysisPopUpDashboardAnalysisCardAnalysisListItem">
                             Demonstrates practical AWS deployment and cloud
                             infrastructure knowledge.
                         </li>
 
-                        <li className="analysis-list-item">
+                        <li className="ResumeAnalysisPopUpDashboardAnalysisCardAnalysisListItem">
                             Technical certifications reinforce the skills
                             listed throughout the resume.
                         </li> */}
 
                         {resumeAnalyses[0].strengths.map((strength) => (
-                            <li className="analysis-list-item" key={strength}>
+                            <li className="ResumeAnalysisPopUpDashboardAnalysisCardAnalysisListItem" key={strength}>
                                 {strength}
                             </li>
                         ))}
@@ -267,23 +266,23 @@ export default function ResumeAnalysisPopUp({
                         </span>
                     </div>
 
-                    <ul className="analysis-list">
-                        {/* <li className="analysis-list-item">
+                    <ul className="ResumeAnalysisPopUpDashboardAnalysisCardAnalysisList">
+                        {/* <li className="ResumeAnalysisPopUpDashboardAnalysisCardAnalysisListItem">
                             Several project descriptions could include more
                             measurable outcomes.
                         </li>
 
-                        <li className="analysis-list-item">
+                        <li className="ResumeAnalysisPopUpDashboardAnalysisCardAnalysisListItem">
                             Some technical experience is described too broadly.
                         </li>
 
-                        <li className="analysis-list-item">
+                        <li className="ResumeAnalysisPopUpDashboardAnalysisCardAnalysisListItem">
                             Additional production machine learning experience
                             would improve role alignment.
                         </li> */}
 
                         {resumeAnalyses[0].weaknesses.map((weakness) => (
-                            <li className="analysis-list-item" key={weakness}>
+                            <li className="ResumeAnalysisPopUpDashboardAnalysisCardAnalysisListItem" key={weakness}>
                                 {weakness}
                             </li>
                         ))}
@@ -315,7 +314,7 @@ export default function ResumeAnalysisPopUp({
 
                 </div>
 
-                <div className="keyword-list">
+                <div className="ResumeAnalysisPopUpDashboardKeywordList">
 
                     {/* <span className="keyword-chip">
                         Docker
@@ -341,7 +340,7 @@ export default function ResumeAnalysisPopUp({
                         Feature Engineering
                     </span> */}
                     {resumeAnalyses[0].missing_keywords.map((missingKeyword)=>
-                        <span className="keyword-chip" key={missingKeyword}>
+                        <span className="ResumeAnalysisPopUpDashboardKeywordChip" key={missingKeyword}>
                             {missingKeyword}
                         </span>
                     )}
@@ -372,7 +371,7 @@ export default function ResumeAnalysisPopUp({
                 </div>
 
 
-                <div className="recommendation-list">
+                <div className="ResumeAnalysisPopUpDashboardRecommendationList">
 
                     {/* <article className="recommendation-item">
 
@@ -455,9 +454,9 @@ export default function ResumeAnalysisPopUp({
                     </article> */}
 
                     {resumeAnalyses[0].recommendations.map((recommendation)=>
-                        <article className="recommendation-item">
+                        <article className="ResumeAnalysisPopUpDashboardRecommendationItem">
 
-                        <span className="recommendation-number">
+                        <span className="ResumeAnalysisPopUpDashboardRecommendationNumber">
                             00
                         </span>
                     
@@ -482,7 +481,7 @@ export default function ResumeAnalysisPopUp({
             </section>
 
 
-            <section className="analysis-footer">
+            <section className="ResumeAnalysisPopUpDashboardAnalysisFooter">
 
                 <div>
                     <span>
