@@ -121,3 +121,84 @@
   margin-left: 360px;
   background-color: rgba(0, 204, 255, 0.76);
 }
+
+.ResumeUploadPopUpSelectedFileTextWrapper{
+    /* font-family: ; */
+    position: relative;
+    width: 200px;
+    height: fit-content;
+    top: -40px;
+    left: 55px;
+    /* padding-left: 10px; */
+    /* background-color: aqua; */
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    overflow: hidden;
+    text-wrap-mode: nowrap;
+    color: rgba(51, 51, 51, 0.719);
+    
+}
+.ResumeUploadPopUpSelectedFileNameText{
+    display: block;
+    /* background-color: bisque; */
+    /* margin: none !important; */
+    
+}
+.ResumeUploadPopUpSelectedFileSizeText{
+    display: block;
+    /* background-color: rgb(243, 163, 163); */
+    /* margin: none !important; */
+}
+.ResumeUploadPopUpFileUploadConfirmationButton{
+    float: right;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    top: -170px;
+    left: -150px;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(8, 160, 206, 0.781);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+}
+.ResumeUploadPopUpFileUploadConfirmationButton:hover{
+    background-color: rgba(8, 160, 206, 0.637);
+}
+.ResumeUploadPopUpFileUploadConfirmationButton:disabled{
+    background-color: rgba(8, 160, 206, 0.637);
+    color: white;
+    border: none;
+    cursor: not-allowed;
+}
+.ResumeUploadPopUpUploadSuccessMessage{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    top: -40px;
+    left: 55px;
+    font-weight: 600;
+    color: rgba(8, 160, 206, 0.781);
+    /* background-color: aqua; */
+
+}
+.ResumeUploadPopUpUploadErrorMessage{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    top: -40px;
+    left: 55px;
+    /* background-color: aqua; */
+}
+.ResumeUploadPopUpResumeIDMessage{
+    position: relative;
+    width: 200px;
+    height: fit-content;
+    top: -40px;
+    left: 55px;
+}

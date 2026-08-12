@@ -33,7 +33,7 @@ export default function ResumeUploadPopUp({
         const [message, setMessage] = useState("");
         const [error, setError] = useState("");
         const [resumeId, setResumeId] = useState("");
-    
+        console.log(resumeId)
         function validateFile(file: File): string | null {
             if (!ALLOWED_FILE_TYPES.includes(file.type)) {
                 return "Only PDF and DOCX files are supported.";
@@ -205,42 +205,37 @@ export default function ResumeUploadPopUp({
                     <img src={whiteArrowIcon} className="ResumeUploadPopUpFileUploadDropSquareArrowIcon"></img>
                 </label>
 
-                {selectedFile && (
-                    <div className="ResumeSelectedFile">
-                        <p>{selectedFile.name}</p>
-
-                        <p>
+                {selectedFile && !uploading &&  (
+                    <div className="ResumeUploadPopUpSelectedFileTextWrapper">
+                        <p className="ResumeUploadPopUpSelectedFileNameText" style={{margin: 0}}>{selectedFile.name}</p>
+                        <p className="ResumeUploadPopUpSelectedFileSizeText" style={{margin: 0}}>
                             {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
                         </p>
                     </div>
                 )}
 
-                {selectedFile && (<button
-                    type="button"
-                    onClick={handleUploadAndExtractAndAnalysis}
-                    disabled={uploading || !selectedFile}
-                >
-                    {uploading ? "Uploading..." : "Upload Résumé"}
+                {selectedFile && (<button type="button" onClick={handleUploadAndExtractAndAnalysis} disabled={uploading || !selectedFile} className="ResumeUploadPopUpFileUploadConfirmationButton">
+                    {uploading ? "Uploading Resume..." : "Upload Resume"}
                 </button>
                 )}
 
                 {message && (
-                    <p className="ResumeUploadSuccess">
+                    <p className="ResumeUploadPopUpUploadSuccessMessage" style={{margin: 0}}>
                         {message}
                     </p>
                 )}
 
                 {error && (
-                    <p className="ResumeUploadError">
+                    <p className="ResumeUploadPopUpUploadErrorMessage" style={{margin: 0}}>
                         {error}
                     </p>
                 )}
 
-                {resumeId && (
-                    <p>
+                {/* {resumeId && (
+                    <p className="ResumeUploadPopUpResumeIDMessage" style={{margin: 0}}>
                         Resume ID: {resumeId}
                     </p>
-                )}
+                )} */}
             </div>
         </div>
     )

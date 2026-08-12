@@ -3,35 +3,21 @@ import {type ResumeAnalysisResponseListItem} from "../api/resume_service"
 import "../css/resume_analyzer_css/ResumeAnalysisPopUp.css"
 
 export default function ResumeAnalysisPopUp({
-    resumeAnalyses
+    resumeAnalyses,
+    exitAnalysis
 }:{
     resumeAnalyses: ResumeAnalysisResponseListItem[],
-}
+    exitAnalysis: ()=> void;
+}   
 ){
     return(
-        // <div className="ResumeAnalysisPopUpWrapper">
-        //     {/* {resumeAnalyses.map((resume)=>
-        //     <div>
-        //         <div>
-        //             {resume.scores.overall}
-        //         </div>
-        //         <div>
-        //             {resume.created_at}
-        //         </div>
-        //     </div>
-            
-        //     )} */}
-    
+    <div className="ResumeAnalysisPopUpWrapper">
+        <div className="ResumeAnalysisPopUpDashboard">
 
-
-        // </div>
-    <div className="resume-analysis-dashboard-wrapper">
-        <div className="resume-analysis-dashboard">
-
-            <section className="dashboard-header">
+            <section className="ResumeAnalysisPopUpDashboardHeader">
 
                 <div>
-                    <p className="dashboard-eyebrow">
+                    <p className="ResumeAnalysisPopUpDashboardEyebrow">
                         Resume Analysis
                     </p>
 
@@ -39,15 +25,16 @@ export default function ResumeAnalysisPopUp({
                         General Analysis
                     </h1>
 
-                    <div className="dashboard-meta">
-                        <span className="status-badge status-completed">
+                    <div className="ResumeAnalysisPopUpDashboardMetaDataWrapper">
+                        <span className="ResumeAnalysisPopUpDashboardMetaDataStatusBadge ResumeAnalysisPopUpDashboardMetaDataCompleteStatus">
                             {/* Completed */}
                             {resumeAnalyses[0].status}
                         </span>
 
                         <span>
+                            Analysis ID:
                             {/* Analysis ID: 45ed8d99 */}
-                            {resumeAnalyses[0].analysis_id}
+                            {" " + resumeAnalyses[0].analysis_id}
                         </span>
 
                         <span>
@@ -60,19 +47,19 @@ export default function ResumeAnalysisPopUp({
                     </div>
                 </div>
 
-                <button className="reanalyze-button">
-                    Analyze Again
+                <button className="ResumeAnalysisPopUpDashboardExitButton" onClick={() => exitAnalysis()}>
+                    Exit Analysis
                 </button>
 
             </section>
 
 
-            <section className="score-overview">
+            <section className="ResumeAnalysisPopUpDashboardScoreOverviewSection">
 
-                <div className="overall-score-card">
+                <div className="ResumeAnalysisPopUpDashboardOverallScoreCard">
 
-                    <div className="overall-score-ring" 
-                         style={{background: "radial-gradient(circle at center,#17171b 62%,transparent 63%),conic-gradient(#7c5cff 0 " + resumeAnalyses[0].scores.overall + "%,#29292f " + resumeAnalyses[0].scores.overall + "% 100%)"}}
+                    <div className="ResumeAnalysisPopUpDashboardOverallScoreRing" 
+                         style={{background: "radial-gradient(circle at center,#17171b 62%,transparent 63%),conic-gradient(#55ddff 0 " + resumeAnalyses[0].scores.overall + "%,#29292f " + resumeAnalyses[0].scores.overall + "% 100%)"}}
                          >
                         <span>
                             {/* 88 */}
@@ -85,7 +72,7 @@ export default function ResumeAnalysisPopUp({
                     </div>
 
                     <div>
-                        <p className="score-label">
+                        <p className="ResumeAnalysisPopUpDashboardOverallScoreLabel">
                             Overall Score
                         </p>
 
@@ -103,7 +90,7 @@ export default function ResumeAnalysisPopUp({
                             : null }
                         </h2>
 
-                        <p className="score-description">
+                        <p className="ResumeAnalysisPopUpDashboardOverallScoreDescription">
                             {/* Your resume is well structured and competitive,
                             with a few areas that could be improved. */}
                             {resumeAnalyses[0].scores.overall 
@@ -121,10 +108,10 @@ export default function ResumeAnalysisPopUp({
                 </div>
 
 
-                <div className="score-grid">
+                <div className="ResumeAnalysisPopUpDashboardScoreGridWrapper">
 
-                    <div className="score-card">
-                        <div className="score-card-header">
+                    <div className="ResumeAnalysisPopUpDashboardScoreCard">
+                        <div className="ResumeAnalysisPopUpDashboardScoreCardHeader">
                             <span>
                                 ATS
                             </span>
@@ -134,17 +121,17 @@ export default function ResumeAnalysisPopUp({
                             </strong>
                         </div>
 
-                        <div className="score-bar">
+                        <div className="ResumeAnalysisPopUpDashboardScoreCardBar">
                             <div
-                                className="score-bar-fill"
+                                className="ResumeAnalysisPopUpDashboardScoreCardBarFill"
                                 style={{width: "" + resumeAnalyses[0].scores.ats + "%"}}
                             ></div>
                         </div>
                     </div>
 
 
-                    <div className="score-card">
-                        <div className="score-card-header">
+                    <div className="ResumeAnalysisPopUpDashboardScoreCard">
+                        <div className="ResumeAnalysisPopUpDashboardScoreCardHeader">
                             <span>
                                 Keywords
                             </span>
@@ -155,17 +142,17 @@ export default function ResumeAnalysisPopUp({
                             </strong>
                         </div>
 
-                        <div className="score-bar">
+                        <div className="ResumeAnalysisPopUpDashboardScoreCardBar">
                             <div
-                                className="score-bar-fill"
+                                className="ResumeAnalysisPopUpDashboardScoreCardBarFill"
                                 style={{width: "" + resumeAnalyses[0].scores.keywords + "%"}}
                             ></div>
                         </div>
                     </div>
 
 
-                    <div className="score-card">
-                        <div className="score-card-header">
+                    <div className="ResumeAnalysisPopUpDashboardScoreCard">
+                        <div className="ResumeAnalysisPopUpDashboardScoreCardHeader">
                             <span>
                                 Experience
                             </span>
@@ -176,17 +163,17 @@ export default function ResumeAnalysisPopUp({
                             </strong>
                         </div>
 
-                        <div className="score-bar">
+                        <div className="ResumeAnalysisPopUpDashboardScoreCardBar">
                             <div
-                                className="score-bar-fill"
+                                className="ResumeAnalysisPopUpDashboardScoreCardBarFill"
                                 style={{width: "" + resumeAnalyses[0].scores.experience + "%"}}
                             ></div>
                         </div>
                     </div>
 
 
-                    <div className="score-card">
-                        <div className="score-card-header">
+                    <div className="ResumeAnalysisPopUpDashboardScoreCard">
+                        <div className="ResumeAnalysisPopUpDashboardScoreCardHeader">
                             <span>
                                 Skills
                             </span>
@@ -197,9 +184,9 @@ export default function ResumeAnalysisPopUp({
                             </strong>
                         </div>
 
-                        <div className="score-bar">
+                        <div className="ResumeAnalysisPopUpDashboardScoreCardBar">
                             <div
-                                className="score-bar-fill"
+                                className="ResumeAnalysisPopUpDashboardScoreCardBarFill"
                                 style={{width: "" + resumeAnalyses[0].scores.skills + "%"}}
                             ></div>
                         </div>
@@ -210,13 +197,13 @@ export default function ResumeAnalysisPopUp({
             </section>
 
 
-            <section className="analysis-grid">
+            <section className="ResumeAnalysisPopUpDashboardAnalysisGrid">
 
-                <div className="analysis-card strengths-card">
+                <div className="ResumeAnalysisPopUpDashboardAnalysisCard StrengthsCard">
 
-                    <div className="analysis-card-heading">
+                    <div className="ResumeAnalysisPopUpDashboardAnalysisCardHeading">
                         <div>
-                            <span className="section-icon">
+                            <span className="ResumeAnalysisPopUpDashboardAnalysisCardSectionIcon">
                                 +
                             </span>
 
@@ -225,7 +212,7 @@ export default function ResumeAnalysisPopUp({
                             </h2>
                         </div>
 
-                        <span className="item-count">
+                        <span className="ResumeAnalysisPopUpDashboardAnalysisCardItemCount">
                             {resumeAnalyses[0].strengths.length}
                         </span>
                     </div>
@@ -261,11 +248,11 @@ export default function ResumeAnalysisPopUp({
                 </div>
 
 
-                <div className="analysis-card weaknesses-card">
+                <div className="ResumeAnalysisPopUpDashboardAnalysisCard WeaknessCard">
 
-                    <div className="analysis-card-heading">
+                    <div className="ResumeAnalysisPopUpDashboardAnalysisCardHeading">
                         <div>
-                            <span className="section-icon">
+                            <span className="ResumeAnalysisPopUpDashboardAnalysisCardSectionIcon">
                                 !
                             </span>
 
@@ -274,7 +261,7 @@ export default function ResumeAnalysisPopUp({
                             </h2>
                         </div>
 
-                        <span className="item-count">
+                        <span className="ResumeAnalysisPopUpDashboardAnalysisCardItemCount">
                             {/* 3 */}
                             {resumeAnalyses[0].weaknesses.length}
                         </span>
@@ -307,12 +294,12 @@ export default function ResumeAnalysisPopUp({
             </section>
 
 
-            <section className="analysis-card keywords-card">
+            <section className="ResumeAnalysisPopUpDashboardAnalysisCard keywords-card">
 
-                <div className="analysis-card-heading">
+                <div className="ResumeAnalysisPopUpDashboardAnalysisCardHeading">
 
                     <div>
-                        <span className="section-icon">
+                        <span className="ResumeAnalysisPopUpDashboardAnalysisCardSectionIcon">
                             #
                         </span>
 
@@ -321,7 +308,7 @@ export default function ResumeAnalysisPopUp({
                         </h2>
                     </div>
 
-                    <span className="item-count">
+                    <span className="ResumeAnalysisPopUpDashboardAnalysisCardItemCount">
                         {/* 6 */}
                         {resumeAnalyses[0].missing_keywords.length}
                     </span>
@@ -363,12 +350,12 @@ export default function ResumeAnalysisPopUp({
             </section>
 
 
-            <section className="analysis-card recommendations-card">
+            <section className="ResumeAnalysisPopUpDashboardAnalysisCard recommendations-card">
 
-                <div className="analysis-card-heading">
+                <div className="ResumeAnalysisPopUpDashboardAnalysisCardHeading">
 
                     <div>
-                        <span className="section-icon">
+                        <span className="ResumeAnalysisPopUpDashboardAnalysisCardSectionIcon">
                             →
                         </span>
 
@@ -377,7 +364,7 @@ export default function ResumeAnalysisPopUp({
                         </h2>
                     </div>
 
-                    <span className="item-count">
+                    <span className="ResumeAnalysisPopUpDashboardAnalysisCardItemCount">
                         {/* 4 */}
                         {resumeAnalyses[0].recommendations.length}
                     </span>
