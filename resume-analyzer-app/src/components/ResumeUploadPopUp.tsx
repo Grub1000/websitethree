@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { uploadResume, extractResumeText, analyzeResume } from "../api/resume_service";
 
 import "../css/resume_analyzer_css/ResumeUploadPopUp.css"
@@ -33,6 +33,35 @@ export default function ResumeUploadPopUp({
         const [error, setError] = useState("");
         const [resumeId, setResumeId] = useState("");
         console.log(resumeId)
+
+        useEffect(()=>{
+            // Disabling Scrolling Feature needed for the ResumeUploadExtractAnalysisPopUp to Take control of Mobile. Makes Height look correct.
+            // Block mouse wheel, touch moves, and keyboard scrolling
+            function preventDefault(e: Event) {
+                e.preventDefault();
+            }
+            // Call this to lock the page completely
+            function disablePageScroll() {
+                window.addEventListener('wheel', preventDefault, { passive: false });
+                window.addEventListener('touchmove', preventDefault, { passive: false });
+            }
+            // // Call this to restore scrolling later
+            function enablePageScroll() {
+                window.removeEventListener('wheel', preventDefault);
+                window.removeEventListener('touchmove', preventDefault);
+            }
+            disablePageScroll()
+            return () => {
+                // 2. Dismount/Cleanup code goes here (runs on component unmount)
+                console.log('Component is dismounting...');
+                enablePageScroll()
+            };
+        },[])
+
+
+
+
+
         function validateFile(file: File): string | null {
             if (!ALLOWED_FILE_TYPES.includes(file.type)) {
                 return "Only PDF and DOCX files are supported.";
@@ -112,8 +141,9 @@ export default function ResumeUploadPopUp({
                 setError("Select a resume before uploading.");
                 return;
             }
-    
+            
             setUploading(true);
+            // disablePageScroll()
             setMessage("Uploading Resume...");
             setError("");
             setResumeId("");
@@ -173,10 +203,28 @@ export default function ResumeUploadPopUp({
                 );
             } finally {
                 setUploading(false);
+                // enablePageScroll()
             }
         }
 
+        // // Disabling Scrolling Feature needed for the ResumeUploadExtractAnalysisPopUp to Take control of Mobile. Makes Height look correct.
+        // // Block mouse wheel, touch moves, and keyboard scrolling
+        // function preventDefault(e: Event) {
+        //     e.preventDefault();
+        // }
 
+        // // Call this to lock the page completely
+        // function disablePageScroll() {
+        //     window.addEventListener('wheel', preventDefault, { passive: false });
+        //     window.addEventListener('touchmove', preventDefault, { passive: false });
+        // }
+
+        // // Call this to restore scrolling later
+        // function enablePageScroll() {
+        //     window.removeEventListener('wheel', preventDefault);
+        //     window.removeEventListener('touchmove', preventDefault);
+        // }
+    
 
 
     return(
@@ -206,16 +254,11 @@ export default function ResumeUploadPopUp({
 
                 {selectedFile && !uploading &&  (
                     <div className="ResumeUploadPopUpSelectedFileTextWrapper">
-                        <p className="ResumeUploadPopUpSelectedFileNameText" style={{margin: 0}}>{selectedFile.name}</p>
+                        <p className="ResumeUploadPopUpSelectedFileNameText" style={{margin: 0}}>{selectedFile.name.length > 31 ? selectedFile.name.slice(0, 31) + '...' : selectedFile.name}</p>
                         <p className="ResumeUploadPopUpSelectedFileSizeText" style={{margin: 0}}>
                             {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
                         </p>
                     </div>
-                )}
-
-                {selectedFile && (<button type="button" onClick={handleUploadAndExtractAndAnalysis} disabled={uploading || !selectedFile} className="ResumeUploadPopUpFileUploadConfirmationButton">
-                    {uploading ? "Uploading Resume..." : "Upload Resume"}
-                </button>
                 )}
 
                 {message && (
@@ -229,6 +272,13 @@ export default function ResumeUploadPopUp({
                         {error}
                     </p>
                 )}
+
+                {selectedFile && (<button type="button" onClick={handleUploadAndExtractAndAnalysis} disabled={uploading || !selectedFile} className="ResumeUploadPopUpFileUploadConfirmationButton">
+                    {uploading ? "Uploading Resume..." : "Upload Resume"}
+                </button>
+                )}
+
+                
 
                 {/* {resumeId && (
                     <p className="ResumeUploadPopUpResumeIDMessage" style={{margin: 0}}>

@@ -202,3 +202,233 @@
     top: -40px;
     left: 55px;
 }
+
+@media (max-width: 960px){
+    .ResumeUploadPopUp{
+        width: 680px;
+        height: 400px;
+        margin: auto;
+        margin-top: 25vh;
+        background-color: aliceblue;
+    }
+    .ResumeUploadPopUpFileUploadConfirmationButton{
+        /* float: right;
+        position: relative;
+        width: fit-content;
+        height: fit-content;
+        top: -170px; */
+        left: -40px;
+        /* padding: 10px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        background-color: rgba(8, 160, 206, 0.781);
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 18px; */
+    }
+}
+@media (max-width: 760px){
+    .ResumeUploadPopUp{
+        width: 480px;
+        height: 500px;
+        margin: auto;
+        margin-top: 10vh;
+        background-color: aliceblue;
+    }
+    .ResumeUploadPopUpTitle{
+        /* width: calc(100% - 80px);
+        margin: auto;
+        font-family: "Inter", sans-serif;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.26); */
+        margin-bottom: 0px;
+        /* font-size: 22px;
+        color: rgb(51, 51, 51); */
+    }
+    .ResumeUploadPopUpExitIconButton{
+        /* float: right;
+        position: relative;
+        width: 48px; */
+        top: -60px;
+        /* left: -4px;
+        cursor: pointer;
+        padding: none;
+        outline: none;
+        border: none;
+        background-color: rgb(204, 123, 24);
+        background-color: transparent; */
+    }
+    .ResumeUploadPopUpFileUploadConfirmationButton{
+        float: none;
+        top: 0px;
+        left: 165px;
+        margin-top: 20px;
+    }
+    .ResumeUploadPopUpUploadSuccessMessage{
+        position: relative;
+        width: fit-content;
+        height: fit-content;
+        top: -40px;
+        left: 55px;
+        /* padding-bottom: 40px; */
+        font-weight: 600;
+        color: rgba(8, 160, 206, 0.781);
+        /* background-color: aqua; */
+    }
+}
+@media (max-width: 540px){
+    .ResumeUploadPopUp{
+        width: calc(100% - 50px);
+        height: fit-content;
+        padding-bottom: 30px;
+        margin: auto;
+        margin-top: 6vh;
+        background-color: aliceblue;
+    }
+    
+    .ResumeUploadPopUpTitle{   
+        margin-bottom: 0px;
+        font-size: 18px;
+        color: rgb(51, 51, 51);
+    }
+    .ResumeUploadPopUpExitIconButton{
+        transform: scale(.7);
+        top: -60px;
+        left: -4px;
+        
+    }
+    .ResumeUploadPopUpFileUploadConfirmationButton{
+        display: block;
+        float: none;
+        top: 0px;
+        left: 0px;
+        /* margin-top: 20px; */
+        margin: auto;
+        /* background-color: aqua; */
+    }
+    .ResumeUploadPopUpUploadSuccessMessage{
+        position: relative;
+        width: fit-content;
+        height: fit-content;
+        top: -40px;
+        left: 55px;
+        /* padding-bottom: 40px; */
+        font-weight: 600;
+        color: rgba(8, 160, 206, 0.781);
+        /* background-color: aqua; */
+    }
+    .ResumeUploadPopUpFileUploadDropSquare{
+        width: calc(100% - 50px);
+        height: fit-content;
+        border: 1px solid #ccc;
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+        margin-top: 0px;
+        /* margin-top: -10px; */
+        /* margin: auto; */
+        /* align-items: center;
+        justify-content: center;
+        text-align: center; */
+        cursor: pointer;
+        border-radius: 6px;
+        font-family: "Inter", sans-serif;
+        transition: border-color 0.2s ease;
+    }
+    .ResumeUploadPopUpFileUploadDropSquareTitle{
+        margin-left: 15px;
+        font-size: 17px;
+        margin-bottom: 0px;
+        color: rgb(51, 51, 51)
+    }
+    .ResumeUploadPopUpFileUploadDropSquareDescription{
+        width: 60%;
+        margin-top: 4px;
+        margin-left: 15px;
+        font-size: 14px;
+        color: rgba(51, 51, 51, 0.719)
+    }
+    .ResumeUploadPopUpFileUploadDropSquareArrowIcon{
+        /* height: 30px; */
+        /* float: right; */
+        width: 20px;
+        padding: 5px;
+        border-radius: 50%;
+        margin: none;
+        /* margin-top: 6px; */
+        margin-left: 85%;
+        margin-bottom: 10px;
+        background-color: rgb(0, 204, 255);
+        transition: all .2s ease;
+    }
+        .ResumeUploadPopUpFileUploadDropSquare:hover .ResumeUploadPopUpFileUploadDropSquareArrowIcon {
+        margin-left: 85%;
+        left: 10px;
+        background-color: rgba(0, 204, 255, 0.76);
+    }
+        .ResumeUploadPopUpSelectedFileTextWrapper{
+        /* font-family: ; */
+        position: relative;
+        width: 60%;
+        height: fit-content;
+        top: -40px;
+        left: 36px;
+        /* padding-left: 10px; */
+        /* background-color: aqua; */
+        font-family: "Inter", sans-serif;
+        font-size: 10px;
+        overflow: hidden;
+        /* text-wrap-mode: nowrap; */
+        color: rgba(51, 51, 51, 0.719);
+        
+    }
+    .ResumeUploadPopUpUploadSuccessMessage{
+        position: relative;
+        width: fit-content;
+        height: fit-content;
+        top: -40px;
+        left: 37px;
+        font-weight: 700;
+        font-size: 12px;
+        color: rgba(8, 160, 206, 0.781);
+        /* background-color: aqua; */
+
+    }
+}
+@media(max-width: 330px){
+    .ResumeUploadPopUpFileUploadDropSquareArrowIcon{
+        /* height: 30px; */
+        /* float: right; */
+        width: 20px;
+        padding: 5px;
+        border-radius: 50%;
+        margin: none;
+        /* margin-top: 6px; */
+        margin-left: 80%;
+        margin-bottom: 10px;
+        background-color: rgb(0, 204, 255);
+        transition: all .2s ease;
+    }
+        .ResumeUploadPopUpFileUploadDropSquare:hover .ResumeUploadPopUpFileUploadDropSquareArrowIcon {
+        margin-left: 80%;
+        left: 10px;
+        background-color: rgba(0, 204, 255, 0.76);
+    }
+
+    .ResumeUploadPopUpUploadSuccessMessage{
+        position: relative;
+        width: 50%;
+        height: fit-content;
+        top: -40px;
+        left: 37px;
+        font-weight: 600;
+        font-size: 12px;
+        color: rgba(8, 160, 206, 0.781);
+        /* background-color: aqua; */
+    }
+    
+}

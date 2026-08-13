@@ -1,4 +1,5 @@
 .ResumeUploadExtractAnalysisPopUpWrapper{
+    /* display: block !important; */
     z-index: 102;
     width: 100vw;
     height: 100vh;
@@ -42,4 +43,43 @@
     font-size: 20px;
     text-align: center;
     color: rgb(246, 252, 253);
+}
+@media(max-width: 500px){
+    .ResumeUploadExtractAnalysisPopUpImage{
+    display: block;
+    position: relative;
+    width: 400px;
+    height: fit-content;
+    margin: auto;
+    }
+    /* HTML: <div class="loader"></div> */
+    .loader {
+    position: relative;
+    height: 4px;
+    width: calc(100% - 100px);
+    margin: auto;
+    --c:no-repeat linear-gradient(#29dd29 0 0);
+    background: var(--c),var(--c),#ffffff;
+    background-size: 60% 100%;
+    animation: l16 3s infinite;
+    }
+    .ResumeUploadExtractAnalysisPopUpLoadingMessage{
+        /* background-color: #35b6c7; */
+        /* display: block;
+        position: relative; */
+        width: calc(100% - 50px);
+        margin: auto;
+        margin-top: 15px;
+        font-size: 25px;
+        text-align: center;
+        color: white;
+    }
+    .ResumeUploadExtractAnalysisPopUpTimeToFinishMessage{
+        width: calc(100% - 20px);
+        margin: auto;
+        margin-top: 5px;
+        font-size: 17px;
+        text-align: center;
+        color: rgb(246, 252, 253);
+    }
 }
