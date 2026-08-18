@@ -1,19 +1,26 @@
 // import { useNavigate } from "react-router-dom";
 // import { useAuth } from "../context/AuthContext";
 import { useState, useEffect } from 'react'
+
+
+// Component Imports
 import ResumeUploadSection from "../components/resume_analyzer_components/ResumeUploadSection.tsx";
 // import ResumeHistorySection from "../components/ResumeHistorySection.tsx";
 import ResumeAnalyzerDashboardHeaderButton from "../components/resume_analyzer_components/ResumeAnalyzerDashboardHeaderButton.tsx";
 import ResumeHistorySmallSection from "../components/resume_analyzer_components/ResumeHistorySmallSection.tsx"
 import ResumeAnalysisPopUp from "../components/resume_analyzer_components/ResumeAnalysisPopUp.tsx"
+import HeaderBurgerDropdownNav from "../components/homepage_components/HeaderBurgerDropdownNav.tsx"
 
 // Styling Sheet Import
 import '../css/resume_analyzer_css/ResumeAnalyzerDashboardPage.css';
+import "../css/home_page_css/HeaderBurgerDropdownNav.css"
 
 // Local Asset Imports
 import logo from "../assets/website_tab_logo.png"
 import profileButtonIcon from "../assets/profile_button_icon_svg.svg"
 import profileButtonChevronIcon from "../assets/burger_menu_submenu_chevron_icon_svg.svg"
+import burgerMenuIconSVG from "../assets/burger_menu_svg.svg" 
+import burgerMenuExitIconSVG from "../assets/burger_menu_exit_svg.svg"
 
 // React Router Imports
 import { useNavigate } from "react-router-dom";
@@ -29,19 +36,31 @@ export default function ResumeAnalyzerDashboardPage() {
     const navigate = useNavigate();
 
     const { logout } = useAuth();
-    
+      
     const [buttons] = useState({
-        button1: {order: 0, title: "Dashboard", link: ""},
-        button2: {order: 1, title: "Documents", link: ""},
-        button3: {order: 2, title: "Find Jobs", link: ""},
-        button4: {order: 3, title: "My Saved Jobs", link: ""},
+        button1: {order: 0, title: "Dashboard", link: "", dropdownButtons: {first: {title: "Dashboard", link: "/resume-analyzer", description: "How Good is Your Resume?"}, second: {title: "More Coming Soon...", link: "/", description: "Coming Soon..."}}},
+        button2: {order: 1, title: "Documents", link: "", dropdownButtons: {first: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}, second: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}}},
+        button3: {order: 2, title: "Find Jobs", link: "", dropdownButtons: {first: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}}},
+        button4: {order: 3, title: "My Saved Jobs", link: "", dropdownButtons: {first: {title: "Absolutely Free!", link: "/", description: "Resume Analyzer is 100% Free"}}},
+    
+        // button1: {order: 0, title: "Dashboard", link: ""},
+        // button2: {order: 1, title: "Documents", link: ""},
+        // button3: {order: 2, title: "Find Jobs", link: ""},
+        // button4: {order: 3, title: "My Saved Jobs", link: ""},
+
         // button5: {order: 4, title: "", link: ""},
         // button5: {order: 4, title: "Chicken", link: ""},
         // button6: {order: 5, title: "Noodle", link: ""},
         // button7: {order: 6, title: "Soup", link: ""}
       })
 
+    const [burgerDropdownFooterButtons] = useState({
+        button1: {title: "My Profile", link: "/profile"},
+        button2: {title: "Home", link: "/"},
+    })
     const headerButtonsArray = Object.values(buttons); // Convert the buttons object into an array of button objects
+
+    // const burgerDropdownFooterButtonsArray = Object.values(burgerDropdownFooterButtons);
 
     let [reloadKey, setReloadKey] = useState(0)
 
@@ -85,6 +104,26 @@ export default function ResumeAnalyzerDashboardPage() {
         selectedDropdown.style.display = "block"
     }
 
+      const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    // const [isLoading, setIsLoading] = useState(false);
+
+    const handleBurgerDropdown = (dropdownOpen: boolean) => {
+        const hamburgerDropdown = document.getElementById("headerBurgerDropdownWrapper") as HTMLElement;
+        hamburgerDropdown.style.display = dropdownOpen ? "block" : "none";
+        setDropdownOpen(dropdownOpen);
+    }
+
+    // If window width > 760px go ahead and remove the burger button dropdown menu and set the state of dropdownOpen to false.
+    const hamburgerDropdown = document.getElementById('headerBurgerDropdownWrapper') as HTMLSelectElement;
+    window.addEventListener('resize', () => {
+        const isBigScreen = window.innerWidth > 760;
+        if (hamburgerDropdown && isBigScreen) {
+        hamburgerDropdown.style.display = "none"
+        setDropdownOpen(false);
+        }
+    });
+
     return (
 
         <section className="ResumeAnalyzerDashboardPage">
@@ -112,8 +151,19 @@ export default function ResumeAnalyzerDashboardPage() {
                         <button className="ResumeAnalyzerDashboardHeaderProfileButtonDropDownButton" onClick={()=> logout()}>Logout</button>
                     </div>
                 </div>
+            
+                <section className="HeaderBurgerButtonWrapper">
+                <button className="HeaderBurgerButton Btn" style={{width: "40px", height: "40px"}} onClick={() => handleBurgerDropdown(!dropdownOpen)}>
+                    {dropdownOpen ? (
+                    <img className="HeaderBurgerButtonIconImage"  style={{ transform: 'scale(85%)', opacity: 0.7 , left: "-4px", top: "-3px" }} src={burgerMenuExitIconSVG} alt="Exit Icon"/>
+                    ) : (
+                    <img className="HeaderBurgerButtonIconImage" style={{ transform: 'scale(120%)', left: "-4px", top: "-4px"}}  src={burgerMenuIconSVG} alt="Burger Icon"/>
+                    )}
+                </button>
+                {/* <button className="HeaderSignInButton Btn">Burger</button> */}
+                </section>
                 <div className="HeaderBurgerDropdownWrapper" id="headerBurgerDropdownWrapper">
-                    {/* <HeaderBurgerDropdownNav /> */}
+                    <HeaderBurgerDropdownNav buttons={buttons} footerButtons={burgerDropdownFooterButtons}/>
                 </div>
             </header>
 

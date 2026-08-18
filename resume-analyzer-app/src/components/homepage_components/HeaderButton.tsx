@@ -26,6 +26,7 @@ export default function HeaderButton({
     button: {
         title: string,
         order: number,
+        link: string,
         dropdownButtons: {
             first: {
                 title: string,

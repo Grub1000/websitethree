@@ -17,9 +17,11 @@ import burgerMenuSubmenuChevronIconSVG from "../../assets/burger_menu_submenu_ch
 
 export default function HeaderBurgerDropdownNav(
 {
-    buttons
+    buttons,
+    footerButtons,
 }:{
-    buttons: any
+    buttons: any,
+    footerButtons: any,
 }
 
 ) {
@@ -83,12 +85,12 @@ export default function HeaderBurgerDropdownNav(
         </div>
         {isAuthenticated ? (
         // <Link to="/profile" className="HeaderSignInButton Btn">My Profile</Link>
-            <Link to="/profile" className="HeaderBurgerDropdownSignInButton Btn">My Profile</Link>
+            <Link to={footerButtons.button1.link} className="HeaderBurgerDropdownSignInButton Btn">{footerButtons.button1.title}</Link>
         ) : (
             <Link to="/login" className="HeaderBurgerDropdownSignInButton Btn">Sign In</Link>)}
         
         {isAuthenticated ? (
-            <Link to="/resume-analyzer" className="HeaderBurgerDropdownMyDocumentsButton Btn">My Documents</Link>
+            <Link to={footerButtons.button2.link} className="HeaderBurgerDropdownMyDocumentsButton Btn">{footerButtons.button2.title}</Link>
         ) : (
             <Link to="/login" className="HeaderBurgerDropdownGetStartedButton Btn">Get Started</Link>
         )}

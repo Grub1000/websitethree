@@ -44,13 +44,17 @@ function HomePage() {
   }, []);
 
   const [buttons] = useState({
-    button1: {order: 0, title: "Resume", dropdownButtons: {first: {title: "Resume-Analyzer", link: "/resume-analyzer", description: "How Good is Your Resume?"}, second: {title: "More Coming Soon...", link: "/", description: "Coming Soon..."}}},
-    button2: {order: 1, title: "Tools", dropdownButtons: {first: {title: "Resume-Analyzer", link: "/resume-analyzer", description: "How Good is Your Resume?"}, second: {title: "More Coming Soon...", link: "/", description: "Coming Soon..."}}},
-    button3: {order: 2, title: "Examples", dropdownButtons: {first: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}}},
-    button4: {order: 3, title: "Pricing", dropdownButtons: {first: {title: "Absolutely Free!", link: "/", description: "Resume Analyzer is 100% Free"}}},
+    button1: {order: 0, title: "Resume", link:"", dropdownButtons: {first: {title: "Resume-Analyzer", link: "/resume-analyzer", description: "How Good is Your Resume?"}, second: {title: "More Coming Soon...", link: "/", description: "Coming Soon..."}}},
+    button2: {order: 1, title: "Tools", link:"", dropdownButtons: {first: {title: "Resume-Analyzer", link: "/resume-analyzer", description: "How Good is Your Resume?"}, second: {title: "More Coming Soon...", link: "/", description: "Coming Soon..."}}},
+    button3: {order: 2, title: "Examples", link:"", dropdownButtons: {first: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}}},
+    button4: {order: 3, title: "Pricing", link:"", dropdownButtons: {first: {title: "Absolutely Free!", link: "/", description: "Resume Analyzer is 100% Free"}}},
     // button5: {order: 4, title: "Chicken", dropdownButtons: {}},
     // button6: {order: 5, title: "Noodle", dropdownButtons: {}},
     // button7: {order: 6, title: "Soup", dropdownButtons: {}}
+  })
+  const [burgerDropdownFooterButtons] = useState({
+    button1: {title: "My Profile", link: "/profile"},
+    button2: {title: "My Documents", link: "/resume-analyzer"},
   })
 
   const [carouselImages] = useState([
@@ -77,6 +81,8 @@ function HomePage() {
   const navigate = useNavigate();
 
   const headerButtonsArray = Object.values(buttons);
+
+  // const burgerDropdownFooterButtonsArray = Object.values(burgerDropdownFooterButtons);
 
   const carouselImagesArray = carouselImages;
 
@@ -141,7 +147,7 @@ function HomePage() {
           {/* <button className="HeaderSignInButton Btn">Burger</button> */}
         </section>
         <div className="HeaderBurgerDropdownWrapper" id="headerBurgerDropdownWrapper">
-          <HeaderBurgerDropdownNav buttons={buttons}/>
+          <HeaderBurgerDropdownNav buttons={buttons} footerButtons={burgerDropdownFooterButtons}/>
         </div>
       </header>
 

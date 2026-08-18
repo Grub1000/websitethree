@@ -42,8 +42,8 @@ export default function ResumeAnalyzerDashboardHeaderButton({
   return (
     <>
     <button className="ResumeAnalyzerDashboardHeaderButton" id={button.title + "Button"} onMouseEnter={()=> handleDropdown("mouseIn", button.order, button.title + "Button")} onMouseLeave={()=> handleDropdown("mouseOut", button.order, button.title + "Button")}>{button.title}</button>
-    {/* <div className="ResumeAnalyzerDashboardHeaderButtonDropdown" id="templatesDropdownWrapper" onMouseEnter={()=>handleDropdown("mouseIn", button.order, button.title + "Button")} onMouseLeave={()=> handleDropdown("mouseOut", button.order, button.title + "Button")}>
-        <div className="ResumeAnalyzerDashboardHeaderButtonDropdownButtonWrapper">
+    <div className="ResumeAnalyzerDashboardHeaderButtonDropdown" id="templatesDropdownWrapper" onMouseEnter={()=>handleDropdown("mouseIn", button.order, button.title + "Button")} onMouseLeave={()=> handleDropdown("mouseOut", button.order, button.title + "Button")}>
+        {/* <div className="ResumeAnalyzerDashboardHeaderButtonDropdownButtonWrapper">
             <button className="ResumeAnalyzerDashboardHeaderButtonDropdownButton">
                 <div className="ResumeAnalyzerDashboardHeaderButtonDropdownButtonColorPad"></div>
                 <h5 className="ResumeAnalyzerDashboardHeaderButtonDropdownButtonTopText">Coming Soon...</h5>
@@ -54,8 +54,8 @@ export default function ResumeAnalyzerDashboardHeaderButton({
                 <h5 className="ResumeAnalyzerDashboardHeaderButtonDropdownButtonTopText">Coming Soon...</h5>
                 <p className="ResumeAnalyzerDashboardHeaderButtonDropdownButtonBottomText">ResuScan button</p>
             </button>
-        </div>
-    </div> */}
+        </div> */}
+    </div>
     </>
   );
 
