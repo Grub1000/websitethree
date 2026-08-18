@@ -41,7 +41,7 @@ export default function ResumeAnalyzerDashboardPage() {
         button1: {order: 0, title: "Dashboard", link: "", dropdownButtons: {first: {title: "Dashboard", link: "/resume-analyzer", description: "How Good is Your Resume?"}, second: {title: "More Coming Soon...", link: "/", description: "Coming Soon..."}}},
         button2: {order: 1, title: "Documents", link: "", dropdownButtons: {first: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}, second: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}}},
         button3: {order: 2, title: "Find Jobs", link: "", dropdownButtons: {first: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}}},
-        button4: {order: 3, title: "My Saved Jobs", link: "", dropdownButtons: {first: {title: "Absolutely Free!", link: "/", description: "Resume Analyzer is 100% Free"}}},
+        button4: {order: 3, title: "My Saved Jobs", link: "", dropdownButtons: {first: {title: "Coming Soon", link: "/", description: "Coming Soon..."}}},
     
         // button1: {order: 0, title: "Dashboard", link: ""},
         // button2: {order: 1, title: "Documents", link: ""},
