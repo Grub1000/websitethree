@@ -64,7 +64,7 @@ export default function HeaderButton({
                 <h5 className="HeaderButtonDropdownButtonTopText">Coming Soon...</h5>
                 <p className="HeaderButtonDropdownButtonBottomText">ResuScan button</p>
             </button> */}
-           {dropdownButtonList.map((button, index) => <HeaderButtonDropdownButton button={button}/>)}
+           {dropdownButtonList.map((button, index) => <HeaderButtonDropdownButton key={index} button={button}/>)}
 
         </div>
     </div>
