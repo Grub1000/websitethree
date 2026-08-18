@@ -54,7 +54,7 @@ export default function ResumeAnalyzerDashboardPage() {
         <section className="ResumeAnalyzerDashboardPage">
             {resumeAnalyses.length === 0 ?  null : <ResumeAnalysisPopUp resumeAnalyses={resumeAnalyses} exitAnalysis={() => setResumeAnalyses([])}/>}
             <header className="ResumeAnalyzerDashboardHeader">
-                <a className="ResumeAnalyzerDashboardHeaderLogoWrapper">
+                <a className="ResumeAnalyzerDashboardHeaderLogoWrapper" onClick={()=> navigate("/resume-analyzer")}>
                     <img src={logo} className="ResumeAnalyzerDashboardHeaderLogo" alt="Website Logo"></img>
                 </a>
                 <nav>

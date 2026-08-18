@@ -130,21 +130,21 @@ body {
 
 
 
-
 .ResumeAnalyzerDashboardFooter{
 
 }
+
 
 @media (max-width: 1380px){
 
     .ResumeAnalyzerDashboardMainSection{
         width: 1010px;
 
-
         /* height: fit-content;
         margin: auto;
         padding-top: 50px; */
         /* background-color: rgba(204, 27, 27, 0.096); */
+
     }
 
 }
@@ -159,6 +159,7 @@ body {
     }
 }
 
+
 @media (max-width: 960px){
     .ResumeAnalyzerDashboardMainSection{
         width: 720px;
@@ -168,13 +169,15 @@ body {
         /* background-color: rgba(219, 31, 31, 0.24); */
     }
 }
+
+
 @media (max-width: 760px){
     .ResumeAnalyzerDashboardMainSection{
         width: calc(100vw - 50px);
         /* height: fit-content;
         margin: auto;
         padding-top: 50px; */
-        background-color: rgba(219, 31, 31, 0);
+        /* background-color: rgba(219, 31, 31, 0); */
     }
     .ResumeAnalyzerDashboardMainSectionTitle{
         margin-top: 30px;

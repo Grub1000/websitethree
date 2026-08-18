@@ -50,12 +50,10 @@
     background-color: rgba(8, 193, 206, 0.637);
 }
 
+
 @media (max-width: 1380px){
     .ResumeUploadSection{
         width: 700px;
-
-
-
         /* height: 240px;
         top: 0px;
         margin-top: 0px;
@@ -80,24 +78,18 @@
 
     .ResumeUploadDescriptionWrapper{
         width: 450px;
-
-
-
-
         /* float: right;
         background-color: brown; */
     }
     .ResumeUploadDescriptionTitle{
         margin-top: 50px;
-
-
-
-/* 
+        /* 
         font-size: 22px;
         font-family: "Inter", sans-serif;
         color: rgb(31, 32, 32); */
     }
 }
+
 
 @media (max-width: 1060px){
     .ResumeUploadSection{
@@ -129,32 +121,25 @@
 
     .ResumeUploadDescriptionWrapper{
         width: 380px;
-
-
-
-
         /* float: right;
         background-color: brown; */
     }
     .ResumeUploadDescriptionTitle{
         margin-top: 50px;
-
-
-
-/* 
+        /* 
         font-size: 22px;
         font-family: "Inter", sans-serif;
         color: rgb(31, 32, 32); */
     }
 }
+
+
 @media (max-width: 960px){
     /* .ResumeUploadDescriptionTitle{
         margin-top: 0px;
     } */
     .ResumeUploadSection{
-        width: 715px;
-        
-
+        width: 715px;       
         /* height: 240px;
         top: 0px;
         margin-top: 0px;
@@ -179,7 +164,6 @@
 
     .ResumeUploadDescriptionWrapper{
         width: 440px;
-
         /* float: right;
         background-color: brown; */
     }
@@ -191,6 +175,8 @@
         color: rgb(31, 32, 32); */
     }
 }
+
+
 @media (max-width: 760px){
     .ResumeUploadSection{
         width: calc(100% - 10px);

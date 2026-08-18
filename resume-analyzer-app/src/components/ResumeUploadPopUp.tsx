@@ -104,38 +104,6 @@ export default function ResumeUploadPopUp({
             setSelectedFile(file);
         }
     
-        // async function handleUpload() {
-        //     if (!selectedFile) {
-        //         setError("Select a résumé before uploading.");
-        //         return;
-        //     }
-    
-        //     setUploading(true);
-        //     setMessage("");
-        //     setError("");
-        //     setResumeId("");
-    
-        //     try {
-        //         const result = await uploadResume(selectedFile);
-    
-        //         setResumeId(result.resume_id);
-        //         setMessage("Résumé uploaded successfully.");
-        //         setSelectedFile(null);
-    
-        //         if (fileInputRef.current) {
-        //             fileInputRef.current.value = "";
-        //         }
-        //     } catch (error) {
-        //         setError(
-        //             error instanceof Error
-        //                 ? error.message
-        //                 : "The résumé upload failed."
-        //         );
-        //     } finally {
-        //         setUploading(false);
-        //     }
-        // }
-    
         async function handleUploadAndExtractAndAnalysis() {
             if (!selectedFile) {
                 setError("Select a resume before uploading.");

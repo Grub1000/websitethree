@@ -224,6 +224,8 @@
 
 
 }
+
+
 @media (max-width: 1060px){
     .ResumeHistorySmallSectionWrapper{
         /* font-family: "Inter", sans-serif; */
@@ -295,6 +297,8 @@
     }
 
 }
+
+
 @media (max-width: 960px){
     .ResumeHistorySmallSectionWrapper{
         /* font-family: "Inter", sans-serif; */
@@ -368,6 +372,7 @@
     }
 
 }
+
 
 @media (max-width: 760px){
     .ResumeHistorySmallSectionWrapper{
@@ -452,6 +457,8 @@
     }
 
 }
+
+
 @media (max-width: 575px){
     /* :nth-child(1 of .ResumeHistorySmallSectionColumnName){
         width: 300px;

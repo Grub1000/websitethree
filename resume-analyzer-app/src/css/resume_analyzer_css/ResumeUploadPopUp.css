@@ -203,6 +203,7 @@
     left: 55px;
 }
 
+
 @media (max-width: 960px){
     .ResumeUploadPopUp{
         width: 680px;
@@ -230,6 +231,8 @@
         font-size: 18px; */
     }
 }
+
+
 @media (max-width: 760px){
     .ResumeUploadPopUp{
         width: 480px;
@@ -280,6 +283,8 @@
         /* background-color: aqua; */
     }
 }
+
+
 @media (max-width: 540px){
     .ResumeUploadPopUp{
         width: calc(100% - 50px);
@@ -399,6 +404,8 @@
 
     }
 }
+
+
 @media(max-width: 330px){
     .ResumeUploadPopUpFileUploadDropSquareArrowIcon{
         /* height: 30px; */

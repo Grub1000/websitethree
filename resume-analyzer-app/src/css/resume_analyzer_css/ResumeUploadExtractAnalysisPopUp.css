@@ -28,11 +28,15 @@
   background-size: 60% 100%;
   animation: l16 3s infinite;
 }
+
+
 @keyframes l16 {
   0%   {background-position:-150% 0,-150% 0}
   66%  {background-position: 250% 0,-150% 0}
   100% {background-position: 250% 0, 250% 0}
 }
+
+
 .ResumeUploadExtractAnalysisPopUpLoadingMessage{
     /* background-color: #35b6c7; */
     font-size: 30px;
@@ -44,6 +48,8 @@
     text-align: center;
     color: rgb(246, 252, 253);
 }
+
+
 @media(max-width: 500px){
     .ResumeUploadExtractAnalysisPopUpImage{
     display: block;
