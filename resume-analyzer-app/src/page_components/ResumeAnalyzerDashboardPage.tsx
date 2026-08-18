@@ -31,14 +31,14 @@ export default function ResumeAnalyzerDashboardPage() {
     const { logout } = useAuth();
     
     const [buttons] = useState({
-        button1: {order: 0, title: "Dashboard", dropdownButtons: {}},
-        button2: {order: 1, title: "Documents", dropdownButtons: {}},
-        button3: {order: 2, title: "Find Jobs", dropdownButtons: {}},
-        button4: {order: 3, title: "My Saved Jobs", dropdownButtons: {}},
-        // button5: {order: 4, title: "", dropdownButtons: {}},
-        // button5: {order: 4, title: "Chicken", dropdownButtons: {}},
-        // button6: {order: 5, title: "Noodle", dropdownButtons: {}},
-        // button7: {order: 6, title: "Soup", dropdownButtons: {}}
+        button1: {order: 0, title: "Dashboard", link: ""},
+        button2: {order: 1, title: "Documents", link: ""},
+        button3: {order: 2, title: "Find Jobs", link: ""},
+        button4: {order: 3, title: "My Saved Jobs", link: ""},
+        // button5: {order: 4, title: "", link: ""},
+        // button5: {order: 4, title: "Chicken", link: ""},
+        // button6: {order: 5, title: "Noodle", link: ""},
+        // button7: {order: 6, title: "Soup", link: ""}
       })
 
     const headerButtonsArray = Object.values(buttons); // Convert the buttons object into an array of button objects
