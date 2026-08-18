@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {
     getUserResumes,
     type ResumeListItem,
-} from "../api/resume_service.tsx";
+} from "../../api/resume_service.tsx";
 
 import ResumeCard from "./ResumeCard.tsx";
 

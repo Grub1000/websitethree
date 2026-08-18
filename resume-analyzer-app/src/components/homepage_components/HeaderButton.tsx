@@ -1,6 +1,6 @@
 // import { useState } from 'react'
-import '../css/home_page_css/HeaderButton.css'
-import newIconUrl from "../assets/website_tab_logo.png"
+import '../../css/home_page_css/HeaderButton.css'
+import newIconUrl from "../../assets/website_tab_logo.png"
 
 
 import HeaderButtonDropdownButton from "./HeaderButtonDropdownButton.tsx"

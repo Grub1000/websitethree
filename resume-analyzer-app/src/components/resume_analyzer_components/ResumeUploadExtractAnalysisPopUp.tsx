@@ -1,5 +1,5 @@
 // import { useState } from "react"
-import "../css/resume_analyzer_css/ResumeUploadExtractAnalysisPopUp.css"
+import "../../css/resume_analyzer_css/ResumeUploadExtractAnalysisPopUp.css"
 // import analyzingPenguinGif from "../assets/analyzing_penguin_gif.gif"
 
 export default function ResumeUploadExtractAnalysisPopUp({

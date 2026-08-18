@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from "react";
-import { uploadResume, extractResumeText, analyzeResume } from "../api/resume_service";
+import { uploadResume, extractResumeText, analyzeResume } from "../../api/resume_service";
 
-import "../css/resume_analyzer_css/ResumeUploadPopUp.css"
+import "../../css/resume_analyzer_css/ResumeUploadPopUp.css"
 
-import resumeUploadIconSVG from "../assets/resume_upload_icon_svg.svg"
-import whiteArrowIcon from "../assets/white_arrow_svg.svg"
-import exitIcon from "../assets/burger_menu_exit_svg.svg"
+import resumeUploadIconSVG from "../../assets/resume_upload_icon_svg.svg"
+import whiteArrowIcon from "../../assets/white_arrow_svg.svg"
+import exitIcon from "../../assets/burger_menu_exit_svg.svg"
 
 import ResumeUploadExtractAnalysisPopUp from "./ResumeUploadExtractAnalysisPopUp"
 

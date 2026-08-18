@@ -1,5 +1,5 @@
-import {type ResumeAnalysisResponseListItem} from "../api/resume_service"
-import "../css/resume_analyzer_css/ResumeAnalysisPopUp.css"
+import {type ResumeAnalysisResponseListItem} from "../../api/resume_service"
+import "../../css/resume_analyzer_css/ResumeAnalysisPopUp.css"
 
 export default function ResumeAnalysisPopUp({
     resumeAnalyses,

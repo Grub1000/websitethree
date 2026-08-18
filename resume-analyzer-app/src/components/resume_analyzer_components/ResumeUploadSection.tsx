@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-import ResumeUploadPopUp from "../components/ResumeUploadPopUp.tsx"
+import ResumeUploadPopUp from "../resume_analyzer_components/ResumeUploadPopUp.tsx"
 
-import '../css/resume_analyzer_css/ResumeUploadSection.css';
+import '../../css/resume_analyzer_css/ResumeUploadSection.css';
 
-import manPointingRight from "../assets/pointing_right_man.png"
+import manPointingRight from "../../assets/pointing_right_man.png"
 
 
 

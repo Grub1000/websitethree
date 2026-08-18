@@ -14,9 +14,9 @@ import burgerMenuIconSVG from "../assets/burger_menu_svg.svg"
 import burgerMenuExitIconSVG from "../assets/burger_menu_exit_svg.svg"
 
 // Component imports
-import HeaderButton from '../components/HeaderButton'
-import InfiniteCarouselTrack from '../components/InfiniteCarouselTrack'
-import HeaderBurgerDropdownNav from '../components/HeaderBurgerDropdownNav';
+import HeaderButton from '../components/homepage_components/HeaderButton'
+import InfiniteCarouselTrack from '../components/homepage_components/InfiniteCarouselTrack'
+import HeaderBurgerDropdownNav from '../components/homepage_components/HeaderBurgerDropdownNav';
 
 // CarouselImage Imports
 import carouselImageOne from "../assets/Carousel Images/carousel_image_1.png"

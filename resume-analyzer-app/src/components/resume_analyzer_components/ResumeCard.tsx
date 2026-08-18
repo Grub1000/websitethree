@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {
     getResumeThumbnailUrl,
     type ResumeListItem,
-} from "../api/resume_service.tsx";
+} from "../../api/resume_service.tsx";
 
 
 type ResumeCardProps = {

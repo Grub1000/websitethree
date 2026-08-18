@@ -1,6 +1,6 @@
 // import { useState } from 'react'
-import '../css/resume_analyzer_css/ResumeAnalyzerDashboardHeaderButton.css'
-import newIconUrl from "../assets/website_tab_logo.png"
+import '../../css/resume_analyzer_css/ResumeAnalyzerDashboardHeaderButton.css'
+import newIconUrl from "../../assets/website_tab_logo.png"
 
 const handleDropdown = (eventType:string, ddNum:number, buttonID:string) => {
     const dropdowns = document.getElementsByClassName("ResumeAnalyzerDashboardHeaderButtonDropdown") as HTMLCollectionOf<HTMLElement>;

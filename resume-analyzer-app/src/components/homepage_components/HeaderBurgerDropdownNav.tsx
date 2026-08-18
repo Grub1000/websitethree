@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 // CSS Styles Import
-import "../css/home_page_css/HeaderBurgerDropdownNav.css"
+import "../../css/home_page_css/HeaderBurgerDropdownNav.css"
 
 // Auth Context imports
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 
 // React Router imports
@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 
 // Icon SVG import
-import burgerMenuSubmenuChevronIconSVG from "../assets/burger_menu_submenu_chevron_icon_svg.svg"
+import burgerMenuSubmenuChevronIconSVG from "../../assets/burger_menu_submenu_chevron_icon_svg.svg"
 
 
 export default function HeaderBurgerDropdownNav() {

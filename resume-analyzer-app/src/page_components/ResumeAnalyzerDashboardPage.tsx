@@ -1,11 +1,11 @@
 // import { useNavigate } from "react-router-dom";
 // import { useAuth } from "../context/AuthContext";
 import { useState } from 'react'
-import ResumeUploadSection from "../components/ResumeUploadSection.tsx";
+import ResumeUploadSection from "../components/resume_analyzer_components/ResumeUploadSection.tsx";
 // import ResumeHistorySection from "../components/ResumeHistorySection.tsx";
-import ResumeAnalyzerDashboardHeaderButton from "../components/ResumeAnalyzerDashboardHeaderButton.tsx";
-import ResumeHistorySmallSection from "../components/ResumeHistorySmallSection.tsx"
-import ResumeAnalysisPopUp from "../components/ResumeAnalysisPopUp.tsx"
+import ResumeAnalyzerDashboardHeaderButton from "../components/resume_analyzer_components/ResumeAnalyzerDashboardHeaderButton.tsx";
+import ResumeHistorySmallSection from "../components/resume_analyzer_components/ResumeHistorySmallSection.tsx"
+import ResumeAnalysisPopUp from "../components/resume_analyzer_components/ResumeAnalysisPopUp.tsx"
 
 
 import '../css/resume_analyzer_css/ResumeAnalyzerDashboardPage.css';

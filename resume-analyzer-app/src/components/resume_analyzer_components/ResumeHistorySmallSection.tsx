@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
-import {getUserResumes, deleteResume, type ResumeListItem,} from "../api/resume_service.tsx";
+import {getUserResumes, deleteResume, type ResumeListItem,} from "../../api/resume_service.tsx";
 
 
 
-import "../css/resume_analyzer_css/ResumeHistorySmallSection.css"
+import "../../css/resume_analyzer_css/ResumeHistorySmallSection.css"
 
-import trashBinSVG from "../assets/trash_bin_svg.svg"
-import graphSVG from "../assets/graph_svg.svg"
-import documentSVG from "../assets/document_svg.svg"
+import trashBinSVG from "../../assets/trash_bin_svg.svg"
+import graphSVG from "../../assets/graph_svg.svg"
+import documentSVG from "../../assets/document_svg.svg"
 
 export default function ResumeHistorySmallSection({
     loadResumeAnalyses
