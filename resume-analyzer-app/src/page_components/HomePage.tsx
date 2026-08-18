@@ -45,7 +45,7 @@ function HomePage() {
 
   const [buttons] = useState({
     button1: {order: 0, title: "Resume", dropdownButtons: {first: {title: "Resume-Analyzer", link: "/resume-analyzer", description: "How Good is Your Resume?"}, second: {title: "More Coming Soon...", link: "/", description: "Coming Soon..."}}},
-    button2: {order: 1, title: "Tools", dropdownButtons: {first: {title: "Resume-Analyzer", link: "/resume-analyzer", description: ""}, second: {title: "More Coming Soon...", link: "/", description: "Coming Soon..."}}},
+    button2: {order: 1, title: "Tools", dropdownButtons: {first: {title: "Resume-Analyzer", link: "/resume-analyzer", description: "How Good is Your Resume?"}, second: {title: "More Coming Soon...", link: "/", description: "Coming Soon..."}}},
     button3: {order: 2, title: "Examples", dropdownButtons: {first: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}}},
     button4: {order: 3, title: "Pricing", dropdownButtons: {first: {title: "Absolutely Free!", link: "/", description: "Resume Analyzer is 100% Free"}}},
     // button5: {order: 4, title: "Chicken", dropdownButtons: {}},

@@ -1,27 +1,34 @@
 // import { useNavigate } from "react-router-dom";
 // import { useAuth } from "../context/AuthContext";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ResumeUploadSection from "../components/resume_analyzer_components/ResumeUploadSection.tsx";
 // import ResumeHistorySection from "../components/ResumeHistorySection.tsx";
 import ResumeAnalyzerDashboardHeaderButton from "../components/resume_analyzer_components/ResumeAnalyzerDashboardHeaderButton.tsx";
 import ResumeHistorySmallSection from "../components/resume_analyzer_components/ResumeHistorySmallSection.tsx"
 import ResumeAnalysisPopUp from "../components/resume_analyzer_components/ResumeAnalysisPopUp.tsx"
 
-
+// Styling Sheet Import
 import '../css/resume_analyzer_css/ResumeAnalyzerDashboardPage.css';
 
-
+// Local Asset Imports
 import logo from "../assets/website_tab_logo.png"
 import profileButtonIcon from "../assets/profile_button_icon_svg.svg"
 import profileButtonChevronIcon from "../assets/burger_menu_submenu_chevron_icon_svg.svg"
 
+// React Router Imports
 import { useNavigate } from "react-router-dom";
 
+// Resume Service Imports
 import { getResumeAnalyses ,type ResumeAnalysisResponseListItem} from "../api/resume_service.tsx"
+
+// Auth Context Imports
+import { useAuth } from "../context/AuthContext";
 
 
 export default function ResumeAnalyzerDashboardPage() {
     const navigate = useNavigate();
+
+    const { logout } = useAuth();
     
     const [buttons] = useState({
         button1: {order: 0, title: "Dashboard", dropdownButtons: {}},
@@ -48,6 +55,35 @@ export default function ResumeAnalyzerDashboardPage() {
     async function loadResumeAnalyses(resumeID: string){
         setResumeAnalyses(resumeAnalyses = await getResumeAnalyses(resumeID))
     }
+    
+    useEffect(() => {   
+            console.log("Reloading Resume History")
+            function handleClick(event: MouseEvent) {
+                const target = event.target as HTMLElement;
+                console.log("clicked")
+                if (
+                    !target.closest(".ResumeAnalyzerDashboardHeaderProfileButtonDropDownWrapper")
+                    && !target.closest(".ResumeAnalyzerDashboardHeaderProfileButton")
+                ) {
+                    document
+                        .querySelectorAll<HTMLElement>(".ResumeAnalyzerDashboardHeaderProfileButtonDropDownWrapper")
+                        .forEach(dropdown => {
+                            dropdown.style.display = "none";
+                        });
+                }
+            }
+    
+            document.addEventListener("mousedown", handleClick);
+    
+            return () => {
+                document.removeEventListener("mousedown", handleClick);
+            };
+        }, []);
+
+    function handleDropdown(id: string){
+        const selectedDropdown = document.getElementById(id) as HTMLElement
+        selectedDropdown.style.display = "block"
+    }
 
     return (
 
@@ -66,10 +102,15 @@ export default function ResumeAnalyzerDashboardPage() {
                 </section>
                 </nav>
                 <div className="ResumeAnalyzerDashboardHeaderProfileButtonWrapper">
-                    <button className="ResumeAnalyzerDashboardHeaderProfileButton" onClick={()=> navigate("/profile")}>
+                    <button className="ResumeAnalyzerDashboardHeaderProfileButton" id="resumeAnalyzerDashboardHeaderProfileButton" onClick={()=> handleDropdown("resumeAnalyzerDashboardHeaderProfileButtonDropDownWrapper")}>
                         <img src={profileButtonIcon} className="ResumeAnalyzerDashboardHeaderProfileButtonImage" alt="Profile Button Image"></img>
                         <img src={profileButtonChevronIcon} className="ResumeAnalyzerDashboardHeaderProfileButtonChevronImage" alt="Profile Button Chevron Image"></img>
                     </button>
+                    <div className="ResumeAnalyzerDashboardHeaderProfileButtonDropDownWrapper" id="resumeAnalyzerDashboardHeaderProfileButtonDropDownWrapper">
+                        <button className="ResumeAnalyzerDashboardHeaderProfileButtonDropDownButton" onClick={()=> navigate("/profile")}>Account</button>
+                        <button className="ResumeAnalyzerDashboardHeaderProfileButtonDropDownButton" onClick={()=> navigate("/")}>Home</button>
+                        <button className="ResumeAnalyzerDashboardHeaderProfileButtonDropDownButton" onClick={()=> logout()}>Logout</button>
+                    </div>
                 </div>
                 <div className="HeaderBurgerDropdownWrapper" id="headerBurgerDropdownWrapper">
                     {/* <HeaderBurgerDropdownNav /> */}
