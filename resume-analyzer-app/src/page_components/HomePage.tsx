@@ -141,7 +141,7 @@ function HomePage() {
           {/* <button className="HeaderSignInButton Btn">Burger</button> */}
         </section>
         <div className="HeaderBurgerDropdownWrapper" id="headerBurgerDropdownWrapper">
-          <HeaderBurgerDropdownNav />
+          <HeaderBurgerDropdownNav buttons={buttons}/>
         </div>
       </header>
 

@@ -8,18 +8,27 @@ import { useAuth } from "../../context/AuthContext";
 
 
 // React Router imports
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 // Icon SVG import
 import burgerMenuSubmenuChevronIconSVG from "../../assets/burger_menu_submenu_chevron_icon_svg.svg"
 
 
-export default function HeaderBurgerDropdownNav() {
+export default function HeaderBurgerDropdownNav(
+{
+    buttons
+}:{
+    buttons: any
+}
+
+) {
 
     const { isAuthenticated } = useAuth();
 
     const [isLoading, setIsLoading] = useState(false);
+    
+    const navigate = useNavigate()
 
     const handleBurgerSubMenuDropdown = (buttonIndex: number) =>{
         setIsLoading(true);
@@ -41,36 +50,36 @@ export default function HeaderBurgerDropdownNav() {
   return (
    <nav className="HeaderBurgerDropdownButtonWrapper">
         <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(0)} disabled={isLoading}>
-            <p className="HeaderBurgerDropdownButtonText">Resume</p>
+            <p className="HeaderBurgerDropdownButtonText">{buttons.button1.title}</p>
             <img className="HeaderBurgerDropdownButtonIcon" src={burgerMenuSubmenuChevronIconSVG} alt="Dropdown Icon"/>
         </button>
         <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
-            <button className="HeaderBurgerDropdownSubmenuButton">Submenu 1</button>
-            <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button>
+            <button className="HeaderBurgerDropdownSubmenuButton" onClick={()=> navigate(buttons.button1.dropdownButtons.first.link)}>{buttons.button1.dropdownButtons.first.title}</button>
+            <button className="HeaderBurgerDropdownSubmenuButton" >{buttons.button1.dropdownButtons.second.title}</button>
         </div>
         <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(1)} disabled={isLoading}>
-            <p className="HeaderBurgerDropdownButtonText">Tools</p>
+            <p className="HeaderBurgerDropdownButtonText">{buttons.button2.title}</p>
             <img className="HeaderBurgerDropdownButtonIcon" src={burgerMenuSubmenuChevronIconSVG} alt="Dropdown Icon"/>
         </button>
         <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
-            <button className="HeaderBurgerDropdownSubmenuButton">Submenu 1</button>
-            <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button>
+            <button className="HeaderBurgerDropdownSubmenuButton" onClick={()=> navigate(buttons.button2.dropdownButtons.first.link)}>{buttons.button2.dropdownButtons.first.title}</button>
+            <button className="HeaderBurgerDropdownSubmenuButton">{buttons.button2.dropdownButtons.second.title}</button>
         </div>
         <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(2)} disabled={isLoading}>
-            <p className="HeaderBurgerDropdownButtonText">Examples</p>
+            <p className="HeaderBurgerDropdownButtonText">{buttons.button3.title}</p>
             <img className="HeaderBurgerDropdownButtonIcon" src={burgerMenuSubmenuChevronIconSVG} alt="Dropdown Icon"/>
         </button>
         <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
-            <button className="HeaderBurgerDropdownSubmenuButton">Submenu 1</button>
-            <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button>
+            <button className="HeaderBurgerDropdownSubmenuButton" onClick={()=> navigate(buttons.button3.dropdownButtons.first.link)}>{buttons.button3.dropdownButtons.first.title}</button>
+            {/* <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button> */}
         </div>
         <button className="HeaderBurgerDropdownButton" onClick={() => handleBurgerSubMenuDropdown(3)} disabled={isLoading}>
-            <p className="HeaderBurgerDropdownButtonText">Pricing</p>
+            <p className="HeaderBurgerDropdownButtonText">{buttons.button4.title}</p>
             <img className="HeaderBurgerDropdownButtonIcon" src={burgerMenuSubmenuChevronIconSVG} alt="Dropdown Icon"/>
         </button>
         <div className="HeaderBurgerDropdownButtonSubmenuWrapper">
-            <button className="HeaderBurgerDropdownSubmenuButton">Submenu 1</button>
-            <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button>
+            <button className="HeaderBurgerDropdownSubmenuButton" onClick={()=> navigate(buttons.button4.dropdownButtons.first.link)}>{buttons.button4.dropdownButtons.first.title}</button>
+            {/* <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button> */}
         </div>
         {isAuthenticated ? (
         // <Link to="/profile" className="HeaderSignInButton Btn">My Profile</Link>
