@@ -2,6 +2,9 @@
 import '../css/home_page_css/HeaderButton.css'
 import newIconUrl from "../assets/website_tab_logo.png"
 
+
+import HeaderButtonDropdownButton from "./HeaderButtonDropdownButton.tsx"
+
 const handleDropdown = (eventType:string, ddNum:number, buttonID:string) => {
     const dropdowns = document.getElementsByClassName("HeaderButtonDropdown") as HTMLCollectionOf<HTMLElement>;
     const button = document.getElementById(buttonID) as HTMLElement;
@@ -23,7 +26,13 @@ export default function HeaderButton({
     button: {
         title: string,
         order: number,
-        dropdownButtons: {},
+        dropdownButtons: {
+            first: {
+                title: string,
+                link: string,
+                description: string,
+            }
+        },
     }
 }) {
 
@@ -38,13 +47,14 @@ export default function HeaderButton({
     // Update the icon path
     link.href = newIconUrl;
     // const [count, setCount] = useState(0);
+    const dropdownButtonList = Object.values(button.dropdownButtons)
 
   return (
     <>
     <button className="HeaderButton" id={button.title + "Button"} onMouseEnter={()=> handleDropdown("mouseIn", button.order, button.title + "Button")} onMouseLeave={()=> handleDropdown("mouseOut", button.order, button.title + "Button")}>{button.title}</button>
     <div className="HeaderButtonDropdown" id="templatesDropdownWrapper" onMouseEnter={()=>handleDropdown("mouseIn", button.order, button.title + "Button")} onMouseLeave={()=> handleDropdown("mouseOut", button.order, button.title + "Button")}>
         <div className="HeaderButtonDropdownButtonWrapper">
-            <button className="HeaderButtonDropdownButton">
+            {/* <button className="HeaderButtonDropdownButton">
                 <div className="HeaderButtonDropdownButtonColorPad"></div>
                 <h5 className="HeaderButtonDropdownButtonTopText">Coming Soon...</h5>
                 <p className="HeaderButtonDropdownButtonBottomText">ResuScan button</p>
@@ -53,7 +63,9 @@ export default function HeaderButton({
                 <div className="HeaderButtonDropdownButtonColorPad"></div>
                 <h5 className="HeaderButtonDropdownButtonTopText">Coming Soon...</h5>
                 <p className="HeaderButtonDropdownButtonBottomText">ResuScan button</p>
-            </button>
+            </button> */}
+           {dropdownButtonList.map((button, index) => <HeaderButtonDropdownButton button={button}/>)}
+
         </div>
     </div>
     </>

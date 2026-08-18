@@ -5,7 +5,7 @@ import '../css/home_page_css/App.css'
 import { useAuth } from "../context/AuthContext";
 
 // React Router imports
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Image imports
 import logo from "../assets/website_logo_new.png"
@@ -44,10 +44,10 @@ function HomePage() {
   }, []);
 
   const [buttons] = useState({
-    button1: {order: 0, title: "Resume", dropdownButtons: {}},
-    button2: {order: 1, title: "Tools", dropdownButtons: {}},
-    button3: {order: 2, title: "Examples", dropdownButtons: {}},
-    button4: {order: 3, title: "Pricing", dropdownButtons: {}},
+    button1: {order: 0, title: "Resume", dropdownButtons: {first: {title: "Resume-Analyzer", link: "/resume-analyzer", description: "How Good is Your Resume?"}, second: {title: "More Coming Soon...", link: "/", description: "Coming Soon..."}}},
+    button2: {order: 1, title: "Tools", dropdownButtons: {first: {title: "Resume-Analyzer", link: "/resume-analyzer", description: ""}, second: {title: "More Coming Soon...", link: "/", description: "Coming Soon..."}}},
+    button3: {order: 2, title: "Examples", dropdownButtons: {first: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}}},
+    button4: {order: 3, title: "Pricing", dropdownButtons: {first: {title: "Absolutely Free!", link: "/", description: "Resume Analyzer is 100% Free"}}},
     // button5: {order: 4, title: "Chicken", dropdownButtons: {}},
     // button6: {order: 5, title: "Noodle", dropdownButtons: {}},
     // button7: {order: 6, title: "Soup", dropdownButtons: {}}
@@ -74,6 +74,7 @@ function HomePage() {
     carouselImageSix,
   ]);
 
+  const navigate = useNavigate();
 
   const headerButtonsArray = Object.values(buttons);
 
@@ -148,9 +149,19 @@ function HomePage() {
         <section className="HomePageMainSectionWrapper">
           <div className="HomePageMainSectionDescriptionWrapper">
             <h1 className="HomePageMainSectionDescriptionTitle">Land more interviews with ResuScan <span className="Highlight">Analyzer</span></h1>
-            <p className="HomePageMainSectionDescriptionText">Get instant feedback on your resume and increase your chances of landing interviews. Powered by AI technology.</p>
-            <button className="HomePageMainSectionDescriptionResumeScoreButton Btn">Get Your Resume Score</button>
-            <button className="HomePageMainSectionDescriptionJobMatchButton Btn">Get A Job Match</button>
+            <p className="HomePageMainSectionDescriptionText">Get instant feedback on your resume and increase your chances of landing interviews. Advanced foundation models analyze your resume for strengths, weaknesses, ATS compatibility, and opportunities for improvement.</p>
+            {isAuthenticated ? (
+              <button className="HomePageMainSectionDescriptionResumeScoreButton Btn" onClick={()=>navigate("/resume-analyzer")}>Get Your Resume Score</button>
+            ):(
+              <button className="HomePageMainSectionDescriptionResumeScoreButton Btn" onClick={()=>navigate("/login")}>Get Your Resume Score</button>
+            )}
+            {isAuthenticated ? (
+              <button className="HomePageMainSectionDescriptionJobMatchButton Btn" onClick={()=>navigate("/resume-analyzer")}>Get A Job Match</button>
+            ):(
+              <button className="HomePageMainSectionDescriptionJobMatchButton Btn" onClick={()=>navigate("/login")}>Get A Job Match</button>
+            )}
+            {/* <button className="HomePageMainSectionDescriptionResumeScoreButton Btn">Get Your Resume Score</button>
+            <button className="HomePageMainSectionDescriptionJobMatchButton Btn">Get A Job Match</button> */}
           </div>
           <div className="HomePageMainSectionDescriptionImageWrapper">
             <img className="HomePageMainSectionDescriptionImage" src={homepageMainSectionDescriptionImage} alt="Description Image" id="homepageMainSectionDescriptionImage"/>

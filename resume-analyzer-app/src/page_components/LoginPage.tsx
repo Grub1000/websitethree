@@ -35,7 +35,7 @@ export default function LoginPage(){
             password
         );
 
-        navigate("/profile")
+        navigate("/resume-analyzer")
     }
 
     return (
@@ -49,7 +49,7 @@ export default function LoginPage(){
                     <GoogleLogin onSuccess={async (credentialResponse) => {
                     if (!credentialResponse.credential) {return}
                     try {await loginWithGoogle(credentialResponse.credential);
-                        navigate("/profile");
+                        navigate("/resume-analyzer");
                     }catch {
                         alert("Google login failed.");
                     }}}
