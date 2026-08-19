@@ -623,57 +623,143 @@ width: 12px;
   }
 }
 
+
 .HomepageAboutSectionWrapper{
   display: none;
-  /* flex-wrap: wrap; */
-  width: 100%;
-  height: 350px;
-  /* background-color: rgb(229, 255, 0); */
+  width: 1050px;
+  height: 600px;
+  /* background-color: rgba(78, 78, 78, 0.267); */
 }
-.HomepageAboutUpperSectionWrapper{
+.HomepageAboutSectionDescriptionSectionWrapper{
+  font-family: "Inter", sans-serif;
   display: flex;
+  flex-direction: row;
+  height: fit-content;
+  width: 100%;
+  /* background-color: azure; */
 }
 .HomepageAboutPortraitImage{
-  margin-top: 20px;
-  width: 200px;
-  height: 230px;
-  border-radius: 10px;
-
-
+  flex-shrink: none;
+  width: 300px;
+  height: 350px;
+  border-radius: 2px;
+  border-bottom-right-radius: 20px;
+  margin-top: 30px;
+  margin-right: 10px;
+  /* border: 1px solid rgb(213, 111, 62); */
+  box-shadow: -6px -6px 0px rgb(235, 120, 68);
+  /* background-color: brown; */
+}
+.HomepageAboutSectionDescriptionSectionNameHeader{
+  /* text-align: center; */
+  padding-left: 10px;
+  font-weight: 500;
+  color: rgb(235, 120, 68);
+  font-family: "Rubik", sans-serif;
+}
+:nth-child(2 of .HomepageAboutSectionDescriptionSectionNameHeader){
+  width: fit-content;
+  padding-left: 0px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.253);
+  margin-left: 10px;
+  font-size: 17px;
+  color: rgb(65, 193, 197);
+  font-family: "Inter", sans-serif;
+  /* background-color: #47474728; */
+  /* border-radius: 4px; */
+  
 }
 .HomepageAboutSkillsSuperWrapper{
   position: relative;
+  /* background-color: red;
+  background-color: blueviolet; */
 }
-.HomepageAboutDescription{
-  min-width: 260px;
-  max-width: 700px;
-  height: 300px;
-  margin: 0;
-  padding: 20px;
-  color: white;
-  /* background-color: aqua; */
-  text-shadow: 0px 1px 2px #000000;
-}
-.HomepageAboutSkillTitle{
-  text-align: center;
-  color: white;
-  text-shadow: 0px 1px 2px #000000;
-}
-.HomepageAboutSkillsWrapper{
-  display: flex;
-  flex-wrap: wrap;
-  width: 80%;
-  margin: auto;
-}
-.HomePageAboutSkillCard{
-  background-color: rgb(228, 228, 228);
-  color: rgb(0, 0, 0);
-  padding: 3px;
+.HomepageAboutSectionDescriptionSectionHeaderAndDescriptionWrapper{
+  flex-shrink: none;
+  width: 700px;
+  height: fit-content;
   border-radius: 5px;
-  margin-right: 5px;
-  font-size: 11px;
-  text-shadow: 0px 1px 1px #c7c7c7;
+  margin-top: 30px;
+  background-color: rgba(80, 80, 80, 0.103);
+  
+  
 }
+.HomepageAboutSectionDescriptionSectionDescription{
+  /* width: fit-content; */
+  /* width: 200px; */
+  height: fit-content;
+  padding: 10px;
+  margin: 0;
+  color: white;
+  /* background-color: rgb(0, 255, 64); */
+  text-shadow: 0px 1px 2px #000000;
+  font-family: "Inter", sans-serif;
+  line-height: 20px;
+  /* text-align: center; */
+}
+
+.HomepageAboutSectionSocialMediaLinksSuperWrapper{
+  position: relative;
+  top: -80px;
+  width: 100%;
+  height: 100px;
+  margin: auto;
+  /* background-color: aquamarine; */
+}
+
+.HomepageAboutSectionSocialMediaLinksWrapper{
+  display: flex;
+  width: 700px;
+  height: 60px;
+  background-color: rgba(34, 34, 34, 0.712);
+  margin-left: 310px;
+  border-radius: 5px;
+}
+.SemanticButtonDiv{
+  appearance: none;
+  background: none;
+  padding: 0;
+  border: none;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  cursor: pointer; /* or default */
+  /* background-color: aqua; */
+  height: 60px
+}
+.HomepageAboutSectionSocialMediaLinkCard{
+  height: 100%;
+  margin-right: 25px;
+  /* background-color: aquamarine; */
+}
+:nth-child(1 of .HomepageAboutSectionSocialMediaLinkCard){
+  margin-left: 5px;
+}
+.HomepageAboutSectionSocialMediaLinkCardIcon{
+  width: 38px;
+  margin-top: 11px;
+  /* background-color: brown; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media(max-width: 1800px){
@@ -711,6 +797,62 @@ width: 12px;
   }
 
 }
+@media(max-width: 1480px){
+  .HomepageAboutSectionWrapper{
+    /* display: none; */
+    width: 900px;
+    /* height: 600px; */
+    /* background-color: rgba(33, 135, 218, 0.055); */
+  }
+
+  .HomepageAboutPortraitImage{
+    /* flex-shrink: none; */
+    width: 280px;
+    height: 335px;
+    /* border-radius: 2px;
+    border-bottom-right-radius: 20px;
+    margin-top: 30px;
+    margin-right: 10px; */
+    /* border: 1px solid rgb(213, 111, 62); */
+    /* box-shadow: -6px -6px 0px rgb(235, 120, 68); */
+    /* background-color: brown; */
+  }
+  
+  .HomepageAboutSkillsSuperWrapper{
+    position: relative;
+    /* background-color: red;
+    background-color: blueviolet; */
+  }
+  .HomepageAboutSectionDescriptionSectionHeaderAndDescriptionWrapper{
+    /* flex-shrink: none; */
+    width: 610px;
+    /* height: fit-content;
+    border-radius: 5px;
+    margin-top: 30px;
+    background-color: rgba(80, 80, 80, 0.103); */
+  }
+
+  .HomepageAboutSectionSocialMediaLinksSuperWrapper{
+    /* position: relative; */
+    top: -45px;
+    /* width: 100%; */
+    /* height: 100px; */
+    /* margin: auto; */
+    /* background-color: aquamarine; */
+  }
+
+  .HomepageAboutSectionSocialMediaLinksWrapper{
+    /* display: flex; */
+    width: 610px;
+    /* height: 60px; */
+    /* background-color: rgba(34, 34, 34, 0.712); */
+    margin-left: 290px;
+    /* border-radius: 5px; */
+  }
+  
+
+
+}
 
 @media(max-width: 1350px){
   .ParallaxTitle{
@@ -728,7 +870,82 @@ width: 12px;
     width: 360px;
   }
 
+
+
+
+
+
+  .HomepageAboutSectionWrapper{
+    /* display: none; */
+    width: 850px;
+    /* height: 600px; */
+    /* background-color: rgba(33, 135, 218, 0.055); */
+  }
+
+  .HomepageAboutPortraitImage{
+    /* flex-shrink: none; */
+    width: 250px;
+    height: 295px;
+    /* border-radius: 2px;
+    border-bottom-right-radius: 20px;
+    margin-top: 30px;
+    margin-right: 10px; */
+    /* border: 1px solid rgb(213, 111, 62); */
+    /* box-shadow: -6px -6px 0px rgb(235, 120, 68); */
+    /* background-color: brown; */
+  }
+  
+  .HomepageAboutSkillsSuperWrapper{
+    position: relative;
+    /* background-color: red;
+    background-color: blueviolet; */
+  }
+  .HomepageAboutSectionDescriptionSectionHeaderAndDescriptionWrapper{
+    /* flex-shrink: none; */
+    width: 570px;
+    /* height: fit-content;
+    border-radius: 5px;
+    margin-top: 30px;
+    background-color: rgba(80, 80, 80, 0.103); */
+  }
+
+  .HomepageAboutSectionSocialMediaLinksSuperWrapper{
+    /* position: relative; */
+    top: -7px;
+    /* width: 100%; */
+    /* height: 100px; */
+    /* margin: auto; */
+    /* background-color: aquamarine; */
+  }
+
+  .HomepageAboutSectionSocialMediaLinksWrapper{
+    /* display: flex; */
+    width: 570px;
+    /* height: 60px; */
+    /* background-color: rgba(34, 34, 34, 0.712); */
+    margin-left: 260px;
+    /* border-radius: 5px; */
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
 @media(max-width: 1240px){
   .ParallaxTitle{
     margin-top: 250px;
@@ -743,6 +960,74 @@ width: 12px;
   .TimeAndLocationText{
     text-align: start;
   }
+
+
+
+
+  .HomepageAboutSectionWrapper{
+    /* display: none; */
+    width: 670px;
+    /* height: 600px; */
+    /* background-color: rgba(33, 135, 218, 0.055); */
+  }
+
+  .HomepageAboutPortraitImage{
+    /* flex-shrink: none; */
+    width: 200px;
+    height: 230px;
+    /* border-radius: 2px;
+    border-bottom-right-radius: 20px;
+    margin-top: 30px;
+    margin-right: 10px; */
+    /* border: 1px solid rgb(213, 111, 62); */
+    /* box-shadow: -6px -6px 0px rgb(235, 120, 68); */
+    /* background-color: brown; */
+  }
+  
+  .HomepageAboutSkillsSuperWrapper{
+    position: relative;
+    /* background-color: red;
+    background-color: blueviolet; */
+  }
+  .HomepageAboutSectionDescriptionSectionHeaderAndDescriptionWrapper{
+    /* flex-shrink: none; */
+    width: 450px;
+    /* height: fit-content;
+    border-radius: 5px;
+    margin-top: 30px;
+    background-color: rgba(80, 80, 80, 0.103); */
+  }
+
+  .HomepageAboutSectionSocialMediaLinksSuperWrapper{
+    /* position: relative; */
+    top: 5px;
+    /* width: 100%; */
+    /* height: 100px; */
+    /* margin: auto; */
+    /* background-color: aquamarine; */
+  }
+
+  .HomepageAboutSectionSocialMediaLinksWrapper{
+    /* display: flex; */
+    width: 450px;
+    /* height: 60px; */
+    /* background-color: rgba(34, 34, 34, 0.712); */
+    margin-left: 210px;
+    /* border-radius: 5px; */
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 @media(max-width: 1080px){
   .ParallaxTitle{
@@ -790,6 +1075,66 @@ width: 12px;
     width: 360px;
   }
 
+
+
+
+
+
+  .HomepageAboutSectionWrapper{
+    /* display: none; */
+    width: 670px;
+    /* height: 600px; */
+    /* background-color: rgba(33, 135, 218, 0.055); */
+  }
+
+  .HomepageAboutPortraitImage{
+    /* flex-shrink: none; */
+    width: 200px;
+    height: 230px;
+    /* border-radius: 2px;
+    border-bottom-right-radius: 20px;
+    margin-top: 30px;
+    margin-right: 10px; */
+    /* border: 1px solid rgb(213, 111, 62); */
+    /* box-shadow: -6px -6px 0px rgb(235, 120, 68); */
+    /* background-color: brown; */
+  }
+  
+  .HomepageAboutSkillsSuperWrapper{
+    position: relative;
+    /* background-color: red;
+    background-color: blueviolet; */
+  }
+  .HomepageAboutSectionDescriptionSectionHeaderAndDescriptionWrapper{
+    /* flex-shrink: none; */
+    width: 450px;
+    /* height: fit-content;
+    border-radius: 5px;
+    margin-top: 30px;
+    background-color: rgba(80, 80, 80, 0.103); */
+  }
+
+  .HomepageAboutSectionSocialMediaLinksSuperWrapper{
+    /* position: relative; */
+    top: 5px;
+    /* width: 100%; */
+    /* height: 100px; */
+    /* margin: auto; */
+    /* background-color: aquamarine; */
+  }
+
+  .HomepageAboutSectionSocialMediaLinksWrapper{
+    /* display: flex; */
+    width: 450px;
+    /* height: 60px; */
+    /* background-color: rgba(34, 34, 34, 0.712); */
+    margin-left: 210px;
+    /* border-radius: 5px; */
+  }
+
+
+
+
 }
 
 @media(max-width: 850px){
@@ -822,6 +1167,79 @@ width: 12px;
     width: 300px;
   }
 }
+
+
+@media(max-width: 720px){
+  .HomepageAboutSectionWrapper{
+    /* display: none; */
+    width: 100%;
+    /* height: 600px; */
+    /* background-color: rgba(33, 135, 218, 0.055); */
+  }
+  .HomepageAboutSectionDescriptionSectionWrapper{
+    /* font-family: "Inter", sans-serif; */
+    display: block;
+    flex-direction: column;
+    /* height: fit-content; */
+    /* width: 100%; */
+    /* background-color: azure; */
+  }
+
+  .HomepageAboutPortraitImage{
+    /* flex-shrink: none; */
+    float: right;
+    width: 220px;
+    height: 250px;
+    border-radius: 2px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 20px;
+    margin-top: -4px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    /* border: 1px solid rgb(213, 111, 62); */
+    box-shadow: -4px 4px 0px rgb(235, 120, 68);
+    /* background-color: brown; */
+  }
+  
+  .HomepageAboutSkillsSuperWrapper{
+    position: relative;
+    /* background-color: red;
+    background-color: blueviolet; */
+  }
+  .HomepageAboutSectionDescriptionSectionHeaderAndDescriptionWrapper{
+    /* flex-shrink: none; */
+    width: 450px;
+    padding-top: 1px;
+    /* height: fit-content;
+    border-radius: 5px;
+    margin-top: 30px;
+    background-color: rgba(80, 80, 80, 0.103); */
+  }
+  :nth-child(2 of .HomepageAboutSectionDescriptionSectionNameHeader){
+    font-size: 16px;
+    width: 300px;
+    /* background-color: aqua; */
+  }
+
+  .HomepageAboutSectionSocialMediaLinksSuperWrapper{
+    /* position: relative; */
+    top: 5px;
+    /* width: 100%; */
+    /* height: 100px; */
+    /* margin: auto; */
+    /* background-color: aquamarine; */
+  }
+
+  .HomepageAboutSectionSocialMediaLinksWrapper{
+    /* display: flex; */
+    width: 450px;
+    /* height: 60px; */
+    /* background-color: rgba(34, 34, 34, 0.712); */
+    margin-left: 0px;
+    /* border-radius: 5px; */
+  }
+}
+
 
 @media(max-width: 670px){
   #root{
@@ -866,8 +1284,36 @@ width: 12px;
   position: relative;
   top: 100px;
   }
-}
 
+  .HomepageAboutPortraitImage{
+    /* flex-shrink: none; */
+    float: right;
+    width: 180px;
+    height: 195px;
+    border-radius: 2px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 20px;
+    margin-top: -4px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    /* border: 1px solid rgb(213, 111, 62); */
+    box-shadow: -4px 4px 0px rgb(235, 120, 68);
+    /* background-color: brown; */
+  }
+
+
+
+}
+@media(max-width: 580px){
+  .HomepageAboutPortraitImage{
+    display: none;
+  }
+  :nth-child(2 of .HomepageAboutSectionDescriptionSectionNameHeader){
+    font-size: 16px;
+    width: 350px;
+    /* background-color: aqua; */
+  }
+}
 
 @media(max-width: 520px){
   .HomepageTitleWrapper{
@@ -879,20 +1325,76 @@ width: 12px;
   .HomepageProjectsSectionCardDescSlider{
     top: -144px;
   }
-  .HomepageAboutPortraitImage{
-    /* margin: auto; */
-    width: 100px;
-    height: 120px;
-    padding-left: 20px;
-  }
-  .HomepageAboutUpperSectionWrapper{
-    flex-wrap: wrap;
-    font-size: 15px;
-  }
+ 
   .HomepageAboutSkillsSuperWrapper{
     position: relative;
     top: 0px;
   }
+
+
+
+
+
+
+
+  .HomepageAboutSectionWrapper{
+    /* display: none; */
+    width: 100%;
+    /* height: 600px; */
+    /* background-color: rgba(33, 135, 218, 0.055); */
+  }
+  .HomepageAboutSectionDescriptionSectionWrapper{
+    /* font-family: "Inter", sans-serif; */
+    display: block;
+    flex-direction: column;
+    /* height: fit-content; */
+    /* width: 100%; */
+    /* background-color: azure; */
+  }
+  
+  .HomepageAboutSkillsSuperWrapper{
+    position: relative;
+    /* background-color: red;
+    background-color: blueviolet; */
+  }
+  .HomepageAboutSectionDescriptionSectionHeaderAndDescriptionWrapper{
+    /* flex-shrink: none; */
+    width: 400px;
+    padding-top: 1px;
+    /* height: fit-content;
+    border-radius: 5px;
+    margin-top: 30px;
+    background-color: rgba(80, 80, 80, 0.103); */
+  }
+  :nth-child(2 of .HomepageAboutSectionDescriptionSectionNameHeader){
+    font-size: 16px;
+    width: 260px;
+    /* background-color: aqua; */
+  }
+
+  .HomepageAboutSectionSocialMediaLinksSuperWrapper{
+    /* position: relative; */
+    top: 5px;
+    /* width: 100%; */
+    /* height: 100px; */
+    /* margin: auto; */
+    /* background-color: aquamarine; */
+  }
+
+  .HomepageAboutSectionSocialMediaLinksWrapper{
+    /* display: flex; */
+    width: 400px;
+    /* height: 60px; */
+    /* background-color: rgba(34, 34, 34, 0.712); */
+    margin-left: 0px;
+    /* border-radius: 5px; */
+  }
+
+
+
+
+
+
 }
 
 
@@ -944,6 +1446,66 @@ width: 12px;
     position: relative;
     top: 50px;
   }
+
+
+
+
+
+  .HomepageAboutSectionWrapper{
+    /* display: none; */
+    width: 100%;
+    /* height: 600px; */
+    /* background-color: rgba(33, 135, 218, 0.055); */
+    /* transform: scale(90%); */
+  }
+  .HomepageAboutSectionDescriptionSectionWrapper{
+    /* font-family: "Inter", sans-serif; */
+    display: block;
+    flex-direction: column;
+    /* height: fit-content; */
+    /* width: 100%; */
+    /* background-color: azure; */
+  }
+  
+  .HomepageAboutSkillsSuperWrapper{
+    position: relative;
+    /* background-color: red;
+    background-color: blueviolet; */
+  }
+  .HomepageAboutSectionDescriptionSectionHeaderAndDescriptionWrapper{
+    /* flex-shrink: none; */
+    width: 300px;
+    padding-top: 1px;
+    /* height: fit-content;
+    border-radius: 5px;
+    margin-top: 30px;
+    background-color: rgba(80, 80, 80, 0.103); */
+  }
+  :nth-child(2 of .HomepageAboutSectionDescriptionSectionNameHeader){
+    font-size: 16px;
+    width: 220px;
+    /* background-color: aqua; */
+  }
+
+  .HomepageAboutSectionSocialMediaLinksSuperWrapper{
+    /* position: relative; */
+    top: 5px;
+    /* width: 100%; */
+    /* height: 100px; */
+    /* margin: auto; */
+    /* background-color: aquamarine; */
+  }
+
+  .HomepageAboutSectionSocialMediaLinksWrapper{
+    /* display: flex; */
+    width: 300px;
+    /* height: 60px; */
+    /* background-color: rgba(34, 34, 34, 0.712); */
+    margin-left: 0px;
+    /* border-radius: 5px; */
+  }
+
+
 }
 
 @keyframes t{

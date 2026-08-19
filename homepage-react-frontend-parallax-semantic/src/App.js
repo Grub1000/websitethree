@@ -42,6 +42,12 @@ import iTILv4Logo from "./assets/ITILv4FoundationLogo.png"
 import compTIALogo from "./assets/CompTIAProjectPluslogo.webp"
 import awsMLEnigneerLogo from "./assets/AWS_Machine_Learning_Engineer_Logo.png"
 
+// About Me Section Logos Imports
+import githubLogoSVG from "./assets/github_logo_svg.svg"
+import linkedinLogoSVG from "./assets/linkedin_logo_svg.svg"
+import youtubeLogoSVG from "./assets/youtube_logo_svg.svg"
+
+
 export default class App extends React.Component{
   constructor(){
     super();
@@ -191,6 +197,9 @@ export default class App extends React.Component{
     const pstString = utcDate.toLocaleTimeString("en-US", { timeZone: "America/Los_Angeles" });
     document.getElementById('timeAndLocationTextTwo').textContent = "Santa Ana, CA " + pstString + " PST";
   }
+
+
+
 
   render(){
     const  myProjectCardList = this.state.projects.map((i) => <ProjectCard data={i}/>);
@@ -385,8 +394,43 @@ export default class App extends React.Component{
                     </div>
                   </div>
                 </section>
+
                 <section className="HomepageAboutSectionWrapper" id="homepageAboutSectionWrapper">
-                  <div className="HomepageAboutUpperSectionWrapper">
+                  <div className="HomepageAboutSectionDescriptionSectionWrapper">
+                    <img className="HomepageAboutPortraitImage" src={myPortrait}></img>
+                    <div className="HomepageAboutSectionDescriptionSectionHeaderAndDescriptionWrapper">
+                      <h2 className="HomepageAboutSectionDescriptionSectionNameHeader">Hey, I'm Jorge</h2>
+                      <h2 className="HomepageAboutSectionDescriptionSectionNameHeader">Full-Stack Developer and Machine Learning Engineer</h2>
+                      <p className="HomepageAboutSectionDescriptionSectionDescription">
+                      I'm a Full-Stack Developer and Machine Learning Engineer who enjoys turning ideas into real, working software. My work spans modern web development, cloud infrastructure, and machine learning—from building full-stack applications with React and Django to developing and deploying intelligent systems with TensorFlow and AWS.
+                      I enjoy learning by building, solving challenging problems, and taking projects from an initial idea all the way to a deployed product.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="HomepageAboutSectionSocialMediaLinksSuperWrapper">
+                    <div className="HomepageAboutSectionSocialMediaLinksWrapper">
+                      <div className="HomepageAboutSectionSocialMediaLinkCard">
+                        <button className="SemanticButtonDiv" onClick={()=> window.open("https://github.com/Grub1000")}>
+                          <img className="HomepageAboutSectionSocialMediaLinkCardIcon" src={githubLogoSVG}></img>
+                          <p className="HomepageAboutSectionSocialMediaLinkCardDescription"></p>
+                        </button>
+                      </div>
+                      <div className="HomepageAboutSectionSocialMediaLinkCard">
+                        <button className="SemanticButtonDiv" onClick={()=> window.open("https://www.linkedin.com/in/jorge-ramirez-02363a18b/")}>
+                          <img className="HomepageAboutSectionSocialMediaLinkCardIcon" src={linkedinLogoSVG}></img>
+                          <p className="HomepageAboutSectionSocialMediaLinkCardDescription"></p>
+                        </button>
+                      </div>
+                      <div className="HomepageAboutSectionSocialMediaLinkCard">
+                        <button className="SemanticButtonDiv" onClick={()=> window.open("https://www.youtube.com/@grub194")}>
+                          <img className="HomepageAboutSectionSocialMediaLinkCardIcon" src={youtubeLogoSVG}></img>
+                          <p className="HomepageAboutSectionSocialMediaLinkCardDescription"></p>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <div className="HomepageAboutUpperSectionWrapper">
                     <img className="HomepageAboutPortraitImage" src={myPortrait}></img>
                     <p className="HomepageAboutDescription">
                       Full-Stack Software Developer and AWS Certified Machine Learning Engineer with a 
@@ -438,8 +482,12 @@ export default class App extends React.Component{
                       <p className="HomePageAboutSkillCard">Windows/Linux</p>
                       <p className="HomePageAboutSkillCard">CI / CD</p>
                     </div>
-                  </div>
+                  </div> */}
                 </section>
+
+
+
+
               </div>
             </section>
           </main>
