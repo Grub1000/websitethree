@@ -278,7 +278,7 @@ export default class App extends React.Component{
                     </button>
                   </div>
                 </div>
-                <button className="HeaderHamburgerButton" onClick={()=>{this.handleBurgerDropDown()}}style={{color: "white"}}><i class=" fa fa-solid fa-bars"></i>
+                <button className="HeaderHamburgerButton" onClick={()=>{this.handleBurgerDropDown()}}style={{color: "white"}}><i class=" fa fa-solid fa-bars" style={{transform: "scale(1.4)"}}></i>
                 <div className="HeaderHamburgerDropdownWrapper" id="headerHamburgerDropdownWrapper">
                   <div className="HeaderButtonDropdownButtonWrapper">
                     <button className="HeaderButtonDropdownButton">
