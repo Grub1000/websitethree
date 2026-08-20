@@ -409,6 +409,7 @@ width: 12px;
   transform: scale(0%);
   transition: transform 1s ease;
 }
+
 .HomepageProjectsSectionNavButton{
   background-color: transparent;
   color: white;
@@ -426,135 +427,144 @@ width: 12px;
   /* background-color: rgb(141, 153, 153); */
   border-bottom: 1px solid rgb(65, 193, 197);
 }
+
 .HomepageProjectsSectionCardWrapper{
+  display: flex;
+  flex-flow: column wrap;
+  align-content: space-between;
+  width: 100%;
+  height: 3000px;
+  /* justify-content: space-between; */
+  /* align-content: space-between; */
+  /* background-color: rgb(177, 162, 152); */
+
+}
+.HomepageProjectsSectionCard{
+  flex-shrink: none;
+  flex-grow: none;
+  /* width: 380px; */
+  width: 32%;
+  height: fit-content;
+  padding-bottom: 20px;
+  border-radius: 20px;
+  margin: 20px;
+  margin-left: 0px;
+  background-color: rgb(255, 255, 255);
+  /* background-image: linear-gradient(rgb(48, 48, 48), rgb(27, 27, 27)); */
+  transition: all .4s ease;
+  cursor: pointer;
+}
+
+.HomepageProjectsSectionCard:hover{
+  background-color: rgb(175, 241, 250);
+}
+
+
+/* vv CSS Needed for Masonry Triple Column Styling vv */
+.HomepageProjectsSectionCard:nth-child(3n+1) { order: 1; } /* Items 1, 4, 7... */
+.HomepageProjectsSectionCard:nth-child(3n+2) { order: 2; } /* Items 2, 5, 8... */
+.HomepageProjectsSectionCard:nth-child(3n)   { order: 3; } /* Items 3, 6, 9... */
+.HomepageProjectsSectionCardWrapper::before,
+.HomepageProjectsSectionCardWrapper::after {
+  content: "";
+  flex-basis: 100%;
+  width: 0;
+  order: 2; /* Ensures breaks sit precisely between your ordered columns */
+}
+/* ^^ CSS Needed for Masonry Triple Column Styling ^^ */
+
+.HomepageProjectsSectionCardImage{
+  position: inherit;
+  width: 92%;
+  height: 220px;
+  border-radius: 10px;
+  margin-left: 4%;
+  margin-top: 4%;
+  object-fit: cover;
+  /* object-position: 0px 0px 0px; */
+  background-color: rgb(253, 253, 253);
+  box-shadow: 4px 4px 0px rgb(235, 120, 68);
+}
+.HomepageProjectsSectionCardTypeDescription{
+  padding-left: 4%;
+  margin-top: 20px;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  color: rgb(65, 193, 197);
+}
+.HomepageProjectsSectionCardTitle{
+  padding-left: 4%;
+  margin-top: 0px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  color: rgb(51, 51, 51);
+}
+.HomepageProjectsSectionCardTechTagsWrapper{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
-  justify-content: space-between;
-  /* align-content: space-between; */
-  /* background-color: aqua; */
+  width: 85%;
+  height: fit-content;
 }
-.HomepageProjectsSectionCard{
-  display: block;
-  position: relative;
-  margin-top: 30px;
-  width: 359px;
-  height: 300px;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  /* background-color: aqua; */
-  /* margin-right: 80px; */
-}
-.HomepageProjectsSectionCardHeader{
-  display: flex;
-  /* background-color: #1f1f1f; */
-}
-.HomepageProjectsSectionCardHeader i{
-  text-align: center;
-  width: 25px;
-  height: 25px;
-  padding-top: 8px;
-  padding-left: 4px;
-  padding-right: 4px;
-  font-size: 25px;
-  border-radius: 50%;
-  color: aliceblue;
-  text-shadow: 0px 1px 2px #000000;
-}
-.HomepageProjectsSectionCardTitle{
-  margin-top: 10px;
+.HomepageProjectsSectionCardTechTag{
+  width: fit-content;
+  padding: 4px;
+  border: 1px solid rgb(51, 51, 51);
+  border-radius: 8px;
   margin-left: 10px;
-  font-size: 18px;
-  font-weight: lighter;
-  letter-spacing: 1px;
-  color: white;
-  text-shadow: 0px 1px 2px #000000;
-  /* background-color: aqua; */
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+  color: rgb(51, 51, 51);
+  /* background-color: rgba(46, 46, 46, 0.993); */
+}
+.HomepageProjectsSectionCardTechIconsSuperWrapper{
+  position: relative;
+  height: 0px; /* Or whatever height you need */
   
 }
-.HomepageProjectsSectionCardCardFooter{
-  display: flex;
-  width: 100%;
-  height: 20px;
-  /* background-color: rgb(0, 136, 255); */
-  /* display: flex; */
-  /* flex-direction: column; */
+.HomePageProjectsSectionCardTechIconsWrapper{
+  position: absolute;
+  bottom: 0;   /* Anchors it to the bottom */
+  right: 0;
+  width: 38px;
+  height: auto; /* Allows it to grow naturally */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 30px;
+  margin-right: 12px;
+  margin-bottom: 10px;
+  background-color: rgb(255, 255, 255);
+  /* border: 1px solid rgb(158, 158, 158); */
+  box-shadow: 0px 0px 3px rgb(100, 100, 100);
 }
-.HomepageProjectsSectionCardImage{
-  width: 360px;
-  height: 250px;
-  background-color: aliceblue;
-  /* background-color: rgb(158, 79, 70); */
-  border-radius: 4px;
-  transition: background-color .4s ease;
-  /* box-shadow: -1px 1px 10px 10px rgba(59, 59, 59, 0.438); */
-  cursor: pointer;
-}
-.HomepageProjectsSectionCardImage:hover{
-  /* background-color: rgb(137, 252, 198); */
-  background-color: rgb(168, 215, 255);
-}
-.HomepageProjectsSectionCardDescButton{
+.HomePageProjectsSectionCardTechIcon{
   position: relative;
-  /* float: left; */
-  /* left: -26px; */
-  top: -255px;
-  left: calc(100% - 29px);
-  width: 30px;
-  height: 250px;
-  padding: none;
-  margin-left: 0px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  /* background-color: rgb(65, 193, 197); */
-  background-color: rgb(189, 199, 204);
-  transition: left .4s ease;
-  /* background-color: rgb(255, 124, 124); */
+  width: 34px;
+  margin-left: 2px;
+  margin-bottom: 5px;
+  margin-top: 10px;
 }
-.HomepageProjectsSectionCardDescButton i{
-  font-size: 20px;
-}
-.HomepageProjectsSectionCardDescButton:hover{
-  /* background-color: rgb(229, 240, 85); */
-  background-color: rgb(65, 193, 197);
-}
-.HomepageProjectsSectionCardDescButtonIcon{
-  transition: all 1.2s ease;
-}
-.HomepageProjectsSectionCardDescSlider{
+/* 
+.HomepageProjectsSectionCardWrapper{
+  display: block;
   position: relative;
-  /* float: right; */
-  top: -255px;
-  left: calc(100% - 29px);
-  width: calc(100% - 30px);
-  height: 222px;
-  background-color: rgb(31, 31, 31);
-  color: white;
-  transition: left .4s ease;
-  font-size: 14px;
-  padding: 14px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  /* scrollbar-width: thin; */
-}
-.MyProjectCardTechTag{
-  /* width: 57px; */
-  height: 19px;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  margin-right: 2px;
-  border-radius: 6px;
-  /* background-color: rgb(3, 3, 3); */
-  background-image: linear-gradient(to right, rgb(26, 26, 26), rgb(26, 27, 31));
-  color: rgb(134, 134, 134);
-  font-size: 12px;
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
-  padding: 7px;
-  padding-bottom: 0px;
-}
+  width: 400px;
+  height: 250px;
+  background-color: aqua;
+} */
+
+
+
+
+
+
+
+
+
+
 
 .HomepageFavoritesSectionCardWrapper{
   display: none;
@@ -785,19 +795,44 @@ width: 12px;
     font-size: 150px;
   }
   .HomepageProjectsSectionCard{
-    width: 300px;
+    /* width: 300px; */
+    /* height: 300px; */
   }
-  .HomepageProjectsSectionCardTitle{
-    margin-top: 13px;
-    font-size: 14px;
+}
+
+@media(max-width: 1523px){
+  .HomepageProjectsSectionCardWrapper {
+    height: 4000px; /* 👈 Set a height large enough for 2 columns */
   }
-  .HomepageProjectsSectionCardImage{
-    margin-top: 4px;
-    width: 300px;
+  .HomepageProjectsSectionCard{
+    width: 48%;
+    /* width: 380px; */
+    /* height: 380px; */
+  }
+  .masonry-item {
+    width: 48%; /* Fits two columns with a small gap */
+    margin-right: 4%;
   }
 
+  /* Remove right margin on every second column item */
+  .HomepageProjectsSectionCard:nth-child(2n) {
+    margin-right: 0;
+  }
+
+  /* Re-order for 2 columns (Left-to-Right reading order) */
+  .HomepageProjectsSectionCard:nth-child(2n+1) { order: 1; } /* Items 1, 3, 5... */
+  .HomepageProjectsSectionCard:nth-child(2n)   { order: 2; } /* Items 2, 4, 6... */
 }
+
+
+
+
+
+
+
+
 @media(max-width: 1480px){
+
   .HomepageAboutSectionWrapper{
     /* display: none; */
     width: 900px;
@@ -849,7 +884,6 @@ width: 12px;
     margin-left: 290px;
     /* border-radius: 5px; */
   }
-  
 
 
 }
@@ -859,21 +893,6 @@ width: 12px;
     margin-top: 240px;
     font-size: 120px;
   }
-  .HomepageProjectsSectionCard{
-    width: 359px;
-  }
-  .HomepageProjectsSectionCardTitle{
-    margin-top: 12px;
-    font-size: 17px;
-  }
-  .HomepageProjectsSectionCardImage{
-    width: 360px;
-  }
-
-
-
-
-
 
   .HomepageAboutSectionWrapper{
     /* display: none; */
@@ -926,23 +945,13 @@ width: 12px;
     margin-left: 260px;
     /* border-radius: 5px; */
   }
-  
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
 
-
+@media(max-width: 1255px){
+ 
+}
 
 
 
@@ -1035,17 +1044,33 @@ width: 12px;
     font-size: 100px;
   }
   .HomepageProjectsSectionCard{
-    width: 300px;
-  }
-  .HomepageProjectsSectionCardTitle{
-    margin-top: 13px;
-    font-size: 14px;
-  }
-  .HomepageProjectsSectionCardImage{
-    margin-top: 4px;
-    width: 300px;
+    /* width: 300px; */
+    
   }
 
+  .HomepageProjectsSectionCardWrapper {
+    flex-flow: column nowrap;
+    flex: none;
+    /* height: 8000px; 👈 Set a height large enough for 2 columns */
+    height: auto !important;
+  }
+  .HomepageProjectsSectionCard{
+    width: 100%;
+    margin: auto;
+    margin-top: 40px;
+    order: initial !important;
+    /* width: 380px; */
+    /* height: 380px; */
+  }
+  .HomepageProjectsSectionCardImage{
+    height: 30%;
+    min-height: 220px;
+    max-height: 400px;
+  }
+
+}
+@media(max-width: 1015px){
+ 
 }
 
 @media(max-width: 900px){
@@ -1065,21 +1090,7 @@ width: 12px;
   .HomepageSuperWrapper{
     width: 90vw;
   }
-  .HomepageProjectsSectionCard{
-    width: 359px;
-  }
-  .HomepageProjectsSectionCardTitle{
-    font-size: 18px;
-  }
-  .HomepageProjectsSectionCardImage{
-    width: 360px;
-  }
-
-
-
-
-
-
+  
   .HomepageAboutSectionWrapper{
     /* display: none; */
     width: 670px;
@@ -1155,21 +1166,11 @@ width: 12px;
   #root{
     /* box-shadow: 0px 0px 200px 135px rgb(0, 0, 0) inset; */
   }
-  .HomepageProjectsSectionCard{
-    width: 300px;
-  }
-  .HomepageProjectsSectionCardTitle{
-    margin-top: 13px;
-    font-size: 14px;
-  }
-  .HomepageProjectsSectionCardImage{
-    margin-top: 4px;
-    width: 300px;
-  }
 }
 
 
 @media(max-width: 720px){
+
   .HomepageAboutSectionWrapper{
     /* display: none; */
     width: 100%;
@@ -1256,30 +1257,7 @@ width: 12px;
   /* background-color: antiquewhite; */
     width: calc(100vw - 80px);
   }
-  .HomepageProjectsSectionCard{
-    /* background-color: aquamarine; */
-    width: 200px;
-    height: 200px;
-  }
-  .HomepageProjectsSectionCardTitle{
-    margin-top: 17px;
-    font-size: 9px;
-  }
-  .HomepageProjectsSectionCardImage{
-    margin-top: 4px;
-    width: 200px;
-    height: 140px;
-  }
-  .HomepageProjectsSectionCardDescButton{
-    height: 140px;
-    top: -145px;
-  }
-  .HomepageProjectsSectionCardDescSlider{
-    height: 112px;
-    width: 170px;
-    top: -145px;
-    font-size: 11px;
-  }
+ 
   .HomepageAboutSkillsSuperWrapper{
   position: relative;
   top: 100px;
@@ -1318,12 +1296,6 @@ width: 12px;
 @media(max-width: 520px){
   .HomepageTitleWrapper{
     width: 400px;
-  }
-  .HomepageProjectsSectionCardDescButton{
-    top: -144px;
-  }
-  .HomepageProjectsSectionCardDescSlider{
-    top: -144px;
   }
  
   .HomepageAboutSkillsSuperWrapper{
@@ -1418,30 +1390,7 @@ width: 12px;
     margin-right: 10px;
     font-size: 14px;
   }
-  .HomepageProjectsSectionCard{
-    width: 300px;
-    height: 235px;
-    /* background-color: antiquewhite; */
-  }
-  .HomepageProjectsSectionCardTitle{
-    margin-top: 13px;
-    font-size: 14px;
-  }
-  .HomepageProjectsSectionCardImage{
-    margin-top: 4px;
-    width: 300px;
-    height: 190px;
-  }
-    .HomepageProjectsSectionCardDescButton{
-    height: 190px;
-    top: -194px;
-  }
-  .HomepageProjectsSectionCardDescSlider{
-    height: 162px;
-    width: 300px;
-    top: -194px;
-    font-size: 11px;
-  }
+
   .HomepageAboutSkillsSuperWrapper{
     position: relative;
     top: 50px;
@@ -1485,7 +1434,7 @@ width: 12px;
     font-size: 16px;
     width: 220px;
     /* background-color: aqua; */
-    
+
   }
 
   .HomepageAboutSectionSocialMediaLinksSuperWrapper{
