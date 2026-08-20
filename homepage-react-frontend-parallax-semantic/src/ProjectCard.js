@@ -102,7 +102,6 @@ export default class App extends React.Component{
         return(<img className="HomePageProjectsSectionCardTechIcon" src={sqlLogoSVG}></img>)
     }
 
-
   }
 
   render(){
