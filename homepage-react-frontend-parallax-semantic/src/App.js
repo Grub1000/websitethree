@@ -81,7 +81,26 @@ export default class App extends React.Component{
     this.handleSectionChange = this.handleSectionChange.bind(this)
     this.updateClock = this.updateClock.bind(this)
     this.handleBurgerDropDown = this.handleBurgerDropDown.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
+  // Hamburger Dropdown Click Off Functionality function (called during component did mount and will-unmount)
+  handleClick(event) {
+      const target = event.target;
+      console.log("clicked")
+      if (
+          !target.closest(".HeaderHamburgerDropdownWrapper")
+          && !target.closest(".HeaderHamburgerButton")
+      ) {
+          document
+              .querySelectorAll(".HeaderHamburgerDropdownWrapper")
+              .forEach(dropdown => {
+                  dropdown.style.display = "none";
+              });
+      }
+  }
+    
+            
+  // React Component DidMount Method
   componentDidMount(){
     setInterval(this.updateClock, 1000);
     this.updateClock();
@@ -127,30 +146,36 @@ export default class App extends React.Component{
     setTimeout(()=> {
       document.getElementById("homepageProjectsSectionSuperWrapper").style.transform = "scale(100%)"
     }, 1);
+
+    // Event Listener Initialization for Hamburger Dropdown Functionality
+    document.addEventListener("mousedown", this.handleClick);
   }
+
+  componentWillUnmount(){
+    // Event Listener De-Initialization for Hamburger Dropdown Functionality
+    document.removeEventListener("mousedown", this.handleClick);
+  }
+
+  // Handles The Dropdowns on the top of the page. (Recently Optimized)
   handleDropdown(eventType, ddNum){
-    if(eventType == "mouseIn"){
-      if(ddNum == 0){document.getElementsByClassName("HeaderButtonDropdown")[0].style.display = "block"}
-      else if(ddNum == 1){document.getElementsByClassName("HeaderButtonDropdown")[1].style.display = "block"}
-      else if(ddNum == 2){document.getElementsByClassName("HeaderButtonDropdown")[2].style.display = "block"}
-      else if(ddNum == 3){document.getElementsByClassName("HeaderButtonDropdown")[3].style.display = "block"}
+    if(eventType == "mouseIn"){ 
+      document.getElementsByClassName("HeaderButtonDropdown")[ddNum].style.display = "block"
     }
     else if(eventType == "mouseOut"){
-      if(ddNum == 0){document.getElementsByClassName("HeaderButtonDropdown")[0].style.display = "none"}
-      else if(ddNum == 1){document.getElementsByClassName("HeaderButtonDropdown")[1].style.display = "none"}
-      else if(ddNum == 2){document.getElementsByClassName("HeaderButtonDropdown")[2].style.display = "none"}
-      else if(ddNum == 3){document.getElementsByClassName("HeaderButtonDropdown")[3].style.display = "none"}
+      document.getElementsByClassName("HeaderButtonDropdown")[ddNum].style.display = "none"
     }
   }
-  handleBurgerDropDown(){
-    if(!this.state.burgerDropDown){
-      document.getElementById("headerHamburgerDropdownWrapper").style.display = "flex"
-      this.setState({burgerDropDown: true})
-    }else{
-      document.getElementById("headerHamburgerDropdownWrapper").style.display = "none"
-      this.setState({burgerDropDown: false})
-    }
+
+
+  // Handles The Top Right Burger Icon Functionality
+  handleBurgerDropDown(id){
+    const selectedDropdown = document.getElementById(id)
+        selectedDropdown.style.display = "flex"
   }
+
+
+
+  // Handles Page Changes In The Lower Sections (All, Favorites, Education, and About)
   handleSectionChange(event, eventType){
     let allSection = document.getElementById("homepageProjectsSectionCardWrapper")
     let favoriteSection = document.getElementById("homepageFavoritesSectionCardWrapper")
@@ -185,6 +210,8 @@ export default class App extends React.Component{
       document.getElementById("homepageProjectsSectionNavButtonAbout").style.borderColor = "White"
     }
   }
+
+  // Clock Functionality Function
   updateClock(){
     // Get the current date and time
     const now = new Date(); 
@@ -287,7 +314,7 @@ export default class App extends React.Component{
                     </button>
                   </div>
                 </div>
-                <button className="HeaderHamburgerButton" onClick={()=>{this.handleBurgerDropDown()}}style={{color: "white"}}><i class=" fa fa-solid fa-bars" style={{transform: "scale(1.4)"}}></i>
+                <button className="HeaderHamburgerButton" onClick={()=>{this.handleBurgerDropDown("headerHamburgerDropdownWrapper")}}style={{color: "white"}}><i class=" fa fa-solid fa-bars" style={{transform: "scale(1.4)"}}></i>
                 <div className="HeaderHamburgerDropdownWrapper" id="headerHamburgerDropdownWrapper">
                   <div className="HeaderButtonDropdownButtonWrapper">
                     <button className="HeaderButtonDropdownButton">
