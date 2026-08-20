@@ -542,8 +542,8 @@ width: 12px;
 }
 .HomePageProjectsSectionCardTechIcon{
   position: relative;
-  width: 34px;
-  margin-left: 2px;
+  width: 32px;
+  margin-left: 3px;
   margin-bottom: 5px;
   margin-top: 10px;
 }
@@ -569,7 +569,7 @@ width: 12px;
 .HomepageFavoritesSectionCardWrapper{
   display: none;
   /* display: flex; */
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
