@@ -26,8 +26,10 @@ export default function ResumeUploadPopUp({
     }) {
 
         const fileInputRef = useRef<HTMLInputElement | null>(null);
+        const jobTitleInputRef = useRef<HTMLInputElement | null>(null);
     
         const [selectedFile, setSelectedFile] = useState<File | null>(null);
+        const [jobTitle, setJobTitle] = useState<string>("");
         const [uploading, setUploading] = useState(false);
         const [message, setMessage] = useState("");
         const [error, setError] = useState("");
@@ -103,6 +105,12 @@ export default function ResumeUploadPopUp({
     
             setSelectedFile(file);
         }
+
+        function handleJobTitleChange(
+            event: React.ChangeEvent<HTMLInputElement>
+        ){
+            setJobTitle(event.target.value)
+        }
     
         async function handleUploadAndExtractAndAnalysis() {
             if (!selectedFile) {
@@ -136,7 +144,9 @@ export default function ResumeUploadPopUp({
                     try{
                         setMessage("Analyzing Resume...");
     
-                        const analysisResult = await analyzeResume(result.resume_id);
+                        const analysisResult = await analyzeResume(result.resume_id, jobTitle);
+
+                        setJobTitle("") // Reset Job Title for Further Use
     
                         setMessage("Résumé analysis complete.");
     
@@ -240,8 +250,20 @@ export default function ResumeUploadPopUp({
                         {error}
                     </p>
                 )}
+                {selectedFile && (
+                    <input 
+                        ref={jobTitleInputRef}
+                        // type="text"
+                        // accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                        onChange={handleJobTitleChange}
+                        disabled={uploading}
+                        className="ResumeUploadPopUpJobTitleInput"
+                        placeholder="Job Title: Optional"
+                    />
+                )}
 
-                {selectedFile && (<button type="button" onClick={handleUploadAndExtractAndAnalysis} disabled={uploading || !selectedFile} className="ResumeUploadPopUpFileUploadConfirmationButton">
+                {selectedFile && (
+                <button type="button" onClick={handleUploadAndExtractAndAnalysis} disabled={uploading || !selectedFile} className="ResumeUploadPopUpFileUploadConfirmationButton">
                     {uploading ? "Uploading Resume..." : "Upload Resume"}
                 </button>
                 )}

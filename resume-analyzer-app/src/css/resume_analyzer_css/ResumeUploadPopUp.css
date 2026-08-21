@@ -149,12 +149,37 @@
     /* background-color: rgb(243, 163, 163); */
     /* margin: none !important; */
 }
+.ResumeUploadPopUpJobTitleInput{
+    display: block;
+    position: relative;
+    left: 0px;
+    top: -20px;
+    width: 200px;
+    height: 40px;
+    /* padding: 5px; */
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    margin: none;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #272727;
+    /* background-color: rgb(202, 215, 219); */
+    letter-spacing: 1px;
+    transition: border-color 0.2s ease;
+}
+.ResumeUploadPopUpJobTitleInput:focus{
+    border-color: rgb(0, 204, 255)
+}
 .ResumeUploadPopUpFileUploadConfirmationButton{
     float: right;
     position: relative;
     width: fit-content;
     height: fit-content;
-    top: -170px;
+    top: -220px;
     left: -150px;
     padding: 10px;
     outline: none;
@@ -269,7 +294,7 @@
         float: none;
         top: 0px;
         left: 165px;
-        margin-top: 20px;
+        margin-top: -10px;
     }
     .ResumeUploadPopUpUploadSuccessMessage{
         position: relative;
@@ -305,6 +330,11 @@
         top: -60px;
         left: -4px;
         
+    }
+    .ResumeUploadPopUpJobTitleInput{
+        width: 60%;
+        top: -18px;
+        margin-left: 20px;
     }
     .ResumeUploadPopUpFileUploadConfirmationButton{
         display: block;
