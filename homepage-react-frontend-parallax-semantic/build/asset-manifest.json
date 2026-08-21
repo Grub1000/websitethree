@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.bc8f90cc.css",
-    "main.js": "/static/js/main.590bc5f3.js",
+    "main.css": "/static/css/main.03160760.css",
+    "main.js": "/static/js/main.db57db3c.js",
     "static/js/453.eb1b5922.chunk.js": "/static/js/453.eb1b5922.chunk.js",
     "static/media/20240227_211318.jpg": "/static/media/20240227_211318.135c096e84b023e4f04e.jpg",
     "static/media/SchedulingSystemImage.png": "/static/media/SchedulingSystemImage.44f50563ecee9ea8a154.png",
@@ -30,6 +30,7 @@
     "static/media/sql_logo_svg.svg": "/static/media/sql_logo_svg.f94be9ade62b8187465f2be9c732afac.svg",
     "static/media/mysql_logo_svg.svg": "/static/media/mysql_logo_svg.678184902af50139ca127a159b82e38a.svg",
     "static/media/java_logo_svg.svg": "/static/media/java_logo_svg.ff7aee55b94f7fc33a9e0da236099a89.svg",
+    "static/media/laravel_logo_svg.svg": "/static/media/laravel_logo_svg.604697f192837d8f5bab6ca7f4ade027.svg",
     "static/media/php_logo_svg.svg": "/static/media/php_logo_svg.4729798027940c0d2d2e41dd1a378083.svg",
     "static/media/ai_logo_svg.svg": "/static/media/ai_logo_svg.88f55bef69158879d6f811ec9c7b3b20.svg",
     "static/media/cplusplus_logo_svg.svg": "/static/media/cplusplus_logo_svg.ca0ada6667869a937b080ad7fd2368b8.svg",
@@ -51,12 +52,12 @@
     "static/media/youtube_logo_svg.svg": "/static/media/youtube_logo_svg.bf9cb1c327a8036a51a6f9b5b6fa654f.svg",
     "static/media/javascript_logo_svg.svg": "/static/media/javascript_logo_svg.7c2c5a7a4d999abba95b43792bb3c1da.svg",
     "static/media/1.svg": "/static/media/1.018a1e39c474e704b3c8cf6108063bbd.svg",
-    "main.bc8f90cc.css.map": "/static/css/main.bc8f90cc.css.map",
-    "main.590bc5f3.js.map": "/static/js/main.590bc5f3.js.map",
+    "main.03160760.css.map": "/static/css/main.03160760.css.map",
+    "main.db57db3c.js.map": "/static/js/main.db57db3c.js.map",
     "453.eb1b5922.chunk.js.map": "/static/js/453.eb1b5922.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bc8f90cc.css",
-    "static/js/main.590bc5f3.js"
+    "static/css/main.03160760.css",
+    "static/js/main.db57db3c.js"
   ]
 }

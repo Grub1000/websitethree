@@ -22,6 +22,7 @@ import tensorflowLogoSVG from "./assets/logos/tensorflow_logo_svg.svg"
 import javaLogoSVG from "./assets/logos/java_logo_svg.svg"
 import djangoLogoSVG from "./assets/logos/django_logo_svg.svg"
 import sqlLogoSVG from "./assets/logos/sql_logo_svg.svg"
+import laravelLogoSVG from "./assets/logos/laravel_logo_svg.svg"
 // import typescriptLogoSVG from "./assets/logos/typescript_logo_svg.svg"
 // import typescriptLogoSVG from "./assets/logos/typescript_logo_svg.svg"
 
@@ -101,6 +102,12 @@ export default class App extends React.Component{
     else if(techName == "SQL"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={sqlLogoSVG}></img>)
     }
+    else if(techName == "Laravel"){
+        return(<img className="HomePageProjectsSectionCardTechIcon" src={laravelLogoSVG}></img>)
+    }
+    else if(techName == "PHP"){
+        return(<img className="HomePageProjectsSectionCardTechIcon" src={phpLogoSVG}></img>)
+    }
 
   }
 
@@ -146,7 +153,7 @@ export default class App extends React.Component{
         }
         }>
             <img className="HomepageProjectsSectionCardImage" src={this.props.data.image}></img>
-            <p className="HomepageProjectsSectionCardTypeDescription">Frontend & Backend</p>
+            <p className="HomepageProjectsSectionCardTypeDescription">{this.props.data.type}</p>
             <h2 className="HomepageProjectsSectionCardTitle">{this.props.data.title}</h2>
             <div className="HomepageProjectsSectionCardTechTagsWrapper">
                 {this.props.data.techUsed.map(tech => 

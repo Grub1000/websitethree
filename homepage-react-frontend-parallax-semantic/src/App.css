@@ -567,15 +567,16 @@ width: 12px;
 
 
 .HomepageFavoritesSectionCardWrapper{
-  display: none;
-  /* display: flex; */
-  flex-direction: column;
-  flex-wrap: wrap;
+  display: flex;
+  flex-flow: column wrap;
+  align-content: space-between;
   width: 100%;
-  justify-content: space-between;
-  /* align-content: space-between; */
-  /* background-color: aqua; */
+  height: 3000px;
 }
+
+
+
+
 
 .HomepageEducationSectionWrapper{
   display: none;
