@@ -766,6 +766,65 @@ width: 12px;
 
 
 
+.HomepageAboutSectionSkillsNavigationWrapper{
+  width: 100%;
+  height: 100px;
+  /* background-color: aliceblue; */
+}
+.HomepageAboutSectionSkillsNavBar{
+  display: flex;
+  width: 100%;
+  height: 100px;
+  /* background-color: rgba(210, 255, 127, 0.267); */
+}
+.HomepageAboutSectionSkillsNavButton{
+  position: relative;
+  width: 150px;
+  height: 120px;
+  border: none;
+  outline: none;
+  padding: 0px;
+  padding: 10px;
+  border: 1px solid rgb(235, 120, 68);
+  border-radius: 10px;
+  margin: auto;
+  font-family: "Rubik", sans-serif;
+  background-color: rgba(0, 128, 0, 0);
+  cursor: pointer;
+  /* align-items: end;
+  align-content: start; */
+  transition: background-color .3s ease;
+}
+.HomepageAboutSectionSkillsNavButton:hover{
+  border: 1px solid rgba(235, 121, 68, 0.699);
+  background-color: rgba(65, 193, 197, 0.151);
+}
+.HomepageAboutSectionSkillsNavButtonImage{
+  position: relative;
+  width: 30px;
+  top: 0px;
+  fill: white !important;
+  /* background-color: #000000; */
+}
+.HomepageAboutSectionSkillsNavButtonTitle{
+  margin-top: 5px;
+  font-size: 22px;
+  font-weight: 500;
+  color: white;
+  /* background-color: red; */
+}
+.HomepageAboutSectionSkillsNavButtonSkillsNumberDescription{
+  margin-top: -10px;
+  font-size: 14px;
+  color: rgb(167, 167, 167);
+}
+
+
+
+
+
+
+
 
 
 
@@ -1240,6 +1299,63 @@ width: 12px;
     margin-left: 0px;
     /* border-radius: 5px; */
   }
+
+
+
+
+.HomepageAboutSectionSkillsNavButton{
+  /* position: relative; */
+  width: 110px;
+  height: 110px;
+  /* border: none;
+  outline: none;
+  padding: 0px;
+  padding: 10px;
+  border: 1px solid rgb(235, 120, 68);
+  border-radius: 10px;
+  margin: auto;
+  font-family: "Rubik", sans-serif;
+  background-color: rgba(0, 128, 0, 0);
+  cursor: pointer; */
+  /* align-items: end;
+  align-content: start; */
+  /* transition: background-color .3s ease; */
+}
+
+.HomepageAboutSectionSkillsNavButtonImage{
+  /* position: relative; */
+  /* width: 30px;
+  top: 0px;
+  fill: white !important; */
+  /* background-color: #000000; */
+}
+.HomepageAboutSectionSkillsNavButtonTitle{
+  /* margin-top: 5px; */
+  font-size: 20px;
+  /* font-weight: 500; */
+  /* color: white; */
+  /* background-color: red; */
+}
+.HomepageAboutSectionSkillsNavButtonSkillsNumberDescription{
+  /* margin-top: -10px; */
+  font-size: 13px;
+  /* color: rgb(167, 167, 167); */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
@@ -1368,6 +1484,64 @@ width: 12px;
 
 
 
+
+
+
+
+
+
+
+
+
+.HomepageAboutSectionSkillsNavButton{
+  /* position: relative; */
+  width: 90px;
+  height: 95px;
+  /* border: none;
+  outline: none;
+  padding: 0px;
+  padding: 10px;
+  border: 1px solid rgb(235, 120, 68);
+  border-radius: 10px;
+  margin: auto;
+  font-family: "Rubik", sans-serif;
+  background-color: rgba(0, 128, 0, 0);
+  cursor: pointer; */
+  /* align-items: end;
+  align-content: start; */
+  /* transition: background-color .3s ease; */
+}
+
+.HomepageAboutSectionSkillsNavButtonImage{
+  /* position: relative; */
+  /* width: 30px;
+  top: 0px;
+  fill: white !important; */
+  /* background-color: #000000; */
+}
+.HomepageAboutSectionSkillsNavButtonTitle{
+  /* margin-top: 5px; */
+  font-size: 16px;
+  /* font-weight: 500; */
+  /* color: white; */
+  /* background-color: red; */
+}
+.HomepageAboutSectionSkillsNavButtonSkillsNumberDescription{
+  /* margin-top: -10px; */
+  font-size: 12px;
+  /* color: rgb(167, 167, 167); */
+}
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
@@ -1424,7 +1598,7 @@ width: 12px;
   }
   .HomepageAboutSectionDescriptionSectionHeaderAndDescriptionWrapper{
     /* flex-shrink: none; */
-    width: 300px;
+    width: 100%;
     padding-top: 1px;
     /* height: fit-content;
     border-radius: 5px;
@@ -1449,12 +1623,59 @@ width: 12px;
 
   .HomepageAboutSectionSocialMediaLinksWrapper{
     /* display: flex; */
-    width: 300px;
+    width: 100%;
     /* height: 60px; */
     /* background-color: rgba(34, 34, 34, 0.712); */
     margin-left: 0px;
     /* border-radius: 5px; */
   }
+
+
+
+
+
+
+
+  .HomepageAboutSectionSkillsNavButton{
+  /* position: relative; */
+  width: 70px;
+  height: 70px;
+  /* border: none;
+  outline: none;
+  padding: 0px;
+  padding: 10px;
+  border: 1px solid rgb(235, 120, 68);
+  border-radius: 10px;
+  margin: auto;
+  font-family: "Rubik", sans-serif;
+  background-color: rgba(0, 128, 0, 0);
+  cursor: pointer; */
+  /* align-items: end;
+  align-content: start; */
+  /* transition: background-color .3s ease; */
+}
+
+.HomepageAboutSectionSkillsNavButtonImage{
+  /* position: relative; */
+  /* width: 30px;
+  top: 0px;
+  fill: white !important; */
+  /* background-color: #000000; */
+}
+.HomepageAboutSectionSkillsNavButtonTitle{
+  display: none;
+  /* margin-top: 5px; */
+  font-size: 16px;
+  /* font-weight: 500; */
+  /* color: white; */
+  /* background-color: red; */
+}
+.HomepageAboutSectionSkillsNavButtonSkillsNumberDescription{
+  margin-top: 5px;
+  /* margin-top: -10px; */
+  font-size: 12px;
+  /* color: rgb(167, 167, 167); */
+}
 
 
 }

@@ -46,7 +46,9 @@ import awsMLEnigneerLogo from "./assets/AWS_Machine_Learning_Engineer_Logo.png"
 import githubLogoSVG from "./assets/github_logo_svg.svg"
 import linkedinLogoSVG from "./assets/linkedin_logo_svg.svg"
 import youtubeLogoSVG from "./assets/youtube_logo_svg.svg"
-
+import cloudLogoSVG from "./assets/logos/cloud_logo_svg.svg"
+import mlLogoSVG from "./assets/logos/machine_learning_logo_svg.svg"
+import cogwheelLogoSVG from "./assets/logos/cogwheel_logo_svg.svg"
 
 export default class App extends React.Component{
   constructor(){
@@ -510,6 +512,32 @@ export default class App extends React.Component{
                       <p className="HomePageAboutSkillCard">CI / CD</p>
                     </div>
                   </div> */}
+                  <div className="HomepageAboutSectionSkillsNavigationWrapper">
+                    <nav className="HomepageAboutSectionSkillsNavBar">
+                      <button className="HomepageAboutSectionSkillsNavButton">
+                        <div style={{position: "relative" , height: "32px", top: "4px", fontWeight: "300", color: "rgb(65, 193, 197)"}}>&lt; / &gt;</div>
+                        <h2 className="HomepageAboutSectionSkillsNavButtonTitle">Frontend</h2>
+                        <p className="HomepageAboutSectionSkillsNavButtonSkillsNumberDescription">Skills 8</p>
+                      </button>
+                      <button className="HomepageAboutSectionSkillsNavButton">
+                        <img className="HomepageAboutSectionSkillsNavButtonImage" src={mlLogoSVG}></img>
+                        <h2 className="HomepageAboutSectionSkillsNavButtonTitle">AI/ML</h2>
+                        <p className="HomepageAboutSectionSkillsNavButtonSkillsNumberDescription">Skills 8</p>
+                      </button>
+                      <button className="HomepageAboutSectionSkillsNavButton">
+                        <img className="HomepageAboutSectionSkillsNavButtonImage" src={cloudLogoSVG}></img>
+                        <h2 className="HomepageAboutSectionSkillsNavButtonTitle">Cloud</h2>
+                        <p className="HomepageAboutSectionSkillsNavButtonSkillsNumberDescription">Skills 8</p>
+                      </button>
+                      <button className="HomepageAboutSectionSkillsNavButton">
+                        <img className="HomepageAboutSectionSkillsNavButtonImage" src={cogwheelLogoSVG}></img>
+                        <h2 className="HomepageAboutSectionSkillsNavButtonTitle">Backend</h2>
+                        <p className="HomepageAboutSectionSkillsNavButtonSkillsNumberDescription">Skills 8</p>
+                      </button>
+                    </nav>
+                  </div>
+
+
                 </section>
 
 
