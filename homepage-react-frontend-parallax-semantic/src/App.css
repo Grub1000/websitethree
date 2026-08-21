@@ -740,6 +740,9 @@ width: 12px;
   /* background-color: aqua; */
   height: 60px
 }
+.SemanticButtonDiv:hover > .HomepageAboutSectionSocialMediaLinkCardIcon{
+  opacity: 85%;
+}
 .HomepageAboutSectionSocialMediaLinkCard{
   height: 100%;
   margin-right: 25px;
@@ -753,6 +756,7 @@ width: 12px;
   margin-top: 11px;
   /* background-color: brown; */
 }
+
 
 
 
