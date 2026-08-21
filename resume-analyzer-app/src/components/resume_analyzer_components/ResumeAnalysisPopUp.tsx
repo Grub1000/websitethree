@@ -36,6 +36,12 @@ export default function ResumeAnalysisPopUp({
                             {" " + resumeAnalyses[0].analysis_id}
                         </span>
 
+                        {/* <span> */}
+                            {/* Job Title: */}
+                            {/* Analysis ID: 45ed8d99 */}
+                            {resumeAnalyses[0].job_title == "" ? "" : <span style={{color: "#8df3ad"}}> Job Title:{" " + resumeAnalyses[0].job_title} </span>}
+                        {/* </span> */}
+
                         <span>
                             {/* Aug 9, 2026 */}
                             {new Date(resumeAnalyses[0].created_at).toLocaleDateString("en-US", {
