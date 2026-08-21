@@ -1,0 +1,27 @@
+.HomepageAboutSectionSkillsCard{
+    display: flex;
+    width: fit-content;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 3px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+    background-color: rgba(82, 82, 82, 0.541);
+}
+.HomepageAboutSectionSkillCardIcon{
+    position: relative;
+    width: 20px;
+    top: 0px;
+    margin-right: 8px;
+    
+}
+.HomepageAboutSectionSkillCardTitle{
+    position: relative;
+    /* width: 20px; */
+    top: -4px;
+    color: white;
+    /* margin-right: 8px; */
+    
+}

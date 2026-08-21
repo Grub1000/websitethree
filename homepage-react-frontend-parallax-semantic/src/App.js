@@ -1,13 +1,15 @@
 import React from "react"
 import "./normalize.css"
 import "./App.css"
+
+// Component Imports
 import ProjectCard from "./ProjectCard"
+import SkillCard from "./SkillCard"
 
 import logo from "./assets/HomePageLogoFixed.png"
 import myPortrait from "./assets/20240227_211318.jpg"
 
 // Website Tab Logo
-
 import newIconUrl from "./assets/website_tab_logo.png"
 
 // Parallax Feature Images
@@ -78,12 +80,55 @@ export default class App extends React.Component{
         {title: "Delivery Route Optimization",image: deliveryRouteImage, description: "Designed and Developed an algorithmic solution where 40 packages are delivered on time while meeting each package’s requirements and keeping the combined total distance traveled under 140 miles for all delivery trucks. This project was my take on a solution to the more commonly known traveling-salesman problem. My solution used a Nearest-neighbor algorithm combined with Dijkstra's shortest path algorithm to route the trucks around the city. I managed to stay under 140 miles and only had to use two trucks while meeting all the requirements of each package. Some packages arrived hours late, had wrong addresses, and some needed to be delivered on the same truck / load as others.", techUsed: ["Python", "SP-Algorithms", "NN-Algorithms"],  dateCreated: "2025", link: "", gitHub: "https://github.com/Grub1000/University-C950-Solution", youtube: "", notAvailable: 0},
         {title: "PDF Editor Project",image: vdmImage, description: "This project is a demo version of the software I developed while working at Greenstar.ca. The pdf editor is built using the same technology stack but with different frontend and limited features for the demo version. These features include a login page, dashboard with file-system, and editor.", techUsed: ["Laravel", "ReactJS", "MySQL", "PHP", "Javascript", "HTML", "CSS", "RESTapi", "Responsive"],  dateCreated: "2022", link: "https://vdm.fullstackgrub.com/", gitHub: "", youtube: "", notAvailable: 0}, 
         ],
+      backendSkills: [
+        {title: "Python", skillLevel: "9"},
+        {title: "Java", skillLevel: "6"},
+        {title: "C#", skillLevel: "5"},
+        {title: "Django", skillLevel: "9"},
+        {title: "PHP", skillLevel: "7"},
+        {title: "Laravel", skillLevel: "7"},
+        {title: "MySQL", skillLevel: "9"},
+        {title: "SQL", skillLevel: "9"},
+        {title: "Apache2", skillLevel: "8"},
+        {title: "Postman", skillLevel: "9"},
+        {title: "Linux", skillLevel: "8"},
+
+        ],
+      frontendSkills: [
+        {title: "TypeScript", skillLevel: "9"},
+        {title: "JavaScript", skillLevel: "9"},
+        {title: "React", skillLevel: "9"},
+        {title: "HTML5", skillLevel: "9"},
+        {title: "CSS", skillLevel: "9"},
+        {title: "GIMP GNU", skillLevel: "9"},    
+        ],
+      aimlSkills:[
+        {title: "TensorFlow", skillLevel: "9"},
+        {title: "Keras", skillLevel: "9"},
+        {title: "AWS Sagemaker", skillLevel: "8"},
+        {title: "AWS Bedrock", skillLevel: "7"},
+        {title: "OpenAI", skillLevel: "8"},
+        {title: "Computer Vision", skillLevel: "9"},
+        {title: "NLPs", skillLevel: "8"},
+        {title: "LLMs", skillLevel: "9"},
+        {title: "Machine Learning", skillLevel: "9"},
+        {title: "Neural Networks", skillLevel: "9"},
+        {title: "Decision Trees", skillLevel: "8"},
+        ],
+      cloudSkills:[
+        {title: "AWS EC2", skillLevel: "9"},
+        {title: "AWS S3", skillLevel: "9"},
+        {title: "Google OAuth", skillLevel: "9"},
+        {title: "GitHub Actions", skillLevel: "9"},
+        {title: "Docker", skillLevel: "6"},
+        ],
       }
     this.handleDropdown = this.handleDropdown.bind(this)
     this.handleSectionChange = this.handleSectionChange.bind(this)
     this.updateClock = this.updateClock.bind(this)
     this.handleBurgerDropDown = this.handleBurgerDropDown.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleAboutSkillsSectionChange = this.handleAboutSkillsSectionChange.bind(this)
   }
   // Hamburger Dropdown Click Off Functionality function (called during component did mount and will-unmount)
   handleClick(event) {
@@ -212,6 +257,20 @@ export default class App extends React.Component{
       document.getElementById("homepageProjectsSectionNavButtonAbout").style.borderColor = "White"
     }
   }
+    
+
+  handleAboutSkillsSectionChange(id){
+    let allSections = document.querySelectorAll(".HomepageAboutSectionSkillCardsWrapper")
+    allSections.forEach((section)=> section.style.display = "none")
+
+    document.getElementById(id).style.display = "flex"
+  }
+
+
+
+
+
+
 
   // Clock Functionality Function
   updateClock(){
@@ -514,27 +573,33 @@ export default class App extends React.Component{
                   </div> */}
                   <div className="HomepageAboutSectionSkillsNavigationWrapper">
                     <nav className="HomepageAboutSectionSkillsNavBar">
-                      <button className="HomepageAboutSectionSkillsNavButton">
+                      <button className="HomepageAboutSectionSkillsNavButton" onClick={()=> this.handleAboutSkillsSectionChange("frontendSkillCardsWrapper")}>
                         <div style={{position: "relative" , height: "32px", top: "4px", fontWeight: "300", color: "rgb(65, 193, 197)"}}>&lt; / &gt;</div>
                         <h2 className="HomepageAboutSectionSkillsNavButtonTitle">Frontend</h2>
-                        <p className="HomepageAboutSectionSkillsNavButtonSkillsNumberDescription">Skills 8</p>
+                        <p className="HomepageAboutSectionSkillsNavButtonSkillsNumberDescription">Skills{" " + this.state.frontendSkills.length}</p>
                       </button>
-                      <button className="HomepageAboutSectionSkillsNavButton">
+                      <button className="HomepageAboutSectionSkillsNavButton" onClick={()=> this.handleAboutSkillsSectionChange("aimlSkillCardsWrapper")}>
                         <img className="HomepageAboutSectionSkillsNavButtonImage" src={mlLogoSVG}></img>
                         <h2 className="HomepageAboutSectionSkillsNavButtonTitle">AI/ML</h2>
-                        <p className="HomepageAboutSectionSkillsNavButtonSkillsNumberDescription">Skills 8</p>
+                        <p className="HomepageAboutSectionSkillsNavButtonSkillsNumberDescription">Skills{" " + this.state.aimlSkills.length}</p>
                       </button>
-                      <button className="HomepageAboutSectionSkillsNavButton">
+                      <button className="HomepageAboutSectionSkillsNavButton" onClick={()=> this.handleAboutSkillsSectionChange("cloudSkillCardsWrapper")}>
                         <img className="HomepageAboutSectionSkillsNavButtonImage" src={cloudLogoSVG}></img>
                         <h2 className="HomepageAboutSectionSkillsNavButtonTitle">Cloud</h2>
-                        <p className="HomepageAboutSectionSkillsNavButtonSkillsNumberDescription">Skills 8</p>
+                        <p className="HomepageAboutSectionSkillsNavButtonSkillsNumberDescription">Skills{" " + this.state.cloudSkills.length}</p>
                       </button>
-                      <button className="HomepageAboutSectionSkillsNavButton">
+                      <button className="HomepageAboutSectionSkillsNavButton" onClick={()=> this.handleAboutSkillsSectionChange("backendSkillCardsWrapper")}>
                         <img className="HomepageAboutSectionSkillsNavButtonImage" src={cogwheelLogoSVG}></img>
                         <h2 className="HomepageAboutSectionSkillsNavButtonTitle">Backend</h2>
-                        <p className="HomepageAboutSectionSkillsNavButtonSkillsNumberDescription">Skills 8</p>
+                        <p className="HomepageAboutSectionSkillsNavButtonSkillsNumberDescription">Skills{" " + this.state.backendSkills.length}</p>
                       </button>
                     </nav>
+                  </div>
+                  <div className="HomepageAboutSectionSkillCardsSuperWrapper">
+                    <div className="HomepageAboutSectionSkillCardsWrapper" id="frontendSkillCardsWrapper">{this.state.frontendSkills.map((i)=> < SkillCard data={i} />)}</div>
+                    <div className="HomepageAboutSectionSkillCardsWrapper" id="aimlSkillCardsWrapper">{this.state.aimlSkills.map((i)=> < SkillCard data={i} />)}</div>
+                    <div className="HomepageAboutSectionSkillCardsWrapper" id="cloudSkillCardsWrapper">{this.state.cloudSkills.map((i)=> < SkillCard data={i} />)}</div>
+                    <div className="HomepageAboutSectionSkillCardsWrapper"id="backendSkillCardsWrapper">{this.state.backendSkills.map((i)=> < SkillCard data={i} />)}</div>
                   </div>
 
 

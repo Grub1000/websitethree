@@ -821,6 +821,22 @@ width: 12px;
 
 
 
+.HomepageAboutSectionSkillCardsSuperWrapper{
+  width: 100%;
+  height: fit-content;
+  margin-top: 50px;
+  /* background-color: burlywood; */
+}
+.HomepageAboutSectionSkillCardsWrapper{
+  display: flex;
+  /* display: none; */
+  flex-wrap: wrap;
+  width: 100%;
+  height: fit-content;
+  /* background-color: rgb(202, 118, 58); */
+}
+
+
 
 
 

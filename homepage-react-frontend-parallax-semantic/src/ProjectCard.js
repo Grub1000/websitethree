@@ -26,7 +26,7 @@ import laravelLogoSVG from "./assets/logos/laravel_logo_svg.svg"
 // import typescriptLogoSVG from "./assets/logos/typescript_logo_svg.svg"
 // import typescriptLogoSVG from "./assets/logos/typescript_logo_svg.svg"
 
-export default class App extends React.Component{
+export default class ProjectCard extends React.Component{
   constructor(){
     super();
     this.state = {
