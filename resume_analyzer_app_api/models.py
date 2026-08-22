@@ -344,3 +344,151 @@ class ResumeAnalysis(models.Model):
 # The foreign key uses:
 # settings.AUTH_USER_MODEL
 # This is Django’s preferred way to reference the configured user model.
+
+
+class JobApplication(models.Model):
+
+    class Status(models.TextChoices):
+        SAVED = (
+            "saved",
+            "Saved",
+        )
+
+        APPLIED = (
+            "applied",
+            "Applied",
+        )
+
+        INTERVIEW = (
+            "interview",
+            "Interview",
+        )
+
+        OFFER = (
+            "offer",
+            "Offer",
+        )
+
+        REJECTED = (
+            "rejected",
+            "Rejected",
+        )
+
+        WITHDRAWN = (
+            "withdrawn",
+            "Withdrawn",
+        )
+
+
+    public_id = models.UUIDField(
+        default=uuid.uuid4,
+        unique=True,
+        editable=False,
+    )
+
+
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="job_applications",
+    )
+
+
+    company_name = models.CharField(
+        max_length=255,
+    )
+
+
+    job_title = models.CharField(
+        max_length=255,
+    )
+
+
+    status = models.CharField(
+        max_length=30,
+        choices=Status.choices,
+        default=Status.SAVED,
+    )
+
+
+    job_url = models.URLField(
+        max_length=1000,
+        blank=True,
+    )
+
+
+    location = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+
+
+    salary_min = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        null=True,
+        blank=True,
+    )
+
+
+    salary_max = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        null=True,
+        blank=True,
+    )
+
+
+    date_applied = models.DateField(
+        null=True,
+        blank=True,
+    )
+
+
+    notes = models.TextField(
+        blank=True,
+    )
+
+
+    resume = models.ForeignKey(
+        Resume,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="job_applications",
+    )
+
+
+    resume_analysis = models.ForeignKey(
+        ResumeAnalysis,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="job_applications",
+    )
+
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+    )
+
+
+    updated_at = models.DateTimeField(
+        auto_now=True,
+    )
+
+
+    class Meta:
+        ordering = [
+            "-created_at",
+        ]
+
+
+    def __str__(self):
+        return (
+            f"{self.job_title} at "
+            f"{self.company_name}"
+        )
+
+
+

@@ -2,25 +2,25 @@ from django.db.migrations import serializer
 from django.shortcuts import render
 # Create your views here.
 from rest_framework import viewsets
-from .models import User
+from ..models import User
 # from .serializers import  UserSerializer
 
 from rest_framework import generics 
 from rest_framework.permissions import AllowAny
-from .serializers import RegisterSerializer
+from ..serializers import RegisterSerializer
 
 from rest_framework.permissions import IsAuthenticated 
-from .serializers import UserSerializer 
+from ..serializers import UserSerializer 
 
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import CustomEmailTokenObtainPairSerializer
+from ..serializers import CustomEmailTokenObtainPairSerializer
 
-from .serializers import GoogleLoginSerializer
+from ..serializers import GoogleLoginSerializer
 
 # Imports Needed For Forgot-Password-Reset Implementation
-from .serializers import ForgotPasswordSerializer
+from ..serializers import ForgotPasswordSerializer
 from rest_framework import status
-from .serializers import ResetPasswordSerializer
+from ..serializers import ResetPasswordSerializer
 
 from rest_framework.response import Response
 
@@ -30,67 +30,67 @@ import uuid
 from django.conf import settings
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from .models import Resume
-from .serializers import ResumeUploadRequestSerializer
-from .services.s3_service import generate_resume_upload
+from ..models import Resume
+from ..serializers import ResumeUploadRequestSerializer
+from ..services.s3_service import generate_resume_upload
 
 # Imports Needed For Resume Upload Completion Validation
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
-from .serializers import (
+from ..serializers import (
     ResumeUploadCompleteSerializer,
 )
-from .services.s3_service import (
+from ..services.s3_service import (
     resume_object_exists,
 )
 
 # Imports Needed For Resume Text Extraction
-from .services.extraction_service import (
+from ..services.extraction_service import (
     ResumeExtractionError,
     extract_resume_text,
 )
-from .services.s3_service import download_resume_file
+from ..services.s3_service import download_resume_file
 
 # Imports Needed For Resume Analysis
-from .models import ResumeAnalysis
-from .serializers import (
+from ..models import ResumeAnalysis
+from ..serializers import (
     ResumeAnalysisRequestSerializer,
 )
-from .services.analysis_service import (
+from ..services.analysis_service import (
     ResumeAnalysisError,
 )
-from .services.analysis_service import (
+from ..services.analysis_service import (
     parse_analysis_result,
 )
 
-from .services.llm_service import (
+from ..services.llm_service import (
     ResumeLLMError,
     analyze_resume_with_llm,
 )
 
 # Imports Needed For Resume Thumbnail Generation
-from .services.s3_service import (
+from ..services.s3_service import (
     upload_resume_thumbnail,
 )
 
-from .services.thumbnail_service import (
+from ..services.thumbnail_service import (
     ResumeThumbnailError,
     generate_pdf_thumbnail,
 )
 
 # Import Needed For Secure Resume Thumbnail Retrieval
-from .services.s3_service import (
+from ..services.s3_service import (
     generate_presigned_thumbnail_url,
 )
 
 # Imports Needed For Resume List Retrieval
-from .serializers import ResumeListSerializer
+from ..serializers import ResumeListSerializer
 
 # Imports Needed For Resume Deletion
-from .services.s3_service import delete_s3_object
+from ..services.s3_service import delete_s3_object
 
 # Imports Needed For ResumeAnalysis List From Resume ID
-from .serializers import ResumeAnalysisListSerializer
+from ..serializers import ResumeAnalysisListSerializer
 
 class CurrentUserView(generics.RetrieveAPIView): 
     serializer_class = UserSerializer 

@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from .models import Resume, User
 from .models import PasswordResetToken
 from .models import ResumeAnalysis
+from .models import JobApplication
 from rest_framework_simplejwt.serializers import (
     TokenObtainPairSerializer
 )
@@ -403,4 +404,52 @@ class ResumeAnalysisListSerializer(
             "skills": obj.skills_score,
         }
 
-    
+
+
+
+class JobApplicationSerializer(
+    serializers.ModelSerializer
+):
+    application_id = serializers.UUIDField(
+        source="public_id",
+        read_only=True,
+    )
+
+    resume_id = serializers.UUIDField(
+        write_only=True,
+        required=False,
+        allow_null=True,
+    )
+
+    resume_analysis_id = serializers.UUIDField(
+        write_only=True,
+        required=False,
+        allow_null=True,
+    )
+
+
+    class Meta:
+        model = JobApplication
+
+        fields = [
+            "application_id",
+            "company_name",
+            "job_title",
+            "status",
+            "job_url",
+            "location",
+            "salary_min",
+            "salary_max",
+            "date_applied",
+            "notes",
+            "resume_id",
+            "resume_analysis_id",
+            "created_at",
+            "updated_at",
+        ]
+
+        read_only_fields = [
+            "application_id",
+            "created_at",
+            "updated_at",
+        ]

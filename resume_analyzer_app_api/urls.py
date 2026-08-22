@@ -1,5 +1,9 @@
 from django.urls import path, include
-from .views import CurrentUserView, ResumeAnalyzeView, ResumeListView, ResumeThumbnailURLView, ResumeThumbnailView, ResumeUploadRequestView, ResumeUploadCompleteView, ResumeExtractTextView, ResumeDeleteView, ResumeAnalysisListView
+from .views.views import CurrentUserView, ResumeAnalyzeView, ResumeListView, ResumeThumbnailURLView, ResumeThumbnailView, ResumeUploadRequestView, ResumeUploadCompleteView, ResumeExtractTextView, ResumeDeleteView, ResumeAnalysisListView
+from .views.job_application_views import (
+    JobApplicationViewSet,
+)
+
 
 urlpatterns = [
     path(
@@ -58,3 +62,35 @@ urlpatterns = [
 ),
 
 ]
+
+
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+
+router.register(
+    r"job-applications",
+    JobApplicationViewSet,
+    basename="job-application",
+)
+# Automatically Gives Us: 
+# 
+# GET     /job-applications/
+# POST    /job-applications/
+# 
+# GET     /job-applications/<uuid>/
+# PUT     /job-applications/<uuid>/
+# PATCH   /job-applications/<uuid>/
+# DELETE  /job-applications/<uuid>/
+
+
+
+
+
+
+urlpatterns += router.urls # Adds all automatically generated ModelViewSet routes from the DRF router
+                           # to Django's URL patterns, enabling the JobApplication CRUD endpoints.
+
+
+
+
