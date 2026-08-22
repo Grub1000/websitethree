@@ -10,6 +10,7 @@ import ResumeAnalyzerDashboardHeaderButton from "../components/resume_analyzer_c
 import ResumeHistorySmallSection from "../components/resume_analyzer_components/ResumeHistorySmallSection.tsx"
 import ResumeAnalysisPopUp from "../components/resume_analyzer_components/ResumeAnalysisPopUp.tsx"
 import HeaderBurgerDropdownNav from "../components/homepage_components/HeaderBurgerDropdownNav.tsx"
+import JobApplicationHistorySmallSection from "../components/job_application_tracker_components/JobApplicationHistorySmallSection.tsx"
 
 // Styling Sheet Import
 import '../css/resume_analyzer_css/ResumeAnalyzerDashboardPage.css';
@@ -179,7 +180,12 @@ export default function ResumeAnalyzerDashboardPage() {
 
                 <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Documents</h2>
                 <ResumeHistorySmallSection key={reloadKey} loadResumeAnalyses={loadResumeAnalyses}/>
+
+
+
                 <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Add Jobs</h2>
+                <JobApplicationHistorySmallSection />
+
                 
                 {/* <JobAdditionSection/> */}
                 {/* <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Documents</h2> */}

@@ -1,10 +1,10 @@
-.ResumeHistorySmallSectionWrapper{
+.JobApplicationHistorySmallSectionWrapper{
     font-family: "Inter", sans-serif;
     width:900px;
     height: fit-content;
     /* background-color: aqua; */
 }
-.ResumeHistorySmallSectionColumnNamesWrapper{
+.JobApplicationHistorySmallSectionColumnNamesWrapper{
     display: flex;
     /* background-color: aquamarine; */
     border: 1px solid rgba(0, 0, 0, 0.137);
@@ -12,183 +12,91 @@
     border-top-right-radius: 8px;
     font-weight: bold;
 }
-.ResumeHistorySmallSectionColumnName{
+.JobApplicationHistorySmallSectionColumnName{
     font-size: 14px;
     width: fit-content;
     padding: 10px;
     color: rgba(51, 51, 51, 0.945);
     /* font-family: "Inter", sans-serif; */
 }
-:nth-child(1 of .ResumeHistorySmallSectionColumnName){
+:nth-child(1 of .JobApplicationHistorySmallSectionColumnName){
     width: 250px;
 }
-:nth-child(2 of .ResumeHistorySmallSectionColumnName){
+:nth-child(2 of .JobApplicationHistorySmallSectionColumnName){
     width: 150px;
 }
-:nth-child(3 of .ResumeHistorySmallSectionColumnName){
+:nth-child(3 of .JobApplicationHistorySmallSectionColumnName){
     width: 150px;
 }
-:nth-child(4 of .ResumeHistorySmallSectionColumnName){
+:nth-child(4 of .JobApplicationHistorySmallSectionColumnName){
     width: 150px;
 }
 
-.ResumeHistorySmallSectionNoUploadsMessage{
-    width: calc(100%-2px);
-    /* background-color: aqua; */
-    /* font */
-    padding: 0px;
-    padding: 4px;
-    padding-left: 10px;
-    border-bottom-right-radius: 8px;
-    border-bottom-left-radius: 8px;
-    margin: 0px;
-    border: 1px solid rgba(0, 0, 0, 0.164);
-    font-weight: 400;
-    font-family: "Inter", sans-serif;
-    font-size: 15px;
-    color: rgba(26, 26, 26, 0.856);
-    background-color: #87e5f18a;
-}
 
 
-.ResumeHistorySmallSectionRowWrapper{
+.JobApplicationHistorySmallSectionRowWrapper{
     display: flex;
     border-bottom: 1px solid rgba(0, 0, 0, 0.137);
     border-left: 1px solid rgba(0, 0, 0, 0.137);
     border-right: 1px solid rgba(0, 0, 0, 0.137);
 }
-.ResumeHistorySmallSectionRowFeature{
+.JobApplicationHistorySmallSectionRowFeature{
     font-size: 14px;
     color: rgba(51, 51, 51, 0.856);
     overflow-x: hidden;
     /* font-weight: bold; */
     padding: 10px;
 }
-.ResumeHistorySmallSectionRowFeatureOne
+.JobApplicationHistorySmallSectionRowFeatureOne
 {
     width: 250px;
 }
-.ResumeHistorySmallSectionRowFeatureTwo{
+.JobApplicationHistorySmallSectionRowFeatureTwo{
     width: 150px;
 }
-.ResumeHistorySmallSectionRowFeatureThree{
+.JobApplicationHistorySmallSectionRowFeatureThree{
     width: 150px;
 }
-.ResumeHistorySmallSectionRowFeatureFour{
+.JobApplicationHistorySmallSectionRowFeatureFour{
     width: 150px;
-}
-.ResumeHistorySmallSectionRowOptionsButton{
-    width: 30px;
-    height: 30px;
-    /* overflow-x: hidden; */
-    overflow: hidden;
-    padding-bottom: 10px;
-    padding-left: 5px;
-    margin-left: 40px;
-    line-height: 0px;
-    font-size: 24px;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    margin-top: 3px;
-    border-radius: 50%;
-    font-weight: bold;
-}
-.ResumeHistorySmallSectionRowOptionsButton:hover{
-    background-color: aliceblue;
-}
-.ResumeHistorySmallSectionRowOptionsDropdown{
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    margin-top: 5px;
-    margin-left: 10px;
-    width: 200px;
-    /* height: 100px; */
-    height: fit-content;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    background-color: white;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.212);
-}
-.ResumeHistorySmallSectionRowOptionsDropdownButton{
-    display: flex;
-    width: 100%;
-    height: 30px;
-    outline: none;
-    border: none;
-    background-color: white;
-    font-family: "Inter", sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    color: rgba(51, 51, 51, 0.856);
-    cursor: pointer;
-
-}
-.ResumeHistorySmallSectionRowOptionsDropdownButton:hover{
-    background-color: aliceblue;
-}
-.ResumeHistorySmallSectionRowOptionsDropdownButtonIcon{
-    width: 16px;
-    opacity: 75%;
-    margin-top: 1px;
-    margin-right: 7px;
-}
-.ResumeHistorySmallSectionRowOptionsDropdownButtonText{
-    position: relative;
-    padding-top: 0px;
-    padding: none;
-    /* color: red; */
-    top: -10px;
-    font-size: 15px;
-    font-weight: 500;
-    color: rgba(0, 0, 0, 0.61);
-    /* background-color: aqua; */
 }
 
-.ResumeHistorySmallSectionRowOptionsDropdownButtonViewAnalysisIcon{
-    opacity: 100%;
-}
-.ResumeHistorySmallSectionRowOptionsDropdownButtonDelete:hover{
-    background-color: rgba(255, 0, 0, 0.158);
-}
 
 
 @media(max-width: 1380px){
-    .ResumeHistorySmallSectionWrapper{
+    .JobApplicationHistorySmallSectionWrapper{
         /* font-family: "Inter", sans-serif; */
         width: 700px;
         /* height: fit-content; */
         /* background-color: aqua; */
     }
-    :nth-child(1 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(1 of .JobApplicationHistorySmallSectionColumnName){
     width: 195px;
     }
-    :nth-child(2 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(2 of .JobApplicationHistorySmallSectionColumnName){
         width: 118px;
     }
-    :nth-child(3 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(3 of .JobApplicationHistorySmallSectionColumnName){
         width: 118px;
     }
-    :nth-child(4 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(4 of .JobApplicationHistorySmallSectionColumnName){
         width: 100px;
     }
 
-    .ResumeHistorySmallSectionRowFeatureOne
+    .JobApplicationHistorySmallSectionRowFeatureOne
     {
         width: 218px;
     }
-    .ResumeHistorySmallSectionRowFeatureTwo{
+    .JobApplicationHistorySmallSectionRowFeatureTwo{
         width: 130px;
     }
-    .ResumeHistorySmallSectionRowFeatureThree{
+    .JobApplicationHistorySmallSectionRowFeatureThree{
         width: 130px;
     }
-    .ResumeHistorySmallSectionRowFeatureFour{
+    .JobApplicationHistorySmallSectionRowFeatureFour{
         width: 150px;
     }
-    .ResumeHistorySmallSectionRowOptionsButton{
+    .JobApplicationHistorySmallSectionRowOptionsButton{
         /* width: 30px;
         height: 30px; */
         /* overflow-x: hidden; */
@@ -208,7 +116,7 @@
         font-weight: bold; */
     }
 
-    .ResumeHistorySmallSectionRowOptionsDropdown{
+    .JobApplicationHistorySmallSectionRowOptionsDropdown{
         /* display: none;
         flex-direction: column;
         position: absolute;
@@ -226,43 +134,42 @@
 
 }
 
-
 @media (max-width: 1060px){
-    .ResumeHistorySmallSectionWrapper{
+    .JobApplicationHistorySmallSectionWrapper{
         /* font-family: "Inter", sans-serif; */
         width: 600px;
         /* height: fit-content; */
         /* background-color: aqua; */
     }
-    :nth-child(1 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(1 of .JobApplicationHistorySmallSectionColumnName){
         width: 229px;
     }
-    :nth-child(2 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(2 of .JobApplicationHistorySmallSectionColumnName){
         /* width: 118px; */
         display: none;
     }
-    :nth-child(3 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(3 of .JobApplicationHistorySmallSectionColumnName){
         width: 120px;
     }
-    :nth-child(4 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(4 of .JobApplicationHistorySmallSectionColumnName){
         width: 100px;
     }
 
-    .ResumeHistorySmallSectionRowFeatureOne
+    .JobApplicationHistorySmallSectionRowFeatureOne
     {
         width: 248px;
     }
-    .ResumeHistorySmallSectionRowFeatureTwo{
+    .JobApplicationHistorySmallSectionRowFeatureTwo{
         /* width: 130px; */
         display: none;
     }
-    .ResumeHistorySmallSectionRowFeatureThree{
+    .JobApplicationHistorySmallSectionRowFeatureThree{
         width: 130px;
     }
-    .ResumeHistorySmallSectionRowFeatureFour{
+    .JobApplicationHistorySmallSectionRowFeatureFour{
         width: 150px;
     }
-    .ResumeHistorySmallSectionRowOptionsButton{
+    .JobApplicationHistorySmallSectionRowOptionsButton{
         /* width: 30px;
         height: 30px; */
         /* overflow-x: hidden; */
@@ -282,7 +189,7 @@
         font-weight: bold; */
     }
 
-    .ResumeHistorySmallSectionRowOptionsDropdown{
+    .JobApplicationHistorySmallSectionRowOptionsDropdown{
         /* display: none;
         flex-direction: column;
         position: absolute;
@@ -301,43 +208,43 @@
 
 
 @media (max-width: 960px){
-    .ResumeHistorySmallSectionWrapper{
+    .JobApplicationHistorySmallSectionWrapper{
         /* font-family: "Inter", sans-serif; */
         width: 720px;
         /* height: fit-content; */
         /* background-color: aqua; */
     }
-    :nth-child(1 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(1 of .JobApplicationHistorySmallSectionColumnName){
         width: 453px;
     }
-    :nth-child(2 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(2 of .JobApplicationHistorySmallSectionColumnName){
         /* width: 118px; */
         display: none;
     }
-    :nth-child(3 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(3 of .JobApplicationHistorySmallSectionColumnName){
         width: 120px;
     }
-    :nth-child(4 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(4 of .JobApplicationHistorySmallSectionColumnName){
         /* width: 100px; */
         display: none;
     }
 
-    .ResumeHistorySmallSectionRowFeatureOne
+    .JobApplicationHistorySmallSectionRowFeatureOne
     {
         width: 453px;
     }
-    .ResumeHistorySmallSectionRowFeatureTwo{
+    .JobApplicationHistorySmallSectionRowFeatureTwo{
         /* width: 130px; */
         display: none;
     }
-    .ResumeHistorySmallSectionRowFeatureThree{
+    .JobApplicationHistorySmallSectionRowFeatureThree{
         width: 150px;
     }
-    .ResumeHistorySmallSectionRowFeatureFour{
+    .JobApplicationHistorySmallSectionRowFeatureFour{
         /* width: 150px; */
         display: none;
     }
-    .ResumeHistorySmallSectionRowOptionsButton{
+    .JobApplicationHistorySmallSectionRowOptionsButton{
         /* width: 30px;
         height: 30px; */
         /* overflow-x: hidden; */
@@ -357,7 +264,7 @@
         font-weight: bold; */
     }
 
-    .ResumeHistorySmallSectionRowOptionsDropdown{
+    .JobApplicationHistorySmallSectionRowOptionsDropdown{
         /* display: none;
         flex-direction: column;
         position: absolute;
@@ -376,50 +283,50 @@
 
 
 @media (max-width: 760px){
-    .ResumeHistorySmallSectionWrapper{
+    .JobApplicationHistorySmallSectionWrapper{
         /* font-family: "Inter", sans-serif; */
         width: calc(100% - 0px);
         /* height: fit-content; */
         /* background-color: aqua; */
     }
-    :nth-child(1 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(1 of .JobApplicationHistorySmallSectionColumnName){
         width: 60%;
         /* background-color: bisque; */
     }
-    :nth-child(2 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(2 of .JobApplicationHistorySmallSectionColumnName){
         /* width: 118px; */
         display: none;
     }
-    :nth-child(3 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(3 of .JobApplicationHistorySmallSectionColumnName){
         width: 210px;
         /* background-color: beige; */
         /* width: 36%; */
     }
-    :nth-child(4 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(4 of .JobApplicationHistorySmallSectionColumnName){
         /* width: 100px; */
         display: none;
     }
 
-    .ResumeHistorySmallSectionRowFeatureOne
+    .JobApplicationHistorySmallSectionRowFeatureOne
     {
         /* width: 401px; */
         width: 60%;
         /* background-color: rgb(103, 117, 117); */
     }
-    .ResumeHistorySmallSectionRowFeatureTwo{
+    .JobApplicationHistorySmallSectionRowFeatureTwo{
         /* width: 130px; */
         display: none;
     }
-    .ResumeHistorySmallSectionRowFeatureThree{
+    .JobApplicationHistorySmallSectionRowFeatureThree{
         width: 150px;
         /* background-color: red; */
         /* width: 25%; */
     }
-    .ResumeHistorySmallSectionRowFeatureFour{
+    .JobApplicationHistorySmallSectionRowFeatureFour{
         /* width: 150px; */
         display: none;
     }
-    .ResumeHistorySmallSectionRowOptionsButton{
+    .JobApplicationHistorySmallSectionRowOptionsButton{
         /* width: 30px;
         height: 30px; */
         /* overflow-x: hidden; */
@@ -442,7 +349,7 @@
         /* background-color: aliceblue; */
     }
 
-    .ResumeHistorySmallSectionRowOptionsDropdown{
+    .JobApplicationHistorySmallSectionRowOptionsDropdown{
         /* display: none;
         flex-direction: column;
         position: absolute;
@@ -473,25 +380,25 @@
         background-color: beige;
         
     } */
-     .ResumeHistorySmallSectionRowFeatureOne
+     .JobApplicationHistorySmallSectionRowFeatureOne
     {
         /* width: 401px; */
         width: 90%;
         /* background-color: rgb(103, 117, 117); */
     }
-    :nth-child(3 of .ResumeHistorySmallSectionColumnName){
+    :nth-child(3 of .JobApplicationHistorySmallSectionColumnName){
         display: none;
         /* width: 210px; */
         /* background-color: beige; */
         /* width: 36%; */
     }
-    .ResumeHistorySmallSectionRowFeatureThree{
+    .JobApplicationHistorySmallSectionRowFeatureThree{
         display: none;
         width: 150px;
         /* background-color: red; */
         /* width: 25%; */
     }
-    .ResumeHistorySmallSectionRowOptionsButton{
+    .JobApplicationHistorySmallSectionRowOptionsButton{
         padding-bottom: 13px;
         /* margin: auto; */
         margin-left: 0px;
@@ -499,7 +406,7 @@
         /* right: 110px; */
         /* background-color: aliceblue; */
     }
-    .ResumeHistorySmallSectionRowOptionsDropdown{
+    .JobApplicationHistorySmallSectionRowOptionsDropdown{
         /* display: none;
         flex-direction: column;
         position: absolute;
@@ -513,4 +420,26 @@
         background-color: white;
         box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.212); */
     }
+}
+
+
+
+
+
+.JobApplicationHistorySmallSectionNoUploadsMessage{
+    width: calc(100%-2px);
+    /* background-color: aqua; */
+    /* font */
+    padding: 0px;
+    padding: 4px;
+    padding-left: 10px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    margin: 0px;
+    border: 1px solid rgba(0, 0, 0, 0.164);
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    color: rgba(26, 26, 26, 0.856);
+    background-color: #87e5f18a;
 }
