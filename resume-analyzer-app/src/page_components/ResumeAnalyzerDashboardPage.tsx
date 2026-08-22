@@ -22,6 +22,7 @@ import profileButtonIcon from "../assets/profile_button_icon_svg.svg"
 import profileButtonChevronIcon from "../assets/burger_menu_submenu_chevron_icon_svg.svg"
 import burgerMenuIconSVG from "../assets/burger_menu_svg.svg" 
 import burgerMenuExitIconSVG from "../assets/burger_menu_exit_svg.svg"
+import plusIcon from "../assets/icons/plus_icon.svg"
 
 // React Router Imports
 import { useNavigate } from "react-router-dom";
@@ -183,7 +184,13 @@ export default function ResumeAnalyzerDashboardPage() {
 
 
 
-                <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Add Jobs</h2>
+                <h2 className="ResumeAnalyzerDashboardMainSectionTitle">
+                    Add Jobs 
+                    <button className="ResumeAnalyzerDashboardMainSectionAddJobButton">
+                        <img className="ResumeAnalyzerDashboardMainSectionAddJobButtonIcon" src={plusIcon}></img>
+                        <p className="ResumeAnalyzerDashboardMainSectionAddJobButtonTitle">Add Job</p>
+                    </button>
+                </h2>
                 <JobApplicationHistorySmallSection />
 
                 

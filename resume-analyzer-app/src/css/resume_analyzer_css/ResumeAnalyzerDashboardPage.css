@@ -219,8 +219,40 @@ body {
     /* background-color: rgba(255, 0, 0, 0.185); */
 
 }
+.ResumeAnalyzerDashboardMainSectionAddJobButton{
+    /* float: right; */
+    display: flex;
+    position: relative;
+    width: 120px;
+    height: 35px;
+    top: 5px;
+    border: 2px solid rgba(8, 160, 206, 0.781);
+    border-radius: 4px;
+    margin-left: 780px;
+    margin-top: -35px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: rgba(8, 160, 206, 0);
+    color: rgba(8, 160, 206, 0.781);
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+}
 
+.ResumeAnalyzerDashboardMainSectionAddJobButton:hover{
+    background-color: rgba(8, 193, 206, 0.158);
+}
 
+.ResumeAnalyzerDashboardMainSectionAddJobButtonIcon{
+    position: relative;
+    width: 22px;
+    left: 5px;
+}
+.ResumeAnalyzerDashboardMainSectionAddJobButtonTitle{
+    position: relative;
+    top: -9px;
+    left: 10px;
+    /* color: red; */
+}
 
 
 
@@ -243,7 +275,9 @@ body {
         /* background-color: rgba(204, 27, 27, 0.096); */
 
     }
-
+    .ResumeAnalyzerDashboardMainSectionAddJobButton{
+        margin-left: 580px;
+    }
 }
 
 @media (max-width: 1020px){
@@ -266,6 +300,9 @@ body {
         padding-top: 50px; */
         /* background-color: rgba(204, 27, 27, 0.192); */
     }
+    .ResumeAnalyzerDashboardMainSectionAddJobButton{
+        margin-left: 480px;
+    }
 }
 
 
@@ -276,6 +313,11 @@ body {
         margin: auto;
         padding-top: 50px; */
         /* background-color: rgba(219, 31, 31, 0.24); */
+    }
+    .ResumeAnalyzerDashboardMainSectionAddJobButton{
+        float: right;
+        margin-left: 0px;
+        top: 26px;
     }
 }
 
