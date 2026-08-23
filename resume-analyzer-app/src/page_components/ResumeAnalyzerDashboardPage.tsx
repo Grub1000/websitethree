@@ -9,12 +9,13 @@ import ResumeUploadSection from "../components/resume_analyzer_components/Resume
 import ResumeAnalyzerDashboardHeaderButton from "../components/resume_analyzer_components/ResumeAnalyzerDashboardHeaderButton.tsx";
 import ResumeHistorySmallSection from "../components/resume_analyzer_components/ResumeHistorySmallSection.tsx"
 import ResumeAnalysisPopUp from "../components/resume_analyzer_components/ResumeAnalysisPopUp.tsx"
-import HeaderBurgerDropdownNav from "../components/homepage_components/HeaderBurgerDropdownNav.tsx"
+// import HeaderBurgerDropdownNav from "../components/homepage_components/HeaderBurgerDropdownNav.tsx"
+import ResumeAnalyzerDashboardHeaderBurgerDropdownNav from "../components/resume_analyzer_components/ResumeAnalyzerDashboardHeaderBurgerDropdownNav.tsx"
 import JobApplicationHistorySmallSection from "../components/job_application_tracker_components/JobApplicationHistorySmallSection.tsx"
 
 // Styling Sheet Import
 import '../css/resume_analyzer_css/ResumeAnalyzerDashboardPage.css';
-import "../css/home_page_css/HeaderBurgerDropdownNav.css"
+// import "../css/home_page_css/HeaderBurgerDropdownNav.css"
 
 // Local Asset Imports
 import logo from "../assets/website_tab_logo.png"
@@ -174,7 +175,7 @@ export default function ResumeAnalyzerDashboardPage() {
                 {/* <button className="HeaderSignInButton Btn">Burger</button> */}
                 </section>
                 <div className="HeaderBurgerDropdownWrapper" id="headerBurgerDropdownWrapper">
-                    <HeaderBurgerDropdownNav buttons={buttons} footerButtons={burgerDropdownFooterButtons}/>
+                    <ResumeAnalyzerDashboardHeaderBurgerDropdownNav buttons={buttons} footerButtons={burgerDropdownFooterButtons}/>
                 </div>
             </header>
 
