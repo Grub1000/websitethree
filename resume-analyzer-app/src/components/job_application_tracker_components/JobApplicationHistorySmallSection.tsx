@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 // Component Imports
 import JobApplicationCreateFormPopUp from "../job_application_tracker_components/JobApplicationCreateFormPopUp.tsx"
-
+import JobApplicationEditStatusPopUp from "../job_application_tracker_components/JobApplicationEditStatusPopUp.tsx"
 
 // CSS Style Sheet Import
 import "../../css/job_application_tracker/JobApplicationHistorySmallSection.css"
@@ -25,6 +25,12 @@ export default function JobApplicationHistorySmallSection(
 }
 ){
     const [jobApplications, setJobApplications] = useState<JobApplication[]>([]);
+
+    const [editStatusPopUpIsVisible, setEditStatusPopUpIsVisible] = useState(false);
+
+    const [selectedJobCurrentStatus, setSelectedJobCurrentStatus] = useState("")
+
+    const [selectedJobCurrentApplicationID, setSelectedJobCurrentApplicationID] = useState("")
 
     const [loading, setLoading] = useState(true);
 
@@ -143,6 +149,14 @@ export default function JobApplicationHistorySmallSection(
             }
         }
 
+    function handleEditStatusPopUpIsVisible(bool: boolean){
+        setEditStatusPopUpIsVisible(bool)
+        setSelectedJobCurrentApplicationID("")
+        setSelectedJobCurrentStatus("")
+        loadJobApplications()
+    }
+
+
 
     return(
         <section className="JobApplicationHistorySmallSectionWrapper">
@@ -174,10 +188,10 @@ export default function JobApplicationHistorySmallSection(
                         <div className="JobApplicationHistorySmallSectionRowOptionsButtonWrapper">
                             <button className="JobApplicationHistorySmallSectionRowOptionsButton" onClick={()=> handleDropdown(jobApplication.application_id)}>...</button>
                             <div className="JobApplicationHistorySmallSectionRowOptionsDropdown" id={jobApplication.application_id}>
-                                <button className="JobApplicationHistorySmallSectionRowOptionsDropdownButton">
+                                <button className="JobApplicationHistorySmallSectionRowOptionsDropdownButton" onClick={()=> console.log(selectedJobCurrentApplicationID + "   and   " + selectedJobCurrentStatus)}>
                                     <img className="JobApplicationHistorySmallSectionRowOptionsDropdownButtonIcon JobApplicationHistorySmallSectionRowOptionsDropdownButtonNewAnalysisIcon" src={graphSVG}></img>
                                     <p className="JobApplicationHistorySmallSectionRowOptionsDropdownButtonText JobApplicationHistorySmallSectionRowOptionsDropdownButtonNewAnalysisText">Edit Job</p></button>
-                                <button className="JobApplicationHistorySmallSectionRowOptionsDropdownButton">
+                                <button className="JobApplicationHistorySmallSectionRowOptionsDropdownButton" onClick={()=> {setEditStatusPopUpIsVisible(true); setSelectedJobCurrentStatus(jobApplication.status); setSelectedJobCurrentApplicationID(jobApplication.application_id); console.log(selectedJobCurrentApplicationID + "  and  " + selectedJobCurrentStatus)}}>
                                     <img className="JobApplicationHistorySmallSectionRowOptionsDropdownButtonIcon JobApplicationHistorySmallSectionRowOptionsDropdownButtonViewAnalysisIcon" src={documentSVG}></img>
                                     <p className="JobApplicationHistorySmallSectionRowOptionsDropdownButtonText JobApplicationHistorySmallSectionRowOptionsDropdownButtonViewAnalysisText">Change Status</p></button>
                                 <button className="JobApplicationHistorySmallSectionRowOptionsDropdownButton JobApplicationHistorySmallSectionRowOptionsDropdownButtonDelete" onClick={()=> handleDelete(jobApplication)}>
@@ -188,9 +202,8 @@ export default function JobApplicationHistorySmallSection(
                     </div>
                 ))
             )}
-
-
-            {createFormIsVisible && <JobApplicationCreateFormPopUp handleSetCreateFormIsVisible={handleSetCreateFormIsVisible}/>}
+            {createFormIsVisible && <JobApplicationCreateFormPopUp handleSetCreateFormIsVisible={handleSetCreateFormIsVisible} loadJobApplications={loadJobApplications}/>}
+            {editStatusPopUpIsVisible && <JobApplicationEditStatusPopUp handleEditStatusPopUpIsVisible={handleEditStatusPopUpIsVisible} selectedJobCurrentStatus={selectedJobCurrentStatus} selectedJobCurrentApplicationID={selectedJobCurrentApplicationID}/>}
         </section>
         
     )

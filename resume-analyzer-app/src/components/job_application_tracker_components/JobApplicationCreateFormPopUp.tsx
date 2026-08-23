@@ -17,8 +17,10 @@ import exitIcon from "../../assets/burger_menu_exit_svg.svg"
 export default function JobApplicationCreateFormPopUp(
     {
         handleSetCreateFormIsVisible,
+        loadJobApplications,
     }:{
-        handleSetCreateFormIsVisible: (state: boolean) => void        
+        handleSetCreateFormIsVisible: (state: boolean) => void,
+        loadJobApplications: () => void        
     }
 ){  
 
@@ -27,13 +29,16 @@ export default function JobApplicationCreateFormPopUp(
 
 
 
-    function onSubmit(){
-        createJobApplication({company_name: companyName, job_title: jobTitle})
+    async function onSubmit(e: React.SubmitEvent<HTMLFormElement>){
+        e.preventDefault()
+        await createJobApplication({company_name: companyName, job_title: jobTitle})
+        loadJobApplications()
+        handleSetCreateFormIsVisible(false)
     }
 
     return(
         <div className="JobApplicationCreateFormPopUpWrapper">  
-            <form className="JobApplicationCreateForm" onSubmit={()=>onSubmit()}>   
+            <form className="JobApplicationCreateForm" onSubmit={(e)=>onSubmit(e)}>   
                 <button onClick={()=> handleSetCreateFormIsVisible(false)} className="JobApplicationCreateFormPopUpExitButton">
                     <img className="JobApplicationCreateFormPopUpExitButtonIcon" src={exitIcon}></img>
                 </button>   

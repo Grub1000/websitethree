@@ -478,18 +478,20 @@
         /* background-color: rgb(103, 117, 117); */
     }
     :nth-child(3 of .JobApplicationHistorySmallSectionColumnName){
-        display: none;
+        margin-left: 23%;
+        /* display: none; */
         /* width: 210px; */
         /* background-color: beige; */
         /* width: 36%; */
     }
     .JobApplicationHistorySmallSectionRowFeatureThree{
-        display: none;
+        /* display: none; */
         width: 150px;
         /* background-color: red; */
         /* width: 25%; */
     }
     .JobApplicationHistorySmallSectionRowOptionsButton{
+        /* display: none; */
         padding-bottom: 13px;
         /* margin: auto; */
         margin-left: 0px;
@@ -513,6 +515,34 @@
     }
 }
 
+@media (max-width: 490px){
+    :nth-child(3 of .JobApplicationHistorySmallSectionColumnName){
+        margin-left: 20%;
+        /* display: none; */
+        /* width: 210px; */
+        /* background-color: beige; */
+        /* width: 36%; */
+    }
+}
+
+@media (max-width: 460px){
+    :nth-child(3 of .JobApplicationHistorySmallSectionColumnName){
+        margin-left: 18%;
+        /* display: none; */
+        /* width: 210px; */
+        /* background-color: beige; */
+        /* width: 36%; */
+    }
+}
+@media (max-width: 400px){
+    :nth-child(3 of .JobApplicationHistorySmallSectionColumnName){
+        margin-left: 14%;
+        /* display: none; */
+        /* width: 210px; */
+        /* background-color: beige; */
+        /* width: 36%; */
+    }
+}
 
 
 
