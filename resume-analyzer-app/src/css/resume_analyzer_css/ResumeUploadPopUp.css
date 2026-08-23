@@ -3,7 +3,7 @@
 }
 
 .ResumeUploadPopUpWrapper{
-    position: absolute;
+    position: fixed;
     z-index: 101;
     width: 100vw;
     height: 100vh;

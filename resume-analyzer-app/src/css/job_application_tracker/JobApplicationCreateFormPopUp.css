@@ -1,9 +1,83 @@
 .JobApplicationCreateFormPopUpWrapper{
-    position: absolute;
+    position: fixed;
     z-index: 101;
     width: 100vw;
     height: 100vh;
     top: 0px;
     left: 0px;
     background-color: #24b1d43d;
+    font-family: Inter, sans-serif;
+}
+.JobApplicationCreateForm{
+    width: 500px;
+    height: 210px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 25vh;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 20px #00000028;
+}
+.JobApplicationCreateFormHeadingText{
+    position: relative;
+    display: block;
+    margin: auto;
+    margin-bottom: 25px;
+    text-align: center;
+    white-space: nowrap;
+    color: #272727;
+    font-size: 24px; 
+}
+.JobApplicationCreateFormInput{
+    position: relative;
+    display: block;
+    width: 370px;
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+    outline: none;
+    margin: auto auto 10px;
+    color: #272727;
+    font-size: 15px;
+    transition: border-color .2s;
+
+}
+.JobApplicationCreateFormInput:focus {
+    border: 1px solid #08a0cec7
+}
+.JobApplicationCreateFormSubmitButton{
+    display: block;
+    color: #fff;
+    background-color: #08a0cec7;
+    border: none;
+    width: 400px;
+    height: 50px;
+    margin: auto;
+    padding-top: 5px;
+    font-weight: 700;
+    transition: background-color .5s;
+    position: relative;
+    left: 0px;
+    border: 10px solid #08a0ce00 !important;
+    border-radius: 5px;
+}
+.JobApplicationCreateFormSubmitButton:hover{
+        background-color: #08c1cea2
+}
+
+@media(max-width: 760px){
+    .JobApplicationCreateForm{
+        width: 90%;
+    }
+    .JobApplicationCreateFormInput{
+        width: calc(100% - 50px);
+        left: 0
+    }
+    .JobApplicationCreateFormSubmitButton{
+        width: calc(100% - 20px);
+        left: 0
+    }
 }
