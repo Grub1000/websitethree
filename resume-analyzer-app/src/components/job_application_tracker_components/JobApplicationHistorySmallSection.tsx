@@ -156,7 +156,7 @@ export default function JobApplicationHistorySmallSection(
             </div>
             {jobApplications.length === 0 ? (
                 <p className="JobApplicationHistorySmallSectionNoUploadsMessage">
-                    Uploaded Job Applications can be viewed here.
+                    Uploaded job applications can be viewed here.
                 </p>
             ) : (
                 jobApplications.map((jobApplication: JobApplication) => (

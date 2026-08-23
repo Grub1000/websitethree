@@ -1,6 +1,17 @@
 import {useState} from 'react'
+
+
+// CSS Styling Sheet Import
 import "../../css/job_application_tracker/JobApplicationCreateFormPopUp.css"
+
+// Job Application Service Functions Imports
 import {createJobApplication} from "../../api/job_application_service"
+
+// Image Imports
+import exitIcon from "../../assets/burger_menu_exit_svg.svg"
+
+
+
 
 
 export default function JobApplicationCreateFormPopUp(
@@ -21,10 +32,11 @@ export default function JobApplicationCreateFormPopUp(
     }
 
     return(
-        <div className="JobApplicationCreateFormPopUpWrapper">
-            <div onClick={()=> handleSetCreateFormIsVisible(false)}>Exit</div>
-                
-            <form className="JobApplicationCreateForm" onSubmit={()=>onSubmit()}>      
+        <div className="JobApplicationCreateFormPopUpWrapper">  
+            <form className="JobApplicationCreateForm" onSubmit={()=>onSubmit()}>   
+                <button onClick={()=> handleSetCreateFormIsVisible(false)} className="JobApplicationCreateFormPopUpExitButton">
+                    <img className="JobApplicationCreateFormPopUpExitButtonIcon" src={exitIcon}></img>
+                </button>   
                 <h1 className="JobApplicationCreateFormHeadingText">Add Job</h1>  
                 <input 
                 className="JobApplicationCreateFormInput"
