@@ -1,6 +1,6 @@
 // import { useNavigate } from "react-router-dom";
 // import { useAuth } from "../context/AuthContext";
-import { useState, useEffect } from 'react'
+import { useState, useEffect} from 'react'
 
 
 // Component Imports
@@ -60,6 +60,10 @@ export default function ResumeAnalyzerDashboardPage() {
         button1: {title: "My Profile", link: "/profile"},
         button2: {title: "Home", link: "/"},
     })
+
+
+    const [createFormIsVisible, setCreateFormIsVisible] = useState(false)  // State used for Job Application Tracker Create Form
+
     const headerButtonsArray = Object.values(buttons); // Convert the buttons object into an array of button objects
 
     // const burgerDropdownFooterButtonsArray = Object.values(burgerDropdownFooterButtons);
@@ -126,6 +130,11 @@ export default function ResumeAnalyzerDashboardPage() {
         }
     });
 
+    function handleSetCreateFormIsVisible(bool: boolean){
+
+        setCreateFormIsVisible(bool)
+    }   
+
     return (
 
         <section className="ResumeAnalyzerDashboardPage">
@@ -186,12 +195,12 @@ export default function ResumeAnalyzerDashboardPage() {
 
                 <h2 className="ResumeAnalyzerDashboardMainSectionTitle">
                     Add Jobs 
-                    <button className="ResumeAnalyzerDashboardMainSectionAddJobButton">
+                    <button className="ResumeAnalyzerDashboardMainSectionAddJobButton" onClick={()=> setCreateFormIsVisible(true)}>
                         <img className="ResumeAnalyzerDashboardMainSectionAddJobButtonIcon" src={plusIcon}></img>
                         <p className="ResumeAnalyzerDashboardMainSectionAddJobButtonTitle">Add Job</p>
                     </button>
                 </h2>
-                <JobApplicationHistorySmallSection />
+                <JobApplicationHistorySmallSection createFormIsVisible={createFormIsVisible} handleSetCreateFormIsVisible={handleSetCreateFormIsVisible}/>
 
                 
                 {/* <JobAdditionSection/> */}
@@ -207,7 +216,7 @@ export default function ResumeAnalyzerDashboardPage() {
             <footer className="ResumeAnalyzerDashboardFooter">
                 {/* <p>&copy; 2023 Jorge Ramirez. All rights reserved.</p> */}
             </footer>
-{/* 
+            {/* 
             <ResumeUploadSection/>
             <ResumeHistorySection/> */}
             {/* <ResumeHistorySection/> */}

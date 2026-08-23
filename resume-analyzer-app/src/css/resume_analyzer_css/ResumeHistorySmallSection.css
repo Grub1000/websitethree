@@ -99,6 +99,7 @@
     background-color: aliceblue;
 }
 .ResumeHistorySmallSectionRowOptionsDropdown{
+    z-index: 100;
     display: none;
     flex-direction: column;
     position: absolute;

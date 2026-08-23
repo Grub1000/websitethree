@@ -63,6 +63,97 @@
 
 
 
+
+
+
+
+.JobApplicationHistorySmallSectionRowOptionsButton{
+    width: 30px;
+    height: 30px;
+    /* overflow-x: hidden; */
+    overflow: hidden;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    margin-left: 40px;
+    line-height: 0px;
+    font-size: 24px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 3px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+.JobApplicationHistorySmallSectionRowOptionsButton:hover{
+    background-color: aliceblue;
+}
+.JobApplicationHistorySmallSectionRowOptionsDropdown{
+    z-index: 100;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 10px;
+    width: 200px;
+    /* height: 100px; */
+    height: fit-content;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: white;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.212);
+}
+.JobApplicationHistorySmallSectionRowOptionsDropdownButton{
+    display: flex;
+    width: 100%;
+    height: 30px;
+    outline: none;
+    border: none;
+    background-color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 0.856);
+    cursor: pointer;
+
+}
+.JobApplicationHistorySmallSectionRowOptionsDropdownButton:hover{
+    background-color: aliceblue;
+}
+.JobApplicationHistorySmallSectionRowOptionsDropdownButtonIcon{
+    width: 16px;
+    opacity: 75%;
+    margin-top: 1px;
+    margin-right: 7px;
+}
+.JobApplicationHistorySmallSectionRowOptionsDropdownButtonText{
+    position: relative;
+    padding-top: 0px;
+    padding: none;
+    /* color: red; */
+    top: -10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.61);
+    /* background-color: aqua; */
+}
+
+.JobApplicationHistorySmallSectionRowOptionsDropdownButtonViewAnalysisIcon{
+    opacity: 100%;
+}
+.JobApplicationHistorySmallSectionRowOptionsDropdownButtonDelete:hover{
+    background-color: rgba(255, 0, 0, 0.158);
+}
+
+
+
+
+
+
+
+
+
+
 @media(max-width: 1380px){
     .JobApplicationHistorySmallSectionWrapper{
         /* font-family: "Inter", sans-serif; */
