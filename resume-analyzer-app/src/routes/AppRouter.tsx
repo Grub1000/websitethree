@@ -9,6 +9,12 @@ import ForgotPasswordPage from "../page_components/ForgotPasswordPage.tsx";
 import ResetPasswordPage from "../page_components/ResetPasswordPage.tsx"
 import ResumeAnalyzerDashboardPage from "../page_components/ResumeAnalyzerDashboardPage.tsx"
 
+import ResumeAnalyzerHomePage from "../page_components/ResumeAnalyzerHomePage.tsx";
+import ResumeDocumentsPage from "../page_components/ResumeDocumentsPage.tsx";
+import FindJobsPage from "../page_components/FindJobsPage.tsx";
+import SavedJobsPage from "../page_components/SavedJobsPage.tsx";
+
+
 import ProtectedRoute from "../routes/ProtectedRoute";
 
 function AppRouter() {
@@ -54,7 +60,33 @@ function AppRouter() {
                         <ResumeAnalyzerDashboardPage />
                     </ProtectedRoute>
                 }
-            />
+            >
+
+                 {/* /resume-analyzer */}
+                <Route
+                    index
+                    element={<ResumeAnalyzerHomePage />}
+                />
+
+                {/* /resume-analyzer/documents */}
+                <Route
+                    path="documents"
+                    element={<ResumeDocumentsPage />}
+                />
+
+                {/* /resume-analyzer/find-jobs */}
+                <Route
+                    path="find-jobs"
+                    element={<FindJobsPage />}
+                />
+
+                {/* /resume-analyzer/saved-jobs */}
+                <Route
+                    path="saved-jobs"
+                    element={<SavedJobsPage />}
+                />
+
+            </Route>
             {/* 404 */}
 
             <Route

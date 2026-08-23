@@ -4,14 +4,14 @@ import { useState, useEffect} from 'react'
 
 
 // Component Imports
-import ResumeUploadSection from "../components/resume_analyzer_components/ResumeUploadSection.tsx";
+// import ResumeUploadSection from "../components/resume_analyzer_components/ResumeUploadSection.tsx";
 // import ResumeHistorySection from "../components/ResumeHistorySection.tsx";
 import ResumeAnalyzerDashboardHeaderButton from "../components/resume_analyzer_components/ResumeAnalyzerDashboardHeaderButton.tsx";
-import ResumeHistorySmallSection from "../components/resume_analyzer_components/ResumeHistorySmallSection.tsx"
+// import ResumeHistorySmallSection from "../components/resume_analyzer_components/ResumeHistorySmallSection.tsx"
 import ResumeAnalysisPopUp from "../components/resume_analyzer_components/ResumeAnalysisPopUp.tsx"
 // import HeaderBurgerDropdownNav from "../components/homepage_components/HeaderBurgerDropdownNav.tsx"
 import ResumeAnalyzerDashboardHeaderBurgerDropdownNav from "../components/resume_analyzer_components/ResumeAnalyzerDashboardHeaderBurgerDropdownNav.tsx"
-import JobApplicationHistorySmallSection from "../components/job_application_tracker_components/JobApplicationHistorySmallSection.tsx"
+// import JobApplicationHistorySmallSection from "../components/job_application_tracker_components/JobApplicationHistorySmallSection.tsx"
 
 // Styling Sheet Import
 import '../css/resume_analyzer_css/ResumeAnalyzerDashboardPage.css';
@@ -23,10 +23,10 @@ import profileButtonIcon from "../assets/profile_button_icon_svg.svg"
 import profileButtonChevronIcon from "../assets/burger_menu_submenu_chevron_icon_svg.svg"
 import burgerMenuIconSVG from "../assets/burger_menu_svg.svg" 
 import burgerMenuExitIconSVG from "../assets/burger_menu_exit_svg.svg"
-import plusIcon from "../assets/icons/plus_icon.svg"
+// import plusIcon from "../assets/icons/plus_icon.svg"
 
 // React Router Imports
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 
 // Resume Service Imports
 import { getResumeAnalyses ,type ResumeAnalysisResponseListItem} from "../api/resume_service.tsx"
@@ -34,17 +34,16 @@ import { getResumeAnalyses ,type ResumeAnalysisResponseListItem} from "../api/re
 // Auth Context Imports
 import { useAuth } from "../context/AuthContext";
 
-
 export default function ResumeAnalyzerDashboardPage() {
     const navigate = useNavigate();
 
     const { logout } = useAuth();
       
     const [buttons] = useState({
-        button1: {order: 0, title: "Dashboard", link: "", dropdownButtons: {first: {title: "Dashboard", link: "/resume-analyzer", description: "How Good is Your Resume?"}, second: {title: "More Coming Soon...", link: "/", description: "Coming Soon..."}}},
-        button2: {order: 1, title: "Documents", link: "", dropdownButtons: {first: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}, second: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}}},
-        button3: {order: 2, title: "Find Jobs", link: "", dropdownButtons: {first: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}}},
-        button4: {order: 3, title: "My Saved Jobs", link: "", dropdownButtons: {first: {title: "Coming Soon", link: "/", description: "Coming Soon..."}}},
+        button1: {order: 0, title: "Dashboard", link: "/resume-analyzer", dropdownButtons: {first: {title: "Dashboard", link: "/resume-analyzer", description: "How Good is Your Resume?"}, second: {title: "More Coming Soon...", link: "/", description: "Coming Soon..."}}},
+        button2: {order: 1, title: "Documents", link: "/resume-analyzer/documents", dropdownButtons: {first: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}, second: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}}},
+        button3: {order: 2, title: "Find Jobs", link: "/resume-analyzer/find-jobs", dropdownButtons: {first: {title: "Coming Soon...", link: "/", description: "Coming Soon..."}}},
+        button4: {order: 3, title: "My Saved Jobs", link: "/resume-analyzer/saved-jobs", dropdownButtons: {first: {title: "Coming Soon", link: "/", description: "Coming Soon..."}}},
     
         // button1: {order: 0, title: "Dashboard", link: ""},
         // button2: {order: 1, title: "Documents", link: ""},
@@ -175,7 +174,7 @@ export default function ResumeAnalyzerDashboardPage() {
                 {/* <button className="HeaderSignInButton Btn">Burger</button> */}
                 </section>
                 <div className="HeaderBurgerDropdownWrapper" id="headerBurgerDropdownWrapper">
-                    <ResumeAnalyzerDashboardHeaderBurgerDropdownNav buttons={buttons} footerButtons={burgerDropdownFooterButtons}/>
+                    <ResumeAnalyzerDashboardHeaderBurgerDropdownNav buttons={buttons} footerButtons={burgerDropdownFooterButtons} handleBurgerDropdown={handleBurgerDropdown}/>
                 </div>
             </header>
 
@@ -183,10 +182,10 @@ export default function ResumeAnalyzerDashboardPage() {
 
 
 
-
             <main className="ResumeAnalyzerDashboardMainSection">
                 {/* <p>This is the resume analyzer dashboard.</p> */}
-                <h2 className="ResumeAnalyzerDashboardMainSectionTitle">New Uploads</h2>
+
+                {/* <h2 className="ResumeAnalyzerDashboardMainSectionTitle">New Uploads</h2>
                 <ResumeUploadSection reloadResumeHistory={reloadResumeHistory} />
 
                 <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Documents</h2>
@@ -201,17 +200,29 @@ export default function ResumeAnalyzerDashboardPage() {
                         <p className="ResumeAnalyzerDashboardMainSectionAddJobButtonTitle">Add Job</p>
                     </button>
                 </h2>
-                <JobApplicationHistorySmallSection createFormIsVisible={createFormIsVisible} handleSetCreateFormIsVisible={handleSetCreateFormIsVisible}/>
+                <JobApplicationHistorySmallSection createFormIsVisible={createFormIsVisible} handleSetCreateFormIsVisible={handleSetCreateFormIsVisible}/> */}
 
+                <Outlet
+                    context={{
+                            reloadKey,
+                            reloadResumeHistory,
+                            resumeAnalyses,
+                            loadResumeAnalyses,
+                            createFormIsVisible,
+                            setCreateFormIsVisible,
+                            handleSetCreateFormIsVisible,
+                        }}
+                />
                 
-                {/* <JobAdditionSection/> */}
-                {/* <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Documents</h2> */}
 
             </main>
 
 
-
-
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
 
 
             <footer className="ResumeAnalyzerDashboardFooter">
@@ -221,9 +232,11 @@ export default function ResumeAnalyzerDashboardPage() {
             <ResumeUploadSection/>
             <ResumeHistorySection/> */}
             {/* <ResumeHistorySection/> */}
-                <br></br>
-                <br></br>
-                <br></br>
+            {/* <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br> */}
         </section>
 
     );

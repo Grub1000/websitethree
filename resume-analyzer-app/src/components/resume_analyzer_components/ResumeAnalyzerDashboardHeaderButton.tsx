@@ -1,21 +1,15 @@
-// import { useState } from 'react'
+import { useEffect } from 'react'
+
+
+// CSS Style Sheet Import
 import '../../css/resume_analyzer_css/ResumeAnalyzerDashboardHeaderButton.css'
+
+// Image Asset Imports
 import newIconUrl from "../../assets/website_tab_logo.png"
 
-const handleDropdown = (eventType:string, ddNum:number, buttonID:string) => {
-    const dropdowns = document.getElementsByClassName("ResumeAnalyzerDashboardHeaderButtonDropdown") as HTMLCollectionOf<HTMLElement>;
-    const button = document.getElementById(buttonID) as HTMLElement;
-    const rect = button.getBoundingClientRect();
-    // console.log("Pixels from left (viewport):", rect.left);
-    const absoluteLeft = rect.left + window.scrollX;
+// React Router Imports
+import { useNavigate, useLocation } from 'react-router-dom';
 
-    if(eventType == "mouseIn"){
-        dropdowns[ddNum].style.display = "block";dropdowns[ddNum].style.left = absoluteLeft + "px";
-    }
-    else if(eventType == "mouseOut"){
-        dropdowns[ddNum].style.display = "none"
-    }
-}
 
 export default function ResumeAnalyzerDashboardHeaderButton({
     button,
@@ -26,7 +20,18 @@ export default function ResumeAnalyzerDashboardHeaderButton({
         link: string,
     }
 }) {
+    const location = useLocation();
 
+    useEffect(()=> {
+        // Ensures The Correct Button is Highlight Styled On Refresh, Load, or Redirect.
+        if(location.pathname == button.link || location.pathname == button.link.slice(0, -1) || location.pathname == button.link + "/"){
+            let clickedButton = document.getElementById(button.title + "Button") as HTMLElement
+            clickedButton.style.color = "rgb(19, 145, 184)";
+            clickedButton.style.borderBottom = "2px solid rgb(19, 145, 184)"
+        }
+    }, [])
+
+    const navigate = useNavigate();
     // Start the process of updating the tab icon
     let link = document.querySelector("link[rel~='icon']") as HTMLLinkElement | null;
     // If it doesn't exist, create a new one
@@ -39,23 +44,21 @@ export default function ResumeAnalyzerDashboardHeaderButton({
     link.href = newIconUrl;
     // const [count, setCount] = useState(0);
 
+    function handleButtonClickedStyleChange(id:string){
+        let allButtons = document.querySelectorAll<HTMLElement>(".ResumeAnalyzerDashboardHeaderButton")
+        allButtons.forEach((button)=> {
+            button.style.color = "rgb(51, 51, 51)";
+            button.style.borderBottom = "none"
+        })
+        let clickedButton = document.getElementById(id) as HTMLElement
+        clickedButton.style.color = "rgb(19, 145, 184)";
+        clickedButton.style.borderBottom = "2px solid rgb(19, 145, 184)"
+    }
+
+
   return (
     <>
-    <button className="ResumeAnalyzerDashboardHeaderButton" id={button.title + "Button"} onMouseEnter={()=> handleDropdown("mouseIn", button.order, button.title + "Button")} onMouseLeave={()=> handleDropdown("mouseOut", button.order, button.title + "Button")}>{button.title}</button>
-    <div className="ResumeAnalyzerDashboardHeaderButtonDropdown" id="templatesDropdownWrapper" onMouseEnter={()=>handleDropdown("mouseIn", button.order, button.title + "Button")} onMouseLeave={()=> handleDropdown("mouseOut", button.order, button.title + "Button")}>
-        {/* <div className="ResumeAnalyzerDashboardHeaderButtonDropdownButtonWrapper">
-            <button className="ResumeAnalyzerDashboardHeaderButtonDropdownButton">
-                <div className="ResumeAnalyzerDashboardHeaderButtonDropdownButtonColorPad"></div>
-                <h5 className="ResumeAnalyzerDashboardHeaderButtonDropdownButtonTopText">Coming Soon...</h5>
-                <p className="ResumeAnalyzerDashboardHeaderButtonDropdownButtonBottomText">ResuScan button</p>
-            </button>
-            <button className="ResumeAnalyzerDashboardHeaderButtonDropdownButton">
-                <div className="ResumeAnalyzerDashboardHeaderButtonDropdownButtonColorPad"></div>
-                <h5 className="ResumeAnalyzerDashboardHeaderButtonDropdownButtonTopText">Coming Soon...</h5>
-                <p className="ResumeAnalyzerDashboardHeaderButtonDropdownButtonBottomText">ResuScan button</p>
-            </button>
-        </div> */}
-    </div>
+    <button className="ResumeAnalyzerDashboardHeaderButton" id={button.title + "Button"} onClick={()=> {navigate(button.link); handleButtonClickedStyleChange(button.title + "Button")}} >{button.title}</button>
     </>
   );
 

@@ -17,10 +17,7 @@
   outline: none;
 
 }
-:nth-child(1 of .ResumeAnalyzerDashboardHeaderButton){
-  color: rgb(19, 145, 184);
-  border-bottom: 2px solid rgb(19, 145, 184);
-}
+/* :nth-child(1 of .ResumeAs */
 .ResumeAnalyzerDashboardHeaderButton:hover{
   /* background-color: rgba(179, 179, 179, 0.3); */
   /* color: rgb(128, 193, 247); */
