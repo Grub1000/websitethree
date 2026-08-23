@@ -24,7 +24,7 @@
     background-color: #a73c3c00;
     /* top: -80px; */
     /* left: px */
-    top: -35px;
+    top: -30px;
 }
 .JobApplicationCreateFormPopUpExitButtonIcon{
     float: right;
@@ -42,11 +42,11 @@
 .JobApplicationCreateForm{
     width: 500px;
     height: 210px;
-    padding-top: 40px;
+    padding-top: 30px;
     padding-bottom: 40px;
     border-radius: 15px;
     margin: auto;
-    margin-top: 25vh;
+    margin-top: 20vh;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 20px #00000028;
 }
