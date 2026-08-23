@@ -1,4 +1,6 @@
 
+// CSS Styling Import
+import "../css/resume_analyzer_css/ResumeAnalyzerHomePage.css"
 
 import { useOutletContext } from "react-router-dom";
 
