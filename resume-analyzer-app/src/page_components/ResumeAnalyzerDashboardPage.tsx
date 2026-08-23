@@ -220,7 +220,9 @@ export default function ResumeAnalyzerDashboardPage() {
             <ResumeUploadSection/>
             <ResumeHistorySection/> */}
             {/* <ResumeHistorySection/> */}
-
+                <br></br>
+                <br></br>
+                <br></br>
         </section>
 
     );
