@@ -1,5 +1,5 @@
 export default function FindJobsPage(){
     return(
-        <div>Find Jobs</div>
+        <div>Find Jobs Page Coming Soon!</div>
     )
 }

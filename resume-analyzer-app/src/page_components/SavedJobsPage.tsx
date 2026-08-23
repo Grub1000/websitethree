@@ -1,5 +1,5 @@
 export default function SavedJobsPage(){
     return(
-        <div>Saved Jobs</div>
+        <div>Saved Jobs Page Coming Soon!</div>
     )
 }
