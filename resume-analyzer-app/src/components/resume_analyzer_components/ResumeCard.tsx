@@ -7,14 +7,20 @@ import {getResumeThumbnailUrl, type ResumeListItem} from "../../api/resume_servi
 import "../../css/resume_analyzer_css/ResumeCard.css"
 
 
-type ResumeCardProps = {
-    resume: ResumeListItem;
-};
+// type ResumeCardProps = {
+//     resume: ResumeListItem;
+// };
 
 
 function ResumeCard({
     resume,
-}: ResumeCardProps) {
+    loadResumeAnalyses,
+}: {
+    resume: ResumeListItem,
+    loadResumeAnalyses: (resumeID:string) => void
+
+}) {
+
     const [thumbnailUrl, setThumbnailUrl] =
         useState("");
 
@@ -65,20 +71,20 @@ function ResumeCard({
     ]);
 
 
-    const uploadedDate =
-        resume.uploaded_at
-            ? new Date(
-                resume.uploaded_at
-            ).toLocaleDateString()
-            : "Not available";
+    // const uploadedDate =
+    //     resume.uploaded_at
+    //         ? new Date(
+    //             resume.uploaded_at
+    //         ).toLocaleDateString()
+    //         : "Not available";
 
 
-    const fileSizeMB =
-        (
-            resume.file_size /
-            1024 /
-            1024
-        ).toFixed(2);
+    // const fileSizeMB =
+    //     (
+    //         resume.file_size /
+    //         1024 /
+    //         1024
+    //     ).toFixed(2);
 
 
     return (
@@ -123,12 +129,12 @@ function ResumeCard({
 
             <div className="ResumeCardContent">
 
-                <h3 className="ResumeCardFileName">
-                    {resume.original_filename}
+                <h3 className="ResumeCardFileName" title={resume.original_filename}>
+                    {resume.original_filename.length > 28 ? resume.original_filename.slice(0, 28) + '...' : resume.original_filename}
                 </h3>
 
 
-                <p>
+                {/* <p>
                     Status: {resume.status}
                 </p>
 
@@ -140,23 +146,28 @@ function ResumeCard({
 
                 <p>
                     Uploaded: {uploadedDate}
-                </p>
+                </p> */}
 
 
                 <div className="ResumeCardActions">
 
-                    <button
+                    <button 
+                        className="ResumeCardViewAnalysisButton"
                         type="button"
+                        onClick={()=> {
+                            loadResumeAnalyses(resume.resume_id);
+                            }}
+                            
                     >
                         View Analysis
                     </button>
 
 
-                    <button
+                    {/* <button
                         type="button"
                     >
                         Analyze Again
-                    </button>
+                    </button> */}
 
                 </div>
 

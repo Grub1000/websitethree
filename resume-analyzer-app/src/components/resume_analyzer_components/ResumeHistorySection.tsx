@@ -8,7 +8,13 @@ import {
 import ResumeCard from "./ResumeCard.tsx";
 
 
-function ResumeHistorySection() {
+function ResumeHistorySection(
+    {
+        loadResumeAnalyses
+    }:{
+        loadResumeAnalyses: (resumeID: string) => void;
+    }
+) {
     const [resumes, setResumes] =
         useState<ResumeListItem[]>([]);
 
@@ -80,6 +86,7 @@ function ResumeHistorySection() {
                         <ResumeCard
                             key={resume.resume_id}
                             resume={resume}
+                            loadResumeAnalyses={loadResumeAnalyses}
                         />
                     ))}
                 </div>

@@ -1,13 +1,15 @@
-
 // CSS Styling Import
 import "../css/resume_analyzer_css/ResumeAnalyzerHomePage.css"
 
+// React Router Imports
 import { useOutletContext } from "react-router-dom";
 
+// Component Imports
 import ResumeHistorySmallSection from "../components/resume_analyzer_components/ResumeHistorySmallSection.tsx"
 import JobApplicationHistorySmallSection from "../components/job_application_tracker_components/JobApplicationHistorySmallSection.tsx"
 import ResumeUploadSection from "../components/resume_analyzer_components/ResumeUploadSection.tsx";
 
+// Image Asset Imports
 import plusIcon from "../assets/icons/plus_icon.svg"
 
 

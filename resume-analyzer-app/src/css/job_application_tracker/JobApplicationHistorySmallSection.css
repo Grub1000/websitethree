@@ -6,7 +6,7 @@
 }
 .JobApplicationHistorySmallSectionColumnNamesWrapper{
     display: flex;
-    /* background-color: aquamarine; */
+    background-color: rgb(255, 255, 255);
     border: 1px solid rgba(0, 0, 0, 0.137);
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -39,6 +39,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.137);
     border-left: 1px solid rgba(0, 0, 0, 0.137);
     border-right: 1px solid rgba(0, 0, 0, 0.137);
+    background-color: rgb(255, 255, 255);
 }
 .JobApplicationHistorySmallSectionRowFeature{
     font-size: 14px;

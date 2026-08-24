@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+// Resume Service Methods and Types Imports
 import {getUserResumes, type ResumeListItem} from "../api/resume_service.tsx";
 
 // CSS Styling Import
@@ -8,10 +8,19 @@ import "../css/resume_analyzer_css/ResumeDocumentsPage.css"
 // Component Imports
 import ResumeCard from "../components/resume_analyzer_components/ResumeCard.tsx";
 
+// React Router Imports
+import { useOutletContext } from "react-router-dom";
+
 
 export default function ResumeDocumentsPage(
 
 ){
+
+    const {
+        loadResumeAnalyses   
+    } = useOutletContext<any>();
+
+
     const [resumes, setResumes] =
             useState<ResumeListItem[]>([]);
     
@@ -83,6 +92,7 @@ export default function ResumeDocumentsPage(
                         <ResumeCard
                             key={resume.resume_id}
                             resume={resume}
+                            loadResumeAnalyses={loadResumeAnalyses}
                         />
                     ))}
                 </div>

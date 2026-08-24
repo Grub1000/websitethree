@@ -78,6 +78,7 @@ export default function ResumeAnalyzerDashboardPage() {
     let [resumeAnalyses, setResumeAnalyses] = useState<ResumeAnalysisResponseListItem[]>([])
 
     async function loadResumeAnalyses(resumeID: string){
+        document.querySelector('#root')?.scrollTo(0,0)  //Scroll To Top
         setResumeAnalyses(resumeAnalyses = await getResumeAnalyses(resumeID))
     }
     
