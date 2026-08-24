@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 
-import {
-    getResumeThumbnailUrl,
-    type ResumeListItem,
-} from "../../api/resume_service.tsx";
+// Resume Service Methods Imports
+import {getResumeThumbnailUrl, type ResumeListItem} from "../../api/resume_service.tsx";
+
+// CSS Styling Import
+import "../../css/resume_analyzer_css/ResumeCard.css"
 
 
 type ResumeCardProps = {
@@ -99,6 +100,8 @@ function ResumeCard({
                             alt={
                                 `${resume.original_filename} preview`
                             }
+                            className="ResumeCardThumbnailImage"
+
                         />
                     )}
 
@@ -108,8 +111,8 @@ function ResumeCard({
                         !resume.has_thumbnail ||
                         thumbnailError
                     ) && (
-                        <div className="ResumeCardPlaceholder">
-                            <p>
+                        <div className="ResumeCardPlaceholderTextWrapper">
+                            <p className="ResumeCardPlaceholderText">
                                 No preview available
                             </p>
                         </div>
@@ -120,7 +123,7 @@ function ResumeCard({
 
             <div className="ResumeCardContent">
 
-                <h3>
+                <h3 className="ResumeCardFileName">
                     {resume.original_filename}
                 </h3>
 

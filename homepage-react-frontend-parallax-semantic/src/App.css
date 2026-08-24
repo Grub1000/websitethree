@@ -567,7 +567,7 @@ width: 12px;
 
 
 .HomepageFavoritesSectionCardWrapper{
-  display: flex;
+  display: none;
   flex-flow: column wrap;
   align-content: space-between;
   width: 100%;

@@ -1,0 +1,36 @@
+.ResumeCard{
+    /* flex-grow: none;
+    flex-shrink: none; */
+    width: 250px;
+    /* margin: 20px; */
+    /* margin: auto; */
+    padding: 15px;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.199);
+}
+.ResumeCardThumbnailImage{
+    width: 250px;
+    border-radius: 5px;
+    /* height: 320px; */
+}
+.ResumeCardPlaceholderTextWrapper{
+    width: 250px;
+    height: 323px;
+    border-radius: 5px;
+    /* margin-top: -15px; */
+    /* height: 310px; */
+    background-color: rgb(234, 252, 253);
+    align-content: center;
+}
+.ResumeCardPlaceholderText{
+    text-align: center;
+    
+}
+.ResumeCardContent{
+}
+.ResumeCardFileName{
+    font-size: 16px;
+}

@@ -1,0 +1,26 @@
+.ResumeDocumentsPageSectionWrapper{
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    font-family: "Inter", sans-serif;
+}
+.ResumeDocumentsPageSectionHeaderText{
+    padding: none;
+    margin: none;
+    margin-top: 50px;
+    font-size: 18px;
+    font-family: "Inter", sans-serif;
+    color: rgb(80, 80, 80);
+}
+.ResumeDocumentsPageSectionNoUploadsMessage{
+    padding: none;
+    margin: none;
+    /* margin-top: 50px; */
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    color: rgb(80, 121, 155);
+}
+
+
+.ResumeDocumentsPageHistoryGrid{
+    display: flex;
+    flex-wrap: wrap;
+}
