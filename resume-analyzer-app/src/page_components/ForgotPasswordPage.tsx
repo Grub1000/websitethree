@@ -1,6 +1,10 @@
 import { useState } from "react"; 
 // import axios from "axios"; 
 
+// CSS Styling Imports
+import "../css/authentication_pages_css/ForgotPasswordPage.css"
+
+
 function ForgotPasswordPage() { 
 
     const [email, setEmail] = useState(""); 
@@ -34,16 +38,16 @@ function ForgotPasswordPage() {
 
     return ( 
 
-    <div> 
-        <h1> Forgot Password </h1> 
+    <section className="ForgotPasswordPageWrapper"> 
+        <h1 className="ForgotPasswordHeaderText"> Forgot Password </h1> 
         <form onSubmit={handleSubmit}> 
-            <input type="email" placeholder="Email" value={email} onChange={ (event) => setEmail( event.target.value ) } required /> 
-            <button type="submit" disabled={loading}>
+            <input className="ForgotPasswordEmailInput" type="email" placeholder="Email" value={email} onChange={ (event) => setEmail( event.target.value ) } required /> 
+            <button className="ForgotPassworSendResetLinkButton" type="submit" disabled={loading}>
                 {loading ? "Sending..." : "Send Reset Link"}
             </button> 
         </form> 
             { message && <p> {message} </p> } { error && <p> {error} </p> } 
-    </div> 
+    </section> 
     ); 
 } 
 
