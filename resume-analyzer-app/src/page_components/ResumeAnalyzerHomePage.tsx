@@ -24,24 +24,22 @@ export default function ResumeAnalyzerHomePage(){
 
     return(
         <>
+            <h2 className="ResumeAnalyzerDashboardMainSectionTitle">New Uploads</h2>
+            <ResumeUploadSection reloadResumeHistory={reloadResumeHistory} loadResumeAnalyses={loadResumeAnalyses}/>
 
-                <h2 className="ResumeAnalyzerDashboardMainSectionTitle">New Uploads</h2>
-                <ResumeUploadSection reloadResumeHistory={reloadResumeHistory} />
-
-                <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Documents</h2>
-                <ResumeHistorySmallSection key={reloadKey} loadResumeAnalyses={loadResumeAnalyses}/>
-
+            <h2 className="ResumeAnalyzerDashboardMainSectionTitle">Documents</h2>
+            <ResumeHistorySmallSection key={reloadKey} loadResumeAnalyses={loadResumeAnalyses}/>
 
 
-                <h2 className="ResumeAnalyzerDashboardMainSectionTitle">
-                    Add Jobs 
-                    <button className="ResumeAnalyzerDashboardMainSectionAddJobButton" onClick={()=> setCreateFormIsVisible(true)}>
-                        <img className="ResumeAnalyzerDashboardMainSectionAddJobButtonIcon" src={plusIcon}></img>
-                        <p className="ResumeAnalyzerDashboardMainSectionAddJobButtonTitle">Add Job</p>
-                    </button>
-                </h2>
-                <JobApplicationHistorySmallSection createFormIsVisible={createFormIsVisible} handleSetCreateFormIsVisible={handleSetCreateFormIsVisible}/>
 
+            <h2 className="ResumeAnalyzerDashboardMainSectionTitle">
+                Add Jobs 
+                <button className="ResumeAnalyzerDashboardMainSectionAddJobButton" onClick={()=> setCreateFormIsVisible(true)}>
+                    <img className="ResumeAnalyzerDashboardMainSectionAddJobButtonIcon" src={plusIcon}></img>
+                    <p className="ResumeAnalyzerDashboardMainSectionAddJobButtonTitle">Add Job</p>
+                </button>
+            </h2>
+            <JobApplicationHistorySmallSection createFormIsVisible={createFormIsVisible} handleSetCreateFormIsVisible={handleSetCreateFormIsVisible}/>
         </>
     )
 }

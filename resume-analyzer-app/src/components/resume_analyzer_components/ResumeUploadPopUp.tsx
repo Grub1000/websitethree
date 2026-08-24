@@ -19,10 +19,12 @@ const ALLOWED_FILE_TYPES = [
 export default function ResumeUploadPopUp({  
         onClose,
         reloadResumeHistory,
+        loadResumeAnalyses,
 
     }: { 
         onClose: (value: boolean) => void,
         reloadResumeHistory: ()=> void,
+        loadResumeAnalyses: (resumeID:string)=> void,
     }) {
 
         const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -129,7 +131,6 @@ export default function ResumeUploadPopUp({
     
                 setResumeId(result.resume_id);
                 setMessage("Résumé uploaded successfully.");
-                
     
                 if (fileInputRef.current) {
                     fileInputRef.current.value = "";
@@ -149,13 +150,17 @@ export default function ResumeUploadPopUp({
                         setJobTitle("") // Reset Job Title for Further Use
     
                         setMessage("Résumé analysis complete.");
-    
                         console.log(
                             "Resume Analysis:",
                             analysisResult
                         );
                         setSelectedFile(null);
+                        // Refresh History
                         reloadResumeHistory()
+                        // Close Upload Pop Up
+                        onClose(false)
+                        // Load Up The Analysis Pop Up For This Resume
+                        loadResumeAnalyses(result.resume_id)
                         
                     } catch (error) {
                         setError(

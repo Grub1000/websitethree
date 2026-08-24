@@ -10,8 +10,10 @@ import manPointingRight from "../../assets/pointing_right_man.png"
 
 function ResumeUploadSection({
     reloadResumeHistory,
+    loadResumeAnalyses,
 }:{
-    reloadResumeHistory: ()=> void
+    reloadResumeHistory: ()=> void,
+    loadResumeAnalyses: (resumeID:string)=> void,
 }
 ) {
     const [isVisible, setIsVisible] = useState(false);
@@ -29,7 +31,7 @@ function ResumeUploadSection({
                     <img src={manPointingRight} className="ResumeUploadIconImage" alt="Man Pointing Right Icon"></img>
                 </div>
                 {/* <ResumeUploadPopUp /> */}
-                {isVisible && (<ResumeUploadPopUp onClose={setIsVisible} reloadResumeHistory={reloadResumeHistory}/>)}
+                {isVisible && (<ResumeUploadPopUp onClose={setIsVisible} reloadResumeHistory={reloadResumeHistory} loadResumeAnalyses={loadResumeAnalyses}/>)}
             </div>
         </section>
     );
