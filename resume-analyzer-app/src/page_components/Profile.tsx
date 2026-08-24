@@ -1,6 +1,9 @@
 // import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+// CSS Styling Import
+import "../css/authentication_pages_css/Profile.css"
+
 export default function Profile() {
 
     // const navigate = useNavigate();
@@ -16,15 +19,15 @@ export default function Profile() {
     }
     
     return (
-        <div>
-            <h1>Profile</h1>
-            <button onClick={handleLogout}>
+        <section className="ProfilePageWrapper">
+            <h1 className="ProfilePageHeaderText">Profile</h1>
+            <button className="ProfilePageLogoutButton" onClick={handleLogout}>
                 Logout
             </button>
-            <button onClick={testCurrentUser}>
+            <button className="ProfilePageTestUserButton" onClick={testCurrentUser}>
                 Test User
             </button>
-        </div>
+        </section>
     );
 
 }

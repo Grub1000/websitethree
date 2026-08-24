@@ -2,6 +2,9 @@ import { useState } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+// CSS Styling Import
+import "../css/authentication_pages_css/ResetPasswordPage.css"
+
 function ResetPasswordPage() { 
 
     const [password, setPassword] = useState(""); 
@@ -37,16 +40,20 @@ function ResetPasswordPage() {
 
         } finally { 
 
-            setLoading(false); } } 
+            setLoading(false); 
+        }
+    } 
 
-        return ( 
-        <div> 
-            <h1> Reset Password </h1> 
-            <form onSubmit={handleSubmit}> 
-                <input type="password" placeholder="New Password" value={password} onChange={ (event) => setPassword( event.target.value ) } required /> 
-                <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={ (event) => setConfirmPassword( event.target.value ) } required /> 
-                <button type="submit" disabled={loading} > { loading ? "Resetting..." : "Reset Password" } </button> 
-            </form> { message && <p> {message} </p> } { error && <p> {error} </p> } 
-        </div> ); } 
+    return ( 
+    <section className="ResetPasswordPageWrapper"> 
+        <h1 className="ResetPaswordHeaderText"> Reset Password </h1> 
+        <form onSubmit={handleSubmit}> 
+            <input type="password" placeholder="New Password" value={password} onChange={ (event) => setPassword( event.target.value ) } required /> 
+            <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={ (event) => setConfirmPassword( event.target.value ) } required /> 
+            <button type="submit" disabled={loading} > { loading ? "Resetting..." : "Reset Password" } </button> 
+        </form> { message && <p> {message} </p> } { error && <p> {error} </p> } 
+    </section> 
+    ); 
+} 
 
         export default ResetPasswordPage;
