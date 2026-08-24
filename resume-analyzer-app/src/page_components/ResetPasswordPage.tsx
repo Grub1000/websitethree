@@ -46,11 +46,11 @@ function ResetPasswordPage() {
 
     return ( 
     <section className="ResetPasswordPageWrapper"> 
-        <h1 className="ResetPaswordHeaderText"> Reset Password </h1> 
+        <h1 className="ResetPasswordPageHeaderText"> Reset Password </h1> 
         <form onSubmit={handleSubmit}> 
-            <input type="password" placeholder="New Password" value={password} onChange={ (event) => setPassword( event.target.value ) } required /> 
-            <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={ (event) => setConfirmPassword( event.target.value ) } required /> 
-            <button type="submit" disabled={loading} > { loading ? "Resetting..." : "Reset Password" } </button> 
+            <input className="ResetPasswordPageInput" type="password" placeholder="New Password" value={password} onChange={ (event) => setPassword( event.target.value ) } required /> 
+            <input className="ResetPasswordPageInput" type="password" placeholder="Confirm Password" value={confirmPassword} onChange={ (event) => setConfirmPassword( event.target.value ) } required /> 
+            <button className="ResetPasswordPageButton" type="submit" disabled={loading} > { loading ? "Resetting..." : "Reset Password" } </button> 
         </form> { message && <p> {message} </p> } { error && <p> {error} </p> } 
     </section> 
     ); 

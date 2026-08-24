@@ -2,13 +2,15 @@
     position: relative;
     width: 300px;
     height: fit-content;
-    padding-top: 10px;
+    padding-top: 5px;
     padding-bottom: 20px;
     border-radius: 15px;
     margin: auto;
     margin-top: 15vh;
     background-color: white;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.514);
+    font-family: "Inter", sans-serif;
+
 }
 .ProfilePageHeaderText{
     font-size: 24px;
