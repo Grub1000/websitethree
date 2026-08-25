@@ -160,6 +160,12 @@ export default class App extends React.Component{
         "Built with a React and TypeScript frontend connected to a Django, MySQL, and JWT-authenticated backend.",
         "Integrates OpenAI and LLM technologies alongside AWS S3 for intelligent resume analysis and cloud-based storage."
         ], techUsed: ["Typescript", "React", "Python", "Django Backend", "MySQL", "AWS-S3", "OpenAI", "LLMs", "JWT-Auth" ],  dateCreated: "2025", link: "https://jorgeramirez.net/resuscan", gitHub: "", youtube: "", notAvailable: 0},
+        
+        {title: "PDF Editor Project", type: "Frontend & Backend", image: vdmImage, description: [
+        "Created a demo version of the PDF editing software I originally developed while working at Greenstar.ca.",
+        "Rebuilt the application using the same core technology stack with a redesigned frontend and a reduced feature set for demonstration purposes.",
+        "Implemented authentication, a file-management dashboard, and an interactive PDF editing interface."
+        ], techUsed: ["Laravel", "React", "MySQL", "PHP", "Javascript", "HTML", "CSS", "RESTapi", "Responsive"],  dateCreated: "2022", link: "https://vdm.fullstackgrub.com/", gitHub: "", youtube: "", notAvailable: 0}, 
 
         ],
       backendSkills: [
