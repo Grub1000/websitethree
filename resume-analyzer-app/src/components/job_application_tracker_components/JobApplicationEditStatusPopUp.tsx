@@ -44,7 +44,7 @@ export default function JobApplicationEditStatusPopUp(
                     :
                     <li><button onClick={async ()=> {await updateJobApplication(selectedJobCurrentApplicationID, {status: "offer"}); handleEditStatusPopUpIsVisible(false)}} className="JobApplicationEditStatusOrderedListButton">Offered</button></li>
                     }
-                    { selectedJobCurrentStatus == "rejected" ?
+                    {/* { selectedJobCurrentStatus == "rejected" ?
                     <li><button onClick={async ()=> {await updateJobApplication(selectedJobCurrentApplicationID, {status: "rejected"}); handleEditStatusPopUpIsVisible(false)}} className="JobApplicationEditStatusOrderedListButton" style={{backgroundColor: "#08a0cec7"}}>Rejected</button></li>
                     :
                     <li><button onClick={async ()=> {await updateJobApplication(selectedJobCurrentApplicationID, {status: "rejected"}); handleEditStatusPopUpIsVisible(false)}} className="JobApplicationEditStatusOrderedListButton">Rejected</button></li>
@@ -53,7 +53,7 @@ export default function JobApplicationEditStatusPopUp(
                     <li><button onClick={async ()=> {await updateJobApplication(selectedJobCurrentApplicationID, {status: "withdrawn"}); handleEditStatusPopUpIsVisible(false)}} className="JobApplicationEditStatusOrderedListButton" style={{backgroundColor: "#08a0cec7"}}>Withdrawn</button></li>
                     :
                     <li><button onClick={async ()=> {await updateJobApplication(selectedJobCurrentApplicationID, {status: "withdrawn"}); handleEditStatusPopUpIsVisible(false)}} className="JobApplicationEditStatusOrderedListButton">Withdrawn</button></li>       
-                    }
+                    } */}
                 </ol>
             </div>
             {/* <p>{selectedJobCurrentStatus}</p>
