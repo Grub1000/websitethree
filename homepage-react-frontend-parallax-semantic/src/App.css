@@ -433,13 +433,14 @@ width: 12px;
   flex-flow: column wrap;
   align-content: space-between;
   width: 100%;
-  height: 3000px;
+  height: 3600px;
   /* justify-content: space-between; */
   /* align-content: space-between; */
   /* background-color: rgb(177, 162, 152); */
 
 }
 .HomepageProjectsSectionCard{
+  position: relative;
   flex-shrink: none;
   flex-grow: none;
   /* width: 380px; */
@@ -453,12 +454,12 @@ width: 12px;
   /* background-image: linear-gradient(rgb(48, 48, 48), rgb(27, 27, 27)); */
   transition: all .4s ease;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .HomepageProjectsSectionCard:hover{
   background-color: rgb(175, 241, 250);
 }
-
 
 /* vv CSS Needed for Masonry Triple Column Styling vv */
 .HomepageProjectsSectionCard:nth-child(3n+1) { order: 1; } /* Items 1, 4, 7... */
@@ -472,6 +473,153 @@ width: 12px;
   order: 2; /* Ensures breaks sit precisely between your ordered columns */
 }
 /* ^^ CSS Needed for Masonry Triple Column Styling ^^ */
+
+
+
+.HomepageProjectsSectionCardReadMoreWrapper{
+  /* display: none; */
+  z-index: 11;
+  inset: 0;
+  /* position: absolute; */
+  position: absolute;
+  width: calc(100% - 80px);
+  height: calc(100% - 50px);
+  left: -100%;
+  padding: 40px;
+  padding-top: 10px;
+  border-radius: 0px;
+  background-color: rgba(255, 255, 255);
+  transition: all .3s ease;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+/* Width of the scrollbar */
+.HomepageProjectsSectionCardReadMoreWrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* The track (background) of the scrollbar */
+.HomepageProjectsSectionCardReadMoreWrapper::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* The draggable scrolling piece (thumb) */
+.HomepageProjectsSectionCardReadMoreWrapper::-webkit-scrollbar-thumb {
+  background: #ffffff;
+}
+
+/* Optional: change thumb color on hover if you want it visible when active */
+.HomepageProjectsSectionCardReadMoreWrapper::-webkit-scrollbar-thumb:hover {
+  background: #e0e0e0;
+}
+.HomepageProjectsSectionCardReadMoreWrapper::-webkit-scrollbar-button {
+  background: #ffffff;
+  display: block; /* Ensures the background property applies */
+  height: 0px;    /* Optional: Sets height to 0 to completely hide them */
+  width: 0px;     /* Optional: Sets width to 0 to completely hide them */
+}
+
+.HomepageProjectsSectionCardReadMoreExitButton{
+  z-index: 10;
+  all: unset;
+  float: right;
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  left: 40px;
+  /* top: 20px; */
+  /* border-top-left-radius: 10px;
+  border-top-right-radius: 10px; */
+  border-radius: 10px;
+  margin: auto;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  transition: background-color .3s ease;
+}
+.HomepageProjectsSectionCardReadMoreExitButton:hover{
+  background-color: rgb(228, 228, 228);
+}
+.HomepageProjectsSectionCardReadMoreExitButtonIcon{
+  width: 15px;
+  margin-left: -1px;
+  margin-top: 3px;
+  opacity: 80%;
+  transition: transform .3s ease;
+}
+.HomepageProjectsSectionCardReadMoreExitButton:hover .HomepageProjectsSectionCardReadMoreExitButtonIcon {
+  transform: rotate(90deg);
+}
+.HomepageProjectsSectionCardReadMoreBulletPointCardWrapper{
+  display: flex;
+  position: relative;
+}
+:nth-child(1 of .HomepageProjectsSectionCardReadMoreBulletPointCardWrapper){
+  margin-top: 40px;
+}
+.HomepageProjectsSectionCardReadMoreBulletPointCardCheckMarkIcon{
+  position: relative;
+  width: 18px;
+  height: fit-content;
+  top: 12px;
+  margin-right: 10px;
+  /* background-color: aqua; */
+}
+.HomepageProjectsSectionCardReadMoreBulletPointCardText{
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  text-shadow: -1px 1px 1px rgba(0, 0, 0, 0.13);
+}
+
+
+
+
+.HomepageProjectsSectionCardHeader{
+  z-index: 2;
+  position: absolute;
+  width: 150px;
+  height: 60px;
+  /* background-color: rgba(136, 158, 158, 0.411); */
+}
+.HomepageProjectLinkTypeCard{
+  position: relative;
+  /* float: right; */
+  display: flex;
+  width: fit-content;
+  height: 14px;
+  top: 22px;
+  left: 22px;
+  padding: 5px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 15px;
+  background-color: rgb(51, 51, 51);
+}
+.HomepageProjectLinkTypeCardIcon{
+  position: relative;
+  height: fit-content;
+  top: 0px;
+  font-size: 13px;
+  color: white;
+  /* background-color: chartreuse; */
+}
+.HomepageProjectLinkTypeCardText{
+  position: relative;
+  top: -12px;
+  margin-left: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  color: white;
+  /* background-color: rgb(5, 5, 5); */
+}
+
 
 .HomepageProjectsSectionCardImage{
   position: inherit;
@@ -556,9 +704,34 @@ width: 12px;
   background-color: aqua;
 } */
 
-
-
-
+.HomepageProjectsSectionCardFooter{
+  width: 100%;
+  height: fit-content;
+  /* background-color: aqua; */
+}
+.HomepageProjectsSectionCardFooterReadMoreButton{
+  z-index: 10;
+  all: unset;
+  position: relative;
+  display: block;
+  width: 30%;
+  height: 30px;
+  top: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin: auto;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+  background-color: rgb(51, 51, 51);
+  cursor: pointer;
+  transition: background-color .3s ease;
+}
+.HomepageProjectsSectionCardFooterReadMoreButton:hover{
+  background-color: rgb(235, 120, 68);
+}
 
 
 
@@ -882,7 +1055,7 @@ width: 12px;
 
 @media(max-width: 1523px){
   .HomepageProjectsSectionCardWrapper {
-    height: 4000px; /* 👈 Set a height large enough for 2 columns */
+    height: 4600px; /* 👈 Set a height large enough for 2 columns */
   }
   .HomepageProjectsSectionCard{
     width: 48%;
@@ -1127,12 +1300,14 @@ width: 12px;
     /* width: 300px; */
     
   }
+  
 
   .HomepageProjectsSectionCardWrapper {
     flex-flow: column nowrap;
     flex: none;
-    /* height: 8000px; 👈 Set a height large enough for 2 columns */
+    /* height: 6000px;  */
     height: auto !important;
+    padding-bottom: 100px;
   }
   .HomepageProjectsSectionCard{
     width: 100%;

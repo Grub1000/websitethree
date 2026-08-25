@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.3050e67c.css",
-    "main.js": "/static/js/main.b480705e.js",
+    "main.css": "/static/css/main.9a0c3d3c.css",
+    "main.js": "/static/js/main.544bf604.js",
     "static/js/453.eb1b5922.chunk.js": "/static/js/453.eb1b5922.chunk.js",
     "static/media/20240227_211318.jpg": "/static/media/20240227_211318.135c096e84b023e4f04e.jpg",
     "static/media/SchedulingSystemImage.png": "/static/media/SchedulingSystemImage.44f50563ecee9ea8a154.png",
@@ -50,9 +50,11 @@
     "static/media/html_logo_svg.svg": "/static/media/html_logo_svg.dc9961a1b9e7caf53e9a063a534f821e.svg",
     "index.html": "/index.html",
     "static/media/7.svg": "/static/media/7.1d4fd23210dd6a973f452f4ea73eba98.svg",
+    "static/media/exit_icon_svg.svg": "/static/media/exit_icon_svg.f52a7d36baf4f9187df7e2eda2307a58.svg",
     "static/media/4.svg": "/static/media/4.77e24f3d0eb086b38a8a031780465122.svg",
     "static/media/github_logo_svg.svg": "/static/media/github_logo_svg.f9628c96c9f110f1e1ada265d17d49bf.svg",
     "static/media/docker_logo_svg.svg": "/static/media/docker_logo_svg.ef890b0f9491c5ee448ea0f7abe9779f.svg",
+    "static/media/checkmark-icon.svg": "/static/media/checkmark-icon.de63a8f40439b6b4181eff44d9452f2b.svg",
     "static/media/django_logo_svg.svg": "/static/media/django_logo_svg.4c36c1d7db04d44e2497d59fc8dd9f17.svg",
     "static/media/cloud_logo_svg.svg": "/static/media/cloud_logo_svg.7e6cb2b762a23a889ecbae44249255c0.svg",
     "static/media/tensorflow_logo_svg.svg": "/static/media/tensorflow_logo_svg.f97e6e03bd26a6e6df44ea46fc01dc76.svg",
@@ -62,12 +64,12 @@
     "static/media/javascript_logo_svg.svg": "/static/media/javascript_logo_svg.7c2c5a7a4d999abba95b43792bb3c1da.svg",
     "static/media/csharp_logo_svg.svg": "/static/media/csharp_logo_svg.722afb71fda02ce854af30f9fea96ea6.svg",
     "static/media/1.svg": "/static/media/1.018a1e39c474e704b3c8cf6108063bbd.svg",
-    "main.3050e67c.css.map": "/static/css/main.3050e67c.css.map",
-    "main.b480705e.js.map": "/static/js/main.b480705e.js.map",
+    "main.9a0c3d3c.css.map": "/static/css/main.9a0c3d3c.css.map",
+    "main.544bf604.js.map": "/static/js/main.544bf604.js.map",
     "453.eb1b5922.chunk.js.map": "/static/js/453.eb1b5922.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3050e67c.css",
-    "static/js/main.b480705e.js"
+    "static/css/main.9a0c3d3c.css",
+    "static/js/main.544bf604.js"
   ]
 }

@@ -4,7 +4,6 @@ import "./App.css"
 import logo from "./assets/HomePageLogoFixed.png"
 
 import linkedinLogoSVG from "./assets/linkedin_logo_svg.svg"
-
 import pythonLogoSVG from "./assets/logos/python_logo_svg.svg"
 import typescriptLogoSVG from "./assets/logos/typescript_logo_svg.svg"
 import cssLogoSVG from "./assets/logos/css_logo_svg.svg"
@@ -26,17 +25,23 @@ import laravelLogoSVG from "./assets/logos/laravel_logo_svg.svg"
 // import typescriptLogoSVG from "./assets/logos/typescript_logo_svg.svg"
 // import typescriptLogoSVG from "./assets/logos/typescript_logo_svg.svg"
 
+import checkmarkIcon from "./assets/checkmark-icon.svg"
+import exitIconSVG from "./assets/exit_icon_svg.svg"
+
 export default class ProjectCard extends React.Component{
   constructor(){
     super();
     this.state = {
       sliderOpen: false,
+      readMoreOpen: false,
     }
     this.handleSliderAnim = this.handleSliderAnim.bind(this)
     this.handleTechIcons = this.handleTechIcons.bind(this)
     this.buttonRef = React.createRef()
     this.sliderRef = React.createRef()
     this.chevronIconRef = React.createRef()
+    this.readMoreWrapperRef = React.createRef()
+    this.handleReadMoreWrapperOpen = this.handleReadMoreWrapperOpen.bind(this)
   }
 
   handleSliderAnim(){
@@ -111,6 +116,15 @@ export default class ProjectCard extends React.Component{
 
   }
 
+  handleReadMoreWrapperOpen(){
+    this.readMoreWrapperRef.current.style.display = "block"
+    this.readMoreWrapperRef.current.style.left = "0px"
+  }
+  handleReadMoreWrapperClose(){
+    this.readMoreWrapperRef.current.style.display = "block"
+    this.readMoreWrapperRef.current.style.left = "-100%"
+  }
+
   render(){
     return(
         // <div className="HomepageProjectsSectionCard">
@@ -137,6 +151,7 @@ export default class ProjectCard extends React.Component{
         //         </div>
         //     </div>
         // </div>
+        
         <div className="HomepageProjectsSectionCard" onClick={() => {
             if(this.props.data.link != ""){
                 window.open(this.props.data.link)
@@ -152,6 +167,26 @@ export default class ProjectCard extends React.Component{
             }
         }
         }>
+             
+            <div className="HomepageProjectsSectionCardReadMoreWrapper" ref={this.readMoreWrapperRef}>
+                {/* <p>{this.props.data.dateCreated}</p> */}
+                <button className="HomepageProjectsSectionCardReadMoreExitButton" onClick={(event)=> {event.stopPropagation(); this.handleReadMoreWrapperClose()}}>
+                    <img className="HomepageProjectsSectionCardReadMoreExitButtonIcon" src={exitIconSVG}></img>
+                </button>
+                {this.props.data.description.map(descriptionString =>
+                    <div className="HomepageProjectsSectionCardReadMoreBulletPointCardWrapper">
+                        <img className="HomepageProjectsSectionCardReadMoreBulletPointCardCheckMarkIcon" src={checkmarkIcon}></img>
+                        <p className="HomepageProjectsSectionCardReadMoreBulletPointCardText">{descriptionString}</p>
+                    </div>
+                )}
+            </div>
+            
+            <div className="HomepageProjectsSectionCardHeader">
+                {this.props.data.link != "" && <div className="HomepageProjectLinkTypeCard"><i class="fa fa-solid fa-laptop HomepageProjectLinkTypeCardIcon"></i><p className="HomepageProjectLinkTypeCardText">Website</p></div>}
+                {this.props.data.gitHub != "" && <div className="HomepageProjectLinkTypeCard"><i class="fa fa-brands fa-github HomepageProjectLinkTypeCardIcon"></i><p className="HomepageProjectLinkTypeCardText">Source</p></div>}
+                {this.props.data.youtube != "" && <div className="HomepageProjectLinkTypeCard"><i class="fa fa-brands fa-youtube HomepageProjectLinkTypeCardIcon"></i><p className="HomepageProjectLinkTypeCardText">Youtube</p></div>}
+                {this.props.data.notAvailable != 0 && <div className="HomepageProjectLinkTypeCard"><i class="fa fa-solid fa-ban HomepageProjectLinkTypeCardIcon"></i><p className="HomepageProjectLinkTypeCardText">Unavailable</p></div>}
+            </div>
             <img className="HomepageProjectsSectionCardImage" src={this.props.data.image}></img>
             <p className="HomepageProjectsSectionCardTypeDescription">{this.props.data.type}</p>
             <h2 className="HomepageProjectsSectionCardTitle">{this.props.data.title}</h2>
@@ -166,10 +201,13 @@ export default class ProjectCard extends React.Component{
                     {this.props.data.techUsed.map(tech => 
                         this.handleTechIcons(tech)
                     )}
-                    
                 </div>
             </div>
+            <div className="HomepageProjectsSectionCardFooter">
+                <button className="HomepageProjectsSectionCardFooterReadMoreButton" onClick={(event)=> {event.stopPropagation(); this.handleReadMoreWrapperOpen()}}>Read More</button>
+            </div>
         </div>
+        
     )
   }
 }
