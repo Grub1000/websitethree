@@ -11,7 +11,7 @@ export async function apiFetch(
     let accessToken =
         localStorage.getItem("access");
 
-    console.log("Access Token:", accessToken);
+    // console.log("Access Token:", accessToken);
     let response = await fetch(
         `${API_URL}${endpoint}`,
         {

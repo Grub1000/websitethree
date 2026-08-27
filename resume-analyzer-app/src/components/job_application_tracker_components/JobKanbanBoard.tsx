@@ -1,9 +1,12 @@
+import {useState} from 'react'
 import type {
     JobApplication,
     JobApplicationStatus,
 } from "../../api/job_application_service";
 
 import "../../css/job_application_tracker/JobKanbanBoard.css"
+
+import JobApplicationCreateFormPopUp from "../job_application_tracker_components/JobApplicationCreateFormPopUp.tsx"
 
 type JobKanbanBoardProps = {
     applications: JobApplication[];
@@ -16,6 +19,8 @@ type JobKanbanBoardProps = {
     onApplicationClick?: (
         application: JobApplication
     ) => void;
+
+    handleGetJobApplications: () => void
 };
 
 
@@ -49,7 +54,11 @@ export default function JobKanbanBoard({
     applications,
     onStatusChange,
     onApplicationClick,
+    handleGetJobApplications,
 }: JobKanbanBoardProps) {
+
+    const [createFormIsVisible, setCreateFormIsVisible] = useState(false)
+
 
     function getApplicationsByStatus(
         status: JobApplicationStatus
@@ -139,7 +148,6 @@ export default function JobKanbanBoard({
         );
     }
 
-
     return (
         <section className="JobKanbanBoardSection">
 
@@ -156,7 +164,8 @@ export default function JobKanbanBoard({
                     </p>
                 </div>
 
-                <button
+                <button 
+                    onClick={()=> setCreateFormIsVisible(true)}
                     type="button"
                     className="JobKanbanAddButton"
                 >
@@ -404,7 +413,7 @@ export default function JobKanbanBoard({
                 })}
 
             </div>
-
+            {createFormIsVisible && <JobApplicationCreateFormPopUp handleSetCreateFormIsVisible={setCreateFormIsVisible} loadJobApplications={handleGetJobApplications}/>}
         </section>
     );
 }

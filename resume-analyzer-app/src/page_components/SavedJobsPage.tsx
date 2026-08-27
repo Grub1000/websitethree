@@ -47,12 +47,22 @@ export default function SavedJobsPage(){
 
     }, [])
 
+    async function handleGetJobApplications(){
+        const applications =
+            await getJobApplications();
+
+        setJobApplications(
+            applications
+        );
+    }
+
     return(
         <section style={{paddingTop: "30px"}}>
             {/* Saved Jobs Page Coming Soon! */}
             <JobKanbanBoard
                 applications={jobApplications}
                 onStatusChange={handleStatusChange}
+                handleGetJobApplications={handleGetJobApplications}
             />
         </section>
     )
