@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import {getUserResumes, deleteResume, type ResumeListItem,} from "../../api/resume_service.tsx";
 
-
+import ConfirmDelete from "../resume_analyzer_components/ConfirmDelete.tsx"
 
 import "../../css/resume_analyzer_css/ResumeHistorySmallSection.css"
 
@@ -24,6 +24,13 @@ export default function ResumeHistorySmallSection({
     const [error, setError] =
         useState("");
 
+
+
+    const [confirmDeletePopUp, setConfirmDeletePopUp] = useState(false) // State Needed for Confirm Delete Pop Up Component
+
+    const [activeResumeID, setActiveResumeID] = useState("") // State Needed for Confirm Delete Pop Up Component
+
+    const [activeResumeName, setActiveResumeName] = useState("") // State Needed for Confirm Delete Pop Up Component
     // const [activeId, setActiveId] = useState<string | null>(null);
     // const activeContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -121,11 +128,11 @@ export default function ResumeHistorySmallSection({
         );
     }
 
-    async function handleDelete(resume: ResumeListItem){
+    async function handleDelete(resumeID: string){
         try {
 
             await deleteResume(
-                resume.resume_id
+                resumeID
             );
 
             await loadResumes();
@@ -147,6 +154,33 @@ export default function ResumeHistorySmallSection({
         selectedDropdown.style.display = "flex"
     }
     // initiateDropdownListenerHandlers()
+
+
+    function handleToggleConfirmDeletePopUp(bool: boolean){ // Function Needed for Confirm Delete Pop Up Component
+        setConfirmDeletePopUp(bool)
+        }
+    
+    async function handleResumeDelete(id:string){ // Function Needed for Confirm Delete Pop Up Component
+        await handleDelete(id)
+        loadResumes()
+        setActiveResumeID("")
+        setActiveResumeName("")
+    }
+
+    function handleCancelDelete(){  // Function Needed for Confirm Delete Pop Up Component
+        setConfirmDeletePopUp(false)
+        setActiveResumeID("")
+        setActiveResumeName("")
+    }
+
+
+
+
+
+
+
+
+
     return(
         // initiateDropdownListenerHandlers(),
         <section className="ResumeHistorySmallSectionWrapper">
@@ -188,7 +222,11 @@ export default function ResumeHistorySmallSection({
                                 <button className="ResumeHistorySmallSectionRowOptionsDropdownButton" onClick={()=>loadResumeAnalyses(resume.resume_id)}>
                                     <img className="ResumeHistorySmallSectionRowOptionsDropdownButtonIcon ResumeHistorySmallSectionRowOptionsDropdownButtonViewAnalysisIcon" src={documentSVG}></img>
                                     <p className="ResumeHistorySmallSectionRowOptionsDropdownButtonText ResumeHistorySmallSectionRowOptionsDropdownButtonViewAnalysisText">View Analysis</p></button>
-                                <button className="ResumeHistorySmallSectionRowOptionsDropdownButton ResumeHistorySmallSectionRowOptionsDropdownButtonDelete" onClick={()=> handleDelete(resume)}>
+                                <button className="ResumeHistorySmallSectionRowOptionsDropdownButton ResumeHistorySmallSectionRowOptionsDropdownButtonDelete" onClick={()=> {
+                                                                            setActiveResumeID(resume.resume_id)
+                                                                            setActiveResumeName(resume.original_filename.length > 20 ? resume.original_filename.slice(0, 20) + '...' : resume.original_filename)
+                                                                            setConfirmDeletePopUp(true);
+                                                                            }}>
                                     <img className="ResumeHistorySmallSectionRowOptionsDropdownButtonIcon ResumeHistorySmallSectionRowOptionsDropdownButtonDeleteResumeIcon" src={trashBinSVG} ></img>
                                     <p className="ResumeHistorySmallSectionRowOptionsDropdownButtonText ResumeHistorySmallSectionRowOptionsDropdownButtonDeleteResumeText">Delete</p></button>
                             </div>
@@ -196,6 +234,7 @@ export default function ResumeHistorySmallSection({
                     </div>
                 ))
             )}
+        {confirmDeletePopUp && <ConfirmDelete itemName={activeResumeName} itemID={activeResumeID} handleDelete={handleResumeDelete} handleCancelDelete={handleCancelDelete} handleToggleConfirmDeletePopUp={handleToggleConfirmDeletePopUp} />}
         </section>
     )
 }

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 // Component Imports
 import JobApplicationCreateFormPopUp from "../job_application_tracker_components/JobApplicationCreateFormPopUp.tsx"
 import JobApplicationEditStatusPopUp from "../job_application_tracker_components/JobApplicationEditStatusPopUp.tsx"
+import ConfirmDelete from "../resume_analyzer_components/ConfirmDelete.tsx"
 
 // CSS Style Sheet Import
 import "../../css/job_application_tracker/JobApplicationHistorySmallSection.css"
@@ -31,6 +32,12 @@ export default function JobApplicationHistorySmallSection(
     const [selectedJobCurrentStatus, setSelectedJobCurrentStatus] = useState("")
 
     const [selectedJobCurrentApplicationID, setSelectedJobCurrentApplicationID] = useState("")
+
+    const [confirmDeletePopUp, setConfirmDeletePopUp] = useState(false) // State Needed for Confirm Delete Pop Up Component
+
+    const [activeApplicationID, setActiveApplicationID] = useState("") // State Needed for Confirm Delete Pop Up Component
+
+    const [activeApplicationName, setActiveApplicationName] = useState("") // State Needed for Confirm Delete Pop Up Component
 
     const [loading, setLoading] = useState(true);
 
@@ -132,11 +139,11 @@ export default function JobApplicationHistorySmallSection(
         selectedDropdown.style.display = "flex"
     }
 
-    async function handleDelete(jobApplication: JobApplication){
+    async function handleDelete(jobID: string){
             try {
     
                 await deleteJobApplication(
-                    jobApplication.application_id
+                    jobID
                 );
     
                 await loadJobApplications();
@@ -156,7 +163,22 @@ export default function JobApplicationHistorySmallSection(
         loadJobApplications()
     }
 
+    function handleToggleConfirmDeletePopUp(bool: boolean){ // Function Needed for Confirm Delete Pop Up Component
+        setConfirmDeletePopUp(bool)
+    }
 
+    async function handleJobDelete(id:string){ // Function Needed for Confirm Delete Pop Up Component
+        await handleDelete(id)
+        loadJobApplications()
+        setActiveApplicationID("")
+        setActiveApplicationName("")
+    }
+
+    function handleCancelDelete(){  // Function Needed for Confirm Delete Pop Up Component
+        setConfirmDeletePopUp(false)
+        setActiveApplicationID("")
+        setActiveApplicationName("")
+    }
 
     return(
         <section className="JobApplicationHistorySmallSectionWrapper">
@@ -194,7 +216,11 @@ export default function JobApplicationHistorySmallSection(
                                 <button className="JobApplicationHistorySmallSectionRowOptionsDropdownButton" onClick={()=> {setEditStatusPopUpIsVisible(true); setSelectedJobCurrentStatus(jobApplication.status); setSelectedJobCurrentApplicationID(jobApplication.application_id); console.log(selectedJobCurrentApplicationID + "  and  " + selectedJobCurrentStatus)}}>
                                     <img className="JobApplicationHistorySmallSectionRowOptionsDropdownButtonIcon JobApplicationHistorySmallSectionRowOptionsDropdownButtonViewAnalysisIcon" src={documentSVG}></img>
                                     <p className="JobApplicationHistorySmallSectionRowOptionsDropdownButtonText JobApplicationHistorySmallSectionRowOptionsDropdownButtonViewAnalysisText">Change Status</p></button>
-                                <button className="JobApplicationHistorySmallSectionRowOptionsDropdownButton JobApplicationHistorySmallSectionRowOptionsDropdownButtonDelete" onClick={()=> handleDelete(jobApplication)}>
+                                <button className="JobApplicationHistorySmallSectionRowOptionsDropdownButton JobApplicationHistorySmallSectionRowOptionsDropdownButtonDelete" onClick={()=> {
+                                                                            setActiveApplicationID(jobApplication.application_id)
+                                                                            setActiveApplicationName(jobApplication.job_title + " at " + jobApplication.company_name)
+                                                                            setConfirmDeletePopUp(true);
+                                                                            }}>
                                     <img className="JobApplicationHistorySmallSectionRowOptionsDropdownButtonIcon JobApplicationHistorySmallSectionRowOptionsDropdownButtonDeleteJobApplicationIcon" src={trashBinSVG} ></img>
                                     <p className="JobApplicationHistorySmallSectionRowOptionsDropdownButtonText JobApplicationHistorySmallSectionRowOptionsDropdownButtonDeleteJobApplicationText">Delete</p></button>
                             </div>
@@ -204,6 +230,7 @@ export default function JobApplicationHistorySmallSection(
             )}
             {createFormIsVisible && <JobApplicationCreateFormPopUp handleSetCreateFormIsVisible={handleSetCreateFormIsVisible} loadJobApplications={loadJobApplications}/>}
             {editStatusPopUpIsVisible && <JobApplicationEditStatusPopUp handleEditStatusPopUpIsVisible={handleEditStatusPopUpIsVisible} selectedJobCurrentStatus={selectedJobCurrentStatus} selectedJobCurrentApplicationID={selectedJobCurrentApplicationID}/>}
+            {confirmDeletePopUp && <ConfirmDelete itemName={activeApplicationName} itemID={activeApplicationID} handleDelete={handleJobDelete} handleCancelDelete={handleCancelDelete} handleToggleConfirmDeletePopUp={handleToggleConfirmDeletePopUp} />}
         </section>
         
     )

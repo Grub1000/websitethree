@@ -9,6 +9,8 @@ import "../../css/job_application_tracker/JobKanbanBoard.css"
 
 import JobApplicationCreateFormPopUp from "../job_application_tracker_components/JobApplicationCreateFormPopUp.tsx"
 
+import ConfirmDelete from "../resume_analyzer_components/ConfirmDelete.tsx"
+
 import trashIconSVG from "../../assets/trash_bin_svg.svg"
 
 type JobKanbanBoardProps = {
@@ -61,6 +63,12 @@ export default function JobKanbanBoard({
 }: JobKanbanBoardProps) {
 
     const [createFormIsVisible, setCreateFormIsVisible] = useState(false)
+
+    const [confirmDeletePopUp, setConfirmDeletePopUp] = useState(false) // State Needed for Confirm Delete Pop Up Component
+
+    const [activeApplicationID, setActiveApplicationID] = useState("") // State Needed for Confirm Delete Pop Up Component
+
+    const [activeApplicationName, setActiveApplicationName] = useState("") // State Needed for Confirm Delete Pop Up Component
 
     useEffect(()=> {
         function handleClick(event: MouseEvent) {
@@ -195,14 +203,30 @@ export default function JobKanbanBoard({
         targetDropdownWrapper.style.display = "block"
     }
 
-    async function handleJobDelete(id:string){
+    // function handleTogglePopUp(bool:boolean){
+    //     setCreateFormIsVisible(bool)
+    // }
+
+    function handleToggleConfirmDeletePopUp(bool: boolean){ // Function Needed for Confirm Delete Pop Up Component
+        setConfirmDeletePopUp(bool)
+    }
+
+    async function handleJobDelete(id:string){ // Function Needed for Confirm Delete Pop Up Component
         await deleteJobApplication(id)
         handleGetJobApplications()
+        setActiveApplicationID("")
+        setActiveApplicationName("")
+    }
+
+    function handleCancelDelete(){  // Function Needed for Confirm Delete Pop Up Component
+        setConfirmDeletePopUp(false)
+        setActiveApplicationID("")
+        setActiveApplicationName("")
     }
 
     return (
         <section className="JobKanbanBoardSection">
-
+            {confirmDeletePopUp && <ConfirmDelete itemName={activeApplicationName} itemID={activeApplicationID} handleDelete={handleJobDelete} handleCancelDelete={handleCancelDelete} handleToggleConfirmDeletePopUp={handleToggleConfirmDeletePopUp} />}
             <div className="JobKanbanBoardHeader">
 
                 <div>
@@ -334,7 +358,13 @@ export default function JobKanbanBoard({
                                                                         •••
                                                                     </button>
                                                                     <div className="JobKanbanMenuDropdownWrapper" id={application.application_id}>
-                                                                        <button className="JobKanbanMenuDropdownDeleteButton" onClick={()=> handleJobDelete(application.application_id)}>
+                                                                        <button className="JobKanbanMenuDropdownDeleteButton" 
+                                                                            onClick={()=> {
+                                                                            setActiveApplicationID(application.application_id)
+                                                                            setActiveApplicationName(application.job_title + " at " + application.company_name)
+                                                                            setConfirmDeletePopUp(true);
+                                                                            
+                                                                            }}>
                                                                             <img src={trashIconSVG} className="JobKanbanMenuDropdownDeleteButtonIcon"></img>
                                                                             <p className="JobKanbanMenuDropdownDeleteButtonText">Delete</p>
                                                                         </button>

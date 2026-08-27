@@ -37,12 +37,12 @@
     margin-top: 10px;
     width: 200px;
     height: 40px;
-    background-color: rgba(8, 160, 206, 0.781);
     border: 2px solid rgba(8, 160, 206, 0);
-    color: white;
+    border-radius: 4px;
     font-size: 15px;
     font-weight: bold;
-    border-radius: 4px;
+    color: white;
+    background-color: rgba(8, 160, 206, 0.781);
     transition: background-color 0.5s ease;
     cursor: pointer;
 }
