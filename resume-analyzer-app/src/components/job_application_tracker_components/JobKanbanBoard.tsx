@@ -1,12 +1,15 @@
-import {useState} from 'react'
-import type {
-    JobApplication,
-    JobApplicationStatus,
+import {useState, useEffect} from 'react'
+import{
+    type JobApplication,
+    type JobApplicationStatus,
+    deleteJobApplication
 } from "../../api/job_application_service";
 
 import "../../css/job_application_tracker/JobKanbanBoard.css"
 
 import JobApplicationCreateFormPopUp from "../job_application_tracker_components/JobApplicationCreateFormPopUp.tsx"
+
+import trashIconSVG from "../../assets/trash_bin_svg.svg"
 
 type JobKanbanBoardProps = {
     applications: JobApplication[];
@@ -58,6 +61,43 @@ export default function JobKanbanBoard({
 }: JobKanbanBoardProps) {
 
     const [createFormIsVisible, setCreateFormIsVisible] = useState(false)
+
+    useEffect(()=> {
+        function handleClick(event: MouseEvent) {
+            const target = event.target as HTMLElement;
+            console.log("clicked")
+            if (
+                !target.closest(".JobKanbanMenuDropdownWrapper") 
+                // &&
+                // !target.closest(".JobKanbanMenuButton")
+            ) {
+                document
+                    .querySelectorAll<HTMLElement>(".JobKanbanMenuDropdownWrapper")
+                    .forEach(dropdown => {
+                        dropdown.style.display = "none";
+                    });
+            }
+        }
+
+        document.addEventListener("mousedown", handleClick);
+
+        // Before I destroy this component (or before rerunning this effect), call this method (return). Prevents Memory Leak
+        return () => {
+            document.removeEventListener("mousedown", handleClick);
+        };
+
+    }, [])
+
+
+
+
+
+
+
+
+
+
+
 
 
     function getApplicationsByStatus(
@@ -148,6 +188,18 @@ export default function JobKanbanBoard({
         );
     }
 
+    function handleDropDown(id:string){
+        const allDropdownWrappers = document.querySelectorAll<HTMLElement>(".JobKanbanMenuDropdownWrapper")
+        allDropdownWrappers.forEach((dropdownWrapper)=> dropdownWrapper.style.display = "none")
+        const targetDropdownWrapper = document.getElementById(id) as HTMLElement
+        targetDropdownWrapper.style.display = "block"
+    }
+
+    async function handleJobDelete(id:string){
+        await deleteJobApplication(id)
+        handleGetJobApplications()
+    }
+
     return (
         <section className="JobKanbanBoardSection">
 
@@ -177,7 +229,6 @@ export default function JobKanbanBoard({
                 </button>
 
             </div>
-
 
             <div className="JobKanbanBoard">
 
@@ -268,18 +319,27 @@ export default function JobKanbanBoard({
                                                                     }
                                                                 </div>
 
-
-                                                                <button
-                                                                    type="button"
-                                                                    className="JobKanbanMenuButton"
-                                                                    onClick={(
-                                                                        event
-                                                                    ) => {
-                                                                        event.stopPropagation();
-                                                                    }}
-                                                                >
-                                                                    •••
-                                                                </button>
+                                                                <div>
+                                                                    <button
+                                                                        type="button"
+                                                                        className="JobKanbanMenuButton"
+                                                                        onClick={(
+                                                                            event
+                                                                            
+                                                                        ) => {
+                                                                            event.stopPropagation();
+                                                                            handleDropDown(application.application_id);
+                                                                        }}
+                                                                    >
+                                                                        •••
+                                                                    </button>
+                                                                    <div className="JobKanbanMenuDropdownWrapper" id={application.application_id}>
+                                                                        <button className="JobKanbanMenuDropdownDeleteButton" onClick={()=> handleJobDelete(application.application_id)}>
+                                                                            <img src={trashIconSVG} className="JobKanbanMenuDropdownDeleteButtonIcon"></img>
+                                                                            <p className="JobKanbanMenuDropdownDeleteButtonText">Delete</p>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
 
                                                             </div>
 
