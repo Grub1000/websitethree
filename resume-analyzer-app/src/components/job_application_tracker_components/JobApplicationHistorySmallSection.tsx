@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react'
 
+
+import {updateJobApplication} from "../../api/job_application_service.tsx"
+
+
 // Component Imports
+import JobApplicationEditJobFormPopUp from '../job_application_tracker_components/JobApplicationEditJobFormPopUp.tsx'
 import JobApplicationCreateFormPopUp from "../job_application_tracker_components/JobApplicationCreateFormPopUp.tsx"
 import JobApplicationEditStatusPopUp from "../job_application_tracker_components/JobApplicationEditStatusPopUp.tsx"
 import ConfirmDelete from "../resume_analyzer_components/ConfirmDelete.tsx"
@@ -16,6 +21,7 @@ import trashBinSVG from "../../assets/trash_bin_svg.svg"
 
 
 
+
 export default function JobApplicationHistorySmallSection(
 {
     createFormIsVisible,
@@ -27,20 +33,21 @@ export default function JobApplicationHistorySmallSection(
 ){
     const [jobApplications, setJobApplications] = useState<JobApplication[]>([]);
 
+    const [editJobFormPopUpIsVisible, setEditJobFormPopUpIsVisible] = useState(false);
+    const [selectedJobCurrentID, setSelectedJobCurrentID] = useState("")
+    const [selectedJobCurrentCompanyName, setSelectedJobCurrentCompanyName] = useState("")
+    const [selectedJobCurrentJobTitle, setSelectedJobCurrentJobTitle] = useState("")
+
     const [editStatusPopUpIsVisible, setEditStatusPopUpIsVisible] = useState(false);
+    const [selectedJobCurrentStatus, setSelectedJobCurrentStatus] = useState("");
+    const [selectedJobCurrentApplicationID, setSelectedJobCurrentApplicationID] = useState("");
 
-    const [selectedJobCurrentStatus, setSelectedJobCurrentStatus] = useState("")
+    const [confirmDeletePopUp, setConfirmDeletePopUp] = useState(false); // State Needed for Confirm Delete Pop Up Component
+    const [activeApplicationID, setActiveApplicationID] = useState(""); // State Needed for Confirm Delete Pop Up Component
+    const [activeApplicationName, setActiveApplicationName] = useState(""); // State Needed for Confirm Delete Pop Up Component
 
-    const [selectedJobCurrentApplicationID, setSelectedJobCurrentApplicationID] = useState("")
-
-    const [confirmDeletePopUp, setConfirmDeletePopUp] = useState(false) // State Needed for Confirm Delete Pop Up Component
-
-    const [activeApplicationID, setActiveApplicationID] = useState("") // State Needed for Confirm Delete Pop Up Component
-
-    const [activeApplicationName, setActiveApplicationName] = useState("") // State Needed for Confirm Delete Pop Up Component
 
     const [loading, setLoading] = useState(true);
-
     const [error, setError] = useState("");
 
     console.log(loading)
@@ -156,6 +163,29 @@ export default function JobApplicationHistorySmallSection(
             }
         }
 
+
+    function handleEditJobFormPopUpIsVisible(bool: boolean){
+        setEditJobFormPopUpIsVisible(bool)
+        setSelectedJobCurrentID("")
+        setSelectedJobCurrentCompanyName("")
+        setSelectedJobCurrentJobTitle("")
+        loadJobApplications()
+    }
+
+    async function handleJobUpdate(id:string, newCompanyName:string, newJobTitle:string,){
+        await updateJobApplication(
+            id,
+            {
+            company_name: newCompanyName,
+            job_title: newJobTitle,
+            }
+        )
+        setSelectedJobCurrentID("")
+        setSelectedJobCurrentCompanyName("")
+        setSelectedJobCurrentJobTitle("")
+        loadJobApplications()
+    }
+
     function handleEditStatusPopUpIsVisible(bool: boolean){
         setEditStatusPopUpIsVisible(bool)
         setSelectedJobCurrentApplicationID("")
@@ -210,9 +240,15 @@ export default function JobApplicationHistorySmallSection(
                         <div className="JobApplicationHistorySmallSectionRowOptionsButtonWrapper">
                             <button className="JobApplicationHistorySmallSectionRowOptionsButton" onClick={()=> handleDropdown(jobApplication.application_id)}>...</button>
                             <div className="JobApplicationHistorySmallSectionRowOptionsDropdown" id={jobApplication.application_id}>
-                                <button className="JobApplicationHistorySmallSectionRowOptionsDropdownButton" onClick={()=> console.log(selectedJobCurrentApplicationID + "   and   " + selectedJobCurrentStatus)}>
+                                <button className="JobApplicationHistorySmallSectionRowOptionsDropdownButton" onClick={()=> 
+                                {   setEditJobFormPopUpIsVisible(true);
+                                    setSelectedJobCurrentID(jobApplication.application_id);
+                                    setSelectedJobCurrentCompanyName(jobApplication.company_name);
+                                    setSelectedJobCurrentJobTitle(jobApplication.job_title);
+                                }}>
                                     <img className="JobApplicationHistorySmallSectionRowOptionsDropdownButtonIcon JobApplicationHistorySmallSectionRowOptionsDropdownButtonNewAnalysisIcon" src={graphSVG}></img>
-                                    <p className="JobApplicationHistorySmallSectionRowOptionsDropdownButtonText JobApplicationHistorySmallSectionRowOptionsDropdownButtonNewAnalysisText">Edit Job</p></button>
+                                    <p className="JobApplicationHistorySmallSectionRowOptionsDropdownButtonText JobApplicationHistorySmallSectionRowOptionsDropdownButtonNewAnalysisText">Edit Job</p>
+                                </button>
                                 <button className="JobApplicationHistorySmallSectionRowOptionsDropdownButton" onClick={()=> {setEditStatusPopUpIsVisible(true); setSelectedJobCurrentStatus(jobApplication.status); setSelectedJobCurrentApplicationID(jobApplication.application_id); console.log(selectedJobCurrentApplicationID + "  and  " + selectedJobCurrentStatus)}}>
                                     <img className="JobApplicationHistorySmallSectionRowOptionsDropdownButtonIcon JobApplicationHistorySmallSectionRowOptionsDropdownButtonViewAnalysisIcon" src={documentSVG}></img>
                                     <p className="JobApplicationHistorySmallSectionRowOptionsDropdownButtonText JobApplicationHistorySmallSectionRowOptionsDropdownButtonViewAnalysisText">Change Status</p></button>
@@ -231,6 +267,7 @@ export default function JobApplicationHistorySmallSection(
             {createFormIsVisible && <JobApplicationCreateFormPopUp handleSetCreateFormIsVisible={handleSetCreateFormIsVisible} loadJobApplications={loadJobApplications}/>}
             {editStatusPopUpIsVisible && <JobApplicationEditStatusPopUp handleEditStatusPopUpIsVisible={handleEditStatusPopUpIsVisible} selectedJobCurrentStatus={selectedJobCurrentStatus} selectedJobCurrentApplicationID={selectedJobCurrentApplicationID}/>}
             {confirmDeletePopUp && <ConfirmDelete itemName={activeApplicationName} itemID={activeApplicationID} handleDelete={handleJobDelete} handleCancelDelete={handleCancelDelete} handleToggleConfirmDeletePopUp={handleToggleConfirmDeletePopUp} />}
+            {editJobFormPopUpIsVisible && <JobApplicationEditJobFormPopUp  selectedJobCurrentID={selectedJobCurrentID} selectedJobCurrentCompanyName={selectedJobCurrentCompanyName} selectedJobCurrentJobTitle={selectedJobCurrentJobTitle} handleEditJobFormPopUpIsVisible={handleEditJobFormPopUpIsVisible} handleJobUpdate={handleJobUpdate}/>}
         </section>
         
     )

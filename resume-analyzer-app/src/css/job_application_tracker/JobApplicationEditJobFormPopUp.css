@@ -1,4 +1,4 @@
-.JobApplicationCreateFormPopUpWrapper{
+.JobApplicationEditFormPopUpWrapper{
     position: fixed;
     z-index: 101;
     width: 100vw;
@@ -8,9 +8,8 @@
     background-color: #24b1d43d;
     font-family: Inter, sans-serif;
 }
-.JobApplicationCreateFormPopUpExitButton{
-    /* float: right; */
-    /* position: absolute; */
+
+.JobApplicationEditFormPopUpExitButton{
     position: relative;
     float: right;
     cursor: pointer;
@@ -18,15 +17,12 @@
     padding: none;
     border: none;
     outline: none;
-    /* margin: auto; */
     margin: none;
-    /* position: relative; */
     background-color: #a73c3c00;
-    /* top: -80px; */
-    /* left: px */
     top: -30px;
 }
-.JobApplicationCreateFormPopUpExitButtonIcon{
+
+.JobApplicationEditFormPopUpExitButtonIcon{
     float: right;
     opacity: .6;
     cursor: pointer;
@@ -36,10 +32,13 @@
     position: relative;
     left: 5px;
 }
-.JobApplicationCreateFormPopUpExitButton:hover .JobApplicationCreateFormPopUpExitButtonIcon {
-    transform: rotate(90deg)
+
+.JobApplicationEditFormPopUpExitButton:hover
+.JobApplicationEditFormPopUpExitButtonIcon {
+    transform: rotate(90deg);
 }
-.JobApplicationCreateForm{
+
+.JobApplicationEditForm{
     width: 500px;
     height: fit-content;
     padding-top: 30px;
@@ -50,7 +49,8 @@
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 20px #00000028;
 }
-.JobApplicationCreateFormHeadingText{
+
+.JobApplicationEditFormHeadingText{
     position: relative;
     display: block;
     padding-left: 48px;
@@ -59,9 +59,10 @@
     text-align: center;
     white-space: nowrap;
     color: #272727;
-    font-size: 24px; 
+    font-size: 24px;
 }
-.JobApplicationCreateFormInput{
+
+.JobApplicationEditFormInput{
     position: relative;
     display: block;
     width: 370px;
@@ -75,12 +76,13 @@
     color: #272727;
     font-size: 15px;
     transition: border-color .2s;
+}
 
+.JobApplicationEditFormInput:focus{
+    border: 1px solid #08a0cec7;
 }
-.JobApplicationCreateFormInput:focus {
-    border: 1px solid #08a0cec7
-}
-.JobApplicationCreateFormSubmitButton{
+
+.JobApplicationEditFormSubmitButton{
     display: block;
     color: #fff;
     background-color: #08a0cec7;
@@ -99,40 +101,37 @@
     border-radius: 5px;
     cursor: pointer;
 }
-.JobApplicationCreateFormSubmitButton:hover{
-        background-color: #08c1cea2
+
+.JobApplicationEditFormSubmitButton:hover{
+    background-color: #08c1cea2;
 }
 
-
-.JobApplicationCreateFormError {
+.JobApplicationEditFormError{
     font-size: 12px;
     padding-left: 50px;
     color: red;
-    /* text-align: center; */
 }
 
-.JobApplicationCreateFormInputWrapper {
+.JobApplicationEditFormInputWrapper{
     width: 100%;
 }
 
-
 @media(max-width: 760px){
-    .JobApplicationCreateForm{
+    .JobApplicationEditForm{
         width: 90%;
     }
-    .JobApplicationCreateFormInput{
+
+    .JobApplicationEditFormInput{
         width: calc(100% - 50px);
-        left: 0
+        left: 0;
     }
-    .JobApplicationCreateFormSubmitButton{
+
+    .JobApplicationEditFormSubmitButton{
         width: calc(100% - 20px);
-        left: 0
+        left: 0;
     }
 
-    .JobApplicationCreateFormError {  
+    .JobApplicationEditFormError{
         padding-left: 12px;
-    }   
-
+    }
 }
-
-
