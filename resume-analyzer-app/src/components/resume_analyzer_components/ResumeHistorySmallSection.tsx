@@ -7,7 +7,7 @@ import ConfirmDelete from "../resume_analyzer_components/ConfirmDelete.tsx"
 import "../../css/resume_analyzer_css/ResumeHistorySmallSection.css"
 
 import trashBinSVG from "../../assets/trash_bin_svg.svg"
-import graphSVG from "../../assets/graph_svg.svg"
+// import graphSVG from "../../assets/graph_svg.svg"
 import documentSVG from "../../assets/document_svg.svg"
 
 export default function ResumeHistorySmallSection({
@@ -216,9 +216,9 @@ export default function ResumeHistorySmallSection({
                         <div className="ResumeHistoryResumeHistorySmallSectionRowOptionsButtonWrapper">
                             <button className="ResumeHistorySmallSectionRowOptionsButton" onClick={()=> handleDropdown(resume.resume_id)}>...</button>
                             <div className="ResumeHistorySmallSectionRowOptionsDropdown" id={resume.resume_id}>
-                                <button className="ResumeHistorySmallSectionRowOptionsDropdownButton">
+                                {/* <button className="ResumeHistorySmallSectionRowOptionsDropdownButton">
                                     <img className="ResumeHistorySmallSectionRowOptionsDropdownButtonIcon ResumeHistorySmallSectionRowOptionsDropdownButtonNewAnalysisIcon" src={graphSVG}></img>
-                                    <p className="ResumeHistorySmallSectionRowOptionsDropdownButtonText ResumeHistorySmallSectionRowOptionsDropdownButtonNewAnalysisText">New Analysis</p></button>
+                                    <p className="ResumeHistorySmallSectionRowOptionsDropdownButtonText ResumeHistorySmallSectionRowOptionsDropdownButtonNewAnalysisText">New Analysis</p></button> */}
                                 <button className="ResumeHistorySmallSectionRowOptionsDropdownButton" onClick={()=>loadResumeAnalyses(resume.resume_id)}>
                                     <img className="ResumeHistorySmallSectionRowOptionsDropdownButtonIcon ResumeHistorySmallSectionRowOptionsDropdownButtonViewAnalysisIcon" src={documentSVG}></img>
                                     <p className="ResumeHistorySmallSectionRowOptionsDropdownButtonText ResumeHistorySmallSectionRowOptionsDropdownButtonViewAnalysisText">View Analysis</p></button>
