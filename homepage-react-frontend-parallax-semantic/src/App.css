@@ -421,7 +421,6 @@ width: 12px;
   /* background-color: #505050; */
   cursor: pointer;
   transition: border-bottom 0.3s ease;
-
 }
 .HomepageProjectsSectionNavButton:hover{
   /* background-color: rgb(141, 153, 153); */
