@@ -21,8 +21,8 @@
 .ResumeAnalyzerDashboardHeaderButton:hover{
   /* background-color: rgba(179, 179, 179, 0.3); */
   /* color: rgb(128, 193, 247); */
-  color: rgb(19, 145, 184);
-  border-bottom: 2px solid rgb(19, 145, 184);
+  color: rgb(19, 145, 184) !important;
+  border-bottom: 2px solid rgb(19, 145, 184) !important;
 }
 .ResumeAnalyzerDashboardHeaderButtonDropdown{
   z-index: 2;

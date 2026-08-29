@@ -31,9 +31,22 @@ export default function ResumeAnalyzerDashboardHeaderBurgerDropdownNav(
 
     const navigate = useNavigate();
 
+    function headerStyleChange(button: any){
+        let allHeaderButtons = document.querySelectorAll<HTMLElement>(".ResumeAnalyzerDashboardHeaderButton")
+        allHeaderButtons.forEach((button)=> {
+            button.style.color = "rgb(51, 51, 51)";
+            button.style.border = "none";
+
+        })
+        let clickedButton = document.getElementById(button.title + "Button") as HTMLElement
+        clickedButton.style.color = "rgb(19, 145, 184)";
+        clickedButton.style.borderBottom = "2px solid rgb(19, 145, 184)"
+
+    }
+
     return (
         <nav className="HeaderBurgerDropdownButtonWrapper">
-        <button className="HeaderBurgerDropdownButton" onClick={()=> {navigate(buttons.button1.link); handleBurgerDropdown(false)}}>
+        <button className="HeaderBurgerDropdownButton" onClick={()=> {navigate(buttons.button1.link); headerStyleChange(buttons.button1); handleBurgerDropdown(false)}}>
             <p className="HeaderBurgerDropdownButtonText">{buttons.button1.title}</p>
             {/* <img className="HeaderBurgerDropdownButtonIcon" src={burgerMenuSubmenuChevronIconSVG} alt="Dropdown Icon"/> */}
         </button>
@@ -41,7 +54,7 @@ export default function ResumeAnalyzerDashboardHeaderBurgerDropdownNav(
             <button className="HeaderBurgerDropdownSubmenuButton" ></button>
             <button className="HeaderBurgerDropdownSubmenuButton" ></button>
         </div>
-        <button className="HeaderBurgerDropdownButton" onClick={()=> {navigate(buttons.button2.link); handleBurgerDropdown(false)}}>
+        <button className="HeaderBurgerDropdownButton" onClick={()=> {navigate(buttons.button2.link); headerStyleChange(buttons.button2); handleBurgerDropdown(false)}}>
             <p className="HeaderBurgerDropdownButtonText">{buttons.button2.title}</p>
             {/* <img className="HeaderBurgerDropdownButtonIcon" src={burgerMenuSubmenuChevronIconSVG} alt="Dropdown Icon"/> */}
         </button>
@@ -49,7 +62,7 @@ export default function ResumeAnalyzerDashboardHeaderBurgerDropdownNav(
             <button className="HeaderBurgerDropdownSubmenuButton"></button>
             <button className="HeaderBurgerDropdownSubmenuButton"></button>
         </div>
-        <button className="HeaderBurgerDropdownButton" onClick={()=> {navigate(buttons.button3.link); handleBurgerDropdown(false)}}>
+        <button className="HeaderBurgerDropdownButton" onClick={()=> {navigate(buttons.button3.link); headerStyleChange(buttons.button3); handleBurgerDropdown(false)}}>
             <p className="HeaderBurgerDropdownButtonText">{buttons.button3.title}</p>
             {/* <img className="HeaderBurgerDropdownButtonIcon" src={burgerMenuSubmenuChevronIconSVG} alt="Dropdown Icon"/> */}
         </button>
@@ -57,7 +70,7 @@ export default function ResumeAnalyzerDashboardHeaderBurgerDropdownNav(
             <button className="HeaderBurgerDropdownSubmenuButton"></button>
             {/* <button className="HeaderBurgerDropdownSubmenuButton">Submenu 2</button> */}
         </div>
-        <button className="HeaderBurgerDropdownButton" onClick={()=> {navigate(buttons.button4.link); handleBurgerDropdown(false)}}>
+        <button className="HeaderBurgerDropdownButton" onClick={()=> {navigate(buttons.button4.link); headerStyleChange(buttons.button4); handleBurgerDropdown(false)}}>
             <p className="HeaderBurgerDropdownButtonText">{buttons.button4.title}</p>
             {/* <img className="HeaderBurgerDropdownButtonIcon" src={burgerMenuSubmenuChevronIconSVG} alt="Dropdown Icon"/> */}
         </button>
