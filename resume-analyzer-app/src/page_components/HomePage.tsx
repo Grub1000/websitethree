@@ -162,9 +162,11 @@ function HomePage() {
               <button className="HomePageMainSectionDescriptionResumeScoreButton Btn" onClick={()=>navigate("/login")}>Get Your Resume Score</button>
             )}
             {isAuthenticated ? (
-              <button className="HomePageMainSectionDescriptionJobMatchButton Btn" onClick={()=>navigate("/resume-analyzer")}>Get A Job Match</button>
+              // <button className="HomePageMainSectionDescriptionJobMatchButton Btn" onClick={()=>navigate("/resume-analyzer")}>Get A Job Match</button>
+              <button className="HomePageMainSectionDescriptionJobMatchButton Btn" onClick={()=>navigate("/resume-analyzer")}>Track Your Applications</button>
             ):(
-              <button className="HomePageMainSectionDescriptionJobMatchButton Btn" onClick={()=>navigate("/login")}>Get A Job Match</button>
+              // <button className="HomePageMainSectionDescriptionJobMatchButton Btn" onClick={()=>navigate("/login")}>Get A Job Match</button>
+              <button className="HomePageMainSectionDescriptionJobMatchButton Btn" onClick={()=>navigate("/login")}>Track Your Applications</button>
             )}
             {/* <button className="HomePageMainSectionDescriptionResumeScoreButton Btn">Get Your Resume Score</button>
             <button className="HomePageMainSectionDescriptionJobMatchButton Btn">Get A Job Match</button> */}
