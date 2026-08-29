@@ -1,16 +1,23 @@
 import {useState, useEffect} from 'react'
+
+// Job Application Services Imports
 import{
     type JobApplication,
     type JobApplicationStatus,
-    deleteJobApplication
+    deleteJobApplication,
+    updateJobApplication
 } from "../../api/job_application_service";
 
+// CSS Styling Import
 import "../../css/job_application_tracker/JobKanbanBoard.css"
 
+
+// React Component Imports
 import JobApplicationCreateFormPopUp from "../job_application_tracker_components/JobApplicationCreateFormPopUp.tsx"
-
 import ConfirmDelete from "../resume_analyzer_components/ConfirmDelete.tsx"
+import JobApplicationEditJobFormPopUp from "../job_application_tracker_components/JobApplicationEditJobFormPopUp.tsx"
 
+// Local Asset Imports
 import trashIconSVG from "../../assets/trash_bin_svg.svg"
 
 type JobKanbanBoardProps = {
@@ -69,6 +76,12 @@ export default function JobKanbanBoard({
     const [activeApplicationID, setActiveApplicationID] = useState("") // State Needed for Confirm Delete Pop Up Component
 
     const [activeApplicationName, setActiveApplicationName] = useState("") // State Needed for Confirm Delete Pop Up Component
+
+
+    const [editJobFormPopUpIsVisible, setEditJobFormPopUpIsVisible] = useState(false);
+    const [selectedJobCurrentID, setSelectedJobCurrentID] = useState("")
+    const [selectedJobCurrentCompanyName, setSelectedJobCurrentCompanyName] = useState("")
+    const [selectedJobCurrentJobTitle, setSelectedJobCurrentJobTitle] = useState("")
 
     useEffect(()=> {
         function handleClick(event: MouseEvent) {
@@ -224,8 +237,33 @@ export default function JobKanbanBoard({
         setActiveApplicationName("")
     }
 
+    
+    function handleEditJobFormPopUpIsVisible(bool: boolean){
+        setEditJobFormPopUpIsVisible(bool)
+        setSelectedJobCurrentID("")
+        setSelectedJobCurrentCompanyName("")
+        setSelectedJobCurrentJobTitle("")
+        handleGetJobApplications()
+    }
+
+    async function handleJobUpdate(id:string, newCompanyName:string, newJobTitle:string,){
+        await updateJobApplication(
+            id,
+            {
+            company_name: newCompanyName,
+            job_title: newJobTitle,
+            }
+        )
+        setSelectedJobCurrentID("")
+        setSelectedJobCurrentCompanyName("")
+        setSelectedJobCurrentJobTitle("")
+        handleGetJobApplications()
+    }
+
+
     return (
         <section className="JobKanbanBoardSection">
+            {editJobFormPopUpIsVisible && <JobApplicationEditJobFormPopUp  selectedJobCurrentID={selectedJobCurrentID} selectedJobCurrentCompanyName={selectedJobCurrentCompanyName} selectedJobCurrentJobTitle={selectedJobCurrentJobTitle} handleEditJobFormPopUpIsVisible={handleEditJobFormPopUpIsVisible} handleJobUpdate={handleJobUpdate}/>}
             {confirmDeletePopUp && <ConfirmDelete itemName={activeApplicationName} itemID={activeApplicationID} handleDelete={handleJobDelete} handleCancelDelete={handleCancelDelete} handleToggleConfirmDeletePopUp={handleToggleConfirmDeletePopUp} />}
             <div className="JobKanbanBoardHeader">
 
@@ -358,6 +396,15 @@ export default function JobKanbanBoard({
                                                                         •••
                                                                     </button>
                                                                     <div className="JobKanbanMenuDropdownWrapper" id={application.application_id}>
+                                                                        <button className="JobKanbanMenuDropdownEditButton" onClick={()=> 
+                                                                        {   setEditJobFormPopUpIsVisible(true);
+                                                                            setSelectedJobCurrentID(application.application_id);
+                                                                            setSelectedJobCurrentCompanyName(application.company_name);
+                                                                            setSelectedJobCurrentJobTitle(application.job_title);
+                                                                        }}>
+                                                                            <img src={trashIconSVG} className="JobKanbanMenuDropdownEditButtonIcon"></img>
+                                                                            <p className="JobKanbanMenuDropdownEditButtonText">Edit</p>
+                                                                        </button>
                                                                         <button className="JobKanbanMenuDropdownDeleteButton" 
                                                                             onClick={()=> {
                                                                             setActiveApplicationID(application.application_id)
@@ -368,6 +415,7 @@ export default function JobKanbanBoard({
                                                                             <img src={trashIconSVG} className="JobKanbanMenuDropdownDeleteButtonIcon"></img>
                                                                             <p className="JobKanbanMenuDropdownDeleteButtonText">Delete</p>
                                                                         </button>
+                                                                        
                                                                     </div>
                                                                 </div>
 
