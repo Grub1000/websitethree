@@ -1,0 +1,102 @@
+.container {
+    width: 90%;
+    text-align: center;
+    padding: 2.5rem;
+    /* max-width: 600px; */
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+    /* background-color: #2563eb; */
+}
+
+.badge {
+    background-color: #eff6ff;
+    color: #2563eb;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.content h1 {
+    font-size: 2.5rem;
+    color: #0f172a;
+    margin: 1.2rem 0 0.8rem 0;
+}
+
+.content p {
+    color: #475569;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.time-box {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 1rem 1.2rem;
+    border-radius: 10px;
+    min-width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+.label {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+}
+
+/* --- Responsive Media Queries --- */
+
+/* For Tablets and Smaller Screens */
+@media (max-width: 600px) {
+    .container {
+        padding: 2.5rem 1.5rem;
+    }
+
+    h1 {
+        font-size: 2rem; /* Shrinks the heading so it fits better */
+    }
+
+    p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .countdown {
+        gap: 1rem; /* Reduces spacing between countdown items */
+    }
+}
+
+/* For Extra Small Mobile Devices */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    .time-box {
+        min-width: 75px; /* Allows boxes to scale even smaller */
+        padding: 0.8rem;
+    }
+
+    .number {
+        font-size: 1.5rem;
+    }
+}
