@@ -24,6 +24,8 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name= 'homepage-react-frontend-parallax-semantic/build/index.html')),
 
     path("resume-analyzer-app-api/", include("resume_analyzer_app_api.urls")),
+
+
     # Resume Analyzer React app
     path(
         "resuscan/",
@@ -32,10 +34,15 @@ urlpatterns = [
         )
     ),
 
+    # Resume Analyzer Api
     path(
         "resuscan/<path:path>",
         TemplateView.as_view(
             template_name="resume-analyzer-app/dist/index.html"
         )
     ),
+
+
+    # Ragspace Api
+    path("ragspace-api/", include("ragspace_api.urls")),
 ]

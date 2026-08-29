@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'resume_analyzer_app_api',
     "rest_framework_simplejwt.token_blacklist",
+    "ragspace_api",
 ]
 
 MIDDLEWARE = [
