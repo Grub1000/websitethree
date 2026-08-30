@@ -85,3 +85,36 @@ def store_document_chunks(document, embedded_chunks):
     )
 
     return len(points)
+
+
+
+
+
+
+def delete_document_chunks(document):
+    client = get_qdrant_client()
+
+    client.delete(
+        collection_name=settings.RAG_QDRANT_COLLECTION,
+        points_selector=models.FilterSelector(
+            filter=models.Filter(
+                must=[
+                    models.FieldCondition(
+                        key="user_id",
+                        match=models.MatchValue(value=document.user_id),
+                    ),
+                    models.FieldCondition(
+                        key="knowledge_base_id",
+                        match=models.MatchValue(
+                            value=document.knowledge_base_id
+                        ),
+                    ),
+                    models.FieldCondition(
+                        key="document_id",
+                        match=models.MatchValue(value=document.id),
+                    ),
+                ]
+            )
+        ),
+        wait=True,
+    )

@@ -71,3 +71,17 @@ def verify_uploaded_object(s3_key):
     )
 
     return response
+
+
+
+
+def delete_document_file(s3_key):
+    if not s3_key:
+        return
+
+    s3_client = get_s3_client()
+
+    s3_client.delete_object(
+        Bucket=settings.RAGSPACE_AWS_STORAGE_BUCKET_NAME,
+        Key=s3_key,
+    )

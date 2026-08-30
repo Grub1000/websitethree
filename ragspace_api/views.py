@@ -22,6 +22,8 @@ from .services.text_extraction import extract_pdf_text
 from .services.chunking import chunk_pages
 from .services.embeddings import embed_chunks
 from .services.vector_store import store_document_chunks
+from .services.vector_store import delete_document_chunks
+from .services.s3_service import delete_document_file
 
 
 # Imports Needed for AskSpaceView
@@ -240,7 +242,48 @@ class DocumentViewSet(viewsets.ModelViewSet):
             self.get_serializer(document).data,
             status=status.HTTP_200_OK,
         )
+    def destroy(self, request, *args, **kwargs):
+        # self.get_object() uses the ViewSet queryset, so the document
+        # must belong to the authenticated user.
+        document = self.get_object()
 
+        try:
+            # Step 1:
+            # Delete all indexed chunks from Qdrant first.
+            #
+            # This is intentionally done before deleting the MySQL record.
+            # If Qdrant cleanup fails, we keep the Document row so we still
+            # have the metadata needed to retry cleanup later.
+            delete_document_chunks(document)
+
+            # Step 2:
+            # Delete the original PDF from S3.
+            #
+            # Again, the MySQL record is still preserved at this point in
+            # case external storage cleanup fails.
+            delete_document_file(document.s3_key)
+
+            # Step 3:
+            # Only delete the MySQL Document after both external resources
+            # have been successfully cleaned up.
+            document.delete()
+
+            return Response(
+                status=status.HTTP_204_NO_CONTENT,
+            )
+
+        except Exception as e:
+            print("RAGspace document deletion error:", repr(e))
+
+            return Response(
+                {
+                    "detail": (
+                        "Unable to fully delete the document. "
+                        "The document record was preserved."
+                    )
+                },
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
 
 
 
@@ -330,8 +373,6 @@ class AskSpaceView(APIView):
                 question=question,
                 retrieved_chunks=retrieved_chunks,
             )
-            print("Original question:", question)
-            print("Retrieval query:", retrieval_query)
 
             # Step 4:
             # Only save the conversation turn after the full RAG pipeline
