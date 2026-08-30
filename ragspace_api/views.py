@@ -1,6 +1,8 @@
 # Imports Needed For Multiple Views
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
+from rest_framework.response import Response
 
 
 # Imports Needed for KnowledgeBase ViewSet
@@ -11,9 +13,7 @@ from .serializers import KnowledgeBaseSerializer
 # Imports Needed for Document ViewSet
 from .models import Document
 from .serializers import DocumentSerializer
-from rest_framework import status
 from rest_framework.decorators import action
-from rest_framework.response import Response
 from .services.s3_service import (
     generate_presigned_upload,
     verify_uploaded_object,
@@ -24,7 +24,10 @@ from .services.embeddings import embed_chunks
 from .services.vector_store import store_document_chunks
 
 
-
+# Imports Needed for AskSpaceView
+from rest_framework.views import APIView
+from .services.retrieval import retrieve_chunks
+from .services.generation import generate_answer
 
 
 class KnowledgeBaseViewSet(viewsets.ModelViewSet):
@@ -225,3 +228,77 @@ class DocumentViewSet(viewsets.ModelViewSet):
             self.get_serializer(document).data,
             status=status.HTTP_200_OK,
         )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class AskSpaceView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        knowledge_base_id = request.data.get("knowledge_base")
+        question = request.data.get("question", "").strip()
+
+        if not knowledge_base_id:
+            return Response(
+                {"detail": "knowledge_base is required."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if not question:
+            return Response(
+                {"detail": "question is required."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        try:
+            knowledge_base = KnowledgeBase.objects.get(
+                id=knowledge_base_id,
+                user=request.user,
+            )
+        except KnowledgeBase.DoesNotExist:
+            return Response(
+                {"detail": "Space not found."},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        try:
+            retrieved_chunks = retrieve_chunks(
+                query=question,
+                user_id=request.user.id,
+                knowledge_base_id=knowledge_base.id,
+            )
+
+            result = generate_answer(
+                question=question,
+                retrieved_chunks=retrieved_chunks,
+            )
+
+            return Response(
+                {
+                    "knowledge_base": knowledge_base.id,
+                    "question": question,
+                    "answer": result["answer"],
+                    "sources": result["sources"],
+                },
+                status=status.HTTP_200_OK,
+            )
+
+        except Exception as e:
+            print("RAGspace question error:", repr(e))
+
+            return Response(
+                {"detail": "Unable to answer the question."},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )

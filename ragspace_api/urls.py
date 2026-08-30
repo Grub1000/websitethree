@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .views import KnowledgeBaseViewSet, DocumentViewSet
+from .views import KnowledgeBaseViewSet, DocumentViewSet, AskSpaceView
 
 
 router = DefaultRouter()
@@ -19,4 +19,5 @@ router.register(
 
 urlpatterns = [
     path("", include(router.urls)),
+    path("ask/", AskSpaceView.as_view(), name="ragspace-ask"),
 ]

@@ -14,3 +14,4 @@ pymupdf==1.28.2
 pillow==12.2.0
 tiktoken==0.14.0
 qdrant-client==1.19.0
+voyageai==0.5.0
