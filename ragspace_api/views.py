@@ -312,12 +312,6 @@ class AskSpaceView(APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        if not conversation_id:
-            return Response(
-                {"detail": "conversation is required."},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
         if not question:
             return Response(
                 {"detail": "question is required."},
@@ -335,30 +329,45 @@ class AskSpaceView(APIView):
                 status=status.HTTP_404_NOT_FOUND,
             )
 
-        try:
-            conversation = Conversation.objects.get(
-                id=conversation_id,
+        # Tracks whether this request created a new conversation.
+        # If the RAG pipeline fails later, we can safely remove that
+        # empty conversation instead of leaving unused records behind.
+        conversation_created = False
+
+        if conversation_id:
+            try:
+                conversation = Conversation.objects.get(
+                    id=conversation_id,
+                    user=request.user,
+                    knowledge_base=knowledge_base,
+                )
+            except Conversation.DoesNotExist:
+                return Response(
+                    {"detail": "Conversation not found."},
+                    status=status.HTTP_404_NOT_FOUND,
+                )
+
+        else:
+            # Automatically create a conversation for the first question.
+            conversation = Conversation.objects.create(
                 user=request.user,
                 knowledge_base=knowledge_base,
-            )
-        except Conversation.DoesNotExist:
-            return Response(
-                {"detail": "Conversation not found."},
-                status=status.HTTP_404_NOT_FOUND,
+                title=question[:150],
             )
 
+            conversation_created = True
+
         try:
-            # Step: 1:
-            # Rewrite context-dependent follow-up questions into standalone
-            # retrieval queries using recent conversation history.
+            # Step 1:
+            # Rewrite context-dependent follow-up questions into a
+            # standalone query for retrieval.
             retrieval_query = contextualize_query(
                 question=question,
                 conversation=conversation,
             )
 
             # Step 2:
-            # Retrieve relevant document chunks first.
-            # Nothing is saved yet because retrieval may fail.
+            # Retrieve relevant chunks from the selected Space.
             retrieved_chunks = retrieve_chunks(
                 query=retrieval_query,
                 user_id=request.user.id,
@@ -366,27 +375,23 @@ class AskSpaceView(APIView):
             )
 
             # Step 3:
-            # Generate the answer before saving any conversation messages.
-            # If OpenAI or another part of generation fails, we avoid
-            # leaving behind a USER message with no ASSISTANT response.
+            # Generate the grounded answer using the user's original
+            # question and the retrieved document context.
             result = generate_answer(
                 question=question,
                 retrieved_chunks=retrieved_chunks,
             )
 
+            # print(retrieval_query)
+            # print(question)
+            
             # Step 4:
-            # Only save the conversation turn after the full RAG pipeline
-            # has completed successfully.
+            # Only save the USER and ASSISTANT messages after the
+            # complete RAG pipeline succeeds.
             #
-            # transaction.atomic() treats both message inserts as one
-            # database operation:
-            #
-            # both succeed -> both are committed
-            # either fails -> both are rolled back
-            #
-            # This prevents incomplete conversation history.
+            # Both messages are written atomically so either both are
+            # committed or neither is.
             with transaction.atomic():
-
                 user_message = Message.objects.create(
                     conversation=conversation,
                     role=Message.Role.USER,
@@ -397,11 +402,9 @@ class AskSpaceView(APIView):
                     conversation=conversation,
                     role=Message.Role.ASSISTANT,
                     content=result["answer"],
+                    sources=result["sources"],
                 )
 
-            # Step 5:
-            # Return the response only after both messages were
-            # successfully saved.
             return Response(
                 {
                     "knowledge_base": knowledge_base.id,
@@ -416,17 +419,26 @@ class AskSpaceView(APIView):
             )
 
         except Exception as e:
-            # Retrieval/generation failures happen before anything is saved.
-            #
-            # Database failures inside transaction.atomic() automatically
-            # roll back both USER and ASSISTANT messages.
             print("RAGspace question error:", repr(e))
+
+            # If this request automatically created the conversation but
+            # retrieval, generation, or message persistence failed, delete
+            # that new conversation so we do not leave an empty record.
+            #
+            # Existing conversations are never deleted by a failed question.
+            if conversation_created:
+                try:
+                    conversation.delete()
+                except Exception as cleanup_error:
+                    print(
+                        "RAGspace conversation cleanup error:",
+                        repr(cleanup_error),
+                    )
 
             return Response(
                 {"detail": "Unable to answer the question."},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
-
 
 
 

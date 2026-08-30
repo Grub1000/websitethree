@@ -90,7 +90,26 @@ class Message(models.Model):
         max_length=20,
         choices=Role.choices,
     )
+
     content = models.TextField()
+
+    # Stores RAG source metadata for assistant responses.
+    #
+    # USER messages will normally contain an empty list.
+    #
+    # Example:
+    # [
+    #     {
+    #         "document_id": 22,
+    #         "filename": "example.pdf",
+    #         "page_number": 3,
+    #         "chunk_index": 2
+    #     }
+    # ]
+    sources = models.JSONField(
+        default=list,
+        blank=True,
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
 
