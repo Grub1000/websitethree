@@ -7,6 +7,8 @@ from .models import KnowledgeBase
 # Import Needed For Document Serializer
 from .models import Document
 
+from .models import Conversation 
+from .models import Message
 
 class KnowledgeBaseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -68,9 +70,70 @@ class DocumentSerializer(serializers.ModelSerializer):
         super().__init__(*args, **kwargs)
 
         request = self.context.get("request")
-        
+
         # This dynamic queryset is important: a user can only select one of their own Spaces.
         if request and request.user.is_authenticated:
             self.fields["knowledge_base"].queryset = (
                 KnowledgeBase.objects.filter(user=request.user)
             )
+
+
+
+
+
+
+
+
+
+
+
+
+class ConversationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Conversation
+        fields = [
+            "id",
+            "knowledge_base",
+            "title",
+            "created_at",
+            "updated_at",
+        ]
+        read_only_fields = [
+            "id",
+            "created_at",
+            "updated_at",
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        request = self.context.get("request")
+
+        if request and request.user.is_authenticated:
+            self.fields["knowledge_base"].queryset = (
+                KnowledgeBase.objects.filter(user=request.user)
+            )
+
+
+
+
+
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = [
+            "id",
+            "conversation",
+            "role",
+            "content",
+            "created_at",
+        ]
+        read_only_fields = [
+            "id",
+            "conversation",
+            "role",
+            "content",
+            "created_at",
+        ]

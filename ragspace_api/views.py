@@ -28,6 +28,18 @@ from .services.vector_store import store_document_chunks
 from rest_framework.views import APIView
 from .services.retrieval import retrieve_chunks
 from .services.generation import generate_answer
+from django.db import transaction
+from .services.query_contextualization import contextualize_query
+
+
+# Imports Needed For Conversation Viewset
+from .models import Conversation, Message
+from .serializers import (
+    ConversationSerializer,
+    MessageSerializer,
+)
+
+
 
 
 class KnowledgeBaseViewSet(viewsets.ModelViewSet):
@@ -248,11 +260,18 @@ class AskSpaceView(APIView):
 
     def post(self, request):
         knowledge_base_id = request.data.get("knowledge_base")
+        conversation_id = request.data.get("conversation")
         question = request.data.get("question", "").strip()
 
         if not knowledge_base_id:
             return Response(
                 {"detail": "knowledge_base is required."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if not conversation_id:
+            return Response(
+                {"detail": "conversation is required."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -274,20 +293,80 @@ class AskSpaceView(APIView):
             )
 
         try:
+            conversation = Conversation.objects.get(
+                id=conversation_id,
+                user=request.user,
+                knowledge_base=knowledge_base,
+            )
+        except Conversation.DoesNotExist:
+            return Response(
+                {"detail": "Conversation not found."},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        try:
+            # Step: 1:
+            # Rewrite context-dependent follow-up questions into standalone
+            # retrieval queries using recent conversation history.
+            retrieval_query = contextualize_query(
+                question=question,
+                conversation=conversation,
+            )
+
+            # Step 2:
+            # Retrieve relevant document chunks first.
+            # Nothing is saved yet because retrieval may fail.
             retrieved_chunks = retrieve_chunks(
-                query=question,
+                query=retrieval_query,
                 user_id=request.user.id,
                 knowledge_base_id=knowledge_base.id,
             )
 
+            # Step 3:
+            # Generate the answer before saving any conversation messages.
+            # If OpenAI or another part of generation fails, we avoid
+            # leaving behind a USER message with no ASSISTANT response.
             result = generate_answer(
                 question=question,
                 retrieved_chunks=retrieved_chunks,
             )
+            print("Original question:", question)
+            print("Retrieval query:", retrieval_query)
 
+            # Step 4:
+            # Only save the conversation turn after the full RAG pipeline
+            # has completed successfully.
+            #
+            # transaction.atomic() treats both message inserts as one
+            # database operation:
+            #
+            # both succeed -> both are committed
+            # either fails -> both are rolled back
+            #
+            # This prevents incomplete conversation history.
+            with transaction.atomic():
+
+                user_message = Message.objects.create(
+                    conversation=conversation,
+                    role=Message.Role.USER,
+                    content=question,
+                )
+
+                assistant_message = Message.objects.create(
+                    conversation=conversation,
+                    role=Message.Role.ASSISTANT,
+                    content=result["answer"],
+                )
+
+            # Step 5:
+            # Return the response only after both messages were
+            # successfully saved.
             return Response(
                 {
                     "knowledge_base": knowledge_base.id,
+                    "conversation": conversation.id,
+                    "user_message": user_message.id,
+                    "assistant_message": assistant_message.id,
                     "question": question,
                     "answer": result["answer"],
                     "sources": result["sources"],
@@ -296,9 +375,47 @@ class AskSpaceView(APIView):
             )
 
         except Exception as e:
+            # Retrieval/generation failures happen before anything is saved.
+            #
+            # Database failures inside transaction.atomic() automatically
+            # roll back both USER and ASSISTANT messages.
             print("RAGspace question error:", repr(e))
 
             return Response(
                 {"detail": "Unable to answer the question."},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
+
+
+
+
+
+class ConversationViewSet(viewsets.ModelViewSet):
+    serializer_class = ConversationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return (
+            Conversation.objects
+            .filter(user=self.request.user)
+            .order_by("-updated_at")
+        )
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    @action(detail=True, methods=["get"])
+    def messages(self, request, pk=None):
+        conversation = self.get_object()
+
+        messages = conversation.messages.order_by("created_at")
+
+        serializer = MessageSerializer(
+            messages,
+            many=True,
+        )
+
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK,
+        )
