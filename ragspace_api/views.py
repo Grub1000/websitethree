@@ -18,6 +18,11 @@ from .services.s3_service import (
     generate_presigned_upload,
     verify_uploaded_object,
 )
+from .services.text_extraction import extract_pdf_text
+from .services.chunking import chunk_pages
+from .services.embeddings import embed_chunks
+from .services.vector_store import store_document_chunks
+
 
 
 
@@ -147,8 +152,7 @@ class DocumentViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        actual_size = s3_object.get("ContentLength", 0)
-        actual_content_type = s3_object.get("ContentType")
+        actual_size = s3_object["ContentLength"]
 
         if actual_size != document.file_size:
             document.status = Document.Status.FAILED
@@ -159,24 +163,65 @@ class DocumentViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
+        actual_content_type = s3_object.get("ContentType")
+
         if actual_content_type != "application/pdf":
             document.status = Document.Status.FAILED
             document.save(update_fields=["status", "updated_at"])
 
             return Response(
-                {"detail": "Uploaded object is not a valid PDF content type."},
+                {"detail": "Uploaded file is not a PDF."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
         document.status = Document.Status.PROCESSING
-        document.save(
-            update_fields=[
-                "status",
-                "updated_at",
-            ]
-        )
+        document.save(update_fields=["status", "updated_at"])
+
+        try:
+            # Extract PDF text
+            extraction = extract_pdf_text(document.s3_key)
+
+            document.page_count = extraction["page_count"]
+            document.save(update_fields=["page_count", "updated_at"])
+
+            # Split extracted pages into chunks
+            chunks = chunk_pages(extraction["pages"])
+
+            # Generate embeddings
+            document.status = Document.Status.EMBEDDING
+            document.save(update_fields=["status", "updated_at"])
+
+            embedded_chunks = embed_chunks(chunks)
+
+            # Store vectors + metadata in Qdrant
+            stored_count = store_document_chunks(
+                document,
+                embedded_chunks,
+            )
+
+            # Entire ingestion pipeline succeeded
+            document.status = Document.Status.READY
+            document.save(update_fields=["status", "updated_at"])
+
+            print("Generated chunks:", len(chunks))
+            print("Generated embeddings:", len(embedded_chunks))
+            print("Stored Qdrant points:", stored_count)
+
+        except Exception as e:
+            print("RAGspace processing error:", repr(e))
+
+            document.status = Document.Status.FAILED
+            document.save(update_fields=["status", "updated_at"])
+
+            return Response(
+                {"detail": "PDF processing failed."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+
+        
 
         return Response(
-            DocumentSerializer(document).data,
+            self.get_serializer(document).data,
             status=status.HTTP_200_OK,
         )
