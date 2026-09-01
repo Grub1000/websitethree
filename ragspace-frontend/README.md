@@ -59,6 +59,7 @@
 * [Apache & SPA Serving](#-apache--spa-serving)
 * [Git & GitHub](#-git--github)
 * [CI/CD](#-cicd)
+* [Key API Workflows](#-key-api-workflows)
 * [V1 Scope](#-v1-scope)
 * [V2 Boundary](#-v2-boundary)
 * [Future Scaling](#-future-scaling)
@@ -103,54 +104,68 @@ RAGspace is designed both as a practical AI application and as a demonstration o
 
 ### 👤 Authentication
 
-* [ ] Standard user authentication
-* [ ] JWT access and refresh tokens
-* [ ] Google OAuth
-* [ ] Protected frontend routes
-* [ ] Protected Django REST endpoints
-* [ ] Per-user data isolation
+* [x] Standard user authentication
+* [x] JWT access and refresh tokens
+* [x] Google OAuth
+* [x] Protected frontend routes
+* [x] Protected Django REST endpoints
+* [x] Per-user data isolation
 
 ### 📚 Knowledge Spaces
 
-* [ ] Create Spaces
-* [ ] Rename Spaces
-* [ ] Delete Spaces
-* [ ] Open individual Spaces
-* [ ] Associate documents with Spaces
-* [ ] Associate conversations with Spaces
+* [x] Create Spaces
+* [x] Rename Spaces
+* [x] Delete Spaces
+* [x] Open individual Spaces
+* [x] Associate documents with Spaces
+* [x] Associate conversations with Spaces
 
 ### 📄 Document Management
 
-* [ ] Upload PDF documents
-* [ ] Validate file type and size
-* [ ] Store originals in AWS S3
-* [ ] Extract document text
-* [ ] Track processing status
-* [ ] Delete documents
-* [ ] Remove associated S3 objects
-* [ ] Remove associated vectors
+* [x] Upload PDF documents
+* [x] Validate file type and size
+* [x] Store originals in AWS S3
+* [x] Extract document text
+* [x] Track processing status
+* [x] Delete documents
+* [x] Remove associated S3 objects
+* [x] Remove associated vectors
 
 ### 🧠 RAG Pipeline
 
-* [ ] Token-aware document chunking
-* [ ] Chunk overlap
-* [ ] Batched embedding generation
-* [ ] Qdrant vector storage
-* [ ] Semantic similarity search
-* [ ] Metadata-filtered retrieval
-* [ ] Configurable relevance threshold
-* [ ] Optional second-stage reranking
+* [x] Token-aware document chunking
+* [x] Chunk overlap
+* [x] Batched embedding generation
+* [x] Qdrant vector storage
+* [x] Semantic similarity search
+* [x] Metadata-filtered retrieval
+* [x] Configurable relevance threshold
+* [x] Optional second-stage reranking
 
 ### 💬 Conversational AI
 
-* [ ] Persistent conversations
-* [ ] Persistent messages
-* [ ] Recent conversation memory
-* [ ] Follow-up question contextualization
-* [ ] GPT-generated grounded answers
-* [ ] Source attribution
-* [ ] Page references
-* [ ] Insufficient-context detection
+* [x] Persistent conversations
+* [x] Persistent messages
+* [x] Recent conversation memory
+* [x] Follow-up question contextualization
+* [x] GPT-generated grounded answers
+* [x] Source attribution
+* [x] Page references
+* [x] Insufficient-context detection
+
+### 🖥️ Frontend Experience
+
+* [x] Responsive dark SaaS interface
+* [x] Desktop and mobile navigation
+* [x] Space dashboard with CRUD workflows
+* [x] Document upload and processing feedback
+* [x] Conversation list and deletion
+* [x] Persisted chat history
+* [x] Enter-to-send and Shift+Enter multiline input
+* [x] Auto-growing chat composer
+* [x] Animated generation state
+* [x] Page-level source cards
+* [x] Clickable citations opening private PDFs through presigned S3 URLs
 
 ### ☁️ Infrastructure
 
@@ -160,10 +175,10 @@ RAGspace is designed both as a practical AI application and as a demonstration o
 * [x] GitHub Actions deployment pipeline
 * [x] Existing Django project
 * [x] React + TypeScript Vite project created
-* [ ] AWS S3 RAGspace integration
-* [ ] Qdrant Cloud integration
-* [ ] OpenAI integration
-* [ ] Voyage AI reranking integration
+* [x] AWS S3 RAGspace integration
+* [x] Qdrant Cloud integration
+* [x] OpenAI integration
+* [x] Voyage AI reranking integration
 
 ---
 
@@ -186,7 +201,7 @@ The frontend exists as an independent Vite application inside the larger Django 
 ragspace-frontend/
 ```
 
-Production builds will ultimately be served through the existing Django and Apache infrastructure.
+Production builds are served through the existing Django and Apache infrastructure.
 
 ---
 
@@ -205,7 +220,7 @@ Production builds will ultimately be served through the existing Django and Apac
 | **OpenAI API**            | Embeddings and generation         |
 | **Voyage AI**             | Optional reranking                |
 
-The dedicated Django application will be:
+The dedicated Django application is:
 
 ```text
 ragspace_api
@@ -475,7 +490,7 @@ Uses the existing shared custom Django User model.
 
 Represents one user-created Space.
 
-Expected fields:
+Implemented fields:
 
 ```text
 id
@@ -491,7 +506,7 @@ updated_at
 
 Represents an uploaded PDF and its processing state.
 
-Expected fields:
+Implemented fields:
 
 ```text
 id
@@ -506,7 +521,7 @@ created_at
 updated_at
 ```
 
-Potential processing states:
+Processing states:
 
 ```text
 UPLOADING
@@ -530,7 +545,7 @@ FAILED
 
 Represents a persistent chat session associated with a Space.
 
-Expected fields:
+Implemented fields:
 
 ```text
 id
@@ -547,13 +562,14 @@ updated_at
 
 Represents an individual message.
 
-Expected fields:
+Implemented fields:
 
 ```text
 id
 conversation
 role
 content
+sources
 created_at
 ```
 
@@ -570,7 +586,7 @@ ASSISTANT
 
 AWS S3 stores the **original PDF files**.
 
-PDF binaries will not be stored directly inside MySQL or permanently on the EC2 filesystem.
+PDF binaries are not stored directly inside MySQL or permanently on the EC2 filesystem.
 
 Conceptual S3 organization:
 
@@ -578,10 +594,12 @@ Conceptual S3 organization:
 ragspace/
 └── users/
     └── <user-id>/
-        └── documents/
-            ├── document-1.pdf
-            ├── document-2.pdf
-            └── document-3.pdf
+        └── spaces/
+            └── <space-id>/
+                └── documents/
+                    ├── <uuid>.pdf
+                    ├── <uuid>.pdf
+                    └── <uuid>.pdf
 ```
 
 ## Why Keep the Original PDF?
@@ -610,7 +628,7 @@ Chunks themselves are **not** stored in S3.
 
 RAGspace uses **Qdrant Cloud** as its dedicated vector database.
 
-Planned collection:
+Collection:
 
 ```text
 ragspace_chunks
@@ -630,9 +648,10 @@ Qdrant Point
     ├── user_id
     ├── knowledge_base_id
     ├── document_id
-    ├── original_filename
-    ├── page_number
-    └── chunk_index
+    ├── filename
+    ├── page
+    ├── chunk_index
+    └── token_count
 ```
 
 ## One Collection vs. Many Collections
@@ -723,7 +742,7 @@ Changing the embedding model requires existing documents to be re-embedded becau
 
 ## Batch Embeddings
 
-Chunks should be embedded in batches.
+Chunks are embedded in batches.
 
 Instead of:
 
@@ -734,7 +753,7 @@ Chunk 3 → API call
 Chunk 4 → API call
 ```
 
-RAGspace will prefer:
+RAGspace uses batched requests:
 
 ```text
 Chunk 1 ┐
@@ -755,7 +774,7 @@ This reduces:
 
 # 📥 Document Ingestion Pipeline
 
-The complete planned ingestion workflow is:
+The implemented ingestion workflow is:
 
 ```text
 User Uploads PDF
@@ -911,7 +930,7 @@ The RAGspace retrieval process is intentionally more sophisticated than simply:
 
 > Question → Vector Search → GPT
 
-The planned pipeline is:
+The implemented pipeline is:
 
 ```text
                      User Question
@@ -1238,7 +1257,7 @@ GPT
 Grounded Answer
 ```
 
-The system prompt should instruct the model to:
+The generation prompt instructs the model to:
 
 * Prioritize retrieved information
 * Avoid inventing document content
@@ -1273,7 +1292,7 @@ Relevance: 86%
 
 Source metadata originates from the Qdrant payload associated with each chunk.
 
-Potential future functionality includes clicking a citation and opening the original S3-hosted PDF.
+Source cards are clickable. The authenticated backend generates a short-lived presigned S3 GET URL and the browser opens the original PDF at the cited page.
 
 This helps demonstrate that RAGspace is performing actual retrieval rather than simply behaving like a generic chatbot.
 
@@ -1294,13 +1313,15 @@ Deleting a document requires cleanup across **three storage layers**.
       Delete PDF      Delete Vectors    Delete Record
 ```
 
-Recommended order:
+Implemented order:
 
 ```text
-1. Delete S3 object
-2. Delete Qdrant vectors
+1. Delete Qdrant vectors
+2. Delete S3 object
 3. Delete MySQL record
 ```
+
+External resources are cleaned up before the relational record is removed. If external cleanup fails, the MySQL record is preserved so the application retains the metadata needed to retry cleanup.
 
 Qdrant points can be removed using payload metadata:
 
@@ -1311,6 +1332,32 @@ document_id
 ```
 
 Deleting the MySQL record last helps retain the metadata required to identify external resources if cleanup fails.
+
+## Space Deletion
+
+Deleting a Space performs external cleanup before Django's relational cascade:
+
+```text
+Delete Space
+    ↓
+Load Space Documents
+    ↓
+Delete Qdrant Vectors
+    ↓
+Delete S3 PDFs
+    ↓
+MySQL Transaction
+    ↓
+Delete KnowledgeBase
+    ↓
+Django CASCADE
+    ├── Documents
+    ├── Conversations
+    └── Messages
+```
+
+This prevents a deleted Space from leaving orphaned PDFs or vector points behind.
+
 
 ---
 
@@ -1478,14 +1525,16 @@ RAG_CHUNK_OVERLAP = 120
 
 RAG_CANDIDATE_K = 12
 RAG_FINAL_K = 5
-RAG_SCORE_THRESHOLD = ...
+RAG_SCORE_THRESHOLD = 0.30
 
 RAG_HISTORY_MESSAGE_LIMIT = 8
 
 RAG_RERANKING_ENABLED = True
+RAG_RERANK_MODEL = "rerank-2.5-lite"
 
 RAG_EMBEDDING_MODEL = "text-embedding-3-small"
 RAG_GENERATION_MODEL = "gpt-5-mini"
+RAG_CONTEXTUALIZATION_MODEL = "gpt-5-mini"
 
 RAG_MAX_FILE_SIZE = ...
 RAG_MAX_DOCUMENTS_PER_USER = 20
@@ -1547,7 +1596,7 @@ Production secrets remain on the production environment and are never stored dir
 
 # 🔵 Google OAuth
 
-RAGspace will support Google OAuth alongside the existing JWT authentication architecture.
+RAGspace supports Google OAuth alongside the existing JWT authentication architecture.
 
 ```text
 User
@@ -1714,7 +1763,7 @@ should always be reviewed for unexpected files.
 
 # 🔄 CI/CD
 
-RAGspace will reuse the existing automated GitHub Actions deployment architecture.
+RAGspace reuses the existing automated GitHub Actions deployment architecture.
 
 ```text
 Local Development
@@ -1748,7 +1797,7 @@ Pull Latest Changes
    Production
 ```
 
-The existing deployment script can be extended to build RAGspace rather than creating a completely separate deployment system.
+The existing deployment script builds and deploys RAGspace alongside the other applications in the Django project.
 
 Potential addition:
 
@@ -1758,7 +1807,36 @@ npm ci
 npm run build
 ```
 
-Exact deployment changes will be made after RAGspace production integration is complete.
+Production integration uses the existing EC2, Apache2, Django, and GitHub Actions deployment workflow.
+
+---
+
+
+# 🔌 Key API Workflows
+
+RAGspace exposes authenticated REST endpoints beneath:
+
+```text
+/ragspace-api/
+```
+
+Major workflows include:
+
+| Workflow | Endpoint Pattern |
+| --- | --- |
+| List/Create Spaces | `GET/POST /spaces/` |
+| Space detail/update/delete | `GET/PATCH/DELETE /spaces/<id>/` |
+| List documents | `GET /documents/` |
+| Create presigned upload | `POST /documents/presign/` |
+| Complete + process upload | `POST /documents/<id>/complete/` |
+| Open private source PDF | `GET /documents/<id>/view/` |
+| Delete document | `DELETE /documents/<id>/` |
+| List/Create conversations | `GET/POST /conversations/` |
+| Conversation messages | `GET /conversations/<id>/messages/` |
+| Delete conversation | `DELETE /conversations/<id>/` |
+| Ask a Space | `POST /ask/` |
+
+The frontend API client attaches JWT credentials and handles token refresh for Django requests. Direct S3 uploads intentionally use the browser `fetch` API against the presigned S3 URL so application JWT headers are never sent to S3.
 
 ---
 
@@ -1768,49 +1846,49 @@ RAGspace V1 focuses on a polished core RAG experience while avoiding unnecessary
 
 ### Authentication
 
-* [ ] Standard login
-* [ ] JWT authentication
-* [ ] Refresh token support
-* [ ] Google OAuth
-* [ ] Protected routes
+* [x] Standard login
+* [x] JWT authentication
+* [x] Refresh token support
+* [x] Google OAuth
+* [x] Protected routes
 
 ### Spaces
 
-* [ ] Create Space
-* [ ] Rename Space
-* [ ] Open Space
-* [ ] Delete Space
+* [x] Create Space
+* [x] Rename Space
+* [x] Open Space
+* [x] Delete Space
 
 ### Documents
 
-* [ ] Upload PDFs
-* [ ] Validate PDFs
-* [ ] AWS S3 storage
-* [ ] PDF text extraction
-* [ ] Processing states
-* [ ] Document deletion
+* [x] Upload PDFs
+* [x] Validate PDFs
+* [x] AWS S3 storage
+* [x] PDF text extraction
+* [x] Processing states
+* [x] Document deletion
 
 ### Retrieval
 
-* [ ] Text chunking
-* [ ] Chunk overlap
-* [ ] Batched embeddings
-* [ ] Qdrant storage
-* [ ] Metadata filtering
-* [ ] Similarity search
-* [ ] Relevance threshold
-* [ ] Optional reranking
+* [x] Text chunking
+* [x] Chunk overlap
+* [x] Batched embeddings
+* [x] Qdrant storage
+* [x] Metadata filtering
+* [x] Similarity search
+* [x] Relevance threshold
+* [x] Optional reranking
 
 ### Conversation
 
-* [ ] Create conversations
-* [ ] Save conversation history
-* [ ] Save messages
-* [ ] Query contextualization
-* [ ] Recent conversational memory
-* [ ] Grounded GPT answers
-* [ ] Source references
-* [ ] Page attribution
+* [x] Create conversations
+* [x] Save conversation history
+* [x] Save messages
+* [x] Query contextualization
+* [x] Recent conversational memory
+* [x] Grounded GPT answers
+* [x] Source references
+* [x] Page attribution
 
 ### Deployment
 
@@ -1819,10 +1897,10 @@ RAGspace V1 focuses on a polished core RAG experience while avoiding unnecessary
 * [x] Existing MySQL infrastructure
 * [x] Existing GitHub Actions pipeline
 * [x] RAGspace Vite application initialized
-* [ ] Django API integration
-* [ ] Apache integration
-* [ ] Updated CI/CD
-* [ ] Production deployment
+* [x] Django API integration
+* [x] Apache integration
+* [x] Updated CI/CD
+* [x] Production deployment
 
 ---
 
@@ -2129,9 +2207,9 @@ V1 intentionally avoids premature complexity while maintaining clean migration p
 
 # 📸 Screenshots
 
-> **RAGspace V1 is currently under development.**
+> **RAGspace V1 is complete and production-ready.**
 
-Application screenshots will be added as the following interfaces are completed:
+Recommended screenshots include:
 
 * Dashboard
 * My Spaces
@@ -2144,88 +2222,56 @@ Application screenshots will be added as the following interfaces are completed:
 
 ---
 
-# 🚧 Development Status
+# ✅ Development Status
 
-### Project Initialization
-
-* [x] Product name finalized — **RAGspace**
-* [x] V1 architecture designed
-* [x] V2 boundary established
-* [x] Technology stack selected
-* [x] React + TypeScript selected
-* [x] Vite selected
-* [x] React Compiler selected
-* [x] `ragspace-frontend` created
-* [x] Development server verified
+**RAGspace V1 is complete and ready for production deployment.**
 
 ### Backend
 
-* [ ] Create `ragspace_api`
-* [ ] Register Django application
-* [ ] Configure API URLs
-* [ ] Create KnowledgeBase model
-* [ ] Create Document model
-* [ ] Create Conversation model
-* [ ] Create Message model
-* [ ] Create serializers
-* [ ] Create API views
-* [ ] Create permissions
+* [x] `ragspace_api` Django application
+* [x] KnowledgeBase, Document, Conversation, and Message models
+* [x] User-scoped serializers, views, permissions, and REST routes
+* [x] Shared JWT authentication and Google OAuth
+* [x] S3 presigned upload pipeline
+* [x] PDF extraction with page preservation
+* [x] Token-aware chunking with overlap
+* [x] OpenAI batch embeddings
+* [x] Qdrant Cloud vector storage and payload indexing
+* [x] Similarity search and relevance threshold
+* [x] Voyage AI reranking with graceful fallback
+* [x] Conversation-aware query contextualization
+* [x] Grounded GPT answer generation
+* [x] Persistent conversations, messages, and source metadata
+* [x] Document and Space cleanup across Qdrant, S3, and MySQL
+* [x] Authenticated presigned source-document viewing
 
-### Authentication
+### Frontend
 
-* [ ] Connect shared JWT authentication
-* [ ] Protected API routes
-* [ ] Protected React routes
-* [ ] Google OAuth
-
-### Document Pipeline
-
-* [ ] S3 configuration
-* [ ] PDF upload
-* [ ] PDF validation
-* [ ] Text extraction
-* [ ] Page extraction
-* [ ] Chunking
-* [ ] Chunk overlap
-* [ ] Document statuses
-
-### AI & Retrieval
-
-* [ ] OpenAI configuration
-* [ ] `text-embedding-3-small`
-* [ ] Batch embeddings
-* [ ] Qdrant Cloud
-* [ ] `ragspace_chunks`
-* [ ] Payload indexing
-* [ ] Vector insertion
-* [ ] Similarity search
-* [ ] Relevance threshold
-* [ ] Voyage reranking
-* [ ] Reranking fallback
-* [ ] Query contextualization
-* [ ] GPT generation
-
-### Conversation System
-
-* [ ] Conversations
-* [ ] Messages
-* [ ] Conversation history
-* [ ] Recent-context window
-* [ ] Source metadata
-* [ ] Page references
+* [x] React + TypeScript + Vite application
+* [x] Login, registration, JWT persistence, and Google OAuth
+* [x] Protected routes
+* [x] Responsive application shell and mobile navigation
+* [x] Space CRUD dashboard
+* [x] Document listing, upload, validation, processing feedback, and deletion
+* [x] Conversation list, history, and deletion
+* [x] New and continuing RAG conversations
+* [x] Source cards with filename and page attribution
+* [x] Click-to-open citations
+* [x] Chat UX polish including Enter-to-send, multiline input, auto-grow, auto-scroll, and generation feedback
 
 ### Production
 
-* [ ] Build RAGspace frontend
-* [ ] Django TemplateView
-* [ ] `/ragspace/`
-* [ ] `/ragspace-api/`
-* [ ] Apache integration
-* [ ] Extend GitHub Actions
-* [ ] Extend deployment script
-* [ ] Production testing
-* [ ] Screenshots
-* [ ] Final documentation
+* [x] AWS EC2 hosting
+* [x] Apache2 integration
+* [x] MySQL persistence
+* [x] Private AWS S3 storage
+* [x] Qdrant Cloud
+* [x] OpenAI integration
+* [x] Voyage AI integration
+* [x] GitHub Actions CI/CD
+* [x] Production environment configuration
+* [x] V1 deployment readiness
+
 
 ---
 
@@ -2255,17 +2301,6 @@ Built with React, TypeScript, Django, AWS, Qdrant, OpenAI, and modern Retrieval-
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
@@ -2280,7 +2315,6 @@ Currently, two official plugins are available:
 The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
 
 Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
 
 ## Expanding the Oxlint configuration
 
@@ -2301,3 +2335,8 @@ If you are developing a production application, we recommend enabling type-aware
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+
+
+
+
