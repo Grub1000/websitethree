@@ -74,7 +74,7 @@ export default function RegisterPage() {
           <GoogleLogin text="signup_with" onSuccess={async (credentialResponse) => {
           if (!credentialResponse.credential) {return}
           try {await loginWithGoogle(credentialResponse.credential);
-              navigate("/profile");
+              navigate("/resume-analyzer");
           }catch {
               alert("Google login failed.");
           }}}
