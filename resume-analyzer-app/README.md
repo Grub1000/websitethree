@@ -1,1220 +1,2291 @@
-# ResuScan
+<div align="center">
 
-ResuScan is a full-stack resume analysis and job application tracking
-platform built with React, TypeScript, Django REST Framework, MySQL,
-AWS, and external AI services.
+# 🧠 RAGspace
 
-The project began as a resume analyzer and evolved into a broader
-job-search dashboard. Version 1 allows authenticated users to upload and
-manage resumes, extract and analyze resume content, review persistent
-analysis history, generate resume thumbnails, and manage job
-applications through a full CRUD workflow and Kanban board.
+### Your knowledge. One intelligent space.
 
-> **Current V1 scope:** Resume analysis is supported during the resume
-> processing workflow, but V1 does not yet provide a user-facing action
-> to create a new/repeated analysis for an already uploaded resume.
+**A full-stack conversational Retrieval-Augmented Generation platform for transforming private document collections into intelligent, searchable knowledge spaces.**
 
-## Table of Contents
+<br />
 
--   Core Features
--   Technology Stack
--   System Architecture
--   Frontend Architecture
--   Backend Architecture
--   Database Design
--   Custom User Model
--   Authentication and Authorization
--   Resume Processing Pipeline
--   Amazon S3 Storage
--   Resume Analysis
--   Resume Thumbnails
--   Job Application Tracker
--   API Design
--   Routing
--   Production Infrastructure
--   Apache Configuration
--   CI/CD
--   Local Development
--   Configuration and Environment Variables
--   Security Decisions
--   Important Design Decisions
--   Known V1 Limitations
--   Future Architecture and Planned Features
+![React](https://img.shields.io/badge/React-TypeScript-61DAFB?logo=react\&logoColor=white)
+![Django](https://img.shields.io/badge/Django-REST_Framework-092E20?logo=django\&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python\&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?logo=mysql\&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-EC2_%7C_S3-FF9900?logo=amazonwebservices\&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-Embeddings_%7C_GPT-412991?logo=openai\&logoColor=white)
+![Qdrant](https://img.shields.io/badge/Qdrant-Vector_DB-DC244C)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI%2FCD-2088FF?logo=githubactions\&logoColor=white)
 
-## Core Features
+<br />
 
-### Resume Management
+**React • TypeScript • Django • DRF • MySQL • AWS • OpenAI • Qdrant • Voyage AI**
 
--   Authenticated resume uploads
--   Private resume storage using Amazon S3
--   Presigned upload workflow
--   Persistent resume metadata in MySQL
--   PDF and DOCX text extraction
--   Resume text normalization
--   Resume thumbnail generation
--   Resume history and deletion
--   Persistent resume analysis history
--   User ownership checks on protected resources
--   UUID-based public resource identifiers
+</div>
 
-### Resume Analysis
+---
 
--   Resume text sent through an external language-model API
--   Structured analysis output
--   Overall, ATS, keyword, experience, and skills scores
--   Strengths and weaknesses
--   Missing keywords and recommendations
--   Persistent analysis records
--   Analysis status tracking
--   Model/prompt metadata and failure-state handling
+# 📖 Table of Contents
 
-### Job Application Tracker
+* [Overview](#-overview)
+* [Core Features](#-core-features)
+* [Technology Stack](#-technology-stack)
+* [High-Level Architecture](#️-high-level-architecture)
+* [Project Structure](#-project-structure)
+* [Production URL Structure](#-production-url-structure)
+* [Authentication](#-authentication)
+* [Knowledge Spaces](#-knowledge-spaces)
+* [Database Architecture](#️-database-architecture)
+* [AWS S3 Document Storage](#️-aws-s3-document-storage)
+* [Qdrant Vector Database](#-qdrant-vector-database)
+* [Embeddings](#-embeddings)
+* [Document Ingestion Pipeline](#-document-ingestion-pipeline)
+* [Upload Restrictions](#-upload-restrictions)
+* [Chunking Strategy](#️-chunking-strategy)
+* [Retrieval Pipeline](#-retrieval-pipeline)
+* [Conversational RAG](#-conversational-rag)
+* [Conversation Memory](#-conversation-memory)
+* [Similarity Search](#-similarity-search)
+* [Relevance Threshold](#-relevance-threshold)
+* [Reranking](#-reranking)
+* [Generation](#-generation)
+* [Source Attribution](#-source-attribution)
+* [Document Deletion](#️-document-deletion)
+* [RAG Service Architecture](#️-rag-service-architecture)
+* [Configuration](#️-configuration)
+* [Environment Variables](#-environment-variables)
+* [Google OAuth](#-google-oauth)
+* [AWS EC2 Architecture](#️-aws-ec2-architecture)
+* [Apache & SPA Serving](#-apache--spa-serving)
+* [Git & GitHub](#-git--github)
+* [CI/CD](#-cicd)
+* [Key API Workflows](#-key-api-workflows)
+* [V1 Scope](#-v1-scope)
+* [V2 Boundary](#-v2-boundary)
+* [Future Scaling](#-future-scaling)
+* [Design Philosophy](#-design-philosophy)
+* [Development Status](#-development-status)
 
--   Create, retrieve, list, update, and delete job applications
--   Track application status
--   Associate applications with resumes and resume analyses
--   Responsive Kanban-style application workflow
+---
 
-Current statuses:
+# ✨ Overview
 
-``` text
-Saved
-Applied
-Interview
-Offer
-Rejected
-Withdrawn
+**RAGspace** is a full-stack conversational Retrieval-Augmented Generation application that allows authenticated users to create isolated knowledge spaces, upload private documents, and have AI-powered conversations grounded directly in those documents.
+
+Instead of relying primarily on an LLM's pretrained knowledge, RAGspace performs semantic retrieval against a user's uploaded information before generating an answer.
+
+Relevant passages are retrieved from a vector database and supplied to the language model as contextual evidence.
+
+```text
+User Question
+      ↓
+Semantic Retrieval
+      ↓
+Relevant Document Chunks
+      ↓
+Large Language Model
+      ↓
+Grounded Answer + Sources
 ```
 
-The primary Kanban workflow is:
+This architecture makes responses:
 
-``` text
-Saved -> Applied -> Interview -> Offer
+* More relevant to user-provided information
+* More traceable
+* Less dependent on unsupported model knowledge
+* More efficient than sending entire documents to an LLM
+* Scalable across multiple documents and knowledge collections
+
+RAGspace is designed both as a practical AI application and as a demonstration of **production-oriented full-stack, cloud, retrieval, machine learning, and software architecture.**
+
+---
+
+# 🚀 Core Features
+
+### 👤 Authentication
+
+* [x] Standard user authentication
+* [x] JWT access and refresh tokens
+* [x] Google OAuth
+* [x] Protected frontend routes
+* [x] Protected Django REST endpoints
+* [x] Per-user data isolation
+
+### 📚 Knowledge Spaces
+
+* [x] Create Spaces
+* [x] Rename Spaces
+* [x] Delete Spaces
+* [x] Open individual Spaces
+* [x] Associate documents with Spaces
+* [x] Associate conversations with Spaces
+
+### 📄 Document Management
+
+* [x] Upload PDF documents
+* [x] Validate file type and size
+* [x] Store originals in AWS S3
+* [x] Extract document text
+* [x] Track processing status
+* [x] Delete documents
+* [x] Remove associated S3 objects
+* [x] Remove associated vectors
+
+### 🧠 RAG Pipeline
+
+* [x] Token-aware document chunking
+* [x] Chunk overlap
+* [x] Batched embedding generation
+* [x] Qdrant vector storage
+* [x] Semantic similarity search
+* [x] Metadata-filtered retrieval
+* [x] Configurable relevance threshold
+* [x] Optional second-stage reranking
+
+### 💬 Conversational AI
+
+* [x] Persistent conversations
+* [x] Persistent messages
+* [x] Recent conversation memory
+* [x] Follow-up question contextualization
+* [x] GPT-generated grounded answers
+* [x] Source attribution
+* [x] Page references
+* [x] Insufficient-context detection
+
+### 🖥️ Frontend Experience
+
+* [x] Responsive dark SaaS interface
+* [x] Desktop and mobile navigation
+* [x] Space dashboard with CRUD workflows
+* [x] Document upload and processing feedback
+* [x] Conversation list and deletion
+* [x] Persisted chat history
+* [x] Enter-to-send and Shift+Enter multiline input
+* [x] Auto-growing chat composer
+* [x] Animated generation state
+* [x] Page-level source cards
+* [x] Clickable citations opening private PDFs through presigned S3 URLs
+
+### ☁️ Infrastructure
+
+* [x] Existing AWS EC2 production server
+* [x] Apache2 web server
+* [x] Existing MySQL infrastructure
+* [x] GitHub Actions deployment pipeline
+* [x] Existing Django project
+* [x] React + TypeScript Vite project created
+* [x] AWS S3 RAGspace integration
+* [x] Qdrant Cloud integration
+* [x] OpenAI integration
+* [x] Voyage AI reranking integration
+
+---
+
+# 🛠 Technology Stack
+
+## Frontend
+
+| Technology            | Purpose                                    |
+| --------------------- | ------------------------------------------ |
+| **React**             | Component-based frontend UI                |
+| **TypeScript**        | Static typing                              |
+| **Vite**              | Frontend development and production builds |
+| **React Compiler**    | React optimization                         |
+| **React Router**      | Client-side SPA routing                    |
+| **Fetch / REST APIs** | Django API communication                   |
+
+The frontend exists as an independent Vite application inside the larger Django project.
+
+```text
+ragspace-frontend/
 ```
 
-## Technology Stack
+Production builds are served through the existing Django and Apache infrastructure.
 
-### Frontend
+---
 
--   React
--   TypeScript
--   Vite
--   React Router
--   React Context API
--   CSS
--   Fetch API
--   JWT-based client authentication
+## Backend
 
-### Backend
+| Technology                | Purpose                           |
+| ------------------------- | --------------------------------- |
+| **Python**                | Primary backend language          |
+| **Django**                | Web framework                     |
+| **Django REST Framework** | REST API                          |
+| **Simple JWT**            | Access and refresh authentication |
+| **Google OAuth**          | Social authentication             |
+| **MySQL**                 | Relational application data       |
+| **AWS S3**                | Original PDF storage              |
+| **Qdrant Cloud**          | Vector database                   |
+| **OpenAI API**            | Embeddings and generation         |
+| **Voyage AI**             | Optional reranking                |
 
--   Python
--   Django
--   Django REST Framework
--   Simple JWT
--   MySQL
--   `mysqlclient`
--   PDF/DOCX extraction utilities
--   Pillow
--   External LLM API integration
+The dedicated Django application is:
 
-### Infrastructure
-
--   AWS EC2
--   Ubuntu
--   Apache2
--   Amazon S3
--   Presigned S3 uploads
--   GitHub Actions
--   SSH-based automated deployment
-
-## System Architecture
-
-``` text
-                              USER
-                                |
-                                v
-                       jorgeramirez.net
-                                |
-                                v
-                        Apache2 on AWS EC2
-                                |
-                 +--------------+--------------+
-                 |                             |
-                 v                             v
-        React + TypeScript              Django + DRF
-            Vite SPA                      REST API
-                 |                             |
-                 |                 +-----------+-----------+
-                 |                 |                       |
-                 |                 v                       v
-                 |               MySQL                 Amazon S3
-                 |                 |                       |
-                 |          Users / metadata          Resume files
-                 |          Resume records            Thumbnails
-                 |          Analyses
-                 |          Job applications
-                 |
-                 +---------- REST API --------------------+
-                                               |
-                                               v
-                                      External AI Service
-                                      Resume Analysis
+```text
+ragspace_api
 ```
 
-The EC2 instance acts as the primary application server. Apache serves
-the production site, Django handles API requests and server-side
-application logic, MySQL stores relational data, and S3 stores uploaded
-resume objects and generated media.
+RAGspace shares the same parent Django project and infrastructure as other applications hosted on the server while maintaining its own:
 
-## Frontend Architecture
+* Models
+* API routes
+* Business logic
+* RAG services
+* Document pipeline
+* Vector retrieval logic
 
-The frontend is a React + TypeScript single-page application built with
-Vite.
+---
 
-The Vite project uses:
+# 🏗️ High-Level Architecture
 
-``` text
-base: /static
+```text
+                              ┌───────────────────────────┐
+                              │        RAGspace           │
+                              │     React + TypeScript    │
+                              └─────────────┬─────────────┘
+                                            │
+                                            │ HTTPS / REST
+                                            ▼
+                              ┌───────────────────────────┐
+                              │      Django REST API      │
+                              │       ragspace_api        │
+                              └─────────────┬─────────────┘
+                                            │
+                    ┌───────────────────────┼───────────────────────┐
+                    │                       │                       │
+                    ▼                       ▼                       ▼
+          ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+          │      MySQL      │     │     AWS S3      │     │  Qdrant Cloud  │
+          │                 │     │                 │     │                 │
+          │ Users           │     │ Original PDFs   │     │ Embeddings      │
+          │ Spaces          │     │                 │     │ Chunk Text      │
+          │ Documents       │     │                 │     │ Metadata        │
+          │ Conversations   │     │                 │     │ Vector Search   │
+          │ Messages        │     │                 │     │                 │
+          └─────────────────┘     └─────────────────┘     └────────┬────────┘
+                                                                  │
+                                                ┌─────────────────┼───────────────┐
+                                                │                                 │
+                                                ▼                                 ▼
+                                      ┌──────────────────┐              ┌──────────────────┐
+                                      │ OpenAI Embedding │              │    Voyage AI     │
+                                      │      API         │              │     Reranker     │
+                                      └──────────────────┘              └──────────────────┘
+                                                │
+                                                ▼
+                                      ┌──────────────────┐
+                                      │   GPT-5 mini     │
+                                      │ Answer Generation│
+                                      └──────────────────┘
 ```
 
-The production SPA is mounted beneath:
+RAGspace intentionally separates:
 
-``` text
-/resuscan/
+> **Application Data → File Storage → Vector Storage → AI Inference**
+
+Each technology has one primary responsibility rather than forcing a single service to solve every problem.
+
+---
+
+# 📁 Project Structure
+
+RAGspace lives inside the existing Django project rather than requiring an entirely separate deployment.
+
+```text
+websitethree/
+│
+├── manage.py
+│
+├── websitethree/
+│   ├── settings.py
+│   ├── urls.py
+│   └── ...
+│
+├── resume_analyzer_app_api/
+│
+├── ragspace_api/
+│   │
+│   ├── migrations/
+│   ├── models.py
+│   ├── serializers.py
+│   ├── views.py
+│   ├── urls.py
+│   │
+│   └── services/
+│       ├── document_service.py
+│       ├── text_extraction.py
+│       ├── chunking.py
+│       ├── embeddings.py
+│       ├── vector_store.py
+│       ├── contextualizer.py
+│       ├── retrieval.py
+│       ├── reranker.py
+│       └── generator.py
+│
+└── ragspace-frontend/
+    │
+    ├── public/
+    ├── src/
+    ├── package.json
+    ├── vite.config.ts
+    └── dist/
 ```
 
-React Router handles client-side navigation.
+### Architectural Goal
 
-### Frontend Service Layer
+Django views should remain relatively thin.
 
-API requests are separated from presentation components:
+Instead of placing RAG processing directly inside `views.py`, specialized service modules will own individual responsibilities.
 
-``` text
-api/
-|-- api_service.tsx
-|-- auth_service.tsx
-|-- resume_service.tsx
-`-- job_application_service.ts
+This makes the RAG system:
+
+* Easier to understand
+* Easier to test
+* Easier to replace
+* Easier to scale
+* Less tightly coupled to Django request handling
+
+---
+
+# 🌐 Production URL Structure
+
+RAGspace uses path-based routing on the existing production domain.
+
+### React SPA
+
+```text
+/ragspace/
 ```
 
-`api_service.tsx` is the shared authenticated request layer. It adds the
-bearer access token, detects `401 Unauthorized`, attempts a token
-refresh, and retries the original request after a successful refresh.
+### Django REST API
 
-`auth_service.tsx` handles login, token persistence, refresh-token
-rotation, logout, and token cleanup.
-
-`resume_service.tsx` contains resume-related API operations including
-upload, extraction, analysis, history, thumbnails, and deletion.
-
-`job_application_service.ts` contains the tracker CRUD functions:
-
-``` text
-getJobApplications()
-getJobApplication(applicationId)
-createJobApplication(data)
-updateJobApplication(applicationId, updates)
-deleteJobApplication(applicationId)
+```text
+/ragspace-api/
 ```
-
-## Dashboard Architecture
-
-`ResumeAnalyzerDashboardPage.tsx` acts as the persistent shell for the
-authenticated ResuScan workspace.
-
-It contains shared navigation, profile controls, responsive burger
-navigation, analysis popup state, shared dashboard state, and a React
-Router child outlet.
-
-``` text
-ResumeAnalyzerDashboardPage
-|
-|-- Header
-|   |-- Dashboard
-|   |-- Documents
-|   |-- Find Jobs
-|   `-- My Saved Jobs
-|
-|-- Shared Dashboard State
-|
-|-- <Outlet />
-|   |-- Dashboard/Home
-|   |-- Documents
-|   |-- Find Jobs
-|   `-- Saved Jobs
-|
-`-- Footer
-```
-
-Nested routing keeps the dashboard shell mounted while child pages
-change, preserving parent-level React state during normal tab
-navigation. A full browser refresh still recreates the React
-application, so persistent application data lives on the backend.
-
-## Backend Architecture
-
-The backend uses Django and Django REST Framework.
-
-Primary Django project:
-
-``` text
-websitethree
-```
-
-Primary ResuScan API application:
-
-``` text
-resume_analyzer_app_api
-```
-
-Production API namespace:
-
-``` text
-/resume-analyzer-app-api/
-```
-
-Backend responsibilities include authentication, authorization, resume
-metadata, S3 upload coordination, upload verification, text extraction,
-thumbnail generation, resume analysis, analysis persistence, job
-application CRUD, ownership enforcement, and database access.
-
-As the project grew, feature-specific views began being separated:
-
-``` text
-views/
-|-- views.py
-`-- job_application_views.py
-```
-
-The job tracker uses a dedicated DRF `ModelViewSet`.
-
-## Database Design
-
-MySQL is the relational database. Uploaded resume files are not stored
-as database BLOBs.
-
-Major entities include:
-
-``` text
-User
- |
- +---- Resume
- |       |
- |       +---- ResumeAnalysis
- |       |
- |       `---- JobApplication
- |
- `---- JobApplication
-```
-
-Ownership ultimately traces back to the authenticated user.
-
-Public resources use UUID identifiers instead of exposing sequential
-primary keys. MySQL may display a UUID without hyphens while Django's
-`UUIDField` presents the same value in standard hyphenated form.
-
-## Custom User Model
-
-ResuScan uses a custom Django user model based on `AbstractUser`.
-
-An early implementation attempted to remove the standard `username`
-field. This caused compatibility issues with Django admin, including
-`admin.E033`.
-
-The final design retained `username` while requiring a unique email:
-
-``` python
-class User(AbstractUser):
-    email = models.EmailField(unique=True)
-
-    def __str__(self):
-        return self.email
-```
-
-The API user serializer exposes fields including:
-
-``` text
-id
-username
-email
-first_name
-last_name
-```
-
-This kept compatibility with Django's authentication/admin ecosystem
-while enforcing unique email addresses.
-
-## Authentication and Authorization
-
-Authentication uses Django REST Framework with Simple JWT.
-
-The client maintains an access token and refresh token in browser
-`localStorage`.
-
-Authenticated requests include:
-
-``` http
-Authorization: Bearer <access-token>
-```
-
-The shared `apiFetch()` layer handles automatic refresh and retry after
-a `401`.
-
-Refresh-token rotation is enabled. When a replacement refresh token is
-returned, the frontend stores it.
-
-### Session Validation
-
-Initial authentication state checks whether an access token exists. The
-app then validates the current session through:
-
-``` text
-GET /resume-analyzer-app-api/user/me/
-```
-
-### Protected Routes
-
-Authenticated React pages use `ProtectedRoute`. Nested dashboard routes
-inherit the parent route's protection.
-
-### Backend Ownership
-
-Protected resources are scoped to the current user, for example:
-
-``` python
-JobApplication.objects.filter(owner=self.request.user)
-```
-
-Resume and analysis relationships are also ownership-checked before
-association. Knowing another resource's UUID is therefore not sufficient
-to access or modify it.
-
-## Resume Processing Pipeline
-
-``` text
-1. User selects resume
-        |
-        v
-2. React requests an upload
-        |
-        v
-3. Django generates S3 upload information
-        |
-        v
-4. Browser uploads directly to S3
-        |
-        v
-5. React tells Django upload completed
-        |
-        v
-6. Backend verifies S3 object
-        |
-        v
-7. Resume record is finalized
-        |
-        v
-8. Text extraction begins
-        |
-        v
-9. Text is normalized and stored
-        |
-        v
-10. Thumbnail is generated
-        |
-        v
-11. Resume analysis runs
-        |
-        v
-12. Structured analysis is stored
-        |
-        v
-13. React displays resume/history/results
-```
-
-Upload, extraction, thumbnail generation, and analysis are separate
-stages so they can be tested and fail independently.
-
-## Amazon S3 Storage
-
-Resume files are stored in a private Amazon S3 bucket rather than MySQL.
-
-The backend generates temporary presigned upload information so the
-browser can upload directly:
-
-``` text
-React
-  |
-  | Request upload
-  v
-Django
-  |
-  | Generate presigned upload
-  v
-React
-  |
-  | Direct upload
-  v
-Amazon S3
-```
-
-This reduces EC2 bandwidth and Django memory usage while keeping the
-bucket private.
-
-After upload, Django verifies the S3 object before treating the upload
-as complete. S3 object information is associated with the corresponding
-MySQL `Resume` record.
-
-## Text Extraction
-
-Resume text is extracted server-side after a successful upload. PDF and
-DOCX content are supported.
-
-Utilities created for this workflow include modules such as:
-
-``` text
-text_extraction.py
-utils/s3_helpers.py
-utils/text_utils.py
-```
-
-The pipeline reads the S3 object, extracts document text, normalizes it,
-and persists the extracted content/status.
-
-## Resume Analysis
-
-After extraction, resume text can be sent through the analysis pipeline.
-
-The application uses an external language-model API rather than hosting
-a large model directly on EC2. This was intentional because the EC2
-server is shared with other projects and has limited storage/compute.
-
-Analysis output is structured rather than arbitrary prose. A frontend
-representation includes:
-
-``` ts
-type ResumeAnalysisResponse = {
-    analysis_id: string;
-    resume_id: string;
-    status: string;
-
-    scores: {
-        overall: number;
-        ats: number;
-        keywords: number;
-        experience: number;
-        skills: number;
-    };
-
-    strengths: string[];
-    weaknesses: string[];
-    missing_keywords: string[];
-    recommendations: string[];
-};
-```
-
-The backend also tracks analysis status, model information, prompt
-version, raw result, timestamps, and failure state. Structured output /
-JSON-schema validation keeps model responses compatible with the
-expected application schema.
-
-A resume can have persistent analysis records and the frontend can
-retrieve its analysis history.
-
-V1 does not yet expose a user-facing action to re-run a new analysis on
-an already processed resume.
-
-## Resume Thumbnails
-
-ResuScan generates small resume previews so users can visually identify
-uploaded documents.
-
-The thumbnail is deliberately smaller than a full-resolution document
-render for faster loading. Pillow is an explicit backend dependency and
-should be present in `requirements.txt`.
 
 Conceptually:
 
-``` text
-Resume
-   |
-   v
-Render first-page preview
-   |
-   v
-Resize for thumbnail use
-   |
-   v
-Store thumbnail
-   |
-   v
-Return thumbnail URL
+```text
+jorgeramirez.net
+│
+├── /resuscan/
+│
+├── /ragspace/
+│
+└── /ragspace-api/
 ```
 
-## Job Application Tracker
+This allows multiple full-stack applications to share:
 
-The tracker uses a `JobApplication` model with fields including:
+* One AWS EC2 instance
+* One Apache web server
+* One SSL configuration
+* One Django project
+* Shared authentication infrastructure
+* One deployment pipeline
 
-``` text
-public_id
-owner
-company_name
-job_title
-status
-job_url
-location
-salary_min
-salary_max
-date_applied
-notes
-resume
-resume_analysis
+without requiring a separate server or subdomain for every application.
+
+---
+
+# 🔐 Authentication
+
+RAGspace uses the authentication infrastructure of the existing Django project.
+
+The authentication architecture includes:
+
+* Custom Django User model
+* Unique user accounts
+* JWT access tokens
+* JWT refresh tokens
+* Refresh token rotation
+* Protected REST API endpoints
+* Protected React routes
+* Google OAuth
+* Authenticated resource ownership
+
+Conceptually:
+
+```text
+User
+ │
+ ├── Space
+ │    ├── Document
+ │    └── Conversation
+ │          └── Message
+ │
+ └── Space
+      ├── Document
+      └── Conversation
+```
+
+Every protected API operation must derive ownership from:
+
+```python
+request.user
+```
+
+rather than trusting a user ID supplied by the frontend.
+
+This prevents users from requesting resources belonging to another account simply by manipulating API parameters.
+
+---
+
+# 📚 Knowledge Spaces
+
+The backend uses the technical model name:
+
+```text
+KnowledgeBase
+```
+
+The frontend presents these resources using the simpler product terminology:
+
+> **Spaces**
+
+Example dashboard:
+
+```text
+┌──────────────────────────────────────────────────────────┐
+│                       My Spaces                          │
+│                                           + New Space    │
+├──────────────────────────────────────────────────────────┤
+│                                                          │
+│  Django Documentation                                   │
+│  12 Documents • 3 Conversations                         │
+│                                                          │
+│  Machine Learning Research                              │
+│  8 Documents • 7 Conversations                          │
+│                                                          │
+│  Project Documentation                                  │
+│  5 Documents • 1 Conversation                           │
+│                                                          │
+└──────────────────────────────────────────────────────────┘
+```
+
+Each Space represents an isolated retrieval environment.
+
+### V1 Design Decision
+
+A conversation belongs to exactly **one Space**.
+
+This prevents unrelated knowledge bases from contaminating retrieval results and keeps the initial architecture straightforward.
+
+Multi-Space conversations are intentionally reserved for V2.
+
+---
+
+# 🗄️ Database Architecture
+
+MySQL remains the source of truth for relational application data.
+
+## User
+
+Uses the existing shared custom Django User model.
+
+---
+
+## KnowledgeBase
+
+Represents one user-created Space.
+
+Implemented fields:
+
+```text
+id
+user
+name
 created_at
 updated_at
 ```
 
-`company_name` and `job_title` are required. Other fields can be filled
-later.
+---
 
-Status choices:
+## Document
 
-``` text
-saved
-applied
-interview
-offer
-rejected
-withdrawn
+Represents an uploaded PDF and its processing state.
+
+Implemented fields:
+
+```text
+id
+user
+knowledge_base
+filename
+s3_key
+file_size
+page_count
+status
+created_at
+updated_at
 ```
 
-New applications default to `saved`.
+Processing states:
 
-A job application can optionally reference the resume used and a resume
-analysis. Nullable relationships use `SET_NULL` so deleting a
-resume/analysis does not automatically erase job-application history.
-
-### DRF ModelViewSet
-
-The tracker uses:
-
-``` python
-viewsets.ModelViewSet
+```text
+UPLOADING
+     ↓
+PROCESSING
+     ↓
+EMBEDDING
+     ↓
+READY
 ```
 
-which provides:
+Failures transition to:
 
-``` text
-POST    create
-GET     list
-GET     retrieve
-PUT     update
-PATCH   partial_update
-DELETE  destroy
+```text
+FAILED
 ```
 
-Individual records are looked up using:
+---
 
-``` python
-lookup_field = "public_id"
+## Conversation
+
+Represents a persistent chat session associated with a Space.
+
+Implemented fields:
+
+```text
+id
+user
+knowledge_base
+title
+created_at
+updated_at
 ```
 
-and may use:
+---
 
-``` python
-lookup_url_kwarg = "application_id"
+## Message
+
+Represents an individual message.
+
+Implemented fields:
+
+```text
+id
+conversation
+role
+content
+sources
+created_at
 ```
 
-for API readability.
+Primary roles:
 
-The queryset is scoped to the authenticated user, and referenced
-resumes/analyses are separately ownership-validated.
-
-## Kanban Board
-
-The tracker includes a responsive Kanban interface.
-
-Primary workflow:
-
-``` text
-+---------+---------+-----------+-------+
-| Saved   | Applied | Interview | Offer |
-+---------+---------+-----------+-------+
-| Job A   | Job C   | Job E     | Job F |
-| Job B   | Job D   |           |       |
-+---------+---------+-----------+-------+
+```text
+USER
+ASSISTANT
 ```
 
-Cards can display job title, company, location, salary, application
-date, and status.
+---
 
-Status changes use the existing `PATCH` endpoint instead of a separate
-status endpoint.
+# ☁️ AWS S3 Document Storage
 
-## API Design
+AWS S3 stores the **original PDF files**.
 
-The API lives beneath:
+PDF binaries are not stored directly inside MySQL or permanently on the EC2 filesystem.
 
-``` text
-/resume-analyzer-app-api/
+Conceptual S3 organization:
+
+```text
+ragspace/
+└── users/
+    └── <user-id>/
+        └── spaces/
+            └── <space-id>/
+                └── documents/
+                    ├── <uuid>.pdf
+                    ├── <uuid>.pdf
+                    └── <uuid>.pdf
 ```
 
-Important V1 endpoints include:
+## Why Keep the Original PDF?
 
-``` text
-Authentication
---------------
-/auth/login/
-/auth/refresh/
-/auth/logout/
-/auth/register/
+After vectors have been generated, the original PDF is technically no longer required for ordinary semantic retrieval.
 
-Current User
-------------
-GET /user/me/
+RAGspace intentionally keeps it anyway.
 
-Resume Upload
--------------
-POST /resumes/upload-request/
-POST /resumes/upload-complete/
+This allows:
 
-Resume Processing
------------------
-POST /resumes/<resume_id>/extract/
-POST /resumes/<resume_id>/analyze/
+* ✅ Users to reopen original sources
+* ✅ Download support
+* ✅ Clickable citations
+* ✅ Reprocessing documents
+* ✅ Changing the chunking algorithm
+* ✅ Re-embedding documents
+* ✅ Migrating embedding models
+* ✅ Future OCR processing
+* ✅ Recovering from vector database loss
 
-Resume Thumbnails
------------------
-/resumes/<resume_id>/thumbnail/
-/resumes/<resume_id>/thumbnail-url/
+Chunks themselves are **not** stored in S3.
 
-Resume Management
------------------
-GET    /resumes/
-DELETE /resumes/<resume_id>/
+---
 
-Analysis History
-----------------
-GET /resumes/<resume_id>/analyses/
+# 🔎 Qdrant Vector Database
 
-Job Applications
-----------------
-GET    /job-applications/
-POST   /job-applications/
-GET    /job-applications/<application_id>/
-PUT    /job-applications/<application_id>/
-PATCH  /job-applications/<application_id>/
-DELETE /job-applications/<application_id>/
+RAGspace uses **Qdrant Cloud** as its dedicated vector database.
+
+Collection:
+
+```text
+ragspace_chunks
 ```
 
-The job tracker uses DRF `DefaultRouter`:
+Each Qdrant point represents one document chunk.
 
-``` python
-router = DefaultRouter()
-
-router.register(
-    r"job-applications",
-    JobApplicationViewSet,
-    basename="job-application",
-)
-
-urlpatterns += router.urls
+```text
+Qdrant Point
+│
+├── Point ID
+│
+├── Embedding Vector
+│
+└── Payload
+    ├── chunk_text
+    ├── user_id
+    ├── knowledge_base_id
+    ├── document_id
+    ├── filename
+    ├── page
+    ├── chunk_index
+    └── token_count
 ```
 
-Registering the ViewSet alone is not sufficient; the router URLs must
-also be added to Django's URL patterns.
+## One Collection vs. Many Collections
 
-## Routing
+RAGspace V1 uses **one shared collection** rather than creating a Qdrant collection for every user or every Space.
 
-The production SPA is served beneath:
+Isolation happens through metadata filtering.
 
-``` text
-/resuscan/
+Every retrieval query must filter by at least:
+
+```text
+user_id
+knowledge_base_id
 ```
 
-The React application uses a basename of:
+Document-level operations can additionally filter by:
 
-``` text
-/resuscan
+```text
+document_id
 ```
 
-Main React routes include:
+This architecture scales more cleanly than dynamically creating thousands of small collections.
 
-``` text
-/
-/login
-/register
-/forgot-password
-/reset-password
-/profile
-/resume-analyzer
+---
+
+# 🧠 Embeddings
+
+RAGspace V1 uses:
+
+```text
+OpenAI text-embedding-3-small
 ```
 
-Authenticated dashboard routes include:
+Embeddings convert text into numerical vectors representing semantic information.
 
-``` text
-/resume-analyzer
-/resume-analyzer/documents
-/resume-analyzer/find-jobs
-/resume-analyzer/saved-jobs
+For example:
+
+```text
+"Django authentication uses middleware."
+              ↓
+        Embedding Model
+              ↓
+[0.018, -0.221, 0.047, ..., 0.192]
 ```
 
-In production these resolve beneath `/resuscan`.
+The vectors themselves are **not sent to the generation model**.
 
-`ResumeAnalyzerDashboardPage` is the protected parent route and child
-content is rendered through `<Outlet />`.
+Their purpose is retrieval.
 
-### Django SPA Catch-All
+```text
+Document Chunk
+      ↓
+Embedding
+      ↓
+Vector
+      ↓
+Stored in Qdrant
+```
 
-Direct browser requests and refreshes reach the server before React
-Router. Django therefore serves the Vite `index.html` for ResuScan
-routes, including nested paths.
+Later:
 
-The production configuration includes the equivalent of:
+```text
+User Question
+      ↓
+Embedding
+      ↓
+Query Vector
+      ↓
+Compared Against Stored Vectors
+      ↓
+Relevant Chunks Returned
+```
 
-``` python
+The **actual retrieved text** is ultimately supplied to the language model.
+
+---
+
+## Embedding Model Consistency
+
+The same embedding model must be used for:
+
+* Document chunks
+* User search queries
+
+Changing the embedding model requires existing documents to be re-embedded because vector spaces produced by different models should not be assumed to be directly compatible.
+
+---
+
+## Batch Embeddings
+
+Chunks are embedded in batches.
+
+Instead of:
+
+```text
+Chunk 1 → API call
+Chunk 2 → API call
+Chunk 3 → API call
+Chunk 4 → API call
+```
+
+RAGspace uses batched requests:
+
+```text
+Chunk 1 ┐
+Chunk 2 │
+Chunk 3 ├──> One Batch Request
+Chunk 4 │
+Chunk 5 ┘
+```
+
+This reduces:
+
+* Network overhead
+* API requests
+* Processing time
+* Ingestion complexity
+
+---
+
+# 📥 Document Ingestion Pipeline
+
+The implemented ingestion workflow is:
+
+```text
+User Uploads PDF
+       │
+       ▼
+Frontend Validation
+       │
+       ▼
+Django Validation
+       │
+       ▼
+Create MySQL Document Record
+       │
+       ▼
+Upload Original PDF to S3
+       │
+       ▼
+Extract Text
+       │
+       ▼
+Separate Text by Page
+       │
+       ▼
+Create Overlapping Chunks
+       │
+       ▼
+Batch Chunks
+       │
+       ▼
+OpenAI Embedding API
+       │
+       ▼
+Embedding Vectors
+       │
+       ▼
+Store Vectors + Payload in Qdrant
+       │
+       ▼
+Document.status = READY
+```
+
+If any processing step fails:
+
+```text
+Document.status = FAILED
+```
+
+The frontend can then visibly display the document's state.
+
+Example:
+
+```text
+django-auth.pdf          ✅ Ready
+
+deployment-guide.pdf     ⏳ Processing
+
+scan.pdf                 ❌ Failed
+```
+
+---
+
+# 🚧 Upload Restrictions
+
+RAGspace V1 intentionally includes resource limits.
+
+| Restriction                |             Initial V1 Limit |
+| -------------------------- | ---------------------------: |
+| File type                  |                          PDF |
+| Maximum file size          |                        10 MB |
+| Maximum documents per user |                          ~20 |
+| Maximum pages              |                         ~200 |
+| OCR documents              |          Not supported in V1 |
+| Password-protected PDFs    | Rejected if extraction fails |
+
+An extracted-text or token limit should also be enforced.
+
+A PDF's file size does not necessarily indicate its AI processing cost.
+
+For example:
+
+```text
+10 MB Image-Heavy PDF
+≈ Little extractable text
+
+10 MB Text-Heavy PDF
+≈ Potentially hundreds of thousands of tokens
+```
+
+Therefore the backend should validate both file characteristics and extracted content.
+
+Frontend validation improves UX.
+
+Backend validation remains authoritative because frontend validation can be bypassed.
+
+---
+
+# ✂️ Chunking Strategy
+
+Documents cannot simply be embedded as one enormous block of text.
+
+Instead, extracted text is divided into smaller semantic units called **chunks**.
+
+Initial configuration:
+
+```text
+Chunk Size:       ~600 tokens
+Chunk Overlap:    ~120 tokens
+```
+
+Exact values remain configurable.
+
+---
+
+## Why Use Overlap?
+
+Imagine:
+
+```text
+Chunk 1:
+Authentication middleware processes the incoming request and...
+
+Chunk 2:
+...associates an authenticated user with request.user.
+```
+
+Without overlap, the explanation could be split at an important conceptual boundary.
+
+Overlap allows neighboring chunks to retain some shared context.
+
+```text
+Chunk 1
+████████████████████
+
+Chunk 2
+              ████████████████████
+
+Chunk 3
+                            ████████████████████
+```
+
+Too much overlap is also undesirable because it:
+
+* Duplicates information
+* Increases embedding costs
+* Increases vector storage
+* Can cause repetitive search results
+
+---
+
+# 🔍 Retrieval Pipeline
+
+The RAGspace retrieval process is intentionally more sophisticated than simply:
+
+> Question → Vector Search → GPT
+
+The implemented pipeline is:
+
+```text
+                     User Question
+                           │
+                           │
+                 Recent Conversation
+                           │
+                           ▼
+                Query Contextualization
+                           │
+                           ▼
+                Standalone Search Query
+                           │
+                           ▼
+                   OpenAI Embedding
+                           │
+                           ▼
+                 Qdrant Similarity Search
+                           │
+                           ▼
+                  Metadata Filtering
+                           │
+                           ▼
+                  Candidate Chunks
+                           │
+                           ▼
+                  Relevance Threshold
+                           │
+                           ▼
+                  Optional Reranking
+                           │
+                           ▼
+                    Best Context
+                           │
+                           ▼
+                       GPT
+                           │
+                           ▼
+                Grounded Answer + Sources
+```
+
+---
+
+# 💬 Conversational RAG
+
+A basic RAG system can struggle with follow-up questions.
+
+Consider:
+
+```text
+User:
+How does Django authentication middleware work?
+
+Assistant:
+...
+
+User:
+What happens if there isn't one?
+```
+
+Embedding only:
+
+```text
+"What happens if there isn't one?"
+```
+
+creates a weak retrieval query because the phrase contains very little context.
+
+RAGspace solves this with **query contextualization**.
+
+The system considers:
+
+```text
+Previous Conversation
+        +
+Current Question
+        ↓
+Contextualization Model
+        ↓
+Standalone Retrieval Query
+```
+
+Possible rewritten query:
+
+```text
+What happens when a Django application does not use
+authentication middleware?
+```
+
+That rewritten query is then embedded and used for semantic search.
+
+The user's original wording remains available for final answer generation.
+
+---
+
+# 🧾 Conversation Memory
+
+Conversation history lives in:
+
+```text
+MySQL
+```
+
+not Qdrant.
+
+### Responsibilities
+
+**Qdrant**
+
+```text
+Document Knowledge
+```
+
+**MySQL**
+
+```text
+Conversation State
+Application State
+```
+
+The entire conversation will not be sent to the model forever.
+
+Instead, RAGspace initially uses approximately:
+
+```text
+8 Recent Messages
+```
+
+This value is configurable.
+
+Why?
+
+An unlimited history window would continuously increase:
+
+* Prompt size
+* Input tokens
+* Cost
+* Latency
+
+Long-term conversation summarization is reserved for V2.
+
+---
+
+# 📐 Similarity Search
+
+The contextualized query is embedded using the same embedding model used for document ingestion.
+
+Qdrant performs nearest-neighbor vector search.
+
+```text
+                   Query Vector
+                        │
+             ┌──────────┼──────────┐
+             ▼          ▼          ▼
+          Chunk A    Chunk B    Chunk C
+           0.91       0.85       0.72
+```
+
+Initial candidate count:
+
+```text
+~12 chunks
+```
+
+This value should remain configurable.
+
+---
+
+# 🎯 Relevance Threshold
+
+A vector database can always return the **closest result**.
+
+That does not mean the closest result is actually useful.
+
+Example:
+
+```text
+Question:
+"What is the company's maternity leave policy?"
+
+Available Documents:
+Django Documentation
+Machine Learning Research
+AWS Documentation
+```
+
+Qdrant can still mathematically return something.
+
+RAGspace therefore applies a relevance threshold.
+
+```text
+Qdrant Results
+      ↓
+Minimum Relevance Threshold
+      ↓
+Relevant?
+ ┌────┴────┐
+Yes        No
+ │          │
+ ▼          ▼
+Continue   Insufficient Context
+```
+
+If no chunks pass the threshold, RAGspace should avoid pretending it found an answer.
+
+Instead, it should respond with something similar to:
+
+> RAGspace could not find enough relevant information in this Space to answer that question.
+
+The score threshold should be determined experimentally instead of blindly hard-coding a value such as `0.75`.
+
+---
+
+# 🏆 Reranking
+
+RAGspace supports a second retrieval stage using:
+
+```text
+Voyage rerank-2.5-lite
+```
+
+Vector similarity provides the initial candidate set.
+
+The reranker then performs a deeper relevance comparison between the query and each retrieved passage.
+
+```text
+Qdrant
+   │
+   ▼
+Top ~12 Candidates
+   │
+   ▼
+Similarity Threshold
+   │
+   ▼
+Voyage Reranker
+   │
+   ▼
+Best ~5 Chunks
+   │
+   ▼
+GPT
+```
+
+---
+
+## Graceful Degradation
+
+Reranking is an enhancement.
+
+It should **not** be required for RAGspace to work.
+
+```text
+Reranker Available
+
+Qdrant
+   ↓
+Threshold
+   ↓
+Reranker
+   ↓
+GPT
+```
+
+If Voyage is unavailable:
+
+```text
+Reranker Unavailable
+
+Qdrant
+   ↓
+Threshold
+   ↓
+GPT
+```
+
+Conceptually:
+
+```python
+if RERANKING_ENABLED and candidates:
+    try:
+        candidates = rerank(query, candidates)
+    except Exception:
+        logger.exception("Reranking failed. Falling back.")
+```
+
+This prevents an optional external service from becoming a single point of failure.
+
+---
+
+# 🤖 Generation
+
+The initially selected answer-generation model is:
+
+```text
+GPT-5 mini
+```
+
+The specific model should remain environment/configuration-driven.
+
+For example:
+
+```text
+RAG_GENERATION_MODEL
+```
+
+rather than hard-coding the model across multiple Python files.
+
+The final generation request receives:
+
+```text
+System Instructions
+        +
+Recent Conversation
+        +
+Original User Question
+        +
+Retrieved Context
+        +
+Source Metadata
+        ↓
+GPT
+        ↓
+Grounded Answer
+```
+
+The generation prompt instructs the model to:
+
+* Prioritize retrieved information
+* Avoid inventing document content
+* Distinguish knowledge from retrieved evidence
+* Admit when the context is insufficient
+* Use source metadata appropriately
+
+---
+
+# 🔗 Source Attribution
+
+RAGspace makes retrieval visible to the user.
+
+Example response UI:
+
+```text
+Django authentication middleware associates an authenticated
+user with each incoming request and exposes that user through
+request.user.
+
+Sources
+────────────────────────────────────────
+
+📄 django-authentication.pdf
+Page 14
+Relevance: 91%
+
+📄 django-security.pdf
+Page 7
+Relevance: 86%
+```
+
+Source metadata originates from the Qdrant payload associated with each chunk.
+
+Source cards are clickable. The authenticated backend generates a short-lived presigned S3 GET URL and the browser opens the original PDF at the cited page.
+
+This helps demonstrate that RAGspace is performing actual retrieval rather than simply behaving like a generic chatbot.
+
+---
+
+# 🗑️ Document Deletion
+
+Deleting a document requires cleanup across **three storage layers**.
+
+```text
+                     Delete Document
+                           │
+           ┌───────────────┼───────────────┐
+           │               │               │
+           ▼               ▼               ▼
+        AWS S3          Qdrant           MySQL
+           │               │               │
+      Delete PDF      Delete Vectors    Delete Record
+```
+
+Implemented order:
+
+```text
+1. Delete Qdrant vectors
+2. Delete S3 object
+3. Delete MySQL record
+```
+
+External resources are cleaned up before the relational record is removed. If external cleanup fails, the MySQL record is preserved so the application retains the metadata needed to retry cleanup.
+
+Qdrant points can be removed using payload metadata:
+
+```text
+user_id
+knowledge_base_id
+document_id
+```
+
+Deleting the MySQL record last helps retain the metadata required to identify external resources if cleanup fails.
+
+## Space Deletion
+
+Deleting a Space performs external cleanup before Django's relational cascade:
+
+```text
+Delete Space
+    ↓
+Load Space Documents
+    ↓
+Delete Qdrant Vectors
+    ↓
+Delete S3 PDFs
+    ↓
+MySQL Transaction
+    ↓
+Delete KnowledgeBase
+    ↓
+Django CASCADE
+    ├── Documents
+    ├── Conversations
+    └── Messages
+```
+
+This prevents a deleted Space from leaving orphaned PDFs or vector points behind.
+
+
+---
+
+# ⚙️ RAG Service Architecture
+
+RAG-specific logic will be separated into dedicated Python services.
+
+```text
+ragspace_api/
+│
+├── models.py
+├── serializers.py
+├── views.py
+├── urls.py
+│
+└── services/
+    │
+    ├── document_service.py
+    ├── text_extraction.py
+    ├── chunking.py
+    ├── embeddings.py
+    ├── vector_store.py
+    ├── contextualizer.py
+    ├── retrieval.py
+    ├── reranker.py
+    └── generator.py
+```
+
+<details>
+
+<summary><strong>📄 document_service.py</strong></summary>
+
+Coordinates the document lifecycle.
+
+Responsibilities may include:
+
+* Document record creation
+* S3 uploads
+* Ingestion orchestration
+* Status changes
+* Document deletion
+* External resource cleanup
+
+</details>
+
+<details>
+
+<summary><strong>📖 text_extraction.py</strong></summary>
+
+Responsible for:
+
+* Opening supported PDFs
+* Extracting text
+* Preserving page information
+* Detecting extraction failures
+
+</details>
+
+<details>
+
+<summary><strong>✂️ chunking.py</strong></summary>
+
+Responsible for:
+
+* Token-aware splitting
+* Chunk overlap
+* Chunk indexing
+* Page metadata preservation
+
+</details>
+
+<details>
+
+<summary><strong>🧠 embeddings.py</strong></summary>
+
+Responsible for:
+
+* OpenAI embedding requests
+* Batch embedding
+* Embedding model configuration
+* Embedding errors
+
+</details>
+
+<details>
+
+<summary><strong>🔎 vector_store.py</strong></summary>
+
+Owns Qdrant interactions including:
+
+* Collection initialization
+* Point insertion
+* Payload indexes
+* Vector search
+* User/Space filters
+* Document-vector deletion
+
+</details>
+
+<details>
+
+<summary><strong>💬 contextualizer.py</strong></summary>
+
+Converts follow-up questions into standalone retrieval queries using recent conversation context.
+
+</details>
+
+<details>
+
+<summary><strong>🎯 retrieval.py</strong></summary>
+
+Coordinates:
+
+```text
+Query
+ ↓
+Embedding
+ ↓
+Qdrant
+ ↓
+Threshold
+ ↓
+Reranker
+ ↓
+Final Context
+```
+
+</details>
+
+<details>
+
+<summary><strong>🏆 reranker.py</strong></summary>
+
+Provides optional Voyage AI second-stage relevance ranking.
+
+Failures fall back gracefully to the original vector ranking.
+
+</details>
+
+<details>
+
+<summary><strong>🤖 generator.py</strong></summary>
+
+Responsible for:
+
+* Grounded prompt construction
+* Source context formatting
+* Conversation context
+* GPT generation
+* Model configuration
+
+</details>
+
+---
+
+# 🎛️ Configuration
+
+Important RAG behavior should be configurable.
+
+Potential settings:
+
+```python
+RAG_CHUNK_SIZE = 600
+RAG_CHUNK_OVERLAP = 120
+
+RAG_CANDIDATE_K = 12
+RAG_FINAL_K = 5
+RAG_SCORE_THRESHOLD = 0.30
+
+RAG_HISTORY_MESSAGE_LIMIT = 8
+
+RAG_RERANKING_ENABLED = True
+RAG_RERANK_MODEL = "rerank-2.5-lite"
+
+RAG_EMBEDDING_MODEL = "text-embedding-3-small"
+RAG_GENERATION_MODEL = "gpt-5-mini"
+RAG_CONTEXTUALIZATION_MODEL = "gpt-5-mini"
+
+RAG_MAX_FILE_SIZE = ...
+RAG_MAX_DOCUMENTS_PER_USER = 20
+```
+
+Benefits include:
+
+* Easier experimentation
+* Easier model migration
+* Retrieval tuning
+* Cost optimization
+* No duplicated magic numbers
+
+---
+
+# 🔑 Environment Variables
+
+Secrets must **never** be committed to Git.
+
+Expected environment configuration includes:
+
+```env
+DJANGO_SECRET_KEY=
+
+DATABASE_NAME=
+DATABASE_USER=
+DATABASE_PASSWORD=
+DATABASE_HOST=
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_STORAGE_BUCKET_NAME=
+AWS_REGION=
+
+OPENAI_API_KEY=
+
+QDRANT_URL=
+QDRANT_API_KEY=
+
+VOYAGE_API_KEY=
+
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
+
+Environment files are excluded through `.gitignore`.
+
+Examples:
+
+```gitignore
+.env
+.env.*
+node_modules/
+```
+
+Production secrets remain on the production environment and are never stored directly in source control.
+
+---
+
+# 🔵 Google OAuth
+
+RAGspace supports Google OAuth alongside the existing JWT authentication architecture.
+
+```text
+User
+ ↓
+Continue with Google
+ ↓
+Google OAuth
+ ↓
+Django Authentication
+ ↓
+Application User
+ ↓
+JWT Session
+ ↓
+RAGspace
+```
+
+Django remains responsible for:
+
+* User records
+* Resource ownership
+* Authorization
+* Space ownership
+* Document ownership
+* Conversation ownership
+
+OAuth credentials are stored through environment variables and never committed to the repository.
+
+---
+
+# 🖥️ AWS EC2 Architecture
+
+RAGspace runs on the existing AWS EC2 environment.
+
+The EC2 server is deliberately treated primarily as an:
+
+> **Application and orchestration server**
+
+rather than performing heavy AI inference locally.
+
+```text
+AWS EC2
+│
+├── Apache2
+├── Django
+├── Django REST Framework
+├── MySQL Access
+├── RAGspace API
+├── Existing Applications
+├── React Production Builds
+│
+├────────► AWS S3
+│
+├────────► Qdrant Cloud
+│
+├────────► OpenAI
+│
+└────────► Voyage AI
+```
+
+Heavy workloads are delegated to managed external services.
+
+### Why?
+
+The server has finite:
+
+* CPU
+* RAM
+* Disk space
+
+RAGspace is intended to coexist with multiple other applications on the same machine.
+
+Therefore:
+
+| Workload                    | Location     |
+| --------------------------- | ------------ |
+| Django application          | EC2          |
+| Apache                      | EC2          |
+| React build serving         | EC2          |
+| Relational application data | MySQL        |
+| Original documents          | AWS S3       |
+| Vector storage/search       | Qdrant Cloud |
+| Embeddings                  | OpenAI       |
+| Generation                  | OpenAI       |
+| Reranking                   | Voyage AI    |
+
+---
+
+# 🌍 Apache & SPA Serving
+
+Vite generates the production frontend:
+
+```text
+ragspace-frontend/dist/
+```
+
+Django serves the SPA's:
+
+```text
+index.html
+```
+
+for the RAGspace route.
+
+Conceptually:
+
+```python
 path(
-    "resuscan/<path:path>",
+    "ragspace/",
     TemplateView.as_view(
-        template_name="resume-analyzer-app/dist/index.html"
+        template_name="index.html"
     )
 )
 ```
 
-React Router then decides which child component to render.
+React Router handles navigation after the SPA loads.
 
-## Production Infrastructure
-
-ResuScan is deployed on an Ubuntu AWS EC2 instance.
-
-The host runs:
-
-``` text
-Ubuntu
-Apache2
+```text
+Browser
+   ↓
+https://jorgeramirez.net/ragspace/
+   ↓
+Apache
+   ↓
 Django
-Python environment
-MySQL
-Built React/Vite applications
-Deployment scripts
+   ↓
+Vite dist/index.html
+   ↓
+React
+   ↓
+React Router
 ```
 
-The same server hosts multiple projects/frontends, historically
-including:
+Static paths and Django template directories will be configured when production integration is completed.
 
-``` text
-homepage-frontend/build
-homepage-react-frontend-parallax-semantic/build
-resume-analyzer-app/dist
+---
+
+# 🐙 Git & GitHub
+
+RAGspace is version controlled using Git and GitHub.
+
+The repository should never track:
+
+```text
+node_modules/
+.env
+.env.*
+secret keys
+API credentials
+OAuth secrets
+AWS credentials
+generated local files
 ```
 
-This shared-hosting constraint influenced the decision not to host large
-AI models directly on the instance.
+Before committing:
 
-## Apache Configuration
-
-Apache2 is the production web server.
-
-Its responsibilities include serving the domain/static assets, routing
-requests to Django, supporting deployed React applications, and
-maintaining the separation between:
-
-``` text
-/resuscan/...                    -> React SPA
-/resume-analyzer-app-api/...    -> Django REST API
+```bash
+git status
 ```
 
-Django template/static configuration was updated to make the Vite
-build's `resume-analyzer-app/dist/index.html` available. Explicitly
-serving that SPA entry point resolved an earlier production 404.
+should always be reviewed for unexpected files.
 
-## MySQL Setup
+---
 
-MySQL is installed on the EC2 host and used by Django.
+# 🔄 CI/CD
 
-During setup, Django encountered:
+RAGspace reuses the existing automated GitHub Actions deployment architecture.
 
-``` text
-ModuleNotFoundError: No module named 'MySQLdb'
-```
-
-The environment required MySQL development dependencies and the Python
-`mysqlclient` package. Setup included packages such as:
-
-``` text
-default-libmysqlclient-dev
-libmysqlclient-dev
-libssl-dev
-build-essential
-pkg-config
-```
-
-followed by:
-
-``` bash
-pip install mysqlclient
-```
-
-Afterward, migrations ran successfully.
-
-## CORS
-
-Local Vite development has used:
-
-``` text
-http://localhost:5173
-```
-
-Django CORS configuration was updated so the local frontend could
-communicate with the API. Production uses the hosted domain.
-
-## CI/CD
-
-Git and GitHub are used for source control. GitHub Actions automates
-deployment to EC2.
-
-Repository secrets include values in the form of:
-
-``` text
-EC2_HOST
-EC2_USERNAME
-EC2_SSH_KEY
-```
-
-Each is stored as a separate GitHub Actions secret.
-
-Deployment flow:
-
-``` text
-Local development
-      |
-      v
-git commit
-      |
-      v
-git push
-      |
-      v
+```text
+Local Development
+       │
+       ▼
+    git push
+       │
+       ▼
+GitHub Repository
+       │
+       ▼
 GitHub Actions
-      |
-      v
-SSH into EC2
-      |
-      v
-Run deployment script
-      |
-      v
-Pull/build/update application
-      |
-      v
-Production
+       │
+       ▼
+Secure EC2 Deployment
+       │
+       ▼
+Pull Latest Changes
+       │
+       ├── Python Dependencies
+       │
+       ├── Django Migrations
+       │
+       ├── React Build(s)
+       │
+       ├── Static Assets
+       │
+       └── Service Reload
+       │
+       ▼
+   Production
 ```
 
-A `deploy.sh` script is part of the deployment workflow. Django
-deployment includes migration handling and frontend deployment rebuilds
-the Vite application when required.
+The existing deployment script builds and deploys RAGspace alongside the other applications in the Django project.
 
-## Local Development
+Potential addition:
 
-### Frontend
-
-``` bash
-npm install
-npm run dev
+```bash
+cd ragspace-frontend
+npm ci
+npm run build
 ```
 
-Because Vite uses the configured base, local development may be accessed
-beneath:
+Production integration uses the existing EC2, Apache2, Django, and GitHub Actions deployment workflow.
 
-``` text
-http://localhost:5173/static/
+---
+
+
+# 🔌 Key API Workflows
+
+RAGspace exposes authenticated REST endpoints beneath:
+
+```text
+/ragspace-api/
 ```
+
+Major workflows include:
+
+| Workflow | Endpoint Pattern |
+| --- | --- |
+| List/Create Spaces | `GET/POST /spaces/` |
+| Space detail/update/delete | `GET/PATCH/DELETE /spaces/<id>/` |
+| List documents | `GET /documents/` |
+| Create presigned upload | `POST /documents/presign/` |
+| Complete + process upload | `POST /documents/<id>/complete/` |
+| Open private source PDF | `GET /documents/<id>/view/` |
+| Delete document | `DELETE /documents/<id>/` |
+| List/Create conversations | `GET/POST /conversations/` |
+| Conversation messages | `GET /conversations/<id>/messages/` |
+| Delete conversation | `DELETE /conversations/<id>/` |
+| Ask a Space | `POST /ask/` |
+
+The frontend API client attaches JWT credentials and handles token refresh for Django requests. Direct S3 uploads intentionally use the browser `fetch` API against the presigned S3 URL so application JWT headers are never sent to S3.
+
+---
+
+# ✅ V1 Scope
+
+RAGspace V1 focuses on a polished core RAG experience while avoiding unnecessary infrastructure complexity.
+
+### Authentication
+
+* [x] Standard login
+* [x] JWT authentication
+* [x] Refresh token support
+* [x] Google OAuth
+* [x] Protected routes
+
+### Spaces
+
+* [x] Create Space
+* [x] Rename Space
+* [x] Open Space
+* [x] Delete Space
+
+### Documents
+
+* [x] Upload PDFs
+* [x] Validate PDFs
+* [x] AWS S3 storage
+* [x] PDF text extraction
+* [x] Processing states
+* [x] Document deletion
+
+### Retrieval
+
+* [x] Text chunking
+* [x] Chunk overlap
+* [x] Batched embeddings
+* [x] Qdrant storage
+* [x] Metadata filtering
+* [x] Similarity search
+* [x] Relevance threshold
+* [x] Optional reranking
+
+### Conversation
+
+* [x] Create conversations
+* [x] Save conversation history
+* [x] Save messages
+* [x] Query contextualization
+* [x] Recent conversational memory
+* [x] Grounded GPT answers
+* [x] Source references
+* [x] Page attribution
+
+### Deployment
+
+* [x] Existing EC2 server
+* [x] Existing Django project
+* [x] Existing MySQL infrastructure
+* [x] Existing GitHub Actions pipeline
+* [x] RAGspace Vite application initialized
+* [x] Django API integration
+* [x] Apache integration
+* [x] Updated CI/CD
+* [x] Production deployment
+
+---
+
+# 🔮 V2 Boundary
+
+The following features are intentionally excluded from the initial one-day V1 build.
+
+This is an architectural decision, not a limitation of the overall project vision.
+
+---
+
+## 👁️ OCR
+
+V1 focuses on text-based PDFs.
+
+Future support may include:
+
+* Scanned documents
+* Image-only PDFs
+* OCR pipelines
+* Document vision models
+
+---
+
+## 🌌 Multi-Space Conversations
+
+V1:
+
+```text
+Conversation
+      ↓
+One Space
+```
+
+Potential V2:
+
+```text
+Conversation
+      │
+      ├── Space A
+      ├── Space B
+      └── Space C
+```
+
+The relational architecture can later evolve toward many-to-many Space relationships without requiring existing documents to be re-embedded.
+
+---
+
+## ⚙️ Background Processing
+
+V1 prioritizes development speed and architectural clarity.
+
+Future ingestion could use:
+
+```text
+Upload
+  ↓
+Django
+  ↓
+S3
+  ↓
+Job Queue
+  ↓
+Worker
+  ↓
+Extract
+  ↓
+Chunk
+  ↓
+Embed
+  ↓
+Qdrant
+```
+
+Potential technologies:
+
+* Celery
+* Redis
+* Dedicated workers
+* Job retries
+* Dead-letter handling
+
+---
+
+## 🧠 Long-Term Conversation Memory
+
+V1:
+
+```text
+Recent Message Window
+```
+
+V2 may add:
+
+```text
+Recent Messages
+      +
+Conversation Summary
+      ↓
+LLM
+```
+
+This allows long-running conversations without continually resending the full chat history.
+
+---
+
+## 🔍 Advanced Retrieval
+
+Potential future enhancements:
+
+* Hybrid keyword + semantic search
+* Sparse embeddings
+* Query expansion
+* Dynamic Top-K
+* Structure-aware chunking
+* Retrieval evaluation datasets
+* Automated RAG evaluation
+* More advanced reranking
+* Multiple embedding strategies
+
+---
+
+## 👥 Collaboration
+
+Potential functionality:
+
+* Shared Spaces
+* Team Spaces
+* Organizations
+* Workspace members
+* Role-based permissions
+* Public/private Spaces
+
+---
+
+## 💳 SaaS Features
+
+Possible commercial expansion:
+
+* Subscription tiers
+* Usage quotas
+* Billing
+* Organization accounts
+* API access
+* Administrative dashboard
+* Usage analytics
+* Per-user document limits
+* Per-user token limits
+
+---
+
+# 📈 Future Scaling
+
+RAGspace V1 deliberately avoids premature distributed-system complexity.
+
+A larger production architecture could evolve into:
+
+```text
+                              Internet
+                                 │
+                                 ▼
+                        ┌─────────────────┐
+                        │  Load Balancer  │
+                        └────────┬────────┘
+                                 │
+                   ┌─────────────┴─────────────┐
+                   │                           │
+                   ▼                           ▼
+          ┌─────────────────┐         ┌─────────────────┐
+          │ Django Server 1 │         │ Django Server 2 │
+          └────────┬────────┘         └────────┬────────┘
+                   │                           │
+                   └─────────────┬─────────────┘
+                                 │
+                  ┌──────────────┼───────────────┐
+                  │              │               │
+                  ▼              ▼               ▼
+                RDS             S3          Qdrant Cloud
+                  │                              │
+                  │                        OpenAI / Voyage
+                  │
+                  ▼
+             Redis / Queue
+                  │
+                  ▼
+             Worker Fleet
+```
+
+Potential production infrastructure:
+
+* AWS Application Load Balancer
+* Auto Scaling
+* Amazon RDS
+* Redis
+* Celery
+* Dedicated ingestion workers
+* CDN
+* Centralized logging
+* Monitoring
+* Rate limiting
+* Secrets management
+* Automated backups
+
+These systems should be introduced only when actual scale justifies them.
+
+---
+
+# 🧭 Design Philosophy
+
+### 🧩 Separation of Concerns
+
+Each service has a specific responsibility.
+
+```text
+MySQL     → Relational Data
+S3        → Original Files
+Qdrant    → Vector Retrieval
+OpenAI    → Embeddings + Generation
+Voyage    → Optional Reranking
+Django    → Application Logic
+React     → User Experience
+```
+
+---
+
+### ☁️ Cloud-First AI Inference
+
+Heavy AI workloads are delegated to managed APIs instead of consuming limited EC2 resources.
+
+---
+
+### 🔍 Retrieval Before Generation
+
+The language model is not treated as the application's database.
+
+Relevant information is retrieved first.
+
+```text
+Retrieve
+   ↓
+Ground
+   ↓
+Generate
+```
+
+---
+
+### 🔗 Source Traceability
+
+Answers should reveal the documents and pages that contributed to the generated response.
+
+---
+
+### 🛡️ Secure Multi-User Isolation
+
+Every application and vector retrieval operation must respect authenticated ownership.
+
+```text
+request.user
+      ↓
+Knowledge Base
+      ↓
+Documents
+      ↓
+Vectors
+```
+
+---
+
+### 🧯 Graceful Degradation
+
+Optional improvements such as reranking must never unnecessarily disable the core RAG system.
+
+---
+
+### 🎛️ Configurable Retrieval
+
+Important behavior should remain configurable:
+
+* Chunk size
+* Chunk overlap
+* Candidate count
+* Final context count
+* Score threshold
+* Conversation history
+* Reranking
+* Embedding model
+* Generation model
+
+---
+
+### 🚀 Build for Today Without Blocking Tomorrow
+
+V1 intentionally avoids premature complexity while maintaining clean migration paths toward:
+
+* Background workers
+* Horizontal scaling
+* SaaS functionality
+* Shared Spaces
+* Advanced retrieval
+* Multi-Space conversations
+
+---
+
+# 📸 Screenshots
+
+> **RAGspace V1 is complete and production-ready.**
+
+Recommended screenshots include:
+
+* Dashboard
+* My Spaces
+* Space Detail
+* Document Manager
+* Document Processing
+* RAG Conversation
+* Source Attribution
+* Conversation History
+
+---
+
+# ✅ Development Status
+
+**RAGspace V1 is complete and ready for production deployment.**
 
 ### Backend
 
-``` bash
-pip install -r requirements.txt
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver
-```
+* [x] `ragspace_api` Django application
+* [x] KnowledgeBase, Document, Conversation, and Message models
+* [x] User-scoped serializers, views, permissions, and REST routes
+* [x] Shared JWT authentication and Google OAuth
+* [x] S3 presigned upload pipeline
+* [x] PDF extraction with page preservation
+* [x] Token-aware chunking with overlap
+* [x] OpenAI batch embeddings
+* [x] Qdrant Cloud vector storage and payload indexing
+* [x] Similarity search and relevance threshold
+* [x] Voyage AI reranking with graceful fallback
+* [x] Conversation-aware query contextualization
+* [x] Grounded GPT answer generation
+* [x] Persistent conversations, messages, and source metadata
+* [x] Document and Space cleanup across Qdrant, S3, and MySQL
+* [x] Authenticated presigned source-document viewing
 
-Local API base:
+### Frontend
 
-``` text
-http://127.0.0.1:8000/resume-analyzer-app-api/
-```
+* [x] React + TypeScript + Vite application
+* [x] Login, registration, JWT persistence, and Google OAuth
+* [x] Protected routes
+* [x] Responsive application shell and mobile navigation
+* [x] Space CRUD dashboard
+* [x] Document listing, upload, validation, processing feedback, and deletion
+* [x] Conversation list, history, and deletion
+* [x] New and continuing RAG conversations
+* [x] Source cards with filename and page attribution
+* [x] Click-to-open citations
+* [x] Chat UX polish including Enter-to-send, multiline input, auto-grow, auto-scroll, and generation feedback
 
-## Configuration and Environment Variables
+### Production
 
-Secrets must not be committed to Git.
+* [x] AWS EC2 hosting
+* [x] Apache2 integration
+* [x] MySQL persistence
+* [x] Private AWS S3 storage
+* [x] Qdrant Cloud
+* [x] OpenAI integration
+* [x] Voyage AI integration
+* [x] GitHub Actions CI/CD
+* [x] Production environment configuration
+* [x] V1 deployment readiness
 
-ResuScan requires configuration in categories including:
 
-``` text
-Django
-------
-SECRET_KEY
-DEBUG
-ALLOWED_HOSTS
-
-Database
---------
-MySQL database name
-MySQL username
-MySQL password
-MySQL host
-MySQL port
-
-AWS
 ---
-AWS credentials / IAM configuration
-S3 bucket
-AWS region
 
-AI Service
-----------
-API key
-Model configuration
+<div align="center">
 
-Frontend / Deployment
----------------------
-Production API base URL
-Allowed frontend origins
-EC2 deployment credentials stored as GitHub Secrets
-```
+# 🧠 RAGspace
 
-Use the exact variable names defined by the deployed project when
-configuring an environment.
+### Your knowledge. One intelligent space.
 
-## Security Decisions
+**Private documents → Semantic retrieval → Grounded conversations**
 
--   Resume files are kept in private S3 storage.
--   User-owned querysets are scoped to the authenticated user.
--   Public API resources use UUIDs rather than sequential IDs.
--   UUIDs are not treated as authorization; ownership checks are still
-    mandatory.
--   Protected endpoints require JWT bearer authentication.
--   Referenced resume/analysis IDs are server-side ownership-validated.
--   Registration uses Django's password hashing/user creation
-    mechanisms.
--   Database credentials, AWS credentials, Django secrets, AI API keys,
-    and SSH keys remain outside source control.
+Built with React, TypeScript, Django, AWS, Qdrant, OpenAI, and modern Retrieval-Augmented Generation architecture.
 
-## Important Design Decisions
-
-### MySQL for Relational Data
-
-Users, resumes, analyses, and job applications are strongly relational,
-so MySQL remains the application database.
-
-### S3 for Files
-
-Uploaded documents and generated media belong in object storage rather
-than database BLOBs.
-
-### Direct Browser-to-S3 Uploads
-
-Presigned uploads reduce load on the shared EC2 instance.
-
-### Hosted AI APIs
-
-Large AI models are not hosted on the production EC2 instance, reducing
-disk, RAM, compute, and deployment requirements.
-
-### Separate Frontend Service Layer
-
-Components call dedicated service functions rather than duplicating
-API/authentication logic.
-
-### Nested React Router Layout
-
-The dashboard remains mounted while child pages change, preserving
-temporary dashboard state during tab navigation.
-
-### DRF ModelViewSet for Job Applications
-
-The tracker maps naturally to REST CRUD, so `ModelViewSet` avoids
-duplicating standard CRUD implementations.
-
-### PATCH for Status Changes
-
-Moving an application from Applied to Interview is simply:
-
-``` json
-{
-    "status": "interview"
-}
-```
-
-through the normal partial-update endpoint.
-
-### SET_NULL for Tracker Relationships
-
-Deleting a resume should not erase the historical fact that a job
-application existed, so optional resume/analysis tracker relationships
-are nullable rather than cascading tracker deletion.
-
-## Testing Approach
-
-Postman was used extensively to validate backend behavior before
-frontend integration.
-
-Tested workflows include authentication, JWT headers, current-user
-retrieval, resume upload, upload completion, text extraction, analysis,
-thumbnails, resume listing/deletion, analysis history, and full job
-application CRUD.
-
-A recurring workflow was:
-
-``` text
-Build backend endpoint
-      |
-      v
-Test with Postman
-      |
-      v
-Build TypeScript service
-      |
-      v
-Test locally in React
-      |
-      v
-Push through CI/CD
-      |
-      v
-Verify production
-```
-
-## Known V1 Limitations
-
--   No user-facing action to run a new analysis on an already uploaded
-    resume
--   No job-description-specific resume analysis workflow yet
--   Find Jobs is not yet a complete job-discovery system
--   Resume analysis and job tracking are not yet combined into one
-    job-specific optimization workflow
--   React in-memory state does not survive a full browser refresh unless
-    reconstructed from persistent data
--   Long-running processing could be moved to a stronger background-job
-    architecture
-
-## Future Architecture and Planned Features
-
-The items in this section are planned/considered architecture, not V1
-functionality.
-
-### Job-Specific Resume Analysis
-
-``` text
-Find Job
-   |
-   v
-Save Job
-   |
-   v
-Choose Resume
-   |
-   v
-Analyze Resume Against Job Description
-   |
-   v
-ATS / Keyword / Experience Gap Analysis
-   |
-   v
-Improve Resume
-   |
-   v
-Apply
-   |
-   v
-Track in Kanban
-```
-
-### New / Repeated Analysis
-
-Users could create multiple analyses for the same resume and compare
-changes over time.
-
-### Find Jobs
-
-The existing nested `find-jobs` route provides a natural location for
-future job discovery functionality.
-
-### Background Processing
-
-Long-running operations such as extraction, thumbnail generation, LLM
-analysis, and embedding generation are candidates for future background
-processing so server-side workflows can continue independently of
-browser refreshes.
-
-## Project Philosophy
-
-ResuScan is designed as more than a single AI demo.
-
-``` text
-Presentation
-     |
-     v
-React / TypeScript
-
-API / Business Logic
-     |
-     v
-Django REST Framework
-
-Relational State
-     |
-     v
-MySQL
-
-Object Storage
-     |
-     v
-Amazon S3
-
-Intelligent Processing
-     |
-     v
-External AI Services
-
-Deployment
-     |
-     v
-AWS EC2 + Apache2 + GitHub Actions
-```
-
-Each layer has a distinct responsibility so the application can continue
-growing without putting every concern into a single service or
-component.
-
-## V1 Summary
-
-ResuScan V1 demonstrates:
-
--   Full-stack React/TypeScript + Django development
--   REST API design
--   Custom Django authentication
--   JWT access/refresh flows
--   Protected routes
--   User-level authorization
--   MySQL relational modeling
--   UUID resource identifiers
--   Private S3 object storage
--   Presigned uploads
--   Document text extraction
--   Resume thumbnail generation
--   Structured LLM integration
--   Persistent AI analysis results
--   Job application CRUD
--   Kanban workflow management
--   Responsive UI design
--   Apache production hosting
--   AWS EC2 deployment
--   GitHub Actions CI/CD
--   Local/production environment separation
-
-The first version establishes the infrastructure needed to evolve
-ResuScan from a resume analyzer into a complete job-search workflow
-platform.
+</div>
 
 
 
@@ -1266,15 +2337,6 @@ If you are developing a production application, we recommend enabling type-aware
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
 
 
-
-
-Technology Used:
-GoogleFonts
-Typescript
-React
-CSS
-HTML
-Google OAuth
 
 
 
