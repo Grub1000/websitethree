@@ -23,6 +23,9 @@ urlpatterns = [
     path('home/', TemplateView.as_view(template_name= 'homepage-frontend/build/index.html')),
     path('', TemplateView.as_view(template_name= 'homepage-react-frontend-parallax-semantic/build/index.html')),
 
+
+
+    # Resume Analyzer Api
     path("resume-analyzer-app-api/", include("resume_analyzer_app_api.urls")),
 
 
@@ -34,7 +37,6 @@ urlpatterns = [
         )
     ),
 
-    # Resume Analyzer Api
     path(
         "resuscan/<path:path>",
         TemplateView.as_view(
@@ -54,4 +56,13 @@ urlpatterns = [
                 template_name="ragspace-frontend/dist/index.html"
             )
         ),
+
+    # RAGspace React app (Catch-all route for React Router)    
+    path(
+            "ragspace/<path:path>",
+            TemplateView.as_view(
+                template_name="ragspace-frontend/dist/index.html"
+            )
+        ),
+
 ]
