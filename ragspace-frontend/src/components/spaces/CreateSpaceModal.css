@@ -1,0 +1,210 @@
+.space-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background:
+        rgba(0, 0, 0, 0.65);
+
+    backdrop-filter:
+        blur(4px);
+}
+
+
+.space-modal {
+    width: 100%;
+    max-width: 480px;
+
+    padding: 24px;
+
+    border:
+        1px solid var(--border-secondary);
+
+    border-radius:
+        var(--radius-lg);
+
+    background:
+        var(--bg-secondary);
+
+    box-shadow:
+        0 24px 70px
+        rgba(0, 0, 0, 0.45);
+}
+
+
+.space-modal-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+
+    margin-bottom: 28px;
+}
+
+
+.space-modal-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+
+    letter-spacing: -0.02em;
+}
+
+
+.space-modal-header p {
+    margin-top: 5px;
+
+    color:
+        var(--text-muted);
+
+    font-size: 14px;
+}
+
+
+.space-modal-close {
+    width: 32px;
+    height: 32px;
+
+    flex-shrink: 0;
+
+    border-radius:
+        var(--radius-sm);
+
+    background:
+        transparent;
+
+    color:
+        var(--text-muted);
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+.space-modal-close:hover {
+    background:
+        var(--bg-hover);
+
+    color:
+        var(--text-primary);
+}
+
+
+.space-modal-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.space-modal-field label {
+    color:
+        var(--text-secondary);
+
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+.space-modal-field input {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border:
+        1px solid var(--border-primary);
+
+    border-radius:
+        var(--radius-md);
+
+    outline: none;
+
+    background:
+        var(--bg-tertiary);
+
+    color:
+        var(--text-primary);
+}
+
+
+.space-modal-field input:focus {
+    border-color:
+        var(--text-secondary);
+}
+
+
+.space-modal-error {
+    margin-top: 12px;
+
+    color:
+        var(--danger);
+
+    font-size: 13px;
+}
+
+
+.space-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    margin-top: 28px;
+}
+
+
+.space-modal-cancel,
+.space-modal-create {
+    padding: 10px 16px;
+
+    border-radius:
+        var(--radius-md);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.space-modal-cancel {
+    border:
+        1px solid var(--border-primary);
+
+    background:
+        transparent;
+
+    color:
+        var(--text-secondary);
+}
+
+
+.space-modal-cancel:hover {
+    background:
+        var(--bg-hover);
+
+    color:
+        var(--text-primary);
+}
+
+
+.space-modal-create {
+    background:
+        var(--text-primary);
+
+    color:
+        var(--text-inverse);
+}
+
+
+.space-modal-create:disabled,
+.space-modal-cancel:disabled,
+.space-modal-close:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

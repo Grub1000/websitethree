@@ -146,6 +146,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'homepage-frontend/build/static'),
     os.path.join(BASE_DIR, 'homepage-react-frontend-parallax-semantic/build/static'),
     os.path.join(BASE_DIR, 'resume-analyzer-app/dist'),
+    os.path.join(BASE_DIR, 'ragspace-frontend/dist'),
 ]
 
 REST_FRAMEWORK = { 

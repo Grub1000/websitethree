@@ -45,4 +45,13 @@ urlpatterns = [
 
     # Ragspace Api
     path("ragspace-api/", include("ragspace_api.urls")),
+
+
+    # RAGspace React app
+        path(
+            "ragspace/",
+            TemplateView.as_view(
+                template_name="ragspace-frontend/dist/index.html"
+            )
+        ),
 ]

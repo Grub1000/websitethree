@@ -74,7 +74,6 @@ def verify_uploaded_object(s3_key):
 
 
 
-
 def delete_document_file(s3_key):
     if not s3_key:
         return
@@ -84,4 +83,20 @@ def delete_document_file(s3_key):
     s3_client.delete_object(
         Bucket=settings.RAGSPACE_AWS_STORAGE_BUCKET_NAME,
         Key=s3_key,
+    )
+
+
+
+def generate_presigned_download(
+    s3_key: str,
+):
+    s3_client = get_s3_client()
+
+    return s3_client.generate_presigned_url(
+        "get_object",
+        Params={
+            "Bucket": settings.RAGSPACE_AWS_STORAGE_BUCKET_NAME,
+            "Key": s3_key,
+        },
+        ExpiresIn=300,
     )

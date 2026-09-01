@@ -8,6 +8,7 @@ from rest_framework.response import Response
 # Imports Needed for KnowledgeBase ViewSet
 from .models import KnowledgeBase
 from .serializers import KnowledgeBaseSerializer
+from .services.space_cleanup import delete_knowledge_base
 
 
 # Imports Needed for Document ViewSet
@@ -24,6 +25,9 @@ from .services.embeddings import embed_chunks
 from .services.vector_store import store_document_chunks
 from .services.vector_store import delete_document_chunks
 from .services.s3_service import delete_document_file
+from ragspace_api.services.s3_service import (
+    generate_presigned_download,
+)
 
 
 # Imports Needed for AskSpaceView
@@ -55,6 +59,34 @@ class KnowledgeBaseViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    def destroy(self, request, *args, **kwargs):
+        knowledge_base = self.get_object()
+
+        try:
+            delete_knowledge_base(
+                knowledge_base
+            )
+
+            return Response(
+                status=status.HTTP_204_NO_CONTENT,
+            )
+
+        except Exception as e:
+            print(
+                "RAGspace Space deletion error:",
+                repr(e),
+            )
+
+            return Response(
+                {
+                    "detail": (
+                        "Unable to fully delete the Space. "
+                        "The Space record was preserved."
+                    )
+                },
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
 
 
 
@@ -242,6 +274,8 @@ class DocumentViewSet(viewsets.ModelViewSet):
             self.get_serializer(document).data,
             status=status.HTTP_200_OK,
         )
+
+    
     def destroy(self, request, *args, **kwargs):
         # self.get_object() uses the ViewSet queryset, so the document
         # must belong to the authenticated user.
@@ -280,6 +314,41 @@ class DocumentViewSet(viewsets.ModelViewSet):
                     "detail": (
                         "Unable to fully delete the document. "
                         "The document record was preserved."
+                    )
+                },
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+
+    @action(
+        detail=True,
+        methods=["get"],
+    )
+    def view(self, request, pk=None):
+        document = self.get_object()
+
+        try:
+            url = generate_presigned_download(
+                document.s3_key
+            )
+
+            return Response(
+                {
+                    "url": url,
+                },
+                status=status.HTTP_200_OK,
+            )
+
+        except Exception as e:
+            print(
+                "RAGspace document view error:",
+                repr(e),
+            )
+
+            return Response(
+                {
+                    "detail": (
+                        "Unable to generate "
+                        "document URL."
                     )
                 },
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -384,7 +453,7 @@ class AskSpaceView(APIView):
 
             # print(retrieval_query)
             # print(question)
-            
+
             # Step 4:
             # Only save the USER and ASSISTANT messages after the
             # complete RAG pipeline succeeds.

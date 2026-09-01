@@ -1,0 +1,167 @@
+.login-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    min-height: 100vh;
+
+    background:
+        var(--bg-primary);
+}
+
+
+/* ========================================
+   BRAND PANEL
+======================================== */
+
+.login-brand-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 48px;
+
+    border-right: 1px solid
+        var(--border-primary);
+
+    background:
+        var(--bg-secondary);
+}
+
+.login-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.login-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    border: 1px solid
+        var(--border-secondary);
+
+    border-radius:
+        var(--radius-sm);
+
+    color:
+        var(--text-primary);
+}
+
+.login-brand-content {
+    max-width: 520px;
+
+    margin-bottom: 64px;
+}
+
+.login-brand-content h2 {
+    font-size: clamp(
+        38px,
+        4vw,
+        60px
+    );
+
+    line-height: 1.05;
+
+    font-weight: 600;
+
+    letter-spacing: -0.045em;
+}
+
+.login-brand-content p {
+    max-width: 440px;
+
+    margin-top: 24px;
+
+    color:
+        var(--text-secondary);
+
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+
+/* ========================================
+   FORM PANEL
+======================================== */
+
+.login-form-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 48px;
+}
+
+.login-form-container {
+    width: 100%;
+    max-width: 420px;
+}
+
+.login-register {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+
+    margin-top: 24px;
+
+    color:
+        var(--text-secondary);
+
+    font-size: 14px;
+}
+
+.login-register a {
+    color:
+        var(--text-primary);
+
+    font-weight: 500;
+}
+
+.login-register a:hover {
+    text-decoration: underline;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (
+    max-width: 800px
+) {
+    .login-page {
+        display: block;
+    }
+
+    .login-brand-panel {
+        padding: 28px;
+
+        border-right: none;
+        border-bottom: 1px solid
+            var(--border-primary);
+    }
+
+    .login-brand-content {
+        margin-top: 72px;
+        margin-bottom: 16px;
+    }
+
+    .login-brand-content h2 {
+        font-size: 36px;
+    }
+
+    .login-brand-content p {
+        display: none;
+    }
+
+    .login-form-panel {
+        padding: 48px 28px;
+    }
+}

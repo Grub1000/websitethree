@@ -1,0 +1,179 @@
+.space-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    width: 100%;
+
+    padding: 20px 58px 20px 20px;
+
+    border: 1px solid
+        var(--border-primary);
+
+    border-radius:
+        var(--radius-lg);
+
+    background:
+        var(--bg-secondary);
+
+    color:
+        var(--text-primary);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.space-card:hover {
+    background:
+        var(--bg-tertiary);
+
+    border-color:
+        var(--border-secondary);
+
+    transform:
+        translateY(-1px);
+}
+
+.space-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border: 1px solid
+        var(--border-secondary);
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        var(--bg-primary);
+}
+
+.space-card-content {
+    flex: 1;
+}
+
+.space-card-content h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.space-card-content p {
+    margin-top: 4px;
+
+    color:
+        var(--text-muted);
+
+    font-size: 13px;
+}
+
+
+.space-card-wrapper {
+    position: relative;
+}
+
+.space-card-menu-button {
+    position: absolute;
+
+    top: 14px;
+    right: 14px;
+
+    z-index: 5;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius:
+        var(--radius-sm);
+
+    background:
+        transparent;
+
+    color:
+        var(--text-muted);
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.space-card-menu-button:hover {
+    background:
+        var(--bg-hover);
+
+    color:
+        var(--text-primary);
+}
+
+.space-card-menu {
+    position: absolute;
+
+    top: 48px;
+    right: 14px;
+
+    z-index: 10;
+
+    min-width: 140px;
+
+    padding: 6px;
+
+    border:
+        1px solid var(--border-primary);
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        var(--bg-tertiary);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0, 0, 0, 0.35);
+}
+
+.space-card-menu button {
+    display: block;
+
+    width: 100%;
+
+    padding: 9px 10px;
+
+    border-radius:
+        var(--radius-sm);
+
+    background:
+        transparent;
+
+    color:
+        var(--text-secondary);
+
+    text-align: left;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.space-card-menu button:hover {
+    background:
+        var(--bg-hover);
+
+    color:
+        var(--text-primary);
+}
+
+.space-card-menu-danger {
+    color:
+        var(--danger) !important;
+}
