@@ -21,6 +21,7 @@ import parallaxFive from "./assets/parallax_images/5.svg"
 import parallaxSix from "./assets/parallax_images/7.svg"
 
 // Ordered Newest to Oldest (Project Images)
+import RAGspace from "./assets/project_images/RAGspace.png"
 import activeProject from "./assets/project_images/active_project.png"
 import compSciImage from "./assets/project_images/ComputerScienceCapstoneProjectImage.png"
 import disasterRecoImage from "./assets/project_images/DisasterRecoveryBotProjectImage.png"
@@ -58,6 +59,41 @@ export default class App extends React.Component{
     this.state = {
       burgerDropDown: false,
       projects: [
+
+      {
+        title: "RAGspace",
+        type: "AI & Full-Stack",
+        image: RAGspace ,
+        description: [
+            "Developed a full-stack Retrieval-Augmented Generation (RAG) platform that allows users to upload PDFs into dedicated knowledge spaces and chat directly with their documents.",
+            "Built with React and TypeScript connected to a Django REST Framework backend, MySQL database, JWT authentication, Google OAuth, and private AWS S3 document storage.",
+            "Integrates OpenAI embeddings and GPT models with Qdrant vector search and Voyage AI reranking to generate context-aware answers with persistent conversations and page-level source citations."
+        ],
+        techUsed: [
+            "Typescript",
+            "React",
+            "Python",
+            "Django Backend",
+            "DRF",
+            "MySQL",
+            "AWS-S3",
+            "EC2",
+            "OpenAI",
+            "RAG",
+            "Qdrant",
+            "Voyage-AI",
+            "LLMs",
+            "JWT-Auth",
+            "Google-OAuth"
+        ],
+        dateCreated: "2026",
+        link: "https://jorgeramirez.net/ragspace",
+        gitHub: "",
+        youtube: "",
+        notAvailable: 0
+    },
+
+
     {title: "ResuScan Resume Analyzer", type: "Frontend & Backend", image: activeProject, description: [
         "Currently developing a full-stack resume analysis platform designed to help users evaluate and improve their resumes.",
         "Built with a React and TypeScript frontend connected to a Django, MySQL, and JWT-authenticated backend.",
@@ -195,6 +231,8 @@ export default class App extends React.Component{
         {title: "Keras", skillLevel: "9"},
         {title: "AWS Sagemaker", skillLevel: "8"},
         {title: "AWS Bedrock", skillLevel: "7"},
+        {title: "Qdrant", skillLevel: "8"},
+        {title: "VoyageAI", skillLevel: "8"},
         {title: "OpenAI", skillLevel: "8"},
         {title: "Computer Vision", skillLevel: "9"},
         {title: "NLPs", skillLevel: "8"},

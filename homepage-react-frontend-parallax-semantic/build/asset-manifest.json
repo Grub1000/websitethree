@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.4a603b55.css",
-    "main.js": "/static/js/main.8c6eb71c.js",
+    "main.js": "/static/js/main.108584e8.js",
     "static/js/453.eb1b5922.chunk.js": "/static/js/453.eb1b5922.chunk.js",
     "static/media/20240227_211318.jpg": "/static/media/20240227_211318.135c096e84b023e4f04e.jpg",
     "static/media/SchedulingSystemImage.png": "/static/media/SchedulingSystemImage.44f50563ecee9ea8a154.png",
@@ -15,6 +15,7 @@
     "static/media/BeatBoxResponsiveSmall.png": "/static/media/BeatBoxResponsiveSmall.6f359e490be5d2238fc4.png",
     "static/media/MerchStoreResponsiveSmall.png": "/static/media/MerchStoreResponsiveSmall.2eb0222d206b5b5371ab.png",
     "static/media/FullstackgrubImage.png": "/static/media/FullstackgrubImage.14b1f2373024eec8eb1c.png",
+    "static/media/RAGspace.png": "/static/media/RAGspace.01101a3859fd01362b81.png",
     "static/media/VDMDemoTranSmall.png": "/static/media/VDMDemoTranSmall.0da1b0f51efbcd0850a6.png",
     "static/media/TaskAppResponsiveSmall.png": "/static/media/TaskAppResponsiveSmall.d7c1413a3fd240f0789a.png",
     "static/media/EsignatureResponsiveSmall.png": "/static/media/EsignatureResponsiveSmall.50f220f19b3323bbbf92.png",
@@ -42,6 +43,7 @@
     "static/media/cplusplus_logo_svg.svg": "/static/media/cplusplus_logo_svg.ca0ada6667869a937b080ad7fd2368b8.svg",
     "static/media/openai_logo_svg.svg": "/static/media/openai_logo_svg.a32faed45a8bc7b2280e8a25fd3f7bdf.svg",
     "static/media/typescript_logo_svg.svg": "/static/media/typescript_logo_svg.20100762453f14b55668353fe41b7c75.svg",
+    "static/media/qdrant_logo_svg.svg": "/static/media/qdrant_logo_svg.0b8cfe32f670f7ed8716e73a805c966b.svg",
     "static/media/python_logo_svg.svg": "/static/media/python_logo_svg.11ca8ba91db910add343acd0bfdabc31.svg",
     "static/media/3.svg": "/static/media/3.4620ecc6f418a7742314fd7a7b939612.svg",
     "static/media/google_logo_svg.svg": "/static/media/google_logo_svg.8d2e8952bbfc29354dd5595e5e753e08.svg",
@@ -61,15 +63,16 @@
     "static/media/linkedin_logo_svg.svg": "/static/media/linkedin_logo_svg.fec649aed8e846a70a1b0111928cb5f4.svg",
     "static/media/robot_logo_svg.svg": "/static/media/robot_logo_svg.8a1358631cdd92daa869f421ffee19c4.svg",
     "static/media/youtube_logo_svg.svg": "/static/media/youtube_logo_svg.bf9cb1c327a8036a51a6f9b5b6fa654f.svg",
+    "static/media/voyageai_logo_svg.svg": "/static/media/voyageai_logo_svg.fd3b5defe4ff55fa348e5a72e5be8baf.svg",
     "static/media/javascript_logo_svg.svg": "/static/media/javascript_logo_svg.7c2c5a7a4d999abba95b43792bb3c1da.svg",
     "static/media/csharp_logo_svg.svg": "/static/media/csharp_logo_svg.722afb71fda02ce854af30f9fea96ea6.svg",
     "static/media/1.svg": "/static/media/1.018a1e39c474e704b3c8cf6108063bbd.svg",
     "main.4a603b55.css.map": "/static/css/main.4a603b55.css.map",
-    "main.8c6eb71c.js.map": "/static/js/main.8c6eb71c.js.map",
+    "main.108584e8.js.map": "/static/js/main.108584e8.js.map",
     "453.eb1b5922.chunk.js.map": "/static/js/453.eb1b5922.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4a603b55.css",
-    "static/js/main.8c6eb71c.js"
+    "static/js/main.108584e8.js"
   ]
 }

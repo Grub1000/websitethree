@@ -22,6 +22,7 @@ import javaLogoSVG from "./assets/logos/java_logo_svg.svg"
 import djangoLogoSVG from "./assets/logos/django_logo_svg.svg"
 import sqlLogoSVG from "./assets/logos/sql_logo_svg.svg"
 import laravelLogoSVG from "./assets/logos/laravel_logo_svg.svg"
+import qdrantLogoSVG from "./assets/logos/qdrant_logo_svg.svg"
 // import typescriptLogoSVG from "./assets/logos/typescript_logo_svg.svg"
 // import typescriptLogoSVG from "./assets/logos/typescript_logo_svg.svg"
 
@@ -85,6 +86,9 @@ export default class ProjectCard extends React.Component{
     }
     else if(techName == "Javascript"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={javascriptLogoSVG}></img>)
+    }
+    else if(techName == "Qdrant"){
+        return(<img className="HomePageProjectsSectionCardTechIcon" src={qdrantLogoSVG}></img>)
     }
     else if(techName == "Java"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={javaLogoSVG}></img>)
