@@ -15,3 +15,9 @@ pillow==12.2.0
 tiktoken==0.14.0
 qdrant-client==1.19.0
 voyageai==0.5.0
+channels==4.3.2
+daphne==4.2.3
+channels-redis==4.3.0
+
+# Pinned due to redis-py 8.x timeout issue with channels-redis
+redis==7.4.1

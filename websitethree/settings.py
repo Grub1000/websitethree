@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '54.177.68.114', 'jorgeramirez.net', 'www.jorgeram
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     'resume_analyzer_app_api',
     "rest_framework_simplejwt.token_blacklist",
     "ragspace_api",
+    "channels",
+    "chat_api"
 ]
 
 MIDDLEWARE = [
@@ -80,7 +83,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'websitethree.wsgi.application'
-
+ASGI_APPLICATION = "websitethree.asgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -292,3 +295,17 @@ RAG_GENERATION_MODEL = "gpt-5-mini"
 
 RAG_CONTEXTUALIZATION_MODEL = "gpt-5-mini"
 RAG_HISTORY_MESSAGE_LIMIT = 8
+
+
+
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
+
