@@ -23,6 +23,9 @@ python manage.py migrate
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
+echo "Restarting Daphne..."
+sudo systemctl restart daphne-websitethree
+
 echo "Restarting Apache..."
 sudo systemctl restart apache2
 

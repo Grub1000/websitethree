@@ -2425,3 +2425,810 @@ without fundamentally changing the chat application's domain logic.
 Next:
 
 > **Build the persistent conversation model and replace the temporary global `chat_test` Redis group with authenticated, conversation-specific WebSocket groups.**
+
+
+
+# 🚀 Development vs Production WebSocket Configuration
+
+Relay requires an **ASGI-capable server** because WebSocket connections are long-lived and asynchronous.
+
+One important architectural difference between the development and production environments is **who is responsible for serving the ASGI application**.
+
+---
+
+## 💻 Local Development
+
+During local development, Relay is started using Django's development server:
+
+```bash
+python manage.py runserver
+```
+
+With Django Channels/Daphne configured in the project, the development environment can route WebSocket connections through the project's ASGI application.
+
+The local architecture is therefore relatively simple:
+
+```text
+Browser
+   │
+   │ ws://
+   ▼
+python manage.py runserver
+   │
+   ▼
+websitethree.asgi
+   │
+   ▼
+Django Channels
+   │
+   ▼
+ChatConsumer
+   │
+   ▼
+Redis Channel Layer
+   │
+   ▼
+Redis
+```
+
+This is why a separate command such as:
+
+```bash
+daphne websitethree.asgi:application
+```
+
+is not required during normal local development.
+
+The application can simply be started with:
+
+```bash
+python manage.py runserver
+```
+
+while Redis runs separately.
+
+### Local Redis
+
+During development, Redis runs as a separate service and Django connects to it through the Channels channel layer:
+
+```text
+Django Channels
+      │
+      ▼
+channels-redis
+      │
+      ▼
+127.0.0.1:6379
+      │
+      ▼
+Redis
+```
+
+The development configuration currently uses:
+
+```python
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
+```
+
+The local Redis server can be verified with:
+
+```bash
+redis-cli ping
+```
+
+Expected response:
+
+```text
+PONG
+```
+
+---
+
+# 🌐 Production WebSocket Architecture
+
+Production required additional configuration because the existing Django website was already deployed using:
+
+```text
+Apache
+   ↓
+mod_wsgi
+   ↓
+Django WSGI
+```
+
+The existing Apache configuration contained:
+
+```apache
+WSGIDaemonProcess websitethree python-home=/website-folder/src/websitethree/venv python-path=/website-folder/src/websitethree/
+WSGIProcessGroup websitethree
+WSGIScriptAlias / /website-folder/src/websitethree/websitethree/wsgi.py
+```
+
+This architecture works well for the existing HTTP-based applications and APIs.
+
+However, Relay introduced **WebSockets**, which require ASGI rather than the existing WSGI request/response path.
+
+Instead of replacing the working WSGI deployment, the production architecture was extended with a second application path.
+
+```text
+                         Internet
+                            │
+                            ▼
+                       Apache :443
+                       HTTPS / WSS
+                            │
+               ┌────────────┴────────────┐
+               │                         │
+          Normal HTTP                /ws/*
+               │                         │
+               ▼                         ▼
+           mod_wsgi                Reverse Proxy
+               │                         │
+               ▼                         ▼
+            wsgi.py                 Daphne :8001
+               │                         │
+               ▼                         ▼
+            Django                    asgi.py
+                                         │
+                                         ▼
+                                  Django Channels
+                                         │
+                                         ▼
+                                    Consumers
+                                         │
+                                         ▼
+                                       Redis
+```
+
+This allows the existing Django applications to continue using WSGI while Relay's real-time connections use ASGI.
+
+---
+
+# 🔀 WSGI and ASGI Side-by-Side
+
+The Django project contains both:
+
+```text
+websitethree/
+│
+├── wsgi.py
+└── asgi.py
+```
+
+Before Relay, production primarily used:
+
+```text
+wsgi.py
+```
+
+through Apache `mod_wsgi`.
+
+Relay introduced a production use for:
+
+```text
+asgi.py
+```
+
+The two interfaces now serve different traffic.
+
+### Existing HTTP Traffic
+
+```text
+Browser
+   │
+   │ HTTPS
+   ▼
+Apache
+   │
+   ▼
+mod_wsgi
+   │
+   ▼
+wsgi.py
+   │
+   ▼
+Django
+```
+
+Examples include:
+
+```text
+Portfolio pages
+ResuScan REST requests
+RAGspace REST requests
+Authentication requests
+Static HTTP application traffic
+```
+
+### Relay WebSocket Traffic
+
+```text
+Browser
+   │
+   │ WSS
+   ▼
+Apache
+   │
+   ▼
+WebSocket Reverse Proxy
+   │
+   ▼
+Daphne
+   │
+   ▼
+asgi.py
+   │
+   ▼
+Django Channels
+   │
+   ▼
+ChatConsumer
+```
+
+This means WSGI and ASGI can coexist inside the same Django project.
+
+---
+
+# ⚡ Why Daphne Is Required in Production
+
+Apache + `mod_wsgi` already knows how to execute the Django WSGI application.
+
+That works for traditional HTTP:
+
+```text
+Request
+   ↓
+Django
+   ↓
+Response
+   ↓
+Request complete
+```
+
+WebSockets behave differently:
+
+```text
+Connect
+   ↓
+Connection remains open
+   ↕
+Client sends events
+   ↕
+Server sends events
+   ↕
+Connection remains open
+```
+
+Relay therefore requires an ASGI protocol server.
+
+For this project:
+
+```text
+Daphne
+```
+
+fills that role.
+
+Daphne listens internally on:
+
+```text
+127.0.0.1:8001
+```
+
+and executes:
+
+```text
+websitethree.asgi:application
+```
+
+Conceptually:
+
+```text
+Apache
+   │
+   │ proxy
+   ▼
+127.0.0.1:8001
+   │
+   ▼
+Daphne
+   │
+   ▼
+ASGI
+   │
+   ▼
+Channels
+```
+
+Port `8001` is intentionally bound to:
+
+```text
+127.0.0.1
+```
+
+rather than:
+
+```text
+0.0.0.0
+```
+
+because clients should not communicate directly with Daphne.
+
+Apache remains the public entry point.
+
+---
+
+# 🔐 HTTPS and WSS
+
+Production clients connect using:
+
+```text
+wss://jorgeramirez.net/ws/chat/
+```
+
+The browser does **not** connect directly to:
+
+```text
+127.0.0.1:8001
+```
+
+Instead:
+
+```text
+Browser
+   │
+   │ wss://jorgeramirez.net/ws/chat/
+   ▼
+Apache :443
+   │
+   │ TLS termination
+   ▼
+WebSocket proxy
+   │
+   │ ws://127.0.0.1:8001/ws/chat/
+   ▼
+Daphne
+```
+
+Apache handles the public TLS certificate.
+
+The internal Apache → Daphne connection can remain local to the server.
+
+---
+
+# 🔧 Apache WebSocket Proxy
+
+The production SSL VirtualHost was extended with a dedicated WebSocket proxy.
+
+```apache
+ProxyPass "/ws/" "ws://127.0.0.1:8001/ws/"
+ProxyPassReverse "/ws/" "ws://127.0.0.1:8001/ws/"
+```
+
+This creates an important routing boundary:
+
+```text
+/*
+ │
+ └── Existing Django HTTP traffic
+     ↓
+     mod_wsgi
+
+
+/ws/*
+ │
+ └── Relay WebSocket traffic
+     ↓
+     Daphne
+```
+
+Apache proxy support was enabled using the appropriate proxy modules.
+
+The configuration was verified before restarting Apache using:
+
+```bash
+sudo apache2ctl configtest
+```
+
+Expected:
+
+```text
+Syntax OK
+```
+
+---
+
+# 🔴 Production Redis
+
+Redis runs independently from Daphne and Apache.
+
+The current single-server architecture is:
+
+```text
+EC2 Instance
+│
+├── Apache
+├── mod_wsgi
+├── Django
+├── Daphne
+├── Django Channels
+├── Redis
+└── MySQL
+```
+
+Redis was installed as server infrastructure rather than as part of every application deployment.
+
+```bash
+sudo apt install redis-server
+```
+
+It was then enabled as a persistent system service:
+
+```bash
+sudo systemctl enable redis-server
+sudo systemctl start redis-server
+```
+
+Connectivity was verified using:
+
+```bash
+redis-cli ping
+```
+
+Expected:
+
+```text
+PONG
+```
+
+Because Django and Redis currently run on the same EC2 instance, the Channels configuration can connect to:
+
+```text
+127.0.0.1:6379
+```
+
+Redis does **not** need a publicly exposed port.
+
+---
+
+# ⚙️ Making Daphne Persistent with systemd
+
+During the initial production test, Daphne was started manually:
+
+```bash
+daphne -b 127.0.0.1 -p 8001 websitethree.asgi:application
+```
+
+This was sufficient to prove the architecture:
+
+```text
+Browser
+   ↓
+WSS
+   ↓
+Apache
+   ↓
+Daphne
+   ↓
+Channels
+   ↓
+Redis
+```
+
+Two separate production browser connections successfully exchanged messages through the Redis-backed Channels group.
+
+However, manually running Daphne is not appropriate for a permanent deployment.
+
+Closing the SSH session or terminating the process would stop Relay's WebSocket server.
+
+Daphne is therefore managed as a **systemd service**.
+
+```text
+systemd
+   │
+   ▼
+Daphne
+   │
+   ▼
+websitethree.asgi
+```
+
+The service is configured to:
+
+* Start automatically when the EC2 instance boots
+* Run Daphne independently from SSH sessions
+* Restart Daphne if the process crashes
+* Use the project's Python virtual environment
+* Run the correct Django ASGI application
+* Bind only to the local interface
+
+Example service architecture:
+
+```text
+EC2 boots
+    │
+    ▼
+systemd
+    │
+    ├── redis-server.service
+    │
+    ├── apache2.service
+    │
+    └── daphne-websitethree.service
+              │
+              ▼
+         Daphne :8001
+```
+
+---
+
+# 🔄 Deployment Lifecycle
+
+Redis installation is considered **server provisioning**, not normal application deployment.
+
+It should not be installed again after every GitHub push.
+
+### One-Time Server Provisioning
+
+```text
+Install Redis
+Enable Redis service
+
+Install/configure Apache
+Enable proxy modules
+
+Configure /ws/ proxy
+
+Create Daphne systemd service
+Enable Daphne service
+
+Configure TLS/WSS
+```
+
+### Normal Application Deployment
+
+A normal deployment can then follow:
+
+```text
+git pull
+    ↓
+Install/update Python requirements
+    ↓
+Run migrations
+    ↓
+Collect static files / build frontends
+    ↓
+Restart Daphne
+    ↓
+Restart/reload normal application services
+```
+
+Daphne needs to restart after backend code changes because it is a persistent Python process.
+
+A `git pull` changes files on disk, but an already-running Daphne process may still have previously imported Python modules loaded in memory.
+
+Therefore:
+
+```text
+git pull
+   ↓
+New code exists on disk
+   ↓
+Restart Daphne
+   ↓
+New Daphne process
+   ↓
+New application code imported
+```
+
+The deployment script should therefore eventually include:
+
+```bash
+sudo systemctl restart daphne-websitethree
+```
+
+after application code and dependencies have been updated.
+
+---
+
+# 🧠 Why Development Required Less Configuration
+
+The key difference is **who provides the ASGI server**.
+
+### Development
+
+```text
+python manage.py runserver
+          │
+          ▼
+     Development ASGI
+          │
+          ▼
+       Channels
+          │
+          ▼
+      WebSockets
+```
+
+The Django development environment with Channels/Daphne integration handles the development ASGI path.
+
+Therefore developers can continue using:
+
+```bash
+python manage.py runserver
+```
+
+without manually launching a separate Daphne process for normal local development.
+
+### Production
+
+The existing application was already served through:
+
+```text
+Apache
+   ↓
+mod_wsgi
+   ↓
+WSGI
+```
+
+That path did not provide Relay's required ASGI/WebSocket handling.
+
+Therefore production required:
+
+```text
+Apache
+   ↓
+WebSocket Proxy
+   ↓
+Daphne
+   ↓
+ASGI
+   ↓
+Channels
+```
+
+The important distinction is:
+
+```text
+DEVELOPMENT
+runserver provides the development server path needed
+for Channels/WebSocket development.
+
+
+PRODUCTION
+Apache + mod_wsgi provides the existing WSGI path,
+so Daphne was added specifically to provide ASGI.
+```
+
+---
+
+# 🧠 Production Configuration — Quick Review
+
+### Normal Django Request
+
+```text
+HTTPS
+  ↓
+Apache
+  ↓
+mod_wsgi
+  ↓
+wsgi.py
+  ↓
+Django
+```
+
+### Relay WebSocket
+
+```text
+WSS
+ ↓
+Apache
+ ↓
+Proxy /ws/
+ ↓
+Daphne :8001
+ ↓
+asgi.py
+ ↓
+Channels
+ ↓
+Consumer
+```
+
+### Cross-Consumer Event
+
+```text
+Consumer A
+    ↓
+Channels
+    ↓
+Redis
+    ↓
+Channels
+    ↓
+Consumer B
+```
+
+### Current Production Machine
+
+```text
+EC2
+│
+├── Apache
+│     ├── HTTPS → mod_wsgi
+│     └── WSS   → Daphne
+│
+├── Django
+│     ├── WSGI
+│     └── ASGI
+│
+├── Daphne
+│     └── 127.0.0.1:8001
+│
+├── Redis
+│     └── 127.0.0.1:6379
+│
+└── MySQL
+```
+
+### Future Distributed Architecture
+
+The same application can later evolve into:
+
+```text
+                       Load Balancer
+                            │
+              ┌─────────────┼─────────────┐
+              ▼             ▼             ▼
+           EC2 App       EC2 App       EC2 App
+              │             │             │
+           Workers       Workers       Workers
+              │             │             │
+              └─────────────┼─────────────┘
+                            │
+                  ┌─────────┴─────────┐
+                  ▼                   ▼
+             ElastiCache             RDS
+                Redis                MySQL
+```
+
+The infrastructure changes, but the core application concepts remain:
+
+```text
+WebSocket
+    ↓
+Consumer
+    ↓
+Worker
+    ↓
+Redis Channel Layer
+
+        +
+
+MySQL
+= Durable State
+```
+
+---
+
+## 🔑 Production Configuration Rules to Remember
+
+1. **Apache remains the public entry point.**
+2. **Normal HTTP traffic continues through mod_wsgi/WSGI.**
+3. **Only `/ws/` WebSocket traffic is proxied to Daphne.**
+4. **Daphne executes the Django ASGI application.**
+5. **Django Channels handles the WebSocket lifecycle and Consumers.**
+6. **Redis provides the shared Channels communication layer.**
+7. **Redis and Daphne are persistent system services, not commands that should be manually started after every deployment.**
+8. **Daphne must be restarted after relevant backend deployments so it loads the new application code.**
+9. **Ports `8001` and `6379` do not need to be publicly exposed in the current architecture.**
+10. **The existing WSGI deployment did not need to be replaced simply because Relay introduced ASGI.**
