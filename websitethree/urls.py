@@ -65,4 +65,11 @@ urlpatterns = [
             )
         ),
 
+
+    # Relay HTTP API
+    path(
+        "chat-api/",
+        include("chat_api.urls"),
+    ),
+
 ]
