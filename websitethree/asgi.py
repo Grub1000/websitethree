@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/5.2/howto/deployment/asgi/
 import os
 
 from channels.routing import ProtocolTypeRouter, URLRouter
-from chat_api.middleware import JWTAuthMiddleware # Custom JWT Authentication Middleware. Now every WebSocket Consumer gets: (self.scope["user"]). just like Django views normally get: (request.user)
 from django.core.asgi import get_asgi_application
 
 os.environ.setdefault(
@@ -19,7 +18,10 @@ os.environ.setdefault(
 
 django_asgi_app = get_asgi_application()
 
+# Import Django-dependent app code only after Django initializes
 import chat_api.routing
+from chat_api.middleware import JWTAuthMiddleware # Custom JWT Authentication Middleware. Now every WebSocket Consumer gets: (self.scope["user"]). just like Django views normally get: (request.user)
+
 
 application = ProtocolTypeRouter({
     "http": django_asgi_app,
