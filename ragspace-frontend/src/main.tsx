@@ -10,6 +10,8 @@ import App from "./App";
 const GOOGLE_CLIENT_ID =
     import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
+import { AuthProvider } from "./context/AuthContext";
+
 createRoot(
     document.getElementById("root")!,
 ).render(
@@ -17,7 +19,9 @@ createRoot(
         <GoogleOAuthProvider
             clientId={GOOGLE_CLIENT_ID}
         >
-            <App />
+            <AuthProvider>
+                <App />
+            </AuthProvider>
         </GoogleOAuthProvider>
     </StrictMode>,
 );

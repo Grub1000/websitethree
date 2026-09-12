@@ -1,0 +1,115 @@
+.ConversationList {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ConversationCard {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--text-primary);
+    text-align: left;
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+.ConversationCard:hover {
+    background: var(--bg-tertiary);
+}
+
+.ConversationCardSelected {
+    background: var(--bg-tertiary);
+}
+
+.ConversationAvatar {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #2b303b;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.ConversationPresence {
+    position: absolute;
+    right: -1px;
+    bottom: -1px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    border: 2px solid var(--bg-secondary);
+}
+
+.ConversationPresenceOnline {
+    background: var(--success);
+}
+
+.ConversationContent {
+    min-width: 0;
+    flex: 1;
+}
+
+.ConversationTopRow,
+.ConversationBottomRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.ConversationName {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ConversationTime {
+    flex-shrink: 0;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.ConversationBottomRow {
+    margin-top: 3px;
+}
+
+.ConversationPreview {
+    min-width: 0;
+    flex: 1;
+    overflow: hidden;
+    color: var(--text-secondary);
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ConversationUnreadBadge {
+    min-width: 20px;
+    height: 20px;
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+}

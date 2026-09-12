@@ -1,0 +1,153 @@
+.MessageList {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 24px 28px;
+}
+
+.MessageListEmpty {
+    flex: 1;
+    display: grid;
+    place-items: center;
+
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+
+.MessageDateDivider span {
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Individual message */
+
+.Message {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    padding: 8px 12px;
+    margin: 1px 0;
+
+    border-radius: var(--radius-md);
+
+    transition:
+        background 0.15s ease;
+}
+
+.Message:hover {
+    background: rgba(
+        255,
+        255,
+        255,
+        0.025
+    );
+}
+
+
+/* Avatar */
+
+.MessageAvatar {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: var(--bg-tertiary);
+
+    color: var(--text-primary);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* Message body */
+
+.MessageBody {
+    min-width: 0;
+    flex: 1;
+}
+
+.MessageHeader {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+
+    margin-bottom: 3px;
+}
+
+.MessageAuthor {
+    color: var(--text-primary);
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.MessageTime {
+    color: var(--text-muted);
+
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.MessageContent {
+    color: var(--text-secondary);
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+
+.MessageStatus {
+    margin-top: 3px;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.MessageOwn .MessageSender {
+    color: var(--accent);
+}
+
+.TypingIndicator {
+    margin: 14px 0 0 58px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-style: italic;
+}
+
+.MessageStatus {
+    margin-top: 3px;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+
+/* Current user's messages */
+
+.MessageOwn .MessageAvatar {
+    background: var(--accent);
+    color: white;
+}
+
+.MessageOwn .MessageAuthor {
+    color: var(--accent);
+}
+

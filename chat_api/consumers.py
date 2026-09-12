@@ -13,6 +13,7 @@ from .services.presence_service import (
     cleanup_stale_connections,
     refresh_presence_connection,
     remove_presence_connection,
+    is_user_online,
 )
 
 import asyncio
@@ -163,6 +164,46 @@ def get_user_conversation_ids(user):
     )
 
 
+@database_sync_to_async
+def get_conversation_member_ids(
+    conversation_id,
+):
+    return list(
+        ConversationMember.objects.filter(
+            conversation_id=conversation_id
+        ).values_list(
+            "user_id",
+            flat=True,
+        )
+    )
+
+
+@database_sync_to_async
+def get_unread_count(
+    user_id,
+    conversation_id,
+):
+    membership = ConversationMember.objects.get(
+        user_id=user_id,
+        conversation_id=conversation_id,
+    )
+
+    messages = Message.objects.filter(
+        conversation_id=conversation_id,
+    ).exclude(
+        sender_id=user_id,
+    )
+
+    if membership.last_read_message_id:
+        messages = messages.filter(
+            id__gt=membership.last_read_message_id,
+        )
+
+    return messages.count()
+
+
+
+
 class ChatConsumer(AsyncWebsocketConsumer):
     # group_name = "chat_test"
 
@@ -201,6 +242,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         )
 
         await self.accept()
+
+        await self.send_presence_snapshot()
 
         self.presence_watchdog_task = asyncio.create_task(
             self.presence_watchdog()
@@ -306,6 +349,29 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 "message": message,
             },
         )
+
+        member_ids = await get_conversation_member_ids(
+            self.conversation_id
+        )
+
+        for user_id in member_ids:
+
+            unread_count = await get_unread_count(
+                user_id,
+                self.conversation_id,
+            )
+
+            await self.channel_layer.group_send(
+                f"chat_user_{user_id}",
+                {
+                    "type": "conversation.updated",
+                    "conversation": {
+                        "id": str(self.conversation_id),
+                        "last_message": message,
+                        "unread_count": unread_count,
+                    },
+                },
+            )
 
 
     async def handle_message_delivered(self, data):
@@ -472,6 +538,27 @@ class ChatConsumer(AsyncWebsocketConsumer):
             })
         )
 
+    async def send_presence_snapshot(self):
+        member_ids = await get_conversation_member_ids(
+            self.conversation_id
+        )
+
+        for user_id in member_ids:
+            if user_id == self.user.id:
+                continue
+
+            online = await is_user_online(
+                user_id
+            )
+
+            await self.send(
+                text_data=json.dumps({
+                    "type": "presence.update",
+                    "user_id": user_id,
+                    "is_online": online,
+                })
+            )
+
 
     async def disconnect(self, close_code):
         if hasattr(self, "presence_watchdog_task"):
@@ -514,3 +601,81 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         except asyncio.CancelledError:
             pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class ChatUserConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        self.user = self.scope["user"]
+
+        if not self.user.is_authenticated:
+            await self.close()
+            return
+
+        self.user_group_name = (
+            f"chat_user_{self.user.id}"
+        )
+
+        await self.channel_layer.group_add(
+            self.user_group_name,
+            self.channel_name,
+        )
+
+        await self.accept()
+
+    async def disconnect(self, close_code):
+        if hasattr(
+            self,
+            "user_group_name",
+        ):
+            await self.channel_layer.group_discard(
+                self.user_group_name,
+                self.channel_name,
+            )
+
+    async def conversation_updated(self, event):
+        await self.send(
+            text_data=json.dumps({
+                "type": "conversation.updated",
+                "conversation": event["conversation"],
+            })
+        )

@@ -72,4 +72,23 @@ urlpatterns = [
         include("chat_api.urls"),
     ),
 
+
+    # RAGspace React app
+            path(
+                "relay/",
+                TemplateView.as_view(
+                    template_name="chat-frontend/dist/index.html"
+                )
+            ),
+    
+        # RAGspace React app (Catch-all route for React Router)    
+        path(
+                "relay/<path:path>",
+                TemplateView.as_view(
+                    template_name="chat-frontend/dist/index.html"
+                )
+            ),
+
+
+
 ]

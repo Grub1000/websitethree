@@ -1,0 +1,65 @@
+.ChatHeader {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-primary);
+}
+
+.ChatHeaderUser {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ChatHeaderAvatar {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    font-weight: 700;
+}
+
+.ChatHeaderPresence {
+    position: absolute;
+    right: -1px;
+    bottom: -1px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--success);
+    border: 2px solid var(--bg-primary);
+}
+
+.ChatHeaderName {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.ChatHeaderStatus {
+    margin-left: 5px;
+    margin-top: 2px;
+    color: var(--text-secondary);
+    font-size: 12px;
+
+}
+
+.ChatHeaderActions button {
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.ChatHeaderActions button:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}

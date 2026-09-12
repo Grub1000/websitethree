@@ -10,6 +10,8 @@ User = get_user_model()
 class MessageSerializer(serializers.ModelSerializer):
     sender_id = serializers.IntegerField(read_only=True)
 
+    delivered_to = serializers.SerializerMethodField()
+
     class Meta:
         model = Message
         fields = [
@@ -21,11 +23,34 @@ class MessageSerializer(serializers.ModelSerializer):
             "created_at",
             "edited_at",
             "deleted_at",
+            "delivered_to",
         ]
+    def get_delivered_to(self, obj):
+        return list(
+            obj.deliveries.filter(
+                delivered_at__isnull=False,
+            ).values_list(
+                "user_id",
+                flat=True,
+            )
+        )
 
+
+class ChatUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            "id",
+            "username",
+            "first_name",
+            "last_name",
+        ]
 
 class ConversationMemberSerializer(serializers.ModelSerializer):
     user_id = serializers.IntegerField(read_only=True)
+
+    user = ChatUserSerializer(read_only=True)
+
 
     class Meta:
         model = ConversationMember
@@ -34,6 +59,7 @@ class ConversationMemberSerializer(serializers.ModelSerializer):
             "joined_at",
             "last_read_message",
             "last_read_at",
+            "user",
         ]
 
 
@@ -45,6 +71,9 @@ class ConversationSerializer(serializers.ModelSerializer):
 
     last_message = serializers.SerializerMethodField()
     unread_count = serializers.SerializerMethodField()
+    other_user = serializers.SerializerMethodField()
+
+    read_receipts = serializers.SerializerMethodField()
 
     class Meta:
         model = Conversation
@@ -54,17 +83,56 @@ class ConversationSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "members",
+            "other_user",
             "last_message",
             "unread_count",
+            "read_receipts",
         ]
 
+    def get_read_receipts(self, obj):
+        return [
+            {
+                "user_id": member.user_id,
+                "last_read_message": member.last_read_message_id,
+                "last_read_at": member.last_read_at,
+            }
+            for member in obj.members.all()
+        ]
+
+    
+    def get_other_user(self, obj):
+        request = self.context.get("request")
+
+        if not request:
+            return None
+
+        membership = (
+            obj.members
+            .exclude(user=request.user)
+            .select_related("user")
+            .first()
+        )
+
+        if not membership:
+            return None
+
+        return ChatUserSerializer(
+            membership.user
+        ).data
+
     def get_last_message(self, obj):
-        last_message = obj.messages.order_by("-id").first()
+        last_message = (
+            obj.messages
+            .order_by("-id")
+            .first()
+        )
 
         if not last_message:
             return None
 
-        return MessageSerializer(last_message).data
+        return MessageSerializer(
+            last_message
+        ).data
 
     def get_unread_count(self, obj):
         request = self.context.get("request")
@@ -72,9 +140,11 @@ class ConversationSerializer(serializers.ModelSerializer):
         if not request:
             return 0
 
-        membership = obj.members.filter(
-            user=request.user,
-        ).first()
+        membership = (
+            obj.members
+            .filter(user=request.user)
+            .first()
+        )
 
         if not membership:
             return 0
@@ -89,6 +159,7 @@ class ConversationSerializer(serializers.ModelSerializer):
             )
 
         return messages.count()
+    
 
 class CreateDirectConversationSerializer(serializers.Serializer):
     user_id = serializers.IntegerField()
@@ -107,13 +178,3 @@ class CreateDirectConversationSerializer(serializers.Serializer):
             )
 
         return value
-
-class ChatUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = [
-            "id",
-            "username",
-            "first_name",
-            "last_name",
-        ]

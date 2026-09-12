@@ -1,0 +1,49 @@
+.MessageComposerWrapper {
+    padding: 16px 24px 20px;
+}
+
+.MessageComposer {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
+}
+
+.MessageComposer:focus-within {
+    border-color: var(--accent);
+}
+
+.MessageComposer textarea {
+    flex: 1;
+    resize: none;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.MessageComposer textarea::placeholder {
+    color: var(--text-muted);
+}
+
+.MessageSendButton {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+}
+
+.MessageSendButton:hover {
+    background: var(--accent-hover);
+}

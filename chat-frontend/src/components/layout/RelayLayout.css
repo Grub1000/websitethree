@@ -1,0 +1,14 @@
+.RelayLayout {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    background: var(--bg-primary);
+}
+
+.RelayMain {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    background: var(--bg-primary);
+}
