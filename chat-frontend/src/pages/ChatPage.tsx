@@ -23,7 +23,7 @@ import TypingIndicator
     from "../components/chat/TypingIndicator.tsx";
 
 
-// Component Imports
+// Component  Imports
 import ChatHeader from "../components/chat/ChatHeader";
 import MessageList from "../components/chat/MessageList";
 import MessageComposer from "../components/chat/MessageComposer";
