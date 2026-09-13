@@ -4,6 +4,8 @@ import type {
 
 import "./ConversationCard.css";
 
+import { deleteConversation } from "../../api/chat_service";
+
 
 type ConversationCardProps = {
     conversation: Conversation;
@@ -46,66 +48,89 @@ function ConversationCard({
         "No messages yet";
 
 
+
+
+    async function handleDeleteConversation(
+        event: React.MouseEvent
+    ) {
+        event.stopPropagation();
+
+        try {
+            await deleteConversation(conversation.id);
+        } catch (error) {
+            console.error(
+                "Unable to delete conversation:",
+                error
+            );
+        }
+    }
+
+
     return (
-        <button
-            className={
+        <div
+             className={
                 isSelected
                     ? "ConversationCard ConversationCardSelected"
                     : "ConversationCard"
             }
-            type="button"
-
             onClick={onClick}
+            onKeyDown={(event) => {
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+                    event.preventDefault();
+                    onClick();
+                }
+            }}
+            role="button"
+            tabIndex={0}
         >
             <div className="ConversationAvatar">
                 {initials}
 
-                <span
-                    className="ConversationPresence"
-                />
+                <span className="ConversationPresence" />
             </div>
 
-
             <div className="ConversationContent">
-
                 <div className="ConversationTopRow">
-
                     <span className="ConversationName">
                         {displayName}
                     </span>
 
-                    {conversation.last_message && (
-                        <span className="ConversationTime">
-                            {formatMessageTime(
-                                conversation
-                                    .last_message
-                                    .created_at,
-                            )}
-                        </span>
-                    )}
+                    <div className="ConversationActions">
+                        {conversation.last_message && (
+                            <span className="ConversationTime">
+                                {formatMessageTime(
+                                    conversation.last_message.created_at
+                                )}
+                            </span>
+                        )}
 
+                        <button
+                            type="button"
+                            className="ConversationDeleteButton"
+                            onClick={handleDeleteConversation}
+                            aria-label={`Delete conversation with ${displayName}`}
+                        >
+                            ×
+                        </button>
+                    </div>
                 </div>
 
-
                 <div className="ConversationBottomRow">
-
                     <span className="ConversationPreview">
                         {lastMessage}
                     </span>
 
                     {conversation.unread_count > 0 && (
                         <span className="ConversationUnreadBadge">
-                            {
-                                conversation
-                                    .unread_count
-                            }
+                            {conversation.unread_count}
                         </span>
                     )}
-
                 </div>
-
             </div>
-        </button>
+        </div>
     );
 }
 

@@ -16,6 +16,7 @@ export type ConversationMember = {
 export type Message = {
     id: number;
     conversation: string;
+    // conversation_id: string;
     sender_id: number;
     client_message_id: string;
     content: string;

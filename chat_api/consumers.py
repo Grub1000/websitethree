@@ -1,9 +1,11 @@
 import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 from channels.generic.websocket import AsyncWebsocketConsumer
 
+
 from channels.db import database_sync_to_async
-from .models import ConversationMember, Message, MessageDelivery
+from .models import ConversationMember, Message, MessageDelivery, Conversation
 from django.db import transaction
 
 from django.utils import timezone
@@ -15,6 +17,9 @@ from .services.presence_service import (
     remove_presence_connection,
     is_user_online,
 )
+
+from types import SimpleNamespace
+from .serializers import ConversationSerializer
 
 import asyncio
 
@@ -201,7 +206,47 @@ def get_unread_count(
 
     return messages.count()
 
+@database_sync_to_async
+def serialize_conversation_for_user(
+    conversation_id,
+    user,
+):
+    conversation = (
+        Conversation.objects
+        .prefetch_related(
+            "members__user",
+            "messages",
+        )
+        .get(id=conversation_id)
+    )
 
+    request = SimpleNamespace(
+        user=user
+    )
+
+    data = ConversationSerializer(
+        conversation,
+        context={
+            "request": request
+        },
+    ).data
+
+    return json.loads(
+        json.dumps(
+            data,
+            cls=DjangoJSONEncoder,
+        )
+    )
+
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+@database_sync_to_async
+def get_user_by_id(user_id):
+    return User.objects.get(
+        id=user_id
+    )
 
 
 class ChatConsumer(AsyncWebsocketConsumer):
@@ -355,21 +400,23 @@ class ChatConsumer(AsyncWebsocketConsumer):
         )
 
         for user_id in member_ids:
+            user = await get_user_by_id(
+                user_id
+            )
 
-            unread_count = await get_unread_count(
-                user_id,
-                self.conversation_id,
+            conversation_data = (
+                await serialize_conversation_for_user(
+                    self.conversation_id,
+                    user,
+                )
             )
 
             await self.channel_layer.group_send(
                 f"chat_user_{user_id}",
                 {
                     "type": "conversation.updated",
-                    "conversation": {
-                        "id": str(self.conversation_id),
-                        "last_message": message,
-                        "unread_count": unread_count,
-                    },
+                    "conversation":
+                        conversation_data,
                 },
             )
 
@@ -677,5 +724,13 @@ class ChatUserConsumer(AsyncWebsocketConsumer):
             text_data=json.dumps({
                 "type": "conversation.updated",
                 "conversation": event["conversation"],
+            })
+        )
+
+    async def conversation_deleted(self, event):
+        await self.send(
+            text_data=json.dumps({
+                "type": "conversation.deleted",
+                "conversation_id": event["conversation_id"],
             })
         )

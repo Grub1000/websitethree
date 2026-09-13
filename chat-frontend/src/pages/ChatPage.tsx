@@ -44,12 +44,14 @@ type ChatPageProps = {
                 Conversation[]
             >
         >;
+    onBack?: () => void
 };
 
 
 function ChatPage({
     conversation,
-    setConversations
+    setConversations,
+    onBack,
 }: ChatPageProps) {
     const [
         messages,
@@ -124,6 +126,13 @@ function ChatPage({
             if (
                 event.type === "message.new"
             ) {
+
+
+                console.log(
+                    "FULL MESSAGE.NEW EVENT:",
+                    event
+                );
+                
                 setMessages(
                     (
                         currentMessages,
@@ -147,6 +156,16 @@ function ChatPage({
                             ...currentMessages,
                         ];
                     },
+                );
+
+                console.log(
+                    "ACTIVE CONVERSATION ID:",
+                    conversation?.id
+                );
+
+                console.log(
+                    "INCOMING MESSAGE CONVERSATION ID:",
+                    event.message.conversation
                 );
                 setConversations((current) => {
                     const targetConversation =
@@ -534,6 +553,7 @@ function ChatPage({
                 conversation={conversation}
                 onlineUserIds={onlineUserIds}
                 connectionStatus={connectionStatus}
+                onBack={onBack}
             />
 
             {isLoading ? (

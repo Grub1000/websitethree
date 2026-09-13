@@ -63,3 +63,71 @@
     background: var(--bg-tertiary);
     color: var(--text-primary);
 }
+
+.ChatHeaderBackButton {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .ChatHeader {
+        padding: 0 14px;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .ChatHeaderBackButton {
+        width: 36px;
+        height: 36px;
+
+        display: grid;
+        place-items: center;
+
+        flex-shrink: 0;
+
+        border: 0;
+        border-radius: var(--radius-sm);
+
+        background: transparent;
+        color: var(--text-primary);
+
+        font-size: 22px;
+
+        cursor: pointer;
+    }
+
+    .ChatHeaderBackButton:hover {
+        background: var(--bg-tertiary);
+    }
+
+    .ChatHeaderUser {
+        min-width: 0;
+    }
+
+    .ChatHeaderInfo {
+        min-width: 0;
+    }
+
+    .ChatHeaderName {
+        display: block;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .ChatHeaderStatus {
+        display: block;
+        margin-left: 0;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .ChatHeaderAvatar {
+        width: 36px;
+        height: 36px;
+
+        flex-shrink: 0;
+    }
+}

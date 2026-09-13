@@ -13,12 +13,14 @@ type ChatHeaderProps = {
         | "connected"
         | "reconnecting"
         | "disconnected";
+    onBack?: () => void;
 };
 
 function ChatHeader({
     conversation,
     onlineUserIds,
-    connectionStatus
+    connectionStatus,
+    onBack,
 }: ChatHeaderProps) {
     const user =
         conversation.other_user;
@@ -55,6 +57,14 @@ function ChatHeader({
 
     return (
         <header className="ChatHeader">
+            <button
+                type="button"
+                className="ChatHeaderBackButton"
+                onClick={onBack}
+                aria-label="Back to conversations"
+            >
+                ←
+            </button>
 
             <div className="ChatHeaderUser">
 

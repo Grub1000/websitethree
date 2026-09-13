@@ -28,14 +28,16 @@ function RelayLayout() {
     const [
         selectedConversation,
         setSelectedConversation,
-    ] = useState<Conversation | null>(
-        null,
-    );
+    ] = useState<Conversation | null>(null);
+
+
 
     const [
         conversations,
         setConversations,
     ] = useState<Conversation[]>([]);
+
+
 
     const [
         isLoadingConversations,
@@ -77,6 +79,40 @@ function RelayLayout() {
 
     const handleUserSocketMessage =
     useCallback((event: any) => {
+
+        // console.log(
+        //     "GLOBAL SOCKET EVENT:",
+        //     event,
+        // );
+
+        console.log(
+            "GLOBAL SOCKET EVENT:",
+            JSON.stringify(event, null, 2),
+        );
+        
+
+        if (event.type === "conversation.deleted") {
+            setConversations(current =>
+                current.filter(
+                    conversation =>
+                        conversation.id !== event.conversation_id
+                )
+            );
+
+            setSelectedConversation(current =>
+                current?.id === event.conversation_id
+                    ? null
+                    : current
+            );
+
+            return;
+        }
+
+
+
+
+
+
         if (
             event.type !==
             "conversation.updated"
@@ -91,9 +127,21 @@ function RelayLayout() {
                         item.id ===
                         event.conversation.id,
                 );
+            console.log(
+                "EXISTING CONVERSATION:",
+                existingConversation,
+            );
 
             if (!existingConversation) {
-                return current;
+
+                console.log(
+                    "ADDING NEW CONVERSATION"
+                );
+
+                return [
+                    event.conversation,
+                    ...current,
+                ];
             }
 
             const updatedConversation = {
@@ -103,6 +151,11 @@ function RelayLayout() {
                 unread_count:
                     event.conversation.unread_count,
             };
+
+            console.log(
+                "UPDATED CONVERSATION:",
+                updatedConversation,
+            );
 
             return [
                 updatedConversation,
@@ -122,7 +175,13 @@ function RelayLayout() {
 
 
     return (
-        <div className="RelayLayout">
+        <div
+            className={`RelayLayout ${
+                selectedConversation
+                    ? "RelayLayout--conversation-open"
+                    : "RelayLayout--sidebar-open"
+            }`}
+        >
 
             <RelaySidebar
                 selectedConversation={selectedConversation}
@@ -137,6 +196,7 @@ function RelayLayout() {
                 <ChatPage
                     conversation={selectedConversation}
                     setConversations={setConversations}
+                    onBack={() => setSelectedConversation(null)}
                 />
             </main>
 

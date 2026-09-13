@@ -267,3 +267,32 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+
+@media (max-width: 768px) {
+    .RelaySidebar {
+        width: 100%;
+        min-width: 100%;
+        border-right: none;
+    }
+
+    .RelaySidebarHeader {
+        padding: 0 16px;
+    }
+
+    .RelaySidebarActions {
+        padding: 14px 16px;
+    }
+
+    .RelayConversationSection {
+        padding: 8px 10px;
+    }
+
+    .RelayUserFooter {
+        padding: 12px 16px;
+    }
+
+    .RelaySearchButton span:last-child {
+        display: none;
+    }
+}

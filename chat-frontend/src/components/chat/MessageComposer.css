@@ -1,49 +1,110 @@
 .MessageComposerWrapper {
-    padding: 16px 24px 20px;
+    padding: 14px 20px 18px;
 }
 
 .MessageComposer {
     display: flex;
     align-items: flex-end;
     gap: 10px;
-    padding: 10px 12px;
+
+    width: 100%;
+
+    padding: 8px 8px 8px 14px;
+
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
+    border-radius: 16px;
+
     background: var(--bg-secondary);
+
+    transition:
+        border-color 0.15s ease,
+        background-color 0.15s ease;
 }
 
 .MessageComposer:focus-within {
     border-color: var(--accent);
 }
 
-.MessageComposer textarea {
+.MessageComposerInput {
     flex: 1;
+
+    min-width: 0;
+    min-height: 38px;
+    max-height: 140px;
+
+    padding: 8px 0;
+
     resize: none;
+
     border: 0;
     outline: none;
+
     background: transparent;
     color: var(--text-primary);
+
+    font: inherit;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.45;
+
+    overflow-y: auto;
 }
 
-.MessageComposer textarea::placeholder {
+.MessageComposerInput::placeholder {
     color: var(--text-muted);
 }
 
-.MessageSendButton {
-    width: 36px;
-    height: 36px;
-    display: grid;
-    place-items: center;
+.MessageComposerSendButton {
+    min-width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     flex-shrink: 0;
+
+    padding: 0 14px;
+
     border: 0;
-    border-radius: 50%;
+    border-radius: 12px;
+
     background: var(--accent);
     color: white;
+
+    font-size: 13px;
+    font-weight: 600;
+
     cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        opacity 0.15s ease,
+        transform 0.1s ease;
 }
 
-.MessageSendButton:hover {
+.MessageComposerSendButton:hover:not(:disabled) {
     background: var(--accent-hover);
+}
+
+.MessageComposerSendButton:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+.MessageComposerSendButton:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+@media (max-width: 768px) {
+    .MessageComposerWrapper {
+        padding: 10px 12px 12px;
+    }
+
+    .MessageComposer {
+        padding-left: 12px;
+    }
+
+    .MessageComposerInput {
+        font-size: 16px;
+    }
 }

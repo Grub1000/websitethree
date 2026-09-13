@@ -21,6 +21,9 @@ from .models import (
 
 User = get_user_model()
 
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
+
 
 
 
@@ -160,7 +163,8 @@ class DirectConversationCreateView(APIView):
         )
 
         response_serializer = ConversationSerializer(
-            conversation
+            conversation,
+            context={"request": request},
         )
 
         return Response(
@@ -202,3 +206,69 @@ class ChatUserSearchView(APIView):
         )
 
         return Response(serializer.data)
+
+
+
+
+
+
+
+
+
+class ConversationDeleteView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, conversation_id):
+        try:
+            conversation = Conversation.objects.get(
+                id=conversation_id
+            )
+        except Conversation.DoesNotExist:
+            return Response(
+                {
+                    "detail": "Conversation not found."
+                },
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        is_member = conversation.members.filter(
+            user=request.user
+        ).exists()
+
+        if not is_member:
+            return Response(
+                {
+                    "detail":
+                        "You are not a member of this conversation."
+                },
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
+
+        member_ids = list(
+            conversation.members.values_list(
+                "user_id",
+                flat=True,
+            )
+        )
+
+        conversation.delete()
+
+        channel_layer = get_channel_layer()
+
+        for user_id in member_ids:
+            async_to_sync(
+                channel_layer.group_send
+            )(
+                f"chat_user_{user_id}",
+                {
+                    "type": "conversation.deleted",
+                    "conversation_id": str(
+                        conversation_id
+                    ),
+                },
+            )
+
+        return Response(
+            status=status.HTTP_204_NO_CONTENT
+        )

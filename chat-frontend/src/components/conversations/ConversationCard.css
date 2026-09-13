@@ -113,3 +113,59 @@
     font-size: 11px;
     font-weight: 700;
 }
+
+
+.ConversationActions {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.ConversationDeleteButton {
+    opacity: 0;
+    pointer-events: none;
+
+    width: 24px;
+    height: 24px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: transparent;
+    color: inherit;
+
+    cursor: pointer;
+
+    font-size: 18px;
+    line-height: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        opacity 0.15s ease,
+        background-color 0.15s ease;
+}
+
+.ConversationCard:hover .ConversationDeleteButton,
+.ConversationDeleteButton:focus-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.ConversationDeleteButton:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.ConversationDeleteButton:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+    .ConversationDeleteButton {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}

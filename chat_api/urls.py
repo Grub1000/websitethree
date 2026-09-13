@@ -4,7 +4,8 @@ from .views import (
     ConversationListView,
     ConversationMessageListView,
     DirectConversationCreateView,
-    ChatUserSearchView
+    ChatUserSearchView,
+    ConversationDeleteView,
 )
 
 
@@ -31,5 +32,11 @@ urlpatterns = [
         "users/",
         ChatUserSearchView.as_view(),
         name="chat-user-search",
+    ),
+    
+    path(
+        "conversations/<uuid:conversation_id>/",
+        ConversationDeleteView.as_view(),
+        name="conversation-delete",
     ),
 ]

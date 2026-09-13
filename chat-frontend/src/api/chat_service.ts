@@ -108,3 +108,21 @@ export async function searchUsers(
 
     return await response.json();
 }
+
+
+export async function deleteConversation(
+    conversationId: string
+) {
+    const response = await apiFetch(
+        `/conversations/${conversationId}/`,
+        {
+            method: "DELETE",
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error(
+            "Unable to delete conversation."
+        );
+    }
+}

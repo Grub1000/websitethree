@@ -24,10 +24,15 @@ function MessageComposer({
     const typingTimeoutRef =
         useRef<number | null>(
             null,
-        );
+    );
 
     const isTypingRef =
         useRef(false);
+
+    const textareaRef =
+        useRef<HTMLTextAreaElement | null>(
+            null,
+    );
 
     function handleSubmit(
         event: React.FormEvent,
@@ -71,6 +76,13 @@ function MessageComposer({
         }
 
         setMessage("");
+
+        window.requestAnimationFrame(() => {
+            if (textareaRef.current) {
+                textareaRef.current.style.height =
+                    "auto";
+            }
+        });
     }
     function handleMessageChange(
         event:
@@ -80,6 +92,10 @@ function MessageComposer({
             event.target.value;
 
         setMessage(value);
+
+        window.requestAnimationFrame(
+            resizeTextarea,
+        );
 
 
         if (
@@ -133,6 +149,42 @@ function MessageComposer({
     }
 
 
+    function handleKeyDown(
+        event: React.KeyboardEvent<HTMLTextAreaElement>,
+    ) {
+        if (
+            event.key === "Enter" &&
+            !event.shiftKey
+        ) {
+            event.preventDefault();
+
+            if (!message.trim()) {
+                return;
+            }
+
+            event.currentTarget
+                .form
+                ?.requestSubmit();
+        }
+    }
+
+    function resizeTextarea() {
+        const textarea =
+            textareaRef.current;
+
+        if (!textarea) {
+            return;
+        }
+
+        textarea.style.height = "auto";
+
+        textarea.style.height =
+            `${Math.min(
+                textarea.scrollHeight,
+                140,
+            )}px`;
+    }
+
     return (
         <form
             className="MessageComposer"
@@ -142,11 +194,11 @@ function MessageComposer({
         >
 
             <textarea
+                ref={textareaRef}
                 className="MessageComposerInput"
                 value={message}
-                onChange={
-                    handleMessageChange
-                }
+                onChange={handleMessageChange}
+                onKeyDown={handleKeyDown}
                 placeholder="Message"
                 rows={1}
             />
