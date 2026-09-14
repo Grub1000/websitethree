@@ -85,10 +85,10 @@ function RelayLayout() {
         //     event,
         // );
 
-        console.log(
-            "GLOBAL SOCKET EVENT:",
-            JSON.stringify(event, null, 2),
-        );
+        // console.log(
+        //     "GLOBAL SOCKET EVENT:",
+        //     JSON.stringify(event, null, 2),
+        // );
         
 
         if (event.type === "conversation.deleted") {
@@ -127,16 +127,16 @@ function RelayLayout() {
                         item.id ===
                         event.conversation.id,
                 );
-            console.log(
-                "EXISTING CONVERSATION:",
-                existingConversation,
-            );
+            // console.log(
+            //     "EXISTING CONVERSATION:",
+            //     existingConversation,
+            // );
 
             if (!existingConversation) {
 
-                console.log(
-                    "ADDING NEW CONVERSATION"
-                );
+                // console.log(
+                //     "ADDING NEW CONVERSATION"
+                // );
 
                 return [
                     event.conversation,
@@ -152,10 +152,10 @@ function RelayLayout() {
                     event.conversation.unread_count,
             };
 
-            console.log(
-                "UPDATED CONVERSATION:",
-                updatedConversation,
-            );
+            // console.log(
+            //     "UPDATED CONVERSATION:",
+            //     updatedConversation,
+            // );
 
             return [
                 updatedConversation,

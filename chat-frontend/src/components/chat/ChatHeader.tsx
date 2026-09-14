@@ -44,8 +44,8 @@ function ChatHeader({
                 conversation.other_user.id,
             )
             : false;
-    console.log("testing other user: " + conversation.other_user?.id)
-    console.log("testing all online user IDS" + [...onlineUserIds])
+    // console.log("testing other user: " + conversation.other_user?.id)
+    // console.log("testing all online user IDS" + [...onlineUserIds])
     const connectionLabel =
         connectionStatus === "connected"
             ? "Connected"

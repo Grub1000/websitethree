@@ -128,10 +128,10 @@ function ChatPage({
             ) {
 
 
-                console.log(
-                    "FULL MESSAGE.NEW EVENT:",
-                    event
-                );
+                // console.log(
+                //     "FULL MESSAGE.NEW EVENT:",
+                //     event
+                // );
                 
                 setMessages(
                     (
@@ -158,15 +158,15 @@ function ChatPage({
                     },
                 );
 
-                console.log(
-                    "ACTIVE CONVERSATION ID:",
-                    conversation?.id
-                );
+                // console.log(
+                //     "ACTIVE CONVERSATION ID:",
+                //     conversation?.id
+                // );
 
-                console.log(
-                    "INCOMING MESSAGE CONVERSATION ID:",
-                    event.message.conversation
-                );
+                // console.log(
+                //     "INCOMING MESSAGE CONVERSATION ID:",
+                //     event.message.conversation
+                // );
                 setConversations((current) => {
                     const targetConversation =
                         current.find(
