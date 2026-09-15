@@ -1,74 +1,109 @@
 # 💬 Relay
 
-Real-Time Messaging, Built to Scale.
+**Real-Time Messaging, Built to Scale.**
 
-A full-stack real-time messaging platform built to explore WebSockets, asynchronous Django, Redis-backed communication, distributed systems, reliable message delivery, horizontal scaling, and real-time state synchronization.
+Relay is a completed full-stack real-time direct messaging platform built with **React, TypeScript, Django REST Framework, Django Channels, Redis, MySQL, WebSockets, Apache, Daphne, and AWS EC2**.
 
-Relay is the application's public-facing name, while the codebase uses descriptive application names such as chat_api for the Django backend and chat-frontend for the React frontend.
+The project was built to demonstrate more than a basic chat UI. Relay explores how durable application state, persistent WebSocket connections, Redis-backed channel communication, authenticated Django Consumers, client-side state synchronization, presence, delivery/read receipts, and production ASGI deployment fit together in a real system.
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge\&logo=react\&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge\&logo=typescript\&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge\&logo=vite\&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
-![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge\&logo=django\&logoColor=white)
-![Django REST Framework](https://img.shields.io/badge/Django_REST_Framework-A30000?style=for-the-badge\&logo=django\&logoColor=white)
-![WebSockets](https://img.shields.io/badge/WebSockets-010101?style=for-the-badge\&logo=socketdotio\&logoColor=white)
-![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge\&logo=redis\&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge\&logo=mysql\&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge\&logo=amazonwebservices\&logoColor=white)
-![Amazon EC2](https://img.shields.io/badge/Amazon_EC2-FF9900?style=for-the-badge\&logo=amazonec2\&logoColor=white)
-![Amazon RDS](https://img.shields.io/badge/Amazon_RDS-527FFF?style=for-the-badge\&logo=amazonrds\&logoColor=white)
-![Amazon ElastiCache](https://img.shields.io/badge/Amazon_ElastiCache-C925D1?style=for-the-badge\&logo=amazonwebservices\&logoColor=white)
+The public-facing application is called **Relay**. Internally, the Django backend lives in `chat_api`, while the React + TypeScript frontend lives in `chat-frontend`.
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+![Django REST Framework](https://img.shields.io/badge/Django_REST_Framework-A30000?style=for-the-badge&logo=django&logoColor=white)
+![WebSockets](https://img.shields.io/badge/WebSockets-010101?style=for-the-badge&logo=socketdotio&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonwebservices&logoColor=white)
+![Apache](https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=apache&logoColor=white)
+
+---
+
+# ✅ Project Status
+
+**Relay V1 is complete.**
+
+The current version supports authenticated one-to-one messaging with persistent message history and real-time synchronization.
+
+Completed functionality includes:
+
+- ✅ JWT-based authentication
+- ✅ Email/password registration and login
+- ✅ Google OAuth integration
+- ✅ Protected React routes
+- ✅ Direct conversation creation
+- ✅ User search for starting new conversations
+- ✅ Real-time messages
+- ✅ Persistent MySQL message storage
+- ✅ Cursor-based message history
+- ✅ Infinite loading of older messages
+- ✅ Client-generated message UUIDs
+- ✅ Database-backed message idempotency
+- ✅ Typing indicators
+- ✅ Online/offline presence
+- ✅ Redis heartbeat-based presence tracking
+- ✅ Multi-tab presence support
+- ✅ Message delivery receipts
+- ✅ Message read receipts
+- ✅ Unread conversation counts
+- ✅ Live conversation sidebar updates
+- ✅ Global user-level WebSocket updates
+- ✅ Conversation-specific WebSocket connections
+- ✅ Conversation deletion
+- ✅ Real-time conversation removal across connected clients
+- ✅ Automatic WebSocket reconnection
+- ✅ Responsive desktop/mobile layout
+- ✅ Mobile single-pane conversation navigation
+- ✅ Enter-to-send / Shift+Enter newline behavior
+- ✅ Auto-expanding message composer
+- ✅ Production WSS deployment through Apache + Daphne
+- ✅ Redis-backed Django Channels production setup
+- ✅ systemd-managed Daphne service
+
+Planned features such as conversation search, group conversations, attachments, reactions, and message editing are intentionally reserved for a future V2.
 
 ---
 
 # 📖 Overview
 
-Relay is a full-stack real-time chat platform built with a React + TypeScript frontend and a Django backend.
+Relay uses **two communication paths**:
 
-Unlike a traditional REST-only application, Relay maintains persistent WebSocket connections between clients and the backend.
+1. **REST** for durable state that can be loaded or recovered.
+2. **WebSockets** for live events that should appear immediately.
 
-This enables events such as:
+```text
+React + TypeScript
+        │
+        ├──────── REST ────────► Django REST Framework ─────► MySQL
+        │
+        └───── WebSocket ──────► Django Channels
+                                      │
+                                      ▼
+                                 Redis Channel Layer
+                                      │
+                                      ▼
+                                 Other Consumers
+                                      │
+                                      ▼
+                                     MySQL
+```
 
-💬 Real-time messages
-🟢 Online presence
-⌨️ Typing indicators
-📬 Delivery receipts
-👁️ Read receipts
-🔔 Unread message updates
-📱 Multi-device synchronization
-🔄 Reconnection and state recovery
+This separation is important.
 
-Relay is also designed as a practical exploration of distributed systems and horizontally scalable application architecture.
+**MySQL is the durable source of truth.** Messages, conversations, memberships, delivery state, and read state survive process restarts and connection failures.
 
-Instead of assuming every connected user is handled by the same Python process or even the same EC2 instance, the architecture uses a Redis-backed Django Channels channel layer so Consumers running in separate worker processes and separate application servers can exchange real-time events.
+**Redis is transient coordination infrastructure.** It allows Django Channels Consumers running in different Python processes to exchange live events without sharing Python memory.
 
----
+A useful mental model is:
 
-# 🎯 Project Goals
-
-The project is designed to demonstrate more than simply opening a WebSocket.
-
-Core engineering goals include:
-
-* Persistent bidirectional communication using WebSockets
-* Asynchronous request/event handling with ASGI
-* Django Channels Consumers
-* Redis-backed cross-process communication
-* Multiple ASGI worker processes
-* Multiple application servers
-* Load-balanced traffic
-* Durable message persistence
-* Client-generated message IDs and idempotency
-* Message ordering
-* Delivery/read state
-* Multi-device connections
-* Presence tracking
-* Reconnection handling
-* REST/WebSocket state synchronization
-* Horizontal scalability
-* Failure recovery
-* Managed and self-hosted AWS infrastructure options
+```text
+MySQL = durable memory
+Redis = real-time nervous system
+WebSocket = live client/server connection
+```
 
 ---
 
@@ -76,1007 +111,327 @@ Core engineering goals include:
 
 ## Frontend
 
-![React](https://img.shields.io/badge/React-20232A?style=flat-square\&logo=react\&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square\&logo=typescript\&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square\&logo=vite\&logoColor=white)
-
-* **React**
-* **TypeScript**
-* **Vite**
-* Browser WebSocket API
-* React state management
-* REST API communication
-* JWT authentication
+- **React**
+- **TypeScript**
+- **Vite**
+- React Router
+- Browser WebSocket API
+- Fetch API
+- JWT access/refresh tokens
+- Google OAuth
+- Responsive CSS
 
 ## Backend
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square\&logo=python\&logoColor=white)
-![Django](https://img.shields.io/badge/Django-092E20?style=flat-square\&logo=django\&logoColor=white)
-![Django REST Framework](https://img.shields.io/badge/DRF-A30000?style=flat-square\&logo=django\&logoColor=white)
-
-* **Python**
-* **Django**
-* **Django REST Framework**
-* **Django Channels**
-* **ASGI**
-* **Daphne**
-* **channels-redis**
+- **Python**
+- **Django**
+- **Django REST Framework**
+- **Django Channels**
+- **ASGI**
+- **Daphne**
+- **SimpleJWT**
+- **channels-redis**
 
 ## Data & Infrastructure
 
-![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square\&logo=redis\&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square\&logo=mysql\&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square\&logo=amazonwebservices\&logoColor=white)
-![Amazon EC2](https://img.shields.io/badge/EC2-FF9900?style=flat-square\&logo=amazonec2\&logoColor=white)
-
-* **MySQL** — durable application state
-* **Redis** — transient real-time communication and coordination
-* **AWS EC2** — application workers and optional self-hosted infrastructure
-* **Elastic Load Balancer** — traffic distribution across application instances
-* **Amazon RDS** — optional managed MySQL
-* **Amazon ElastiCache for Redis** — optional managed Redis
-* **Apache2** — reverse proxy
-* **HTTPS / WSS** — secure production HTTP and WebSocket traffic
+- **MySQL** — durable application data
+- **Redis** — Channels communication and transient presence state
+- **Apache2** — HTTPS/WSS public entry point and reverse proxy
+- **Daphne** — ASGI protocol server for WebSockets
+- **AWS EC2** — production application server
+- **systemd** — persistent Daphne and Redis services
 
 ---
 
-# 🏗️ High-Level Architecture
+# 🏗️ Current Production Architecture
 
-```text
-                        React + TypeScript
-                              Client
-                                │
-                ┌───────────────┴───────────────┐
-                │                               │
-                │ HTTP / REST                   │ WebSocket
-                ▼                               ▼
-        Django REST Framework             Django Channels
-                │                               │
-                │                         ChatConsumer
-                │                               │
-                │                         Channel Layer
-                │                               │
-                │                               ▼
-                │                             Redis
-                │                               │
-                │                         Other Consumers
-                │                               │
-                └───────────────┬───────────────┘
-                                ▼
-                              MySQL
-```
+Relay currently runs alongside other Django applications on the same EC2 server.
 
-The application intentionally separates three responsibilities:
-
-```text
-CLIENT ↔ SERVER
-WebSockets
-React ↔ Consumer
-
-SERVER ↔ SERVER
-Django Channels + Redis
-Consumer ↔ Consumer
-Worker ↔ Worker
-EC2 Instance ↔ EC2 Instance
-
-DURABLE STATE
-Django ORM + MySQL
-Messages / Conversations / Reads / Deliveries
-```
-
----
-
-# 🌐 REST vs WebSocket Responsibilities
-
-REST and WebSockets serve different purposes.
-
-## REST API
-
-REST handles state that can be requested or recovered later.
-
-Examples:
-
-```text
-GET /conversations/
-GET /conversations/{id}/messages/
-GET /users/search/
-POST /conversations/
-```
-
-REST will be responsible for:
-
-* Loading conversations
-* Loading historical messages
-* Searching users
-* Creating conversations
-* Pagination
-* Initial application state
-* Re-synchronization after reconnecting
-
-## WebSockets
-
-WebSockets handle events that should happen immediately.
-
-Examples:
-
-```text
-message.send
-message.new
-typing.start
-typing.stop
-message.delivered
-message.read
-presence.update
-```
-
-WebSockets will be responsible for:
-
-* New messages
-* Typing indicators
-* Presence updates
-* Delivery acknowledgements
-* Read acknowledgements
-* Live unread-count updates
-* Multi-device synchronization
-
----
-
-# 🔌 WebSockets
-
-Traditional HTTP follows a request/response model:
-
-```text
-Browser
-   │
-   │ Request
-   ▼
-Server
-   │
-   │ Response
-   ▼
-Browser
-
-Connection finishes
-```
-
-Chat requires the server to communicate with a client without waiting for another HTTP request.
-
-WebSockets establish a persistent bidirectional connection:
-
-```text
-Browser
-   │
-   │ HTTP Upgrade
-   ▼
-Server
-   │
-   ▼
-Persistent WebSocket
-   │
-   ├──── Client → Server
-   │
-   └──── Server → Client
-```
-
-Development:
-
-```text
-ws://127.0.0.1:8000/ws/chat/
-```
-
-Production will use:
-
-```text
-wss://
-```
-
-for encrypted WebSocket communication.
-
----
-
-# ⚡ ASGI
-
-Django traditionally used WSGI for synchronous HTTP applications.
-
-This application uses **ASGI — Asynchronous Server Gateway Interface**.
-
-ASGI supports long-lived protocols such as WebSockets.
-
-A WebSocket connection generates lifecycle events similar to:
-
-```text
-websocket.connect
-websocket.receive
-websocket.receive
-websocket.receive
-...
-websocket.disconnect
-```
-
-ASGI sits between the protocol server and Django:
-
-```text
-Browser
-   │
-   │ WebSocket
-   ▼
-ASGI Server
-   │
-   │ ASGI Events
-   ▼
-Django Channels
-   │
-   ▼
-Consumer
-```
-
-The project's ASGI application currently routes HTTP and WebSocket traffic separately:
-
-```python
-application = ProtocolTypeRouter({
-    "http": django_asgi_app,
-
-    "websocket": URLRouter(
-        chat_api.routing.websocket_urlpatterns
-    ),
-})
-```
-
----
-
-# 📡 Django Channels
-
-Django Channels extends Django beyond traditional HTTP request/response handling.
-
-Important Channels concepts used by this application include:
-
-* Consumers
-* Channels
-* Groups
-* Channel layers
-* WebSocket routing
-* Asynchronous event handlers
-
----
-
-# 👤 Consumers
-
-A **Consumer is a Python object that handles one WebSocket connection**.
-
-For example:
-
-```text
-Jorge Chrome
-     │
-     ▼
-WebSocket
-     │
-     ▼
-ChatConsumer #1
-
-
-Jorge Phone
-     │
-     ▼
-WebSocket
-     │
-     ▼
-ChatConsumer #2
-
-
-Bob Chrome
-     │
-     ▼
-WebSocket
-     │
-     ▼
-ChatConsumer #3
-```
-
-One user can therefore have multiple Consumers.
-
-A Consumer handles events such as:
-
-```python
-connect()
-receive()
-disconnect()
-```
-
-It can also handle custom internal Channels events:
-
-```python
-chat_message()
-```
-
----
-
-# 📬 Channels
-
-Every Consumer receives a unique:
-
-```python
-self.channel_name
-```
-
-Conceptually:
-
-```text
-Consumer A
-channel = specific.abcd123
-
-Consumer B
-channel = specific.xyz789
-```
-
-A channel can be thought of as an internal **address or inbox** for a particular Consumer.
-
-This allows the Channels infrastructure to route events toward specific Consumer instances.
-
----
-
-# 👥 Channel Groups
-
-Channels can be organized into groups.
-
-Our current development test uses:
-
-```text
-chat_test
-```
-
-Two browser tabs produce something conceptually similar to:
-
-```text
-chat_test
-│
-├── Consumer A channel
-│
-└── Consumer B channel
-```
-
-A Consumer joins using:
-
-```python
-await self.channel_layer.group_add(
-    "chat_test",
-    self.channel_name
-)
-```
-
-An event can then be distributed using:
-
-```python
-await self.channel_layer.group_send(
-    "chat_test",
-    {
-        "type": "chat.message",
-        "message": text_data
-    }
-)
-```
-
-Every Consumer currently belonging to the group receives the event.
-
----
-
-# 🔴 Redis
-
-Redis is a separate server process used by the application for extremely fast transient communication and coordination.
-
-During local development, Redis listens on:
-
-```text
-127.0.0.1:6379
-```
-
-The Django application communicates with Redis through:
-
-```text
-Django Channels
-      │
-      ▼
-Channel Layer API
-      │
-      ▼
-channels-redis
-      │
-      ▼
-Redis Server
-```
-
-Application code therefore does not need to manually implement low-level Redis messaging.
-
-Instead, it uses the Channels abstraction:
-
-```python
-self.channel_layer
-```
-
----
-
-# 🧠 What Redis Does in This Application
-
-Redis is primarily our **real-time communication layer**.
-
-It allows Consumers and worker processes to exchange transient events.
-
-Examples include:
-
-```text
-New message
-Typing started
-Typing stopped
-Presence changed
-Message delivered
-Message read
-```
-
-Redis is **not** intended to be the permanent message database.
-
-The architecture follows:
-
-```text
-MySQL
-│
-└── Durable application state
-
-Redis
-│
-└── Transient real-time coordination
-```
-
-A useful mental model for this project is:
-
-```text
-Redis = real-time nervous system
-
-MySQL = durable memory
-```
-
----
-
-# 👷 What Is a Worker?
-
-A worker is simply an **independent running Python process executing the Django ASGI application**.
-
-It is not:
-
-* A Consumer
-* A Django model
-* A Redis object
-* A WebSocket
-
-A production server may run several workers:
-
-```text
-EC2 Server
-│
-├── Worker Process 1
-├── Worker Process 2
-├── Worker Process 3
-└── Worker Process 4
-```
-
-Each worker loads the Django application.
-
-Conceptually:
-
-```text
-Worker 1
-│
-├── Django
-├── Channels
-├── chat_api
-├── Consumer A
-├── Consumer B
-└── Consumer C
-
-
-Worker 2
-│
-├── Django
-├── Channels
-├── chat_api
-├── Consumer D
-└── Consumer E
-```
-
-A worker can therefore handle **many Consumer instances**.
-
----
-
-# 🧠 Worker Memory Isolation
-
-Separate processes have separate memory.
-
-For example:
-
-```text
-WORKER 1                       WORKER 2
-
-Python Process                 Python Process
-
-Consumer Jorge                Consumer Bob
-      │                            │
-      │                            │
-      └──────────── X ─────────────┘
-
-       No shared Python memory
-```
-
-Worker 1 cannot simply access a Python object living inside Worker 2.
-
-This creates an important problem for real-time communication.
-
-What if Jorge's WebSocket is handled by Worker 1 while Bob's WebSocket is handled by Worker 2?
-
-That is one of the main reasons Redis exists in this architecture.
-
----
-
-# 🔴 Redis Across Workers
-
-Both worker processes can communicate with the same Redis server.
-
-```text
-Worker 1                           Worker 2
-│                                  │
-└── Jorge Consumer                 └── Bob Consumer
-        │                                ▲
-        │                                │
-        ▼                                │
-      Redis ─────────────────────────────┘
-```
-
-Worker 1 does not need direct access to Bob's Consumer.
-
-Instead:
-
-```text
-Jorge
-  │
-  ▼
-Consumer
-  │
-  ▼
-Worker 1
-  │
-  ▼
-Redis
-  │
-  ▼
-Worker 2
-  │
-  ▼
-Consumer
-  │
-  ▼
-Bob
-```
-
-This enables communication even when users are handled by completely different Python processes.
-
----
-
-# ⚖️ Load Balancer
-
-Once the application runs across multiple EC2 instances, clients need a common entry point.
-
-That is the job of the **load balancer**.
-
-```text
-                        Users
-                          │
-                          ▼
-                Application Load Balancer
-                    /        |        \
-                   /         |         \
-                  ▼          ▼          ▼
-              EC2 App 1  EC2 App 2  EC2 App 3
-```
-
-The load balancer distributes incoming HTTP and WebSocket connections among healthy application instances.
-
-Each application instance can itself run multiple workers.
-
-```text
-                    Load Balancer
-                         │
-              ┌──────────┼──────────┐
-              ▼          ▼          ▼
-           EC2 #1     EC2 #2     EC2 #3
-              │          │          │
-         ┌────┴───┐ ┌────┴───┐ ┌────┴───┐
-         ▼        ▼ ▼        ▼ ▼        ▼
-      Worker   Worker     Worker     Worker
-```
-
-Once a WebSocket connection is established, that connection remains associated with the application instance handling it for the life of that socket.
-
-Redis ensures that this does not matter for message routing.
-
-A user connected to EC2 #1 can still send a message to a user connected to EC2 #3.
-
----
-
-# ☁️ AWS Deployment Architecture Options
-
-The application can be deployed using either a largely self-managed infrastructure model or a more managed AWS architecture.
-
-Both use the same application design.
-
----
-
-# 🖥️ Option A — Self-Managed AWS Infrastructure
-
-This approach uses dedicated EC2 instances for the shared data services.
-
-```text
-                            Internet
-                               │
-                               ▼
-                  Application Load Balancer
-                               │
-                 ┌─────────────┼─────────────┐
-                 ▼             ▼             ▼
-            EC2 App #1    EC2 App #2    EC2 App #3
-                 │             │             │
-          ASGI Workers   ASGI Workers   ASGI Workers
-                 │             │             │
-                 └─────────────┼─────────────┘
-                               │
-                 ┌─────────────┴─────────────┐
-                 ▼                           ▼
-         EC2 Redis Server              EC2 MySQL Server
-         Shared real-time              Shared durable
-         communication                 application state
-```
-
-### Application EC2 Instances
-
-Multiple EC2 instances run:
-
-* Django
-* Django REST Framework
-* Django Channels
-* ASGI server
-* Application workers
-* React static assets or reverse-proxied frontend
-
-Example:
-
-```text
-EC2 App #1
-├── Worker 1
-├── Worker 2
-└── Worker 3
-
-EC2 App #2
-├── Worker 4
-├── Worker 5
-└── Worker 6
-```
-
-### Dedicated Redis EC2
-
-A separate EC2 instance can host Redis.
-
-```text
-EC2 Redis
-│
-└── Redis Server :6379
-```
-
-All application workers connect to the same Redis server.
-
-```text
-EC2 App #1 ─┐
-EC2 App #2 ─┼──► Redis EC2
-EC2 App #3 ─┘
-```
-
-### Dedicated MySQL EC2
-
-Another EC2 instance can host the shared MySQL database.
-
-```text
-EC2 MySQL
-│
-└── MySQL Server :3306
-```
-
-All application instances use the same durable database.
-
-```text
-EC2 App #1 ─┐
-EC2 App #2 ─┼──► MySQL EC2
-EC2 App #3 ─┘
-```
-
-This approach provides significant control and can be cost-conscious, but requires the application owner to manage:
-
-* Backups
-* Database updates
-* Redis updates
-* Failover
-* Monitoring
-* Disk management
-* Security hardening
-* Recovery
-* Replication if introduced later
-
----
-
-# ☁️ Option B — Managed AWS Infrastructure
-
-A more production-oriented architecture can replace self-managed Redis and MySQL servers with managed AWS services.
-
-```text
-                             Internet
-                                │
-                                ▼
-                   Application Load Balancer
-                                │
-                 ┌──────────────┼──────────────┐
-                 ▼              ▼              ▼
-             EC2 App #1     EC2 App #2     EC2 App #3
-                 │              │              │
-             Workers        Workers        Workers
-                 │              │              │
-                 └──────────────┼──────────────┘
-                                │
-                  ┌─────────────┴─────────────┐
-                  ▼                           ▼
-           Amazon ElastiCache             Amazon RDS
-               for Redis                  for MySQL
-                  │                           │
-          Real-time channel            Durable database
-              layer state                   state
-```
-
----
-
-# 🔴 Amazon ElastiCache for Redis
-
-Instead of manually maintaining Redis on EC2:
-
-```text
-EC2 Redis Server
-```
-
-the application can use:
-
-```text
-Amazon ElastiCache for Redis
-```
-
-Application workers still interact with it through `channels-redis`.
-
-From the Django application's perspective:
-
-```text
-Consumer
-   │
-   ▼
-Channel Layer
-   │
-   ▼
-channels-redis
-   │
-   ▼
-ElastiCache Redis
-```
-
-The application logic stays largely unchanged.
-
-Benefits of a managed Redis service can include:
-
-* AWS-managed infrastructure
-* Monitoring integrations
-* Easier replication options
-* High-availability configurations
-* Automated maintenance capabilities
-* Reduced operating-system administration
-
----
-
-# 🗄️ Amazon RDS for MySQL
-
-Likewise, the permanent application database can move from:
-
-```text
-Self-hosted MySQL on EC2
-```
-
-to:
-
-```text
-Amazon RDS for MySQL
-```
-
-Django continues using the normal ORM:
-
-```text
-Django ORM
-    │
-    ▼
-MySQL protocol
-    │
-    ▼
-Amazon RDS
-```
-
-The application's models do not need to fundamentally change just because the underlying MySQL server is managed by RDS.
-
-Potential benefits include:
-
-* Automated backups
-* Managed database maintenance
-* Monitoring
-* Easier recovery
-* Multi-AZ options
-* Storage scaling options
-* Reduced database administration
-
----
-
-# 🔄 Self-Managed vs Managed Architecture
-
-```text
-SELF-MANAGED                       MANAGED
-
-EC2 Application Servers           EC2 Application Servers
-        │                                  │
-        ▼                                  ▼
-EC2 Redis Server                  Amazon ElastiCache
-        │                                  │
-        ▼                                  ▼
-EC2 MySQL Server                  Amazon RDS
-```
-
-The application layer remains conceptually identical:
-
-```text
-React
-  ↓
-Load Balancer
-  ↓
-EC2 Application Instances
-  ↓
-ASGI Workers
-  ↓
-Consumers
-  ↓
-Redis Channel Layer
-
-        +
-
-Django ORM
-  ↓
-MySQL
-```
-
-Only the infrastructure hosting Redis and MySQL changes.
-
----
-
-# 📈 Horizontal Scaling
-
-The application is intentionally designed to scale horizontally.
-
-Vertical scaling means:
-
-```text
-One server
-   │
-   ▼
-Give it more CPU/RAM
-```
-
-Horizontal scaling means:
-
-```text
-Add more application servers
-```
-
-Example:
-
-```text
-Before
-
-Load Balancer
-     │
-     ▼
-   EC2 #1
-
-
-After
-
-Load Balancer
-   │   │   │
-   ▼   ▼   ▼
-EC2 #1 #2  #3
-```
-
-Because the application servers share:
-
-```text
-Redis
-MySQL
-```
-
-they do not need to share local Python memory.
-
-This makes individual application instances more replaceable and allows additional workers or servers to be introduced as traffic grows.
-
----
-
-# 🌍 Fully Scaled Architecture
-
-A future production deployment could look like:
+The existing website already used Apache + mod_wsgi for normal HTTP traffic, so Relay was added without replacing that working architecture.
 
 ```text
                               INTERNET
                                   │
                                   ▼
-                     ┌─────────────────────┐
-                     │ Application Load    │
-                     │     Balancer        │
-                     └──────────┬──────────┘
-                                │
-                ┌───────────────┼───────────────┐
-                │               │               │
-                ▼               ▼               ▼
-         ┌────────────┐   ┌────────────┐  ┌────────────┐
-         │  EC2 App 1 │   │  EC2 App 2 │  │  EC2 App 3 │
-         └──────┬─────┘   └──────┬─────┘  └──────┬─────┘
-                │                │                │
-          ┌─────┴─────┐    ┌─────┴─────┐    ┌─────┴─────┐
-          │ Worker 1  │    │ Worker 3  │    │ Worker 5  │
-          │ Worker 2  │    │ Worker 4  │    │ Worker 6  │
-          └─────┬─────┘    └─────┬─────┘    └─────┬─────┘
-                │                │                │
-                └────────────────┼────────────────┘
-                                 │
-                   ┌─────────────┴─────────────┐
-                   │                           │
-                   ▼                           ▼
-         ┌──────────────────┐        ┌──────────────────┐
-         │ Amazon           │        │ Amazon RDS       │
-         │ ElastiCache      │        │ for MySQL        │
-         │ for Redis        │        │                  │
-         └──────────────────┘        └──────────────────┘
-                   │                           │
-                   │                           │
-            Real-time events              Durable state
+                           Apache2 :443
+                          HTTPS + WSS
+                                  │
+                 ┌────────────────┴────────────────┐
+                 │                                 │
+                 │ Normal HTTP                     │ /ws/*
+                 ▼                                 ▼
+             mod_wsgi                       Reverse Proxy
+                 │                                 │
+                 ▼                                 ▼
+              wsgi.py                       Daphne :8001
+                 │                                 │
+                 ▼                                 ▼
+              Django                            asgi.py
+                                                   │
+                                                   ▼
+                                            Django Channels
+                                                   │
+                                                   ▼
+                                               Consumers
+                                                   │
+                                                   ▼
+                                                 Redis
+                                                   │
+                                                   ▼
+                                                 MySQL
 ```
 
-The self-managed equivalent would simply replace the two managed services with dedicated EC2 instances:
+Normal Django HTTP traffic continues through WSGI.
+
+Relay WebSocket traffic uses:
 
 ```text
-ElastiCache → Redis EC2
+Browser
+   │
+   │ wss://jorgeramirez.net/ws/...
+   ▼
+Apache :443
+   │
+   │ Proxy /ws/
+   ▼
+Daphne :8001
+   │
+   ▼
+Django ASGI
+   │
+   ▼
+Channels Consumer
+   │
+   ▼
+Redis Channel Layer
+```
 
-RDS         → MySQL EC2
+This keeps the existing production site stable while giving Relay the ASGI path required for persistent WebSockets.
+
+---
+
+# 🌐 REST vs WebSocket Responsibilities
+
+## REST API
+
+REST handles state that should be recoverable at any time.
+
+Current endpoints include the equivalent of:
+
+```text
+GET    /chat-api/conversations/
+GET    /chat-api/conversations/<conversation_id>/messages/?before=<message_id>
+POST   /chat-api/conversations/direct/
+GET    /chat-api/users/?search=<query>
+DELETE /chat-api/conversations/<conversation_id>/
+```
+
+REST is responsible for:
+
+- Loading the conversation list
+- Loading message history
+- Cursor pagination
+- Searching users
+- Creating/finding direct conversations
+- Deleting conversations
+- Initial application state
+- Recovery after reload/reconnect
+
+## WebSockets
+
+WebSockets handle events that should happen immediately.
+
+Current event types include:
+
+```text
+message.send
+message.new
+message.delivered
+message.read
+typing.start
+typing.stop
+typing.update
+presence.update
+conversation.updated
+conversation.deleted
+heartbeat
+```
+
+WebSockets are responsible for:
+
+- Live message delivery
+- Typing indicators
+- Presence
+- Delivery receipts
+- Read receipts
+- Unread-count updates
+- Conversation sidebar synchronization
+- Real-time deletion updates
+- Multi-tab/device synchronization
+
+---
+
+# 🔌 Intentional Two-WebSocket Frontend Architecture
+
+Relay intentionally uses **two WebSocket connections per active chat tab**.
+
+## 1. User-Level Socket
+
+```text
+/ws/chat/
+```
+
+This socket represents Relay-wide state for the authenticated user.
+
+It receives events such as:
+
+```text
+conversation.updated
+conversation.deleted
+```
+
+This lets the sidebar update even when the affected conversation is not currently open.
+
+Examples:
+
+- A new incoming direct message appears in the sidebar.
+- A conversation moves to the top after receiving a message.
+- An unread count changes.
+- A deleted conversation disappears immediately.
+
+## 2. Conversation-Level Socket
+
+```text
+/ws/chat/<conversation_id>/
+```
+
+This socket handles events for the currently selected conversation.
+
+Examples:
+
+```text
+message.new
+message.delivered
+message.read
+typing.update
+presence.update
+```
+
+## Why Two Sockets?
+
+The separation keeps:
+
+```text
+GLOBAL RELAY STATE
+conversation list / unread counts / conversation lifecycle
+
+separate from
+
+ACTIVE CONVERSATION STATE
+messages / typing / presence / delivery / reads
+```
+
+This is easier to reason about than placing every event for the entire application on one multiplexed socket.
+
+When no conversation is selected, only the user-level socket is needed.
+
+When a conversation is open, the tab normally has:
+
+```text
+1 user-level socket
++
+1 active-conversation socket
+```
+
+Multiple browser tabs create separate socket connections, which is why presence tracking is designed around **connections**, not simply users.
+
+---
+
+# 🔐 WebSocket Authentication
+
+Normal REST requests can send JWT access tokens in the `Authorization` header.
+
+The browser WebSocket API does not expose arbitrary request headers in the same way as `fetch()`, so Relay authenticates the socket during the WebSocket handshake using the access token in the query string.
+
+Frontend concept:
+
+```typescript
+new WebSocket(
+    `${WS_BASE_URL}/ws/chat/${conversationId}/?token=${accessToken}`
+)
+```
+
+The Django ASGI middleware:
+
+1. Reads the token.
+2. Validates the JWT.
+3. Resolves the authenticated user.
+4. Places the user into `scope["user"]`.
+5. Lets the Consumer authorize access to the requested conversation.
+
+```text
+WebSocket handshake
+        │
+        ▼
+JWT middleware
+        │
+        ▼
+scope["user"]
+        │
+        ▼
+Conversation membership check
+        │
+        ├── authorized → accept()
+        │
+        └── unauthorized → close()
 ```
 
 ---
 
-# 🔄 Current Message Flow
+# 💬 Persistent Message Lifecycle
 
-The Redis proof-of-concept currently works as follows:
+A message is not simply broadcast to other browsers.
+
+Relay uses the safer ordering:
 
 ```text
-Browser A
+Validate
+   ↓
+Authorize
+   ↓
+Persist in MySQL
+   ↓
+Commit
+   ↓
+Broadcast through Redis
+```
+
+Full flow:
+
+```text
+React sender
     │
-    │ socket.send()
+    │ message.send
     ▼
 WebSocket
     │
     ▼
-Consumer A
+ChatConsumer
     │
-    │ receive()
+    ├── authenticate user
+    ├── authorize membership
+    ├── validate content
+    └── validate client_message_id
+    │
+    ▼
+MySQL transaction
+    │
+    ├── Message
+    └── MessageDelivery rows
+    │
+    ▼
+COMMIT
+    │
     ▼
 channel_layer.group_send()
     │
@@ -1086,290 +441,72 @@ channels-redis
     ▼
 Redis
     │
-    ├────────────────────┐
-    ▼                    ▼
-Consumer A          Consumer B
-    │                    │
-chat_message()      chat_message()
-    │                    │
-self.send()         self.send()
-    │                    │
-    ▼                    ▼
-WebSocket           WebSocket
-    │                    │
-    ▼                    ▼
-Browser A           Browser B
+    ├───────────────┐
+    ▼               ▼
+Consumer A      Consumer B
+    │               │
+    ▼               ▼
+WebSocket       WebSocket
+    │               │
+    ▼               ▼
+React A         React B
 ```
 
-Both browser tabs successfully receive the message.
+Persisting before broadcasting means a client never receives a successful live message that does not yet exist in the durable database.
 
 ---
 
-# ⚠️ `group_send()` vs `self.send()`
+# 🆔 Message Idempotency
 
-These two operations serve completely different purposes.
+The frontend creates a UUID before sending a message:
 
-## `group_send()`
-
-```python
-await self.channel_layer.group_send(...)
-```
-
-means:
-
-> Send an **internal Channels event** to Consumer channels belonging to a group.
-
-Flow:
-
-```text
-Consumer
-   │
-   ▼
-Channel Layer
-   │
-   ▼
-Redis
-   │
-   ▼
-Consumer(s)
-```
-
-It does **not** directly send a WebSocket frame.
-
-## `self.send()`
-
-```python
-await self.send(...)
-```
-
-means:
-
-> Send data through this Consumer's actual WebSocket connection.
-
-Flow:
-
-```text
-Consumer
-   │
-   ▼
-ASGI
-   │
-   ▼
-WebSocket
-   │
-   ▼
-Browser
-```
-
----
-
-# 📨 Channels Event Dispatching
-
-A Channels event such as:
-
-```python
+```json
 {
-    "type": "chat.message",
-    "message": "Hello"
+    "type": "message.send",
+    "client_message_id": "550e8400-e29b-41d4-a716-446655440000",
+    "content": "Hello"
 }
 ```
 
-is mapped by Channels to:
-
-```python
-chat_message()
-```
-
-In other words:
+The database enforces uniqueness on:
 
 ```text
-chat.message
-     │
-     ▼
-chat_message()
+(sender, client_message_id)
 ```
 
-The handler can then send the event to the connected browser:
+This allows retry-safe message handling.
 
-```python
-async def chat_message(self, event):
-    await self.send(...)
-```
+If the same send is received more than once because of a retry or reconnect, the backend can recognize the already-created message instead of creating a duplicate.
 
 ---
 
-# ⚛️ React Frontend Architecture
-
-The React frontend will have two primary communication paths:
-
-```text
-React Application
-│
-├── REST API
-│   ├── Conversation list
-│   ├── Historical messages
-│   ├── User search
-│   └── Initial state
-│
-└── WebSocket
-    ├── New messages
-    ├── Typing events
-    ├── Presence
-    ├── Delivery events
-    └── Read events
-```
-
----
-
-# 🔌 React WebSocket Lifecycle
-
-The browser establishes the connection using:
-
-```typescript
-const socket = new WebSocket(
-    "ws://127.0.0.1:8000/ws/chat/"
-);
-```
-
-React will eventually manage the socket lifecycle with `useEffect`.
-
-```text
-Component mounts
-      │
-      ▼
-Create WebSocket
-      │
-      ▼
-Register event handlers
-      │
-      ├── onopen
-      ├── onmessage
-      ├── onerror
-      └── onclose
-      │
-      ▼
-Component active
-      │
-      ▼
-Component unmounts
-      │
-      ▼
-Close WebSocket
-```
-
----
-
-# 🧠 React State Management
-
-Receiving a WebSocket event should update application state rather than directly manipulating the DOM.
-
-```text
-WebSocket event
-      │
-      ▼
-socket.onmessage
-      │
-      ▼
-Parse event
-      │
-      ▼
-Update React state
-      │
-      ▼
-React re-renders
-      │
-      ▼
-New message appears
-```
-
-Possible state includes:
-
-```typescript
-messages
-conversations
-onlineUsers
-typingUsers
-unreadCounts
-connectionStatus
-```
-
----
-
-# 🔄 Reconnection Strategy
-
-WebSocket connections are not guaranteed to remain open forever.
-
-Connections can disappear because of:
-
-* Network changes
-* Browser sleep
-* Server restart
-* Deployment
-* Redis interruption
-* Wi-Fi loss
-* Mobile network changes
-
-Planned strategy:
-
-```text
-Connection lost
-      │
-      ▼
-Wait
-      │
-      ▼
-Reconnect attempt
-      │
-      ├── failure → increase delay
-      │
-      └── success
-              │
-              ▼
-         REST resync
-              │
-              ▼
-       Restore live state
-```
-
-Potential exponential backoff:
-
-```text
-1 second
-2 seconds
-4 seconds
-8 seconds
-...
-```
-
----
-
-# 🗄️ Planned Database Architecture
+# 🗄️ Database Design
 
 ## Conversation
 
 ```text
 Conversation
 ├── id : UUID
-├── direct_key
+├── direct_key : unique / nullable
 ├── created_at
 └── updated_at
 ```
 
-`direct_key` prevents duplicate one-to-one conversations.
+For direct messages, `direct_key` is generated by sorting the two user IDs.
+
+Example:
 
 ```text
-User 42 + User 99
-        │
-        ▼
-sorted IDs
-        │
-        ▼
-"42:99"
+User 4 + User 5
+      ↓
+sort IDs
+      ↓
+"4:5"
 ```
 
----
+The unique key prevents duplicate one-to-one conversations.
 
-# 👥 ConversationMember
+## ConversationMember
 
 ```text
 ConversationMember
@@ -1380,11 +517,9 @@ ConversationMember
 └── last_read_at
 ```
 
-This stores user-specific conversation state and supports future group conversations.
+This model stores per-user conversation state and keeps the schema compatible with future group conversations.
 
----
-
-# 💬 Message
+## Message
 
 ```text
 Message
@@ -1400,33 +535,7 @@ Message
 
 Messages are permanently stored in MySQL.
 
----
-
-# 🆔 Client Message IDs & Idempotency
-
-WebSockets do not provide exactly-once delivery guarantees.
-
-The frontend will therefore generate a UUID before sending a message.
-
-```json
-{
-    "type": "message.send",
-    "client_message_id": "550e8400-e29b-41d4-a716-446655440000",
-    "content": "Hey Bob"
-}
-```
-
-The database will enforce uniqueness similar to:
-
-```text
-(sender, client_message_id)
-```
-
-This prevents retries from producing duplicate messages.
-
----
-
-# 📬 MessageDelivery
+## MessageDelivery
 
 ```text
 MessageDelivery
@@ -1435,7 +544,7 @@ MessageDelivery
 └── delivered_at
 ```
 
-Unique:
+Unique constraint:
 
 ```text
 (message, user)
@@ -1443,1676 +552,551 @@ Unique:
 
 ---
 
-# 👁️ Read State
+# 📬 Delivery Receipts
 
-Rather than creating one read row per message, each conversation membership tracks the latest read message.
+Delivery state is cumulative.
+
+When a recipient receives messages through the WebSocket, the client sends a delivery acknowledgement.
+
+Conceptually:
 
 ```text
-Messages
+message.delivered
+message_id = 120
+```
 
-#100
-#101
-#102
-#103
-#104
+means messages up to the acknowledged position can be marked delivered for that recipient.
 
-Bob.last_read_message = #102
+This avoids sending one database update for every message when several messages arrive together.
+
+---
+
+# 👁️ Read Receipts
+
+Read state is also cumulative.
+
+Instead of creating a separate read row for every message, `ConversationMember` stores the latest read message.
+
+```text
+Messages:
+100
+101
+102
+103
+104
+
+last_read_message = 102
 ```
 
 Therefore:
 
 ```text
-#100 → read
-#101 → read
-#102 → read
-#103 → unread
-#104 → unread
+100 → read
+101 → read
+102 → read
+103 → unread
+104 → unread
 ```
+
+This keeps read tracking efficient and makes unread counts straightforward to calculate.
 
 ---
 
-# 📊 Message State
+# 🟢 Presence Architecture
+
+Presence is transient state, so it belongs in Redis rather than MySQL.
+
+One user can have several active connections:
 
 ```text
-PENDING
-Client created message locally
-
-SENT
-Message exists in MySQL
-
-DELIVERED
-Recipient acknowledged receipt
-
-READ
-Recipient's read pointer reached/passed message
-```
-
-```text
-Pending
-   │
-   ▼
-Sent
-   │
-   ▼
-Delivered
-   │
-   ▼
-Read
-```
-
----
-
-# 🟢 Presence
-
-A user may have multiple WebSocket connections:
-
-```text
-Jorge
+User
 │
-├── Chrome
-├── Firefox
+├── Chrome tab
+├── Firefox tab
 └── Phone
 ```
 
 Therefore:
 
 ```text
-one disconnect ≠ user offline
+one WebSocket disconnect ≠ user offline
 ```
 
-Redis can maintain ephemeral connection state while MySQL stores durable information such as:
+Relay tracks active socket connections with a Redis-backed TTL/heartbeat strategy.
 
-```text
-last_seen_at
-```
+Current behavior:
+
+- The frontend sends a heartbeat roughly every 20 seconds.
+- Presence entries expire after approximately 60 seconds if a connection stops responding.
+- A watchdog cleans up stale connections.
+- The user is considered online while at least one active connection remains.
+
+Presence events are broadcast to relevant conversations so participants see live online/offline status.
 
 ---
 
-# 👥 Planned Conversation Groups
+# ⌨️ Typing Indicators
 
-The temporary:
+Typing is intentionally transient and is not stored in MySQL.
 
-```text
-chat_test
-```
-
-group will eventually become:
+Frontend flow:
 
 ```text
-conversation_<conversation_id>
+User starts typing
+      ↓
+typing.start
+      ↓
+Consumer
+      ↓
+Redis group event
+      ↓
+Other participant
+      ↓
+typing.update
 ```
+
+The frontend automatically sends `typing.stop` when:
+
+- The message is sent
+- The input becomes empty
+- The typing timeout expires
+
+---
+
+# 📜 Message History and Pagination
+
+Relay uses cursor-style history loading rather than requesting an entire conversation at once.
 
 Example:
 
 ```text
-conversation_52
-│
-├── Jorge Chrome
-├── Jorge Phone
-└── Bob Chrome
-```
-
----
-
-# 👤 Planned User Groups
-
-Each authenticated user may also have a personal Channels group:
-
-```text
-user_42
-│
-├── Chrome
-├── Firefox
-└── Phone
-```
-
-Useful for:
-
-* Multi-device synchronization
-* New-message notifications
-* Unread-count updates
-* Delivery updates
-* Presence-related events
-
----
-
-# 🔐 WebSocket Authentication
-
-The application already uses JWT authentication for REST.
-
-WebSockets require a separate authentication strategy because the standard browser WebSocket API does not support arbitrary `Authorization` headers in the same way as `fetch()`.
-
-Planned flow:
-
-```text
-WebSocket connection
-        │
-        ▼
-Authenticate user
-        │
-        ▼
-self.scope["user"]
-        │
-        ▼
-Authorize conversation membership
-        │
-        ▼
-Accept privileged events
-```
-
----
-
-# 📨 Planned Production Message Lifecycle
-
-```text
-Jorge React
-     │
-     │ message.send
-     ▼
-WebSocket
-     │
-     ▼
-Jorge Consumer
-     │
-     ├── Authenticate
-     ├── Authorize
-     ├── Validate
-     └── Check client_message_id
-             │
-             ▼
-           MySQL
-             │
-             │ INSERT Message #837
-             ▼
-           COMMIT
-             │
-             ▼
-     channel_layer.group_send()
-             │
-             ▼
-           Redis
-             │
-       ┌─────┴─────┐
-       ▼           ▼
-Worker A         Worker B
-       │           │
-       ▼           ▼
-Jorge Consumer   Bob Consumer
-       │           │
-       ▼           ▼
-WebSocket        WebSocket
-       │           │
-       ▼           ▼
-React            React
-```
-
-Critical ordering:
-
-```text
-Validate
-   ↓
-Persist
-   ↓
-Commit
-   ↓
-Broadcast
-```
-
----
-
-# 💥 Failure Recovery
-
-## Redis Failure
-
-Durable data remains:
-
-```text
-Users           ✅
-Conversations   ✅
-Messages        ✅
-Read state      ✅
-```
-
-Real-time functionality may temporarily fail:
-
-```text
-Live delivery   ❌
-Typing          ❌
-Presence        ❌
-Live receipts   ❌
-```
-
-## WebSocket Failure
-
-The client reconnects and reloads missed durable state through REST.
-
-## Duplicate Send
-
-`client_message_id` prevents duplicate database messages.
-
-## Recipient Offline
-
-The message remains in MySQL and is loaded later through the REST API.
-
----
-
-# 📜 Message History & Pagination
-
-Historical messages will use cursor-style pagination.
-
-Example:
-
-```text
-GET /conversations/52/messages/?before=837
+GET /chat-api/conversations/<uuid>/messages/?before=837
 ```
 
 Conceptually:
 
 ```sql
-WHERE conversation_id = 52
+WHERE conversation_id = <conversation>
 AND id < 837
 ORDER BY id DESC
-LIMIT 50
+LIMIT <page_size>
 ```
+
+The frontend:
+
+1. Loads the newest messages first.
+2. Displays them chronologically.
+3. Detects when the user scrolls near the top.
+4. Requests older messages.
+5. Prepends them while preserving the user's scroll position.
+
+This keeps large histories efficient.
 
 ---
 
-# 🧪 Current Development Status
+# 🔄 Reconnection and Recovery
 
-## ✅ Completed
+WebSocket connections are expected to fail occasionally.
 
-### Backend Infrastructure
+Common causes include:
 
-* [x] Created `chat_api` Django application
-* [x] Installed Django Channels
-* [x] Configured ASGI
-* [x] Added WebSocket URL routing
-* [x] Created `AsyncWebsocketConsumer`
-* [x] Established browser → Django WebSocket connection
-* [x] Tested WebSocket echo communication
-* [x] Installed Redis server through WSL
-* [x] Verified Redis with `redis-cli ping`
-* [x] Installed `channels-redis`
-* [x] Configured Redis-backed channel layer
-* [x] Verified Python → Redis connectivity
-* [x] Verified direct Channel Layer send/receive
-* [x] Verified `group_add()`
-* [x] Verified `group_send()`
-* [x] Verified two browser tabs receiving group broadcasts
-* [x] Confirmed Consumer → Redis → Consumer communication
+- Wi-Fi changes
+- Mobile network changes
+- Browser sleep
+- Deployment
+- Server restart
+- Temporary Redis interruption
 
-### Dependency Compatibility
+The active chat socket includes reconnect behavior so the frontend can recover without requiring a full browser refresh.
 
-Current dependency pin:
+Conceptually:
 
 ```text
-redis==7.4.1
+Connection lost
+      ↓
+Reconnect delay
+      ↓
+New WebSocket attempt
+      ↓
+Connection restored
+      ↓
+Continue real-time updates
 ```
 
-with:
+Durable state remains recoverable through REST because messages and conversation state are stored in MySQL rather than only in WebSocket memory.
+
+---
+
+# 🗑️ Conversation Deletion
+
+Relay supports deleting a direct conversation.
+
+REST handles the durable delete:
 
 ```text
-channels
+DELETE /chat-api/conversations/<conversation_id>/
+```
+
+The backend verifies that the authenticated user belongs to the conversation before deletion.
+
+Django cascade relationships remove related:
+
+```text
+Conversation
+   ↓
+ConversationMember
+   ↓
+Message
+   ↓
+MessageDelivery
+```
+
+After the database delete, the backend broadcasts:
+
+```text
+conversation.deleted
+```
+
+to the personal user groups of the affected members.
+
+Connected clients then remove the deleted conversation from the sidebar immediately.
+
+---
+
+# ⚛️ React Frontend Architecture
+
+The frontend is organized around services, hooks, reusable UI components, shared types, and application context.
+
+```text
+src/
+├── api/
+│   ├── apiClient.ts
+│   ├── auth_service.ts
+│   ├── user_service.ts
+│   └── chat_service.ts
+│
+├── websocket/
+│   └── chat_socket.ts
+│
+├── hooks/
+│   ├── useChatSocket.ts
+│   └── useUserChatSockets.ts
+│
+├── context/
+│   └── AuthContext.tsx
+│
+├── routes/
+│   └── ProtectedRoute.tsx
+│
+├── components/
+│   ├── layout/
+│   ├── conversations/
+│   └── chat/
+│
+├── pages/
+│   ├── ChatPage.tsx
+│   ├── LoginPage.tsx
+│   └── RegisterPage.tsx
+│
+└── types/
+    ├── auth.ts
+    └── chat.ts
+```
+
+Important responsibilities:
+
+- `AuthContext` owns authentication state.
+- `apiClient.ts` handles REST requests and JWT refresh behavior.
+- `chat_service.ts` contains Relay REST endpoints.
+- `chat_socket.ts` builds authenticated WebSocket URLs.
+- `useChatSocket` manages the active conversation socket.
+- `useUserChatSockets` manages user-level sidebar events.
+- `RelayLayout` owns selected conversation and conversation list state.
+- `ChatPage` owns active message state.
+
+---
+
+# 📱 Responsive Design
+
+Relay V1 includes responsive behavior for desktop and mobile.
+
+Desktop:
+
+```text
+┌──────────────┬──────────────────────────────┐
+│ Sidebar      │ Active Chat                  │
+│              │                              │
+│ Conversations│ Messages                     │
+│              │                              │
+└──────────────┴──────────────────────────────┘
+```
+
+Mobile without a selected conversation:
+
+```text
+┌──────────────────────────┐
+│ Sidebar                  │
+│ Conversation List        │
+│                          │
+└──────────────────────────┘
+```
+
+Mobile with an active conversation:
+
+```text
+┌──────────────────────────┐
+│ ← User Header            │
+│                          │
+│ Messages                 │
+│                          │
+│ Composer                 │
+└──────────────────────────┘
+```
+
+The mobile chat header provides a back button that returns to the conversation list.
+
+The composer also supports:
+
+```text
+Enter         → send message
+Shift + Enter → insert newline
+```
+
+The textarea automatically expands until a maximum height is reached, after which it scrolls internally.
+
+---
+
+# 🔴 Redis
+
+Redis is the shared communication layer used by Django Channels.
+
+```text
+Consumer A
+    │
+    ▼
+Channel Layer
+    │
+    ▼
 channels-redis
-```
-
-to preserve the working Channels/Redis configuration.
-
----
-
-# 🚧 Remaining V1 Work
-
-## Database
-
-* [ ] Create `Conversation`
-* [ ] Create `ConversationMember`
-* [ ] Create `Message`
-* [ ] Create `MessageDelivery`
-* [ ] Add database constraints
-* [ ] Add indexes
-* [ ] Add migrations
-
-## REST API
-
-* [ ] List conversations
-* [ ] Create/find direct conversations
-* [ ] Search users
-* [ ] Load message history
-* [ ] Cursor pagination
-* [ ] Unread counts
-
-## WebSocket Protocol
-
-* [ ] `message.send`
-* [ ] `message.new`
-* [ ] `typing.start`
-* [ ] `typing.stop`
-* [ ] `message.delivered`
-* [ ] `message.read`
-* [ ] `presence.update`
-
-## Authentication
-
-* [ ] Authenticate WebSocket connections
-* [ ] Integrate existing JWT system
-* [ ] Populate authenticated user in Consumer scope
-* [ ] Validate conversation membership
-* [ ] Reject unauthorized connections/events
-
-## Reliability
-
-* [ ] Client-generated message UUIDs
-* [ ] Database idempotency constraint
-* [ ] Message ordering
-* [ ] Reconnect handling
-* [ ] Exponential backoff
-* [ ] REST state resynchronization
-* [ ] Duplicate-event handling
-
-## Presence
-
-* [ ] Track active connections
-* [ ] Handle multiple tabs
-* [ ] Handle multiple devices
-* [ ] Last-seen state
-* [ ] Redis presence state
-* [ ] Heartbeat / TTL strategy
-
-## React
-
-* [ ] Build chat interface
-* [ ] Conversation sidebar
-* [ ] Message list
-* [ ] Message composer
-* [ ] WebSocket lifecycle hook/service
-* [ ] Socket event dispatcher
-* [ ] Connection state
-* [ ] Optimistic messages
-* [ ] Pending/sent/delivered/read UI
-* [ ] Typing indicators
-* [ ] Online indicators
-* [ ] Unread badges
-* [ ] Infinite/cursor history loading
-
-## Deployment
-
-* [ ] Configure production ASGI server
-* [ ] Run multiple worker processes
-* [ ] Configure Application Load Balancer
-* [ ] Deploy multiple application EC2 instances
-* [ ] Configure production Redis
-* [ ] Evaluate Redis EC2 vs Amazon ElastiCache
-* [ ] Evaluate MySQL EC2 vs Amazon RDS
-* [ ] Configure Apache WebSocket reverse proxy if retained
-* [ ] Configure HTTPS
-* [ ] Configure WSS
-* [ ] Configure environment variables
-* [ ] Secure Redis/database networking
-* [ ] Test load-balanced WebSocket connections
-
-## Distributed-System Testing
-
-* [ ] Run multiple ASGI workers
-* [ ] Connect clients to different workers
-* [ ] Run multiple EC2 application instances
-* [ ] Verify Redis cross-worker delivery
-* [ ] Verify Redis cross-instance delivery
-* [ ] Verify load balancer WebSocket routing
-* [ ] Restart worker during active connection
-* [ ] Restart application instance
-* [ ] Restart Redis
-* [ ] Test duplicate message retry
-* [ ] Test temporary network loss
-* [ ] Test offline recipient
-* [ ] Test multiple tabs/devices
-* [ ] Verify state recovery
-
----
-
-# 🔮 Possible V2 Features
-
-* Group conversations
-* Attachments
-* Images
-* Reactions
-* Message editing
-* Message deletion
-* Reply-to-message
-* Search
-* Conversation names
-* Group administrators
-* Push notifications
-* Redis-backed rate limiting
-* Auto Scaling Groups
-* Multi-AZ deployment
-* Multiple Redis nodes
-* Database replicas
-* Horizontal scaling across multiple AWS regions
-
----
-
-# 🧠 Simplified Terms to Lock In
-
-Use this section as the fast architecture refresher.
-
-## 🖥️ Server / EC2 Instance
-
-```text
-SERVER
-= A machine running some part of the application.
-
-In AWS:
-EC2 instance = virtual server.
-```
-
-An EC2 instance might run:
-
-```text
-Application workers
-
-OR
-
+    │
+    ▼
 Redis
-
-OR
-
-MySQL
+    │
+    ▼
+Consumer B
 ```
 
-depending on the deployment design.
+Redis is used for:
 
----
+- Channels group messaging
+- Cross-process real-time events
+- Presence connection state
+- Heartbeats / TTL state
 
-## 👷 Worker
+Redis is **not** the permanent message database.
 
-```text
-WORKER
-= Independent Python process
-  running the Django ASGI application.
-
-One worker can handle many Consumers.
-
-Workers do not share normal
-Python memory.
-```
+If Redis goes down temporarily:
 
 ```text
-EC2 App Server
-│
-├── Worker 1
-│   ├── Consumer A
-│   └── Consumer B
-│
-└── Worker 2
-    ├── Consumer C
-    └── Consumer D
+Users / Conversations / Messages / Read state → remain in MySQL
+Live messages / typing / presence / receipts    → temporarily disrupted
 ```
 
 ---
 
-## 👤 Consumer
+# 👷 Consumer, Worker, Channel, and Group
+
+## Consumer
+
+A Consumer is a Python object responsible for one WebSocket connection.
 
 ```text
-CONSUMER
-= Python object responsible for
-  one WebSocket connection.
-```
-
-```text
-Browser
-   ↓
+Browser Tab
+    ↓
 WebSocket
-   ↓
+    ↓
 Consumer
 ```
 
----
+## Channel
 
-## 📬 Channel
-
-```text
-CHANNEL
-= Unique internal address/inbox
-  associated with a Consumer.
-```
-
-Available as:
+Each Consumer receives a unique internal channel name.
 
 ```python
 self.channel_name
 ```
 
----
+Think of it as the Consumer's internal inbox/address.
 
-## 👥 Group
+## Group
+
+A group is a logical collection of Consumer channels.
+
+Conversation example:
 
 ```text
-GROUP
-= Logical collection of channels.
+chat_<conversation_uuid>
+├── User A browser channel
+├── User A phone channel
+└── User B browser channel
 ```
 
+User-level group example:
+
 ```text
-conversation_52
-├── Jorge channel
-├── Jorge phone channel
-└── Bob channel
+chat_user_42
+├── Chrome
+├── Firefox
+└── Phone
 ```
 
----
+## Worker / Process
 
-## 🔴 Redis
+Separate ASGI processes do not share normal Python memory.
 
 ```text
-REDIS
-= Shared fast communication system
-  used by the Channels channel layer.
-
-Lets workers and Consumers exchange
-real-time events even when they are
-in different processes or servers.
+Process A memory ≠ Process B memory
 ```
 
+Redis allows Channels events to cross that boundary.
+
 ```text
-Worker A
+Consumer A
    ↓
 Redis
    ↓
-Worker B
-```
-
-Redis may run as:
-
-```text
-Dedicated EC2 Redis server
-```
-
-or:
-
-```text
-Amazon ElastiCache for Redis
+Consumer B
 ```
 
 ---
 
-## 🗄️ MySQL
+# ⚠️ `group_send()` vs `self.send()`
 
-```text
-MYSQL
-= Durable source of truth.
+These operations solve different problems.
+
+## `group_send()`
+
+```python
+await self.channel_layer.group_send(...)
 ```
 
-Stores:
+Sends an **internal Channels event** through the channel layer.
 
 ```text
-Users
-Conversations
-Messages
-Membership
-Read state
-Delivery state
-```
-
-MySQL may run as:
-
-```text
-Dedicated EC2 MySQL server
-```
-
-or:
-
-```text
-Amazon RDS for MySQL
-```
-
----
-
-## ⚖️ Load Balancer
-
-```text
-LOAD BALANCER
-= Common public entry point that
-  distributes client connections
-  across multiple application servers.
-```
-
-```text
-Users
-  ↓
-Load Balancer
- /    |    \
-↓     ↓     ↓
-EC2  EC2   EC2
-```
-
----
-
-## 🌐 WebSocket
-
-```text
-WEBSOCKET
-= Persistent bidirectional connection
-  between browser and backend.
-```
-
-```text
-React
-  ⇅
-Consumer
-```
-
----
-
-## ⚡ ASGI
-
-```text
-ASGI
-= Interface enabling Django to handle
-  asynchronous and long-lived protocols
-  such as WebSockets.
-```
-
----
-
-## 📡 Django Channels
-
-```text
-DJANGO CHANNELS
-= Django extension providing:
-
-Consumers
-WebSocket routing
-Channel layers
-Groups
-Async event handling
-```
-
----
-
-## 🔌 channels-redis
-
-```text
-CHANNELS-REDIS
-= Redis-backed implementation
-  of the Django Channels channel layer.
-```
-
-```text
-Consumer
-   ↓
-Channel Layer
-   ↓
-channels-redis
-   ↓
-Redis
-```
-
----
-
-## ⚛️ React
-
-```text
-REACT
-= Client UI and client-side state.
-```
-
-React uses:
-
-```text
-REST
-→ load/recover durable state
-
-WebSocket
-→ send/receive live events
-```
-
----
-
-## ☁️ RDS
-
-```text
-AMAZON RDS
-= Managed relational database service.
-
-For this project:
-managed MySQL hosting.
-```
-
----
-
-## 🔴 ElastiCache
-
-```text
-AMAZON ELASTICACHE
-= Managed in-memory data service.
-
-For this project:
-managed Redis infrastructure.
-```
-
----
-
-# 🧠 The Entire Architecture in One Diagram
-
-```text
-                               USERS
-                                 │
-                                 ▼
-                       ┌─────────────────┐
-                       │  Load Balancer  │
-                       └────────┬────────┘
-                                │
-                ┌───────────────┼───────────────┐
-                ▼               ▼               ▼
-             EC2 #1          EC2 #2          EC2 #3
-                │               │               │
-             Workers         Workers         Workers
-                │               │               │
-             Consumers       Consumers       Consumers
-                │               │               │
-                └───────────────┼───────────────┘
-                                │
-                         Redis Channel Layer
-                                │
-                 EC2 Redis OR ElastiCache
-                                │
-                                │
-                       Real-Time Communication
-
-
-                      Durable Application State
-                                │
-                                ▼
-                    EC2 MySQL OR Amazon RDS
-```
-
-And from one user to another:
-
-```text
-USER A
-  ↓
-React
-  ↓
-WebSocket
-  ↓
-Consumer
-  ↓
-Worker
-  ↓
-EC2 Application Instance
-  ↓
-Redis / ElastiCache
-  ↓
-Other EC2 Application Instance
-  ↓
-Other Worker
-  ↓
-Other Consumer
-  ↓
-WebSocket
-  ↓
-React
-  ↓
-USER B
-
-            +
-
-MySQL / RDS
-= permanent application state
-```
-
----
-
-# 🔑 Seven Rules to Remember
-
-### 1. WebSockets connect clients to Consumers.
-
-```text
-React ↔ Consumer
-```
-
-### 2. One WebSocket connection corresponds to one Consumer instance.
-
-```text
-Browser Tab → Consumer
-```
-
-### 3. Consumers live inside worker processes.
-
-```text
-Worker
-├── Consumer
-├── Consumer
-└── Consumer
-```
-
-### 4. Workers do not share normal Python memory.
-
-```text
-Worker A memory ≠ Worker B memory
-```
-
-### 5. Redis lets Channels communicate across worker and server boundaries.
-
-```text
-Worker A → Redis → Worker B
-```
-
-### 6. The load balancer distributes clients across application servers.
-
-```text
-Clients
-   ↓
-Load Balancer
-   ↓
-Multiple EC2 instances
-```
-
-### 7. MySQL remains the durable source of truth.
-
-```text
-Redis / ElastiCache
-= live communication
-
-MySQL / RDS
-= permanent state
-```
-
----
-
-# 🚀 Current Milestone
-
-```text
-WebSocket                       ✅
-ASGI                            ✅
-Django Channels                 ✅
-AsyncWebsocketConsumer          ✅
-Redis Server                    ✅
-channels-redis                  ✅
-Channel Layer                   ✅
-Channels                        ✅
-Groups                          ✅
-group_add()                     ✅
-group_send()                    ✅
-Consumer → Redis → Consumer     ✅
-Two-client real-time broadcast  ✅
-```
-
-Next architecture milestones:
-
-```text
-Infrastructure Proof
-        ✅
-        │
-        ▼
-Conversation Models
-        │
-        ▼
-Conversation Groups
-        │
-        ▼
-Persistent Messages
-        │
-        ▼
-Authenticated Real-Time Chat
-        │
-        ▼
-Presence / Typing / Receipts
-        │
-        ▼
-Reconnect / Reliability
-        │
-        ▼
-Multiple Workers
-        │
-        ▼
-Multiple EC2 App Instances
-        │
-        ▼
-Load Balancer
-        │
-        ▼
-Shared Redis + MySQL
-        │
-        ▼
-Optional migration to
-ElastiCache + RDS
-```
-
----
-
-## 📌 Current Status
-
-**Phase:** Real-Time Infrastructure Complete / Chat Domain Implementation Beginning
-
-The foundational:
-
-```text
-WebSocket
-   ↓
 Consumer
    ↓
 Channels
    ↓
 Redis
    ↓
-Other Consumer
+Consumer(s)
 ```
 
-communication path is operational.
+It does not directly send bytes to the browser.
 
-The architecture is designed so the same application can eventually run as either:
-
-```text
-Load Balancer
-     ↓
-Multiple EC2 application servers
-     ↓
-EC2-hosted Redis + EC2-hosted MySQL
-```
-
-or:
-
-```text
-Load Balancer
-     ↓
-Multiple EC2 application servers
-     ↓
-Amazon ElastiCache + Amazon RDS
-```
-
-without fundamentally changing the chat application's domain logic.
-
-Next:
-
-> **Build the persistent conversation model and replace the temporary global `chat_test` Redis group with authenticated, conversation-specific WebSocket groups.**
-
-
-
-# 🚀 Development vs Production WebSocket Configuration
-
-Relay requires an **ASGI-capable server** because WebSocket connections are long-lived and asynchronous.
-
-One important architectural difference between the development and production environments is **who is responsible for serving the ASGI application**.
-
----
-
-## 💻 Local Development
-
-During local development, Relay is started using Django's development server:
-
-```bash
-python manage.py runserver
-```
-
-With Django Channels/Daphne configured in the project, the development environment can route WebSocket connections through the project's ASGI application.
-
-The local architecture is therefore relatively simple:
-
-```text
-Browser
-   │
-   │ ws://
-   ▼
-python manage.py runserver
-   │
-   ▼
-websitethree.asgi
-   │
-   ▼
-Django Channels
-   │
-   ▼
-ChatConsumer
-   │
-   ▼
-Redis Channel Layer
-   │
-   ▼
-Redis
-```
-
-This is why a separate command such as:
-
-```bash
-daphne websitethree.asgi:application
-```
-
-is not required during normal local development.
-
-The application can simply be started with:
-
-```bash
-python manage.py runserver
-```
-
-while Redis runs separately.
-
-### Local Redis
-
-During development, Redis runs as a separate service and Django connects to it through the Channels channel layer:
-
-```text
-Django Channels
-      │
-      ▼
-channels-redis
-      │
-      ▼
-127.0.0.1:6379
-      │
-      ▼
-Redis
-```
-
-The development configuration currently uses:
+## `self.send()`
 
 ```python
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [("127.0.0.1", 6379)],
-        },
-    },
+await self.send(...)
+```
+
+Sends a WebSocket frame through the current Consumer's client connection.
+
+```text
+Consumer
+   ↓
+ASGI
+   ↓
+WebSocket
+   ↓
+Browser
+```
+
+A Channels event such as:
+
+```python
+{
+    "type": "chat.message",
+    "message": message,
 }
 ```
 
-The local Redis server can be verified with:
+maps to a Consumer method named:
 
-```bash
-redis-cli ping
+```python
+async def chat_message(self, event):
+    ...
 ```
 
-Expected response:
-
-```text
-PONG
-```
+Channels converts the `.` in the event type to `_` when dispatching to the handler.
 
 ---
 
-# 🌐 Production WebSocket Architecture
+# ⚡ ASGI
 
-Production required additional configuration because the existing Django website was already deployed using:
+ASGI stands for **Asynchronous Server Gateway Interface**.
 
-```text
-Apache
-   ↓
-mod_wsgi
-   ↓
-Django WSGI
-```
-
-The existing Apache configuration contained:
-
-```apache
-WSGIDaemonProcess websitethree python-home=/website-folder/src/websitethree/venv python-path=/website-folder/src/websitethree/
-WSGIProcessGroup websitethree
-WSGIScriptAlias / /website-folder/src/websitethree/websitethree/wsgi.py
-```
-
-This architecture works well for the existing HTTP-based applications and APIs.
-
-However, Relay introduced **WebSockets**, which require ASGI rather than the existing WSGI request/response path.
-
-Instead of replacing the working WSGI deployment, the production architecture was extended with a second application path.
+Django's traditional WSGI path works well for request/response HTTP traffic, but WebSockets remain open for long periods and need an asynchronous protocol interface.
 
 ```text
-                         Internet
-                            │
-                            ▼
-                       Apache :443
-                       HTTPS / WSS
-                            │
-               ┌────────────┴────────────┐
-               │                         │
-          Normal HTTP                /ws/*
-               │                         │
-               ▼                         ▼
-           mod_wsgi                Reverse Proxy
-               │                         │
-               ▼                         ▼
-            wsgi.py                 Daphne :8001
-               │                         │
-               ▼                         ▼
-            Django                    asgi.py
-                                         │
-                                         ▼
-                                  Django Channels
-                                         │
-                                         ▼
-                                    Consumers
-                                         │
-                                         ▼
-                                       Redis
+Browser WebSocket
+      ↓
+Daphne
+      ↓
+ASGI
+      ↓
+Django Channels
+      ↓
+Consumer
 ```
 
-This allows the existing Django applications to continue using WSGI while Relay's real-time connections use ASGI.
-
----
-
-# 🔀 WSGI and ASGI Side-by-Side
-
-The Django project contains both:
+The Django project therefore contains both:
 
 ```text
 websitethree/
-│
 ├── wsgi.py
 └── asgi.py
 ```
 
-Before Relay, production primarily used:
-
-```text
-wsgi.py
-```
-
-through Apache `mod_wsgi`.
-
-Relay introduced a production use for:
-
-```text
-asgi.py
-```
-
-The two interfaces now serve different traffic.
-
-### Existing HTTP Traffic
-
-```text
-Browser
-   │
-   │ HTTPS
-   ▼
-Apache
-   │
-   ▼
-mod_wsgi
-   │
-   ▼
-wsgi.py
-   │
-   ▼
-Django
-```
-
-Examples include:
-
-```text
-Portfolio pages
-ResuScan REST requests
-RAGspace REST requests
-Authentication requests
-Static HTTP application traffic
-```
-
-### Relay WebSocket Traffic
-
-```text
-Browser
-   │
-   │ WSS
-   ▼
-Apache
-   │
-   ▼
-WebSocket Reverse Proxy
-   │
-   ▼
-Daphne
-   │
-   ▼
-asgi.py
-   │
-   ▼
-Django Channels
-   │
-   ▼
-ChatConsumer
-```
-
-This means WSGI and ASGI can coexist inside the same Django project.
+WSGI continues to serve existing HTTP traffic while ASGI serves Relay's WebSocket traffic.
 
 ---
 
-# ⚡ Why Daphne Is Required in Production
+# ⚡ Daphne
 
-Apache + `mod_wsgi` already knows how to execute the Django WSGI application.
+Daphne is Relay's production ASGI protocol server.
 
-That works for traditional HTTP:
-
-```text
-Request
-   ↓
-Django
-   ↓
-Response
-   ↓
-Request complete
-```
-
-WebSockets behave differently:
-
-```text
-Connect
-   ↓
-Connection remains open
-   ↕
-Client sends events
-   ↕
-Server sends events
-   ↕
-Connection remains open
-```
-
-Relay therefore requires an ASGI protocol server.
-
-For this project:
-
-```text
-Daphne
-```
-
-fills that role.
-
-Daphne listens internally on:
-
-```text
-127.0.0.1:8001
-```
-
-and executes:
+It loads:
 
 ```text
 websitethree.asgi:application
 ```
 
-Conceptually:
-
-```text
-Apache
-   │
-   │ proxy
-   ▼
-127.0.0.1:8001
-   │
-   ▼
-Daphne
-   │
-   ▼
-ASGI
-   │
-   ▼
-Channels
-```
-
-Port `8001` is intentionally bound to:
-
-```text
-127.0.0.1
-```
-
-rather than:
-
-```text
-0.0.0.0
-```
-
-because clients should not communicate directly with Daphne.
-
-Apache remains the public entry point.
-
----
-
-# 🔐 HTTPS and WSS
-
-Production clients connect using:
-
-```text
-wss://jorgeramirez.net/ws/chat/
-```
-
-The browser does **not** connect directly to:
+and listens locally on:
 
 ```text
 127.0.0.1:8001
 ```
 
-Instead:
+The port is intentionally bound to the loopback interface rather than `0.0.0.0` because clients should communicate with Apache, not directly with Daphne.
 
 ```text
-Browser
-   │
-   │ wss://jorgeramirez.net/ws/chat/
-   ▼
+Internet
+   ↓
 Apache :443
-   │
-   │ TLS termination
-   ▼
-WebSocket proxy
-   │
-   │ ws://127.0.0.1:8001/ws/chat/
-   ▼
-Daphne
-```
-
-Apache handles the public TLS certificate.
-
-The internal Apache → Daphne connection can remain local to the server.
-
----
-
-# 🔧 Apache WebSocket Proxy
-
-The production SSL VirtualHost was extended with a dedicated WebSocket proxy.
-
-```apache
-ProxyPass "/ws/" "ws://127.0.0.1:8001/ws/"
-ProxyPassReverse "/ws/" "ws://127.0.0.1:8001/ws/"
-```
-
-This creates an important routing boundary:
-
-```text
-/*
- │
- └── Existing Django HTTP traffic
-     ↓
-     mod_wsgi
-
-
-/ws/*
- │
- └── Relay WebSocket traffic
-     ↓
-     Daphne
-```
-
-Apache proxy support was enabled using the appropriate proxy modules.
-
-The configuration was verified before restarting Apache using:
-
-```bash
-sudo apache2ctl configtest
-```
-
-Expected:
-
-```text
-Syntax OK
-```
-
----
-
-# 🔴 Production Redis
-
-Redis runs independently from Daphne and Apache.
-
-The current single-server architecture is:
-
-```text
-EC2 Instance
-│
-├── Apache
-├── mod_wsgi
-├── Django
-├── Daphne
-├── Django Channels
-├── Redis
-└── MySQL
-```
-
-Redis was installed as server infrastructure rather than as part of every application deployment.
-
-```bash
-sudo apt install redis-server
-```
-
-It was then enabled as a persistent system service:
-
-```bash
-sudo systemctl enable redis-server
-sudo systemctl start redis-server
-```
-
-Connectivity was verified using:
-
-```bash
-redis-cli ping
-```
-
-Expected:
-
-```text
-PONG
-```
-
-Because Django and Redis currently run on the same EC2 instance, the Channels configuration can connect to:
-
-```text
-127.0.0.1:6379
-```
-
-Redis does **not** need a publicly exposed port.
-
----
-
-# ⚙️ Making Daphne Persistent with systemd
-
-During the initial production test, Daphne was started manually:
-
-```bash
-daphne -b 127.0.0.1 -p 8001 websitethree.asgi:application
-```
-
-This was sufficient to prove the architecture:
-
-```text
-Browser
    ↓
-WSS
-   ↓
-Apache
+ws://127.0.0.1:8001
    ↓
 Daphne
-   ↓
-Channels
-   ↓
-Redis
-```
-
-Two separate production browser connections successfully exchanged messages through the Redis-backed Channels group.
-
-However, manually running Daphne is not appropriate for a permanent deployment.
-
-Closing the SSH session or terminating the process would stop Relay's WebSocket server.
-
-Daphne is therefore managed as a **systemd service**.
-
-```text
-systemd
-   │
-   ▼
-Daphne
-   │
-   ▼
-websitethree.asgi
-```
-
-The service is configured to:
-
-* Start automatically when the EC2 instance boots
-* Run Daphne independently from SSH sessions
-* Restart Daphne if the process crashes
-* Use the project's Python virtual environment
-* Run the correct Django ASGI application
-* Bind only to the local interface
-
-Example service architecture:
-
-```text
-EC2 boots
-    │
-    ▼
-systemd
-    │
-    ├── redis-server.service
-    │
-    ├── apache2.service
-    │
-    └── daphne-websitethree.service
-              │
-              ▼
-         Daphne :8001
 ```
 
 ---
 
-# 🔄 Deployment Lifecycle
+# 🌐 Apache2 Production Routing
 
-Redis installation is considered **server provisioning**, not normal application deployment.
+Apache remains the public entry point for the server.
 
-It should not be installed again after every GitHub push.
-
-### One-Time Server Provisioning
-
-```text
-Install Redis
-Enable Redis service
-
-Install/configure Apache
-Enable proxy modules
-
-Configure /ws/ proxy
-
-Create Daphne systemd service
-Enable Daphne service
-
-Configure TLS/WSS
-```
-
-### Normal Application Deployment
-
-A normal deployment can then follow:
-
-```text
-git pull
-    ↓
-Install/update Python requirements
-    ↓
-Run migrations
-    ↓
-Collect static files / build frontends
-    ↓
-Restart Daphne
-    ↓
-Restart/reload normal application services
-```
-
-Daphne needs to restart after backend code changes because it is a persistent Python process.
-
-A `git pull` changes files on disk, but an already-running Daphne process may still have previously imported Python modules loaded in memory.
-
-Therefore:
-
-```text
-git pull
-   ↓
-New code exists on disk
-   ↓
-Restart Daphne
-   ↓
-New Daphne process
-   ↓
-New application code imported
-```
-
-The deployment script should therefore eventually include:
-
-```bash
-sudo systemctl restart daphne-websitethree
-```
-
-after application code and dependencies have been updated.
-
----
-
-# 🧠 Why Development Required Less Configuration
-
-The key difference is **who provides the ASGI server**.
-
-### Development
-
-```text
-python manage.py runserver
-          │
-          ▼
-     Development ASGI
-          │
-          ▼
-       Channels
-          │
-          ▼
-      WebSockets
-```
-
-The Django development environment with Channels/Daphne integration handles the development ASGI path.
-
-Therefore developers can continue using:
-
-```bash
-python manage.py runserver
-```
-
-without manually launching a separate Daphne process for normal local development.
-
-### Production
-
-The existing application was already served through:
-
-```text
-Apache
-   ↓
-mod_wsgi
-   ↓
-WSGI
-```
-
-That path did not provide Relay's required ASGI/WebSocket handling.
-
-Therefore production required:
-
-```text
-Apache
-   ↓
-WebSocket Proxy
-   ↓
-Daphne
-   ↓
-ASGI
-   ↓
-Channels
-```
-
-The important distinction is:
-
-```text
-DEVELOPMENT
-runserver provides the development server path needed
-for Channels/WebSocket development.
-
-
-PRODUCTION
-Apache + mod_wsgi provides the existing WSGI path,
-so Daphne was added specifically to provide ASGI.
-```
-
----
-
-# 🧠 Production Configuration — Quick Review
-
-### Normal Django Request
+Normal traffic:
 
 ```text
 HTTPS
@@ -3126,7 +1110,7 @@ wsgi.py
 Django
 ```
 
-### Relay WebSocket
+Relay WebSocket traffic:
 
 ```text
 WSS
@@ -3140,95 +1124,773 @@ Daphne :8001
 asgi.py
  ↓
 Channels
- ↓
-Consumer
 ```
 
-### Cross-Consumer Event
+The SSL VirtualHost contains the WebSocket proxy:
 
-```text
-Consumer A
-    ↓
-Channels
-    ↓
-Redis
-    ↓
-Channels
-    ↓
-Consumer B
+```apache
+ProxyPass "/ws/" "ws://127.0.0.1:8001/ws/"
+ProxyPassReverse "/ws/" "ws://127.0.0.1:8001/ws/"
 ```
 
-### Current Production Machine
+Common required Apache proxy modules:
 
-```text
-EC2
-│
-├── Apache
-│     ├── HTTPS → mod_wsgi
-│     └── WSS   → Daphne
-│
-├── Django
-│     ├── WSGI
-│     └── ASGI
-│
-├── Daphne
-│     └── 127.0.0.1:8001
-│
-├── Redis
-│     └── 127.0.0.1:6379
-│
-└── MySQL
+```bash
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo a2enmod proxy_wstunnel
 ```
 
-### Future Distributed Architecture
+After editing the Apache VirtualHost:
 
-The same application can later evolve into:
-
-```text
-                       Load Balancer
-                            │
-              ┌─────────────┼─────────────┐
-              ▼             ▼             ▼
-           EC2 App       EC2 App       EC2 App
-              │             │             │
-           Workers       Workers       Workers
-              │             │             │
-              └─────────────┼─────────────┘
-                            │
-                  ┌─────────┴─────────┐
-                  ▼                   ▼
-             ElastiCache             RDS
-                Redis                MySQL
+```bash
+sudo apache2ctl configtest
 ```
 
-The infrastructure changes, but the core application concepts remain:
+Expected:
 
 ```text
-WebSocket
-    ↓
-Consumer
-    ↓
-Worker
-    ↓
-Redis Channel Layer
+Syntax OK
+```
 
-        +
+Then reload or restart Apache:
 
-MySQL
-= Durable State
+```bash
+sudo systemctl reload apache2
+```
+
+or:
+
+```bash
+sudo systemctl restart apache2
 ```
 
 ---
 
-## 🔑 Production Configuration Rules to Remember
+# 🚀 Production Setup Commands
 
-1. **Apache remains the public entry point.**
-2. **Normal HTTP traffic continues through mod_wsgi/WSGI.**
-3. **Only `/ws/` WebSocket traffic is proxied to Daphne.**
-4. **Daphne executes the Django ASGI application.**
-5. **Django Channels handles the WebSocket lifecycle and Consumers.**
-6. **Redis provides the shared Channels communication layer.**
-7. **Redis and Daphne are persistent system services, not commands that should be manually started after every deployment.**
-8. **Daphne must be restarted after relevant backend deployments so it loads the new application code.**
-9. **Ports `8001` and `6379` do not need to be publicly exposed in the current architecture.**
-10. **The existing WSGI deployment did not need to be replaced simply because Relay introduced ASGI.**
+The following commands are useful when provisioning, deploying, debugging, or verifying Relay in production.
+
+## Redis
+
+Install:
+
+```bash
+sudo apt update
+sudo apt install redis-server
+```
+
+If package dependencies are broken:
+
+```bash
+sudo apt --fix-broken install
+```
+
+Enable Redis at boot:
+
+```bash
+sudo systemctl enable redis-server
+```
+
+Start Redis:
+
+```bash
+sudo systemctl start redis-server
+```
+
+Restart Redis:
+
+```bash
+sudo systemctl restart redis-server
+```
+
+Check Redis service status:
+
+```bash
+sudo systemctl status redis-server
+```
+
+Verify connectivity:
+
+```bash
+redis-cli ping
+```
+
+Expected:
+
+```text
+PONG
+```
+
+Stop Redis when intentionally testing failures:
+
+```bash
+sudo systemctl stop redis-server
+```
+
+---
+
+## Daphne — Manual Smoke Test
+
+Activate the project's virtual environment first, then run:
+
+```bash
+daphne -b 127.0.0.1 -p 8001 websitethree.asgi:application
+```
+
+This is useful for testing, but production should use systemd rather than leaving Daphne attached to an SSH session.
+
+Check if anything is listening on port 8001:
+
+```bash
+sudo ss -ltnp | grep 8001
+```
+
+---
+
+## Daphne systemd Service
+
+Relay uses a persistent service named:
+
+```text
+daphne-websitethree.service
+```
+
+Common commands:
+
+```bash
+sudo systemctl start daphne-websitethree
+sudo systemctl stop daphne-websitethree
+sudo systemctl restart daphne-websitethree
+sudo systemctl status daphne-websitethree
+sudo systemctl enable daphne-websitethree
+```
+
+After changing a systemd unit file:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart daphne-websitethree
+```
+
+Follow live Daphne logs:
+
+```bash
+sudo journalctl -u daphne-websitethree -f
+```
+
+Show recent Daphne logs:
+
+```bash
+sudo journalctl -u daphne-websitethree -n 100 --no-pager
+```
+
+Show logs from the current boot:
+
+```bash
+sudo journalctl -u daphne-websitethree -b
+```
+
+Example service shape:
+
+```ini
+[Unit]
+Description=Daphne ASGI Server for websitethree
+After=network.target redis-server.service
+
+[Service]
+User=<server-user>
+Group=<server-group>
+WorkingDirectory=/path/to/websitethree
+ExecStart=/path/to/venv/bin/daphne -b 127.0.0.1 -p 8001 websitethree.asgi:application
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Use the actual deployment user, group, working directory, and virtual-environment path for the server.
+
+---
+
+## Apache2
+
+Check status:
+
+```bash
+sudo systemctl status apache2
+```
+
+Validate configuration:
+
+```bash
+sudo apache2ctl configtest
+```
+
+Reload after a safe configuration change:
+
+```bash
+sudo systemctl reload apache2
+```
+
+Restart:
+
+```bash
+sudo systemctl restart apache2
+```
+
+Enable at boot:
+
+```bash
+sudo systemctl enable apache2
+```
+
+Tail Apache error logs:
+
+```bash
+sudo tail -f /var/log/apache2/error.log
+```
+
+Tail Apache access logs:
+
+```bash
+sudo tail -f /var/log/apache2/access.log
+```
+
+List enabled proxy modules:
+
+```bash
+apache2ctl -M | grep proxy
+```
+
+---
+
+## Django / ASGI Verification
+
+Verify Django configuration:
+
+```bash
+python manage.py check
+```
+
+Run migrations:
+
+```bash
+python manage.py migrate
+```
+
+Create new migrations when models change:
+
+```bash
+python manage.py makemigrations
+```
+
+Collect static files when needed:
+
+```bash
+python manage.py collectstatic --noinput
+```
+
+Local development server:
+
+```bash
+python manage.py runserver
+```
+
+In local development, Django Channels/Daphne integration handles the ASGI development path, so a second manually launched Daphne process is normally unnecessary.
+
+---
+
+# ⚙️ Example Django Channels Configuration
+
+```python
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
+```
+
+The current single-EC2 setup can use `127.0.0.1:6379` because Redis is running on the same server.
+
+Redis should not be publicly exposed in this deployment.
+
+---
+
+# 🧭 ASGI Application Structure
+
+A simplified ASGI configuration looks like:
+
+```python
+import os
+
+from django.core.asgi import get_asgi_application
+from channels.routing import ProtocolTypeRouter, URLRouter
+
+os.environ.setdefault(
+    "DJANGO_SETTINGS_MODULE",
+    "websitethree.settings",
+)
+
+django_asgi_app = get_asgi_application()
+
+from chat_api.middleware import JwtAuthMiddleware
+from chat_api.routing import websocket_urlpatterns
+
+application = ProtocolTypeRouter({
+    "http": django_asgi_app,
+    "websocket": JwtAuthMiddleware(
+        URLRouter(websocket_urlpatterns)
+    ),
+})
+```
+
+One important implementation detail is that Django should be initialized through `get_asgi_application()` before importing application modules that may touch Django models or settings.
+
+---
+
+# 🔀 WebSocket Routing
+
+Relay currently exposes:
+
+```python
+path(
+    "ws/chat/",
+    ChatUserConsumer.as_asgi(),
+),
+
+path(
+    "ws/chat/<uuid:conversation_id>/",
+    ChatConsumer.as_asgi(),
+),
+```
+
+These correspond to:
+
+```text
+/ws/chat/
+→ user-level global Relay events
+
+/ws/chat/<conversation_id>/
+→ selected conversation events
+```
+
+---
+
+# 🔧 Environment Configuration
+
+Example frontend development environment:
+
+```env
+VITE_AUTH_API_URL=http://127.0.0.1:8000/resume-analyzer-app-api
+VITE_RELAY_API_URL=http://127.0.0.1:8000/chat-api
+VITE_WS_BASE_URL=ws://127.0.0.1:8000
+VITE_GOOGLE_CLIENT_ID=...
+```
+
+Production WebSockets use:
+
+```env
+VITE_WS_BASE_URL=wss://jorgeramirez.net
+```
+
+The frontend then appends the Relay WebSocket path.
+
+---
+
+# 🔄 Normal Production Deployment Lifecycle
+
+Redis, Apache proxy configuration, and the systemd unit are **server provisioning**. They are not recreated on every deployment.
+
+A normal application deployment generally looks like:
+
+```text
+git pull
+   ↓
+update Python dependencies if required
+   ↓
+run migrations
+   ↓
+build frontend / collect static files
+   ↓
+restart Daphne
+   ↓
+reload/restart normal HTTP application services if needed
+```
+
+Typical commands:
+
+```bash
+git pull
+```
+
+```bash
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+```bash
+python manage.py migrate
+```
+
+```bash
+python manage.py collectstatic --noinput
+```
+
+```bash
+sudo systemctl restart daphne-websitethree
+```
+
+```bash
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+```
+
+Daphne must be restarted after relevant backend changes because it is a persistent Python process and may still have older imported modules in memory.
+
+---
+
+# 🧪 Production Troubleshooting Checklist
+
+When WebSockets stop connecting, check the system from the inside out.
+
+## 1. Is Redis alive?
+
+```bash
+redis-cli ping
+```
+
+Expected:
+
+```text
+PONG
+```
+
+## 2. Is Daphne running?
+
+```bash
+sudo systemctl status daphne-websitethree
+```
+
+## 3. Is Daphne listening on port 8001?
+
+```bash
+sudo ss -ltnp | grep 8001
+```
+
+## 4. Are Daphne logs showing an exception?
+
+```bash
+sudo journalctl -u daphne-websitethree -n 100 --no-pager
+```
+
+or live:
+
+```bash
+sudo journalctl -u daphne-websitethree -f
+```
+
+## 5. Is Apache configuration valid?
+
+```bash
+sudo apache2ctl configtest
+```
+
+## 6. Are the proxy modules loaded?
+
+```bash
+apache2ctl -M | grep proxy
+```
+
+## 7. Is Apache healthy?
+
+```bash
+sudo systemctl status apache2
+```
+
+## 8. Check Apache logs
+
+```bash
+sudo tail -f /var/log/apache2/error.log
+```
+
+## 9. Verify Django itself
+
+```bash
+python manage.py check
+```
+
+## 10. Verify the frontend is using WSS in production
+
+```text
+wss://jorgeramirez.net
+```
+
+not:
+
+```text
+ws://127.0.0.1:8000
+```
+
+---
+
+# 💥 Failure Behavior
+
+## Redis Failure
+
+Durable data remains safe in MySQL:
+
+```text
+Users           ✅
+Conversations   ✅
+Messages        ✅
+Read state      ✅
+Delivery rows   ✅
+```
+
+Real-time coordination may temporarily fail:
+
+```text
+Live delivery   ❌
+Typing          ❌
+Presence        ❌
+Live receipts   ❌
+```
+
+## Daphne Failure
+
+Normal HTTP traffic can continue through Apache + WSGI, but Relay WebSockets fail until the Daphne service is restored.
+
+## Apache Failure
+
+Both the normal website and Relay's public WSS entry point become unavailable.
+
+## Client Connection Failure
+
+The socket reconnects and durable state can be recovered through REST.
+
+## Recipient Offline
+
+Messages remain stored in MySQL and are loaded when the recipient returns.
+
+---
+
+# ☁️ Scaling Beyond the Current EC2 Deployment
+
+The current V1 production architecture runs the core services on a single EC2 machine, which is appropriate for the current workload and portfolio deployment.
+
+The application design can later move toward:
+
+```text
+                        Application Load Balancer
+                                  │
+                  ┌───────────────┼───────────────┐
+                  ▼               ▼               ▼
+              EC2 App 1       EC2 App 2       EC2 App 3
+                  │               │               │
+              ASGI Workers     ASGI Workers     ASGI Workers
+                  │               │               │
+                  └───────────────┼───────────────┘
+                                  │
+                     ┌────────────┴────────────┐
+                     ▼                         ▼
+                ElastiCache                  RDS
+                  Redis                      MySQL
+```
+
+The important point is that the application does not depend on local Python process memory for shared real-time state.
+
+Redis and MySQL provide shared infrastructure, so additional application processes or instances can be introduced later.
+
+---
+
+# 🔮 V2 Ideas
+
+Potential future additions:
+
+- Conversation search
+- Group conversations
+- Attachments
+- Images
+- Reactions
+- Message editing
+- Message deletion
+- Reply-to-message
+- Conversation names
+- Group administrators
+- Push notifications
+- Redis-backed rate limiting
+- Auto Scaling Groups
+- Managed ElastiCache
+- Managed RDS
+- Multi-AZ infrastructure
+
+These are intentionally outside the Relay V1 scope.
+
+---
+
+# 🧠 Simplified Terms to Lock In
+
+## WebSocket
+
+```text
+Persistent bidirectional connection
+between React and a Django Consumer.
+```
+
+## ASGI
+
+```text
+Asynchronous server interface that allows
+Django to handle WebSockets and other
+long-lived protocols.
+```
+
+## Daphne
+
+```text
+Production ASGI protocol server.
+Runs websitethree.asgi:application.
+```
+
+## Consumer
+
+```text
+Python object responsible for one
+WebSocket connection.
+```
+
+## Channel
+
+```text
+Unique internal address/inbox
+for a Consumer.
+```
+
+## Group
+
+```text
+Logical collection of Consumer channels.
+```
+
+## Redis
+
+```text
+Shared, fast, transient communication layer
+used by Django Channels and presence tracking.
+```
+
+## MySQL
+
+```text
+Durable source of truth for application data.
+```
+
+## Apache
+
+```text
+Public HTTPS/WSS entry point.
+Routes normal HTTP to WSGI and /ws/ to Daphne.
+```
+
+## WSGI
+
+```text
+Traditional Django request/response interface
+used by the existing HTTP application.
+```
+
+## Worker / Process
+
+```text
+Independent running Python process.
+Processes do not share normal Python memory.
+```
+
+## `channels-redis`
+
+```text
+Redis-backed implementation of the
+Django Channels channel layer.
+```
+
+---
+
+# 🔑 Architecture Rules to Remember
+
+1. **MySQL is the durable source of truth.**
+2. **Redis is for transient real-time coordination.**
+3. **A WebSocket connects a browser to a Consumer.**
+4. **One browser tab can create multiple Consumers because Relay intentionally uses a user socket and an active-conversation socket.**
+5. **`group_send()` sends an internal Channels event; `self.send()` sends a WebSocket frame to the browser.**
+6. **Consumers in different Python processes communicate through Redis rather than shared Python memory.**
+7. **Apache remains the public entry point in production.**
+8. **Normal HTTP stays on Apache + mod_wsgi + WSGI.**
+9. **Only `/ws/` traffic is proxied to Daphne.**
+10. **Daphne executes the ASGI application.**
+11. **Redis and Daphne run as persistent services.**
+12. **Ports `6379` and `8001` do not need to be publicly exposed in the current architecture.**
+13. **Persistent data is written before live events are broadcast.**
+14. **Client-generated message IDs protect against duplicate sends.**
+15. **REST recovers state; WebSockets keep state live.**
+
+---
+
+# 🏁 Final V1 Architecture Summary
+
+Relay's completed V1 can be summarized as:
+
+```text
+                         USER A
+                           │
+                           ▼
+                    React + TypeScript
+                           │
+             ┌─────────────┴─────────────┐
+             │                           │
+             ▼                           ▼
+           REST                       WebSocket
+             │                           │
+             ▼                           ▼
+            DRF                     Apache :443
+             │                           │
+             ▼                           ▼
+           MySQL                    Proxy /ws/
+                                         │
+                                         ▼
+                                   Daphne :8001
+                                         │
+                                         ▼
+                                      ASGI
+                                         │
+                                         ▼
+                                Django Channels
+                                         │
+                                         ▼
+                                      Consumer
+                                         │
+                                         ▼
+                                 Redis Channel Layer
+                                         │
+                           ┌─────────────┴─────────────┐
+                           ▼                           ▼
+                     Consumer A                  Consumer B
+                           │                           │
+                           ▼                           ▼
+                       WebSocket                   WebSocket
+                                                       │
+                                                       ▼
+                                                 React USER B
+
+                             MySQL
+                               │
+                               └── permanent conversations,
+                                   messages, reads, deliveries
+```
+
+Relay demonstrates how a modern React frontend can combine traditional REST APIs with persistent WebSocket connections while Django, Channels, Redis, MySQL, Apache, Daphne, and AWS infrastructure work together behind the scenes.
+
+**V1 is complete.**

@@ -555,7 +555,7 @@ function ChatPage({
                 connectionStatus={connectionStatus}
                 onBack={onBack}
             />
-
+                            
             {isLoading ? (
                 <div className="ChatMessagesState">
                     Loading messages...
