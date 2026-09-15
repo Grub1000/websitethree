@@ -31,6 +31,7 @@ import gimpLogoSVG from "./assets/logos/gimp_logo_svg.svg"
 import csharpLogoSVG from "./assets/logos/csharp_logo_svg.svg"
 import qdrantLogoSVG from "./assets/logos/qdrant_logo_svg.svg"
 import voyageaiLogoSVG from "./assets/logos/voyageai_logo_svg.svg"
+import redisLogoSVG from "./assets/logos/redis_logo_svg.svg"
 
 
 export default class SkillCard extends React.Component{
@@ -125,6 +126,9 @@ export default class SkillCard extends React.Component{
             }
             else if(this.props.data.title.includes("VoyageAI")){
                 icon = voyageaiLogoSVG
+            }
+            else if(this.props.data.title.includes("Redis")){
+                icon = redisLogoSVG
             }
             
 

@@ -1054,7 +1054,7 @@ width: 12px;
 
 @media(max-width: 1523px){
   .HomepageProjectsSectionCardWrapper {
-    height: 4600px; /* 👈 Set a height large enough for 2 columns */
+    height: 4900px; /* 👈 Set a height large enough for 2 columns */
   }
   .HomepageProjectsSectionCard{
     width: 48%;

@@ -21,6 +21,7 @@ import parallaxFive from "./assets/parallax_images/5.svg"
 import parallaxSix from "./assets/parallax_images/7.svg"
 
 // Ordered Newest to Oldest (Project Images)
+import RelayProjectImage from "./assets/project_images/Relay.png"
 import RAGspace from "./assets/project_images/RAGspace.png"
 import activeProject from "./assets/project_images/active_project.png"
 import compSciImage from "./assets/project_images/ComputerScienceCapstoneProjectImage.png"
@@ -60,37 +61,71 @@ export default class App extends React.Component{
       burgerDropDown: false,
       projects: [
 
-      {
-        title: "RAGspace",
-        type: "AI & Full-Stack",
-        image: RAGspace ,
-        description: [
-            "Developed a full-stack Retrieval-Augmented Generation (RAG) platform that allows users to upload PDFs into dedicated knowledge spaces and chat directly with their documents.",
-            "Built with React and TypeScript connected to a Django REST Framework backend, MySQL database, JWT authentication, Google OAuth, and private AWS S3 document storage.",
-            "Integrates OpenAI embeddings and GPT models with Qdrant vector search and Voyage AI reranking to generate context-aware answers with persistent conversations and page-level source citations."
-        ],
-        techUsed: [
-            "Typescript",
-            "React",
-            "Python",
-            "Django Backend",
-            "DRF",
-            "MySQL",
-            "AWS-S3",
-            "EC2",
-            "OpenAI",
-            "RAG",
-            "Qdrant",
-            "Voyage-AI",
-            "LLMs",
-            "JWT-Auth",
-            "Google-OAuth"
-        ],
-        dateCreated: "2026",
-        link: "https://jorgeramirez.net/ragspace",
-        gitHub: "",
-        youtube: "",
-        notAvailable: 0
+
+
+    {
+      title: "Relay",
+      type: "Full-Stack & Real-Time",
+      image: RelayProjectImage,
+      description: [
+          "Developed a full-stack real-time messaging platform with persistent direct conversations, live messaging, typing indicators, online presence, unread counts, delivery receipts, and read receipts.",
+          "Built with React and TypeScript connected to a Django REST Framework and Django Channels backend, using MySQL for persistent application data, Redis as the real-time channel layer, and JWT authentication with Google OAuth.",
+          "Designed a production WebSocket architecture using authenticated user-level and conversation-level connections, with Apache proxying secure WebSocket traffic to Daphne/ASGI on AWS EC2 while supporting responsive desktop and mobile chat interfaces."
+      ],
+      techUsed: [
+          "Typescript",
+          "React",
+          "Python",
+          "DRF",
+          "Django-Channels",
+          "WebSockets",
+          "Redis",
+          "MySQL",
+          "AWS-EC2",
+          "ASGI",
+          "Daphne",
+          "Apache",
+          "JWT-Auth",
+          "Google-OAuth"
+      ],
+      dateCreated: "2026",
+      link: "https://jorgeramirez.net/relay",
+      gitHub: "",
+      youtube: "",
+      notAvailable: 0
+    },
+
+    {
+      title: "RAGspace",
+      type: "AI & Full-Stack",
+      image: RAGspace ,
+      description: [
+          "Developed a full-stack Retrieval-Augmented Generation (RAG) platform that allows users to upload PDFs into dedicated knowledge spaces and chat directly with their documents.",
+          "Built with React and TypeScript connected to a Django REST Framework backend, MySQL database, JWT authentication, Google OAuth, and private AWS S3 document storage.",
+          "Integrates OpenAI embeddings and GPT models with Qdrant vector search and Voyage AI reranking to generate context-aware answers with persistent conversations and page-level source citations."
+      ],
+      techUsed: [
+          "Typescript",
+          "React",
+          "Python",
+          "Django Backend",
+          "DRF",
+          "MySQL",
+          "AWS-S3",
+          "EC2",
+          "OpenAI",
+          "RAG",
+          "Qdrant",
+          "Voyage-AI",
+          "LLMs",
+          "JWT-Auth",
+          "Google-OAuth"
+      ],
+      dateCreated: "2026",
+      link: "https://jorgeramirez.net/ragspace",
+      gitHub: "",
+      youtube: "",
+      notAvailable: 0
     },
 
 
@@ -191,6 +226,71 @@ export default class App extends React.Component{
     ], techUsed: ["Javascript", "HTML", "CSS"],  dateCreated: "2020", link: "https://www.fullstackgrub.com/formquixi/", gitHub: "", youtube: "", notAvailable: 0  }
 ],      
       favorites: [
+        {
+          title: "Relay",
+          type: "Full-Stack & Real-Time",
+          image: RelayProjectImage,
+          description: [
+              "Developed a full-stack real-time messaging platform with persistent direct conversations, live messaging, typing indicators, online presence, unread counts, delivery receipts, and read receipts.",
+              "Built with React and TypeScript connected to a Django REST Framework and Django Channels backend, using MySQL for persistent application data, Redis as the real-time channel layer, and JWT authentication with Google OAuth.",
+              "Designed a production WebSocket architecture using authenticated user-level and conversation-level connections, with Apache proxying secure WebSocket traffic to Daphne/ASGI on AWS EC2 while supporting responsive desktop and mobile chat interfaces."
+          ],
+          techUsed: [
+              "Typescript",
+              "React",
+              "Python",
+              "DRF",
+              "Django-Channels",
+              "WebSockets",
+              "Redis",
+              "MySQL",
+              "AWS-EC2",
+              "ASGI",
+              "Daphne",
+              "Apache",
+              "JWT-Auth",
+              "Google-OAuth"
+          ],
+          dateCreated: "2026",
+          link: "https://jorgeramirez.net/relay",
+          gitHub: "",
+          youtube: "",
+          notAvailable: 0
+        },
+
+        {
+          title: "RAGspace",
+          type: "AI & Full-Stack",
+          image: RAGspace ,
+          description: [
+              "Developed a full-stack Retrieval-Augmented Generation (RAG) platform that allows users to upload PDFs into dedicated knowledge spaces and chat directly with their documents.",
+              "Built with React and TypeScript connected to a Django REST Framework backend, MySQL database, JWT authentication, Google OAuth, and private AWS S3 document storage.",
+              "Integrates OpenAI embeddings and GPT models with Qdrant vector search and Voyage AI reranking to generate context-aware answers with persistent conversations and page-level source citations."
+          ],
+          techUsed: [
+              "Typescript",
+              "React",
+              "Python",
+              "Django Backend",
+              "DRF",
+              "MySQL",
+              "AWS-S3",
+              "EC2",
+              "OpenAI",
+              "RAG",
+              "Qdrant",
+              "Voyage-AI",
+              "LLMs",
+              "JWT-Auth",
+              "Google-OAuth"
+          ],
+          dateCreated: "2026",
+          link: "https://jorgeramirez.net/ragspace",
+          gitHub: "",
+          youtube: "",
+          notAvailable: 0
+        },
+
         {title: "ResuScan Resume Analyzer", type: "Frontend & Backend", image: activeProject, description: [
         "Currently developing a full-stack resume analysis platform designed to help users evaluate and improve their resumes.",
         "Built with a React and TypeScript frontend connected to a Django, MySQL, and JWT-authenticated backend.",
@@ -216,6 +316,7 @@ export default class App extends React.Component{
         {title: "Apache2", skillLevel: "8"},
         {title: "Postman", skillLevel: "9"},
         {title: "Linux", skillLevel: "8"},
+        {title: "Redis", skillLevel: "7"}
 
         ],
       frontendSkills: [

@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.4a603b55.css",
-    "main.js": "/static/js/main.108584e8.js",
+    "main.css": "/static/css/main.637adbcf.css",
+    "main.js": "/static/js/main.a969e66c.js",
     "static/js/453.eb1b5922.chunk.js": "/static/js/453.eb1b5922.chunk.js",
     "static/media/20240227_211318.jpg": "/static/media/20240227_211318.135c096e84b023e4f04e.jpg",
     "static/media/SchedulingSystemImage.png": "/static/media/SchedulingSystemImage.44f50563ecee9ea8a154.png",
     "static/media/DisasterRecoveryBotProjectImage.png": "/static/media/DisasterRecoveryBotProjectImage.aaac15c317f2bd480ee5.png",
     "static/media/ChatBotProjectImage.png": "/static/media/ChatBotProjectImage.7afcd2308d1ef92c7e44.png",
     "static/media/ManagementSystemImage.png": "/static/media/ManagementSystemImage.7732c61f5d306ec2abb1.png",
+    "static/media/Relay.png": "/static/media/Relay.d4ba90cc90a2f08fa08a.png",
     "static/media/active_project.png": "/static/media/active_project.36c94aab40ec5b848ca3.png",
     "static/media/DeliveryRouteProjectImage.png": "/static/media/DeliveryRouteProjectImage.a740d7b6f0c2f7e7cf83.png",
     "static/media/ComputerScienceCapstoneProjectImage.png": "/static/media/ComputerScienceCapstoneProjectImage.b5c3502989f57dd3f6db.png",
@@ -56,6 +57,7 @@
     "static/media/4.svg": "/static/media/4.77e24f3d0eb086b38a8a031780465122.svg",
     "static/media/github_logo_svg.svg": "/static/media/github_logo_svg.f9628c96c9f110f1e1ada265d17d49bf.svg",
     "static/media/docker_logo_svg.svg": "/static/media/docker_logo_svg.ef890b0f9491c5ee448ea0f7abe9779f.svg",
+    "static/media/redis_logo_svg.svg": "/static/media/redis_logo_svg.75ea1b665f51442d449c7047775a44cf.svg",
     "static/media/checkmark-icon.svg": "/static/media/checkmark-icon.de63a8f40439b6b4181eff44d9452f2b.svg",
     "static/media/django_logo_svg.svg": "/static/media/django_logo_svg.4c36c1d7db04d44e2497d59fc8dd9f17.svg",
     "static/media/cloud_logo_svg.svg": "/static/media/cloud_logo_svg.7e6cb2b762a23a889ecbae44249255c0.svg",
@@ -67,12 +69,12 @@
     "static/media/javascript_logo_svg.svg": "/static/media/javascript_logo_svg.7c2c5a7a4d999abba95b43792bb3c1da.svg",
     "static/media/csharp_logo_svg.svg": "/static/media/csharp_logo_svg.722afb71fda02ce854af30f9fea96ea6.svg",
     "static/media/1.svg": "/static/media/1.018a1e39c474e704b3c8cf6108063bbd.svg",
-    "main.4a603b55.css.map": "/static/css/main.4a603b55.css.map",
-    "main.108584e8.js.map": "/static/js/main.108584e8.js.map",
+    "main.637adbcf.css.map": "/static/css/main.637adbcf.css.map",
+    "main.a969e66c.js.map": "/static/js/main.a969e66c.js.map",
     "453.eb1b5922.chunk.js.map": "/static/js/453.eb1b5922.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4a603b55.css",
-    "static/js/main.108584e8.js"
+    "static/css/main.637adbcf.css",
+    "static/js/main.a969e66c.js"
   ]
 }

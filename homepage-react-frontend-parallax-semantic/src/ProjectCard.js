@@ -23,6 +23,7 @@ import djangoLogoSVG from "./assets/logos/django_logo_svg.svg"
 import sqlLogoSVG from "./assets/logos/sql_logo_svg.svg"
 import laravelLogoSVG from "./assets/logos/laravel_logo_svg.svg"
 import qdrantLogoSVG from "./assets/logos/qdrant_logo_svg.svg"
+import redisLogoSVG from "./assets/logos/redis_logo_svg.svg"
 // import typescriptLogoSVG from "./assets/logos/typescript_logo_svg.svg"
 // import typescriptLogoSVG from "./assets/logos/typescript_logo_svg.svg"
 
@@ -66,40 +67,40 @@ export default class ProjectCard extends React.Component{
   }
 
   handleTechIcons(techName){
-    if(techName == "Python"){
+    if(techName === "Python"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={pythonLogoSVG}></img>)
     }
-    else if(techName == "Typescript"){
+    else if(techName === "Typescript"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={typescriptLogoSVG}></img>)
     }
-    else if(techName == "CSS"){
+    else if(techName === "CSS"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={cssLogoSVG}></img>)
     }
-    else if(techName == "MySQL"){
+    else if(techName === "MySQL"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={mysqlLogoSVG}></img>)
     }
-    else if(techName == "C++"){
+    else if(techName === "C++"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={cplusplusLogoSVG}></img>)
     }
-    else if(techName == "React"){
+    else if(techName === "React"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={reactLogoSVG}></img>)
     }
-    else if(techName == "Javascript"){
+    else if(techName === "Javascript"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={javascriptLogoSVG}></img>)
     }
-    else if(techName == "Qdrant"){
+    else if(techName === "Qdrant"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={qdrantLogoSVG}></img>)
     }
-    else if(techName == "Java"){
+    else if(techName === "Java"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={javaLogoSVG}></img>)
     }
-    else if(techName == "TensorFlow"){
+    else if(techName === "TensorFlow"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={tensorflowLogoSVG}></img>)
     }
     else if(techName.includes("AWS")){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={awsLogoSVG}></img>)
     }
-    else if(techName == "Robotics"){
+    else if(techName === "Robotics"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={robotLogoSVG}></img>)
     }
     else if(techName.includes("Django")){
@@ -108,14 +109,17 @@ export default class ProjectCard extends React.Component{
     else if(techName.includes("AIML") || techName.includes("Machine Learning") || techName.includes("LLMs")){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={aiLogoSVG}></img>)
     }
-    else if(techName == "SQL"){
+    else if(techName === "SQL"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={sqlLogoSVG}></img>)
     }
-    else if(techName == "Laravel"){
+    else if(techName === "Laravel"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={laravelLogoSVG}></img>)
     }
-    else if(techName == "PHP"){
+    else if(techName === "PHP"){
         return(<img className="HomePageProjectsSectionCardTechIcon" src={phpLogoSVG}></img>)
+    }
+    else if(techName === "Redis"){
+        return(<img className="HomePageProjectsSectionCardTechIcon" src={redisLogoSVG}></img>)
     }
 
   }
