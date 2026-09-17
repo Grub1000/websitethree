@@ -296,15 +296,15 @@ function ChatPage({
             }
 
 
-
-            if (event.type === "presence.update") {
-                setOnlineUserIds((current) => {
+            
+            if (event.type === "presence.update") {  // Called multiple times in a looping fashion by the backend in a single consumer helper method call. See implementation here: // [[../backend/services/processing/auth_process.py:PythonAuthLogic|Jump to Python code]]
+                setOnlineUserIds((current) => {      
                     const next = new Set(current);
-
+                    
                     if (event.is_online) {
-                        next.add(event.user_id);
+                        next.add(event.user_id);        // Adding an already logged in value to a set wont create a duplicate (Set datatype things.).
                     } else {
-                        next.delete(event.user_id);
+                        next.delete(event.user_id);     // If the user is not online, go ahead and delete that user from the onlineUserIds set.
                     }
 
                     return next;

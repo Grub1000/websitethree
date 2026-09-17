@@ -4,13 +4,14 @@ from django.core.serializers.json import DjangoJSONEncoder
 from channels.generic.websocket import AsyncWebsocketConsumer
 
 
-from channels.db import database_sync_to_async
-from .models import ConversationMember, Message, MessageDelivery, Conversation
-from django.db import transaction
+from channels.db import database_sync_to_async # We use this to create async capable helper methods: [Documentation](./docs/architecture.md:1)
+
+from .models import ConversationMember, Message, MessageDelivery, Conversation 
+from django.db import transaction              # Used to ensure either all or none of our database updates go through.
 
 from django.utils import timezone
 
-from .services.presence_service import (
+from .services.presence_service import (    # Check [presence_service](./services/presence_service.py) for more information regarding the Redis presence functionality.
     add_presence_connection,
     cleanup_stale_connections,
     refresh_presence_connection,
@@ -18,10 +19,10 @@ from .services.presence_service import (
     is_user_online,
 )
 
-from types import SimpleNamespace
+from types import SimpleNamespace           # Used to create a mock request of our custom JWT middleware User to pass as context to the ConversationSerializer serializer. [Documentation](./docs/architecture.md:22)
 from .serializers import ConversationSerializer
 
-import asyncio
+import asyncio # A built-in Python library for writing concurrent code. Uses async and await syntax instead of traditional multi-threading. Best for I/O-bound tasks like network requests or file reads.
 
 
 
@@ -158,9 +159,9 @@ def mark_messages_read(user, conversation_id, message_id):
     }
 
 @database_sync_to_async
-def get_user_conversation_ids(user):
+def get_user_conversation_ids(user):    # Gets all the conversation IDs for a given user.
     return list(
-        ConversationMember.objects.filter(
+        ConversationMember.objects.filter(  # Go ahead and filter the 
             user=user,
         ).values_list(
             "conversation_id",
@@ -171,12 +172,12 @@ def get_user_conversation_ids(user):
 
 @database_sync_to_async
 def get_conversation_member_ids(
-    conversation_id,
+    conversation_id,                            
 ):
-    return list(
+    return list(                                # Get all the user ID's for a specific conversation. 
         ConversationMember.objects.filter(
             conversation_id=conversation_id
-        ).values_list(
+        ).values_list(                          
             "user_id",
             flat=True,
         )
@@ -220,7 +221,7 @@ def serialize_conversation_for_user(
         .get(id=conversation_id)
     )
 
-    request = SimpleNamespace(
+    request = SimpleNamespace( # DRF serializers usually expect a full HTTP request object. By duck-typing it with SimpleNamespace(user=user), we can satisfy the serializer's need for request.user without the heavy overhead of constructing a mock WSGI/ASGI request.
         user=user
     )
 
@@ -232,11 +233,15 @@ def serialize_conversation_for_user(
     ).data
 
     return json.loads(
-        json.dumps(
+        json.dumps(                 # "dump string" method to convert Python object into a JSON-formatted string.
             data,
-            cls=DjangoJSONEncoder,
+            cls=DjangoJSONEncoder,  # If we try to use standard json.dumps() on a dictionary containing a datetime, Decimal, or UUID, Python throws a TypeError. DjangoJSONEncoder fixes this by automatically translating those Django-specific objects into standard JSON strings.
         )
     )
+    # Example Before : After of the above json convertion:
+    # datetime.datetime(2026, 9, 16, 12, 40)       : "2026-09-16T12:40:00" 
+    # Decimal('19.99')                             : "19.99"
+    # UUID('12345678-1234-5678-1234-567812345678') : "12345678-1234-5678-1234-567812345678"
 
 from django.contrib.auth import get_user_model
 
@@ -276,21 +281,21 @@ class ChatConsumer(AsyncWebsocketConsumer):
             f"{str(self.conversation_id).replace('-', '_')}"
         )
 
-        await self.channel_layer.group_add(
+        await self.channel_layer.group_add(                     # Automatically connects to our Redis channel layer backen through this settings.py implementation [Redis_Backend_Server](../websitethree/settings.py:301)
             self.group_name,
             self.channel_name,
         )
 
-        connection_count = await add_presence_connection(
+        connection_count = await add_presence_connection(       # Create a Redis presence using the channel_name and the custom presence_key we create in add_presence_connection() using self.user.id argument [See Implementation](./services/presence_service.py:21) 
             self.user.id,
             self.channel_name,
         )
 
-        await self.accept()
+        await self.accept()                                     # Accept the incoming socket connection.
 
-        await self.send_presence_snapshot()
+        await self.send_presence_snapshot()                     # Sends one presence.update per user in a looping fashion after clearning stale connections and setting whether a user is online per iteration /  presence.update call. 
 
-        self.presence_watchdog_task = asyncio.create_task(
+        self.presence_watchdog_task = asyncio.create_task(      # 
             self.presence_watchdog()
         )
 
@@ -508,7 +513,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
 
     async def broadcast_presence(self, is_online):
-            conversation_ids = await get_user_conversation_ids(
+            conversation_ids = await get_user_conversation_ids(    
                 self.user
             )
     
@@ -585,23 +590,23 @@ class ChatConsumer(AsyncWebsocketConsumer):
             })
         )
 
-    async def send_presence_snapshot(self):
-        member_ids = await get_conversation_member_ids(
+    async def send_presence_snapshot(self): # [[PythonAuthLogic|Go to Python Backend Authentication]]
+        member_ids: list[int] = await get_conversation_member_ids(   # Gets a list of all the user primary key id's connected to a conversation.
             self.conversation_id
         )
 
-        for user_id in member_ids:
-            if user_id == self.user.id:
+        for user_id in member_ids:                      
+            if user_id == self.user.id:   # If user_id in member_ids list is equal to the user calling this, dont add them to the final output. Basically, exclude the user calling the method.               
                 continue
 
-            online = await is_user_online(
+            online: bool = await is_user_online(   # Check if the user in the current iteration is logged in
                 user_id
             )
 
-            await self.send(
-                text_data=json.dumps({
-                    "type": "presence.update",
-                    "user_id": user_id,
+            await self.send(                   # Sends one presence.update per user since we are in a loop.
+                text_data=json.dumps({         # Serialize obj to a JSON formatted string.
+                    "type": "presence.update", 
+                    "user_id": user_id,        
                     "is_online": online,
                 })
             )
@@ -629,17 +634,17 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     async def presence_watchdog(self):
         try:
-            while True:
-                await asyncio.sleep(30)
+            while True:                                     # Ensures the loop runs perpetually.
+                await asyncio.sleep(30)                     # Set a sleep (slowdown of the loop) timeinterval of 30 seconds.
 
-                count_before, count_after = (
-                    await cleanup_stale_connections(
+                count_before, count_after = (               
+                    await cleanup_stale_connections(        # Cleans up stale channels for that user_id. Also will delete the presence_key for that user if there are 0 channels left for that user. Does return the old count of user channels before cleanup and the new user channels count after cleanup.
                         self.user.id
                     )
                 )
 
                 if (
-                    count_before > 0
+                    count_before > 0                        # If we closed all available channels in the presence key, go ahead and broadcast a negative presence to all users for the current user and close the websocket.
                     and count_after == 0
                 ):
                     await self.broadcast_presence(False)

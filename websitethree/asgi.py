@@ -26,7 +26,7 @@ from chat_api.middleware import JWTAuthMiddleware # Custom JWT Authentication Mi
 application = ProtocolTypeRouter({
     "http": django_asgi_app,
 
-    "websocket": JWTAuthMiddleware(
+    "websocket": JWTAuthMiddleware(     # Custom JWT Middleware for Our Websocket Implementation (Check README.md for "chat_api" for more information.)
         URLRouter(
             chat_api.routing.websocket_urlpatterns
         )

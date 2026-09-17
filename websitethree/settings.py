@@ -28,25 +28,26 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") == "True"
 
+# Localhost, EC2 IP, and domain name.
 ALLOWED_HOSTS = ['127.0.0.1', '54.177.68.114', 'jorgeramirez.net', 'www.jorgeramirez.net']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'daphne',
+    'daphne',                                   # Daphne is what actually runs your Django project for async features, like real-time channels. Daphne systemd Service is what we used for production. (Read the README.md for "chat_api" for more information).
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "corsheaders",
-    'rest_framework',
-    'resume_analyzer_app_api',
-    "rest_framework_simplejwt.token_blacklist",
-    "ragspace_api",
-    "channels",
+    "corsheaders",                              # django-cors-headers package. This application injects the required HTTP headers into our responses, allowing frontend applications running on other domains (like React, Vue, or Angular) to interact with our Django backend.
+    'rest_framework',                           
+    'resume_analyzer_app_api',                  
+    "rest_framework_simplejwt.token_blacklist", # [https://django-rest-framework-simplejwt.readthedocs.io/en/latest/blacklist_app.html] - Comes installed with Djangos simplejwt app. Make sure to run python manage.py migrate to run the app’s migrations.
+    "ragspace_api",                                        
+    "channels",                                 # Used for chat_api websocket management. (Is an official project that extends Django to handle WebSockets and other real-time protocols) - Installed in requirements.txt.
     "chat_api"
 ]
 
@@ -61,7 +62,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'websitethree.urls'
+ROOT_URLCONF = 'websitethree.urls'              # Simply says our Root URL config is the file sitting at websitethree/websitethree/urls.py.
 
 TEMPLATES = [
     {
@@ -82,13 +83,13 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'websitethree.wsgi.application'
-ASGI_APPLICATION = "websitethree.asgi.application"
+WSGI_APPLICATION = 'websitethree.wsgi.application'     
+ASGI_APPLICATION = "websitethree.asgi.application"      # Replaces WSGI to allow asynchronous and traditional synchronous Python applications. (Needed for Relay)(Allows normal http traffic aswell).
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
+DATABASES = {                                           # Basic MySQL database connection configuration using environment variable for confidential information.
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "resume_analyzer_app_api",
@@ -118,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Tell Django to Use Our Model
+# Tell Django to Use Our Custom Model for Authentication. We are telling Django to bypass its default built-in user model and instead use the User class defined inside the models file of our resume_analyzer_app_api application.
 AUTH_USER_MODEL = "resume_analyzer_app_api.User"
 
 # Internationalization
@@ -195,35 +196,29 @@ FRONTEND_URL = os.getenv(
 EMAIL_BACKEND = (
     "django.core.mail.backends.smtp.EmailBackend"
 )
-
 EMAIL_HOST = os.getenv(
     "EMAIL_HOST"
 )
-
 EMAIL_PORT = int(
     os.getenv(
         "EMAIL_PORT",
         587
     )
 )
-
 EMAIL_HOST_USER = os.getenv(
     "EMAIL_HOST_USER"
 )
-
 EMAIL_HOST_PASSWORD = os.getenv(
     "EMAIL_HOST_PASSWORD"
 )
-
 EMAIL_USE_TLS = True
-
 DEFAULT_FROM_EMAIL = os.getenv(
     "DEFAULT_FROM_EMAIL"
 )
 
 
 
-
+# S3 Config for ResuScan
 AWS_STORAGE_BUCKET_NAME = os.getenv(
     "AWS_STORAGE_BUCKET_NAME"
 )
@@ -263,7 +258,7 @@ OPENAI_RESUME_MODEL = os.getenv(
 )
 
 
-
+# S3 Config for Ragspace.
 RAGSPACE_AWS_ACCESS_KEY_ID = os.getenv("RAGSPACE_AWS_ACCESS_KEY_ID")
 RAGSPACE_AWS_SECRET_ACCESS_KEY = os.getenv("RAGSPACE_AWS_SECRET_ACCESS_KEY")
 RAGSPACE_AWS_STORAGE_BUCKET_NAME = os.getenv("RAGSPACE_AWS_STORAGE_BUCKET_NAME")
@@ -277,8 +272,10 @@ RAG_FINAL_K = 5
 RAG_SCORE_THRESHOLD = 0.30
 
 
-RAG_EMBEDDING_MODEL = "text-embedding-3-small" # OpenAI Embedding Model For RAGspace
+RAG_EMBEDDING_MODEL = "text-embedding-3-small" # OpenAI Embedding Model For RAGspace.
 
+
+# Qdrant config for Ragspace.
 QDRANT_URL = os.getenv("QDRANT_URL")
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
 
@@ -286,7 +283,7 @@ RAG_QDRANT_COLLECTION = "ragspace_chunks"
 RAG_EMBEDDING_DIMENSIONS = 1536
 
 
-
+# Voyage API config for Ragspace.
 VOYAGE_API_KEY = os.getenv("VOYAGE_API_KEY")
 
 RAG_RERANKING_ENABLED = False
@@ -300,7 +297,7 @@ RAG_HISTORY_MESSAGE_LIMIT = 8
 
 
 
-
+# Channels config for Relay.
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",

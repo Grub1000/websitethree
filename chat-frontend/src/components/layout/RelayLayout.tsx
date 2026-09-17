@@ -78,94 +78,94 @@ function RelayLayout() {
     }, []);
 
     const handleUserSocketMessage =
-    useCallback((event: any) => {
+        useCallback((event: any) => {
 
-        // console.log(
-        //     "GLOBAL SOCKET EVENT:",
-        //     event,
-        // );
-
-        // console.log(
-        //     "GLOBAL SOCKET EVENT:",
-        //     JSON.stringify(event, null, 2),
-        // );
-        
-
-        if (event.type === "conversation.deleted") {
-            setConversations(current =>
-                current.filter(
-                    conversation =>
-                        conversation.id !== event.conversation_id
-                )
-            );
-
-            setSelectedConversation(current =>
-                current?.id === event.conversation_id
-                    ? null
-                    : current
-            );
-
-            return;
-        }
-
-
-
-
-
-
-        if (
-            event.type !==
-            "conversation.updated"
-        ) {
-            return;
-        }
-
-        setConversations((current) => {
-            const existingConversation =
-                current.find(
-                    (item) =>
-                        item.id ===
-                        event.conversation.id,
-                );
             // console.log(
-            //     "EXISTING CONVERSATION:",
-            //     existingConversation,
+            //     "GLOBAL SOCKET EVENT:",
+            //     event,
             // );
 
-            if (!existingConversation) {
+            // console.log(
+            //     "GLOBAL SOCKET EVENT:",
+            //     JSON.stringify(event, null, 2),
+            // );
+            
 
-                // console.log(
-                //     "ADDING NEW CONVERSATION"
-                // );
+            if (event.type === "conversation.deleted") {
+                setConversations(current =>
+                    current.filter(
+                        conversation =>
+                            conversation.id !== event.conversation_id
+                    )
+                );
 
-                return [
-                    event.conversation,
-                    ...current,
-                ];
+                setSelectedConversation(current =>
+                    current?.id === event.conversation_id
+                        ? null
+                        : current
+                );
+
+                return;
             }
 
-            const updatedConversation = {
-                ...existingConversation,
-                last_message:
-                    event.conversation.last_message,
-                unread_count:
-                    event.conversation.unread_count,
-            };
+
+
+
+
+
+    if (
+        event.type !==
+        "conversation.updated"
+    ) {
+        return;
+    }
+
+    setConversations((current) => {
+        const existingConversation =
+            current.find(
+                (item) =>
+                    item.id ===
+                    event.conversation.id,
+            );
+        // console.log(
+        //     "EXISTING CONVERSATION:",
+        //     existingConversation,
+        // );
+
+        if (!existingConversation) {
 
             // console.log(
-            //     "UPDATED CONVERSATION:",
-            //     updatedConversation,
+            //     "ADDING NEW CONVERSATION"
             // );
 
             return [
-                updatedConversation,
-                ...current.filter(
-                    (item) =>
-                        item.id !==
-                        event.conversation.id,
-                ),
+                event.conversation,
+                ...current,
             ];
-        });
+        }
+
+        const updatedConversation = {
+            ...existingConversation,
+            last_message:
+                event.conversation.last_message,
+            unread_count:
+                event.conversation.unread_count,
+        };
+
+        // console.log(
+        //     "UPDATED CONVERSATION:",
+        //     updatedConversation,
+        // );
+
+        return [
+            updatedConversation,
+            ...current.filter(
+                (item) =>
+                    item.id !==
+                    event.conversation.id,
+            ),
+        ];
+    });
     }, []);
 
     useUserChatSocket({

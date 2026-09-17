@@ -24,12 +24,10 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name= 'homepage-react-frontend-parallax-semantic/build/index.html')),
 
 
-
     # Resume Analyzer Api
     path("resume-analyzer-app-api/", include("resume_analyzer_app_api.urls")),
 
-
-    # Resume Analyzer React app
+    # Resume Analyzer React App
     path(
         "resuscan/",
         TemplateView.as_view(
@@ -37,6 +35,7 @@ urlpatterns = [
         )
     ),
 
+    # Resume Analyzer React App (Catch-all route for React Router)
     path(
         "resuscan/<path:path>",
         TemplateView.as_view(
@@ -48,7 +47,6 @@ urlpatterns = [
     # Ragspace Api
     path("ragspace-api/", include("ragspace_api.urls")),
 
-
     # RAGspace React app
         path(
             "ragspace/",
@@ -57,7 +55,7 @@ urlpatterns = [
             )
         ),
 
-    # RAGspace React app (Catch-all route for React Router)    
+    # RAGspace React App (Catch-all route for React Router)    
     path(
             "ragspace/<path:path>",
             TemplateView.as_view(
@@ -73,22 +71,21 @@ urlpatterns = [
     ),
 
 
-    # RAGspace React app
+    # Relay React App
     path(
         "relay/",
         TemplateView.as_view(
             template_name="chat-frontend/dist/index.html"
         )
     ),
+
     
-    # RAGspace React app (Catch-all route for React Router)    
+    # Relay React App (Catch-all route for React Router)    
     path(
             "relay/<path:path>",
             TemplateView.as_view(
                 template_name="chat-frontend/dist/index.html"
             )
         ),
-
-
 
 ]
