@@ -161,7 +161,7 @@ def mark_messages_read(user, conversation_id, message_id):
 @database_sync_to_async
 def get_user_conversation_ids(user):    # Gets all the conversation IDs for a given user.
     return list(
-        ConversationMember.objects.filter(  # Go ahead and filter the 
+        ConversationMember.objects.filter(  # Get a list[int] of ConversationMember conversation_id's where the user is equal to the current user.
             user=user,
         ).values_list(
             "conversation_id",
@@ -174,7 +174,7 @@ def get_user_conversation_ids(user):    # Gets all the conversation IDs for a gi
 def get_conversation_member_ids(
     conversation_id,                            
 ):
-    return list(                                # Get all the user ID's for a specific conversation. 
+    return list(                                # Get all the user ID's for a specific conversation. All users currently members of a specific conversation 
         ConversationMember.objects.filter(
             conversation_id=conversation_id
         ).values_list(                          
@@ -264,7 +264,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             await self.close(code=4401)
             return
 
-        self.conversation_id = self.scope[
+        self.conversation_id = self.scope[                      # Incoming request looks something like "https://127.0.0.1:8000/ws/chat/?conversation_id=188935fa-66d3-4a4d-baaf-a5deb0eb317a"
         "url_route"]["kwargs"]["conversation_id"]
 
         is_member = await user_is_conversation_member(
@@ -278,12 +278,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         self.group_name = (
             f"conversation_"
-            f"{str(self.conversation_id).replace('-', '_')}"
+            f"{str(self.conversation_id).replace('-', '_')}"    
         )
 
         await self.channel_layer.group_add(                     # Automatically connects to our Redis channel layer backen through this settings.py implementation [Redis_Backend_Server](../websitethree/settings.py:301)
-            self.group_name,
-            self.channel_name,
+            self.group_name,                                    # The Redis group (conversation_id) where we want to add a new this new channel too (by passing in the channel_name).
+            self.channel_name,                                  
         )
 
         connection_count = await add_presence_connection(       # Create a Redis presence using the channel_name and the custom presence_key we create in add_presence_connection() using self.user.id argument [See Implementation](./services/presence_service.py:21) 
@@ -295,12 +295,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         await self.send_presence_snapshot()                     # Sends one presence.update per user in a looping fashion after clearning stale connections and setting whether a user is online per iteration /  presence.update call. 
 
-        self.presence_watchdog_task = asyncio.create_task(      # 
-            self.presence_watchdog()
+        self.presence_watchdog_task = asyncio.create_task(      # Schedule the execution of a coroutine object in a spawn task. The coroutin object is our presence_watchdog method that checks every 30 seconds whether the current channels user is offline.
+            self.presence_watchdog()                            # If offline, ensures all users indirectly or directly connected to the current channels user (through shared conversations) gets a chat.presence websocket event sent to them notifying the frontend that the current user is no longer online. 
         )
 
-        if connection_count == 1:
-            await self.broadcast_presence(True)
+        if connection_count == 1:                               # If the connection count we got earlier (Total number of unique channels for this user) is only one, 
+            await self.broadcast_presence(True)                 # that means this is the only connection at the moment and we can ensure all users indirectly or directly connected to the current channels user (through shared conversations) gets a chat.presence websocket event sent to them notifying the frontend that the current user is now online. 
+                                                                # Basically, as soon as the first device for this user gains presence in any conversation, label them as online to all of the users they are indirectly / directly connected with (through shared conversations).
 
     async def receive(self, text_data=None, bytes_data=None):
         if not text_data:
@@ -513,18 +514,18 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
 
     async def broadcast_presence(self, is_online):
-            conversation_ids = await get_user_conversation_ids(    
+            conversation_ids = await get_user_conversation_ids(     # Gets all conversation_id's that the current user is a member of. (using a ConversationMember model query).
                 self.user
             )
     
-            for conversation_id in conversation_ids:
-                group_name = (
+            for conversation_id in conversation_ids:                # For each conversation_id, send a chat.presence to each user that is a member (and has presence) of that conversation (apart from the sending user).
+                group_name = (                                      # Get the group name on Redis of the conversation. We will use this group name to send a chat.presence event to all online members with presence in those groups.
                     f"conversation_"
                     f"{str(conversation_id).replace('-', '_')}"
                 )
     
-                await self.channel_layer.group_send(
-                    group_name,
+                await self.channel_layer.group_send(                # For each group, send a chat.presence object with type, user_id, and online status to all users with presence at the time of the send in that specific group.
+                    group_name,                                     # This allows all people directly / indirectly connected to the current user (through shared conversations) to get updates on the current user's presence change.
                     {
                         "type": "chat.presence",
                         "user_id": self.user.id,
@@ -647,8 +648,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     count_before > 0                        # If we closed all available channels in the presence key, go ahead and broadcast a negative presence to all users for the current user and close the websocket.
                     and count_after == 0
                 ):
-                    await self.broadcast_presence(False)
-                    await self.close(code=4000)
+                    await self.broadcast_presence(False)    # Ensure all users indirectly or directly connected to the current user (through shared conversations) gets a chat.presence websocket event sent to them notifying the frontend that the current user is no longer online.
+                    await self.close(code=4000)             # Close the websocket.
                     return
 
         except asyncio.CancelledError:

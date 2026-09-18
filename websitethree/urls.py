@@ -48,25 +48,25 @@ urlpatterns = [
     path("ragspace-api/", include("ragspace_api.urls")),
 
     # RAGspace React app
-        path(
-            "ragspace/",
-            TemplateView.as_view(
-                template_name="ragspace-frontend/dist/index.html"
-            )
-        ),
+    path(
+        "ragspace/",
+        TemplateView.as_view(
+            template_name="ragspace-frontend/dist/index.html"
+        )
+    ),
 
     # RAGspace React App (Catch-all route for React Router)    
     path(
-            "ragspace/<path:path>",
-            TemplateView.as_view(
-                template_name="ragspace-frontend/dist/index.html"
-            )
-        ),
+        "ragspace/<path:path>",
+        TemplateView.as_view(
+            template_name="ragspace-frontend/dist/index.html"
+        )
+    ),
 
 
     # Relay HTTP API
     path(
-        "chat-api/",
+        "chat-api/",                                
         include("chat_api.urls"),
     ),
 
@@ -82,10 +82,10 @@ urlpatterns = [
     
     # Relay React App (Catch-all route for React Router)    
     path(
-            "relay/<path:path>",
-            TemplateView.as_view(
-                template_name="chat-frontend/dist/index.html"
-            )
-        ),
+        "relay/<path:path>",
+        TemplateView.as_view(
+            template_name="chat-frontend/dist/index.html"
+        )
+    ),
 
 ]
