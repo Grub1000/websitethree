@@ -1,0 +1,114 @@
+.journey {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      #15202c 0%,
+      #080b10 45%,
+      #030507 100%
+    );
+
+  color: white;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.journey-copy {
+  position: absolute;
+  z-index: 10;
+  top: 8%;
+  left: 6%;
+}
+
+.journey-copy > span {
+  font-size: 0.75rem;
+  letter-spacing: 0.35rem;
+  color: #8ebaff;
+}
+
+.journey-copy h1 {
+  margin: 18px 0;
+  font-size: clamp(2.5rem, 5vw, 5.5rem);
+  line-height: 0.95;
+}
+
+.journey-copy strong {
+  color: #f4c430;
+}
+
+.journey-copy p {
+  color: #9ca7b5;
+}
+
+.visual {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene {
+  width: min(900px, 80vw);
+  overflow: visible;
+}
+
+.revenue-card {
+  position: absolute;
+
+  right: 7%;
+  bottom: 12%;
+
+  padding: 24px 30px;
+
+  background: rgba(15, 20, 28, 0.85);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+
+  backdrop-filter: blur(15px);
+}
+
+.revenue-card span {
+  display: block;
+
+  font-size: 0.7rem;
+  letter-spacing: 0.18rem;
+
+  color: #9ca7b5;
+}
+
+.revenue-card strong {
+  display: block;
+
+  margin-top: 8px;
+
+  font-size: 3rem;
+  color: #ffd633;
+}
+
+.revenue-card p {
+  margin-bottom: 0;
+  color: #9ca7b5;
+}
+
+.marker-glow {
+  filter: blur(6px);
+}
+
+.scroll-label {
+  position: absolute;
+
+  bottom: 3%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 0.65rem;
+  letter-spacing: 0.3rem;
+
+  color: #8291a5;
+}

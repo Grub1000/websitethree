@@ -48,7 +48,7 @@ def create_message(user, conversation_id, client_message_id, content):
             },
         )
 
-        if created:
+        if created:                                                 # If a new user was created, you go ahead and get a list of all members in the current conversation and you bulk create a MessageDelivery object for each user apart from oneself.
             recipient_ids = ConversationMember.objects.filter(
                 conversation_id=conversation_id,
             ).exclude(
@@ -63,7 +63,7 @@ def create_message(user, conversation_id, client_message_id, content):
                     message=message,
                     user_id=user_id,
                 )
-                for user_id in recipient_ids
+                for user_id in recipient_ids                        # Basically loop through the members in the conversation and create a MessageDelivery object for them.
             ])
 
         return {
@@ -225,15 +225,25 @@ def serialize_conversation_for_user(
         user=user
     )
 
-    data = ConversationSerializer(
+    data = ConversationSerializer(  
         conversation,
         context={
             "request": request
         },
     ).data
+    # Returns: ["id",
+    #           "direct_key",
+    #           "created_at",
+    #           "updated_at",
+    #           "members",
+    #           "other_user",
+    #           "last_message",
+    #           "unread_count",
+    #           "read_receipts",]
+    # Fields from the serializer in dictionary format. Example: {"id": 42, "direct_key": ...}
 
     return json.loads(
-        json.dumps(                 # "dump string" method to convert Python object into a JSON-formatted string.
+        json.dumps(                 # "dump string" method to convert Python dictionary / object into a JSON-formatted string.
             data,
             cls=DjangoJSONEncoder,  # If we try to use standard json.dumps() on a dictionary containing a datetime, Decimal, or UUID, Python throws a TypeError. DjangoJSONEncoder fixes this by automatically translating those Django-specific objects into standard JSON strings.
         )
@@ -281,7 +291,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             f"{str(self.conversation_id).replace('-', '_')}"    
         )
 
-        await self.channel_layer.group_add(                     # Automatically connects to our Redis channel layer backen through this settings.py implementation [Redis_Backend_Server](../websitethree/settings.py:301)
+        await self.channel_layer.group_add(                     # Automatically connects to our Redis channel layer backend through this settings.py implementation [Redis_Backend_Server](../websitethree/settings.py:301)
             self.group_name,                                    # The Redis group (conversation_id) where we want to add a new this new channel too (by passing in the channel_name).
             self.channel_name,                                  
         )
@@ -304,13 +314,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
                                                                 # Basically, as soon as the first device for this user gains presence in any conversation, label them as online to all of the users they are indirectly / directly connected with (through shared conversations).
 
     async def receive(self, text_data=None, bytes_data=None):
-        if not text_data:
+        if not text_data:                                       
             return
 
         try:
-            data = json.loads(text_data)
-        except json.JSONDecodeError:
-            await self.send(text_data=json.dumps({
+            data = json.loads(text_data)                        # Load the text_data of request data and convert the json string into a python dictionary.
+        except json.JSONDecodeError:                            # If there was an error with decoding, send back to this sockets client an invalid JSON error.
+            await self.send(text_data=json.dumps({              
                 "type": "error",
                 "message": "Invalid JSON",
             }))
@@ -323,10 +333,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
         #     }))
         #     return
         
-        event_type = data.get("type")
+        event_type = data.get("type")                           # Get the websocket event type.
 
-        if event_type == "message.send":
-            await self.handle_message_send(data)
+        if event_type == "message.send":                        # Use the event type to call handler methods that send this information to the group / conversation members currently online.
+            await self.handle_message_send(data)                # During the handler executions, there sometimes 
 
         elif event_type == "message.delivered":
             await self.handle_message_delivered(data)
@@ -386,22 +396,22 @@ class ChatConsumer(AsyncWebsocketConsumer):
             }))
             return
 
-        message = await create_message(
-            self.user,
+        message = await create_message(                 # Using get or create in order to maintain idempotency (where applying it multiple times yields the same final result as applying it just once due to having a client_message_id).
+            self.user,                                  # Makes or gets a user, gets all members of the current conversation, uses that list of member to bulk create MessageDelivery objects for those users. Returns an object with "id":message_id, "conversation_id","sender_id","client_message_id","content","created_at".
             self.conversation_id,
             client_message_id,
             content,
         )
 
-        await self.channel_layer.group_send(
-            self.group_name,
+        await self.channel_layer.group_send(            # Automatically connects to our Redis channel layer backend through this settings.py implementation [Redis_Backend_Server](../websitethree/settings.py:301)
+            self.group_name,        
             {
-                "type": "chat.message",
+                "type": "chat.message",                 # Once the message is recieved by a channel in the redis group, fire up the channel and call (chat_message) method on that channel. This will send the message down that channels socket to that users frontend. Thereby resulting in live frontend updates and real database persistance with the create_message method before running a triple step database insert / query. 
                 "message": message,
             },
         )
 
-        member_ids = await get_conversation_member_ids(
+        member_ids = await get_conversation_member_ids( 
             self.conversation_id
         )
 
@@ -411,13 +421,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
             )
 
             conversation_data = (
-                await serialize_conversation_for_user(
-                    self.conversation_id,
+                await serialize_conversation_for_user(  # Used to update the conversation panel to the frontend users when a new message arrives. To show unread counts and live update recieving conversation members unread counter when you send a message in that conversation.
+                    self.conversation_id,               # Go to helper function definition to see returned data format.
                     user,
                 )
             )
 
-            await self.channel_layer.group_send(
+            await self.channel_layer.group_send(       
                 f"chat_user_{user_id}",
                 {
                     "type": "conversation.updated",
