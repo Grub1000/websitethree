@@ -88,4 +88,21 @@ urlpatterns = [
         )
     ),
 
+
+    # Showcase React App
+        path(
+            "showcase/",
+            TemplateView.as_view(
+                template_name="showcase-frontend/dist/index.html"
+            )
+        ),
+
+    # Showcase React App (Catch-all route for React Router)
+    path(
+        "showcase/<path:path>",
+        TemplateView.as_view(
+            template_name="showcase-frontend/dist/index.html"
+        )
+    ),
+
 ]

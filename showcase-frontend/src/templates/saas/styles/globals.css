@@ -1,0 +1,378 @@
+/* ========================================
+   SaaS Global Styles
+   ======================================== */
+
+/*
+ * This file contains styling shared across the entire
+ * SaaS template.
+ *
+ * Component-specific rules should remain inside their
+ * respective component stylesheets.
+ */
+
+
+/* ========================================
+   Application
+   ======================================== */
+
+.saas {
+    min-height: 100vh;
+    width: 100%;
+
+    background-color: var(--saas-color-bg);
+    color: var(--saas-color-text-primary);
+
+    font-family: var(--saas-font-sans);
+    font-size: var(--saas-text-base);
+    font-weight: var(--saas-weight-regular);
+    line-height: var(--saas-line-body);
+
+    /*
+     * Clip horizontal overflow without creating a new
+     * scroll container. This will become useful when
+     * larger visualizations extend beyond the viewport.
+     */
+    overflow-x: clip;
+}
+
+
+/* ========================================
+   Typography
+   ======================================== */
+
+/*
+ * Headings inherit their actual size from the section
+ * or component that owns them. Global styles only
+ * establish their shared visual behavior.
+ */
+
+.saas h1,
+.saas h2,
+.saas h3,
+.saas h4,
+.saas h5,
+.saas h6 {
+    color: var(--saas-color-text-primary);
+
+    font-family: var(--saas-font-sans);
+    font-weight: var(--saas-weight-semibold);
+    line-height: var(--saas-line-heading);
+
+    letter-spacing: -0.025em;
+}
+
+.saas p {
+    color: var(--saas-color-text-secondary);
+}
+
+.saas strong {
+    color: var(--saas-color-text-primary);
+    font-weight: var(--saas-weight-semibold);
+}
+
+.saas code,
+.saas pre,
+.saas kbd,
+.saas samp {
+    font-family: var(--saas-font-mono);
+}
+
+
+/* ========================================
+   Links
+   ======================================== */
+
+/*
+ * Links inherit their surrounding color by default.
+ * Individual components determine whether a link is
+ * neutral, cyan, underlined, or button-like.
+ */
+
+.saas a {
+    color: inherit;
+}
+
+
+/* ========================================
+   Container
+   ======================================== */
+
+/*
+ * The standard container controls horizontal alignment
+ * across the majority of the marketing site.
+ *
+ * Mobile begins with 16px page padding. That padding
+ * increases as more viewport space becomes available.
+ */
+
+.saas-container {
+    width: min(
+        calc(100% - (var(--saas-page-padding) * 2)),
+        var(--saas-container)
+    );
+
+    margin-inline: auto;
+}
+
+
+/*
+ * Used for sections where the product interface or
+ * visualization needs additional horizontal space.
+ */
+
+.saas-container--wide {
+    max-width: var(--saas-container-wide);
+}
+
+
+/*
+ * Used for long-form copy that should remain readable
+ * rather than stretching across the full container.
+ */
+
+.saas-container--text {
+    max-width: var(--saas-container-text);
+}
+
+
+/* ========================================
+   Sections
+   ======================================== */
+
+/*
+ * Provides the default vertical rhythm between major
+ * sections.
+ *
+ * Individual sections may override this when their
+ * composition requires different spacing.
+ */
+
+.saas-section {
+    position: relative;
+
+    padding-block: var(--saas-space-20);
+}
+
+
+/* ========================================
+   Section Heading
+   ======================================== */
+
+/*
+ * Many sections will share the same content hierarchy:
+ *
+ * eyebrow
+ * title
+ * description
+ *
+ * These classes provide the common typography while
+ * leaving layout decisions to the section itself.
+ */
+
+.saas-heading {
+    max-width: var(--saas-container-text);
+}
+
+.saas-heading__eyebrow {
+    color: var(--saas-color-cyan-400);
+
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.saas-heading__title {
+    margin-top: var(--saas-space-4);
+
+    font-size: clamp(
+        var(--saas-text-3xl),
+        7vw,
+        var(--saas-text-5xl)
+    );
+
+    line-height: var(--saas-line-tight);
+}
+
+.saas-heading__description {
+    max-width: 38rem;
+
+    margin-top: var(--saas-space-6);
+
+    color: var(--saas-color-text-secondary);
+
+    font-size: var(--saas-text-base);
+}
+
+
+/* ========================================
+   Technical Labels
+   ======================================== */
+
+/*
+ * Small technical labels appear throughout the product
+ * interface for metadata such as region, runtime,
+ * status, CPU, memory, and deployment information.
+ */
+
+.saas-label {
+    color: var(--saas-color-text-muted);
+
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   Surfaces
+   ======================================== */
+
+/*
+ * Generic surface primitives may be used by complex
+ * product visualizations.
+ *
+ * These classes deliberately avoid shadows because
+ * surface contrast and borders are the primary methods
+ * of creating depth in this design system.
+ */
+
+.saas-surface {
+    background-color: var(--saas-color-surface-1);
+
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+}
+
+.saas-surface--raised {
+    background-color: var(--saas-color-surface-2);
+}
+
+
+/* ========================================
+   Selection
+   ======================================== */
+
+.saas ::selection {
+    background-color: var(--saas-color-cyan-400);
+    color: var(--saas-color-black);
+}
+
+
+/* ========================================
+   Focus
+   ======================================== */
+
+/*
+ * Never remove keyboard focus without replacing it.
+ * Cyan represents interaction throughout the SaaS
+ * template, so it also serves as the focus color.
+ */
+
+.saas :focus-visible {
+    outline: 2px solid var(--saas-color-cyan-400);
+    outline-offset: 3px;
+}
+
+
+/* ========================================
+   Scroll Margin
+   ======================================== */
+
+/*
+ * Anchored sections should not disappear underneath
+ * the sticky header when navigated to directly.
+ */
+
+.saas [id] {
+    scroll-margin-top: 6rem;
+}
+
+
+/* ========================================
+   Tablet
+   ======================================== */
+
+@media (min-width: 48rem) {
+
+    .saas {
+        /*
+         * Page padding grows independently of the main
+         * container width.
+         */
+        --saas-page-padding: 2rem;
+    }
+
+    .saas-section {
+        padding-block: var(--saas-space-24);
+    }
+
+    .saas-heading__description {
+        font-size: var(--saas-text-lg);
+    }
+}
+
+
+/* ========================================
+   Desktop
+   ======================================== */
+
+@media (min-width: 64rem) {
+
+    .saas {
+        --saas-page-padding: 3rem;
+    }
+
+    .saas-section {
+        padding-block: var(--saas-space-32);
+    }
+}
+
+
+/* ========================================
+   Large Desktop
+   ======================================== */
+
+@media (min-width: 80rem) {
+
+    .saas-section {
+        /*
+         * Large screens have enough room to support the
+         * spacious pacing used by the marketing sections.
+         */
+        padding-block: var(--saas-space-40);
+    }
+}
+
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+
+/*
+ * This handles CSS transitions and animations.
+ *
+ * GSAP animations will independently check the user's
+ * reduced-motion preference before constructing their
+ * timelines.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .saas *,
+    .saas *::before,
+    .saas *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+    }
+}

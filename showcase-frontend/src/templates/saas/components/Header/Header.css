@@ -1,0 +1,663 @@
+/* ========================================
+   Header
+   ======================================== */
+
+/*
+ * The header remains visible while navigating the
+ * marketing site.
+ *
+ * The translucent background allows content to move
+ * underneath the header while maintaining enough
+ * contrast for the navigation to remain readable.
+ */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: var(--saas-layer-header);
+
+    width: 100%;
+
+    border-bottom: 1px solid var(--saas-color-border-subtle);
+
+    background-color: rgba(7, 11, 17, 0.88);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+
+/* ========================================
+   Header Container
+   ======================================== */
+
+/*
+ * The container keeps the brand, navigation, and
+ * account actions vertically aligned while inheriting
+ * the global SaaS content width.
+ */
+
+.header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 4rem;
+}
+
+
+/* ========================================
+   Brand
+   ======================================== */
+
+.header__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+
+    text-decoration: none;
+
+    color: var(--saas-color-text-primary);
+}
+
+
+/*
+ * The brand mark introduces the primary cyan accent
+ * without relying on gradients, large glows, or other
+ * decorative effects.
+ */
+
+.header__brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 1.75rem;
+    height: 1.75rem;
+
+    border: 1px solid var(--saas-color-cyan-border);
+    border-radius: var(--saas-radius-sm);
+
+    color: var(--saas-color-cyan-400);
+    background-color: var(--saas-color-cyan-muted);
+}
+
+.header__brand-icon {
+    flex-shrink: 0;
+}
+
+.header__brand-name {
+    font-size: var(--saas-text-base);
+    font-weight: var(--saas-weight-semibold);
+    letter-spacing: -0.025em;
+
+    color: var(--saas-color-text-primary);
+}
+
+
+/* ========================================
+   Desktop Navigation
+   ======================================== */
+
+/*
+ * Desktop navigation is hidden by default because the
+ * template is written mobile-first.
+ *
+ * It becomes visible at the desktop breakpoint.
+ */
+
+.header__nav {
+    display: none;
+}
+
+.header__nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-1);
+
+    list-style: none;
+}
+
+.header__nav-item {
+    position: relative;
+}
+
+
+/* ========================================
+   Navigation Links
+   ======================================== */
+
+/*
+ * Navigation links and the Platform dropdown button
+ * share the same visual treatment.
+ */
+
+.header__nav-link,
+.header__nav-button {
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 2.25rem;
+
+    padding-inline: var(--saas-space-3);
+
+    border: 1px solid transparent;
+    border-radius: var(--saas-radius-sm);
+
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-medium);
+    text-decoration: none;
+
+    color: var(--saas-color-text-secondary);
+    background-color: transparent;
+
+    transition:
+        color var(--saas-motion-fast) var(--saas-ease),
+        background-color var(--saas-motion-fast) var(--saas-ease);
+}
+
+.header__nav-link:hover,
+.header__nav-button:hover {
+    color: var(--saas-color-text-primary);
+    background-color: var(--saas-color-surface-2);
+}
+
+.header__nav-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--saas-space-1);
+
+    cursor: pointer;
+}
+
+.header__nav-button-text {
+    display: inline-block;
+}
+
+
+/*
+ * The chevron rotates when the Platform menu opens.
+ * Color changes reinforce the active interaction state.
+ */
+
+.header__nav-chevron {
+    color: var(--saas-color-text-muted);
+
+    transition:
+        color var(--saas-motion-fast) var(--saas-ease),
+        transform var(--saas-motion-base) var(--saas-ease);
+}
+
+.header__nav-chevron--open {
+    color: var(--saas-color-cyan-400);
+
+    transform: rotate(180deg);
+}
+
+
+/* ========================================
+   Desktop Actions
+   ======================================== */
+
+.header__actions {
+    display: none;
+    align-items: center;
+    gap: var(--saas-space-2);
+}
+
+
+/* ----------------------------------------
+   Sign In
+   ---------------------------------------- */
+
+.header__sign-in {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 2.25rem;
+
+    padding-inline: var(--saas-space-3);
+
+    border-radius: var(--saas-radius-sm);
+
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-medium);
+    text-decoration: none;
+
+    color: var(--saas-color-text-secondary);
+
+    transition:
+        color var(--saas-motion-fast) var(--saas-ease),
+        background-color var(--saas-motion-fast) var(--saas-ease);
+}
+
+.header__sign-in:hover {
+    color: var(--saas-color-text-primary);
+    background-color: var(--saas-color-surface-2);
+}
+
+
+/* ----------------------------------------
+   Primary CTA
+   ---------------------------------------- */
+
+/*
+ * Cyan is reserved for the primary action.
+ *
+ * The button deliberately avoids gradients and heavy
+ * glow so the interface retains its technical character.
+ */
+
+.header__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 2.25rem;
+
+    padding-inline: var(--saas-space-4);
+
+    border: 1px solid var(--saas-color-cyan-400);
+    border-radius: var(--saas-radius-sm);
+
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-semibold);
+    text-decoration: none;
+
+    color: var(--saas-color-black);
+    background-color: var(--saas-color-cyan-400);
+
+    transition:
+        background-color var(--saas-motion-fast) var(--saas-ease),
+        border-color var(--saas-motion-fast) var(--saas-ease),
+        transform var(--saas-motion-fast) var(--saas-ease);
+}
+
+.header__cta:hover {
+    border-color: var(--saas-color-cyan-300);
+
+    background-color: var(--saas-color-cyan-300);
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   Platform Dropdown
+   ======================================== */
+
+/*
+ * The Platform dropdown exposes enough product depth
+ * to make Nexora feel like a real infrastructure
+ * platform rather than a generic SaaS landing page.
+ */
+
+.header__dropdown {
+    position: absolute;
+    top: calc(100% + var(--saas-space-3));
+    left: 0;
+
+    width: 36rem;
+
+    padding: var(--saas-space-4);
+
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-lg);
+
+    background-color: var(--saas-color-surface-1);
+
+    box-shadow: var(--saas-shadow-panel);
+}
+
+
+/* ----------------------------------------
+   Dropdown Header
+   ---------------------------------------- */
+
+.header__dropdown-header {
+    padding:
+        var(--saas-space-2)
+        var(--saas-space-2)
+        var(--saas-space-4);
+
+    border-bottom: 1px solid var(--saas-color-border-subtle);
+}
+
+.header__dropdown-label {
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-semibold);
+
+    color: var(--saas-color-text-primary);
+}
+
+.header__dropdown-description {
+    max-width: 26rem;
+
+    margin-top: var(--saas-space-1);
+
+    font-size: var(--saas-text-xs);
+    line-height: 1.5;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ----------------------------------------
+   Dropdown List
+   ---------------------------------------- */
+
+.header__dropdown-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--saas-space-1);
+
+    margin-top: var(--saas-space-3);
+
+    list-style: none;
+}
+
+.header__dropdown-item {
+    min-width: 0;
+}
+
+
+/* ----------------------------------------
+   Dropdown Link
+   ---------------------------------------- */
+
+.header__dropdown-link {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--saas-space-3);
+
+    min-height: 5rem;
+
+    padding: var(--saas-space-3);
+
+    border: 1px solid transparent;
+    border-radius: var(--saas-radius-md);
+
+    text-decoration: none;
+
+    transition:
+        background-color var(--saas-motion-fast) var(--saas-ease),
+        border-color var(--saas-motion-fast) var(--saas-ease);
+}
+
+.header__dropdown-link:hover {
+    border-color: var(--saas-color-border);
+
+    background-color: var(--saas-color-surface-2);
+}
+
+
+/* ----------------------------------------
+   Dropdown Icon
+   ---------------------------------------- */
+
+.header__dropdown-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    width: 2rem;
+    height: 2rem;
+
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-sm);
+
+    color: var(--saas-color-text-muted);
+    background-color: var(--saas-color-surface-2);
+
+    transition:
+        color var(--saas-motion-fast) var(--saas-ease),
+        border-color var(--saas-motion-fast) var(--saas-ease);
+}
+
+
+/*
+ * This descendant selector is intentional.
+ *
+ * Hovering anywhere on the dropdown link should also
+ * change its associated icon, so the icon's state is
+ * dependent on the parent link's interaction state.
+ */
+
+.header__dropdown-link:hover .header__dropdown-icon {
+    border-color: var(--saas-color-cyan-border);
+
+    color: var(--saas-color-cyan-400);
+}
+
+.header__dropdown-icon-svg {
+    flex-shrink: 0;
+}
+
+
+/* ----------------------------------------
+   Dropdown Content
+   ---------------------------------------- */
+
+.header__dropdown-content {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.header__dropdown-title {
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+.header__dropdown-text {
+    margin-top: var(--saas-space-1);
+
+    font-size: var(--saas-text-xs);
+    line-height: 1.45;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   Mobile Menu Button
+   ======================================== */
+
+.header__menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-sm);
+
+    color: var(--saas-color-text-secondary);
+    background-color: transparent;
+
+    cursor: pointer;
+
+    transition:
+        color var(--saas-motion-fast) var(--saas-ease),
+        background-color var(--saas-motion-fast) var(--saas-ease),
+        border-color var(--saas-motion-fast) var(--saas-ease);
+}
+
+.header__menu-button:hover {
+    border-color: var(--saas-color-border-strong);
+
+    color: var(--saas-color-text-primary);
+    background-color: var(--saas-color-surface-2);
+}
+
+.header__menu-icon {
+    flex-shrink: 0;
+}
+
+
+/* ========================================
+   Mobile Navigation
+   ======================================== */
+
+.header__mobile {
+    width: 100%;
+
+    border-top: 1px solid var(--saas-color-border-subtle);
+    border-bottom: 1px solid var(--saas-color-border);
+
+    background-color: var(--saas-color-bg);
+}
+
+.header__mobile-container {
+    padding-block: var(--saas-space-4);
+}
+
+.header__mobile-list {
+    display: flex;
+    flex-direction: column;
+
+    list-style: none;
+}
+
+.header__mobile-item {
+    width: 100%;
+}
+
+.header__mobile-link {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-height: 3rem;
+
+    border-bottom: 1px solid var(--saas-color-border-subtle);
+
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-medium);
+    text-decoration: none;
+
+    color: var(--saas-color-text-secondary);
+
+    transition:
+        color var(--saas-motion-fast) var(--saas-ease);
+}
+
+.header__mobile-link:hover {
+    color: var(--saas-color-text-primary);
+}
+
+
+/* ========================================
+   Mobile Actions
+   ======================================== */
+
+.header__mobile-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--saas-space-2);
+
+    margin-top: var(--saas-space-4);
+}
+
+.header__mobile-sign-in,
+.header__mobile-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 2.75rem;
+
+    border-radius: var(--saas-radius-sm);
+
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-semibold);
+    text-decoration: none;
+}
+
+
+/* ----------------------------------------
+   Mobile Sign In
+   ---------------------------------------- */
+
+.header__mobile-sign-in {
+    border: 1px solid var(--saas-color-border);
+
+    color: var(--saas-color-text-primary);
+    background-color: var(--saas-color-surface-1);
+}
+
+
+/* ----------------------------------------
+   Mobile Primary CTA
+   ---------------------------------------- */
+
+.header__mobile-cta {
+    border: 1px solid var(--saas-color-cyan-400);
+
+    color: var(--saas-color-black);
+    background-color: var(--saas-color-cyan-400);
+}
+
+
+/* ========================================
+   Tablet
+   ======================================== */
+
+@media (min-width: 48rem) {
+
+    /*
+     * On tablets the mobile actions can comfortably
+     * sit beside one another.
+     */
+
+    .header__mobile-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* ========================================
+   Desktop
+   ======================================== */
+
+@media (min-width: 64rem) {
+
+    /*
+     * Desktop receives slightly more vertical breathing
+     * room than the compact mobile header.
+     */
+
+    .header__container {
+        min-height: 4.5rem;
+    }
+
+
+    /*
+     * Replace the mobile navigation controls with the
+     * complete desktop navigation.
+     */
+
+    .header__nav {
+        display: block;
+    }
+
+    .header__actions {
+        display: flex;
+    }
+
+    .header__menu-button {
+        display: none;
+    }
+
+    .header__mobile {
+        display: none;
+    }
+}

@@ -1,0 +1,291 @@
+/* ========================================
+   SaaS Design Tokens
+   ======================================== */
+
+/*
+ * These tokens define the visual language for the SaaS
+ * template. Components should reference these values
+ * instead of introducing arbitrary colors, spacing,
+ * radii, typography sizes, or animation timings.
+ *
+ * The fictional product name may change later, so the
+ * design system intentionally uses "saas" rather than
+ * product-specific naming.
+ */
+
+:root {
+
+    /* ========================================
+       Colors - Backgrounds
+       ======================================== */
+
+    /*
+     * The interface uses several closely related dark
+     * surfaces to create depth without relying heavily
+     * on shadows.
+     */
+
+    --saas-color-black: #05070b;
+
+    --saas-color-bg: #070b11;
+    --saas-color-bg-soft: #090e16;
+
+    --saas-color-surface-1: #0c121c;
+    --saas-color-surface-2: #101824;
+    --saas-color-surface-3: #15202e;
+
+    --saas-color-surface-hover: #182535;
+
+
+    /* ========================================
+       Colors - Text
+       ======================================== */
+
+    /*
+     * Pure white is intentionally avoided for most text.
+     * The slightly cool values fit the infrastructure
+     * aesthetic and reduce harsh contrast.
+     */
+
+    --saas-color-text-primary: #f1f5f9;
+    --saas-color-text-secondary: #a7b1c2;
+    --saas-color-text-muted: #6f7c90;
+    --saas-color-text-disabled: #4c5868;
+
+
+    /* ========================================
+       Colors - Borders
+       ======================================== */
+
+    /*
+     * Borders are one of the primary methods used to
+     * establish hierarchy between dark surfaces.
+     */
+
+    --saas-color-border-subtle: rgba(148, 163, 184, 0.08);
+    --saas-color-border: rgba(148, 163, 184, 0.14);
+    --saas-color-border-strong: rgba(148, 163, 184, 0.24);
+
+
+    /* ========================================
+       Colors - Brand / Interaction
+       ======================================== */
+
+    /*
+     * Cyan represents the SaaS brand and interactive
+     * state. It should remain relatively scarce so that
+     * active elements retain visual importance.
+     */
+
+    --saas-color-cyan-300: #67e8f9;
+    --saas-color-cyan-400: #22d3ee;
+    --saas-color-cyan-500: #06b6d4;
+    --saas-color-cyan-600: #0891b2;
+
+    --saas-color-cyan-muted: rgba(34, 211, 238, 0.12);
+    --saas-color-cyan-border: rgba(34, 211, 238, 0.30);
+    --saas-color-cyan-glow: rgba(34, 211, 238, 0.18);
+
+
+    /* ========================================
+       Colors - Status
+       ======================================== */
+
+    /*
+     * Status colors have semantic meaning.
+     *
+     * Green = healthy / successful
+     * Amber = pending / warning / degraded
+     * Red   = failed / critical / destructive
+     *
+     * These colors should not be used as decoration.
+     */
+
+    --saas-color-green: #34d399;
+    --saas-color-green-muted: rgba(52, 211, 153, 0.12);
+    --saas-color-green-border: rgba(52, 211, 153, 0.28);
+
+    --saas-color-amber: #fbbf24;
+    --saas-color-amber-muted: rgba(251, 191, 36, 0.12);
+    --saas-color-amber-border: rgba(251, 191, 36, 0.28);
+
+    --saas-color-red: #fb7185;
+    --saas-color-red-muted: rgba(251, 113, 133, 0.12);
+    --saas-color-red-border: rgba(251, 113, 133, 0.28);
+
+
+    /* ========================================
+       Typography - Font Families
+       ======================================== */
+
+    /*
+     * Sans is used throughout the marketing site and
+     * product interface.
+     *
+     * Mono is reserved for code, logs, commands,
+     * identifiers, infrastructure metadata, and other
+     * technical information.
+     */
+
+    --saas-font-sans:
+        "Inter",
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    --saas-font-mono:
+        "JetBrains Mono",
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+
+    /* ========================================
+       Typography - Font Sizes
+       ======================================== */
+
+    --saas-text-xs: 0.75rem;
+    --saas-text-sm: 0.875rem;
+    --saas-text-base: 1rem;
+    --saas-text-lg: 1.125rem;
+    --saas-text-xl: 1.25rem;
+    --saas-text-2xl: 1.5rem;
+    --saas-text-3xl: 2rem;
+    --saas-text-4xl: 2.75rem;
+    --saas-text-5xl: 4rem;
+    --saas-text-6xl: 5rem;
+
+
+    /* ========================================
+       Typography - Font Weights
+       ======================================== */
+
+    --saas-weight-regular: 400;
+    --saas-weight-medium: 500;
+    --saas-weight-semibold: 600;
+    --saas-weight-bold: 700;
+
+
+    /* ========================================
+       Typography - Line Heights
+       ======================================== */
+
+    --saas-line-tight: 1.05;
+    --saas-line-heading: 1.15;
+    --saas-line-body: 1.6;
+
+
+    /* ========================================
+       Spacing
+       ======================================== */
+
+    /*
+     * The spacing system follows a 4px base scale.
+     * Staying on this scale keeps layout decisions
+     * predictable throughout the template.
+     */
+
+    --saas-space-1: 0.25rem;   /* 4px */
+    --saas-space-2: 0.5rem;    /* 8px */
+    --saas-space-3: 0.75rem;   /* 12px */
+    --saas-space-4: 1rem;      /* 16px */
+    --saas-space-5: 1.25rem;   /* 20px */
+    --saas-space-6: 1.5rem;    /* 24px */
+    --saas-space-8: 2rem;      /* 32px */
+    --saas-space-10: 2.5rem;   /* 40px */
+    --saas-space-12: 3rem;     /* 48px */
+    --saas-space-16: 4rem;     /* 64px */
+    --saas-space-20: 5rem;     /* 80px */
+    --saas-space-24: 6rem;     /* 96px */
+    --saas-space-32: 8rem;     /* 128px */
+    --saas-space-40: 10rem;    /* 160px */
+
+
+    /* ========================================
+       Layout
+       ======================================== */
+
+    /*
+     * Normal content stays within the standard
+     * container. Large product visualizations may use
+     * the wide container or intentionally break beyond
+     * the container entirely.
+     */
+
+    --saas-container: 80rem;         /* 1280px */
+    --saas-container-wide: 90rem;    /* 1440px */
+    --saas-container-text: 45rem;    /* 720px */
+
+    --saas-page-padding: 1rem;
+
+
+    /* ========================================
+       Border Radius
+       ======================================== */
+
+    /*
+     * Radii remain relatively small because the
+     * interface should feel engineered rather than
+     * overly soft.
+     */
+
+    --saas-radius-xs: 0.1875rem; /* 3px */
+    --saas-radius-sm: 0.3125rem; /* 5px */
+    --saas-radius-md: 0.5rem;    /* 8px */
+    --saas-radius-lg: 0.75rem;   /* 12px */
+    --saas-radius-xl: 1rem;      /* 16px */
+    --saas-radius-pill: 999px;
+
+
+    /* ========================================
+       Shadows
+       ======================================== */
+
+    /*
+     * Shadows are intentionally restrained.
+     * Most hierarchy should come from surfaces and
+     * borders instead.
+     */
+
+    --saas-shadow-panel:
+        0 16px 50px rgba(0, 0, 0, 0.28);
+
+    --saas-shadow-large:
+        0 30px 80px rgba(0, 0, 0, 0.35);
+
+
+    /* ========================================
+       Motion
+       ======================================== */
+
+    /*
+     * CSS handles small interface transitions.
+     * GSAP will handle larger storytelling sequences.
+     */
+
+    --saas-motion-fast: 140ms;
+    --saas-motion-base: 220ms;
+    --saas-motion-slow: 400ms;
+
+    --saas-ease:
+        cubic-bezier(0.2, 0.8, 0.2, 1);
+
+
+    /* ========================================
+       Layering
+       ======================================== */
+
+    /*
+     * A small z-index system prevents components from
+     * introducing arbitrary values such as 99999.
+     */
+
+    --saas-layer-base: 0;
+    --saas-layer-raised: 10;
+    --saas-layer-header: 100;
+    --saas-layer-overlay: 200;
+    --saas-layer-modal: 300;
+}

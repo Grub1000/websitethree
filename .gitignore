@@ -32,6 +32,7 @@ homepage-react-frontend-parallax-semantic/node_modules/
 resume-analyzer-app/node_modules/
 ragspace-frontend/node_modules/
 chat-frontend/node_modules/
+showcase-frontend/node_modules/
 
 # Uncomment these later if GitHub Actions will build React
 # homepage-frontend/build/

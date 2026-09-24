@@ -152,6 +152,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'resume-analyzer-app/dist'),
     os.path.join(BASE_DIR, 'ragspace-frontend/dist'),
     os.path.join(BASE_DIR, 'chat-frontend/dist'),
+    os.path.join(BASE_DIR, 'showcase-frontend/dist'),
 ]
 
 REST_FRAMEWORK = { 
