@@ -1,0 +1,642 @@
+/* ========================================
+   Story
+   ======================================== */
+
+/*
+ * Story intentionally uses a quieter visual treatment
+ * than ProductOverview.
+ *
+ * The section exists primarily to explain the platform's
+ * responsibility boundary before the following
+ * GlobalArchitecture section introduces the page's major
+ * visual experience.
+ */
+.story {
+    width: 100%;
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+
+    background-color: var(--saas-color-bg);
+}
+
+
+.story__container {
+    padding-top: var(--saas-space-24);
+    padding-bottom: var(--saas-space-24);
+}
+
+
+/* ========================================
+   Section Header
+   ======================================== */
+
+.story__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-5);
+
+    margin-bottom: var(--saas-space-16);
+}
+
+
+.story__eyebrow {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-cyan-400);
+}
+
+
+/*
+ * BASE / MOBILE:
+ *
+ * Heading and supporting copy stack vertically.
+ *
+ * CHANGES AT 48REM:
+ * They become two columns so the title can occupy the
+ * left side while the explanation sits alongside it.
+ */
+.story__heading-layout {
+    display: grid;
+
+    grid-template-columns: 1fr;
+    gap: var(--saas-space-6);
+}
+
+
+.story__title {
+    max-width: 16ch;
+
+    font-size:
+        clamp(
+            var(--saas-text-3xl),
+            7vw,
+            var(--saas-text-4xl)
+        );
+    line-height: var(--saas-line-tight);
+    letter-spacing: -0.035em;
+
+    color: var(--saas-color-text-primary);
+}
+
+
+.story__description {
+    max-width: 38rem;
+
+    font-size: var(--saas-text-base);
+    line-height: var(--saas-line-body);
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   Architecture
+   ======================================== */
+
+/*
+ * BASE / MOBILE:
+ *
+ * The architecture is one vertical flow:
+ *
+ *   Application
+ *       ↓
+ *   Boundary
+ *       ↓
+ *   Infrastructure
+ *
+ * This is intentionally different from simply shrinking
+ * the larger-screen layout.
+ *
+ * CHANGES AT 64REM:
+ * The architecture becomes:
+ *
+ *   Application | Boundary | Infrastructure
+ */
+.story__architecture {
+    display: grid;
+
+    grid-template-columns: 1fr;
+    gap: var(--saas-space-8);
+
+    padding-top: var(--saas-space-8);
+    padding-bottom: var(--saas-space-8);
+
+    border-top:
+        1px solid var(--saas-color-border);
+    border-bottom:
+        1px solid var(--saas-color-border);
+}
+
+
+/* ========================================
+   Architecture Columns
+   ======================================== */
+
+.story__application,
+.story__infrastructure {
+    min-width: 0;
+}
+
+
+.story__column-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--saas-space-4);
+
+    margin-bottom: var(--saas-space-8);
+}
+
+
+.story__column-number {
+    flex-shrink: 0;
+
+    padding-top: 0.125rem;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-disabled);
+}
+
+
+.story__column-heading {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+}
+
+
+.story__column-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    font-weight: var(--saas-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.story__column-title {
+    font-size: var(--saas-text-xl);
+    font-weight: var(--saas-weight-semibold);
+    letter-spacing: -0.02em;
+
+    color: var(--saas-color-text-primary);
+}
+
+
+/* ========================================
+   Application Responsibilities
+   ======================================== */
+
+.story__responsibility-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*
+ * These rows deliberately avoid individual card
+ * containers.
+ *
+ * Separation comes from thin horizontal rules instead of
+ * backgrounds, shadows, and large rounded borders.
+ */
+.story__responsibility {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-4);
+
+    padding-top: var(--saas-space-4);
+    padding-bottom: var(--saas-space-4);
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+}
+
+
+.story__responsibility:first-child {
+    border-top:
+        1px solid var(--saas-color-border-subtle);
+}
+
+
+.story__responsibility-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.story__responsibility-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+
+.story__responsibility-name {
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+
+.story__responsibility-detail {
+    font-size: var(--saas-text-xs);
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   Platform Boundary
+   ======================================== */
+
+/*
+ * BASE / MOBILE:
+ *
+ * The boundary runs horizontally because the architecture
+ * itself flows vertically.
+ *
+ *   ───────── ● ─────────
+ *
+ * CHANGES AT 64REM:
+ * Flex direction changes to column and the boundary
+ * becomes vertical:
+ *
+ *       │
+ *       ●
+ *       │
+ */
+.story__boundary {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+}
+
+
+.story__boundary-line {
+    flex: 1;
+
+    height: 1px;
+
+    background-color: var(--saas-color-cyan-border);
+}
+
+
+.story__boundary-node {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    border:
+        1px solid var(--saas-color-cyan-border);
+    border-radius: var(--saas-radius-md);
+
+    background-color: var(--saas-color-cyan-muted);
+}
+
+
+.story__boundary-icon {
+    color: var(--saas-color-cyan-400);
+}
+
+
+/* ========================================
+   Infrastructure Responsibilities
+   ======================================== */
+
+/*
+ * BASE / MOBILE:
+ *
+ * Infrastructure capabilities use one column.
+ *
+ * CHANGES AT 48REM:
+ * The Grid becomes two columns.
+ *
+ * It remains two columns at 64rem because the entire
+ * infrastructure area becomes one side of the larger
+ * three-column architecture layout.
+ */
+.story__infrastructure-grid {
+    display: grid;
+
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+
+
+.story__infrastructure-item {
+    display: grid;
+    align-items: center;
+
+    /*
+     * Each capability uses:
+     *
+     *   icon | capability | explanation
+     *
+     * The icon and capability name use only the width
+     * they need. The explanation receives the remaining
+     * horizontal space.
+     */
+    grid-template-columns:
+        auto auto 1fr;
+    gap: var(--saas-space-3);
+
+    min-width: 0;
+
+    padding-top: var(--saas-space-4);
+    padding-bottom: var(--saas-space-4);
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+}
+
+
+.story__infrastructure-item:first-child {
+    border-top:
+        1px solid var(--saas-color-border-subtle);
+}
+
+
+.story__infrastructure-icon {
+    color: var(--saas-color-cyan-400);
+}
+
+
+.story__infrastructure-name {
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+
+.story__infrastructure-detail {
+    min-width: 0;
+
+    font-size: var(--saas-text-xs);
+    text-align: right;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   Story Footer
+   ======================================== */
+
+.story__footer {
+    display: grid;
+
+    grid-template-columns: 1fr;
+    gap: var(--saas-space-3);
+
+    padding-top: var(--saas-space-8);
+}
+
+
+.story__footer-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    font-weight: var(--saas-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.story__footer-text {
+    max-width: 46rem;
+
+    font-size: var(--saas-text-sm);
+    line-height: var(--saas-line-body);
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+@media (min-width: 48rem) {
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: 1fr;
+     *
+     * 48REM+:
+     *   Two intentionally unequal columns.
+     *
+     * The title receives slightly more horizontal space
+     * than the supporting paragraph.
+     *
+     * This remains active at 64rem because it is not
+     * overridden there.
+     */
+    .story__heading-layout {
+        grid-template-columns:
+            minmax(0, 1.15fr)
+            minmax(18rem, 0.85fr);
+
+        gap: var(--saas-space-12);
+    }
+
+
+    .story__description {
+        align-self: end;
+    }
+
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Infrastructure capabilities move from one column
+     * into two equal columns.
+     *
+     * This remains active at 64rem.
+     */
+    .story__infrastructure-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    /*
+     * Because infrastructure items are now arranged in
+     * two columns, each item becomes a compact vertical
+     * capability description instead of the mobile
+     * icon/name/detail row.
+     */
+    .story__infrastructure-item {
+        align-items: start;
+
+        grid-template-columns:
+            auto 1fr;
+
+        padding: var(--saas-space-4);
+
+        border:
+            1px solid var(--saas-color-border-subtle);
+    }
+
+
+    /*
+     * The icon occupies the first Grid column.
+     *
+     * Both the capability name and description occupy
+     * the second column, creating:
+     *
+     *   icon | Compute
+     *        | Provisioned automatically
+     */
+    .story__infrastructure-icon {
+        grid-column: 1;
+        grid-row:
+            1 / span 2;
+    }
+
+
+    .story__infrastructure-name {
+        grid-column: 2;
+    }
+
+
+    .story__infrastructure-detail {
+        grid-column: 2;
+
+        text-align: left;
+    }
+
+
+    .story__footer {
+        /*
+         * Label receives only the width it needs.
+         * Supporting text receives the remaining width.
+         */
+        grid-template-columns:
+            auto 1fr;
+        gap: var(--saas-space-8);
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+@media (min-width: 64rem) {
+
+    .story__container {
+        padding-top: var(--saas-space-32);
+        padding-bottom: var(--saas-space-32);
+    }
+
+
+    /*
+     * MAJOR ARCHITECTURE CHANGE:
+     *
+     * Base through 63.999rem:
+     *
+     *   Application
+     *       ↓
+     *   Boundary
+     *       ↓
+     *   Infrastructure
+     *
+     * 64REM+:
+     *
+     *   Application | Boundary | Infrastructure
+     *
+     * The center column only needs enough width for the
+     * platform boundary node and surrounding breathing
+     * room.
+     */
+    .story__architecture {
+        grid-template-columns:
+            minmax(0, 0.9fr)
+            5rem
+            minmax(0, 1.1fr);
+
+        gap: var(--saas-space-8);
+    }
+
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * The boundary changes from horizontal to vertical
+     * because the surrounding architecture now flows
+     * from left to right.
+     *
+     * align-items centers the vertical boundary inside
+     * its narrow Grid column.
+     */
+    .story__boundary {
+        flex-direction: column;
+        align-items: center;
+
+        width: auto;
+        height: 100%;
+    }
+
+
+    /*
+     * BASE:
+     *   width grows through flex: 1;
+     *   height: 1px;
+     *
+     * 64REM+:
+     *   width becomes 1px;
+     *   height grows through flex: 1;
+     *
+     * The same element therefore changes from a
+     * horizontal line into a vertical line.
+     */
+    .story__boundary-line {
+        width: 1px;
+        height: auto;
+    }
+
+
+    /*
+     * NO INFRASTRUCTURE COLUMN CHANGE HERE.
+     *
+     * The repeat(2, 1fr) Grid introduced at 48rem
+     * continues cascading at this breakpoint.
+     */
+}
+
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+
+/*
+ * Story currently contains no motion.
+ *
+ * This comment is intentionally here as documentation:
+ * if animation is introduced later, reduced-motion
+ * behavior should be implemented at the same time rather
+ * than added as an afterthought.
+ */

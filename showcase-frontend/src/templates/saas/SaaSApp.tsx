@@ -19,6 +19,7 @@ import Header from "./components/Header/Header.tsx"
 import Hero from "./sections/Hero/Hero.tsx"
 import CredibilityStrip from "./sections/CredibilityStrip/CredibilityStrip";
 import ProductOverview from "./sections/ProductOverview/ProductOverview.tsx";
+import Story from "./sections/Story/Story.tsx"
 
 
 
@@ -38,6 +39,7 @@ export default function SaaSApp(){
                 <Hero />
                 <CredibilityStrip/>
                 <ProductOverview />
+                <Story/>
             </main>
 
         </div>
