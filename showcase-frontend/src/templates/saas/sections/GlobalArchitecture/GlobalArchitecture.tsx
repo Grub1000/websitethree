@@ -82,7 +82,7 @@ function GlobalArchitecture() {
     const sceneRef = useRef<HTMLDivElement | null>(null);
 
 
-    
+
     useEffect(() => {
         /*
         * gsap.context() scopes selector-based animations to
@@ -152,7 +152,7 @@ function GlobalArchitecture() {
                     * Start when the top of this section reaches
                     * the top of the viewport.
                     */
-                    start: "20%",
+                    start: "25%",
                     /*
                     * Create a long scroll runway.
                     *
