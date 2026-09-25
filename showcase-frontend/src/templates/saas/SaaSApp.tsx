@@ -20,6 +20,7 @@ import Hero from "./sections/Hero/Hero.tsx"
 import CredibilityStrip from "./sections/CredibilityStrip/CredibilityStrip";
 import ProductOverview from "./sections/ProductOverview/ProductOverview.tsx";
 import Story from "./sections/Story/Story.tsx"
+import GlobalArchitecture from "./sections/GlobalArchitecture/GlobalArchitecture.tsx";
 
 
 
@@ -40,6 +41,7 @@ export default function SaaSApp(){
                 <CredibilityStrip/>
                 <ProductOverview />
                 <Story/>
+                <GlobalArchitecture/>
             </main>
 
         </div>

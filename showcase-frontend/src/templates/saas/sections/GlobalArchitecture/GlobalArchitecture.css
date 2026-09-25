@@ -1,0 +1,1080 @@
+/* ========================================
+   Global Architecture
+   ======================================== */
+
+/*
+ * This section becomes the primary scroll-driven visual
+ * experience of the SaaS template.
+ *
+ * CSS owns the layout and responsive architecture.
+ * GSAP owns the scroll-driven transformations.
+ *
+ * This separation is intentional:
+ *
+ *   CSS  → where elements belong
+ *   GSAP → how those elements change over time
+ *
+ * The static layout therefore still works without the
+ * animation system.
+ */
+.global-architecture {
+    width: 100%;
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+
+    background-color: var(--saas-color-black);
+}
+
+
+.global-architecture__container {
+    padding-top: var(--saas-space-24);
+    padding-bottom: var(--saas-space-24);
+}
+
+
+/* ========================================
+   Header
+   ======================================== */
+
+.global-architecture__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-5);
+
+    max-width: 48rem;
+
+    margin-bottom: var(--saas-space-12);
+}
+
+
+.global-architecture__eyebrow {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-cyan-400);
+}
+
+
+.global-architecture__title {
+    font-size:
+        clamp(
+            var(--saas-text-3xl),
+            7vw,
+            var(--saas-text-5xl)
+        );
+    line-height: var(--saas-line-tight);
+    letter-spacing: -0.04em;
+
+    color: var(--saas-color-text-primary);
+}
+
+
+.global-architecture__description {
+    max-width: 40rem;
+
+    font-size: var(--saas-text-base);
+    line-height: var(--saas-line-body);
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   Scene
+   ======================================== */
+
+/*
+ * The scene is the visual viewport for the architecture.
+ *
+ * `position: relative` creates a positioning context for
+ * elements that may be moved or absolutely positioned
+ * during later animation phases.
+ *
+ * The initial architecture still uses normal document
+ * layout. GSAP does not determine where the architecture
+ * belongs when the page first loads.
+ *
+ * This element is also the element ScrollTrigger pins
+ * while the user moves through the architecture timeline.
+ */
+.global-architecture__scene {
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 38rem;
+
+    border:
+        1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-lg);
+
+    background-color: var(--saas-color-bg);
+}
+
+/*
+ * The grid receives its own pseudo-element because later
+ * GSAP phases need to fade the architectural workspace
+ * away while keeping the actual scene alive.
+ *
+ * If the grid remained directly on the scene background,
+ * we could not independently animate its opacity.
+ */
+.global-architecture__scene::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            var(--saas-color-border-subtle) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            var(--saas-color-border-subtle) 1px,
+            transparent 1px
+        );
+    background-size: 3rem 3rem;
+
+    pointer-events: none;
+}
+
+
+/*
+ * Actual scene content must remain above the decorative
+ * grid layer.
+ */
+.global-architecture__scene > * {
+    position: relative;
+
+    z-index: var(--saas-layer-raised);
+}
+
+
+/* ========================================
+   Scene Metadata
+   ======================================== */
+
+.global-architecture__scene-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-4);
+
+    padding: var(--saas-space-4);
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+}
+
+
+.global-architecture__scene-status {
+    color: var(--saas-color-text-secondary);
+}
+
+
+.global-architecture__scene-region {
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   Architecture Diagram
+   ======================================== */
+
+/*
+ * BASE / MOBILE:
+ *
+ * The architecture flows vertically:
+ *
+ *   Application
+ *       │
+ *   Gateway
+ *       │
+ *   Services
+ *       │
+ *   Database
+ *
+ * CHANGES AT 64REM:
+ *
+ * The architecture becomes horizontal:
+ *
+ * Application ─ Gateway ─ Services ─ Database
+ *
+ * Establishing both responsive states in CSS allows GSAP
+ * to animate the existing architecture rather than being
+ * responsible for constructing its layout.
+ */
+.global-architecture__diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    max-width: 56rem;
+
+    padding: var(--saas-space-8);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+/* ========================================
+   Primary Nodes
+   ======================================== */
+
+.global-architecture__node {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    min-width: 0;
+    padding: var(--saas-space-4);
+
+    border:
+        1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    background-color: var(--saas-color-surface-1);
+}
+
+
+.global-architecture__node-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 2rem;
+    height: 2rem;
+
+    border:
+        1px solid var(--saas-color-cyan-border);
+    border-radius: var(--saas-radius-sm);
+
+    color: var(--saas-color-cyan-400);
+    background-color: var(--saas-color-cyan-muted);
+}
+
+
+.global-architecture__node-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+
+.global-architecture__node-type {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.global-architecture__node-name {
+    overflow: hidden;
+
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-primary);
+}
+
+
+/* ========================================
+   Connectors
+   ======================================== */
+
+/*
+ * BASE / MOBILE:
+ *
+ * Connectors are vertical because the architecture flows
+ * from top to bottom.
+ *
+ * GSAP initially scales these connectors down and then
+ * restores them as each part of the architecture is
+ * assembled.
+ *
+ * `transform-origin: top center` means the connector grows
+ * DOWNWARD from the previous architecture node rather than
+ * expanding outward from its center.
+ *
+ * CHANGES AT 64REM:
+ *
+ * The connector becomes horizontal and its transform
+ * origin changes so it grows from left to right.
+ */
+.global-architecture__connector {
+    align-self: center;
+
+    width: 1px;
+    height: 2rem;
+
+    background-color: var(--saas-color-cyan-border);
+
+    transform-origin: top center;
+}
+
+
+/* ========================================
+   Compute Services
+   ======================================== */
+
+/*
+ * The compute layer contains multiple service instances
+ * instead of behaving like a single architecture node.
+ *
+ * GSAP later reveals these instances sequentially with a
+ * stagger so the layer feels like infrastructure being
+ * provisioned rather than a single card appearing.
+ */
+.global-architecture__services {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Services stack because each service needs enough
+     * width for its name and health status.
+     *
+     * CHANGES AT 48REM:
+     * Becomes three equal columns.
+     *
+     * CHANGES AGAIN AT 64REM:
+     * Returns to one column because the entire compute
+     * layer becomes one stage inside the horizontal
+     * architecture.
+     */
+    grid-template-columns: 1fr;
+    gap: var(--saas-space-2);
+
+    min-width: 0;
+}
+
+
+.global-architecture__service {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    min-width: 0;
+    padding: var(--saas-space-3);
+
+    border:
+        1px solid var(--saas-color-border-subtle);
+    border-radius: var(--saas-radius-sm);
+
+    background-color: var(--saas-color-surface-2);
+}
+
+/*
+ * During the architecture-to-world transition the first
+ * compute service eventually becomes the visual
+ * representative of the complete compute layer.
+ *
+ * Its icon therefore needs the same predictable dimensions
+ * as the icons used by the primary architecture nodes.
+ */
+.global-architecture__service-icon {
+    flex-shrink: 0;
+
+    width: 1rem;
+    height: 1rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.global-architecture__service-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-3);
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.global-architecture__service-name {
+    overflow: hidden;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    font-weight: var(--saas-weight-medium);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+.global-architecture__service-status {
+    flex-shrink: 0;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   Deployment Regions
+   ======================================== */
+
+/*
+ * This layer begins visually quiet.
+ *
+ * Phase 2 only reveals it after the local architecture has
+ * finished assembling.
+ *
+ * Later animation phases will shift emphasis away from the
+ * local architecture and toward these global deployment
+ * concepts.
+ */
+.global-architecture__regions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--saas-space-3);
+
+    padding:
+        var(--saas-space-6)
+        var(--saas-space-4);
+
+    border-top:
+        1px solid var(--saas-color-border-subtle);
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.global-architecture__regions-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-cyan-400);
+}
+
+
+.global-architecture__regions-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+}
+
+
+.global-architecture__region-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--saas-space-2);
+}
+
+
+.global-architecture__region {
+    padding:
+        var(--saas-space-1)
+        var(--saas-space-2);
+
+    border:
+        1px solid var(--saas-color-border-subtle);
+    border-radius: var(--saas-radius-pill);
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+    background-color: var(--saas-color-surface-1);
+}
+
+
+
+/* ========================================
+   Active System Health
+   ======================================== */
+
+/*
+ * The health indicator is hidden by GSAP during the
+ * architecture assembly and revealed only after the
+ * complete infrastructure graph exists.
+ *
+ * CSS defines its final appearance.
+ * GSAP controls when that appearance becomes visible.
+ */
+.global-architecture__scene-status {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+}
+
+
+.global-architecture__health-dot {
+    flex-shrink: 0;
+
+    width: 0.375rem;
+    height: 0.375rem;
+
+    border-radius: var(--saas-radius-pill);
+
+    background-color: var(--saas-color-green);
+    box-shadow:
+        0 0 0 0.1875rem var(--saas-color-green-muted);
+}
+
+
+.global-architecture__health-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   Traffic Visualization
+   ======================================== */
+
+/*
+ * Each connector becomes the positioning context for its
+ * traffic pulse.
+ *
+ * The connector itself still represents the permanent
+ * infrastructure relationship.
+ *
+ * The small cyan pulse represents live traffic moving
+ * through that relationship.
+ */
+.global-architecture__connector {
+    position: relative;
+}
+
+
+/*
+ * BASE / MOBILE:
+ *
+ * Architecture flows vertically, so the traffic signal
+ * begins at the top of each connector.
+ *
+ * GSAP will animate its Y position.
+ *
+ * CHANGES AT 64REM:
+ * The architecture becomes horizontal and GSAP instead
+ * animates its X position.
+ */
+.global-architecture__traffic-pulse {
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    width: 0.375rem;
+    height: 0.375rem;
+
+    border-radius: var(--saas-radius-pill);
+
+    background-color: var(--saas-color-cyan-300);
+    box-shadow:
+        0 0 0.75rem var(--saas-color-cyan-glow);
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+}
+
+
+/* ========================================
+   Production Metrics
+   ======================================== */
+
+/*
+ * Metrics appear only after the architecture becomes
+ * operational.
+ *
+ * They deliberately use one shared surface rather than
+ * four separate marketing cards.
+ */
+.global-architecture__metrics {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    border-top:
+        1px solid var(--saas-color-border-subtle);
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+
+    background-color:
+        rgba(12, 18, 28, 0.72);
+}
+
+
+.global-architecture__metric {
+    display: grid;
+    align-items: baseline;
+
+    /*
+     * Each metric uses:
+     *
+     *   label
+     *   value | unit
+     *
+     * The label spans both columns while the unit sits
+     * alongside the primary value.
+     */
+    grid-template-columns:
+        auto 1fr;
+    gap:
+        var(--saas-space-1)
+        var(--saas-space-2);
+
+    min-width: 0;
+    padding: var(--saas-space-4);
+
+    border-right:
+        1px solid var(--saas-color-border-subtle);
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+}
+
+
+.global-architecture__metric-label {
+    grid-column:
+        1 / -1;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.global-architecture__metric-value {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-base);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+
+.global-architecture__metric-unit {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+
+/* ========================================
+   Global Network Visualization
+   ======================================== */
+
+/*
+ * The world layer occupies the same scene as the local
+ * infrastructure architecture.
+ *
+ * GSAP keeps this layer invisible during the first part of
+ * the timeline and reveals it only after the architecture
+ * begins transforming.
+ *
+ * Absolute positioning removes it from normal layout so it
+ * can exist behind the architecture without changing the
+ * scene's dimensions.
+ */
+.global-architecture__world {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: min(92%, 70rem);
+
+    /* width: 92%; */
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.88);
+
+    pointer-events: none;
+}
+
+
+/*
+ * The generic scene-child rule gives normal scene content
+ * position: relative.
+ *
+ * The world is intentionally different because it must
+ * occupy the scene independently of document flow.
+ *
+ * This more specific selector restores absolute
+ * positioning for the visualization layer.
+ */
+.global-architecture__scene
+.global-architecture__world {
+    position: absolute;
+
+    z-index: 5;
+}
+
+
+/*
+ * SVG uses the width of its parent while its viewBox
+ * preserves the internal 1000 × 500 coordinate system.
+ */
+.global-architecture__world-svg {
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+
+/* ========================================
+   World Geography
+   ======================================== */
+
+/*
+ * Landmasses intentionally use only subtle outlines and
+ * transparent fills.
+ *
+ * The network should remain the primary visual information.
+ * Geography is only spatial context.
+ */
+/* .global-architecture__landmass {
+    fill:
+        rgba(148, 163, 184, 0.025);
+
+    stroke:
+        rgba(148, 163, 184, 0.16);
+    stroke-width: 1.25;
+
+    vector-effect: non-scaling-stroke;
+} */
+
+
+
+/*
+ * DETAILED WORLD MAP
+ *
+ * The map image supplies geographic detail while the SVG remains
+ * responsible for deployment regions and animated network routes.
+ *
+ * Keeping the image inside the SVG means it scales using the same
+ * 1000 × 500 coordinate system as those interactive elements.
+ */
+.global-architecture__world-map-image {
+    width: 100%;
+    height: 100%;
+
+    opacity: 0.52;
+}
+
+
+/* ========================================
+   Global Routes
+   ======================================== */
+
+/*
+ * Routes begin visually as normal SVG paths.
+ *
+ * GSAP will calculate each path's actual length at runtime
+ * and convert it into a stroke-dash animation.
+ *
+ * That means we do not need to manually calculate path
+ * lengths in the CSS.
+ */
+.global-architecture__route {
+    fill: none;
+
+    stroke: var(--saas-color-cyan-400);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    /* stroke-linecap: butt; */
+
+    opacity: 0.5;
+
+    /* vector-effect: non-scaling-stroke; */
+}
+
+
+/* ========================================
+   Global Region Nodes
+   ======================================== */
+
+.global-architecture__world-region-ring {
+    fill: var(--saas-color-cyan-muted);
+
+    stroke: var(--saas-color-cyan-border);
+    stroke-width: 1;
+
+    vector-effect: non-scaling-stroke;
+}
+
+
+.global-architecture__world-region-dot {
+    fill: var(--saas-color-cyan-300);
+
+    filter:
+        drop-shadow(
+            0 0 0.35rem
+            var(--saas-color-cyan-glow)
+        );
+}
+
+
+.global-architecture__world-region-name {
+    font-family: var(--saas-font-mono);
+    font-size: 11px;
+    font-weight: var(--saas-weight-medium);
+    letter-spacing: 0.03em;
+
+    fill: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+@media (min-width: 48rem) {
+
+    /*
+     * The architecture itself remains vertical at this
+     * breakpoint.
+     *
+     * We only increase the internal spacing.
+     *
+     * The major orientation change intentionally waits
+     * until 64rem so the horizontal architecture does not
+     * become cramped at intermediate widths.
+     */
+    .global-architecture__diagram {
+        padding: var(--saas-space-12);
+    }
+
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: 1fr;
+     *
+     * 48REM+:
+     *   grid-template-columns: repeat(3, 1fr);
+     *
+     * The three compute instances now have enough room to
+     * sit beside each other.
+     *
+     * This IS overridden again at 64rem when the entire
+     * architecture changes orientation.
+     */
+    .global-architecture__services {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+
+    /*
+    * OVERRIDES BASE / MOBILE:
+    *
+    * Base:
+    *   repeat(2, 1fr)
+    *
+    * 48REM+:
+    *   repeat(4, 1fr)
+    *
+    * All four operational metrics now fit comfortably on
+    * one horizontal system-status rail.
+    *
+    * This remains active at 64rem.
+    */
+    .global-architecture__metrics {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+
+    .global-architecture__metric {
+        border-bottom: 0;
+    }
+
+
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+@media (min-width: 64rem) {
+
+    .global-architecture__container {
+        padding-top: var(--saas-space-32);
+        padding-bottom: var(--saas-space-32);
+    }
+
+
+    .global-architecture__scene {
+        min-height: 42rem;
+    }
+
+
+    /*
+     * MAJOR ARCHITECTURE CHANGE:
+     *
+     * Base through 63.999rem:
+     *
+     *   Application
+     *       │
+     *   Gateway
+     *       │
+     *   Services
+     *       │
+     *   Database
+     *
+     * 64REM+:
+     *
+     *   Application ─ Gateway ─ Services ─ Database
+     *
+     * Flexbox is appropriate here because the architecture
+     * represents one directional sequence.
+     */
+    .global-architecture__diagram {
+        flex-direction: row;
+        align-items: center;
+
+        max-width: none;
+
+        padding:
+            var(--saas-space-24)
+            var(--saas-space-12);
+    }
+
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   width: 1px;
+     *   height: 2rem;
+     *   transform-origin: top center;
+     *
+     * 64REM+:
+     *   width: auto;
+     *   height: 1px;
+     *   transform-origin: left center;
+     *
+     * `flex: 1` allows each connector to consume the
+     * remaining horizontal space between architecture
+     * nodes.
+     *
+     * Changing the transform origin means GSAP's scaleX
+     * animation visually grows the connection FROM the
+     * previous node TOWARD the next node.
+     */
+    .global-architecture__connector {
+        flex: 1;
+
+        width: auto;
+        min-width: 1.5rem;
+        height: 1px;
+
+        transform-origin: left center;
+    }
+
+
+    /*
+     * OVERRIDES 48REM:
+     *
+     * 48REM:
+     *   repeat(3, 1fr)
+     *
+     * 64REM+:
+     *   1fr
+     *
+     * The service cluster becomes a narrow vertical
+     * compute layer inside the larger horizontal
+     * architecture.
+     */
+    .global-architecture__services {
+        grid-template-columns: 1fr;
+
+        min-width: 10rem;
+    }
+
+
+    .global-architecture__node {
+        min-width: 10rem;
+    }
+
+
+    /*
+    * BASE / MOBILE:
+    *
+    * Traffic moves vertically because the architecture is
+    * vertical.
+    *
+    * 64REM+:
+    *
+    * The architecture becomes horizontal, so the pulse is
+    * positioned at the left side of the connector instead.
+    *
+    * GSAP will animate X instead of Y at this breakpoint.
+    */
+    .global-architecture__traffic-pulse {
+        top: 50%;
+        left: 0;
+
+        transform: translate(-50%, -50%);
+    }
+
+}
+
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+
+/*
+ * GSAP checks prefers-reduced-motion before creating the
+ * ScrollTrigger timeline.
+ *
+ * This CSS block is still included as a second defensive
+ * layer so future CSS animations added to this section do
+ * not accidentally ignore the same accessibility
+ * preference.
+ */
+@media (prefers-reduced-motion: reduce) {
+
+    .global-architecture__node,
+    .global-architecture__service,
+    .global-architecture__connector,
+    .global-architecture__regions {
+        transition: none;
+        animation: none;
+    }
+
+}
