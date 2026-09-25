@@ -1,0 +1,363 @@
+/* ========================================
+   Credibility Strip
+   ======================================== */
+
+/*
+ * PURPOSE:
+ *
+ * This section provides a visual transition between the
+ * dense infrastructure Hero and the larger product
+ * storytelling section that follows.
+ *
+ * Unlike the Hero, this section intentionally contains
+ * very little visual movement or decoration.
+ *
+ * The goal is:
+ *
+ *   Hero              → high technical density
+ *   Credibility strip → visual breathing room
+ *   Product section   → technical depth again
+ *
+ * BASE / MOBILE:
+ *
+ * All three areas stack vertically:
+ *
+ *   Header
+ *   Companies
+ *   Metrics
+ *
+ * The section changes progressively at larger
+ * breakpoints rather than trying to compress the
+ * wide-screen layout onto a phone.
+ */
+.credibility-strip {
+    width: 100%;
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+
+    background-color: var(--saas-color-bg);
+}
+
+
+/*
+ * The container uses vertical padding rather than the
+ * much larger saas-section spacing because this is
+ * intentionally a compact transition strip rather than
+ * a full storytelling section.
+ */
+.credibility-strip__container {
+    display: grid;
+    gap: var(--saas-space-8);
+
+    padding-top: var(--saas-space-8);
+    padding-bottom: var(--saas-space-8);
+}
+
+
+/* ========================================
+   Header
+   ======================================== */
+
+.credibility-strip__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-2);
+}
+
+
+.credibility-strip__heading-group {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+}
+
+
+/*
+ * The green dot reinforces the "production" language,
+ * but it remains static.
+ *
+ * We intentionally do NOT reuse the pulsing system
+ * status animation from the Hero.
+ *
+ * The Hero already establishes that visual behavior.
+ * Repeating animated status indicators throughout the
+ * page would make the interface unnecessarily busy.
+ */
+.credibility-strip__status-dot {
+    flex-shrink: 0;
+
+    width: 0.375rem;
+    height: 0.375rem;
+
+    border-radius: var(--saas-radius-pill);
+
+    background-color: var(--saas-color-green);
+
+    box-shadow:
+        0 0 0 3px var(--saas-color-green-muted);
+}
+
+
+.credibility-strip__title {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+    letter-spacing: 0.08em;
+    line-height: var(--saas-line-body);
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+.credibility-strip__supporting-text {
+    font-size: var(--saas-text-sm);
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   Company Marks
+   ======================================== */
+
+/*
+ * BASE / MOBILE:
+ *
+ * Company marks use a wrapping Flexbox row instead of a
+ * fixed Grid.
+ *
+ * These items do not need equal-width columns. We simply
+ * want each company name to occupy its natural width and
+ * wrap onto another line when horizontal space runs out.
+ *
+ * That makes Flexbox a better fit than Grid here.
+ */
+.credibility-strip__companies {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap:
+        var(--saas-space-5)
+        var(--saas-space-8);
+    justify-content: space-evenly
+}
+
+
+/*
+ * These are intentionally simple typographic marks rather
+ * than logo cards.
+ *
+ * Putting every company inside a bordered or rounded
+ * container would turn this into another row of generic
+ * SaaS cards, which is exactly what we're trying to avoid
+ * with this template.
+ */
+.credibility-strip__company {
+    font-family: var(--saas-font-sans);
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-bold);
+    letter-spacing: 0.08em;
+
+    color: var(--saas-color-text-disabled);
+
+    transition:
+        color
+        var(--saas-motion-fast)
+        var(--saas-ease);
+}
+
+
+/*
+ * The company marks receive only a small interaction
+ * response.
+ *
+ * Cyan is intentionally NOT used here because these are
+ * credibility marks rather than primary interactive
+ * product elements.
+ */
+.credibility-strip__company:hover {
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   Metrics
+   ======================================== */
+
+/*
+ * BASE / MOBILE:
+ *
+ * Metrics begin as one column.
+ *
+ * CHANGES AT 48REM:
+ * They become three equal columns.
+ */
+.credibility-strip__metrics {
+    display: grid;
+
+    /*
+     * One metric per row on narrow screens.
+     *
+     * This prevents the value/label combinations from
+     * becoming unnecessarily compressed.
+     */
+    grid-template-columns: 1fr;
+
+    border-top:
+        1px solid var(--saas-color-border-subtle);
+}
+
+
+.credibility-strip__metric {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    padding-top: var(--saas-space-4);
+    padding-bottom: var(--saas-space-4);
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+}
+
+
+.credibility-strip__metric-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-cyan-400);
+}
+
+
+.credibility-strip__metric-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+}
+
+
+.credibility-strip__metric-value {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-base);
+    font-weight: var(--saas-weight-semibold);
+
+    color: var(--saas-color-text-primary);
+}
+
+
+.credibility-strip__metric-label {
+    font-size: var(--saas-text-xs);
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+@media (min-width: 48rem) {
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * The header changes from a vertical stack into a
+     * horizontal row.
+     *
+     * `justify-content: space-between` places the
+     * production label on the left and supporting text
+     * on the right.
+     *
+     * The CHILDREN themselves are not responsible for
+     * moving left or right. Their parent Flexbox layout
+     * creates that positioning.
+     *
+     * This arrangement continues at 64rem because it is
+     * not overridden there.
+     */
+    .credibility-strip__header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: 1fr;
+     *
+     * 48REM+:
+     *   grid-template-columns: repeat(3, 1fr);
+     *
+     * `repeat(3, 1fr)` creates three equal columns.
+     * Each metric therefore receives one third of the
+     * available metrics-row width.
+     */
+    .credibility-strip__metrics {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+
+    /*
+     * Once the metrics are side-by-side, horizontal
+     * separators are more useful than the stacked
+     * bottom borders used on mobile.
+     */
+    .credibility-strip__metric {
+        padding-right: var(--saas-space-6);
+        padding-left: var(--saas-space-6);
+
+        border-right:
+            1px solid var(--saas-color-border-subtle);
+        border-bottom: 0;
+    }
+
+
+    /*
+     * The first metric aligns with the container edge,
+     * so it does not need additional left padding.
+     */
+    .credibility-strip__metric:first-child {
+        padding-left: 0;
+    }
+
+
+    /*
+     * The final metric does not need a separator after
+     * itself because there is no additional column.
+     */
+    .credibility-strip__metric:last-child {
+        padding-right: 0;
+
+        border-right: 0;
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+@media (min-width: 64rem) {
+
+    /*
+     * NO STRUCTURAL LAYOUT CHANGE HERE.
+     *
+     * The header row introduced at 48rem continues.
+     *
+     * The three-column metrics Grid introduced at 48rem
+     * also continues because neither property is
+     * overridden at this breakpoint.
+     *
+     * We only increase vertical breathing room slightly
+     * now that the viewport can support it.
+     */
+    .credibility-strip__container {
+        padding-top: var(--saas-space-10);
+        padding-bottom: var(--saas-space-10);
+    }
+}

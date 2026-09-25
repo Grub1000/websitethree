@@ -17,6 +17,7 @@ import "./styles/globals.css";
 // Section Component Imports
 import Header from "./components/Header/Header.tsx"
 import Hero from "./sections/Hero/Hero.tsx"
+import CredibilityStrip from "./sections/CredibilityStrip/CredibilityStrip";
 
 
 
@@ -34,6 +35,7 @@ export default function SaaSApp(){
             <Header/>
             <main className="saas__main">
                 <Hero />
+                <CredibilityStrip/>
             </main>
 
         </div>
