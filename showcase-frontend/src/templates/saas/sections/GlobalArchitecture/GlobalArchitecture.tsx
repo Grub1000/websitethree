@@ -278,6 +278,13 @@ function GlobalArchitecture() {
                     transformOrigin: "center center",
                 }
             );
+
+            timeline.set(
+                ".global-architecture__world-packet",
+                {
+                    autoAlpha: 0,
+                }
+            );
             /*
             * PREPARE GLOBAL ROUTES
             *
@@ -305,6 +312,146 @@ function GlobalArchitecture() {
                     strokeDashoffset: routeLength,
                 });
             });
+
+
+            /*
+            * LIVE GLOBAL TRAFFIC
+            *
+            * This timeline is intentionally separate from the main
+            * ScrollTrigger timeline.
+            *
+            * The main timeline explains how the infrastructure becomes a
+            * global network.
+            *
+            * This timeline represents the network continuing to operate
+            * after that transformation has completed.
+            */
+            const trafficTimeline = gsap.timeline({
+                paused: true,
+                repeat: -1,
+            });
+
+            /*
+            * REGION PULSE
+            *
+            * This animation is separate from the scroll-driven timeline.
+            * It provides subtle continuous activity once the global
+            * deployment regions have appeared.
+            */
+            const regionPulseTimeline = gsap.timeline({
+                paused: true,
+                repeat: -1,
+                yoyo: true,
+            });
+
+            regionPulseTimeline.to(
+                ".global-architecture__world-region-ring",
+                {
+                    scale: 1.4,
+                    opacity: 0.8,
+                    duration: 1.2,
+                    ease: "sine.inOut",
+                    transformOrigin: "center center",
+                }
+            );
+
+            /*
+            * Find all of the packet circles we added to the SVG.
+            */
+            const packets =
+                sectionRef.current?.querySelectorAll<SVGCircleElement>(
+                    ".global-architecture__world-packet"
+                );
+
+            /*
+            * Give each packet its own movement along its corresponding
+            * SVG route.
+            */
+            packets?.forEach((packet, index) => {
+                /*
+                * Each packet's data-route attribute contains the ID of
+                * the SVG path that the packet should follow.
+                */
+                const routeId = packet.dataset.route;
+
+                if (!routeId) {
+                    return;
+                }
+
+                const route =
+                    sectionRef.current?.querySelector<SVGPathElement>(
+                        `#${routeId}`
+                    );
+
+                if (!route) {
+                    return;
+                }
+
+                const routeLength = route.getTotalLength();
+
+                /*
+                * GSAP animates this value from 0 to 1.
+                *
+                * We then convert that progress into an exact point
+                * along the SVG route.
+                */
+                const traffic = {
+                    progress: 0,
+                };
+
+                trafficTimeline.to(
+                    traffic,
+                    {
+                        progress: 1,
+                        duration: 2.8,
+                        ease: "none",
+
+                        onUpdate: () => {
+                            const point = route.getPointAtLength(
+                                routeLength * traffic.progress
+                            );
+
+                            packet.setAttribute("cx", String(point.x));
+                            packet.setAttribute("cy", String(point.y));
+                        },
+                    },
+
+                    /*
+                    * Stagger the starting position of each packet so all
+                    * five routes do not begin moving simultaneously.
+                    */
+                    index * 0.35
+                );
+            });
+
+
+            /*
+            * Starts the ambient network traffic.
+            *
+            * restart() is used instead of play() so every time the user
+            * reaches the completed-network state, traffic begins from a
+            * predictable starting point.
+            */
+            const startTraffic = () => {
+                trafficTimeline.restart();
+                regionPulseTimeline.restart();
+            };
+
+            /*
+            * Stops the ambient traffic and returns every packet to the
+            * beginning of its route.
+            *
+            * pause(0) moves the repeating timeline back to time 0 without
+            * allowing it to continue playing.
+            */
+            const stopTraffic = () => {
+                trafficTimeline.pause(0);
+                regionPulseTimeline.pause(0);
+            };
+
+
+
+
             /*
             * ------------------------------------------------
             * 01 — APPLICATION
@@ -897,6 +1044,38 @@ function GlobalArchitecture() {
                     }
                 );
             }
+
+            /*
+            * ------------------------------------------------
+            * GLOBAL NETWORK BECOMES LIVE
+            * ------------------------------------------------
+            *
+            * The scroll-driven route construction is now complete.
+            *
+            * When scrolling forward into this phase, the packets become
+            * visible and the independent traffic loop starts from the
+            * beginning.
+            *
+            * When scrolling backward out of this phase, the traffic loop
+            * stops and resets. The main timeline then handles fading the
+            * packets back out as it reverses.
+            */
+            timeline.to(
+                ".global-architecture__world-packet",
+                {
+                    autoAlpha: 1,
+                    duration: 0.3,
+
+                    onStart: () => {
+                        startTraffic();
+                    },
+
+                    onReverseComplete: () => {
+                        stopTraffic();
+                    },
+                }
+            );
+
             /*
             * ------------------------------------------------
             * 21 — LOCAL ARCHITECTURE RETIRES
@@ -1186,29 +1365,84 @@ function GlobalArchitecture() {
                             */}
                             {/* Oregon → Virginia */}
                             <path
+                                id="global-route-oregon-virginia"
                                 className="global-architecture__route"
                                 d="M 125 185 Q 235 140 250 195"
                             />
                             {/* Virginia → Frankfurt */}
                             <path
+                                id="global-route-virginia-frankfurt"
                                 className="global-architecture__route"
                                 d="M 250 195 Q 430 105 500 165"
                             />
                             {/* Frankfurt → Singapore */}
                             <path
+                                id="global-route-frankfurt-singapore"
                                 className="global-architecture__route"
-                                d="M 500 165 Q 675 170 755 315"
+                                d="M 500 165 Q 675 170 755 310"
                             />
                             {/* Singapore → Tokyo */}
                             <path
+                                id="global-route-singapore-tokyo"
                                 className="global-architecture__route"
-                                d="M 755 315 Q 800 210 860 210"
+                                d="M 755 310 Q 800 210 860 210"
                             />
                             {/* Oregon → Tokyo */}
                             <path
+                                id="global-route-oregon-tokyo"
                                 className="global-architecture__route"
                                 d="M 125 185 Q 495 35 860 210"
                             />
+
+                            
+
+                            {/*
+                            * LIVE NETWORK TRAFFIC
+                            *
+                            * Each circle represents a small packet moving through the
+                            * completed global network.
+                            *
+                            * GSAP does not calculate a separate curve for these packets.
+                            * Instead, JavaScript reads the corresponding SVG route with
+                            * getPointAtLength() and places the packet directly on that path.
+                            *
+                            * Because of that, changing a route's `d` value later will also
+                            * automatically change the path followed by its packet.
+                            */}
+                            <g className="global-architecture__traffic-packets">
+                                <circle
+                                    className="global-architecture__world-packet"
+                                    data-route="global-route-oregon-virginia"
+                                    r="3"
+                                />
+
+                                <circle
+                                    className="global-architecture__world-packet"
+                                    data-route="global-route-virginia-frankfurt"
+                                    r="3"
+                                />
+
+                                <circle
+                                    className="global-architecture__world-packet"
+                                    data-route="global-route-frankfurt-singapore"
+                                    r="3"
+                                />
+
+                                <circle
+                                    className="global-architecture__world-packet"
+                                    data-route="global-route-singapore-tokyo"
+                                    r="3"
+                                />
+
+                                <circle
+                                    className="global-architecture__world-packet"
+                                    data-route="global-route-oregon-tokyo"
+                                    r="3"
+                                />
+                            </g>
+
+
+
                             {/* ========================================
                                 Deployment Regions
                                 ======================================== */}

@@ -821,6 +821,23 @@
 }
 
 
+/*
+ * GLOBAL NETWORK TRAFFIC PACKETS
+ *
+ * These small points travel along the completed SVG routes after
+ * the scroll-driven global-network transformation has finished.
+ *
+ * The packet position itself is controlled by GSAP.
+ */
+.global-architecture__world-packet {
+    fill: var(--saas-color-cyan-300);
+
+    filter: drop-shadow(0 0 4px var(--saas-color-cyan-400));
+
+    pointer-events: none;
+}
+
+
 /* ========================================
    Global Region Nodes
    ======================================== */
@@ -1099,5 +1116,6 @@
         transition: none;
         animation: none;
     }
+
 
 }
