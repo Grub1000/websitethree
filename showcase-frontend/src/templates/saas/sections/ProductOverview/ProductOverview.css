@@ -1,0 +1,1736 @@
+/* ========================================
+   Product Overview
+   ======================================== */
+
+/*
+ * This is the first full storytelling section after the
+ * Hero and credibility strip.
+ *
+ * The Hero shows what the platform feels like.
+ * This section begins explaining how the platform works.
+ *
+ * BASE / MOBILE:
+ *
+ * The section uses a single-column layout throughout.
+ * Internal product interfaces progressively become more
+ * horizontal as viewport space increases.
+ */
+.product-overview {
+    width: 100%;
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+
+    background-color: var(--saas-color-bg);
+}
+
+
+.product-overview__container {
+    padding-top: var(--saas-space-24);
+    padding-bottom: var(--saas-space-24);
+}
+
+
+/* ========================================
+   Section Header
+   ======================================== */
+
+.product-overview__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-5);
+
+    margin-bottom: var(--saas-space-12);
+}
+
+
+.product-overview__eyebrow {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-cyan-400);
+}
+
+
+/*
+ * BASE / MOBILE:
+ *
+ * Heading and description stack vertically.
+ *
+ * CHANGES AT 48REM:
+ * They become two columns so the section heading can
+ * occupy the stronger left side while the supporting
+ * explanation sits alongside it.
+ */
+.product-overview__heading-layout {
+    display: grid;
+
+    /*
+     * One column means both children occupy the full
+     * available width and naturally stack vertically.
+     */
+    grid-template-columns: 1fr;
+    gap: var(--saas-space-5);
+}
+
+
+.product-overview__title {
+    max-width: 16ch;
+
+    font-size:
+        clamp(
+            var(--saas-text-3xl),
+            8vw,
+            var(--saas-text-4xl)
+        );
+    font-weight: var(--saas-weight-semibold);
+    letter-spacing: -0.035em;
+    line-height: var(--saas-line-tight);
+
+    color: var(--saas-color-text-primary);
+}
+
+
+.product-overview__description {
+    max-width: 38rem;
+
+    font-size: var(--saas-text-base);
+    line-height: var(--saas-line-body);
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   Product Workspace
+   ======================================== */
+
+/*
+ * The workspace intentionally resembles an actual
+ * infrastructure interface rather than a marketing card.
+ *
+ * Depth comes primarily from the surface color and thin
+ * borders. We avoid a large shadow because the product
+ * UI should feel embedded into the page.
+ */
+.product-overview__workspace {
+    overflow: hidden;
+
+    width: 100%;
+
+    border:
+        1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-lg);
+
+    background-color: var(--saas-color-surface-1);
+}
+
+
+/* ========================================
+   Workflow Steps
+   ======================================== */
+
+/*
+ * The three workflow buttons are equal-width columns.
+ *
+ * `repeat(3, 1fr)` means:
+ *
+ *   repeat  → create the same column definition 3 times
+ *   1fr     → each column receives one equal fraction
+ *             of the available width
+ *
+ * Result:
+ *
+ *   CONNECT       CONFIGURE       DEPLOY
+ *   33.33%         33.33%         33.33%
+ */
+.product-overview__steps {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    border-bottom:
+        1px solid var(--saas-color-border);
+}
+
+
+.product-overview__step {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--saas-space-1);
+
+    position: relative;
+
+    padding: var(--saas-space-4);
+
+    border-right:
+        1px solid var(--saas-color-border-subtle);
+
+    text-align: left;
+
+    color: var(--saas-color-text-muted);
+    background-color: transparent;
+
+    cursor: pointer;
+
+    transition:
+        color var(--saas-motion-fast) var(--saas-ease),
+        background-color var(--saas-motion-fast) var(--saas-ease);
+}
+
+
+.product-overview__step:last-child {
+    border-right: 0;
+}
+
+
+.product-overview__step:hover {
+    color: var(--saas-color-text-secondary);
+    background-color: var(--saas-color-surface-2);
+}
+
+
+/*
+ * The active tab receives only a restrained surface
+ * change.
+ *
+ * The cyan line below it carries the stronger selected
+ * state so we do not need to flood the whole tab with
+ * the brand color.
+ */
+.product-overview__step--active {
+    color: var(--saas-color-text-primary);
+    background-color: var(--saas-color-surface-2);
+}
+
+
+.product-overview__step--active::after {
+    position: absolute;
+    right: var(--saas-space-4);
+    bottom: -1px;
+    left: var(--saas-space-4);
+
+    height: 2px;
+
+    background-color: var(--saas-color-cyan-400);
+
+    content: "";
+}
+
+
+.product-overview__step-number {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-disabled);
+}
+
+
+.product-overview__step-label {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   Workspace Content
+   ======================================== */
+
+.product-overview__content {
+    min-height: 28rem;
+}
+
+
+/*
+ * BASE / MOBILE:
+ *
+ * The explanation and repository interface stack.
+ *
+ * CHANGES AT 48REM:
+ * They become two columns.
+ */
+.product-overview__panel {
+    display: grid;
+
+    /*
+     * One column keeps the product interface readable on
+     * narrow screens rather than squeezing two panels
+     * next to one another.
+     */
+    grid-template-columns: 1fr;
+
+    min-height: 28rem;
+}
+
+
+.product-overview__panel-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--saas-space-4);
+
+    padding: var(--saas-space-6);
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+}
+
+
+.product-overview__panel-label {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-cyan-400);
+}
+
+
+.product-overview__panel-title {
+    max-width: 18ch;
+
+    font-size: var(--saas-text-2xl);
+    font-weight: var(--saas-weight-semibold);
+    letter-spacing: -0.025em;
+    line-height: var(--saas-line-heading);
+
+    color: var(--saas-color-text-primary);
+}
+
+
+.product-overview__panel-description {
+    max-width: 30rem;
+
+    font-size: var(--saas-text-sm);
+    line-height: var(--saas-line-body);
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   Repository Interface
+   ======================================== */
+
+.product-overview__repository {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 0;
+
+    padding: var(--saas-space-6);
+}
+
+
+.product-overview__repository-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-4);
+
+    padding-bottom: var(--saas-space-5);
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+}
+
+
+.product-overview__repository-identity {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+}
+
+
+.product-overview__repository-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    border:
+        1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    color: var(--saas-color-text-secondary);
+    background-color: var(--saas-color-surface-2);
+}
+
+
+.product-overview__repository-name-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+
+.product-overview__repository-owner {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.product-overview__repository-name {
+    overflow: hidden;
+
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-medium);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-primary);
+}
+
+
+.product-overview__repository-status {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-1);
+
+    width: fit-content;
+    padding:
+        var(--saas-space-1)
+        var(--saas-space-2);
+
+    border:
+        1px solid var(--saas-color-green-border);
+    border-radius: var(--saas-radius-pill);
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-green);
+    background-color: var(--saas-color-green-muted);
+}
+
+
+.product-overview__repository-details {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Repository metadata stacks so labels and values
+     * remain readable on narrow screens.
+     *
+     * CHANGES AT 48REM:
+     * This becomes two equal columns.
+     */
+    grid-template-columns: 1fr;
+
+    padding-top: var(--saas-space-5);
+    padding-bottom: var(--saas-space-5);
+}
+
+
+.product-overview__repository-detail {
+    display: grid;
+    align-items: center;
+
+    /*
+     * Three columns represent:
+     *
+     *   icon | label | value
+     *
+     * `auto` lets the icon use only the width it needs.
+     *
+     * `1fr` lets the label consume remaining space.
+     *
+     * The final `auto` lets the value remain only as
+     * wide as its text requires.
+     */
+    grid-template-columns:
+        auto 1fr auto;
+    gap: var(--saas-space-2);
+
+    padding-top: var(--saas-space-3);
+    padding-bottom: var(--saas-space-3);
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+}
+
+
+.product-overview__repository-detail-icon {
+    color: var(--saas-color-text-muted);
+}
+
+
+.product-overview__repository-detail-label {
+    font-size: var(--saas-text-xs);
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.product-overview__repository-detail-value {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+
+.product-overview__continue-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--saas-space-2);
+
+    width: 100%;
+    padding:
+        var(--saas-space-3)
+        var(--saas-space-4);
+
+    border-radius: var(--saas-radius-md);
+
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-semibold);
+
+    color: var(--saas-color-black);
+    background-color: var(--saas-color-cyan-400);
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--saas-motion-fast) var(--saas-ease),
+        transform var(--saas-motion-fast) var(--saas-ease);
+}
+
+
+.product-overview__continue-button:hover {
+    background-color: var(--saas-color-cyan-300);
+
+    transform: translateY(-1px);
+}
+
+
+.product-overview__continue-icon {
+    flex-shrink: 0;
+}
+
+
+/* ========================================
+   Configuration Interface
+   ======================================== */
+
+/*
+ * The configuration side follows the same structural
+ * role as the repository interface from the Connect
+ * step.
+ *
+ * BASE / MOBILE:
+ *
+ * Configuration controls use one column.
+ *
+ * CHANGES AT 48REM:
+ * The parent ProductOverview panel becomes two columns,
+ * but the controls themselves remain one column.
+ *
+ * CHANGES AT 64REM:
+ * The controls become a two-column Grid because the
+ * product side has enough horizontal space to display
+ * resource options without squeezing their content.
+ */
+.product-overview__configuration {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--saas-space-5);
+
+    min-width: 0;
+
+    padding: var(--saas-space-6);
+}
+
+
+/* ========================================
+   Configuration Header
+   ======================================== */
+
+.product-overview__configuration-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-4);
+
+    padding-bottom: var(--saas-space-4);
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+}
+
+
+.product-overview__configuration-identity {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    min-width: 0;
+}
+
+
+.product-overview__configuration-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-cyan-400);
+}
+
+
+.product-overview__configuration-name-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+
+.product-overview__configuration-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.product-overview__configuration-name {
+    overflow: hidden;
+
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-medium);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-primary);
+}
+
+
+.product-overview__configuration-runtime {
+    flex-shrink: 0;
+
+    padding:
+        var(--saas-space-1)
+        var(--saas-space-2);
+
+    border:
+        1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-sm);
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-secondary);
+    background-color: var(--saas-color-surface-2);
+}
+
+
+/* ========================================
+   Resource Controls
+   ======================================== */
+
+/*
+ * BASE / MOBILE:
+ *
+ * Each infrastructure setting receives its own row.
+ *
+ * CHANGES AT 64REM:
+ * The controls become two equal columns.
+ */
+.product-overview__configuration-grid {
+    display: grid;
+
+    /*
+     * One column keeps CPU, memory, region, and replica
+     * controls readable when the product panel is narrow.
+     */
+    grid-template-columns: 1fr;
+    gap: var(--saas-space-2);
+}
+
+
+/*
+ * Each configuration control internally uses Grid:
+ *
+ *   icon | content | chevron
+ *
+ * `auto` on the first and final columns means those
+ * columns consume only the width required by their icon.
+ *
+ * `1fr` gives all remaining horizontal space to the
+ * label/value content in the center.
+ */
+.product-overview__configuration-control {
+    display: grid;
+    align-items: center;
+
+    grid-template-columns:
+        auto 1fr auto;
+    gap: var(--saas-space-3);
+
+    width: 100%;
+    padding: var(--saas-space-3);
+
+    border:
+        1px solid var(--saas-color-border-subtle);
+    border-radius: var(--saas-radius-md);
+
+    text-align: left;
+
+    color: var(--saas-color-text-secondary);
+    background-color: var(--saas-color-surface-2);
+
+    cursor: pointer;
+
+    transition:
+        border-color var(--saas-motion-fast) var(--saas-ease),
+        background-color var(--saas-motion-fast) var(--saas-ease);
+}
+
+
+.product-overview__configuration-control:hover {
+    border-color: var(--saas-color-border-strong);
+
+    background-color: var(--saas-color-surface-3);
+}
+
+
+.product-overview__configuration-control-icon {
+    color: var(--saas-color-text-muted);
+}
+
+
+.product-overview__configuration-control-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+
+.product-overview__configuration-control-label {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.product-overview__configuration-control-value {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+
+.product-overview__configuration-control-chevron {
+    color: var(--saas-color-text-disabled);
+}
+
+
+/* ========================================
+   Environment Variables
+   ======================================== */
+
+.product-overview__environment {
+    overflow: hidden;
+
+    border:
+        1px solid var(--saas-color-border-subtle);
+    border-radius: var(--saas-radius-md);
+
+    background-color: var(--saas-color-bg-soft);
+}
+
+
+.product-overview__environment-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-4);
+
+    padding: var(--saas-space-3);
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+}
+
+
+.product-overview__environment-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+}
+
+
+.product-overview__environment-title {
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+.product-overview__environment-count {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-disabled);
+}
+
+
+.product-overview__environment-status {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-green);
+}
+
+
+.product-overview__environment-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*
+ * Each environment variable uses two columns:
+ *
+ *   variable name | hidden value
+ *
+ * `1fr` lets the variable name use remaining space.
+ * `auto` keeps the masked value only as wide as needed.
+ */
+.product-overview__environment-variable {
+    display: grid;
+    align-items: center;
+
+    grid-template-columns:
+        1fr auto;
+    gap: var(--saas-space-4);
+
+    padding:
+        var(--saas-space-2)
+        var(--saas-space-3);
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+}
+
+
+.product-overview__environment-variable:last-child {
+    border-bottom: 0;
+}
+
+
+.product-overview__environment-key {
+    overflow: hidden;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+.product-overview__environment-value {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    letter-spacing: 0.08em;
+
+    color: var(--saas-color-text-disabled);
+}
+
+
+/* ========================================
+   Deployment Interface
+   ======================================== */
+
+/*
+ * The deployment interface is the final state of the
+ * product walkthrough.
+ *
+ * It intentionally contains more technical information
+ * than Connect or Configure because this state shows the
+ * result of the entire workflow:
+ *
+ *   source
+ *      ↓
+ *   build
+ *      ↓
+ *   deployment
+ *      ↓
+ *   verification
+ *      ↓
+ *   live endpoint
+ *
+ * BASE / MOBILE:
+ *
+ * All deployment information remains vertically stacked.
+ *
+ * The surrounding ProductOverview panel becomes
+ * two-column at 48rem, but this internal interface keeps
+ * its vertical structure at every breakpoint.
+ */
+.product-overview__deployment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--saas-space-4);
+
+    min-width: 0;
+
+    padding: var(--saas-space-6);
+}
+
+
+/* ========================================
+   Deployment Header
+   ======================================== */
+
+.product-overview__deployment-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-4);
+
+    padding-bottom: var(--saas-space-4);
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+}
+
+
+.product-overview__deployment-identity {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    min-width: 0;
+}
+
+
+.product-overview__deployment-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-cyan-400);
+}
+
+
+.product-overview__deployment-name-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+
+.product-overview__deployment-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.product-overview__deployment-name {
+    overflow: hidden;
+
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-medium);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-primary);
+}
+
+
+/*
+ * The base status class controls structure only.
+ *
+ * Color is separated into modifier classes because the
+ * same status element can represent two different states:
+ *
+ *   --building → deployment currently running
+ *   --live     → deployment completed successfully
+ *
+ * React chooses which modifier class is present based on
+ * deploymentProgress.
+ */
+.product-overview__deployment-status {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-1);
+
+    flex-shrink: 0;
+
+    padding:
+        var(--saas-space-1)
+        var(--saas-space-2);
+
+    border: 1px solid;
+    border-radius: var(--saas-radius-pill);
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+}
+
+
+.product-overview__deployment-status--building {
+    border-color: var(--saas-color-amber-border);
+
+    color: var(--saas-color-amber);
+    background-color: var(--saas-color-amber-muted);
+}
+
+
+.product-overview__deployment-status--live {
+    border-color: var(--saas-color-green-border);
+
+    color: var(--saas-color-green);
+    background-color: var(--saas-color-green-muted);
+}
+
+
+/*
+ * The spinner communicates that the deployment is still
+ * actively progressing.
+ *
+ * Only one side of the circular border uses the stronger
+ * amber color. Rotating that uneven border creates the
+ * appearance of a loading indicator.
+ *
+ * This animation represents ongoing activity rather than
+ * a specific deployment stage, so it continues until
+ * React replaces the Building status with Live.
+ */
+.product-overview__deployment-spinner {
+    width: 0.625rem;
+    height: 0.625rem;
+
+    border:
+        1px solid var(--saas-color-amber-border);
+    border-top-color: var(--saas-color-amber);
+    border-radius: var(--saas-radius-pill);
+
+    animation:
+        product-overview-spinner
+        700ms
+        linear
+        infinite;
+}
+
+
+@keyframes product-overview-spinner {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ========================================
+   Deployment Metadata
+   ======================================== */
+
+/*
+ * The metadata uses two equal columns:
+ *
+ *   Branch | Commit
+ *
+ * Each item then uses its own three-column Grid:
+ *
+ *   icon | label | value
+ */
+.product-overview__deployment-meta {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+    gap: var(--saas-space-4);
+}
+
+
+.product-overview__deployment-meta-item {
+    display: grid;
+    align-items: center;
+
+    grid-template-columns:
+        auto 1fr auto;
+    gap: var(--saas-space-2);
+
+    min-width: 0;
+}
+
+
+.product-overview__deployment-meta-icon {
+    color: var(--saas-color-text-disabled);
+}
+
+
+.product-overview__deployment-meta-label {
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.product-overview__deployment-meta-value {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   Deployment Stages
+   ======================================== */
+
+/*
+ * The stages use Flexbox because they form one horizontal
+ * sequence:
+ *
+ * Build ─── Deploy ─── Verify ─── Live
+ *
+ * Each stage keeps the width needed by its content.
+ * Each line uses flex: 1 to consume the remaining space
+ * between neighboring stages.
+ */
+.product-overview__deployment-stages {
+    display: flex;
+    align-items: flex-start;
+
+    width: 100%;
+
+    padding-top: var(--saas-space-2);
+    padding-bottom: var(--saas-space-2);
+}
+
+
+.product-overview__deployment-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--saas-space-1);
+
+    flex-shrink: 0;
+}
+
+
+/*
+ * INITIAL STATE:
+ *
+ * Deployment stages begin inactive.
+ *
+ * React adds either --complete or --live as
+ * deploymentProgress advances.
+ */
+.product-overview__deployment-stage-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 1.25rem;
+    height: 1.25rem;
+
+    border:
+        1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-pill);
+
+    color: var(--saas-color-text-disabled);
+    background-color: var(--saas-color-surface-2);
+
+    transition:
+        border-color var(--saas-motion-base) var(--saas-ease),
+        color var(--saas-motion-base) var(--saas-ease),
+        background-color var(--saas-motion-base) var(--saas-ease);
+}
+
+
+.product-overview__deployment-stage-marker--complete {
+    border-color: var(--saas-color-green-border);
+
+    color: var(--saas-color-green);
+    background-color: var(--saas-color-green-muted);
+}
+
+
+.product-overview__deployment-stage-marker--live {
+    border-color: var(--saas-color-cyan-border);
+
+    color: var(--saas-color-cyan-400);
+    background-color: var(--saas-color-cyan-muted);
+}
+
+
+.product-overview__deployment-stage-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/*
+ * INITIAL CONNECTOR STATE:
+ *
+ * Every connector begins with the normal muted border
+ * color.
+ *
+ * React adds the --complete modifier as
+ * deploymentProgress advances.
+ *
+ * Unlike the Hero pipeline, we do not need a separate
+ * animated pseudo-element here. React is already
+ * controlling meaningful deployment state, so a simple
+ * color transition clearly communicates progress without
+ * duplicating the Hero's animation.
+ */
+.product-overview__deployment-stage-line {
+    flex: 1;
+
+    min-width: 0.75rem;
+    height: 1px;
+
+    margin-top: 0.625rem;
+
+    background-color: var(--saas-color-border);
+
+    transition:
+        background-color
+        var(--saas-motion-base)
+        var(--saas-ease);
+}
+
+/*
+ * COMPLETED CONNECTOR:
+ *
+ * The modifier changes only the visual state.
+ *
+ * React determines whether the connector is complete;
+ * CSS determines what a completed connector looks like.
+ */
+.product-overview__deployment-stage-line--complete {
+    background-color: var(--saas-color-green);
+}
+
+/* ========================================
+   Deployment Logs
+   ======================================== */
+
+.product-overview__logs {
+    overflow: hidden;
+
+    border:
+        1px solid var(--saas-color-border-subtle);
+    border-radius: var(--saas-radius-md);
+
+    background-color: var(--saas-color-black);
+}
+
+
+.product-overview__logs-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-4);
+
+    padding:
+        var(--saas-space-2)
+        var(--saas-space-3);
+
+    border-bottom:
+        1px solid var(--saas-color-border-subtle);
+
+    background-color: var(--saas-color-surface-1);
+}
+
+
+.product-overview__logs-title-group {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+}
+
+
+.product-overview__logs-icon {
+    color: var(--saas-color-text-muted);
+}
+
+
+.product-overview__logs-title {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+.product-overview__logs-duration {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-disabled);
+}
+
+
+.product-overview__logs-output {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-2);
+
+    padding: var(--saas-space-3);
+}
+
+
+/*
+ * Each log line uses two columns:
+ *
+ *   timestamp | message
+ *
+ * The timestamp occupies only the width it needs.
+ * The message receives all remaining horizontal space.
+ */
+/*
+ * Log rows only exist after React reaches their required
+ * deploymentProgress value.
+ *
+ * When React inserts a new row into the DOM, this
+ * animation gives that newly-created element a small
+ * terminal-like entrance.
+ *
+ * React controls WHEN the row appears.
+ * CSS controls HOW it appears.
+ */
+.product-overview__log-line {
+    display: grid;
+    align-items: start;
+
+    grid-template-columns:
+        auto 1fr;
+    gap: var(--saas-space-3);
+
+    min-width: 0;
+
+    animation:
+        product-overview-log-enter
+        var(--saas-motion-base)
+        var(--saas-ease)
+        both;
+}
+
+
+@keyframes product-overview-log-enter {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(0.25rem);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+.product-overview__log-time {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-disabled);
+}
+
+
+.product-overview__log-message {
+    overflow-wrap: anywhere;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    line-height: 1.5;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.product-overview__log-line--success
+.product-overview__log-message {
+    color: var(--saas-color-green);
+}
+
+
+/*
+ * The descendant selector above is intentional.
+ *
+ * We only want the message inside the successful log row
+ * to become green.
+ *
+ * The timestamp remains muted so the success message
+ * itself carries the visual emphasis.
+ */
+
+
+/* ========================================
+   Production Endpoint
+   ======================================== */
+
+.product-overview__endpoint {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-4);
+
+    padding: var(--saas-space-3);
+
+    border:
+        1px solid var(--saas-color-cyan-border);
+    border-radius: var(--saas-radius-md);
+
+    background-color: var(--saas-color-cyan-muted);
+
+    animation:
+        product-overview-endpoint-enter
+        var(--saas-motion-base)
+        var(--saas-ease)
+        both;
+}
+
+@keyframes product-overview-endpoint-enter {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(0.375rem);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+.product-overview__endpoint-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+
+.product-overview__endpoint-label {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+.product-overview__endpoint-url {
+    overflow: hidden;
+
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-cyan-300);
+}
+
+
+.product-overview__endpoint-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-cyan-400);
+}
+
+
+/* ========================================
+   Temporary Panels
+   ======================================== */
+
+.product-overview__placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--saas-space-3);
+
+    min-height: 28rem;
+    padding: var(--saas-space-8);
+
+    text-align: center;
+}
+
+
+.product-overview__placeholder-label {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-cyan-400);
+}
+
+
+.product-overview__placeholder-text {
+    font-size: var(--saas-text-sm);
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+@media (min-width: 48rem) {
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: 1fr;
+     *
+     * 48REM+:
+     *   grid-template-columns:
+     *       minmax(0, 1.15fr)
+     *       minmax(18rem, 0.85fr);
+     *
+     * The heading receives slightly more horizontal
+     * space than the supporting paragraph.
+     *
+     * `minmax(0, ...)` also allows the first column to
+     * shrink properly instead of being forced wider by
+     * long content.
+     *
+     * This layout continues at 64rem because it is not
+     * overridden there.
+     */
+    .product-overview__heading-layout {
+        grid-template-columns:
+            minmax(0, 1.15fr)
+            minmax(18rem, 0.85fr);
+        align-items: end;
+        gap: var(--saas-space-12);
+    }
+
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * The product panel becomes two columns:
+     *
+     *   explanation | repository interface
+     *
+     * The explanation receives slightly less space than
+     * the interactive product side.
+     */
+    .product-overview__panel {
+        grid-template-columns:
+            minmax(16rem, 0.8fr)
+            minmax(0, 1.2fr);
+    }
+
+
+    /*
+     * The parent Grid above is responsible for placing
+     * these areas side-by-side.
+     *
+     * This border separates those two columns visually.
+     */
+    .product-overview__panel-intro {
+        padding: var(--saas-space-8);
+
+        border-right:
+            1px solid var(--saas-color-border-subtle);
+        border-bottom: 0;
+    }
+
+
+    .product-overview__repository {
+        padding: var(--saas-space-8);
+    }
+
+
+    /*
+     * The repository header now has enough room for the
+     * repository identity and connection status to share
+     * one horizontal row.
+     *
+     * `justify-content: space-between` on THIS PARENT is
+     * what pushes the status toward the right side.
+     */
+    .product-overview__repository-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: 1fr;
+     *
+     * 48REM+:
+     *   grid-template-columns: repeat(2, 1fr);
+     *
+     * Branch and detected-runtime metadata can now sit
+     * next to each other.
+     */
+    .product-overview__repository-details {
+        grid-template-columns:
+            repeat(2, 1fr);
+        column-gap: var(--saas-space-6);
+    }
+
+
+    /*
+    * The configuration interface receives the same larger
+    * internal padding as the repository interface.
+    *
+    * The resource controls intentionally remain one column
+    * here. The overall product panel has already changed to
+    * two columns at 48rem, so forcing another two-column
+    * layout inside its right side would make the controls
+    * unnecessarily narrow.
+    */
+    .product-overview__configuration {
+        padding: var(--saas-space-8);
+    }
+
+    /*
+    * The deployment interface receives the same larger
+    * internal spacing as the Connect and Configure
+    * interfaces once the product panel has enough room.
+    *
+    * No internal deployment Grid structure changes here.
+    */
+    .product-overview__deployment {
+        padding: var(--saas-space-8);
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+@media (min-width: 64rem) {
+
+    /*
+     * NO PRODUCT GRID STRUCTURE CHANGES HERE.
+     *
+     * The two-column heading and product panel introduced
+     * at 48rem continue cascading into this breakpoint.
+     *
+     * We only increase section breathing room because the
+     * larger viewport can support more separation between
+     * major storytelling sections.
+     */
+    .product-overview__container {
+        padding-top: var(--saas-space-32);
+        padding-bottom: var(--saas-space-32);
+    }
+
+
+    .product-overview__step {
+        padding:
+            var(--saas-space-5)
+            var(--saas-space-6);
+    }
+
+
+    .product-overview__step--active::after {
+        right: var(--saas-space-6);
+        left: var(--saas-space-6);
+    }
+
+    /*
+    * OVERRIDES BASE / MOBILE:
+    *
+    * Base through 48REM:
+    *   grid-template-columns: 1fr;
+    *
+    * 64REM+:
+    *   grid-template-columns: repeat(2, 1fr);
+    *
+    * The product side is now wide enough for:
+    *
+    *   CPU       | Memory
+    *   Region    | Replicas
+    *
+    * Each control receives one equal fraction of the
+    * available configuration-grid width.
+    */
+    .product-overview__configuration-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+/*
+ * REDUCED MOTION:
+ *
+ * React still advances through the simulated deployment
+ * states because those states contain meaningful product
+ * information.
+ *
+ * We only remove the decorative movement used to present
+ * those state changes.
+ *
+ * The spinner is also stopped. Its amber color still
+ * communicates the in-progress state without requiring
+ * continuous rotation.
+ */
+@media (prefers-reduced-motion: reduce) {
+
+    .product-overview__deployment-spinner,
+    .product-overview__log-line,
+    .product-overview__endpoint {
+        animation: none;
+    }
+}
