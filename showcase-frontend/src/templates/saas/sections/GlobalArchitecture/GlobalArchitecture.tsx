@@ -80,6 +80,9 @@ function GlobalArchitecture() {
     * distance while this scene remains visually fixed.
     */
     const sceneRef = useRef<HTMLDivElement | null>(null);
+
+
+    
     useEffect(() => {
         /*
         * gsap.context() scopes selector-based animations to
@@ -1121,6 +1124,10 @@ function GlobalArchitecture() {
             context.revert();
         };
     }, []);
+
+
+
+
     return (
         <section
             ref={sectionRef}
