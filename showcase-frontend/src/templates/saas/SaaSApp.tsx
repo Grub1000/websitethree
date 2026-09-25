@@ -14,8 +14,9 @@ import "./styles/tokens.css";
 import "./styles/globals.css";
 
 
+// Section Component Imports
 import Header from "./components/Header/Header.tsx"
-// import Hero from "./sections/Hero/Hero.tsx"
+import Hero from "./sections/Hero/Hero.tsx"
 
 
 
@@ -32,7 +33,7 @@ export default function SaaSApp(){
         <div className="saas">
             <Header/>
             <main className="saas__main">
-                
+                <Hero />
             </main>
 
         </div>

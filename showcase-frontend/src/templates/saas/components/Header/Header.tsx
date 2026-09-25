@@ -213,7 +213,7 @@ function Header() {
 
                 <a
                     className="header__brand"
-                    href="/saas"
+                    href="/showcase/saas"
                     aria-label="Nexora home"
                 >
                     <span
