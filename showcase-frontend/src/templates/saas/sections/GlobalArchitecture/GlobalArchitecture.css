@@ -708,7 +708,8 @@
     top: 50%;
     left: 50%;
 
-    width: min(92%, 70rem);
+    /* width: min(92%, 70rem); */
+    width: 125%;
 
     /* width: 92%; */
 
@@ -920,6 +921,28 @@
     .global-architecture__metric {
         border-bottom: 0;
     }
+
+
+    @media (min-width: 48rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   width: 145%;
+     *
+     * 48REM+:
+     *   width: min(92%, 70rem);
+     *
+     * Wider screens have enough horizontal room to display the
+     * complete global network without the mobile zoom.
+     *
+     * This continues at 64rem because the map already looks
+     * correct on tablet, laptop, and desktop layouts.
+     */
+    .global-architecture__world {
+        width: min(92%, 70rem);
+    }
+}
 
 
 }
