@@ -22,6 +22,8 @@ import ProductOverview from "./sections/ProductOverview/ProductOverview.tsx";
 import Story from "./sections/Story/Story.tsx"
 import GlobalArchitecture from "./sections/GlobalArchitecture/GlobalArchitecture.tsx";
 import Features from "./sections/Features/Features.tsx";
+import Integrations from "./sections/Integrations/Integrations";
+import Metrics from "./sections/Metrics/Metrics";
 
 
 
@@ -44,6 +46,8 @@ export default function SaaSApp(){
                 <Story/>
                 <GlobalArchitecture/>
                 <Features/>
+                <Integrations />
+                <Metrics />
             </main>
 
         </div>

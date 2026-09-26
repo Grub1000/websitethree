@@ -1,0 +1,347 @@
+/* ========================================
+   METRICS
+   ======================================== */
+
+.metrics {
+    position: relative;
+
+    overflow: hidden;
+
+    background: var(--saas-color-bg-soft);
+}
+
+.metrics__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-12);
+
+    width: min(100% - 2rem, var(--saas-container));
+    margin: 0 auto;
+    padding: var(--saas-space-24) 0;
+}
+
+
+/* ========================================
+   SECTION HEADER
+   ======================================== */
+
+.metrics__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-4);
+
+    max-width: var(--saas-container-text);
+}
+
+.metrics__eyebrow {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-cyan-400);
+}
+
+.metrics__heading {
+    max-width: 44rem;
+
+    font-size: clamp(2rem, 6vw, var(--saas-text-4xl));
+    font-weight: var(--saas-weight-semibold);
+    line-height: var(--saas-line-heading);
+    letter-spacing: -0.035em;
+
+    color: var(--saas-color-text-primary);
+}
+
+.metrics__description {
+    max-width: 40rem;
+
+    font-size: var(--saas-text-base);
+    line-height: var(--saas-line-body);
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   METRIC GRID
+   ======================================== */
+
+.metrics__grid {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Metrics stack vertically so the large values retain their
+     * visual weight without becoming compressed.
+     *
+     * CHANGES AT 48REM:
+     * Two columns provide a balanced intermediate layout.
+     *
+     * CHANGES AT 64REM:
+     * All four metrics form one horizontal platform-scale row.
+     */
+    grid-template-columns: minmax(0, 1fr);
+
+    border-top: 1px solid var(--saas-color-border);
+    border-bottom: 1px solid var(--saas-color-border);
+}
+
+.metrics__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-2);
+
+    min-width: 0;
+    padding: var(--saas-space-8) 0;
+    border-bottom: 1px solid var(--saas-color-border);
+}
+
+.metrics__item:last-child {
+    border-bottom: 0;
+}
+
+.metrics__value {
+    font-family: var(--saas-font-mono);
+    font-size: clamp(2.5rem, 10vw, var(--saas-text-5xl));
+    font-weight: var(--saas-weight-medium);
+    line-height: 1;
+    letter-spacing: -0.05em;
+
+    color: var(--saas-color-text-primary);
+}
+
+.metrics__label {
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+.metrics__detail {
+    font-size: var(--saas-text-xs);
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   PLATFORM STATUS
+   ======================================== */
+
+.metrics__status {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-6);
+
+    padding-top: var(--saas-space-2);
+}
+
+.metrics__status-primary {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-2);
+}
+
+.metrics__status-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+}
+
+.metrics__status-dot {
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border-radius: var(--saas-radius-pill);
+
+    background: var(--saas-color-green);
+
+    animation: metrics-status-pulse 2s ease-in-out infinite;
+}
+
+.metrics__status-text {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-green);
+}
+
+.metrics__status-description {
+    font-size: var(--saas-text-xs);
+
+    color: var(--saas-color-text-muted);
+}
+
+.metrics__status-signals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--saas-space-3) var(--saas-space-6);
+}
+
+.metrics__status-signal {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+}
+
+.metrics__status-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-text-muted);
+}
+
+.metrics__status-icon--healthy {
+    color: var(--saas-color-green);
+}
+
+.metrics__status-signal-text {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   STATUS ANIMATION
+   ======================================== */
+
+/*
+ * Only the operational status indicator animates here.
+ *
+ * Metrics intentionally remain static because this section is a
+ * visual cooldown between the interactive integrations content
+ * and the upcoming developer terminal experience.
+ */
+
+@keyframes metrics-status-pulse {
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+@media (min-width: 48rem) {
+    .metrics__container {
+        gap: var(--saas-space-16);
+
+        width: min(100% - 4rem, var(--saas-container));
+        padding: var(--saas-space-32) 0;
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: minmax(0, 1fr);
+     *
+     * 48REM+:
+     *   Two equal columns allow the metrics to begin forming a
+     *   horizontal composition without compressing their values.
+     *
+     * CHANGES AGAIN AT 64REM:
+     *   The grid becomes a single four-column row.
+     */
+    .metrics__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .metrics__item {
+        padding: var(--saas-space-8);
+
+        border-right: 1px solid var(--saas-color-border);
+        border-bottom: 1px solid var(--saas-color-border);
+    }
+
+    /*
+     * In the two-column layout the second item ends the first row,
+     * so its right border is removed.
+     */
+    .metrics__item:nth-child(2) {
+        border-right: 0;
+    }
+
+    /*
+     * The final two items occupy the second row and therefore no
+     * longer require a bottom divider.
+     */
+    .metrics__item:nth-child(3),
+    .metrics__item:nth-child(4) {
+        border-bottom: 0;
+    }
+
+    .metrics__item:nth-child(4) {
+        border-right: 0;
+    }
+
+    .metrics__status {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .metrics__status-signals {
+        justify-content: flex-end;
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+@media (min-width: 64rem) {
+    /*
+     * OVERRIDES 48REM:
+     *
+     * 48REM:
+     *   grid-template-columns: repeat(2, minmax(0, 1fr));
+     *
+     * 64REM+:
+     *   Four equal columns create one uninterrupted metrics row.
+     */
+    .metrics__grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    /*
+     * The two-column breakpoint removed borders based on row
+     * position. At four columns every metric shares one row, so
+     * bottom borders are unnecessary and the internal vertical
+     * dividers are restored where appropriate.
+     */
+    .metrics__item,
+    .metrics__item:nth-child(2),
+    .metrics__item:nth-child(3) {
+        border-right: 1px solid var(--saas-color-border);
+        border-bottom: 0;
+    }
+
+    .metrics__item:nth-child(4) {
+        border-right: 0;
+        border-bottom: 0;
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .metrics__status-dot {
+        animation: none;
+    }
+}
