@@ -21,6 +21,7 @@ import CredibilityStrip from "./sections/CredibilityStrip/CredibilityStrip";
 import ProductOverview from "./sections/ProductOverview/ProductOverview.tsx";
 import Story from "./sections/Story/Story.tsx"
 import GlobalArchitecture from "./sections/GlobalArchitecture/GlobalArchitecture.tsx";
+import Features from "./sections/Features/Features.tsx";
 
 
 
@@ -42,6 +43,7 @@ export default function SaaSApp(){
                 <ProductOverview />
                 <Story/>
                 <GlobalArchitecture/>
+                <Features/>
             </main>
 
         </div>

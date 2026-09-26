@@ -152,7 +152,7 @@ function GlobalArchitecture() {
                     * Start when the top of this section reaches
                     * the top of the viewport.
                     */
-                    start: "25%",
+                    start: "22%",
                     /*
                     * Create a long scroll runway.
                     *

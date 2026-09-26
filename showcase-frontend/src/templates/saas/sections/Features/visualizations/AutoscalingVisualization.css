@@ -1,0 +1,668 @@
+/* ========================================
+   AUTOSCALING VISUALIZATION
+   ======================================== */
+
+.autoscaling-visualization {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-5);
+
+    width: 100%;
+}
+
+.autoscaling-visualization__summary {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * The three operational metrics share the available width.
+     *
+     * These remain three columns at larger breakpoints because
+     * the values are intentionally compact.
+     */
+    grid-template-columns: repeat(3, 1fr);
+
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    overflow: hidden;
+
+    background: var(--saas-color-surface-1);
+}
+
+.autoscaling-visualization__metric {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+    padding: var(--saas-space-3);
+    border-right: 1px solid var(--saas-color-border);
+}
+
+.autoscaling-visualization__metric:last-child {
+    border-right: 0;
+}
+
+.autoscaling-visualization__metric-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    font-weight: var(--saas-weight-medium);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+.autoscaling-visualization__metric-value {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-base);
+    font-weight: var(--saas-weight-semibold);
+
+    color: var(--saas-color-text-primary);
+}
+
+.autoscaling-visualization__metric-value--active {
+    color: var(--saas-color-cyan-400);
+}
+
+
+/* ========================================
+   REQUEST LOAD CHART
+   ======================================== */
+
+.autoscaling-visualization__chart,
+.autoscaling-visualization__scaling {
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    overflow: hidden;
+
+    background: var(--saas-color-surface-1);
+}
+
+.autoscaling-visualization__chart-header,
+.autoscaling-visualization__scaling-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-3);
+
+    padding: var(--saas-space-3) var(--saas-space-4);
+    border-bottom: 1px solid var(--saas-color-border);
+}
+
+.autoscaling-visualization__chart-title-group,
+.autoscaling-visualization__scaling-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+}
+
+.autoscaling-visualization__chart-title,
+.autoscaling-visualization__scaling-title {
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-semibold);
+
+    color: var(--saas-color-text-primary);
+}
+
+.autoscaling-visualization__chart-range,
+.autoscaling-visualization__scaling-range {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.autoscaling-visualization__threshold-key {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+
+    flex-shrink: 0;
+}
+
+.autoscaling-visualization__threshold-key-line {
+    width: 1.5rem;
+    height: 1px;
+    border-top: 1px dashed var(--saas-color-amber);
+}
+
+.autoscaling-visualization__threshold-key-label {
+    display: none;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.autoscaling-visualization__graph {
+    height: 11rem;
+    padding: var(--saas-space-4);
+}
+
+.autoscaling-visualization__graph-svg {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+}
+
+.autoscaling-visualization__graph-guide {
+    stroke: var(--saas-color-border-subtle);
+    stroke-width: 1;
+
+    vector-effect: non-scaling-stroke;
+}
+
+.autoscaling-visualization__graph-threshold {
+    stroke: var(--saas-color-amber);
+    stroke-width: 1;
+    stroke-dasharray: 5 5;
+    opacity: 0.6;
+
+    vector-effect: non-scaling-stroke;
+}
+
+/*
+ * pathLength="1" on the SVG polyline normalizes its complete
+ * length to 1.
+ *
+ * The dash initially covers the entire line but is offset by
+ * that same amount, which hides it. Once the visualization
+ * enters the viewport, CSS animates the offset to 0 and reveals
+ * the graph from left to right.
+ */
+.autoscaling-visualization__graph-line {
+    fill: none;
+    stroke: var(--saas-color-cyan-400);
+    stroke-width: 2;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    vector-effect: non-scaling-stroke;
+}
+
+.autoscaling-visualization__graph-endpoint {
+    fill: var(--saas-color-cyan-300);
+
+    opacity: 0;
+
+    filter: drop-shadow(0 0 4px var(--saas-color-cyan-400));
+
+    transform: scale(0.5);
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+
+/* ========================================
+   COMPUTE CAPACITY
+   ======================================== */
+
+.autoscaling-visualization__scaling-status {
+    flex-shrink: 0;
+
+    padding: var(--saas-space-1) var(--saas-space-2);
+    border: 1px solid var(--saas-color-cyan-border);
+    border-radius: var(--saas-radius-pill);
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-cyan-300);
+    background: var(--saas-color-cyan-muted);
+
+    opacity: 0;
+
+    transform: translateY(0.25rem);
+}
+
+.autoscaling-visualization__instances {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Instances use two columns so each server remains readable
+     * on narrow screens.
+     *
+     * CHANGES AT 48REM:
+     * All six instances fit on a single horizontal row.
+     */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--saas-space-2);
+
+    padding: var(--saas-space-4);
+}
+
+.autoscaling-visualization__instance {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-2);
+
+    min-width: 0;
+    padding: var(--saas-space-3);
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-sm);
+
+    background: var(--saas-color-surface-2);
+}
+
+/*
+ * Instances 4–6 represent capacity created after traffic crosses
+ * the scaling threshold.
+ *
+ * React provides --instance-order as 0, 1, or 2. The value is
+ * later used by the --animate state to stagger the three
+ * instance entrances.
+ */
+.autoscaling-visualization__instance--added {
+    border-color: var(--saas-color-cyan-border);
+
+    opacity: 0;
+
+    background: var(--saas-color-cyan-muted);
+
+    transform: translateY(0.5rem);
+}
+
+.autoscaling-visualization__instance-icon {
+    color: var(--saas-color-text-muted);
+}
+
+.autoscaling-visualization__instance--added
+.autoscaling-visualization__instance-icon {
+    color: var(--saas-color-cyan-400);
+}
+
+.autoscaling-visualization__instance-name {
+    overflow: hidden;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-primary);
+}
+
+.autoscaling-visualization__instance-status {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   SCALING EVENT
+   ======================================== */
+
+.autoscaling-visualization__event {
+    display: grid;
+    align-items: center;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * The first three columns contain the event marker,
+     * timestamp, and message.
+     *
+     * The result occupies its own row so the event message
+     * remains readable on narrow screens.
+     *
+     * CHANGES AT 48REM:
+     * The result returns to the main event row.
+     */
+    grid-template-columns: auto auto minmax(0, 1fr);
+    gap: var(--saas-space-2);
+
+    padding: var(--saas-space-3) var(--saas-space-4);
+    border-top: 1px solid var(--saas-color-border);
+
+    opacity: 0;
+
+    transform: translateY(0.25rem);
+}
+
+.autoscaling-visualization__event-dot {
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border-radius: var(--saas-radius-pill);
+
+    background: var(--saas-color-cyan-400);
+}
+
+.autoscaling-visualization__event-time,
+.autoscaling-visualization__event-result {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.autoscaling-visualization__event-message {
+    min-width: 0;
+
+    font-size: var(--saas-text-xs);
+
+    color: var(--saas-color-text-secondary);
+}
+
+.autoscaling-visualization__event-result {
+    /*
+     * BASE / MOBILE:
+     *
+     * Start beneath the timestamp rather than beneath the event
+     * marker so the second row remains visually aligned.
+     */
+    grid-column: 2 / -1;
+
+    color: var(--saas-color-cyan-300);
+}
+
+
+/* ========================================
+   ACTIVE ANIMATION SEQUENCE
+   ======================================== */
+
+/*
+ * Autoscaling is the default Features tab, so the component can
+ * exist long before the user actually reaches this section.
+ *
+ * The animations therefore DO NOT run on the base classes.
+ *
+ * React adds .autoscaling-visualization--animate only after the
+ * IntersectionObserver confirms that enough of the visualization
+ * is visible. That parent class acts as the switch for the entire
+ * sequence below.
+ */
+
+.autoscaling-visualization--animate
+.autoscaling-visualization__graph-line {
+    animation: autoscaling-graph-draw 1.8s var(--saas-ease) forwards;
+}
+
+.autoscaling-visualization--animate
+.autoscaling-visualization__graph-threshold {
+    animation: autoscaling-threshold-pulse 600ms ease-in-out 1.15s 2;
+}
+
+.autoscaling-visualization--animate
+.autoscaling-visualization__graph-endpoint {
+    animation:
+        autoscaling-endpoint-enter 250ms var(--saas-ease) 1.65s forwards,
+        autoscaling-endpoint-pulse 1.8s ease-in-out 1.9s infinite;
+}
+
+/*
+ * --instance-order is 0, 1, or 2.
+ *
+ * The 1.75s base delay waits until the request graph has nearly
+ * finished drawing. Each additional 180ms then provisions the
+ * next instance in sequence.
+ */
+.autoscaling-visualization--animate
+.autoscaling-visualization__instance--added {
+    animation: autoscaling-instance-enter 400ms var(--saas-ease) forwards;
+    animation-delay: calc(1.75s + (var(--instance-order) * 180ms));
+}
+
+.autoscaling-visualization--animate
+.autoscaling-visualization__scaling-status {
+    animation: autoscaling-status-enter 350ms var(--saas-ease) 2.65s forwards;
+}
+
+.autoscaling-visualization--animate
+.autoscaling-visualization__event {
+    animation: autoscaling-event-enter 350ms var(--saas-ease) 2.9s forwards;
+}
+
+.autoscaling-visualization--animate
+.autoscaling-visualization__event-dot {
+    animation: autoscaling-event-dot-pulse 1.8s ease-in-out 3.25s infinite;
+}
+
+
+/* ========================================
+   AUTOSCALING KEYFRAMES
+   ======================================== */
+
+/*
+ * Draw the request history from left to right.
+ */
+@keyframes autoscaling-graph-draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/*
+ * Briefly emphasize the configured threshold as the request
+ * graph reaches the portion of the curve that exceeds it.
+ */
+@keyframes autoscaling-threshold-pulse {
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/*
+ * Reveal the current/live point at the end of the request graph.
+ */
+@keyframes autoscaling-endpoint-enter {
+    from {
+        opacity: 0;
+
+        transform: scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+}
+
+/*
+ * Once visible, the endpoint keeps a subtle ambient pulse so the
+ * final graph still feels like a live operational metric.
+ */
+@keyframes autoscaling-endpoint-pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.35);
+    }
+}
+
+/*
+ * Provision each new compute instance into the capacity grid.
+ */
+@keyframes autoscaling-instance-enter {
+    from {
+        opacity: 0;
+
+        transform: translateY(0.5rem);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+/*
+ * Confirm the completed scaling operation after all three new
+ * instances have entered the interface.
+ */
+@keyframes autoscaling-status-enter {
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+/*
+ * Record the autoscaling operation after capacity has changed.
+ */
+@keyframes autoscaling-event-enter {
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+/*
+ * Keep the completed event subtly active without competing with
+ * the primary graph and compute visualization.
+ */
+@keyframes autoscaling-event-dot-pulse {
+    0%,
+    100% {
+        opacity: 0.55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+@media (min-width: 48rem) {
+    .autoscaling-visualization__metric {
+        padding: var(--saas-space-4);
+    }
+
+    .autoscaling-visualization__threshold-key-label {
+        display: inline;
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: repeat(2, minmax(0, 1fr));
+     *
+     * 48REM+:
+     *   grid-template-columns: repeat(6, minmax(0, 1fr));
+     *
+     * The wider visualization has enough room to represent all
+     * six active instances on one compute row.
+     *
+     * This is NOT overridden at 64rem, so the six-column layout
+     * continues cascading at larger widths.
+     */
+    .autoscaling-visualization__instances {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: auto auto minmax(0, 1fr);
+     *
+     * 48REM+:
+     *   Adds a fourth column for the scaling result.
+     *
+     * The result can now remain on the same row as the event.
+     *
+     * This is NOT overridden at 64rem, so the same event layout
+     * continues cascading at larger widths.
+     */
+    .autoscaling-visualization__event {
+        grid-template-columns: auto auto minmax(0, 1fr) auto;
+    }
+
+    .autoscaling-visualization__event-result {
+        grid-column: auto;
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+@media (min-width: 64rem) {
+    /*
+     * NO INSTANCE COLUMN CHANGE HERE.
+     *
+     * The six-column instance layout introduced at 48rem remains
+     * active because grid-template-columns is not overridden.
+     *
+     * Only the graph receives additional vertical room inside
+     * the larger visualization workspace.
+     */
+    .autoscaling-visualization__graph {
+        height: 13rem;
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    /*
+     * Users who prefer reduced motion should immediately receive
+     * the completed operational state.
+     *
+     * These rules work whether or not IntersectionObserver has
+     * added the --animate class.
+     */
+    .autoscaling-visualization__graph-line {
+        stroke-dashoffset: 0;
+
+        animation: none;
+    }
+
+    .autoscaling-visualization__graph-threshold {
+        animation: none;
+    }
+
+    .autoscaling-visualization__graph-endpoint {
+        opacity: 1;
+
+        transform: scale(1);
+
+        animation: none;
+    }
+
+    .autoscaling-visualization__instance--added,
+    .autoscaling-visualization__scaling-status,
+    .autoscaling-visualization__event {
+        opacity: 1;
+
+        transform: none;
+
+        animation: none;
+    }
+
+    .autoscaling-visualization__event-dot {
+        animation: none;
+    }
+}
