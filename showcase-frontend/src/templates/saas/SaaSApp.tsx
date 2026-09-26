@@ -29,6 +29,7 @@ import Pricing from "./sections/Pricing/Pricing";
 import Testimonials from "./sections/Testimonials/Testimonials";
 import FAQ from "./sections/FAQ/FAQ";
 import FinalCTA from "./sections/FinalCTA/FinalCTA";
+import Footer from "./sections/Footer/Footer";
 
 
 
@@ -58,6 +59,7 @@ export default function SaaSApp(){
                 <Testimonials/>
                 <FAQ/>
                 <FinalCTA/>
+                <Footer/>
             </main>
 
         </div>
