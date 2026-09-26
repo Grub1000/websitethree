@@ -1,0 +1,458 @@
+/* ========================================
+   FAQ
+   ======================================== */
+
+/*
+ * FAQ follows the human-focused testimonial section with a more
+ * functional interaction pattern.
+ *
+ * The section avoids cards entirely. Thin horizontal rules define
+ * each question so the accordion feels closer to technical
+ * documentation than a generic marketing FAQ component.
+ */
+
+.faq {
+    position: relative;
+
+    overflow: hidden;
+
+    background: var(--saas-color-bg-soft);
+}
+
+.faq__container {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Context appears above the accordion so both use the full
+     * viewport width and questions remain easy to scan.
+     *
+     * CHANGES AT 64REM:
+     * The context becomes a smaller left column while the accordion
+     * receives the majority of the available horizontal space.
+     */
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--saas-space-12);
+
+    width: min(100% - 2rem, var(--saas-container));
+    margin: 0 auto;
+    padding: var(--saas-space-24) 0;
+}
+
+
+/* ========================================
+   SECTION INTRODUCTION
+   ======================================== */
+
+.faq__intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-8);
+}
+
+.faq__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-4);
+
+    max-width: var(--saas-container-text);
+}
+
+.faq__eyebrow {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-cyan-400);
+}
+
+.faq__heading {
+    max-width: 38rem;
+
+    font-size: clamp(2rem, 6vw, var(--saas-text-4xl));
+    font-weight: var(--saas-weight-semibold);
+    line-height: var(--saas-line-heading);
+    letter-spacing: -0.035em;
+
+    color: var(--saas-color-text-primary);
+}
+
+.faq__description {
+    max-width: 36rem;
+
+    font-size: var(--saas-text-base);
+    line-height: var(--saas-line-body);
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   SUPPORT DETAIL
+   ======================================== */
+
+/*
+ * This is supporting copy rather than a CTA. It deliberately uses
+ * no enclosing card so the left side of the section stays quiet
+ * while the accordion provides the primary interaction.
+ */
+
+.faq__support {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--saas-space-3);
+
+    max-width: 24rem;
+    padding-top: var(--saas-space-5);
+    border-top: 1px solid var(--saas-color-border);
+}
+
+.faq__support-icon {
+    flex-shrink: 0;
+
+    margin-top: 0.125rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.faq__support-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+}
+
+.faq__support-title {
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+.faq__support-description {
+    font-size: var(--saas-text-xs);
+    line-height: var(--saas-line-body);
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   ACCORDION
+   ======================================== */
+
+.faq__accordion {
+    border-top: 1px solid var(--saas-color-border);
+}
+
+.faq__item {
+    border-bottom: 1px solid var(--saas-color-border);
+
+    /*
+     * The background transition gives the active question a small
+     * amount of hierarchy without turning each row into a card.
+     */
+    transition: background var(--saas-motion-base) var(--saas-ease);
+}
+
+.faq__item--open {
+    background: var(--saas-color-surface-1);
+}
+
+.faq__item-heading {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+
+/* ========================================
+   QUESTION TRIGGER
+   ======================================== */
+
+.faq__trigger {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Column 1 = compact numeric index.
+     * Column 2 = flexible question text.
+     * Column 3 = fixed expand/collapse control.
+     *
+     * Keeping the index in its own column gives the accordion the
+     * structured feel of technical documentation rather than a
+     * collection of unrelated marketing questions.
+     */
+    grid-template-columns: 2rem minmax(0, 1fr) 2rem;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    width: 100%;
+    min-height: 5rem;
+    padding: var(--saas-space-4) 0;
+
+    text-align: left;
+}
+
+.faq__number {
+    align-self: start;
+
+    padding-top: 0.125rem;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-disabled);
+
+    transition: color var(--saas-motion-fast) var(--saas-ease);
+}
+
+.faq__question {
+    font-size: var(--saas-text-base);
+    font-weight: var(--saas-weight-medium);
+    line-height: 1.45;
+
+    color: var(--saas-color-text-primary);
+}
+
+.faq__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    justify-self: end;
+
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-sm);
+
+    color: var(--saas-color-text-muted);
+
+    transition:
+        border-color var(--saas-motion-fast) var(--saas-ease),
+        color var(--saas-motion-fast) var(--saas-ease),
+        background var(--saas-motion-fast) var(--saas-ease);
+}
+
+.faq__toggle-icon {
+    flex-shrink: 0;
+}
+
+.faq__trigger:hover
+.faq__number {
+    color: var(--saas-color-cyan-400);
+}
+
+.faq__trigger:hover
+.faq__toggle {
+    border-color: var(--saas-color-cyan-border);
+
+    color: var(--saas-color-cyan-300);
+    background: var(--saas-color-cyan-muted);
+}
+
+.faq__item--open
+.faq__number {
+    color: var(--saas-color-cyan-400);
+}
+
+.faq__item--open
+.faq__toggle {
+    border-color: var(--saas-color-cyan-border);
+
+    color: var(--saas-color-cyan-300);
+    background: var(--saas-color-cyan-muted);
+}
+
+.faq__trigger:focus-visible {
+    border-radius: var(--saas-radius-xs);
+
+    outline: 2px solid var(--saas-color-cyan-400);
+    outline-offset: 0.25rem;
+}
+
+
+/* ========================================
+   ANSWER PANEL
+   ======================================== */
+
+/*
+ * A 0fr -> 1fr grid-track transition gives us a smooth accordion
+ * without reading or writing element heights from JavaScript.
+ *
+ * The inner wrapper is essential: min-height: 0 allows the grid
+ * track to fully collapse instead of being held open by its content.
+ */
+
+.faq__panel {
+    display: grid;
+
+    grid-template-rows: 0fr;
+
+    visibility: hidden;
+
+    transition:
+        grid-template-rows var(--saas-motion-base) var(--saas-ease),
+        visibility 0s linear var(--saas-motion-base);
+}
+
+.faq__item--open
+.faq__panel {
+    grid-template-rows: 1fr;
+
+    visibility: visible;
+
+    transition:
+        grid-template-rows var(--saas-motion-base) var(--saas-ease),
+        visibility 0s linear 0s;
+}
+
+.faq__panel-inner {
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+.faq__answer {
+    max-width: 44rem;
+    padding:
+        0
+        var(--saas-space-10)
+        var(--saas-space-6)
+        calc(2rem + var(--saas-space-3));
+
+    font-size: var(--saas-text-sm);
+    line-height: var(--saas-line-body);
+
+    color: var(--saas-color-text-secondary);
+
+    opacity: 0;
+
+    transform: translateY(-0.25rem);
+
+    transition:
+        opacity var(--saas-motion-base) var(--saas-ease),
+        transform var(--saas-motion-base) var(--saas-ease);
+}
+
+.faq__item--open
+.faq__answer {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+@media (min-width: 48rem) {
+    .faq__container {
+        gap: var(--saas-space-16);
+
+        width: min(100% - 4rem, var(--saas-container));
+        padding: var(--saas-space-32) 0;
+    }
+
+    /*
+     * The overall section remains vertically stacked at 48rem.
+     *
+     * Rather than forcing the two-column layout too early, the
+     * additional width is used to increase question spacing and
+     * improve scanning. The structural layout changes at 64rem.
+     */
+    .faq__trigger {
+        /*
+         * OVERRIDES BASE / MOBILE:
+         *
+         * Base:
+         *   grid-template-columns:
+         *       2rem minmax(0, 1fr) 2rem;
+         *
+         * 48REM+:
+         *   The index receives a slightly wider column while the
+         *   question and toggle retain their existing behavior.
+         *
+         * CHANGES AGAIN AT 64REM:
+         *   Column sizing remains the same; only the overall FAQ
+         *   section becomes two columns.
+         */
+        grid-template-columns: 2.5rem minmax(0, 1fr) 2rem;
+
+        min-height: 5.5rem;
+        padding: var(--saas-space-5) var(--saas-space-2);
+    }
+
+    /*
+     * The answer begins beneath the question column rather than
+     * beneath the numeric index. The calculation mirrors the
+     * 2.5rem index column plus the trigger's column gap.
+     */
+    .faq__answer {
+        padding:
+            0
+            var(--saas-space-12)
+            var(--saas-space-6)
+            calc(2.5rem + var(--saas-space-3) + var(--saas-space-2));
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+@media (min-width: 64rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base through 48REM:
+     *   grid-template-columns: minmax(0, 1fr);
+     *
+     * 64REM+:
+     *   A restrained left context column sits beside a wider FAQ
+     *   column. The accordion gets more space because its questions
+     *   and answers are the primary functional content.
+     */
+    .faq__container {
+        grid-template-columns:
+            minmax(18rem, 0.72fr)
+            minmax(32rem, 1.28fr);
+        align-items: start;
+        gap: var(--saas-space-20);
+    }
+
+    /*
+     * The intro stays visible while longer accordion content moves
+     * through the viewport. This is intentionally introduced only
+     * at larger widths where the two-column layout provides enough
+     * independent vertical space for sticky positioning to help.
+     */
+    .faq__intro {
+        position: sticky;
+        top: var(--saas-space-24);
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    /*
+     * Accordion state remains fully functional, but visual state
+     * changes happen immediately for users who request less motion.
+     */
+    .faq__item,
+    .faq__number,
+    .faq__toggle,
+    .faq__panel,
+    .faq__answer {
+        transition: none;
+    }
+}
