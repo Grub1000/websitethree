@@ -11,6 +11,11 @@ import {
 import "./Features.css";
 
 import AutoscalingVisualization from "./visualizations/AutoscalingVisualization";
+import DeploymentsVisualization from "./visualizations/DeploymentsVisualization";
+import ObservabilityVisualization from "./visualizations/ObservabilityVisualization";
+import NetworkingVisualization from "./visualizations/NetworkingVisualization";
+import DatabasesVisualization from "./visualizations/DatabasesVisualization";
+import RollbacksVisualization from "./visualizations/RollbacksVisualization";
 
 type FeatureId =
     | "autoscaling"
@@ -185,9 +190,37 @@ export default function Features() {
                          * visualization for each selected feature.
                          */}
                        <div className="features__visualization-body">
-                            {activeFeature === "autoscaling" ? (
+
+                            {activeFeature === "autoscaling" && (
                                 <AutoscalingVisualization />
-                            ) : (
+                            )}
+
+                            {activeFeature === "deployments" && (
+                                <DeploymentsVisualization />
+                            )}
+
+                            {activeFeature === "observability" && (
+                                <ObservabilityVisualization />
+                            )}
+
+                            {activeFeature === "networking" && (
+                                <NetworkingVisualization />
+                            )}
+                            {activeFeature === "databases" && (
+                                <DatabasesVisualization />
+                            )}
+                            {activeFeature === "rollbacks" && (
+                                <RollbacksVisualization />
+                            )}
+                            
+                            {![
+                                "autoscaling",
+                                "deployments",
+                                "observability",
+                                "networking",
+                                "databases",
+                                "rollbacks"
+                            ].includes(activeFeature) && (
                                 <div className="features__placeholder">
                                     <span className="features__placeholder-label">
                                         {selectedFeature.label}

@@ -1,0 +1,1097 @@
+/* ========================================
+   DATABASES VISUALIZATION
+   ======================================== */
+
+.databases-visualization {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-5);
+
+    width: 100%;
+}
+
+
+/* ========================================
+   DATABASE HEADER
+   ======================================== */
+
+.databases-visualization__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-4);
+
+    padding: var(--saas-space-3) var(--saas-space-4);
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    background: var(--saas-color-surface-1);
+}
+
+.databases-visualization__identity {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    min-width: 0;
+}
+
+.databases-visualization__identity-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-sm);
+
+    background: var(--saas-color-surface-2);
+}
+
+.databases-visualization__identity-icon-svg {
+    color: var(--saas-color-cyan-400);
+}
+
+.databases-visualization__identity-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+.databases-visualization__identity-name {
+    overflow: hidden;
+
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-semibold);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-primary);
+}
+
+.databases-visualization__identity-engine {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.databases-visualization__health {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+
+    flex-shrink: 0;
+
+    padding: var(--saas-space-1) var(--saas-space-2);
+    border: 1px solid var(--saas-color-green-border);
+    border-radius: var(--saas-radius-pill);
+
+    background: var(--saas-color-green-muted);
+}
+
+.databases-visualization__health-dot {
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: var(--saas-radius-pill);
+
+    background: var(--saas-color-green);
+}
+
+.databases-visualization__health-text {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   DATABASE METRICS
+   ======================================== */
+
+.databases-visualization__metrics {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * The three database metrics remain in equal columns because
+     * each value is intentionally short and operational.
+     *
+     * No later breakpoint changes this grid, so the three-column
+     * layout continues throughout the responsive cascade.
+     */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    overflow: hidden;
+
+    background: var(--saas-color-surface-1);
+}
+
+.databases-visualization__metric {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+    padding: var(--saas-space-3);
+    border-right: 1px solid var(--saas-color-border);
+}
+
+.databases-visualization__metric:last-child {
+    border-right: 0;
+}
+
+.databases-visualization__metric-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+.databases-visualization__metric-value {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-semibold);
+
+    color: var(--saas-color-text-primary);
+}
+
+
+/* ========================================
+   DATABASE TOPOLOGY
+   ======================================== */
+
+.databases-visualization__topology {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Database topology reads vertically:
+     *
+     * primary
+     *    ↓
+     * replication
+     *    ↓
+     * replicas
+     *
+     * CHANGES AT 64REM:
+     * The topology becomes horizontal to resemble a database
+     * control-plane diagram rather than a stacked card list.
+     */
+    grid-template-columns: 1fr;
+    gap: var(--saas-space-4);
+
+    padding: var(--saas-space-4);
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    background: var(--saas-color-surface-1);
+}
+
+
+/* ========================================
+   PRIMARY DATABASE
+   ======================================== */
+
+.databases-visualization__primary {
+    display: flex;
+    justify-content: center;
+}
+
+.databases-visualization__primary-card {
+    width: 100%;
+    max-width: 22rem;
+    padding: var(--saas-space-4);
+    border: 1px solid var(--saas-color-cyan-border);
+    border-radius: var(--saas-radius-md);
+
+    background: var(--saas-color-cyan-muted);
+
+    box-shadow: 0 0 1.5rem var(--saas-color-cyan-glow);
+}
+
+.databases-visualization__primary-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--saas-space-3);
+}
+
+.databases-visualization__primary-identity {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+
+    min-width: 0;
+}
+
+.databases-visualization__primary-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-cyan-300);
+}
+
+.databases-visualization__primary-name-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+.databases-visualization__primary-name {
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+
+    color: var(--saas-color-text-primary);
+}
+
+.databases-visualization__primary-region {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.databases-visualization__primary-badge {
+    flex-shrink: 0;
+
+    padding: var(--saas-space-1) var(--saas-space-2);
+    border: 1px solid var(--saas-color-cyan-border);
+    border-radius: var(--saas-radius-pill);
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.5rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-cyan-300);
+}
+
+.databases-visualization__primary-stats {
+    display: grid;
+
+    /*
+     * CPU and write throughput are equally weighted operational
+     * measurements, so each occupies half of the primary card.
+     */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--saas-space-3);
+
+    margin-top: var(--saas-space-4);
+}
+
+.databases-visualization__primary-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+}
+
+.databases-visualization__primary-stat-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+.databases-visualization__primary-stat-value {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+
+    color: var(--saas-color-text-primary);
+}
+
+
+/* ========================================
+   REPLICATION PATH
+   ======================================== */
+
+.databases-visualization__replication {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    min-height: 4rem;
+}
+
+.databases-visualization__replication-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+
+    width: 1px;
+
+    background: var(--saas-color-border-strong);
+
+    transform: translateX(-50%);
+}
+
+.databases-visualization__replication-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--saas-space-1);
+
+    position: relative;
+    z-index: 1;
+
+    padding: var(--saas-space-2) var(--saas-space-3);
+    border: 1px solid var(--saas-color-border-strong);
+    border-radius: var(--saas-radius-sm);
+
+    background: var(--saas-color-surface-2);
+}
+
+.databases-visualization__replication-label-text {
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+.databases-visualization__replication-label-mode {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.databases-visualization__replication-packet {
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: var(--saas-radius-pill);
+
+    opacity: 0;
+
+    background: var(--saas-color-cyan-300);
+
+    box-shadow: 0 0 0.625rem var(--saas-color-cyan-400);
+
+    transform: translate(-50%, 0);
+}
+
+
+/* ========================================
+   READ REPLICAS
+   ======================================== */
+
+.databases-visualization__replicas {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Replica cards stack so their identity and replication-lag
+     * metadata remain readable on narrow screens.
+     *
+     * CHANGES AT 48REM:
+     * The three replicas move onto one row.
+     */
+    grid-template-columns: 1fr;
+    gap: var(--saas-space-3);
+}
+
+.databases-visualization__replica {
+    min-width: 0;
+    padding: var(--saas-space-3);
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-sm);
+
+    opacity: 0;
+
+    background: var(--saas-color-surface-2);
+
+    transform: translateY(0.375rem);
+}
+
+.databases-visualization__replica-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--saas-space-2);
+}
+
+.databases-visualization__replica-identity {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+
+    min-width: 0;
+}
+
+.databases-visualization__replica-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-text-muted);
+}
+
+.databases-visualization__replica-name-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+.databases-visualization__replica-name {
+    overflow: hidden;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-primary);
+}
+
+.databases-visualization__replica-region {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.databases-visualization__replica-health {
+    flex-shrink: 0;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.5rem;
+
+    color: var(--saas-color-green);
+}
+
+.databases-visualization__replica-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-2);
+
+    padding-top: var(--saas-space-3);
+    border-top: 1px solid var(--saas-color-border);
+    margin-top: var(--saas-space-3);
+}
+
+.databases-visualization__replica-lag-label,
+.databases-visualization__replica-lag-value {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.databases-visualization__replica-lag-value {
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   DATABASE OPERATIONS
+   ======================================== */
+
+.databases-visualization__operations {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Connection utilization and backup status stack vertically.
+     *
+     * CHANGES AT 48REM:
+     * The wider connection panel receives more room than the
+     * compact backup-status panel.
+     */
+    grid-template-columns: 1fr;
+    gap: var(--saas-space-4);
+}
+
+.databases-visualization__connections,
+.databases-visualization__backup {
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    background: var(--saas-color-surface-1);
+}
+
+.databases-visualization__connections {
+    padding: var(--saas-space-4);
+}
+
+.databases-visualization__operations-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-3);
+}
+
+.databases-visualization__operations-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+}
+
+.databases-visualization__operations-title {
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+
+    color: var(--saas-color-text-primary);
+}
+
+.databases-visualization__operations-detail,
+.databases-visualization__operations-value {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.databases-visualization__operations-value {
+    color: var(--saas-color-cyan-300);
+}
+
+.databases-visualization__connection-track {
+    height: 0.375rem;
+    border-radius: var(--saas-radius-pill);
+    margin-top: var(--saas-space-4);
+
+    overflow: hidden;
+
+    background: var(--saas-color-surface-3);
+}
+
+.databases-visualization__connection-fill {
+    display: block;
+
+    width: 57%;
+    height: 100%;
+    border-radius: inherit;
+
+    background: var(--saas-color-cyan-500);
+
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.databases-visualization__connection-scale {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-3);
+
+    margin-top: var(--saas-space-2);
+}
+
+.databases-visualization__connection-scale-value {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5rem;
+
+    color: var(--saas-color-text-disabled);
+}
+
+.databases-visualization__backup {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    padding: var(--saas-space-4);
+
+    opacity: 0;
+
+    transform: translateY(0.25rem);
+}
+
+.databases-visualization__backup-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--saas-color-green-border);
+    border-radius: var(--saas-radius-sm);
+
+    background: var(--saas-color-green-muted);
+}
+
+.databases-visualization__backup-icon-svg,
+.databases-visualization__backup-check {
+    color: var(--saas-color-green);
+}
+
+.databases-visualization__backup-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+.databases-visualization__backup-title {
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+.databases-visualization__backup-detail {
+    overflow: hidden;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-muted);
+}
+
+.databases-visualization__backup-check {
+    flex-shrink: 0;
+}
+
+
+/* ========================================
+   DATABASE SUMMARY
+   ======================================== */
+
+.databases-visualization__summary {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Four operational values use a two-by-two layout.
+     *
+     * CHANGES AT 48REM:
+     * All four values move onto one row.
+     */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    overflow: hidden;
+
+    background: var(--saas-color-surface-1);
+}
+
+.databases-visualization__summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+    padding: var(--saas-space-3);
+    border-right: 1px solid var(--saas-color-border);
+    border-bottom: 1px solid var(--saas-color-border);
+}
+
+.databases-visualization__summary-item:nth-child(2n) {
+    border-right: 0;
+}
+
+.databases-visualization__summary-item:nth-child(n + 3) {
+    border-bottom: 0;
+}
+
+.databases-visualization__summary-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+.databases-visualization__summary-value {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+.databases-visualization__summary-value--healthy {
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   ACTIVE ANIMATION SEQUENCE
+   ======================================== */
+
+/*
+ * The database animation communicates replication rather than
+ * simply decorating the interface:
+ *
+ * primary accepts traffic
+ *      ↓
+ * replication stream begins
+ *      ↓
+ * replicas synchronize
+ *      ↓
+ * connection utilization appears
+ *      ↓
+ * backup completes
+ *
+ * The --animate class is added only after IntersectionObserver
+ * confirms that this visualization is visible.
+ */
+
+.databases-visualization--animate
+.databases-visualization__replication-packet {
+    animation: databases-replication-packet 1.25s var(--saas-ease) forwards;
+}
+
+.databases-visualization--animate
+.databases-visualization__replication-packet--1 {
+    animation-delay: 250ms;
+}
+
+.databases-visualization--animate
+.databases-visualization__replication-packet--2 {
+    animation-delay: 500ms;
+}
+
+.databases-visualization--animate
+.databases-visualization__replication-packet--3 {
+    animation-delay: 750ms;
+}
+
+/*
+ * React supplies --replica-order as 0, 1, or 2.
+ *
+ * Each replica therefore becomes healthy shortly after the
+ * previous replica joins the replication topology.
+ */
+.databases-visualization--animate
+.databases-visualization__replica {
+    animation: databases-replica-enter 400ms var(--saas-ease) forwards;
+    animation-delay: calc(1.1s + (var(--replica-order) * 180ms));
+}
+
+.databases-visualization--animate
+.databases-visualization__connection-fill {
+    animation: databases-connection-fill 900ms var(--saas-ease) 1.8s forwards;
+}
+
+.databases-visualization--animate
+.databases-visualization__backup {
+    animation: databases-backup-enter 350ms var(--saas-ease) 2.55s forwards;
+}
+
+.databases-visualization--animate
+.databases-visualization__health-dot {
+    animation: databases-health-pulse 1.8s ease-in-out 2.9s infinite;
+}
+
+
+/* ========================================
+   AMBIENT REPLICATION
+   ======================================== */
+
+/*
+ * Once the initial explanation finishes, one lightweight packet
+ * continues through the replication path.
+ *
+ * This keeps the topology feeling operational without making all
+ * three packet markers compete for attention indefinitely.
+ */
+.databases-visualization--animate
+.databases-visualization__replication-packet--1 {
+    animation:
+        databases-replication-packet 1.25s var(--saas-ease) 250ms forwards,
+        databases-replication-packet 2.6s linear 3.1s infinite;
+}
+
+
+/* ========================================
+   DATABASE KEYFRAMES
+   ======================================== */
+
+@keyframes databases-replication-packet {
+    0% {
+        top: 0;
+
+        opacity: 0;
+
+        transform: translate(-50%, 0);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+
+        opacity: 0;
+
+        transform: translate(-50%, -100%);
+    }
+}
+
+@keyframes databases-replica-enter {
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+@keyframes databases-connection-fill {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes databases-backup-enter {
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+@keyframes databases-health-pulse {
+    0%,
+    100% {
+        opacity: 0.55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+@media (min-width: 48rem) {
+    .databases-visualization__metric {
+        padding: var(--saas-space-4);
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: 1fr;
+     *
+     * 48REM+:
+     *   grid-template-columns: repeat(3, minmax(0, 1fr));
+     *
+     * The visualization now has enough horizontal room for all
+     * three replicas to appear as one replication tier.
+     *
+     * This layout continues at 64rem and larger.
+     */
+    .databases-visualization__replicas {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: 1fr;
+     *
+     * 48REM+:
+     *   grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+     *
+     * Connection utilization receives more width because it
+     * contains a quantitative progress visualization.
+     */
+    .databases-visualization__operations {
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: repeat(2, minmax(0, 1fr));
+     *
+     * 48REM+:
+     *   grid-template-columns: repeat(4, minmax(0, 1fr));
+     *
+     * All four database summary values now occupy one row.
+     */
+    .databases-visualization__summary {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .databases-visualization__summary-item {
+        border-bottom: 0;
+    }
+
+    .databases-visualization__summary-item:nth-child(2n) {
+        border-right: 1px solid var(--saas-color-border);
+    }
+
+    .databases-visualization__summary-item:last-child {
+        border-right: 0;
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+@media (min-width: 64rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: 1fr;
+     *
+     * 64REM+:
+     *   primary → replication → replicas
+     *
+     * The topology becomes a horizontal infrastructure diagram.
+     * The primary and replication columns remain intentionally
+     * narrower than the three-card replica tier.
+     */
+    .databases-visualization__topology {
+        grid-template-columns:
+            minmax(10rem, 0.9fr)
+            minmax(7rem, 0.55fr)
+            minmax(0, 2fr);
+        align-items: center;
+    }
+
+    .databases-visualization__primary {
+        justify-content: flex-start;
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * The replication path changes from vertical to horizontal
+     * because the topology now flows from left to right.
+     */
+    .databases-visualization__replication-line {
+        top: 50%;
+        right: 0;
+        bottom: auto;
+        left: 0;
+
+        width: auto;
+        height: 1px;
+
+        transform: translateY(-50%);
+    }
+
+    .databases-visualization__replication-packet {
+        top: 50%;
+        left: 0;
+
+        transform: translate(0, -50%);
+    }
+
+    /*
+     * The packet movement must match the horizontal replication
+     * path introduced above, so only its keyframe name changes.
+     * Existing delays and durations continue to cascade.
+     */
+    .databases-visualization--animate
+    .databases-visualization__replication-packet {
+        animation-name: databases-replication-packet-horizontal;
+    }
+}
+
+
+/* ========================================
+   HORIZONTAL REPLICATION KEYFRAME
+   ======================================== */
+
+@keyframes databases-replication-packet-horizontal {
+    0% {
+        top: 50%;
+        left: 0;
+
+        opacity: 0;
+
+        transform: translate(0, -50%);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 50%;
+        left: 100%;
+
+        opacity: 0;
+
+        transform: translate(-100%, -50%);
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    /*
+     * Reduced-motion users receive the completed database state
+     * immediately. Replication packets are hidden because the
+     * surrounding labels already communicate the same topology.
+     */
+    .databases-visualization__replication-packet {
+        display: none;
+
+        animation: none;
+    }
+
+    .databases-visualization__replica,
+    .databases-visualization__backup {
+        opacity: 1;
+
+        transform: none;
+
+        animation: none;
+    }
+
+    .databases-visualization__connection-fill {
+        transform: scaleX(1);
+
+        animation: none;
+    }
+
+    .databases-visualization__health-dot {
+        animation: none;
+    }
+}

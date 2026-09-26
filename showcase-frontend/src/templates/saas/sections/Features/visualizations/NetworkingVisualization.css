@@ -1,0 +1,1037 @@
+/* ========================================
+   NETWORKING VISUALIZATION
+   ======================================== */
+
+.networking-visualization {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-5);
+
+    width: 100%;
+}
+
+
+/* ========================================
+   INCOMING REQUEST
+   ======================================== */
+
+.networking-visualization__request {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-4);
+
+    padding: var(--saas-space-3) var(--saas-space-4);
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    background: var(--saas-color-surface-1);
+}
+
+.networking-visualization__request-source {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    min-width: 0;
+}
+
+.networking-visualization__request-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-sm);
+
+    background: var(--saas-color-surface-2);
+}
+
+.networking-visualization__request-icon-svg {
+    color: var(--saas-color-cyan-400);
+}
+
+.networking-visualization__request-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+.networking-visualization__request-label {
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+.networking-visualization__request-address {
+    overflow: hidden;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-muted);
+}
+
+.networking-visualization__request-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-1);
+
+    flex-shrink: 0;
+}
+
+.networking-visualization__request-protocol,
+.networking-visualization__request-port {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.networking-visualization__request-protocol {
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   NETWORK ROUTING WORKSPACE
+   ======================================== */
+
+.networking-visualization__network {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * The routing story flows vertically:
+     *
+     * edge gateway
+     *      ↓
+     * smart routing
+     *      ↓
+     * regional destinations
+     *
+     * CHANGES AT 64REM:
+     * The same flow becomes horizontal so the gateway, routing
+     * layer, and regions read like an infrastructure topology.
+     */
+    grid-template-columns: 1fr;
+    gap: var(--saas-space-4);
+
+    padding: var(--saas-space-4);
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    background: var(--saas-color-surface-1);
+}
+
+.networking-visualization__entry {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    justify-self: center;
+}
+
+.networking-visualization__entry-node {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--saas-color-cyan-border);
+    border-radius: var(--saas-radius-md);
+
+    background: var(--saas-color-cyan-muted);
+
+    box-shadow: 0 0 1.5rem var(--saas-color-cyan-glow);
+}
+
+.networking-visualization__entry-icon {
+    color: var(--saas-color-cyan-300);
+}
+
+.networking-visualization__entry-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+}
+
+.networking-visualization__entry-name {
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+
+    color: var(--saas-color-text-primary);
+}
+
+.networking-visualization__entry-detail {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   ROUTING PATH
+   ======================================== */
+
+.networking-visualization__route {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    min-height: 4rem;
+}
+
+.networking-visualization__route-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+
+    width: 1px;
+
+    background: var(--saas-color-border-strong);
+
+    transform: translateX(-50%);
+}
+
+.networking-visualization__route-packet {
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: var(--saas-radius-pill);
+
+    opacity: 0;
+
+    background: var(--saas-color-cyan-300);
+
+    box-shadow: 0 0 0.625rem var(--saas-color-cyan-400);
+
+    transform: translate(-50%, 0);
+}
+
+.networking-visualization__router {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--saas-space-1);
+
+    position: relative;
+    z-index: 1;
+
+    padding: var(--saas-space-2) var(--saas-space-3);
+    border: 1px solid var(--saas-color-border-strong);
+    border-radius: var(--saas-radius-sm);
+
+    background: var(--saas-color-surface-2);
+}
+
+.networking-visualization__router-label {
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+.networking-visualization__router-rule {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   REGIONS
+   ======================================== */
+
+.networking-visualization__regions {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Regions stack because each destination contains operational
+     * metadata that needs enough horizontal space to remain useful.
+     *
+     * CHANGES AT 48REM:
+     * All three regions move onto one row.
+     */
+    grid-template-columns: 1fr;
+    gap: var(--saas-space-3);
+}
+
+.networking-visualization__region {
+    display: grid;
+
+    /*
+     * Each region is composed of its incoming route followed by
+     * the destination card. Keeping these as separate rows makes
+     * the route animation independent from the card itself.
+     */
+    grid-template-rows: auto auto;
+
+    min-width: 0;
+
+    opacity: 0;
+
+    transform: translateY(0.375rem);
+}
+
+.networking-visualization__region-route {
+    position: relative;
+
+    justify-self: center;
+
+    width: 1px;
+    height: 1.5rem;
+
+    overflow: hidden;
+
+    background: var(--saas-color-border);
+}
+
+.networking-visualization__region-route-line {
+    position: absolute;
+    inset: 0;
+
+    background: var(--saas-color-cyan-500);
+
+    transform: scaleY(0);
+    transform-origin: top;
+}
+
+.networking-visualization__region-packet {
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    width: 0.3125rem;
+    height: 0.3125rem;
+    border-radius: var(--saas-radius-pill);
+
+    opacity: 0;
+
+    background: var(--saas-color-cyan-300);
+
+    transform: translate(-50%, -100%);
+}
+
+.networking-visualization__region-card {
+    min-width: 0;
+    padding: var(--saas-space-3);
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-sm);
+
+    background: var(--saas-color-surface-2);
+}
+
+.networking-visualization__region--1
+.networking-visualization__region-card {
+    border-color: var(--saas-color-cyan-border);
+
+    background: var(--saas-color-cyan-muted);
+}
+
+.networking-visualization__region-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--saas-space-2);
+}
+
+.networking-visualization__region-identity {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+
+    min-width: 0;
+}
+
+.networking-visualization__region-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-text-muted);
+}
+
+.networking-visualization__region--1
+.networking-visualization__region-icon {
+    color: var(--saas-color-cyan-400);
+}
+
+.networking-visualization__region-name-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+.networking-visualization__region-id {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+
+    color: var(--saas-color-text-primary);
+}
+
+.networking-visualization__region-city {
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.networking-visualization__region-status {
+    flex-shrink: 0;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.5rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-green);
+}
+
+.networking-visualization__region-status--primary {
+    color: var(--saas-color-cyan-300);
+}
+
+.networking-visualization__region-metrics {
+    display: grid;
+
+    /*
+     * Latency and instance health are equally important pieces
+     * of routing metadata, so each receives half of the card.
+     */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--saas-space-2);
+
+    margin-top: var(--saas-space-3);
+}
+
+.networking-visualization__region-metric {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+}
+
+.networking-visualization__region-metric-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-disabled);
+}
+
+.networking-visualization__region-metric-value {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-secondary);
+}
+
+.networking-visualization__region-metric-value--healthy {
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   ROUTING DECISION
+   ======================================== */
+
+.networking-visualization__decision {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-3);
+
+    padding: var(--saas-space-3) var(--saas-space-4);
+    border: 1px solid var(--saas-color-green-border);
+    border-radius: var(--saas-radius-md);
+
+    opacity: 0;
+
+    background: var(--saas-color-green-muted);
+
+    transform: translateY(0.25rem);
+}
+
+.networking-visualization__decision-result {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    min-width: 0;
+}
+
+.networking-visualization__decision-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-green);
+}
+
+.networking-visualization__decision-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+.networking-visualization__decision-label {
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+
+    color: var(--saas-color-text-primary);
+}
+
+.networking-visualization__decision-detail {
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-secondary);
+}
+
+.networking-visualization__decision-route {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-3);
+
+    padding-top: var(--saas-space-3);
+    border-top: 1px solid var(--saas-color-green-border);
+}
+
+.networking-visualization__decision-region,
+.networking-visualization__decision-latency {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   NETWORK SUMMARY
+   ======================================== */
+
+.networking-visualization__summary {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Four compact values use two columns to prevent narrow text.
+     *
+     * CHANGES AT 48REM:
+     * All four values fit on a single row.
+     */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    overflow: hidden;
+
+    background: var(--saas-color-surface-1);
+}
+
+.networking-visualization__summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+    padding: var(--saas-space-3);
+    border-right: 1px solid var(--saas-color-border);
+    border-bottom: 1px solid var(--saas-color-border);
+}
+
+.networking-visualization__summary-item:nth-child(2n) {
+    border-right: 0;
+}
+
+.networking-visualization__summary-item:nth-child(n + 3) {
+    border-bottom: 0;
+}
+
+.networking-visualization__summary-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+.networking-visualization__summary-value {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+.networking-visualization__summary-value--healthy {
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   ACTIVE ANIMATION SEQUENCE
+   ======================================== */
+
+/*
+ * The Networking animation communicates an actual routing
+ * decision rather than adding decorative motion:
+ *
+ * request enters edge
+ *      ↓
+ * routing layer evaluates destinations
+ *      ↓
+ * regional routes become available
+ *      ↓
+ * iad1 is selected
+ *      ↓
+ * request continues through the chosen region
+ *
+ * The --animate parent is added only after IntersectionObserver
+ * confirms that the visualization is visible.
+ */
+
+.networking-visualization--animate
+.networking-visualization__route-packet {
+    animation: networking-entry-packet 1.2s var(--saas-ease) forwards;
+}
+
+.networking-visualization--animate
+.networking-visualization__route-packet--1 {
+    animation-delay: 200ms;
+}
+
+.networking-visualization--animate
+.networking-visualization__route-packet--2 {
+    animation-delay: 400ms;
+}
+
+.networking-visualization--animate
+.networking-visualization__route-packet--3 {
+    animation-delay: 600ms;
+}
+
+.networking-visualization--animate
+.networking-visualization__region {
+    animation: networking-region-enter 350ms var(--saas-ease) forwards;
+}
+
+.networking-visualization--animate
+.networking-visualization__region--1 {
+    animation-delay: 1.1s;
+}
+
+.networking-visualization--animate
+.networking-visualization__region--2 {
+    animation-delay: 1.25s;
+}
+
+.networking-visualization--animate
+.networking-visualization__region--3 {
+    animation-delay: 1.4s;
+}
+
+.networking-visualization--animate
+.networking-visualization__region-route-line {
+    animation: networking-region-route 500ms var(--saas-ease) 1.55s forwards;
+}
+
+/*
+ * React supplies --region-order as 0, 1, or 2 so each packet can
+ * travel shortly after the previous destination is evaluated.
+ */
+.networking-visualization--animate
+.networking-visualization__region-packet {
+    animation: networking-region-packet 700ms var(--saas-ease) forwards;
+    animation-delay: calc(1.8s + (var(--region-order) * 150ms));
+}
+
+.networking-visualization--animate
+.networking-visualization__decision {
+    animation: networking-decision-enter 350ms var(--saas-ease) 2.65s forwards;
+}
+
+.networking-visualization--animate
+.networking-visualization__region--1
+.networking-visualization__region-card {
+    animation: networking-primary-confirm 700ms var(--saas-ease) 2.3s 1;
+}
+
+
+/* ========================================
+   AMBIENT NETWORK ACTIVITY
+   ======================================== */
+
+/*
+ * After the initial routing explanation finishes, a lightweight
+ * packet continues through the selected primary route.
+ *
+ * This is intentionally limited to iad1. Animating every region
+ * forever would make the topology look decorative rather than
+ * communicate which route was selected.
+ */
+.networking-visualization--animate
+.networking-visualization__region--1
+.networking-visualization__region-packet {
+    animation:
+        networking-region-packet 700ms var(--saas-ease) 1.8s forwards,
+        networking-primary-packet 2.4s linear 3.2s infinite;
+}
+
+
+/* ========================================
+   NETWORKING KEYFRAMES
+   ======================================== */
+
+@keyframes networking-entry-packet {
+    0% {
+        top: 0;
+
+        opacity: 0;
+
+        transform: translate(-50%, 0);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+
+        opacity: 0;
+
+        transform: translate(-50%, -100%);
+    }
+}
+
+@keyframes networking-region-enter {
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+@keyframes networking-region-route {
+    to {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes networking-region-packet {
+    0% {
+        top: 0;
+
+        opacity: 0;
+
+        transform: translate(-50%, -100%);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+
+        opacity: 0;
+
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes networking-decision-enter {
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+@keyframes networking-primary-confirm {
+    0%,
+    100% {
+        border-color: var(--saas-color-cyan-border);
+    }
+
+    50% {
+        border-color: var(--saas-color-cyan-300);
+    }
+}
+
+@keyframes networking-primary-packet {
+    0% {
+        top: 0;
+
+        opacity: 0;
+
+        transform: translate(-50%, -100%);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+
+        opacity: 0;
+
+        transform: translate(-50%, 0);
+    }
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+@media (min-width: 48rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: 1fr;
+     *
+     * 48REM+:
+     *   grid-template-columns: repeat(3, minmax(0, 1fr));
+     *
+     * The workspace now has enough width for all three regional
+     * destinations to sit beside one another.
+     *
+     * This regional layout continues at 64rem and larger.
+     */
+    .networking-visualization__regions {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .networking-visualization__decision {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .networking-visualization__decision-route {
+        flex-shrink: 0;
+
+        padding-top: 0;
+        padding-left: var(--saas-space-4);
+        border-top: 0;
+        border-left: 1px solid var(--saas-color-green-border);
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: repeat(2, minmax(0, 1fr));
+     *
+     * 48REM+:
+     *   grid-template-columns: repeat(4, minmax(0, 1fr));
+     *
+     * All four network summary values now occupy one row.
+     */
+    .networking-visualization__summary {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .networking-visualization__summary-item {
+        border-bottom: 0;
+    }
+
+    .networking-visualization__summary-item:nth-child(2n) {
+        border-right: 1px solid var(--saas-color-border);
+    }
+
+    .networking-visualization__summary-item:last-child {
+        border-right: 0;
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+@media (min-width: 64rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: 1fr;
+     *
+     * 64REM+:
+     *   grid-template-columns:
+     *       minmax(8rem, 0.7fr)
+     *       minmax(7rem, 0.55fr)
+     *       minmax(0, 2fr);
+     *
+     * The topology changes from a vertical explanation into a
+     * left-to-right infrastructure flow:
+     *
+     * gateway → routing layer → regional destinations
+     */
+    .networking-visualization__network {
+        grid-template-columns:
+            minmax(8rem, 0.7fr)
+            minmax(7rem, 0.55fr)
+            minmax(0, 2fr);
+        align-items: center;
+    }
+
+    .networking-visualization__entry {
+        justify-self: start;
+    }
+
+    .networking-visualization__route {
+        min-width: 0;
+        min-height: 5rem;
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base route:
+     *   vertical line through the center of the routing column.
+     *
+     * 64REM+ route:
+     *   horizontal line through the center so traffic moves from
+     *   the gateway toward the regional destinations.
+     */
+    .networking-visualization__route-line {
+        top: 50%;
+        right: 0;
+        bottom: auto;
+        left: 0;
+
+        width: auto;
+        height: 1px;
+
+        transform: translateY(-50%);
+    }
+
+    .networking-visualization__route-packet {
+        top: 50%;
+        left: 0;
+
+        transform: translate(0, -50%);
+    }
+
+    /*
+     * At this breakpoint the routing column is horizontal.
+     * The packet keyframe therefore overrides the vertical
+     * top-based movement used by the base/mobile layout.
+     */
+    .networking-visualization--animate
+    .networking-visualization__route-packet {
+        animation-name: networking-entry-packet-horizontal;
+    }
+}
+
+
+/* ========================================
+   HORIZONTAL ROUTE KEYFRAME
+   ======================================== */
+
+@keyframes networking-entry-packet-horizontal {
+    0% {
+        top: 50%;
+        left: 0;
+
+        opacity: 0;
+
+        transform: translate(0, -50%);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 50%;
+        left: 100%;
+
+        opacity: 0;
+
+        transform: translate(-100%, -50%);
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    /*
+     * Reduced-motion users receive the completed routing state.
+     * Moving packets are hidden because they communicate motion
+     * rather than information that is unavailable elsewhere.
+     */
+    .networking-visualization__route-packet,
+    .networking-visualization__region-packet {
+        display: none;
+
+        animation: none;
+    }
+
+    .networking-visualization__region,
+    .networking-visualization__decision {
+        opacity: 1;
+
+        transform: none;
+
+        animation: none;
+    }
+
+    .networking-visualization__region-route-line {
+        transform: scaleY(1);
+
+        animation: none;
+    }
+
+    .networking-visualization__region--1
+    .networking-visualization__region-card {
+        animation: none;
+    }
+}

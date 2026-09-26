@@ -1,0 +1,1029 @@
+/* ========================================
+   ROLLBACKS VISUALIZATION
+   ======================================== */
+
+.rollbacks-visualization {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-5);
+
+    width: 100%;
+}
+
+
+/* ========================================
+   SERVICE HEADER
+   ======================================== */
+
+.rollbacks-visualization__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-4);
+
+    padding: var(--saas-space-3) var(--saas-space-4);
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    background: var(--saas-color-surface-1);
+}
+
+.rollbacks-visualization__identity {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    min-width: 0;
+}
+
+.rollbacks-visualization__identity-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-sm);
+
+    background: var(--saas-color-surface-2);
+}
+
+.rollbacks-visualization__identity-icon-svg {
+    color: var(--saas-color-cyan-400);
+}
+
+.rollbacks-visualization__identity-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+.rollbacks-visualization__identity-name {
+    overflow: hidden;
+
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-semibold);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-primary);
+}
+
+.rollbacks-visualization__identity-detail {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.rollbacks-visualization__header-status {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+
+    flex-shrink: 0;
+
+    padding: var(--saas-space-1) var(--saas-space-2);
+    border: 1px solid var(--saas-color-green-border);
+    border-radius: var(--saas-radius-pill);
+
+    opacity: 0;
+
+    background: var(--saas-color-green-muted);
+
+    transform: translateY(0.25rem);
+}
+
+.rollbacks-visualization__header-status-dot {
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: var(--saas-radius-pill);
+
+    background: var(--saas-color-green);
+}
+
+.rollbacks-visualization__header-status-text {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   RELEASE COMPARISON
+   ======================================== */
+
+.rollbacks-visualization__release-comparison {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * The failed and restored releases stack around a vertical
+     * rollback path:
+     *
+     * failed release
+     *       ↓
+     *    rollback
+     *       ↓
+     * restored release
+     *
+     * CHANGES AT 48REM:
+     * The comparison becomes horizontal so the user can directly
+     * compare the failed release with the restored release.
+     */
+    grid-template-columns: 1fr;
+    gap: var(--saas-space-4);
+}
+
+.rollbacks-visualization__release {
+    min-width: 0;
+    padding: var(--saas-space-4);
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    background: var(--saas-color-surface-1);
+}
+
+.rollbacks-visualization__release--failed {
+    border-color: var(--saas-color-red-border);
+
+    opacity: 0;
+
+    background: var(--saas-color-red-muted);
+
+    transform: translateY(0.375rem);
+}
+
+.rollbacks-visualization__release--restored {
+    border-color: var(--saas-color-green-border);
+
+    opacity: 0;
+
+    background: var(--saas-color-green-muted);
+
+    transform: translateY(0.375rem);
+}
+
+.rollbacks-visualization__release-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--saas-space-3);
+}
+
+.rollbacks-visualization__release-version-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+}
+
+.rollbacks-visualization__release-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+.rollbacks-visualization__release-version {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-lg);
+    font-weight: var(--saas-weight-semibold);
+
+    color: var(--saas-color-text-primary);
+}
+
+.rollbacks-visualization__release-state {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-1);
+
+    flex-shrink: 0;
+
+    padding: var(--saas-space-1) var(--saas-space-2);
+    border-radius: var(--saas-radius-pill);
+}
+
+.rollbacks-visualization__release-state--failed {
+    border: 1px solid var(--saas-color-red-border);
+
+    color: var(--saas-color-red);
+    background: var(--saas-color-red-muted);
+}
+
+.rollbacks-visualization__release-state--healthy {
+    border: 1px solid var(--saas-color-green-border);
+
+    color: var(--saas-color-green);
+    background: var(--saas-color-green-muted);
+}
+
+.rollbacks-visualization__release-state-icon {
+    flex-shrink: 0;
+}
+
+.rollbacks-visualization__release-state-text {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5rem;
+    text-transform: uppercase;
+}
+
+.rollbacks-visualization__commit {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+
+    min-width: 0;
+    padding: var(--saas-space-3) 0;
+    border-bottom: 1px solid var(--saas-color-border);
+    margin-top: var(--saas-space-3);
+}
+
+.rollbacks-visualization__commit-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-text-muted);
+}
+
+.rollbacks-visualization__commit-hash {
+    flex-shrink: 0;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-cyan-300);
+}
+
+.rollbacks-visualization__commit-message {
+    overflow: hidden;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-secondary);
+}
+
+.rollbacks-visualization__release-metrics {
+    display: grid;
+
+    /*
+     * Error rate and instance health are directly comparable
+     * release measurements, so each occupies half of the card.
+     */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--saas-space-3);
+
+    margin-top: var(--saas-space-3);
+}
+
+.rollbacks-visualization__release-metric {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+}
+
+.rollbacks-visualization__release-metric-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+.rollbacks-visualization__release-metric-value {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+}
+
+.rollbacks-visualization__release-metric-value--failed {
+    color: var(--saas-color-red);
+}
+
+.rollbacks-visualization__release-metric-value--healthy {
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   ROLLBACK PATH
+   ======================================== */
+
+.rollbacks-visualization__rollback-path {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    min-height: 4rem;
+}
+
+.rollbacks-visualization__rollback-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+
+    width: 1px;
+
+    overflow: hidden;
+
+    background: var(--saas-color-border-strong);
+
+    transform: translateX(-50%);
+}
+
+.rollbacks-visualization__rollback-line-fill {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    background: var(--saas-color-cyan-400);
+
+    transform: scaleY(0);
+    transform-origin: top;
+}
+
+.rollbacks-visualization__rollback-action {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+
+    position: relative;
+    z-index: 1;
+
+    padding: var(--saas-space-2) var(--saas-space-3);
+    border: 1px solid var(--saas-color-cyan-border);
+    border-radius: var(--saas-radius-sm);
+
+    opacity: 0;
+
+    color: var(--saas-color-cyan-300);
+    background: var(--saas-color-surface-2);
+
+    transform: scale(0.92);
+}
+
+.rollbacks-visualization__rollback-action-icon {
+    flex-shrink: 0;
+}
+
+.rollbacks-visualization__rollback-action-text {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    font-weight: var(--saas-weight-medium);
+}
+
+
+/* ========================================
+   TRAFFIC RESTORATION
+   ======================================== */
+
+.rollbacks-visualization__traffic {
+    padding: var(--saas-space-4);
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    background: var(--saas-color-surface-1);
+}
+
+.rollbacks-visualization__traffic-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-3);
+}
+
+.rollbacks-visualization__traffic-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+}
+
+.rollbacks-visualization__traffic-title {
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+
+    color: var(--saas-color-text-primary);
+}
+
+.rollbacks-visualization__traffic-detail,
+.rollbacks-visualization__traffic-value {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.rollbacks-visualization__traffic-value {
+    color: var(--saas-color-green);
+}
+
+.rollbacks-visualization__traffic-track {
+    display: flex;
+
+    height: 0.5rem;
+    border-radius: var(--saas-radius-pill);
+    margin-top: var(--saas-space-4);
+
+    overflow: hidden;
+
+    background: var(--saas-color-surface-3);
+}
+
+.rollbacks-visualization__traffic-failed {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    background: var(--saas-color-red);
+
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.rollbacks-visualization__traffic-restored {
+    display: block;
+
+    width: 0;
+    height: 100%;
+
+    background: var(--saas-color-green);
+
+    transform-origin: left;
+}
+
+.rollbacks-visualization__traffic-labels {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-3);
+
+    margin-top: var(--saas-space-2);
+}
+
+.rollbacks-visualization__traffic-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5rem;
+
+    color: var(--saas-color-red);
+}
+
+.rollbacks-visualization__traffic-label--restored {
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   RECOVERY TIMELINE
+   ======================================== */
+
+.rollbacks-visualization__timeline {
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    overflow: hidden;
+
+    background: var(--saas-color-black);
+}
+
+.rollbacks-visualization__timeline-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-3);
+
+    padding: var(--saas-space-3) var(--saas-space-4);
+    border-bottom: 1px solid var(--saas-color-border);
+}
+
+.rollbacks-visualization__timeline-title {
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+.rollbacks-visualization__timeline-duration {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.rollbacks-visualization__events {
+    display: flex;
+    flex-direction: column;
+
+    padding: var(--saas-space-3) var(--saas-space-4);
+}
+
+.rollbacks-visualization__event {
+    display: grid;
+    align-items: center;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Timestamp and status dot keep fixed intrinsic widths while
+     * the event description consumes the remaining row space.
+     *
+     * No breakpoint override is needed because the flexible final
+     * column naturally expands with the timeline.
+     */
+    grid-template-columns: auto auto minmax(0, 1fr);
+    gap: var(--saas-space-3);
+
+    min-width: 0;
+    padding: var(--saas-space-2) 0;
+
+    opacity: 0;
+
+    transform: translateY(0.25rem);
+}
+
+.rollbacks-visualization__event-time,
+.rollbacks-visualization__event-message {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+}
+
+.rollbacks-visualization__event-time {
+    color: var(--saas-color-text-disabled);
+}
+
+.rollbacks-visualization__event-dot {
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: var(--saas-radius-pill);
+
+    background: var(--saas-color-text-muted);
+}
+
+.rollbacks-visualization__event-dot--warning {
+    background: var(--saas-color-amber);
+}
+
+.rollbacks-visualization__event-dot--healthy {
+    background: var(--saas-color-green);
+}
+
+.rollbacks-visualization__event-message {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   RECOVERY RESULT
+   ======================================== */
+
+.rollbacks-visualization__result {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-4);
+
+    padding: var(--saas-space-4);
+    border: 1px solid var(--saas-color-green-border);
+    border-radius: var(--saas-radius-md);
+
+    opacity: 0;
+
+    background: var(--saas-color-green-muted);
+
+    transform: translateY(0.375rem);
+}
+
+.rollbacks-visualization__result-status {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    min-width: 0;
+}
+
+.rollbacks-visualization__result-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-green);
+}
+
+.rollbacks-visualization__result-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+
+    min-width: 0;
+}
+
+.rollbacks-visualization__result-title {
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-semibold);
+
+    color: var(--saas-color-text-primary);
+}
+
+.rollbacks-visualization__result-detail {
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-secondary);
+}
+
+.rollbacks-visualization__result-metrics {
+    display: grid;
+
+    /*
+     * Recovery duration and restored instance health share equal
+     * space inside the compact completion summary.
+     */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--saas-space-4);
+}
+
+.rollbacks-visualization__result-metric {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+}
+
+.rollbacks-visualization__result-metric-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.5rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+.rollbacks-visualization__result-metric-value {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+.rollbacks-visualization__result-metric-value--healthy {
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   ACTIVE ANIMATION SEQUENCE
+   ======================================== */
+
+/*
+ * Rollbacks tells the complete recovery story in chronological
+ * order:
+ *
+ * failed release appears
+ *      ↓
+ * health failure is detected
+ *      ↓
+ * rollback path activates
+ *      ↓
+ * previous release returns
+ *      ↓
+ * production traffic shifts back
+ *      ↓
+ * health is confirmed and recovery completes
+ *
+ * Motion is used here to explain state recovery, not decoration.
+ */
+
+.rollbacks-visualization--animate
+.rollbacks-visualization__release--failed {
+    animation: rollbacks-release-enter 350ms var(--saas-ease) 200ms forwards;
+}
+
+.rollbacks-visualization--animate
+.rollbacks-visualization__event--1 {
+    animation: rollbacks-event-enter 300ms var(--saas-ease) 450ms forwards;
+}
+
+.rollbacks-visualization--animate
+.rollbacks-visualization__event--2 {
+    animation: rollbacks-event-enter 300ms var(--saas-ease) 850ms forwards;
+}
+
+.rollbacks-visualization--animate
+.rollbacks-visualization__event--3 {
+    animation: rollbacks-event-enter 300ms var(--saas-ease) 1.25s forwards;
+}
+
+.rollbacks-visualization--animate
+.rollbacks-visualization__rollback-line-fill {
+    animation: rollbacks-path-fill-vertical 700ms var(--saas-ease) 1.3s forwards;
+}
+
+.rollbacks-visualization--animate
+.rollbacks-visualization__rollback-action {
+    animation: rollbacks-action-enter 300ms var(--saas-ease) 1.55s forwards;
+}
+
+.rollbacks-visualization--animate
+.rollbacks-visualization__release--restored {
+    animation: rollbacks-release-enter 400ms var(--saas-ease) 2s forwards;
+}
+
+.rollbacks-visualization--animate
+.rollbacks-visualization__traffic-failed {
+    animation: rollbacks-failed-traffic 700ms var(--saas-ease) 2.35s forwards;
+}
+
+.rollbacks-visualization--animate
+.rollbacks-visualization__traffic-restored {
+    animation: rollbacks-restored-traffic 700ms var(--saas-ease) 2.35s forwards;
+}
+
+.rollbacks-visualization--animate
+.rollbacks-visualization__event--4 {
+    animation: rollbacks-event-enter 300ms var(--saas-ease) 2.65s forwards;
+}
+
+.rollbacks-visualization--animate
+.rollbacks-visualization__event--5 {
+    animation: rollbacks-event-enter 300ms var(--saas-ease) 3s forwards;
+}
+
+.rollbacks-visualization--animate
+.rollbacks-visualization__result {
+    animation: rollbacks-result-enter 350ms var(--saas-ease) 3.35s forwards;
+}
+
+.rollbacks-visualization--animate
+.rollbacks-visualization__header-status {
+    animation: rollbacks-status-enter 350ms var(--saas-ease) 3.55s forwards;
+}
+
+.rollbacks-visualization--animate
+.rollbacks-visualization__header-status-dot {
+    animation: rollbacks-health-pulse 1.8s ease-in-out 3.9s infinite;
+}
+
+
+/* ========================================
+   ROLLBACK KEYFRAMES
+   ======================================== */
+
+@keyframes rollbacks-release-enter {
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+@keyframes rollbacks-event-enter {
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+@keyframes rollbacks-path-fill-vertical {
+    to {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes rollbacks-action-enter {
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+}
+
+@keyframes rollbacks-failed-traffic {
+    to {
+        width: 0;
+    }
+}
+
+@keyframes rollbacks-restored-traffic {
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes rollbacks-result-enter {
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+@keyframes rollbacks-status-enter {
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+@keyframes rollbacks-health-pulse {
+    0%,
+    100% {
+        opacity: 0.55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+@media (min-width: 48rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: 1fr;
+     *
+     * 48REM+:
+     *   grid-template-columns:
+     *       minmax(0, 1fr)
+     *       7rem
+     *       minmax(0, 1fr);
+     *
+     * The failed and restored releases can now be compared
+     * directly from left to right with rollback between them.
+     *
+     * This comparison layout continues at 64rem and larger.
+     */
+    .rollbacks-visualization__release-comparison {
+        grid-template-columns:
+            minmax(0, 1fr)
+            7rem
+            minmax(0, 1fr);
+        align-items: stretch;
+    }
+
+    .rollbacks-visualization__rollback-path {
+        min-width: 0;
+        min-height: 0;
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   vertical rollback line using top/bottom positioning.
+     *
+     * 48REM+:
+     *   horizontal rollback line using left/right positioning.
+     *
+     * The direction changes because release comparison now flows
+     * horizontally instead of vertically.
+     */
+    .rollbacks-visualization__rollback-line {
+        top: 50%;
+        right: 0;
+        bottom: auto;
+        left: 0;
+
+        width: auto;
+        height: 1px;
+
+        transform: translateY(-50%);
+    }
+
+    .rollbacks-visualization__rollback-line-fill {
+        width: 100%;
+        height: 100%;
+
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    /*
+     * The rollback path is now horizontal, so the animation name
+     * changes while its original duration and delay continue.
+     */
+    .rollbacks-visualization--animate
+    .rollbacks-visualization__rollback-line-fill {
+        animation-name: rollbacks-path-fill-horizontal;
+    }
+
+    .rollbacks-visualization__result {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .rollbacks-visualization__result-metrics {
+        flex-shrink: 0;
+
+        min-width: 10rem;
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+@media (min-width: 64rem) {
+    /*
+     * NO STRUCTURAL RELEASE CHANGE HERE.
+     *
+     * The horizontal comparison introduced at 48rem continues.
+     * Additional card padding uses the larger Features workspace
+     * without changing the established information hierarchy.
+     */
+    .rollbacks-visualization__release {
+        padding: var(--saas-space-5);
+    }
+}
+
+
+/* ========================================
+   HORIZONTAL ROLLBACK KEYFRAME
+   ======================================== */
+
+@keyframes rollbacks-path-fill-horizontal {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    /*
+     * Reduced-motion users receive the fully recovered state
+     * immediately. The completed state still communicates which
+     * release failed and which release ultimately became active.
+     */
+    .rollbacks-visualization__release--failed,
+    .rollbacks-visualization__release--restored,
+    .rollbacks-visualization__rollback-action,
+    .rollbacks-visualization__event,
+    .rollbacks-visualization__result,
+    .rollbacks-visualization__header-status {
+        opacity: 1;
+
+        transform: none;
+
+        animation: none;
+    }
+
+    .rollbacks-visualization__rollback-line-fill {
+        transform: scaleY(1);
+
+        animation: none;
+    }
+
+    .rollbacks-visualization__traffic-failed {
+        width: 0;
+
+        animation: none;
+    }
+
+    .rollbacks-visualization__traffic-restored {
+        width: 100%;
+
+        animation: none;
+    }
+
+    .rollbacks-visualization__header-status-dot {
+        animation: none;
+    }
+}
+
+@media (min-width: 48rem) and (prefers-reduced-motion: reduce) {
+    /*
+     * OVERRIDES THE REDUCED-MOTION BASE RULE:
+     *
+     * At 48rem the rollback path is horizontal, so its completed
+     * state uses scaleX instead of the base vertical scaleY.
+     */
+    .rollbacks-visualization__rollback-line-fill {
+        transform: scaleX(1);
+    }
+}
