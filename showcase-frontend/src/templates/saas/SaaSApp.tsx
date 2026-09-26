@@ -24,6 +24,7 @@ import GlobalArchitecture from "./sections/GlobalArchitecture/GlobalArchitecture
 import Features from "./sections/Features/Features.tsx";
 import Integrations from "./sections/Integrations/Integrations";
 import Metrics from "./sections/Metrics/Metrics";
+import DeveloperTerminal from "./sections/DeveloperTerminal/DeveloperTerminal";
 
 
 
@@ -48,6 +49,7 @@ export default function SaaSApp(){
                 <Features/>
                 <Integrations />
                 <Metrics />
+                <DeveloperTerminal />
             </main>
 
         </div>

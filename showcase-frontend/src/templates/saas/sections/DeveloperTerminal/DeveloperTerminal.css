@@ -1,0 +1,610 @@
+/* ========================================
+   DEVELOPER TERMINAL
+   ======================================== */
+
+.developer-terminal {
+    position: relative;
+
+    overflow: hidden;
+
+    background: var(--saas-color-bg);
+}
+
+.developer-terminal__container {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Product copy sits above the terminal so both pieces can use
+     * the full available width.
+     *
+     * CHANGES AT 64REM:
+     * The section becomes a two-column composition with copy on
+     * the left and the CLI experience on the right.
+     */
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--saas-space-12);
+
+    width: min(100% - 2rem, var(--saas-container));
+    margin: 0 auto;
+    padding: var(--saas-space-24) 0;
+}
+
+
+/* ========================================
+   CONTENT
+   ======================================== */
+
+.developer-terminal__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--saas-space-4);
+
+    max-width: 36rem;
+}
+
+.developer-terminal__eyebrow {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-cyan-400);
+}
+
+.developer-terminal__heading {
+    max-width: 34rem;
+
+    font-size: clamp(2rem, 6vw, var(--saas-text-4xl));
+    font-weight: var(--saas-weight-semibold);
+    line-height: var(--saas-line-heading);
+    letter-spacing: -0.035em;
+
+    color: var(--saas-color-text-primary);
+}
+
+.developer-terminal__description {
+    max-width: 34rem;
+
+    font-size: var(--saas-text-base);
+    line-height: var(--saas-line-body);
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   COMMAND PREVIEW
+   ======================================== */
+
+.developer-terminal__command-preview {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    width: 100%;
+    max-width: 26rem;
+    padding: var(--saas-space-3) var(--saas-space-4);
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-sm);
+    margin-top: var(--saas-space-2);
+
+    background: var(--saas-color-surface-1);
+}
+
+.developer-terminal__command-symbol {
+    flex-shrink: 0;
+
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-sm);
+
+    color: var(--saas-color-cyan-400);
+}
+
+.developer-terminal__command-code {
+    min-width: 0;
+
+    overflow: hidden;
+
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-primary);
+}
+
+.developer-terminal__command-copy {
+    flex-shrink: 0;
+
+    margin-left: auto;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   PRODUCT DETAILS
+   ======================================== */
+
+.developer-terminal__details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-3);
+
+    margin-top: var(--saas-space-2);
+}
+
+.developer-terminal__detail {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+}
+
+.developer-terminal__detail-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-green);
+}
+
+.developer-terminal__detail-text {
+    font-size: var(--saas-text-sm);
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   TERMINAL WINDOW
+   ======================================== */
+
+.developer-terminal__window {
+    min-width: 0;
+    border: 1px solid var(--saas-color-border-strong);
+    border-radius: var(--saas-radius-md);
+
+    overflow: hidden;
+
+    background: var(--saas-color-black);
+}
+
+.developer-terminal__window-header {
+    display: grid;
+
+    /*
+     * The title remains visually centered even though the version
+     * text is wider than the decorative window controls.
+     */
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    min-height: 3rem;
+    padding: 0 var(--saas-space-4);
+    border-bottom: 1px solid var(--saas-color-border);
+
+    background: var(--saas-color-surface-1);
+}
+
+.developer-terminal__window-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+
+    justify-self: start;
+}
+
+.developer-terminal__window-control {
+    color: var(--saas-color-text-disabled);
+}
+
+.developer-terminal__window-title {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+
+    justify-self: center;
+}
+
+.developer-terminal__window-title-icon {
+    color: var(--saas-color-text-muted);
+}
+
+.developer-terminal__window-title-text {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-secondary);
+}
+
+.developer-terminal__window-version {
+    justify-self: end;
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   TERMINAL CONTENT
+   ======================================== */
+
+.developer-terminal__terminal {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-5);
+
+    min-height: 30rem;
+    padding: var(--saas-space-5);
+
+    font-family: var(--saas-font-mono);
+
+    background:
+        radial-gradient(
+            circle at 80% 10%,
+            var(--saas-color-cyan-muted),
+            transparent 30%
+        ),
+        var(--saas-color-black);
+}
+
+.developer-terminal__terminal-context {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    padding-bottom: var(--saas-space-4);
+    border-bottom: 1px solid var(--saas-color-border-subtle);
+}
+
+.developer-terminal__terminal-path {
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-secondary);
+}
+
+.developer-terminal__terminal-branch {
+    padding: 0.125rem var(--saas-space-2);
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-pill);
+
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+    background: var(--saas-color-surface-1);
+}
+
+.developer-terminal__lines {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-3);
+}
+
+.developer-terminal__line {
+    display: grid;
+
+    /*
+     * Status indicator, short metadata label, and flexible output
+     * remain aligned like actual structured CLI output.
+     */
+    grid-template-columns: 1rem 3.75rem minmax(0, 1fr);
+    align-items: center;
+    gap: var(--saas-space-2);
+
+    min-width: 0;
+
+    opacity: 0;
+
+    transform: translateY(0.25rem);
+}
+
+.developer-terminal__line--command {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+
+    padding-bottom: var(--saas-space-2);
+}
+
+.developer-terminal__prompt {
+    flex-shrink: 0;
+
+    color: var(--saas-color-cyan-400);
+}
+
+.developer-terminal__line-command {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+
+    color: var(--saas-color-text-primary);
+}
+
+.developer-terminal__line-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 1rem;
+    height: 1rem;
+}
+
+.developer-terminal__line-check {
+    color: var(--saas-color-green);
+}
+
+.developer-terminal__line-info-dot {
+    width: 0.3125rem;
+    height: 0.3125rem;
+    border-radius: var(--saas-radius-pill);
+
+    background: var(--saas-color-cyan-400);
+}
+
+.developer-terminal__line-label {
+    font-size: 0.5625rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+.developer-terminal__line-content {
+    min-width: 0;
+
+    overflow: hidden;
+
+    font-size: 0.625rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   DEPLOYMENT RESULT
+   ======================================== */
+
+.developer-terminal__result {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-3);
+
+    padding: var(--saas-space-4);
+    border: 1px solid var(--saas-color-green-border);
+    border-radius: var(--saas-radius-sm);
+
+    opacity: 0;
+
+    background: var(--saas-color-green-muted);
+
+    transform: translateY(0.35rem);
+}
+
+.developer-terminal__result-header {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+}
+
+.developer-terminal__result-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-green);
+}
+
+.developer-terminal__result-title {
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-green);
+}
+
+.developer-terminal__result-time {
+    margin-left: auto;
+
+    font-size: 0.5625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.developer-terminal__result-url {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+}
+
+.developer-terminal__result-url-label {
+    font-size: 0.5625rem;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+.developer-terminal__result-url-value {
+    overflow: hidden;
+
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--saas-color-text-primary);
+}
+
+.developer-terminal__cursor-line {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+
+    opacity: 0;
+}
+
+.developer-terminal__cursor {
+    width: 0.45rem;
+    height: 0.9rem;
+
+    background: var(--saas-color-text-secondary);
+
+    animation: developer-terminal-cursor 1s steps(1) infinite;
+}
+
+
+/* ========================================
+   TERMINAL SEQUENCE
+   ======================================== */
+
+/*
+ * React only decides when the terminal becomes visible.
+ *
+ * CSS owns the actual deployment chronology. The custom property
+ * supplied by each line produces a small stagger without requiring
+ * a separate animation definition for every terminal entry.
+ */
+
+.developer-terminal--animate
+.developer-terminal__line {
+    animation: developer-terminal-line-enter 300ms var(--saas-ease) forwards;
+    animation-delay: calc(
+        250ms + (var(--terminal-line-order) * 320ms)
+    );
+}
+
+.developer-terminal--animate
+.developer-terminal__result {
+    animation: developer-terminal-result-enter 450ms var(--saas-ease) forwards;
+    animation-delay: 2.8s;
+}
+
+.developer-terminal--animate
+.developer-terminal__cursor-line {
+    animation: developer-terminal-cursor-enter 200ms var(--saas-ease) forwards;
+    animation-delay: 3.35s;
+}
+
+@keyframes developer-terminal-line-enter {
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+@keyframes developer-terminal-result-enter {
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+@keyframes developer-terminal-cursor-enter {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes developer-terminal-cursor {
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+@media (min-width: 48rem) {
+    .developer-terminal__container {
+        gap: var(--saas-space-16);
+
+        width: min(100% - 4rem, var(--saas-container));
+        padding: var(--saas-space-32) 0;
+    }
+
+    /*
+     * The section remains vertically stacked at this breakpoint.
+     * The additional width is used to make the terminal output
+     * easier to scan rather than forcing an early two-column layout.
+     *
+     * CHANGES AT 64REM:
+     * Copy and terminal become side-by-side.
+     */
+    .developer-terminal__terminal {
+        min-height: 31rem;
+        padding: var(--saas-space-6);
+    }
+
+    .developer-terminal__line {
+        grid-template-columns: 1rem 4.5rem minmax(0, 1fr);
+    }
+
+    .developer-terminal__line-content,
+    .developer-terminal__line-command,
+    .developer-terminal__result-url-value {
+        font-size: var(--saas-text-xs);
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+@media (min-width: 64rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: minmax(0, 1fr);
+     *
+     * 64REM+:
+     *   Copy receives slightly less space than the terminal because
+     *   readable CLI output benefits from the wider column.
+     */
+    .developer-terminal__container {
+        grid-template-columns:
+            minmax(18rem, 0.8fr)
+            minmax(32rem, 1.2fr);
+        align-items: center;
+        gap: var(--saas-space-16);
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    /*
+     * Reduced-motion users receive the completed deployment state
+     * immediately rather than waiting through the CLI chronology.
+     */
+    .developer-terminal__line,
+    .developer-terminal__result,
+    .developer-terminal__cursor-line {
+        opacity: 1;
+
+        animation: none;
+
+        transform: none;
+    }
+
+    .developer-terminal__cursor {
+        opacity: 1;
+
+        animation: none;
+    }
+}
