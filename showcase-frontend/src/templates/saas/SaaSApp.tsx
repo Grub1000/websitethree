@@ -26,6 +26,7 @@ import Integrations from "./sections/Integrations/Integrations";
 import Metrics from "./sections/Metrics/Metrics";
 import DeveloperTerminal from "./sections/DeveloperTerminal/DeveloperTerminal";
 import Pricing from "./sections/Pricing/Pricing";
+import Testimonials from "./sections/Testimonials/Testimonials";
 
 
 
@@ -52,6 +53,7 @@ export default function SaaSApp(){
                 <Metrics />
                 <DeveloperTerminal />
                 <Pricing />
+                <Testimonials/>
             </main>
 
         </div>

@@ -1,0 +1,568 @@
+/* ========================================
+   TESTIMONIALS
+   ======================================== */
+
+/*
+ * This section intentionally shifts away from the product-interface
+ * language used throughout Features, Integrations, and Pricing.
+ *
+ * The goal here is editorial: one strong customer voice supported
+ * by a compact operational summary. Avoiding a repeated card grid
+ * gives the page a different rhythm before entering the FAQ.
+ */
+
+.testimonials {
+    position: relative;
+
+    overflow: hidden;
+
+    background: var(--saas-color-bg);
+}
+
+.testimonials__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-12);
+
+    width: min(100% - 2rem, var(--saas-container));
+    margin: 0 auto;
+    padding: var(--saas-space-24) 0;
+}
+
+
+/* ========================================
+   SECTION HEADER
+   ======================================== */
+
+.testimonials__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-4);
+
+    max-width: var(--saas-container-text);
+}
+
+.testimonials__eyebrow {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-cyan-400);
+}
+
+.testimonials__heading {
+    max-width: 46rem;
+
+    font-size: clamp(2rem, 6vw, var(--saas-text-4xl));
+    font-weight: var(--saas-weight-semibold);
+    line-height: var(--saas-line-heading);
+    letter-spacing: -0.035em;
+
+    color: var(--saas-color-text-primary);
+}
+
+.testimonials__description {
+    max-width: 40rem;
+
+    font-size: var(--saas-text-base);
+    line-height: var(--saas-line-body);
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   CUSTOMER STORY LAYOUT
+   ======================================== */
+
+.testimonials__story {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * The quote and customer results stack vertically. The quote
+     * comes first because the human story is the primary content;
+     * the operational data exists only to support that story.
+     *
+     * CHANGES AT 64REM:
+     * The story becomes an asymmetric two-column composition.
+     * The quote receives more width than the supporting results
+     * panel so this never reads as two equal feature cards.
+     */
+    grid-template-columns: minmax(0, 1fr);
+
+    border-top: 1px solid var(--saas-color-border);
+    border-bottom: 1px solid var(--saas-color-border);
+}
+
+
+/* ========================================
+   PRIMARY QUOTE
+   ======================================== */
+
+.testimonials__quote {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-8);
+
+    min-width: 0;
+    padding: var(--saas-space-8) 0;
+}
+
+.testimonials__quote-header {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+}
+
+.testimonials__quote-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-cyan-400);
+}
+
+.testimonials__quote-label {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+.testimonials__blockquote {
+    max-width: 48rem;
+
+    font-size: clamp(1.5rem, 5vw, var(--saas-text-3xl));
+    font-weight: var(--saas-weight-medium);
+    line-height: 1.35;
+    letter-spacing: -0.025em;
+
+    color: var(--saas-color-text-primary);
+}
+
+.testimonials__author {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+}
+
+.testimonials__author-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-pill);
+
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-secondary);
+    background: var(--saas-color-surface-2);
+}
+
+.testimonials__author-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-1);
+}
+
+.testimonials__author-name {
+    font-size: var(--saas-text-sm);
+    font-style: normal;
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+.testimonials__author-role {
+    font-size: var(--saas-text-xs);
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   CUSTOMER RESULTS
+   ======================================== */
+
+/*
+ * This panel is intentionally flatter than the pricing plans above.
+ * A single border separates it from the quote while internal rules
+ * organize the operational information. This keeps the section from
+ * falling back into another collection of independent cards.
+ */
+
+.testimonials__customer {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    border-top: 1px solid var(--saas-color-border);
+
+    background: var(--saas-color-bg-soft);
+}
+
+.testimonials__customer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-4);
+
+    padding: var(--saas-space-4);
+    border-bottom: 1px solid var(--saas-color-border);
+}
+
+.testimonials__customer-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+}
+
+.testimonials__customer-brand-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-text-muted);
+}
+
+.testimonials__customer-name {
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+}
+
+.testimonials__customer-status {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+}
+
+.testimonials__customer-status-dot {
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: var(--saas-radius-pill);
+
+    background: var(--saas-color-green);
+
+    animation: testimonials-status-pulse 2s ease-in-out infinite;
+}
+
+.testimonials__customer-status-text {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-green);
+}
+
+
+/* ========================================
+   CUSTOMER METRICS
+   ======================================== */
+
+.testimonials__results {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     * Results remain one per row to protect the value/label pairing.
+     *
+     * CHANGES AT 48REM:
+     * All three results share one row because the stacked story
+     * layout gives this panel the full container width.
+     *
+     * AT 64REM:
+     * The same three-column arrangement is retained inside the
+     * narrower right-hand customer panel.
+     */
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.testimonials__result {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-2);
+
+    padding: var(--saas-space-5) var(--saas-space-4);
+    border-bottom: 1px solid var(--saas-color-border);
+}
+
+.testimonials__result:last-child {
+    border-bottom: 0;
+}
+
+.testimonials__result-value {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xl);
+    font-weight: var(--saas-weight-medium);
+    letter-spacing: -0.03em;
+
+    color: var(--saas-color-text-primary);
+}
+
+.testimonials__result-label {
+    font-size: var(--saas-text-xs);
+    line-height: 1.45;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   CUSTOMER DETAILS
+   ======================================== */
+
+.testimonials__customer-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-3);
+
+    padding: var(--saas-space-5) var(--saas-space-4);
+    border-top: 1px solid var(--saas-color-border);
+}
+
+.testimonials__customer-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--saas-space-3);
+}
+
+.testimonials__customer-detail-icon {
+    flex-shrink: 0;
+
+    margin-top: 0.125rem;
+
+    color: var(--saas-color-green);
+}
+
+.testimonials__customer-detail-text {
+    font-size: var(--saas-text-sm);
+    line-height: 1.45;
+
+    color: var(--saas-color-text-secondary);
+}
+
+.testimonials__customer-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-4);
+
+    margin-top: auto;
+    padding: var(--saas-space-4);
+    border-top: 1px solid var(--saas-color-border);
+}
+
+.testimonials__customer-footer-text {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+.testimonials__customer-footer-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-text-disabled);
+}
+
+
+/* ========================================
+   SECONDARY SOCIAL PROOF
+   ======================================== */
+
+/*
+ * These fictional company names act as quiet supporting proof rather
+ * than a traditional logo wall. Typography is intentionally muted so
+ * this row never competes with the customer quote directly above it.
+ */
+
+.testimonials__proof {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-5);
+}
+
+.testimonials__proof-label {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-text-muted);
+}
+
+.testimonials__proof-companies {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     * Two columns prevent the fictional company names from becoming
+     * a long vertical list while remaining comfortable on narrow screens.
+     *
+     * CHANGES AT 48REM:
+     * All five names share one horizontal row.
+     */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--saas-space-4);
+}
+
+.testimonials__proof-company {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-medium);
+    letter-spacing: -0.02em;
+
+    color: var(--saas-color-text-disabled);
+}
+
+
+/* ========================================
+   STATUS ANIMATION
+   ======================================== */
+
+/*
+ * Only the production-health indicator moves in this section.
+ *
+ * The testimonial itself should feel stable and human rather than
+ * animated like product UI. The small status pulse simply preserves
+ * Nexora's recurring visual language for healthy infrastructure.
+ */
+
+@keyframes testimonials-status-pulse {
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+@media (min-width: 48rem) {
+    .testimonials__container {
+        gap: var(--saas-space-16);
+
+        width: min(100% - 4rem, var(--saas-container));
+        padding: var(--saas-space-32) 0;
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: minmax(0, 1fr);
+     *
+     * 48REM+:
+     *   All three customer results share one horizontal row.
+     *
+     * This arrangement continues at 64rem even after the customer
+     * panel becomes the right column of the overall story layout.
+     */
+    .testimonials__results {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .testimonials__result {
+        border-right: 1px solid var(--saas-color-border);
+        border-bottom: 0;
+    }
+
+    .testimonials__result:last-child {
+        border-right: 0;
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   grid-template-columns: repeat(2, minmax(0, 1fr));
+     *
+     * 48REM+:
+     *   Five equal columns create one quiet company-name row.
+     *
+     * This arrangement continues unchanged at 64rem and larger.
+     */
+    .testimonials__proof-companies {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+@media (min-width: 64rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base through 48REM:
+     *   grid-template-columns: minmax(0, 1fr);
+     *
+     * 64REM+:
+     *   The quote becomes the dominant left column while the
+     *   operational customer summary occupies the smaller right
+     *   column. The asymmetry is deliberate and prevents the
+     *   composition from resembling two generic feature cards.
+     */
+    .testimonials__story {
+        grid-template-columns:
+            minmax(0, 1.45fr)
+            minmax(22rem, 0.75fr);
+    }
+
+    .testimonials__quote {
+        justify-content: space-between;
+
+        min-height: 34rem;
+        padding: var(--saas-space-10) var(--saas-space-12) var(--saas-space-10) 0;
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   border-top separates the stacked customer panel from the quote.
+     *
+     * 64REM+:
+     *   The panel now sits beside the quote, so the separator moves
+     *   to its left edge and the unnecessary top border is removed.
+     */
+    .testimonials__customer {
+        border-top: 0;
+        border-left: 1px solid var(--saas-color-border);
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    /*
+     * The only ambient animation in this section is the production
+     * status pulse. The static green indicator communicates the same
+     * healthy state without requiring motion.
+     */
+    .testimonials__customer-status-dot {
+        animation: none;
+    }
+}
