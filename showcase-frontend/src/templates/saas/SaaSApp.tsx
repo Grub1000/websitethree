@@ -25,6 +25,7 @@ import Features from "./sections/Features/Features.tsx";
 import Integrations from "./sections/Integrations/Integrations";
 import Metrics from "./sections/Metrics/Metrics";
 import DeveloperTerminal from "./sections/DeveloperTerminal/DeveloperTerminal";
+import Pricing from "./sections/Pricing/Pricing";
 
 
 
@@ -50,6 +51,7 @@ export default function SaaSApp(){
                 <Integrations />
                 <Metrics />
                 <DeveloperTerminal />
+                <Pricing />
             </main>
 
         </div>
