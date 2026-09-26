@@ -1,0 +1,425 @@
+/* ========================================
+   FINAL CTA
+   ======================================== */
+
+/*
+ * This is the final major conversion point on the page.
+ *
+ * Previous sections have already explained the product in detail,
+ * so this section intentionally removes visual complexity. Large
+ * typography, clear actions, and one deployment command are enough
+ * to bring the page back to Nexora's core promise:
+ *
+ * ship the application without managing the infrastructure.
+ */
+
+.final-cta {
+    position: relative;
+
+    overflow: hidden;
+
+    background: var(--saas-color-black);
+}
+
+/*
+ * A restrained cyan illumination gives the final section some
+ * separation from FAQ without introducing another decorative
+ * gradient-heavy hero treatment.
+ *
+ * The light originates near the primary content rather than filling
+ * the entire section, keeping cyan as an accent instead of allowing
+ * it to dominate the dark infrastructure palette.
+ */
+.final-cta::before {
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    width: 48rem;
+    height: 20rem;
+
+    background: radial-gradient(
+        circle at center,
+        var(--saas-color-cyan-muted),
+        transparent 68%
+    );
+
+    content: "";
+
+    opacity: 0.65;
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+}
+
+.final-cta__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--saas-space-12);
+
+    position: relative;
+    z-index: 1;
+
+    width: min(100% - 2rem, var(--saas-container));
+    margin: 0 auto;
+    padding: var(--saas-space-32) 0;
+
+    text-align: center;
+}
+
+
+/* ========================================
+   PRIMARY CONTENT
+   ======================================== */
+
+.final-cta__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--saas-space-6);
+
+    max-width: 58rem;
+}
+
+.final-cta__eyebrow {
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-xs);
+    font-weight: var(--saas-weight-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--saas-color-cyan-400);
+}
+
+.final-cta__heading {
+    display: flex;
+    flex-direction: column;
+    gap: var(--saas-space-2);
+
+    max-width: 56rem;
+
+    font-size: clamp(2.5rem, 9vw, var(--saas-text-5xl));
+    font-weight: var(--saas-weight-semibold);
+    line-height: var(--saas-line-tight);
+    letter-spacing: -0.045em;
+
+    color: var(--saas-color-text-primary);
+}
+
+/*
+ * The second line is muted rather than rendered with a gradient.
+ * This creates hierarchy while staying consistent with the rule
+ * that Nexora should look technical before it looks futuristic.
+ */
+.final-cta__heading-accent {
+    color: var(--saas-color-text-secondary);
+}
+
+.final-cta__description {
+    max-width: 40rem;
+
+    font-size: var(--saas-text-base);
+    line-height: var(--saas-line-body);
+
+    color: var(--saas-color-text-secondary);
+}
+
+
+/* ========================================
+   ACTIONS
+   ======================================== */
+
+.final-cta__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--saas-space-3);
+
+    width: 100%;
+    max-width: 22rem;
+}
+
+/*
+ * Both actions share the same geometry so their hierarchy comes
+ * from color and border treatment rather than different sizing.
+ */
+.final-cta__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--saas-space-2);
+
+    min-height: 2.875rem;
+    padding: var(--saas-space-2) var(--saas-space-5);
+    border: 1px solid var(--saas-color-border-strong);
+    border-radius: var(--saas-radius-sm);
+
+    font-size: var(--saas-text-sm);
+    font-weight: var(--saas-weight-medium);
+
+    color: var(--saas-color-text-primary);
+    background: var(--saas-color-surface-1);
+
+    transition:
+        border-color var(--saas-motion-fast) var(--saas-ease),
+        color var(--saas-motion-fast) var(--saas-ease),
+        background var(--saas-motion-fast) var(--saas-ease),
+        transform var(--saas-motion-fast) var(--saas-ease);
+}
+
+.final-cta__action--primary {
+    border-color: var(--saas-color-cyan-400);
+
+    color: var(--saas-color-black);
+    background: var(--saas-color-cyan-400);
+}
+
+.final-cta__action--primary:hover {
+    border-color: var(--saas-color-cyan-300);
+
+    background: var(--saas-color-cyan-300);
+
+    transform: translateY(-0.125rem);
+}
+
+.final-cta__action--secondary:hover {
+    border-color: var(--saas-color-cyan-border);
+
+    color: var(--saas-color-cyan-300);
+    background: var(--saas-color-surface-hover);
+
+    transform: translateY(-0.125rem);
+}
+
+.final-cta__action:focus-visible {
+    outline: 2px solid var(--saas-color-cyan-400);
+    outline-offset: 0.25rem;
+}
+
+.final-cta__action-text {
+    line-height: 1;
+}
+
+.final-cta__action-icon {
+    flex-shrink: 0;
+}
+
+
+/* ========================================
+   DEPLOYMENT BENEFITS
+   ======================================== */
+
+.final-cta__benefits {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--saas-space-3);
+}
+
+.final-cta__benefit {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+}
+
+.final-cta__benefit-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-green);
+}
+
+.final-cta__benefit-text {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+
+    color: var(--saas-color-text-muted);
+}
+
+
+/* ========================================
+   DEPLOYMENT COMMAND
+   ======================================== */
+
+/*
+ * The command is not another interactive terminal simulation.
+ *
+ * DeveloperTerminal already owns that role earlier in the page.
+ * Here the terminal language is reduced to a single static command
+ * that reinforces how little work separates the visitor from the
+ * deployment action described by the CTA.
+ */
+.final-cta__command {
+    width: 100%;
+    max-width: 38rem;
+    border: 1px solid var(--saas-color-border);
+    border-radius: var(--saas-radius-md);
+
+    overflow: hidden;
+
+    text-align: left;
+
+    background: var(--saas-color-bg);
+}
+
+.final-cta__command-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--saas-space-4);
+
+    padding: var(--saas-space-3) var(--saas-space-4);
+    border-bottom: 1px solid var(--saas-color-border);
+
+    background: var(--saas-color-surface-1);
+}
+
+.final-cta__command-title {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-2);
+}
+
+.final-cta__command-title-icon {
+    flex-shrink: 0;
+
+    color: var(--saas-color-text-muted);
+}
+
+.final-cta__command-title-text,
+.final-cta__command-status {
+    font-family: var(--saas-font-mono);
+    font-size: 0.625rem;
+}
+
+.final-cta__command-title-text {
+    color: var(--saas-color-text-secondary);
+}
+
+.final-cta__command-status {
+    color: var(--saas-color-green);
+}
+
+.final-cta__command-body {
+    display: flex;
+    align-items: center;
+    gap: var(--saas-space-3);
+
+    padding: var(--saas-space-5);
+
+    overflow-x: auto;
+}
+
+.final-cta__command-prompt {
+    flex-shrink: 0;
+
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-sm);
+
+    color: var(--saas-color-cyan-400);
+}
+
+.final-cta__command-code {
+    flex-shrink: 0;
+
+    font-family: var(--saas-font-mono);
+    font-size: var(--saas-text-sm);
+
+    color: var(--saas-color-text-primary);
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+@media (min-width: 48rem) {
+    .final-cta__container {
+        gap: var(--saas-space-16);
+
+        width: min(100% - 4rem, var(--saas-container));
+        padding: var(--saas-space-40) 0;
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   flex-direction: column;
+     *   align-items: stretch;
+     *   width: 100%;
+     *
+     * 48REM+:
+     *   The two actions move onto one centered row because enough
+     *   horizontal room now exists for both labels without reducing
+     *   their touch targets or forcing text wrapping.
+     *
+     * This arrangement continues unchanged at 64REM AND LARGER.
+     */
+    .final-cta__actions {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        width: auto;
+        max-width: none;
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   Benefits stack vertically for narrow screens.
+     *
+     * 48REM+:
+     *   All three short assurances fit naturally on one row.
+     *
+     * This row continues unchanged at 64REM AND LARGER.
+     */
+    .final-cta__benefits {
+        flex-direction: row;
+        justify-content: center;
+        gap: var(--saas-space-5);
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+@media (min-width: 64rem) {
+    /*
+     * The section's structural layout intentionally does not change
+     * at this breakpoint.
+     *
+     * Unlike the product-heavy sections above, the final CTA benefits
+     * from remaining centered and narrow even when more horizontal
+     * space becomes available. Increasing only the heading scale
+     * preserves that focused composition.
+     */
+    .final-cta__heading {
+        font-size: var(--saas-text-6xl);
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    /*
+     * Hover translation is decorative rather than functional.
+     * Removing the transition and transform preserves every action
+     * while respecting the user's reduced-motion preference.
+     */
+    .final-cta__action {
+        transition: none;
+    }
+
+    .final-cta__action:hover {
+        transform: none;
+    }
+}

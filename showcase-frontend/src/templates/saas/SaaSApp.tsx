@@ -28,6 +28,7 @@ import DeveloperTerminal from "./sections/DeveloperTerminal/DeveloperTerminal";
 import Pricing from "./sections/Pricing/Pricing";
 import Testimonials from "./sections/Testimonials/Testimonials";
 import FAQ from "./sections/FAQ/FAQ";
+import FinalCTA from "./sections/FinalCTA/FinalCTA";
 
 
 
@@ -56,6 +57,7 @@ export default function SaaSApp(){
                 <Pricing />
                 <Testimonials/>
                 <FAQ/>
+                <FinalCTA/>
             </main>
 
         </div>
