@@ -212,6 +212,10 @@ export default function Footer() {
                         <span className="footer__copyright-note">
                             Fictional infrastructure platform.
                         </span>
+
+                        <span className="footer__copyright-note">
+                            By Jorge Ramirez.
+                        </span>
                     </div>
 
                     <div className="footer__bottom-links">
