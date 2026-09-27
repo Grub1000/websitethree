@@ -540,17 +540,17 @@ export default class App extends React.Component{
                 <button className="HeaderButton" onMouseEnter={()=>this.handleDropdown("mouseIn", 0)} onMouseLeave={()=>this.handleDropdown("mouseOut", 0)}>Templates</button>
                 <div className="HeaderButtonDropdown" id="templatesDropdownWrapper" onMouseEnter={()=>this.handleDropdown("mouseIn", 0)} onMouseLeave={()=>this.handleDropdown("mouseOut", 0)}>
                   <div className="HeaderButtonDropdownButtonWrapper">
-                    <button className="HeaderButtonDropdownButton">
+                    <button className="HeaderButtonDropdownButton" onClick={()=>{window.open("https://jorgeramirez.net/showcase/saas/")}}>
                       <div className="HeaderButtonDropdownButtonColorPad"></div>
-                      <h5 className="HeaderButtonDropdownButtonTopText">Coming Soon...</h5>
-                      <p className="HeaderButtonDropdownButtonBottomText">Merch-store mock up example</p>
+                      <h5 className="HeaderButtonDropdownButtonTopText">Nexora</h5>
+                      <p className="HeaderButtonDropdownButtonBottomText">Fictional saas example</p>
                     </button>
                     <button className="HeaderButtonDropdownButton">
                       <div className="HeaderButtonDropdownButtonColorPad"></div>
                       <h5 className="HeaderButtonDropdownButtonTopText">Coming Soon...</h5>
-                      <p className="HeaderButtonDropdownButtonBottomText">Porfolio site mock up example</p>
+                      <p className="HeaderButtonDropdownButtonBottomText">More Templates Coming Soon</p>
                     </button>
-                    <button className="HeaderButtonDropdownButton">
+                    {/* <button className="HeaderButtonDropdownButton">
                       <div className="HeaderButtonDropdownButtonColorPad"></div>
                       <h5 className="HeaderButtonDropdownButtonTopText">Coming Soon...</h5>
                       <p className="HeaderButtonDropdownButtonBottomText">Web Designer mock up example</p>
@@ -564,7 +564,7 @@ export default class App extends React.Component{
                       <div className="HeaderButtonDropdownButtonColorPad"></div>
                       <h5 className="HeaderButtonDropdownButtonTopText">Coming Soon...</h5>
                       <p className="HeaderButtonDropdownButtonBottomText">Company Site mock up example</p>
-                    </button>
+                    </button> */}
                   </div>
                 </div>
                 <button className="HeaderButton" onMouseEnter={()=>this.handleDropdown("mouseIn", 1)} onMouseLeave={()=>this.handleDropdown("mouseOut", 1)} onClick={(e)=>this.handleSectionChange(e, "all")}>Projects</button>

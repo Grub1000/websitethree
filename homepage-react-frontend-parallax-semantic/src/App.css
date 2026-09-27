@@ -213,6 +213,7 @@ width: 12px;
   text-align: left;
   background-color: transparent;
   color: white;
+  cursor: pointer;
 }
 .HeaderButtonDropdownButton:hover{
   background-color: rgba(163, 163, 163, 0.164);
