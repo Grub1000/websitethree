@@ -476,7 +476,7 @@
      * panel becomes the right column of the overall story layout.
      */
     .testimonials__results {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* Repeat (minmax(0, 1fr) a total of 3 time (1 per column) where the min is zero and the max is a fractional unit of 3, so 1 or 33% of the available gride row.)*/
     }
 
     .testimonials__result {
