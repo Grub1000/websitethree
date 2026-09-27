@@ -76,6 +76,241 @@ This keeps section-specific styling isolated while shared design decisions remai
 
 ---
 
+# Dependencies
+
+The SaaS template is built with React and TypeScript and uses a small number of external libraries for icons and advanced animation.
+
+## Main Dependencies
+
+```text
+React
+TypeScript
+GSAP
+Lucide React
+```
+
+### React
+
+React handles component structure and interactive state.
+
+Used for:
+
+- component composition
+- active feature selection
+- FAQ accordion state
+- viewport-triggered animation state
+- conditional visualization rendering
+- refs used by animation systems
+
+Example:
+
+```tsx
+const [activeFeature, setActiveFeature] = useState("autoscaling");
+```
+
+---
+
+### TypeScript
+
+TypeScript provides static typing throughout the template.
+
+It is particularly useful for:
+
+- component props
+- feature IDs
+- animation data
+- DOM refs
+- CSS custom properties
+- preventing invalid state values
+
+Example:
+
+```tsx
+type FeatureId =
+    | "autoscaling"
+    | "deployments"
+    | "observability"
+    | "networking"
+    | "databases"
+    | "rollbacks";
+```
+
+---
+
+### GSAP
+
+Package:
+
+```text
+gsap
+```
+
+GSAP handles animation that is too coordinated or complex for ordinary CSS transitions.
+
+Used heavily in the Global Architecture section for:
+
+- animation timelines
+- pinned sections
+- scroll-linked animation
+- SVG network formation
+- traffic packets
+- region pulses
+- reversing animations while scrolling backward
+
+ScrollTrigger is imported from GSAP:
+
+```tsx
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+```
+
+Install:
+
+```bash
+npm install gsap
+```
+
+---
+
+### Lucide React
+
+Package:
+
+```text
+lucide-react
+```
+
+Lucide provides the interface icons used throughout Nexora.
+
+Examples include:
+
+```tsx
+import {
+    Activity,
+    Check,
+    Cloud,
+    Server,
+    Terminal,
+} from "lucide-react";
+```
+
+Install:
+
+```bash
+npm install lucide-react
+```
+
+Most icons use thin strokes to match the technical visual language:
+
+```tsx
+<Cloud
+    size={18}
+    strokeWidth={1.7}
+    aria-hidden="true"
+/>
+```
+
+Lucide should be treated as a general UI icon library, **not a brand-logo library**.
+
+For official company logos, use official brand SVG assets instead.
+
+---
+
+## Install Template Dependencies
+
+If moving the SaaS template into another React project, install its external dependencies with:
+
+```bash
+npm install gsap lucide-react
+```
+
+React and TypeScript are assumed to already exist in the host project.
+
+Always check the project's `package.json` for the exact versions currently being used before reproducing the environment.
+
+# Browser APIs Used
+
+Not everything used by Nexora requires an npm package.
+
+These features are provided directly by the browser.
+
+## Intersection Observer
+
+```ts
+new IntersectionObserver(...)
+```
+
+Used to detect when components enter the viewport.
+
+No package required.
+
+---
+
+## SVG Geometry APIs
+
+```ts
+path.getTotalLength();
+path.getPointAtLength(...);
+```
+
+Used by Global Architecture to move traffic packets along SVG routes.
+
+No package required.
+
+---
+
+## Reduced Motion
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    ...
+}
+```
+
+Provided by CSS / the browser.
+
+No package required.
+
+---
+
+## CSS Grid
+
+```css
+display: grid;
+```
+
+Native CSS.
+
+No package required.
+
+---
+
+## CSS Custom Properties
+
+```css
+--saas-space-4: 1rem;
+```
+
+Native CSS.
+
+No package required.
+
+---
+
+## Main External Packages
+
+```text
+gsap
+└── advanced timelines and ScrollTrigger
+
+lucide-react
+└── UI icon library
+```
+
+Most of Nexora's implementation therefore relies on **native React, CSS, SVG, and browser capabilities**, with external libraries introduced only where they provide meaningful value.
+
 # Design Tokens
 
 Shared values live in:
