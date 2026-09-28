@@ -1,0 +1,419 @@
+/* ========================================
+   SERVICES / WHAT WE DO
+   ======================================== */
+
+
+.agency-services {
+    color: var(--agency-color-paper);
+    background: var(--agency-color-ink);
+}
+
+
+.agency-services__container {
+    width: min(100% - 2rem, var(--agency-container));
+
+    margin: 0 auto;
+}
+
+
+/*
+ * BASE / MOBILE:
+ *
+ * The header uses two visible columns:
+ *
+ * left  = section index
+ * right = small category label
+ *
+ * The real h2 remains available to assistive technology but is visually
+ * hidden because the oversized service rows already provide the section's
+ * primary visual hierarchy.
+ */
+.agency-services__header {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+    align-items: center;
+    gap: var(--agency-space-4);
+
+    padding: var(--agency-space-6) 0;
+    border-bottom: 1px solid rgba(242, 239, 230, 0.24);
+}
+
+
+.agency-services__index,
+.agency-services__label {
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+
+/*
+ * ACCESSIBILITY — visually hidden rather than display:none.
+ *
+ * The h2 still contributes to the document outline and labels the section
+ * through aria-labelledby on .agency-services.
+ */
+.agency-services__heading {
+    position: absolute;
+
+    width: 0.0625rem;
+    height: 0.0625rem;
+
+    padding: 0;
+    border: 0;
+    margin: -0.0625rem;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    clip-path: inset(50%);
+}
+
+
+.agency-services__list {
+    display: block;
+}
+
+
+/* ========================================
+   SERVICE ROW
+   ======================================== */
+
+
+.agency-service {
+    border-bottom: 1px solid rgba(242, 239, 230, 0.24);
+}
+
+
+/*
+ * BASE / MOBILE:
+ *
+ * A service is deliberately NOT dependent on hover.
+ *
+ * The title, descriptor, and number are all visible in the normal document
+ * flow. Touch users therefore receive the complete content without needing
+ * to discover a hidden interaction.
+ */
+.agency-service__content {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+    gap: var(--agency-space-4);
+
+    padding: var(--agency-space-8) 0;
+
+    outline: none;
+}
+
+
+/*
+ * NATIVE CSS :focus-visible.
+ *
+ * We removed the browser's default outline from the content wrapper because
+ * the editorial layout needs a more deliberate focus treatment.
+ *
+ * We replace it here rather than simply removing keyboard focus feedback.
+ */
+.agency-service__content:focus-visible {
+    outline: 0.125rem solid var(--agency-color-acid);
+    outline-offset: 0.35rem;
+}
+
+
+.agency-service__title-group {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--agency-space-3);
+
+    min-width: 0;
+}
+
+
+.agency-service__title {
+    margin: 0;
+
+    font-size: clamp(2.6rem, 13vw, 5.5rem);
+    font-weight: 700;
+    line-height: 0.86;
+    letter-spacing: -0.065em;
+    text-transform: uppercase;
+
+    color: var(--agency-color-paper);
+}
+
+
+/*
+ * The serif descriptor deliberately contrasts the hard-edged grotesk service
+ * name.
+ *
+ * On mobile it remains permanently visible because no meaningful content
+ * should depend on hover.
+ */
+.agency-service__description {
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1rem, 4.5vw, 1.35rem);
+    font-style: italic;
+    line-height: 1.15;
+
+    color: var(--agency-color-paper-soft);
+}
+
+
+.agency-service__number {
+    align-self: start;
+
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.02em;
+
+    color: var(--agency-color-paper);
+}
+
+
+/* ========================================
+   SERVICES FOOTER
+   ======================================== */
+
+
+.agency-services__footer {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--agency-space-3);
+
+    padding: var(--agency-space-8) 0;
+}
+
+
+.agency-services__location,
+.agency-services__statement {
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+
+.agency-services__statement {
+    color: var(--agency-color-muted);
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 48rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *     1REM page gutters.
+     *
+     * 48REM+:
+     *     2REM page gutters give the increasingly large typography more
+     *     breathing room.
+     *
+     * No later breakpoint changes this width, so this centered container
+     * behavior continues through the CSS cascade.
+     */
+    .agency-services__container {
+        width: min(100% - 4rem, var(--agency-container));
+    }
+
+
+    .agency-services__header {
+        padding: var(--agency-space-8) 0;
+    }
+
+
+    /*
+     * The underlying row remains a two-column Grid:
+     *
+     * column 1 = title + serif descriptor
+     * column 2 = service number
+     *
+     * We increase spacing rather than changing the content architecture.
+     */
+    .agency-service__content {
+        gap: var(--agency-space-8);
+
+        padding: var(--agency-space-12) 0;
+    }
+
+
+    .agency-service__title {
+        font-size: clamp(4.5rem, 9vw, 7.5rem);
+    }
+
+
+    .agency-service__description {
+        font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    }
+
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *     Footer metadata stacks vertically.
+     *
+     * 48REM+:
+     *     The location and studio statement occupy opposite ends of one row.
+     */
+    .agency-services__footer {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--agency-space-8);
+
+        padding: var(--agency-space-10) 0;
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 64rem) {
+    .agency-service__content {
+        position: relative;
+
+        padding: var(--agency-space-10) 0;
+    }
+
+
+    .agency-service__title {
+        font-size: clamp(5.5rem, 8vw, 9rem);
+
+        /*
+         * NATIVE CSS TRANSITION.
+         *
+         * This interaction only moves existing elements between two visual
+         * states, so CSS is more appropriate than creating a GSAP timeline.
+         */
+        transition: transform 0.45s ease;
+    }
+
+
+    /*
+     * LARGE-SCREEN STARTING STATE:
+     *
+     * The description begins slightly left and transparent.
+     *
+     * transform and opacity are both NATIVE CSS properties.
+     */
+    .agency-service__description {
+        opacity: 0;
+
+        transform: translateX(-1.5rem);
+
+        transition:
+            opacity 0.35s ease,
+            transform 0.45s ease;
+    }
+
+
+    .agency-service__number {
+        align-self: center;
+
+        transition: transform 0.45s ease;
+    }
+
+
+    /*
+     * POINTER INTERACTION:
+     *
+     * Hovering anywhere over the service row changes its three visual pieces:
+     *
+     * title       → moves right
+     * description → moves right into place and becomes visible
+     * number      → moves slightly left
+     *
+     * Nothing important exists only in this state. This is visual enhancement
+     * for devices that support hover.
+     */
+    .agency-service:hover .agency-service__title {
+        transform: translateX(2%);
+    }
+
+
+    .agency-service:hover .agency-service__description {
+        opacity: 1;
+
+        transform: translateX(0);
+    }
+
+
+    .agency-service:hover .agency-service__number {
+        transform: translateX(-0.75rem);
+    }
+
+
+    /*
+     * KEYBOARD EQUIVALENT:
+     *
+     * .agency-service__content has tabIndex={0}, so :focus-within on the
+     * parent gives keyboard users the same visual treatment as hover.
+     */
+    .agency-service:focus-within .agency-service__title {
+        transform: translateX(2%);
+    }
+
+
+    .agency-service:focus-within .agency-service__description {
+        opacity: 1;
+
+        transform: translateX(0);
+    }
+
+
+    .agency-service:focus-within .agency-service__number {
+        transform: translateX(-0.75rem);
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+
+@media (prefers-reduced-motion: reduce) {
+    /*
+     * IMPORTANT:
+     *
+     * ServiceRow.tsx skips GSAP when reduced motion is requested.
+     *
+     * Our 64REM CSS normally hides the descriptor because GSAP reveals it
+     * interactively. If GSAP is intentionally disabled, we must restore the
+     * descriptor here so no content disappears.
+     */
+    .agency-service__description {
+        opacity: 1;
+
+        transform: none;
+    }
+}

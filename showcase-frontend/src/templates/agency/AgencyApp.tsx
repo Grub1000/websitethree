@@ -8,6 +8,7 @@ import Header from "./components/Header/Header";
 import Hero from "./sections/Hero/Hero";
 import StudioStatement from "./sections/StudioStatement/StudioStatement";
 import SelectedWork from "./sections/SelectedWork/SelectedWork";
+import Services from "./sections/Services/Services.tsx";
 
 
 
@@ -19,6 +20,7 @@ export default function AgencyApp() {
                 <Hero />
                 <StudioStatement/>
                 <SelectedWork/>
+                <Services />
             </main>
         </div>
     );
