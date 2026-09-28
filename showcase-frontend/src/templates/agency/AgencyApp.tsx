@@ -9,7 +9,7 @@ import Hero from "./sections/Hero/Hero";
 import StudioStatement from "./sections/StudioStatement/StudioStatement";
 import SelectedWork from "./sections/SelectedWork/SelectedWork";
 import Services from "./sections/Services/Services.tsx";
-
+import About from "./sections/About/About.tsx";
 
 
 export default function AgencyApp() {
@@ -21,6 +21,7 @@ export default function AgencyApp() {
                 <StudioStatement/>
                 <SelectedWork/>
                 <Services />
+                <About />
             </main>
         </div>
     );

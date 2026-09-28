@@ -1,0 +1,550 @@
+/* ========================================
+   ABOUT / STUDIO PHILOSOPHY
+   ======================================== */
+
+
+.agency-about {
+    color: var(--agency-color-ink);
+    background: var(--agency-color-paper);
+}
+
+
+.agency-about__container {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr);
+
+    width: min(100% - 2rem, var(--agency-container));
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   SECTION HEADER
+   ======================================== */
+
+
+/*
+ * BASE / MOBILE:
+ *
+ * The section header uses a simple two-sided layout:
+ *
+ * left  = section number / label
+ * right = studio / year
+ *
+ * The section becomes increasingly asymmetric later, so keeping the opening
+ * metadata restrained gives the composition a stable starting point.
+ */
+.agency-about__header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--agency-space-4);
+
+    padding: var(--agency-space-6) 0;
+    border-bottom: 1px solid var(--agency-color-border);
+}
+
+
+.agency-about__index,
+.agency-about__edition {
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   MAIN STATEMENT
+   ======================================== */
+
+
+.agency-about__statement {
+    display: flex;
+
+    flex-direction: column;
+
+    padding: var(--agency-space-12) 0 var(--agency-space-10);
+}
+
+
+/*
+ * Each statement line gets its own wrapper so later breakpoints can shift
+ * individual lines without relying on absolute positioning.
+ *
+ * This keeps the layout responsive while still allowing the typography to
+ * appear deliberately misaligned.
+ */
+.agency-about__statement-line {
+    display: block;
+
+    width: 100%;
+}
+
+
+.agency-about__statement-reveal {
+    display: block;
+
+    overflow: hidden;
+}
+
+
+.agency-about__statement-content {
+    display: block;
+
+    margin: 0;
+
+    font-size: clamp(3.5rem, 16vw, 6.5rem);
+    font-weight: 700;
+    line-height: 0.82;
+    letter-spacing: -0.07em;
+    text-transform: uppercase;
+}
+
+
+/*
+ * The serif word interrupts the otherwise hard-edged grotesk statement.
+ *
+ * This is intentionally NOT uppercase. The contrast in family, case, weight,
+ * and posture makes "internet." feel like an editorial annotation rather than
+ * simply another line of the same heading.
+ */
+.agency-about__statement-content--serif {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -0.055em;
+    text-transform: lowercase;
+}
+
+
+/* ========================================
+   BODY COPY
+   ======================================== */
+
+
+.agency-about__body {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--agency-space-4);
+
+    max-width: 32rem;
+
+    padding: 0 0 var(--agency-space-12);
+}
+
+
+.agency-about__title {
+    margin: 0;
+
+    font-size: clamp(1.5rem, 7vw, 2.25rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.045em;
+}
+
+
+.agency-about__description {
+    max-width: 27rem;
+
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+    line-height: 1.35;
+}
+
+
+/* ========================================
+   EDITORIAL FRAGMENTS
+   ======================================== */
+
+
+.agency-about__fragment {
+    display: flex;
+
+    flex-direction: column;
+    gap: 0.1rem;
+
+    padding: var(--agency-space-6) 0;
+    border-top: 1px solid var(--agency-color-border);
+}
+
+
+.agency-about__fragment-text {
+    margin: 0;
+
+    font-size: clamp(2rem, 10vw, 4rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+}
+
+
+/*
+ * The second statement uses the serif face so the two fragments do not feel
+ * like duplicated components.
+ */
+.agency-about__fragment--big .agency-about__fragment-text {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -0.045em;
+    text-transform: none;
+}
+
+
+/* ========================================
+   STUDIO METADATA
+   ======================================== */
+
+
+.agency-about__meta {
+    display: flex;
+
+    flex-direction: column;
+    gap: 0.15rem;
+
+    padding: var(--agency-space-8) 0;
+    border-top: 1px solid var(--agency-color-border);
+}
+
+
+.agency-about__meta-label,
+.agency-about__meta-location {
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+
+.agency-about__meta-location {
+    color: var(--agency-color-muted);
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 48rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *     One-column container with 1REM outer gutters.
+     *
+     * 48REM+:
+     *     The container becomes a six-column Grid and uses 2REM outer
+     *     gutters. The Grid gives us controlled editorial offsets without
+     *     absolute positioning.
+     *
+     * minmax(0, 1fr) prevents content from forcing an individual Grid column
+     * wider than its equal share of the available space.
+     */
+    .agency-about__container {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        column-gap: var(--agency-space-4);
+
+        width: min(100% - 4rem, var(--agency-container));
+    }
+
+
+    /*
+     * GRID PLACEMENT:
+     *
+     * Header spans all six columns because its metadata should preserve the
+     * same outer alignment as the section itself.
+     */
+    .agency-about__header {
+        grid-column: 1 / -1;
+
+        padding: var(--agency-space-8) 0;
+    }
+
+
+    /*
+     * GRID PLACEMENT:
+     *
+     * The main statement also spans the full Grid, but individual lines below
+     * are offset internally. This gives us asymmetry without sacrificing the
+     * shared section boundaries.
+     */
+    .agency-about__statement {
+        grid-column: 1 / -1;
+
+        padding: 7rem 0 6rem;
+    }
+
+
+    .agency-about__statement-content {
+        font-size: clamp(5.5rem, 12vw, 9rem);
+    }
+
+
+    /*
+     * OVERRIDES BASE:
+     *
+     * "decorate the" begins farther into the composition than "we don't."
+     *
+     * Width is reduced by the same amount so the line cannot accidentally
+     * overflow the section because of its left margin.
+     */
+    .agency-about__statement-line--offset {
+        width: calc(100% - 8%);
+        margin-left: 8%;
+    }
+
+
+    /*
+     * The serif line moves even farther right, producing a stepped composition:
+     *
+     * WE DON'T
+     *      DECORATE THE
+     *            internet.
+     */
+    .agency-about__statement-line--serif {
+        width: calc(100% - 18%);
+        margin-left: 18%;
+    }
+
+
+    /*
+     * GRID PLACEMENT:
+     *
+     * Body copy occupies columns 2–5 rather than aligning to the first
+     * column. That empty first column is intentional editorial whitespace.
+     */
+    .agency-about__body {
+        grid-column: 2 / 6;
+
+        max-width: 36rem;
+
+        padding: 0 0 7rem;
+    }
+
+
+    .agency-about__title {
+        font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+
+    .agency-about__description {
+        font-size: clamp(1.05rem, 2vw, 1.35rem);
+    }
+
+
+    /*
+     * GRID PLACEMENT:
+     *
+     * Small teams occupies the left half of the six-column Grid.
+     */
+    .agency-about__fragment--small {
+        grid-column: 1 / 4;
+
+        padding: var(--agency-space-8) 0;
+    }
+
+
+    /*
+     * GRID PLACEMENT:
+     *
+     * Big ideas begins in column 4 and continues through column 6.
+     *
+     * The two fragments therefore share one horizontal band while preserving
+     * distinct left/right compositions.
+     */
+    .agency-about__fragment--big {
+        grid-column: 4 / 7;
+
+        padding: var(--agency-space-8) 0;
+    }
+
+
+    /*
+     * GRID PLACEMENT:
+     *
+     * Metadata moves to the right side of the Grid beneath the two editorial
+     * fragments.
+     */
+    .agency-about__meta {
+        grid-column: 4 / 7;
+
+        padding: var(--agency-space-10) 0;
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 64rem) {
+    /*
+     * OVERRIDES 48REM:
+     *
+     * Six equal columns become twelve equal columns.
+     *
+     * This is the section where the agency site's underlying twelve-column
+     * editorial system becomes especially visible through the placement of
+     * text rather than through visible Grid lines.
+     */
+    .agency-about__container {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        column-gap: var(--agency-space-4);
+    }
+
+
+    /*
+     * GRID PLACEMENT:
+     *
+     * Header and statement continue spanning the entire container.
+     *
+     * The property must be restated because Grid line 7 represented the end
+     * of the previous six-column layout, while -1 always means the final Grid
+     * line regardless of column count.
+     */
+    .agency-about__header,
+    .agency-about__statement {
+        grid-column: 1 / -1;
+    }
+
+
+    .agency-about__statement {
+        padding: 9rem 0 8rem;
+    }
+
+
+    .agency-about__statement-content {
+        font-size: clamp(7rem, 10.5vw, 11rem);
+    }
+
+
+    /*
+     * OVERRIDES 48REM:
+     *
+     * The twelve-column Grid gives us enough horizontal resolution to make the
+     * offsets more deliberate.
+     *
+     * First line:
+     *     begins at the normal section edge.
+     *
+     * Second line:
+     *     shifts approximately one Grid column inward.
+     *
+     * Third line:
+     *     shifts approximately three Grid columns inward.
+     *
+     * This is the "strict system underneath" part of the composition.
+     */
+    .agency-about__statement-line--offset {
+        width: calc(100% - 8.333%);
+        margin-left: 8.333%;
+    }
+
+
+    .agency-about__statement-line--serif {
+        width: calc(100% - 25%);
+        margin-left: 25%;
+    }
+
+
+    /*
+     * GRID PLACEMENT:
+     *
+     * Body:
+     *     columns 3–7
+     *
+     * Metadata:
+     *     columns 9–12
+     *
+     * They intentionally do NOT line up directly underneath one another.
+     * That imbalance creates the magazine-spread quality while both remain
+     * anchored to the same twelve-column system.
+     */
+    .agency-about__body {
+        grid-column: 3 / 8;
+
+        max-width: 38rem;
+
+        padding: 0 0 9rem;
+    }
+
+
+    .agency-about__meta {
+        grid-column: 9 / 13;
+        grid-row: 3;
+
+        align-self: end;
+
+        padding: 0 0 9rem;
+        border-top: 0;
+    }
+
+
+    /*
+     * GRID PLACEMENT:
+     *
+     * SMALL TEAMS:
+     *     columns 1–5
+     *
+     * BIG IDEAS:
+     *     columns 7–12
+     *
+     * Column 6 becomes intentional negative space between the statements.
+     */
+    .agency-about__fragment--small {
+        grid-column: 1 / 6;
+
+        padding: var(--agency-space-10) 0 8rem;
+    }
+
+
+    .agency-about__fragment--big {
+        grid-column: 7 / 13;
+
+        padding: var(--agency-space-10) 0 8rem;
+    }
+
+
+    .agency-about__fragment-text {
+        font-size: clamp(3rem, 4.5vw, 5.5rem);
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+
+@media (prefers-reduced-motion: reduce) {
+    /*
+     * CSS describes the finished visual state, so skipping the GSAP .from()
+     * animations in About.tsx already leaves every element visible.
+     *
+     * This rule additionally prevents any future CSS transitions added to
+     * these reveal elements from introducing motion for users who requested
+     * reduced motion.
+     */
+    .agency-about__statement-content,
+    .agency-about__body,
+    .agency-about__fragment,
+    .agency-about__meta {
+        transition: none;
+    }
+}
