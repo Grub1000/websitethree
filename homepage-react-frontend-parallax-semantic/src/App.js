@@ -545,16 +545,17 @@ export default class App extends React.Component{
                       <h5 className="HeaderButtonDropdownButtonTopText">Nexora</h5>
                       <p className="HeaderButtonDropdownButtonBottomText">Fictional saas example</p>
                     </button>
-                    <button className="HeaderButtonDropdownButton">
+                    <button className="HeaderButtonDropdownButton" onClick={()=>{window.open("https://jorgeramirez.net/showcase/agency/")}}>
+                      <div className="HeaderButtonDropdownButtonColorPad"></div>
+                      <h5 className="HeaderButtonDropdownButtonTopText">Luxure</h5>
+                      <p className="HeaderButtonDropdownButtonBottomText">Fictional creative dev studio </p>
+                    </button>
+                     <button className="HeaderButtonDropdownButton">
                       <div className="HeaderButtonDropdownButtonColorPad"></div>
                       <h5 className="HeaderButtonDropdownButtonTopText">Coming Soon...</h5>
                       <p className="HeaderButtonDropdownButtonBottomText">More Templates Coming Soon</p>
                     </button>
-                    {/* <button className="HeaderButtonDropdownButton">
-                      <div className="HeaderButtonDropdownButtonColorPad"></div>
-                      <h5 className="HeaderButtonDropdownButtonTopText">Coming Soon...</h5>
-                      <p className="HeaderButtonDropdownButtonBottomText">Web Designer mock up example</p>
-                    </button>
+                    {/*
                     <button className="HeaderButtonDropdownButton">
                       <div className="HeaderButtonDropdownButtonColorPad"></div>
                       <h5 className="HeaderButtonDropdownButtonTopText">Coming Soon...</h5>
