@@ -15,3 +15,19 @@ body {
     color: var(--agency-color-ink);
     background: var(--agency-color-acid);
 }
+
+.agency-sr-only {
+    position: absolute;
+
+    width: 0.0625rem;
+    height: 0.0625rem;
+    padding: 0;
+    border: 0;
+    margin: -0.0625rem;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    clip-path: inset(50%);
+}

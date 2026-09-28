@@ -7,6 +7,7 @@ import "./styles/globals.css";
 import Header from "./components/Header/Header";
 import Hero from "./sections/Hero/Hero";
 import StudioStatement from "./sections/StudioStatement/StudioStatement";
+import SelectedWork from "./sections/SelectedWork/SelectedWork";
 
 
 
@@ -17,6 +18,7 @@ export default function AgencyApp() {
             <main className="agency-app__main">
                 <Hero />
                 <StudioStatement/>
+                <SelectedWork/>
             </main>
         </div>
     );
