@@ -62,6 +62,7 @@ import { Routes, Route } from "react-router-dom";
 
 import ShowcaseHome from "./showcase/ShowcaseHome.tsx";
 import SaaSApp from "./templates/saas/SaaSApp.tsx";
+import AgencyApp from "./templates/agency/AgencyApp.tsx";
 // import AgencyApp from "./templates/agency/AgencyApp";
 // import AnalyticsApp from "./templates/analytics/AnalyticsApp";
 // import EcommerceApp from "./templates/ecommerce/EcommerceApp";
@@ -71,8 +72,8 @@ function App() {
     return (
         <Routes>
             <Route path="/showcase/" element={<ShowcaseHome />} />
-
             <Route path="/showcase/saas/*" element={<SaaSApp />} />
+            <Route path="/showcase/agency/*" element={<AgencyApp />}/>
             {/* <Route path="/agency/*" element={<AgencyApp />} />
             <Route path="/analytics/*" element={<AnalyticsApp />} />
             <Route path="/ecommerce/*" element={<EcommerceApp />} />

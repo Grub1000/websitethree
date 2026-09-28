@@ -1,0 +1,17 @@
+html {
+    background: var(--agency-color-paper);
+}
+
+body {
+    min-width: 20rem;
+
+    font-family: var(--agency-font-sans);
+
+    color: var(--agency-color-ink);
+    background: var(--agency-color-paper);
+}
+
+::selection {
+    color: var(--agency-color-ink);
+    background: var(--agency-color-acid);
+}

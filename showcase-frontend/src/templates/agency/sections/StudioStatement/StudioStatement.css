@@ -1,0 +1,335 @@
+.agency-studio {
+    background: var(--agency-color-acid);
+}
+
+.agency-studio__container {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100svh;
+    width: min(100% - 2rem, var(--agency-container));
+    padding: var(--agency-space-6) 0;
+    margin: 0 auto;
+}
+
+.agency-studio__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--agency-space-4);
+
+    padding-bottom: var(--agency-space-4);
+    border-bottom: 1px solid var(--agency-color-border);
+}
+
+.agency-studio__index,
+.agency-studio__year,
+.agency-studio__location {
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+.agency-studio__statement {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * The statement is intentionally a single-column composition.
+     * Typography remains the dominant visual element while the
+     * supporting paragraph follows naturally underneath.
+     *
+     * CHANGES AT 48REM AND LARGER:
+     * A six-column Grid gives the statement and supporting copy
+     * independent horizontal positions.
+     *
+     * CHANGES AGAIN AT 64REM AND LARGER:
+     * The section adopts the same twelve-column structural system
+     * used by the Hero, allowing much finer editorial placement.
+     */
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--agency-space-10);
+
+    flex: 1;
+
+    padding: var(--agency-space-16) 0;
+}
+
+.agency-studio__title {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0;
+
+    color: var(--agency-color-ink);
+}
+
+.agency-studio__title-intro {
+    margin-bottom: var(--agency-space-6);
+
+    font-size: clamp(1.4rem, 6vw, 2rem);
+    font-weight: 600;
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+    text-transform: uppercase;
+}
+
+.agency-studio__title-primary {
+    font-size: clamp(4rem, 18vw, 7rem);
+    font-weight: 700;
+    line-height: 0.78;
+    letter-spacing: -0.075em;
+    text-transform: uppercase;
+}
+
+.agency-studio__title-serif {
+    align-self: flex-end;
+
+    position: relative;
+    z-index: 2;
+
+    margin: 0.08em 0 0.12em;
+
+    font-family: var(--agency-font-serif);
+    font-size: clamp(3.4rem, 15vw, 6rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 0.82;
+    letter-spacing: -0.065em;
+    text-transform: lowercase;
+}
+
+.agency-studio__title-outro {
+    align-self: flex-start;
+
+    max-width: 10ch;
+
+    font-size: clamp(3.2rem, 15vw, 6rem);
+    font-weight: 700;
+    line-height: 0.82;
+    letter-spacing: -0.075em;
+    text-transform: uppercase;
+}
+
+.agency-studio__description {
+    display: flex;
+    align-items: flex-end;
+}
+
+.agency-studio__description-text {
+    max-width: 24rem;
+
+    font-size: var(--agency-text-base);
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.025em;
+}
+
+.agency-studio__footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--agency-space-8);
+
+    padding-top: var(--agency-space-4);
+    border-top: 1px solid var(--agency-color-border);
+}
+
+.agency-studio__capabilities {
+    display: grid;
+
+    /*
+     * BASE / MOBILE:
+     *
+     * Two equal tracks keep the capability list compact while still
+     * giving every service enough horizontal room.
+     *
+     * minmax(0, 1fr) allows each track to shrink below its content's
+     * intrinsic width if necessary, preventing long labels from
+     * unexpectedly widening the section.
+     */
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: var(--agency-space-2) var(--agency-space-6);
+}
+
+.agency-studio__capability {
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+.agency-studio__reveal {
+    display: block;
+
+    overflow: hidden;
+}
+
+.agency-studio__reveal-content {
+    display: block;
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+@media (min-width: 48rem) {
+    .agency-studio__container {
+        width: min(100% - 4rem, var(--agency-container));
+        padding: var(--agency-space-8) 0;
+    }
+
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *   One flexible column keeps the statement naturally vertical.
+     *
+     * 48REM+:
+     *   Six equal columns allow the headline to dominate the left
+     *   portion while supporting copy occupies its own editorial
+     *   position on the right.
+     */
+    .agency-studio__statement {
+        grid-template-columns:
+            repeat(6, minmax(0, 1fr));
+        gap: var(--agency-space-4);
+
+        padding: var(--agency-space-20) 0;
+    }
+
+    /*
+     * Grid lines 1 / 6 span five of the six available columns.
+     * Leaving the final column outside the title creates deliberate
+     * negative space instead of centering the composition.
+     */
+    .agency-studio__title {
+        grid-column: 1 / 6;
+    }
+
+    /*
+     * Supporting copy occupies the final two columns and aligns to
+     * the bottom of the statement, creating a strong scale contrast
+     * against the oversized headline.
+     */
+    .agency-studio__description {
+        grid-column: 5 / 7;
+        align-self: end;
+    }
+
+    .agency-studio__title-primary {
+        font-size: clamp(6rem, 13vw, 9rem);
+    }
+
+    .agency-studio__title-serif {
+        align-self: center;
+
+        font-size: clamp(5rem, 10vw, 8rem);
+    }
+
+    .agency-studio__title-outro {
+        font-size: clamp(5rem, 10vw, 8rem);
+    }
+
+    .agency-studio__footer {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    /*
+     * Four equal columns create a compact horizontal service index.
+     * Each capability occupies one predictable track rather than
+     * relying on arbitrary spacing between text labels.
+     */
+    .agency-studio__capabilities {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+        gap: var(--agency-space-8);
+
+        flex: 1;
+
+        max-width: 42rem;
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+@media (min-width: 64rem) {
+    /*
+     * OVERRIDES 48REM AND LARGER:
+     *
+     * 48REM+:
+     *   Six columns provide the intermediate composition.
+     *
+     * 64REM+:
+     *   Twelve columns match the Hero's underlying editorial Grid.
+     *
+     * The greater number of tracks lets the typography look loosely
+     * arranged while every element remains intentionally positioned.
+     */
+    .agency-studio__statement {
+        grid-template-columns:
+            repeat(12, minmax(0, 1fr));
+
+        padding: var(--agency-space-24) 0;
+    }
+
+    /*
+     * The headline occupies roughly the left three-quarters of the
+     * Grid. It deliberately stops before the right edge so the
+     * supporting paragraph can exist beside it instead of below it.
+     */
+    .agency-studio__title {
+        grid-column: 1 / 10;
+    }
+
+    /*
+     * Grid lines 10 / 13 occupy the final three columns.
+     *
+     * Bottom alignment puts the small paragraph beside the enormous
+     * final headline rather than at its top, reinforcing the extreme
+     * editorial scale contrast established in the Hero.
+     */
+    .agency-studio__description {
+        grid-column: 10 / 13;
+        align-self: end;
+
+        padding-bottom: var(--agency-space-4);
+    }
+
+    .agency-studio__title-intro {
+        max-width: 20rem;
+
+        font-size: 2rem;
+    }
+
+    .agency-studio__title-primary {
+        font-size: clamp(7rem, 10vw, 10rem);
+    }
+
+    .agency-studio__title-serif {
+        /*
+         * Pulling the serif slightly toward the preceding word makes
+         * it feel layered into the statement instead of appearing as
+         * another ordinary line of text.
+         */
+        margin-right: 8%;
+
+        font-size: clamp(6rem, 8vw, 8.5rem);
+    }
+
+    .agency-studio__title-outro {
+        max-width: 9ch;
+
+        font-size: clamp(6rem, 8vw, 8.5rem);
+    }
+}

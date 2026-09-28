@@ -1,0 +1,86 @@
+:root {
+    /* ========================================
+       COLOR
+       ======================================== */
+
+    --agency-color-paper: #f2efe6;
+    --agency-color-paper-soft: #e9e5da;
+    --agency-color-ink: #11110f;
+    --agency-color-muted: #77736b;
+    --agency-color-border: rgba(17, 17, 15, 0.16);
+
+    --agency-color-acid: #e7ff55;
+    --agency-color-blue: #afc9ff;
+    --agency-color-coral: #ff8068;
+    --agency-color-lavender: #c7b7ff;
+    --agency-color-mint: #b9efd0;
+
+
+    /* ========================================
+       TYPOGRAPHY
+       ======================================== */
+
+    /*
+     * The sans family carries the bold graphic identity.
+     *
+     * This is intentionally a temporary system stack while the
+     * Header + Hero prototype establishes the visual direction.
+     */
+    --agency-font-sans:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    /*
+     * The serif is intentionally used as contrast rather than as
+     * the dominant typeface. A dedicated display serif can replace
+     * Georgia after the prototype typography is visually approved.
+     */
+    --agency-font-serif:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    --agency-text-xs: 0.75rem;
+    --agency-text-sm: 0.875rem;
+    --agency-text-base: 1rem;
+    --agency-text-lg: 1.125rem;
+    --agency-text-xl: 1.25rem;
+    --agency-text-2xl: 1.5rem;
+
+
+    /* ========================================
+       SPACING
+       ======================================== */
+
+    --agency-space-1: 0.25rem;
+    --agency-space-2: 0.5rem;
+    --agency-space-3: 0.75rem;
+    --agency-space-4: 1rem;
+    --agency-space-5: 1.25rem;
+    --agency-space-6: 1.5rem;
+    --agency-space-8: 2rem;
+    --agency-space-10: 2.5rem;
+    --agency-space-12: 3rem;
+    --agency-space-16: 4rem;
+    --agency-space-20: 5rem;
+    --agency-space-24: 6rem;
+
+
+    /* ========================================
+       LAYOUT
+       ======================================== */
+
+    --agency-container: 90rem;
+
+
+    /* ========================================
+       MOTION
+       ======================================== */
+
+    --agency-motion-fast: 160ms;
+    --agency-motion-base: 260ms;
+    --agency-motion-slow: 700ms;
+
+    --agency-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
