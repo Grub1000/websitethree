@@ -1,0 +1,592 @@
+/* ========================================
+   SELECTED COLLABORATORS
+   ======================================== */
+
+
+.agency-collaborators {
+    color: var(--agency-color-ink);
+    background: var(--agency-color-paper);
+}
+
+
+.agency-collaborators__container {
+    width: min(100% - 2rem, var(--agency-container));
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   SECTION HEADER
+   ======================================== */
+
+
+.agency-collaborators__header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--agency-space-4);
+
+    padding: var(--agency-space-6) 0;
+    border-bottom: 1px solid var(--agency-color-border);
+}
+
+
+.agency-collaborators__index,
+.agency-collaborators__range {
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   INTRO
+   ======================================== */
+
+
+/*
+ * BASE / MOBILE:
+ *
+ * The intro stacks naturally:
+ *
+ * 1. Large section title
+ * 2. Supporting sentence
+ *
+ * We do not force the asymmetric desktop composition onto a narrow screen.
+ * Mobile gets its own intentional vertical reading order.
+ */
+.agency-collaborators__intro {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--agency-space-6);
+
+    padding: var(--agency-space-12) 0;
+}
+
+
+.agency-collaborators__title {
+    display: flex;
+
+    flex-direction: column;
+
+    max-width: 50rem;
+
+    margin: 0;
+
+    font-size: clamp(3.5rem, 16vw, 7rem);
+    font-weight: 700;
+    line-height: 0.82;
+    letter-spacing: -0.07em;
+    text-transform: uppercase;
+}
+
+
+.agency-collaborators__title-serif {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -0.055em;
+    text-transform: lowercase;
+}
+
+
+.agency-collaborators__intro-copy {
+    max-width: 22rem;
+
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.05rem;
+    line-height: 1.35;
+}
+
+
+/* ========================================
+   COLLABORATOR LIST
+   ======================================== */
+
+
+.agency-collaborators__list {
+    display: block;
+
+    padding: 0;
+    border-top: 1px solid var(--agency-color-border);
+    margin: 0;
+
+    list-style: none;
+}
+
+
+.agency-collaborators__item {
+    border-bottom: 1px solid var(--agency-color-border);
+
+    overflow: hidden;
+}
+
+
+/*
+ * BASE / MOBILE:
+ *
+ * The row uses a two-column Grid:
+ *
+ * column 1 = collaborator information
+ * column 2 = year
+ *
+ * The small numerical index occupies the first row on the left. The name and
+ * discipline then continue beneath it.
+ *
+ * The desktop layout later exposes a much more structured multi-column index.
+ */
+.agency-collaborators__row {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+    align-items: end;
+    gap: var(--agency-space-3) var(--agency-space-4);
+
+    padding: var(--agency-space-6) 0;
+}
+
+
+.agency-collaborators__number {
+    grid-column: 1;
+    grid-row: 1;
+
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1;
+
+    color: var(--agency-color-muted);
+}
+
+
+.agency-collaborators__name {
+    grid-column: 1;
+    grid-row: 2;
+
+    margin: 0;
+
+    font-size: clamp(2rem, 10vw, 4rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.055em;
+    text-transform: uppercase;
+}
+
+
+.agency-collaborators__discipline {
+    grid-column: 1;
+    grid-row: 3;
+
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.2;
+}
+
+
+.agency-collaborators__year {
+    grid-column: 2;
+    grid-row: 1 / 4;
+
+    align-self: end;
+
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1;
+}
+
+
+/*
+ * MOBILE:
+ *
+ * The supporting phrase stays visible because touch users should never need
+ * hover to discover content.
+ */
+.agency-collaborators__detail {
+    display: block;
+
+    padding: 0 0 var(--agency-space-5);
+}
+
+
+.agency-collaborators__detail-text {
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+
+    color: var(--agency-color-muted);
+}
+
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+
+.agency-collaborators__footer {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--agency-space-3);
+
+    padding: var(--agency-space-8) 0 var(--agency-space-12);
+}
+
+
+.agency-collaborators__count,
+.agency-collaborators__location {
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+
+.agency-collaborators__location {
+    color: var(--agency-color-muted);
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 48rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *     1REM outer page gutters.
+     *
+     * 48REM+:
+     *     2REM outer gutters match the wider editorial sections elsewhere
+     *     in the agency template.
+     *
+     * No later breakpoint changes this width, so the rule continues through
+     * the CSS cascade.
+     */
+    .agency-collaborators__container {
+        width: min(100% - 4rem, var(--agency-container));
+    }
+
+
+    .agency-collaborators__header {
+        padding: var(--agency-space-8) 0;
+    }
+
+
+    /*
+     * 48REM+ INTRO GRID:
+     *
+     * Six equal columns establish the intermediate editorial composition.
+     *
+     * title = columns 1–4
+     * copy  = columns 5–6
+     *
+     * The copy aligns toward the bottom of the oversized heading rather than
+     * sitting directly underneath it.
+     */
+    .agency-collaborators__intro {
+        display: grid;
+
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        align-items: end;
+        column-gap: var(--agency-space-4);
+
+        padding: 7rem 0;
+    }
+
+
+    .agency-collaborators__title {
+        grid-column: 1 / 5;
+
+        font-size: clamp(5rem, 10vw, 8rem);
+    }
+
+
+    .agency-collaborators__intro-copy {
+        grid-column: 5 / 7;
+
+        padding-bottom: 0.5rem;
+    }
+
+
+    /*
+     * 48REM+ ROW GRID:
+     *
+     * The collaborator index becomes more like a traditional editorial
+     * credits table:
+     *
+     * | 01 | AURELIA          | FASHION / CULTURE | 2026 |
+     *
+     * Grid keeps those columns aligned across every row without using an HTML
+     * table, since each row will become visually expressive at 64REM+.
+     */
+    .agency-collaborators__row {
+        grid-template-columns:
+            3rem
+            minmax(0, 2fr)
+            minmax(10rem, 1fr)
+            auto;
+        align-items: center;
+        column-gap: var(--agency-space-5);
+
+        padding: var(--agency-space-5) 0;
+    }
+
+
+    .agency-collaborators__number {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+
+    .agency-collaborators__name {
+        grid-column: 2;
+        grid-row: 1;
+
+        font-size: clamp(2.25rem, 5vw, 4.5rem);
+    }
+
+
+    .agency-collaborators__discipline {
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+
+    .agency-collaborators__year {
+        grid-column: 4;
+        grid-row: 1;
+
+        align-self: center;
+    }
+
+
+    /*
+     * At 48REM the supporting detail becomes visually quieter but remains
+     * available because this breakpoint may still represent a touch device.
+     */
+    .agency-collaborators__detail {
+        padding: 0 0 var(--agency-space-4) 3rem;
+    }
+
+
+    .agency-collaborators__footer {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--agency-space-8);
+
+        padding: var(--agency-space-10) 0 7rem;
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 64rem) {
+    /*
+     * 64REM+ INTRO:
+     *
+     * The six-column intermediate Grid becomes the template's full
+     * twelve-column editorial system.
+     *
+     * title = columns 1–8
+     * copy  = columns 10–12
+     *
+     * Column 9 intentionally remains empty. That negative space prevents the
+     * intro from becoming a conventional two-column marketing layout.
+     */
+    .agency-collaborators__intro {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        column-gap: var(--agency-space-4);
+
+        padding: 8rem 0 9rem;
+    }
+
+
+    .agency-collaborators__title {
+        grid-column: 1 / 9;
+
+        font-size: clamp(6rem, 8vw, 9rem);
+    }
+
+
+    .agency-collaborators__intro-copy {
+        grid-column: 10 / 13;
+
+        padding-bottom: 0.75rem;
+    }
+
+
+    /*
+     * LARGE-SCREEN ROW:
+     *
+     * The base information remains permanently visible. Hover changes scale,
+     * spacing, background and supporting detail, but it does not reveal
+     * information required to understand the collaborator.
+     *
+     * That distinction is important: hover is enhancement, not navigation.
+     */
+    .agency-collaborators__row {
+        padding: 1.5rem 1rem;
+
+        transition:
+            padding 0.4s ease,
+            background-color 0.4s ease;
+    }
+
+
+    .agency-collaborators__name {
+        transform-origin: left center;
+
+        transition: transform 0.4s ease;
+    }
+
+
+    .agency-collaborators__discipline,
+    .agency-collaborators__number,
+    .agency-collaborators__year {
+        transition:
+            opacity 0.3s ease,
+            transform 0.4s ease;
+    }
+
+
+    /*
+     * LARGE-SCREEN DETAIL START STATE:
+     *
+     * The supporting phrase collapses visually until the row is hovered.
+     *
+     * max-height is used instead of display:none because display cannot
+     * transition between visible and hidden states.
+     *
+     * The information is deliberately generic/supporting; collaborator name,
+     * discipline and year remain visible at all times.
+     */
+    .agency-collaborators__detail {
+        max-height: 0;
+
+        padding: 0 1rem;
+
+        opacity: 0;
+        overflow: hidden;
+
+        transform: translateY(-0.75rem);
+
+        transition:
+            max-height 0.4s ease,
+            padding 0.4s ease,
+            opacity 0.3s ease,
+            transform 0.4s ease;
+    }
+
+
+    /*
+     * POINTER INTERACTION:
+     *
+     * Hovering a row expands the editorial rhythm rather than simply changing
+     * text color.
+     *
+     * The mint background is temporary interaction color. It does not become
+     * the permanent section background, keeping the overall palette restrained.
+     */
+    .agency-collaborators__item:hover .agency-collaborators__row {
+        padding: 2.75rem 1rem;
+
+        background: var(--agency-color-mint);
+    }
+
+
+    .agency-collaborators__item:hover .agency-collaborators__name {
+        transform: translateX(1rem) scale(1.08);
+    }
+
+
+    .agency-collaborators__item:hover .agency-collaborators__number {
+        opacity: 0.55;
+
+        transform: translateX(0.4rem);
+    }
+
+
+    .agency-collaborators__item:hover .agency-collaborators__discipline {
+        transform: translateX(0.75rem);
+    }
+
+
+    .agency-collaborators__item:hover .agency-collaborators__year {
+        transform: translateX(-0.75rem);
+    }
+
+
+    .agency-collaborators__item:hover .agency-collaborators__detail {
+        max-height: 4rem;
+
+        padding: 0 1rem 1.5rem;
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+
+@media (prefers-reduced-motion: reduce) {
+    /*
+     * Remove movement while preserving every collaborator and all primary
+     * information.
+     *
+     * We intentionally do not disable the hover background because a color
+     * state change can still provide useful pointer feedback without motion.
+     */
+    .agency-collaborators__row,
+    .agency-collaborators__name,
+    .agency-collaborators__discipline,
+    .agency-collaborators__number,
+    .agency-collaborators__year,
+    .agency-collaborators__detail {
+        transition: none;
+    }
+
+
+    .agency-collaborators__item:hover .agency-collaborators__name,
+    .agency-collaborators__item:hover .agency-collaborators__number,
+    .agency-collaborators__item:hover .agency-collaborators__discipline,
+    .agency-collaborators__item:hover .agency-collaborators__year {
+        transform: none;
+    }
+}
