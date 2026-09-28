@@ -1,0 +1,538 @@
+/* ========================================
+   CONTACT / FINAL CTA
+   ======================================== */
+
+
+.agency-contact {
+    color: var(--agency-color-paper);
+    background: var(--agency-color-ink);
+}
+
+
+.agency-contact__container {
+    width: min(100% - 2rem, var(--agency-container));
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   SECTION HEADER
+   ======================================== */
+
+
+.agency-contact__header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--agency-space-4);
+
+    padding: var(--agency-space-6) 0;
+    border-bottom: 1px solid rgba(242, 239, 230, 0.22);
+}
+
+
+.agency-contact__index,
+.agency-contact__location {
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   MAIN COMPOSITION
+   ======================================== */
+
+
+/*
+ * BASE / MOBILE:
+ *
+ * The main composition remains deliberately straightforward:
+ *
+ * statement
+ *     ↓
+ * CTA
+ *
+ * We do not attempt to compress the later desktop overlap into a narrow
+ * viewport. Mobile gets a composition designed specifically for mobile.
+ */
+.agency-contact__main {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--agency-space-10);
+
+    padding: var(--agency-space-12) 0;
+}
+
+
+.agency-contact__title {
+    display: flex;
+
+    flex-direction: column;
+
+    margin: 0;
+}
+
+
+.agency-contact__title-line {
+    display: block;
+
+    font-size: clamp(3.5rem, 16vw, 6.5rem);
+    font-weight: 700;
+    line-height: 0.82;
+    letter-spacing: -0.07em;
+    text-transform: uppercase;
+}
+
+
+/*
+ * The serif line interrupts the hard grotesk typography.
+ *
+ * It uses lowercase and italic styling intentionally. This contrast keeps the
+ * phrase from reading like four identical stacked headline lines.
+ */
+.agency-contact__title-line--serif {
+    padding-left: 12%;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -0.055em;
+    text-transform: lowercase;
+}
+
+
+.agency-contact__title-line--last {
+    padding-left: 18%;
+}
+
+
+/* ========================================
+   MAGNETIC CTA
+   ======================================== */
+
+
+.agency-contact__cta-area {
+    display: flex;
+
+    justify-content: center;
+
+    width: 100%;
+}
+
+
+/*
+ * The CTA is intentionally much larger than a conventional button.
+ *
+ * It behaves more like an editorial graphic element that also happens to be
+ * the primary action.
+ *
+ * border-radius: 50% creates the oval/circular geometry from the rectangular
+ * width and height.
+ */
+.agency-contact__cta {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: min(100%, 20rem);
+    aspect-ratio: 1.45 / 1;
+
+    border-radius: 50%;
+
+    color: var(--agency-color-ink);
+    background: var(--agency-color-acid);
+
+    transform: translateZ(0);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+
+.agency-contact__cta-label {
+    display: flex;
+
+    align-items: center;
+    gap: var(--agency-space-2);
+}
+
+
+.agency-contact__cta-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+
+.agency-contact__cta-icon {
+    flex-shrink: 0;
+
+    width: 1rem;
+    height: 1rem;
+}
+
+
+/*
+ * NATIVE CSS :hover.
+ *
+ * GSAP owns the magnetic positional movement at large sizes.
+ * CSS still owns the simple visual color response.
+ */
+.agency-contact__cta:hover {
+    color: var(--agency-color-ink);
+    background: var(--agency-color-paper);
+}
+
+
+/*
+ * ACCESSIBILITY:
+ *
+ * Do not remove focus indication from an interactive link unless a visible
+ * replacement is supplied.
+ */
+.agency-contact__cta:focus-visible {
+    outline: 0.125rem solid var(--agency-color-paper);
+    outline-offset: 0.4rem;
+}
+
+
+/* ========================================
+   CONTACT DETAILS
+   ======================================== */
+
+
+.agency-contact__details {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+
+    padding: 0 0 var(--agency-space-10);
+    border-top: 1px solid rgba(242, 239, 230, 0.22);
+}
+
+
+.agency-contact__detail {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--agency-space-2);
+
+    padding: var(--agency-space-5) 0;
+    border-bottom: 1px solid rgba(242, 239, 230, 0.22);
+}
+
+
+.agency-contact__detail-label {
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+
+    color: rgba(242, 239, 230, 0.58);
+}
+
+
+.agency-contact__detail-link,
+.agency-contact__detail-value {
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.15rem, 5vw, 1.6rem);
+    line-height: 1.2;
+
+    color: var(--agency-color-paper);
+}
+
+
+.agency-contact__detail-link {
+    width: fit-content;
+
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.0625rem;
+    text-underline-offset: 0.2rem;
+
+    transition: opacity 0.2s ease;
+}
+
+
+.agency-contact__detail-link:hover {
+    opacity: 0.6;
+}
+
+
+.agency-contact__detail-link:focus-visible {
+    outline: 0.125rem solid var(--agency-color-acid);
+    outline-offset: 0.25rem;
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 48rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *     1REM outer gutters.
+     *
+     * 48REM+:
+     *     2REM outer gutters match the wider editorial system used throughout
+     *     the agency template.
+     *
+     * No later breakpoint changes the container width, so this continues
+     * through the cascade.
+     */
+    .agency-contact__container {
+        width: min(100% - 4rem, var(--agency-container));
+    }
+
+
+    .agency-contact__header {
+        padding: var(--agency-space-8) 0;
+    }
+
+
+    /*
+     * SIX-COLUMN INTERMEDIATE GRID
+     *
+     * title = columns 1–6
+     * CTA   = columns 4–6
+     *
+     * The CTA begins moving away from the centered mobile composition without
+     * yet using the more extreme twelve-column desktop placement.
+     */
+    .agency-contact__main {
+        display: grid;
+
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        align-items: center;
+        column-gap: var(--agency-space-4);
+        row-gap: var(--agency-space-8);
+
+        padding: 7rem 0;
+    }
+
+
+    .agency-contact__title {
+        grid-column: 1 / 7;
+    }
+
+
+    .agency-contact__title-line {
+        font-size: clamp(5.5rem, 11vw, 9rem);
+    }
+
+
+    .agency-contact__title-line--serif {
+        padding-left: 20%;
+    }
+
+
+    .agency-contact__title-line--third {
+        padding-left: 7%;
+    }
+
+
+    .agency-contact__title-line--last {
+        padding-left: 24%;
+    }
+
+
+    /*
+     * GRID PLACEMENT:
+     *
+     * CTA occupies the right half of the six-column Grid.
+     */
+    .agency-contact__cta-area {
+        grid-column: 4 / 7;
+
+        justify-content: flex-end;
+    }
+
+
+    .agency-contact__cta {
+        width: min(100%, 22rem);
+    }
+
+
+    /*
+     * CONTACT DETAILS GRID:
+     *
+     * Three equal columns replace the vertically stacked mobile details.
+     */
+    .agency-contact__details {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        column-gap: var(--agency-space-6);
+
+        padding: 0 0 7rem;
+    }
+
+
+    .agency-contact__detail {
+        padding: var(--agency-space-6) 0;
+        border-bottom: 0;
+    }
+
+
+    .agency-contact__detail-link,
+    .agency-contact__detail-value {
+        font-size: clamp(1.1rem, 2vw, 1.45rem);
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 64rem) {
+    /*
+     * TWELVE-COLUMN DESKTOP COMPOSITION
+     *
+     * This is intentionally not a centered hero-like CTA.
+     *
+     * title = full twelve-column canvas
+     * CTA   = right-side editorial interruption
+     *
+     * Individual title lines below shift independently, but every shift still
+     * corresponds approximately to the underlying twelve-column system.
+     */
+    .agency-contact__main {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        column-gap: var(--agency-space-4);
+
+        min-height: 52rem;
+
+        padding: 8rem 0;
+    }
+
+
+    .agency-contact__title {
+        grid-column: 1 / 13;
+        grid-row: 1;
+    }
+
+
+    .agency-contact__title-line {
+        font-size: clamp(6.5rem, 9vw, 10.5rem);
+    }
+
+
+    /*
+     * DESKTOP TYPOGRAPHIC OFFSETS
+     *
+     * HAVE SOMETHING
+     *          in mind?
+     *     LET'S MAKE IT
+     *            MOVE.
+     *
+     * Percentage padding remains fluid, but the values correspond roughly to
+     * deliberate movements across the twelve-column system.
+     */
+    .agency-contact__title-line--serif {
+        padding-left: 33.333%;
+    }
+
+
+    .agency-contact__title-line--third {
+        padding-left: 8.333%;
+    }
+
+
+    .agency-contact__title-line--last {
+        padding-left: 25%;
+    }
+
+
+    /*
+     * GRID PLACEMENT:
+     *
+     * The CTA overlaps the lower-right area of the same Grid row as the title.
+     *
+     * This is intentional layering rather than absolute positioning:
+     *
+     * title and CTA both occupy grid-row: 1
+     *
+     * Grid therefore remains responsible for the composition and continues
+     * responding naturally to the container width.
+     */
+    .agency-contact__cta-area {
+        grid-column: 9 / 13;
+        grid-row: 1;
+
+        align-self: end;
+        justify-content: center;
+
+        padding-bottom: 1rem;
+
+        z-index: 2;
+    }
+
+
+    .agency-contact__cta {
+        /* width: min(100%, 24rem); */
+        width: min(100%, 20rem);
+
+    }
+
+
+    .agency-contact__cta-text {
+        font-size: 0.85rem;
+    }
+
+
+    /*
+     * The contact details remain a three-column system established at 48REM.
+     * We only increase the vertical breathing room here.
+     */
+    .agency-contact__details {
+        padding: 0 0 8rem;
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+
+@media (prefers-reduced-motion: reduce) {
+    /*
+     * Contact.tsx completely skips the GSAP magnetic interaction when reduced
+     * motion is requested.
+     *
+     * CSS therefore remains the finished/static state.
+     */
+    .agency-contact__cta,
+    .agency-contact__cta-label {
+        transform: none !important;
+    }
+
+
+    .agency-contact__cta,
+    .agency-contact__detail-link {
+        transition: none;
+    }
+}

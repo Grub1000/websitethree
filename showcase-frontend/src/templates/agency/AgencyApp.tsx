@@ -11,6 +11,7 @@ import SelectedWork from "./sections/SelectedWork/SelectedWork";
 import Services from "./sections/Services/Services.tsx";
 import About from "./sections/About/About.tsx";
 import Collaborators from "./sections/Collaborators/Collaborators.tsx";
+import Contact from "./sections/Contact/Contact.tsx";
 
 
 export default function AgencyApp() {
@@ -24,6 +25,7 @@ export default function AgencyApp() {
                 <Services />
                 <About />
                 <Collaborators />
+                <Contact />
             </main>
         </div>
     );
