@@ -1,0 +1,505 @@
+/* ========================================
+   FOOTER
+   ======================================== */
+
+
+.agency-footer {
+    color: var(--agency-color-paper);
+    background: var(--agency-color-ink);
+}
+
+
+.agency-footer__container {
+    width: min(100% - 2rem, var(--agency-container));
+
+    border-top: 1px solid rgba(242, 239, 230, 0.22);
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   FOOTER INFORMATION
+   ======================================== */
+
+
+/*
+ * BASE / MOBILE:
+ *
+ * The footer begins as a simple vertical colophon:
+ *
+ * identity
+ *     ↓
+ * social links
+ *     ↓
+ * studio information
+ *
+ * There is no reason to force the later editorial Grid onto a narrow screen.
+ * The mobile reading order is deliberately straightforward.
+ */
+.agency-footer__top {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--agency-space-10);
+
+    padding: var(--agency-space-8) 0 var(--agency-space-12);
+}
+
+
+.agency-footer__identity {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--agency-space-4);
+}
+
+
+.agency-footer__brand {
+    margin: 0;
+
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+
+.agency-footer__description {
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+
+    color: rgba(242, 239, 230, 0.58);
+}
+
+
+.agency-footer__description-break {
+    display: block;
+}
+
+
+/* ========================================
+   SOCIAL NAVIGATION
+   ======================================== */
+
+
+.agency-footer__social {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--agency-space-3);
+}
+
+
+.agency-footer__social-label,
+.agency-footer__studio-label {
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+
+    color: rgba(242, 239, 230, 0.58);
+}
+
+
+.agency-footer__social-list {
+    display: flex;
+
+    flex-direction: column;
+    gap: 0.2rem;
+
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+}
+
+
+.agency-footer__social-item {
+    display: block;
+}
+
+
+.agency-footer__social-link {
+    display: inline-block;
+
+    position: relative;
+
+    width: fit-content;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.15rem;
+    line-height: 1.2;
+
+    color: var(--agency-color-paper);
+}
+
+
+/*
+ * NATIVE CSS GENERATED CONTENT
+ *
+ * The underline is created with ::after rather than text-decoration because
+ * we want independent control over its width and movement.
+ *
+ * BASE STATE:
+ *     scaleX(0) collapses the line horizontally.
+ *
+ * HOVER / FOCUS:
+ *     scaleX(1) expands it to its full width.
+ *
+ * transform-origin: left makes the line appear to draw from left to right.
+ */
+.agency-footer__social-link::after {
+    content: "";
+
+    display: block;
+
+    position: absolute;
+    right: 0;
+    bottom: -0.15rem;
+    left: 0;
+
+    height: 0.0625rem;
+
+    background: currentColor;
+
+    transform: scaleX(0);
+    transform-origin: left center;
+
+    transition: transform 0.25s ease;
+}
+
+
+.agency-footer__social-link:hover::after,
+.agency-footer__social-link:focus-visible::after {
+    transform: scaleX(1);
+}
+
+
+.agency-footer__social-link:focus-visible {
+    outline: 0.125rem solid var(--agency-color-acid);
+    outline-offset: 0.3rem;
+}
+
+
+/* ========================================
+   STUDIO INFORMATION
+   ======================================== */
+
+
+.agency-footer__studio {
+    display: flex;
+
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+
+.agency-footer__location,
+.agency-footer__coordinates {
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+
+.agency-footer__coordinates {
+    color: rgba(242, 239, 230, 0.58);
+}
+
+
+/* ========================================
+   OVERSIZED WORDMARK
+   ======================================== */
+
+
+/*
+ * The wordmark is the footer's only major graphic gesture.
+ *
+ * It intentionally approaches the full available width, creating a final
+ * typographic full stop after the much more complex Contact section.
+ *
+ * overflow:hidden clips tiny portions of glyphs if the font's metrics extend
+ * outside the line box. That is intentional here and reinforces the large
+ * editorial treatment.
+ */
+.agency-footer__wordmark {
+    width: 100%;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    font-size: clamp(4.5rem, 22vw, 10rem);
+    font-weight: 700;
+    line-height: 0.72;
+    letter-spacing: -0.085em;
+    text-align: center;
+    white-space: nowrap;
+
+    color: var(--agency-color-paper);
+}
+
+
+/* ========================================
+   BOTTOM BAR
+   ======================================== */
+
+
+.agency-footer__bottom {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--agency-space-3);
+
+    padding: var(--agency-space-8) 0 var(--agency-space-6);
+    border-top: 1px solid rgba(242, 239, 230, 0.22);
+    margin-top: var(--agency-space-8);
+}
+
+
+.agency-footer__copyright,
+.agency-footer__credit {
+    margin: 0;
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+
+.agency-footer__credit {
+    color: rgba(242, 239, 230, 0.58);
+}
+
+
+.agency-footer__top-link {
+    display: flex;
+
+    align-items: center;
+    gap: var(--agency-space-2);
+
+    width: fit-content;
+
+    margin-top: var(--agency-space-3);
+
+    font-size: var(--agency-text-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+
+    color: var(--agency-color-paper);
+
+    transition: opacity 0.2s ease;
+}
+
+
+.agency-footer__top-icon {
+    flex-shrink: 0;
+
+    width: 0.9rem;
+    height: 0.9rem;
+
+    transition: transform 0.25s ease;
+}
+
+
+.agency-footer__top-link:hover {
+    opacity: 0.65;
+}
+
+
+.agency-footer__top-link:hover .agency-footer__top-icon {
+    transform: translateY(-0.2rem);
+}
+
+
+.agency-footer__top-link:focus-visible {
+    outline: 0.125rem solid var(--agency-color-acid);
+    outline-offset: 0.3rem;
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 48rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Base:
+     *     1REM outer gutters.
+     *
+     * 48REM+:
+     *     2REM outer gutters align the footer with the larger editorial
+     *     sections above it.
+     *
+     * This width continues through the 64REM breakpoint.
+     */
+    .agency-footer__container {
+        width: min(100% - 4rem, var(--agency-container));
+    }
+
+
+    /*
+     * SIX-COLUMN GRID:
+     *
+     * identity = columns 1–3
+     * social   = columns 4–5
+     * studio   = column 6
+     *
+     * The content now reads horizontally like a publication colophon.
+     */
+    .agency-footer__top {
+        display: grid;
+
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        column-gap: var(--agency-space-4);
+
+        padding: var(--agency-space-10) 0 7rem;
+    }
+
+
+    .agency-footer__identity {
+        grid-column: 1 / 4;
+    }
+
+
+    .agency-footer__social {
+        grid-column: 4 / 6;
+    }
+
+
+    .agency-footer__studio {
+        grid-column: 6 / 7;
+    }
+
+
+    .agency-footer__wordmark {
+        font-size: clamp(8rem, 18vw, 14rem);
+    }
+
+
+    /*
+     * BOTTOM BAR GRID:
+     *
+     * Copyright remains left.
+     * Credit occupies the middle.
+     * Back to Top aligns right.
+     */
+    .agency-footer__bottom {
+        display: grid;
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr)
+            auto;
+        align-items: center;
+        gap: var(--agency-space-6);
+
+        padding: var(--agency-space-6) 0;
+        margin-top: var(--agency-space-10);
+    }
+
+
+    .agency-footer__top-link {
+        justify-self: end;
+
+        margin-top: 0;
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 64rem) {
+    /*
+     * TWELVE-COLUMN GRID:
+     *
+     * identity = columns 1–5
+     * social   = columns 7–8
+     * studio   = columns 10–12
+     *
+     * Columns 6 and 9 are intentionally left empty.
+     *
+     * Those gaps stop the footer from looking like three evenly distributed
+     * dashboard columns and preserve the asymmetric editorial rhythm used
+     * throughout LUXURE.
+     */
+    .agency-footer__top {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        column-gap: var(--agency-space-4);
+
+        padding: 5rem 0 8rem;
+    }
+
+
+    .agency-footer__identity {
+        grid-column: 1 / 6;
+    }
+
+
+    .agency-footer__social {
+        grid-column: 7 / 9;
+    }
+
+
+    .agency-footer__studio {
+        grid-column: 10 / 13;
+    }
+
+
+    /*
+     * The wordmark becomes deliberately enormous at the final breakpoint.
+     *
+     * 15VW ties its size to viewport width while clamp() prevents it from
+     * becoming unreasonable on very large displays.
+     */
+    .agency-footer__wordmark {
+        font-size: clamp(10rem, 15vw, 18rem);
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+
+@media (prefers-reduced-motion: reduce) {
+    /*
+     * There is no GSAP in the footer.
+     *
+     * These rules simply disable the small CSS interaction transitions used
+     * by links and the Back to Top arrow.
+     */
+    .agency-footer__social-link::after,
+    .agency-footer__top-link,
+    .agency-footer__top-icon {
+        transition: none;
+    }
+
+
+    .agency-footer__top-link:hover .agency-footer__top-icon {
+        transform: none;
+    }
+}

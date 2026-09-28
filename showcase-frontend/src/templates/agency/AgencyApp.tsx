@@ -12,6 +12,7 @@ import Services from "./sections/Services/Services.tsx";
 import About from "./sections/About/About.tsx";
 import Collaborators from "./sections/Collaborators/Collaborators.tsx";
 import Contact from "./sections/Contact/Contact.tsx";
+import Footer from "./sections/Footer/Footer.tsx";
 
 
 export default function AgencyApp() {
@@ -26,6 +27,7 @@ export default function AgencyApp() {
                 <About />
                 <Collaborators />
                 <Contact />
+                <Footer />
             </main>
         </div>
     );
