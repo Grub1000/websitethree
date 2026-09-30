@@ -401,6 +401,14 @@ width: 12px;
 #timeAndLocationTextThree{
   font-size: 12px;
 }
+
+
+
+
+
+
+
+
 .HomepageProjectsSectionSuperWrapper{
   float: left;
   margin-top: 300px;
@@ -743,12 +751,35 @@ width: 12px;
 
 
 .HomepageFavoritesSectionCardWrapper{
-  display: none;
+  /* display: none;
   flex-flow: row wrap;
   align-content: space-between;
   width: 100%;
-  height: 1000px;
+  height: 1000px; */
+  display: none;
+  flex-flow: column wrap;
+  align-content: space-between;
+  width: 100%;
+  height: 2800px;
 }
+
+
+/* vv CSS Needed for Masonry Triple Column Styling vv */
+.HomepageFavoritesSectionCardWrapper .HomepageProjectsSectionCard:nth-child(3n+1) { order: 1; } /* Items 1, 4, 7... */
+.HomepageFavoritesSectionCardWrapper .HomepageProjectsSectionCard:nth-child(3n+2) { order: 2; } /* Items 2, 5, 8... */
+.HomepageFavoritesSectionCardWrapper .HomepageProjectsSectionCard:nth-child(3n)   { order: 3; } /* Items 3, 6, 9... */
+.HomepageFavoritesSectionCardWrapper::before,
+.HomepageFavoritesSectionCardWrapper::after {
+  content: "";
+  flex-basis: 100%;
+  width: 0;
+  order: 2; /* Ensures breaks sit precisely between your ordered columns */
+}
+/* ^^ CSS Needed for Masonry Triple Column Styling ^^ */
+
+
+
+
 
 
 
@@ -1078,6 +1109,18 @@ width: 12px;
   /* Re-order for 2 columns (Left-to-Right reading order) */
   .HomepageProjectsSectionCard:nth-child(2n+1) { order: 1; } /* Items 1, 3, 5... */
   .HomepageProjectsSectionCard:nth-child(2n)   { order: 2; } /* Items 2, 4, 6... */
+
+
+
+
+  /* Remove right margin on every second column item */
+  .HomepageFavoritesSectionCardWrapper .HomepageProjectsSectionCard:nth-child(2n) {
+    margin-right: 0;
+  }
+
+  /* Re-order for 2 columns (Left-to-Right reading order) */
+  .HomepageFavoritesSectionCardWrapper .HomepageProjectsSectionCard:nth-child(2n+1) { order: 1; } /* Items 1, 3, 5... */
+  .HomepageFavoritesSectionCardWrapper .HomepageProjectsSectionCard:nth-child(2n)   { order: 2; } /* Items 2, 4, 6... */
 }
 
 
@@ -1324,6 +1367,13 @@ width: 12px;
     height: 30%;
     min-height: 220px;
     max-height: 400px;
+  }
+
+  .HomepageFavoritesSectionCardWrapper{
+    flex-flow: column nowrap;
+    flex: none;
+    height: auto !important;
+    padding-bottom: 100px;
   }
 
 }

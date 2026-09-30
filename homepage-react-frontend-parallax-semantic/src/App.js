@@ -60,250 +60,140 @@ export default class App extends React.Component{
     this.state = {
       burgerDropDown: false,
       projects: [
+        {title: "Relay", type: "Full-Stack & Real-Time", image: RelayProjectImage, description: [
+            "Developed a full-stack real-time messaging platform with persistent direct conversations, live messaging, typing indicators, online presence, unread counts, delivery receipts, and read receipts.",
+            "Built with React and TypeScript connected to a Django REST Framework and Django Channels backend, using MySQL for persistent application data, Redis as the real-time channel layer, and JWT authentication with Google OAuth.",
+            "Designed a production WebSocket architecture using authenticated user-level and conversation-level connections, with Apache proxying secure WebSocket traffic to Daphne/ASGI on AWS EC2 while supporting responsive desktop and mobile chat interfaces."
+        ], techUsed: ["Typescript", "React", "Python", "DRF", "Django-Channels", "WebSockets", "Redis", "MySQL", "AWS-EC2", "ASGI", "Daphne", "Apache", "JWT-Auth", "Google-OAuth"], dateCreated: "2026", link: "https://jorgeramirez.net/relay", gitHub: "", youtube: "", notAvailable: 0},
 
+        {title: "RAGspace", type: "AI & Full-Stack", image: RAGspace , description: [
+            "Developed a full-stack Retrieval-Augmented Generation (RAG) platform that allows users to upload PDFs into dedicated knowledge spaces and chat directly with their documents.",
+            "Built with React and TypeScript connected to a Django REST Framework backend, MySQL database, JWT authentication, Google OAuth, and private AWS S3 document storage.",
+            "Integrates OpenAI embeddings and GPT models with Qdrant vector search and Voyage AI reranking to generate context-aware answers with persistent conversations and page-level source citations."
+        ], techUsed: ["Typescript", "React", "Python", "Django Backend", "DRF", "MySQL", "AWS-S3", "EC2", "OpenAI", "RAG", "Qdrant", "Voyage-AI", "LLMs", "JWT-Auth", "Google-OAuth"], dateCreated: "2026", link: "https://jorgeramirez.net/ragspace", gitHub: "", youtube: "", notAvailable: 0},
 
-
-    {
-      title: "Relay",
-      type: "Full-Stack & Real-Time",
-      image: RelayProjectImage,
-      description: [
-          "Developed a full-stack real-time messaging platform with persistent direct conversations, live messaging, typing indicators, online presence, unread counts, delivery receipts, and read receipts.",
-          "Built with React and TypeScript connected to a Django REST Framework and Django Channels backend, using MySQL for persistent application data, Redis as the real-time channel layer, and JWT authentication with Google OAuth.",
-          "Designed a production WebSocket architecture using authenticated user-level and conversation-level connections, with Apache proxying secure WebSocket traffic to Daphne/ASGI on AWS EC2 while supporting responsive desktop and mobile chat interfaces."
-      ],
-      techUsed: [
-          "Typescript",
-          "React",
-          "Python",
-          "DRF",
-          "Django-Channels",
-          "WebSockets",
-          "Redis",
-          "MySQL",
-          "AWS-EC2",
-          "ASGI",
-          "Daphne",
-          "Apache",
-          "JWT-Auth",
-          "Google-OAuth"
-      ],
-      dateCreated: "2026",
-      link: "https://jorgeramirez.net/relay",
-      gitHub: "",
-      youtube: "",
-      notAvailable: 0
-    },
-
-    {
-      title: "RAGspace",
-      type: "AI & Full-Stack",
-      image: RAGspace ,
-      description: [
-          "Developed a full-stack Retrieval-Augmented Generation (RAG) platform that allows users to upload PDFs into dedicated knowledge spaces and chat directly with their documents.",
-          "Built with React and TypeScript connected to a Django REST Framework backend, MySQL database, JWT authentication, Google OAuth, and private AWS S3 document storage.",
-          "Integrates OpenAI embeddings and GPT models with Qdrant vector search and Voyage AI reranking to generate context-aware answers with persistent conversations and page-level source citations."
-      ],
-      techUsed: [
-          "Typescript",
-          "React",
-          "Python",
-          "Django Backend",
-          "DRF",
-          "MySQL",
-          "AWS-S3",
-          "EC2",
-          "OpenAI",
-          "RAG",
-          "Qdrant",
-          "Voyage-AI",
-          "LLMs",
-          "JWT-Auth",
-          "Google-OAuth"
-      ],
-      dateCreated: "2026",
-      link: "https://jorgeramirez.net/ragspace",
-      gitHub: "",
-      youtube: "",
-      notAvailable: 0
-    },
-
-
-    {title: "ResuScan Resume Analyzer", type: "Frontend & Backend", image: activeProject, description: [
-        "Currently developing a full-stack resume analysis platform designed to help users evaluate and improve their resumes.",
-        "Built with a React and TypeScript frontend connected to a Django, MySQL, and JWT-authenticated backend.",
-        "Integrates OpenAI and LLM technologies alongside AWS S3 for intelligent resume analysis and cloud-based storage."
-    ], techUsed: ["Typescript", "React", "Python", "Django Backend", "MySQL", "AWS-S3", "OpenAI", "LLMs", "JWT-Auth" ],  dateCreated: "2026", link: "https://jorgeramirez.net/resuscan", gitHub: "", youtube: "", notAvailable: 0},
-
-    {title: "Computer Science Capstone", type: "Frontend & Backend", image: compSciImage, description: [
-        "Developed a convolutional neural network for detecting defects in metal products using preprocessed and normalized image data.",
-        "Built and trained the TensorFlow model using convolutional layers, ReLU activation, SoftMax classification, and Stochastic Gradient Descent with Momentum.",
-        "Created an application that allows users to submit previously unseen product images and receive a prediction indicating whether the product contains a defect."
-    ], techUsed: ["Tensorflow", "Convolutional-Neural-Network", "Python", "Machine Learning", "Image-Recognition", "Defect-Detection", "Deep-Learning"],  dateCreated: "2025", link: "", gitHub: "", youtube: "", notAvailable: 1},
-
-    {title: "Disaster Recovery Robot", type: "Frontend & Backend", image: disasterRecoImage, description: [
-        "Developed a simulated autonomous robot for real-time search-and-rescue operations using the CoppeliaSim robotics platform.",
-        "Designed navigation logic using Python, motors, and sensor data to maneuver through a disaster-damaged office environment.",
-        "Implemented an efficient exploration strategy that enables the robot to navigate obstacles and locate simulated disaster survivors."
-    ], techUsed: ["CoppeliaSim", "Simulations", "Python", "Robotics"],  dateCreated: "2025", link: "", gitHub: "", youtube: "https://www.youtube.com/watch?v=yrlYvvaAcVM", notAvailable: 0 },
-
-    {title: "Career Chat-Bot", type: "Frontend & Backend", image: careerBotImage, description: [
-        "Programmed an interactive career-advising chatbot using the Pandorabots platform and AIML.",
-        "Designed conversational decision paths that ask users about their strengths, interests, and preferences.",
-        "Uses the user's responses to recommend potential careers within the computing and technology fields."
-    ], techUsed: ["PandoraBots-Platform", "AIML"],  dateCreated: "2025", link: "", gitHub: "", youtube: "", notAvailable: 1},
-
-    {title: "Delivery Route Optimization", type: "Frontend & Backend", image: deliveryRouteImage, description: [
-        "Designed an algorithmic delivery system that successfully routed 40 packages while satisfying package-specific deadlines and delivery constraints.",
-        "Combined a Nearest-Neighbor approach with Dijkstra's shortest path algorithm to efficiently route delivery trucks throughout the simulated city.",
-        "Completed all deliveries using only two trucks while keeping the combined travel distance under the required 140-mile limit."
-    ], techUsed: ["Python", "SP-Algorithms", "NN-Algorithms"],  dateCreated: "2025", link: "", gitHub: "https://github.com/Grub1000/University-C950-Solution", youtube: "", notAvailable: 0},
-
-    {title: "Scheduling System", type: "Frontend & Backend", image: schedulingSysImage, description: [
-        "Designed and developed a JavaFX GUI scheduling application with complete appointment and customer management functionality.",
-        "Implemented scheduling constraints including business-hour validation, appointment overlap prevention, and support for multiple time zones.",
-        "Built an integrated login system, full CRUD functionality, database persistence, and reporting and analytics features."
-    ], techUsed: ["Intellij-IDE","Maven", "MySQL","JavaFX","Java", "FXML", "Desktop-Application"],  dateCreated: "2024", link: "", gitHub: "https://github.com/Grub1000/University-C195-Solution", youtube: "", notAvailable: 0},
-
-    {title: "Management System", type: "Frontend & Backend", image: managementSysImage, description: [
-        "Designed and developed a JavaFX inventory management application for managing parts and manufactured products.",
-        "Implemented object relationships that associate products with the individual parts required to manufacture them.",
-        "Built full CRUD functionality with dependency validation and warnings that prevent invalid part or product deletion."
-    ], techUsed: ["Intellij-IDE","Maven","JavaFX","Java", "FXML", "Desktop-Application" ],  dateCreated: "2024", link: "", gitHub: "https://github.com/Grub1000/University-C482-Solution", youtube: "", notAvailable: 0},
-
-    {title: "Data Management", type: "Backend Project", image: advancedDataImage, description: [
-        "Analyzed a relational database for a simulated DVD rental business to answer business questions such as which film categories generate the most revenue.",
-        "Created complex SQL queries involving joins, grouping, aggregation, functions, triggers, and stored procedures.",
-        "Transformed data distributed across multiple related tables into actionable business insights and reports."
-    ], techUsed: ["SQL", "Stored-Procedures", "Triggers", "Functions", "Data-Analysis"],  dateCreated: "2024", link: "", gitHub: "https://github.com/Grub1000/University-D191-Solution", youtube: "", notAvailable: 0},
-
-    {title: "PDF Editor Project", type: "Frontend & Backend", image: vdmImage, description: [
-        "Created a demo version of the PDF editing software I originally developed while working at Greenstar.ca.",
-        "Rebuilt the application using the same core technology stack with a redesigned frontend and a reduced feature set for demonstration purposes.",
-        "Implemented authentication, a file-management dashboard, and an interactive PDF editing interface."
-    ], techUsed: ["Laravel", "React", "MySQL", "PHP", "Javascript", "HTML", "CSS", "RESTapi", "Responsive"],  dateCreated: "2022", link: "https://vdm.fullstackgrub.com/", gitHub: "", youtube: "", notAvailable: 0}, 
-
-    {title: "Thegroapp.com", type: "Frontend & Backend",  image: groappImage, description: [
-        "Designed and developed LabelBuddy while working at Greenstar.ca, a software module that became part of the commercial GroApp platform.",
-        "Built a variable-data-mapping PDF editor capable of manipulating text, shapes, barcode positions, and multiple barcode formats.",
-        "Enabled businesses to save reusable projects and rapidly update packaging labels and encoded barcode values without recreating label designs."
-    ], techUsed: ["Laravel", "React", "MySQL", "PHP", "Javascript", "HTML", "CSS", "RESTapi", "Responsive"],  dateCreated: "2021", link: "https://thegroapp.com/", gitHub: "", youtube: "", notAvailable: 0 }, 
-
-    {title: "Dijkstra's Traversal Project", type: "Frontend & Backend",  image: dijkstrasProImage, description: [
-        "Developed an interactive visualization of Dijkstra's shortest path algorithm using React and Django.",
-        "Allows users to dynamically place start and end nodes, draw obstacles, and visualize the algorithm finding the shortest available path.",
-        "Built as an interactive way to explore and better understand shortest-path algorithms and graph traversal."
-    ], techUsed: ["React", "Django", "SP-Algorithms", "Javascript", "Python", "HTML", "CSS"],  dateCreated: "2021", link: "https://www.fullstackgrub.com/algoapps/traverse/", gitHub: "", youtube: "", notAvailable: 0  }, 
-
-    {title: "Fullstackgrub.com", type: "Frontend & Backend",  image: fullstackgrubImage, description: [
-        "Designed and developed version 2.0 of my personal full-stack software development portfolio.",
-        "Built with Django and React and deployed using an Apache2 web server.",
-        "Served as the predecessor to the current version 3.0 of my portfolio."
-    ], techUsed: ["Django", "React", "Apache2","Javascript", "HTML", "CSS", "Fontawsome","RESTapi", "Responsive"],  dateCreated: "2021", link: "https://www.fullstackgrub.com/", gitHub: "", youtube: "", notAvailable: 0 },
-
-    {title: "Social Media Project", type: "Frontend & Backend",  image: socialMediaProImage, description: [
-        "Developed a full-stack Django social media application featuring user accounts, customizable profiles, posts, and likes.",
-        "Implemented infinite scrolling using jQuery Waypoints and Django pagination alongside full CRUD functionality.",
-        "Integrated AWS S3 for scalable media storage, preventing large amounts of user-uploaded image data from being stored directly on the server."
-    ], techUsed: ["Django", "JQuery-Waypoints","AWS-S3", "MySQL", "Javascript", "Python", "HTML", "CSS", "Responsive"],  dateCreated: "2020", link: "https://www.fullstackgrub.com/beatbox/", gitHub: "", youtube: "", notAvailable: 0 }, 
-
-    {title: "Merch Store Project", type: "Frontend & Backend", image: merchStoreProImage, description: [
-        "Developed a full-stack Django and React e-commerce mock-up featuring product browsing, search functionality, and a shopping cart.",
-        "Created an in-house product search system to make navigating and locating products easier.",
-        "Implemented an administrative mode that provides Create, Update, and Delete functionality for managing store products."
-    ], techUsed: ["ReactJS", "Django", "AWS-S3", "MySQL", "Javascript", "Python", "HTML", "CSS", "RESTapi", "Responsive"],  dateCreated: "2020", link: "https://www.fullstackgrub.com/merchstore/", gitHub: "", youtube: "", notAvailable: 0 }, 
-
-    {title: "Task App", type: "Frontend & Backend",  image: taskAppImage, description: [
-        "Developed a full-stack task management application using Django and React.",
-        "Implemented user authentication so each user can maintain their own persistent collection of tasks.",
-        "Stored task data in a MySQL database so tasks remain available across sessions."
-    ], techUsed: ["React", "Django", "AWS-S3", "MySQL", "Javascript", "Python", "HTML", "CSS", "RESTapi", "Responsive"],  dateCreated: "2020", link: "https://www.fullstackgrub.com/taskapp/", gitHub: "", youtube: "", notAvailable: 0 }, 
-
-    {title: "E-Signature Project", type: "Frontend",  image: eSigProImage, description: [
-        "Developed a lightweight front-end application to prototype an electronic signature field concept.",
-        "Implemented the working proof of concept using JavaScript, HTML, and CSS.",
-        "Completed the functional prototype in approximately 30 minutes."
-    ], techUsed: ["Javascript", "HTML", "CSS"],  dateCreated: "2020", link: "https://www.fullstackgrub.com/formquixi/", gitHub: "", youtube: "", notAvailable: 0  }
-],      
-      favorites: [
-        {
-          title: "Relay",
-          type: "Full-Stack & Real-Time",
-          image: RelayProjectImage,
-          description: [
-              "Developed a full-stack real-time messaging platform with persistent direct conversations, live messaging, typing indicators, online presence, unread counts, delivery receipts, and read receipts.",
-              "Built with React and TypeScript connected to a Django REST Framework and Django Channels backend, using MySQL for persistent application data, Redis as the real-time channel layer, and JWT authentication with Google OAuth.",
-              "Designed a production WebSocket architecture using authenticated user-level and conversation-level connections, with Apache proxying secure WebSocket traffic to Daphne/ASGI on AWS EC2 while supporting responsive desktop and mobile chat interfaces."
-          ],
-          techUsed: [
-              "Typescript",
-              "React",
-              "Python",
-              "DRF",
-              "Django-Channels",
-              "WebSockets",
-              "Redis",
-              "MySQL",
-              "AWS-EC2",
-              "ASGI",
-              "Daphne",
-              "Apache",
-              "JWT-Auth",
-              "Google-OAuth"
-          ],
-          dateCreated: "2026",
-          link: "https://jorgeramirez.net/relay",
-          gitHub: "",
-          youtube: "",
-          notAvailable: 0
-        },
-
-        {
-          title: "RAGspace",
-          type: "AI & Full-Stack",
-          image: RAGspace ,
-          description: [
-              "Developed a full-stack Retrieval-Augmented Generation (RAG) platform that allows users to upload PDFs into dedicated knowledge spaces and chat directly with their documents.",
-              "Built with React and TypeScript connected to a Django REST Framework backend, MySQL database, JWT authentication, Google OAuth, and private AWS S3 document storage.",
-              "Integrates OpenAI embeddings and GPT models with Qdrant vector search and Voyage AI reranking to generate context-aware answers with persistent conversations and page-level source citations."
-          ],
-          techUsed: [
-              "Typescript",
-              "React",
-              "Python",
-              "Django Backend",
-              "DRF",
-              "MySQL",
-              "AWS-S3",
-              "EC2",
-              "OpenAI",
-              "RAG",
-              "Qdrant",
-              "Voyage-AI",
-              "LLMs",
-              "JWT-Auth",
-              "Google-OAuth"
-          ],
-          dateCreated: "2026",
-          link: "https://jorgeramirez.net/ragspace",
-          gitHub: "",
-          youtube: "",
-          notAvailable: 0
-        },
 
         {title: "ResuScan Resume Analyzer", type: "Frontend & Backend", image: activeProject, description: [
-        "Currently developing a full-stack resume analysis platform designed to help users evaluate and improve their resumes.",
-        "Built with a React and TypeScript frontend connected to a Django, MySQL, and JWT-authenticated backend.",
-        "Integrates OpenAI and LLM technologies alongside AWS S3 for intelligent resume analysis and cloud-based storage."
-        ], techUsed: ["Typescript", "React", "Python", "Django Backend", "MySQL", "AWS-S3", "OpenAI", "LLMs", "JWT-Auth" ],  dateCreated: "2025", link: "https://jorgeramirez.net/resuscan", gitHub: "", youtube: "", notAvailable: 0},
-        
+            "Currently developing a full-stack resume analysis platform designed to help users evaluate and improve their resumes.",
+            "Built with a React and TypeScript frontend connected to a Django, MySQL, and JWT-authenticated backend.",
+            "Integrates OpenAI and LLM technologies alongside AWS S3 for intelligent resume analysis and cloud-based storage."
+        ], techUsed: ["Typescript", "React", "Python", "Django Backend", "MySQL", "AWS-S3", "OpenAI", "LLMs", "JWT-Auth" ],  dateCreated: "2026", link: "https://jorgeramirez.net/resuscan", gitHub: "", youtube: "", notAvailable: 0},
+
+        {title: "Computer Science Capstone", type: "Frontend & Backend", image: compSciImage, description: [
+            "Developed a convolutional neural network for detecting defects in metal products using preprocessed and normalized image data.",
+            "Built and trained the TensorFlow model using convolutional layers, ReLU activation, SoftMax classification, and Stochastic Gradient Descent with Momentum.",
+            "Created an application that allows users to submit previously unseen product images and receive a prediction indicating whether the product contains a defect."
+        ], techUsed: ["Tensorflow", "Convolutional-Neural-Network", "Python", "Machine Learning", "Image-Recognition", "Defect-Detection", "Deep-Learning"],  dateCreated: "2025", link: "", gitHub: "", youtube: "", notAvailable: 1},
+
+        {title: "Disaster Recovery Robot", type: "Frontend & Backend", image: disasterRecoImage, description: [
+            "Developed a simulated autonomous robot for real-time search-and-rescue operations using the CoppeliaSim robotics platform.",
+            "Designed navigation logic using Python, motors, and sensor data to maneuver through a disaster-damaged office environment.",
+            "Implemented an efficient exploration strategy that enables the robot to navigate obstacles and locate simulated disaster survivors."
+        ], techUsed: ["CoppeliaSim", "Simulations", "Python", "Robotics"],  dateCreated: "2025", link: "", gitHub: "", youtube: "https://www.youtube.com/watch?v=yrlYvvaAcVM", notAvailable: 0 },
+
+        {title: "Career Chat-Bot", type: "Frontend & Backend", image: careerBotImage, description: [
+            "Programmed an interactive career-advising chatbot using the Pandorabots platform and AIML.",
+            "Designed conversational decision paths that ask users about their strengths, interests, and preferences.",
+            "Uses the user's responses to recommend potential careers within the computing and technology fields."
+        ], techUsed: ["PandoraBots-Platform", "AIML"],  dateCreated: "2025", link: "", gitHub: "", youtube: "", notAvailable: 1},
+
+        {title: "Delivery Route Optimization", type: "Frontend & Backend", image: deliveryRouteImage, description: [
+            "Designed an algorithmic delivery system that successfully routed 40 packages while satisfying package-specific deadlines and delivery constraints.",
+            "Combined a Nearest-Neighbor approach with Dijkstra's shortest path algorithm to efficiently route delivery trucks throughout the simulated city.",
+            "Completed all deliveries using only two trucks while keeping the combined travel distance under the required 140-mile limit."
+        ], techUsed: ["Python", "SP-Algorithms", "NN-Algorithms"],  dateCreated: "2025", link: "", gitHub: "https://github.com/Grub1000/University-C950-Solution", youtube: "", notAvailable: 0},
+
+        {title: "Scheduling System", type: "Frontend & Backend", image: schedulingSysImage, description: [
+            "Designed and developed a JavaFX GUI scheduling application with complete appointment and customer management functionality.",
+            "Implemented scheduling constraints including business-hour validation, appointment overlap prevention, and support for multiple time zones.",
+            "Built an integrated login system, full CRUD functionality, database persistence, and reporting and analytics features."
+        ], techUsed: ["Intellij-IDE","Maven", "MySQL","JavaFX","Java", "FXML", "Desktop-Application"],  dateCreated: "2024", link: "", gitHub: "https://github.com/Grub1000/University-C195-Solution", youtube: "", notAvailable: 0},
+
+        {title: "Management System", type: "Frontend & Backend", image: managementSysImage, description: [
+            "Designed and developed a JavaFX inventory management application for managing parts and manufactured products.",
+            "Implemented object relationships that associate products with the individual parts required to manufacture them.",
+            "Built full CRUD functionality with dependency validation and warnings that prevent invalid part or product deletion."
+        ], techUsed: ["Intellij-IDE","Maven","JavaFX","Java", "FXML", "Desktop-Application" ],  dateCreated: "2024", link: "", gitHub: "https://github.com/Grub1000/University-C482-Solution", youtube: "", notAvailable: 0},
+
+        {title: "Data Management", type: "Backend Project", image: advancedDataImage, description: [
+            "Analyzed a relational database for a simulated DVD rental business to answer business questions such as which film categories generate the most revenue.",
+            "Created complex SQL queries involving joins, grouping, aggregation, functions, triggers, and stored procedures.",
+            "Transformed data distributed across multiple related tables into actionable business insights and reports."
+        ], techUsed: ["SQL", "Stored-Procedures", "Triggers", "Functions", "Data-Analysis"],  dateCreated: "2024", link: "", gitHub: "https://github.com/Grub1000/University-D191-Solution", youtube: "", notAvailable: 0},
+
         {title: "PDF Editor Project", type: "Frontend & Backend", image: vdmImage, description: [
-        "Created a demo version of the PDF editing software I originally developed while working at Greenstar.ca.",
-        "Rebuilt the application using the same core technology stack with a redesigned frontend and a reduced feature set for demonstration purposes.",
-        "Implemented authentication, a file-management dashboard, and an interactive PDF editing interface."
+            "Created a demo version of the PDF editing software I originally developed while working at Greenstar.ca.",
+            "Rebuilt the application using the same core technology stack with a redesigned frontend and a reduced feature set for demonstration purposes.",
+            "Implemented authentication, a file-management dashboard, and an interactive PDF editing interface."
         ], techUsed: ["Laravel", "React", "MySQL", "PHP", "Javascript", "HTML", "CSS", "RESTapi", "Responsive"],  dateCreated: "2022", link: "https://vdm.fullstackgrub.com/", gitHub: "", youtube: "", notAvailable: 0}, 
 
-        ],
+        {title: "Thegroapp.com", type: "Frontend & Backend",  image: groappImage, description: [
+            "Designed and developed LabelBuddy while working at Greenstar.ca, a software module that became part of the commercial GroApp platform.",
+            "Built a variable-data-mapping PDF editor capable of manipulating text, shapes, barcode positions, and multiple barcode formats.",
+            "Enabled businesses to save reusable projects and rapidly update packaging labels and encoded barcode values without recreating label designs."
+        ], techUsed: ["Laravel", "React", "MySQL", "PHP", "Javascript", "HTML", "CSS", "RESTapi", "Responsive"],  dateCreated: "2021", link: "https://thegroapp.com/", gitHub: "", youtube: "", notAvailable: 0 }, 
+
+        {title: "Dijkstra's Traversal Project", type: "Frontend & Backend",  image: dijkstrasProImage, description: [
+            "Developed an interactive visualization of Dijkstra's shortest path algorithm using React and Django.",
+            "Allows users to dynamically place start and end nodes, draw obstacles, and visualize the algorithm finding the shortest available path.",
+            "Built as an interactive way to explore and better understand shortest-path algorithms and graph traversal."
+        ], techUsed: ["React", "Django", "SP-Algorithms", "Javascript", "Python", "HTML", "CSS"],  dateCreated: "2021", link: "https://www.fullstackgrub.com/algoapps/traverse/", gitHub: "", youtube: "", notAvailable: 0  }, 
+
+        {title: "Fullstackgrub.com", type: "Frontend & Backend",  image: fullstackgrubImage, description: [
+            "Designed and developed version 2.0 of my personal full-stack software development portfolio.",
+            "Built with Django and React and deployed using an Apache2 web server.",
+            "Served as the predecessor to the current version 3.0 of my portfolio."
+        ], techUsed: ["Django", "React", "Apache2","Javascript", "HTML", "CSS", "Fontawsome","RESTapi", "Responsive"],  dateCreated: "2021", link: "https://www.fullstackgrub.com/", gitHub: "", youtube: "", notAvailable: 0 },
+
+        {title: "Social Media Project", type: "Frontend & Backend",  image: socialMediaProImage, description: [
+            "Developed a full-stack Django social media application featuring user accounts, customizable profiles, posts, and likes.",
+            "Implemented infinite scrolling using jQuery Waypoints and Django pagination alongside full CRUD functionality.",
+            "Integrated AWS S3 for scalable media storage, preventing large amounts of user-uploaded image data from being stored directly on the server."
+        ], techUsed: ["Django", "JQuery-Waypoints","AWS-S3", "MySQL", "Javascript", "Python", "HTML", "CSS", "Responsive"],  dateCreated: "2020", link: "https://www.fullstackgrub.com/beatbox/", gitHub: "", youtube: "", notAvailable: 0 }, 
+
+        {title: "Merch Store Project", type: "Frontend & Backend", image: merchStoreProImage, description: [
+            "Developed a full-stack Django and React e-commerce mock-up featuring product browsing, search functionality, and a shopping cart.",
+            "Created an in-house product search system to make navigating and locating products easier.",
+            "Implemented an administrative mode that provides Create, Update, and Delete functionality for managing store products."
+        ], techUsed: ["ReactJS", "Django", "AWS-S3", "MySQL", "Javascript", "Python", "HTML", "CSS", "RESTapi", "Responsive"],  dateCreated: "2020", link: "https://www.fullstackgrub.com/merchstore/", gitHub: "", youtube: "", notAvailable: 0 }, 
+
+        {title: "Task App", type: "Frontend & Backend",  image: taskAppImage, description: [
+            "Developed a full-stack task management application using Django and React.",
+            "Implemented user authentication so each user can maintain their own persistent collection of tasks.",
+            "Stored task data in a MySQL database so tasks remain available across sessions."
+        ], techUsed: ["React", "Django", "AWS-S3", "MySQL", "Javascript", "Python", "HTML", "CSS", "RESTapi", "Responsive"],  dateCreated: "2020", link: "https://www.fullstackgrub.com/taskapp/", gitHub: "", youtube: "", notAvailable: 0 }, 
+
+        {title: "E-Signature Project", type: "Frontend",  image: eSigProImage, description: [
+            "Developed a lightweight front-end application to prototype an electronic signature field concept.",
+            "Implemented the working proof of concept using JavaScript, HTML, and CSS.",
+            "Completed the functional prototype in approximately 30 minutes."
+        ], techUsed: ["Javascript", "HTML", "CSS"],  dateCreated: "2020", link: "https://www.fullstackgrub.com/formquixi/", gitHub: "", youtube: "", notAvailable: 0  }
+      ],      
+      favorites: [
+        {title: "Relay", type: "Full-Stack & Real-Time", image: RelayProjectImage, description: [
+            "Developed a full-stack real-time messaging platform with persistent direct conversations, live messaging, typing indicators, online presence, unread counts, delivery receipts, and read receipts.",
+            "Built with React and TypeScript connected to a Django REST Framework and Django Channels backend, using MySQL for persistent application data, Redis as the real-time channel layer, and JWT authentication with Google OAuth.",
+            "Designed a production WebSocket architecture using authenticated user-level and conversation-level connections, with Apache proxying secure WebSocket traffic to Daphne/ASGI on AWS EC2 while supporting responsive desktop and mobile chat interfaces."
+        ], techUsed: ["Typescript", "React", "Python", "DRF", "Django-Channels", "WebSockets", "Redis", "MySQL", "AWS-EC2", "ASGI", "Daphne", "Apache", "JWT-Auth", "Google-OAuth"], dateCreated: "2026", link: "https://jorgeramirez.net/relay", gitHub: "", youtube: "", notAvailable: 0},
+
+        {title: "RAGspace", type: "AI & Full-Stack", image: RAGspace , description: [
+            "Developed a full-stack Retrieval-Augmented Generation (RAG) platform that allows users to upload PDFs into dedicated knowledge spaces and chat directly with their documents.",
+            "Built with React and TypeScript connected to a Django REST Framework backend, MySQL database, JWT authentication, Google OAuth, and private AWS S3 document storage.",
+            "Integrates OpenAI embeddings and GPT models with Qdrant vector search and Voyage AI reranking to generate context-aware answers with persistent conversations and page-level source citations."
+        ], techUsed: ["Typescript", "React", "Python", "Django Backend", "DRF", "MySQL", "AWS-S3", "EC2", "OpenAI", "RAG", "Qdrant", "Voyage-AI", "LLMs", "JWT-Auth", "Google-OAuth"], dateCreated: "2026", link: "https://jorgeramirez.net/ragspace", gitHub: "", youtube: "", notAvailable: 0},
+
+        {title: "ResuScan Resume Analyzer", type: "Frontend & Backend", image: activeProject, description: [
+            "Currently developing a full-stack resume analysis platform designed to help users evaluate and improve their resumes.",
+            "Built with a React and TypeScript frontend connected to a Django, MySQL, and JWT-authenticated backend.",
+            "Integrates OpenAI and LLM technologies alongside AWS S3 for intelligent resume analysis and cloud-based storage."
+        ], techUsed: ["Typescript", "React", "Python", "Django Backend", "MySQL", "AWS-S3", "OpenAI", "LLMs", "JWT-Auth" ],  dateCreated: "2025", link: "https://jorgeramirez.net/resuscan", gitHub: "", youtube: "", notAvailable: 0},
+
+        {title: "PDF Editor Project", type: "Frontend & Backend", image: vdmImage, description: [
+            "Created a demo version of the PDF editing software I originally developed while working at Greenstar.ca.",
+            "Rebuilt the application using the same core technology stack with a redesigned frontend and a reduced feature set for demonstration purposes.",
+            "Implemented authentication, a file-management dashboard, and an interactive PDF editing interface."
+        ], techUsed: ["Laravel", "React", "MySQL", "PHP", "Javascript", "HTML", "CSS", "RESTapi", "Responsive"],  dateCreated: "2022", link: "https://vdm.fullstackgrub.com/", gitHub: "", youtube: "", notAvailable: 0}, 
+      ],
       backendSkills: [
         {title: "Python", skillLevel: "9"},
         {title: "Java", skillLevel: "6"},
@@ -318,7 +208,7 @@ export default class App extends React.Component{
         {title: "Linux", skillLevel: "8"},
         {title: "Redis", skillLevel: "7"}
 
-        ],
+      ],
       frontendSkills: [
         {title: "TypeScript", skillLevel: "9"},
         {title: "JavaScript", skillLevel: "9"},
@@ -326,7 +216,7 @@ export default class App extends React.Component{
         {title: "HTML5", skillLevel: "9"},
         {title: "CSS", skillLevel: "9"},
         {title: "GIMP GNU", skillLevel: "9"},    
-        ],
+      ],
       aimlSkills:[
         {title: "TensorFlow", skillLevel: "9"},
         {title: "Keras", skillLevel: "9"},
@@ -341,15 +231,15 @@ export default class App extends React.Component{
         {title: "Machine Learning", skillLevel: "9"},
         {title: "Neural Networks", skillLevel: "9"},
         {title: "Decision Trees", skillLevel: "8"},
-        ],
+      ],
       cloudSkills:[
         {title: "AWS EC2", skillLevel: "9"},
         {title: "AWS S3", skillLevel: "9"},
         {title: "Google OAuth", skillLevel: "9"},
         {title: "GitHub Actions", skillLevel: "9"},
         {title: "Docker", skillLevel: "6"},
-        ],
-      }
+      ],
+    }
     this.handleDropdown = this.handleDropdown.bind(this)
     this.handleSectionChange = this.handleSectionChange.bind(this)
     this.updateClock = this.updateClock.bind(this)
