@@ -303,7 +303,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         await self.accept()                                     # Accept the incoming socket connection.
 
-        await self.send_presence_snapshot()                     # Sends one presence.update per user in a looping fashion after clearning stale connections and setting whether a user is online per iteration /  presence.update call. 
+        await self.send_presence_snapshot()                     # Sends one presence.update per user in a looping fashion after clearing stale connections and setting whether a user is online per iteration /  presence.update call. 
 
         self.presence_watchdog_task = asyncio.create_task(      # Schedule the execution of a coroutine object in a spawn task. The coroutin object is our presence_watchdog method that checks every 30 seconds whether the current channels user is offline.
             self.presence_watchdog()                            # If offline, ensures all users indirectly or directly connected to the current channels user (through shared conversations) gets a chat.presence websocket event sent to them notifying the frontend that the current user is no longer online. 
@@ -338,7 +338,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if event_type == "message.send":                        # Use the event type to call handler methods that send this information to the group / conversation members currently online.
             await self.handle_message_send(data)                # During the handler executions, there sometimes 
 
-        elif event_type == "message.delivered":
+        elif event_type == "message.delivered":                 
             await self.handle_message_delivered(data)
 
         elif event_type == "message.read":

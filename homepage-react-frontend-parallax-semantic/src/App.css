@@ -457,9 +457,12 @@ width: 12px;
   overflow: hidden;
 }
 
-.HomepageProjectsSectionCard:hover{
-  background-color: rgb(175, 241, 250);
+@media(hover: hover){ /* Hover styles only apply to devices with an actual mouse/pointer */
+  .HomepageProjectsSectionCard:hover{
+    background-color: rgb(175, 241, 250);
+  }
 }
+
 
 /* vv CSS Needed for Masonry Triple Column Styling vv */
 .HomepageProjectsSectionCard:nth-child(3n+1) { order: 1; } /* Items 1, 4, 7... */

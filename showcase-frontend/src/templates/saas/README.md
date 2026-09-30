@@ -169,7 +169,7 @@ gsap.registerPlugin(ScrollTrigger);
 Install:
 
 ```bash
-npm install gsap
+npm install gsap @gsap/react
 ```
 
 ---
@@ -223,7 +223,7 @@ For official company logos, use official brand SVG assets instead.
 If moving the SaaS template into another React project, install its external dependencies with:
 
 ```bash
-npm install gsap lucide-react
+npm install gsap @gsap/react lucide-react
 ```
 
 React and TypeScript are assumed to already exist in the host project.

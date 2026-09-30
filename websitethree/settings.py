@@ -89,7 +89,7 @@ ASGI_APPLICATION = "websitethree.asgi.application"      # Replaces WSGI to allow
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {                                           # Basic MySQL database connection configuration using environment variable for confidential information.
+DATABASES = {                                           # Basic ORM to MySQL database connection configuration using environment variable for confidential information.
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "resume_analyzer_app_api",

@@ -33,7 +33,7 @@ export default function Footer() {
                             by Jorge Ramirez
                         </p>
                     </div>
-
+                    
 
                     {/*
                      * SOCIAL NAVIGATION
