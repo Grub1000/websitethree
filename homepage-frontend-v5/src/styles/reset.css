@@ -1,0 +1,160 @@
+/* ========================================
+   Modern CSS Reset
+   ======================================== */
+
+/*
+ * Use predictable box sizing everywhere.
+ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box; /* To make padding fit inside an element without increasing its total width or height */
+}
+
+
+/*
+ * Remove default margins.
+ */
+* {
+    margin: 0; 
+}
+
+
+/*
+ * Allow percentage-based heights.
+ */
+html,
+body,
+#root {
+    min-height: 100%;
+}
+
+
+/*
+ * Improve text rendering and establish
+ * sensible document defaults.
+ */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+
+/*
+ * Improve readability and rendering.
+ * Font family will be defined by each
+ * template's design system.
+ */
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+
+/*
+ * Prevent media from overflowing containers.
+ */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+
+/*
+ * Form controls should inherit typography
+ * instead of using browser defaults.
+ */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+
+/*
+ * Buttons should behave like interactive
+ * elements without imposing browser styling.
+ */
+button {
+    border: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+}
+
+
+/*
+ * Textareas should normally only resize
+ * vertically so they don't destroy layouts.
+ */
+textarea {
+    resize: vertical;
+}
+
+
+/*
+ * Prevent long strings from overflowing.
+ */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+
+/*
+ * Remove default list styling only when
+ * explicitly using lists for UI/navigation.
+ */
+ul[role="list"],
+ol[role="list"] {
+    list-style: none;
+    padding: 0;
+}
+
+
+/*
+ * Links inherit surrounding text color.
+ * Individual components decide decoration.
+ */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/*
+ * Tables should have predictable borders.
+ */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/*
+ * Make hidden elements reliably disappear.
+ */
+[hidden] {
+    display: none !important;
+}
+
+
+/*
+ * Create a predictable React root.
+ */
+#root {
+    isolation: isolate;
+}
