@@ -1,0 +1,76 @@
+/*
+ * ==========================================================================
+ * UTILITIES
+ * ==========================================================================
+ *
+ * Contains only genuinely reusable layout helpers.
+ *
+ * Do not turn this file into a home-grown utility framework. New utilities
+ * should be added only after a repeated pattern exists across the portfolio.
+ * ==========================================================================
+ */
+
+
+/*
+ * Primary responsive content container.
+ *
+ * Mobile-first padding keeps content close enough to smaller viewport edges
+ * while tablet and desktop layouts progressively gain breathing room.
+ */
+
+.container {
+    width: 100%;
+    max-width: var(--container-max-width);
+
+    padding-inline: var(--container-padding-mobile);
+
+    margin-inline: auto;
+}
+
+
+/*
+ * Reading-width container for long-form case-study copy and explanatory
+ * content where the full site width would reduce readability.
+ */
+
+.container--reading {
+    max-width: var(--container-reading-width);
+}
+
+
+/*
+ * Accessibility utility for meaningful labels that should remain available
+ * to assistive technology without being visually rendered.
+ */
+
+.visually-hidden {
+    position: absolute;
+
+    width: 0.0625rem;
+    height: 0.0625rem;
+
+    padding: 0;
+    border: 0;
+    margin: -0.0625rem;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+}
+
+
+@media (min-width: 48rem) {
+    .container {
+        padding-inline: var(--container-padding-tablet);
+    }
+}
+
+
+@media (min-width: 64rem) {
+    .container {
+        padding-inline: var(--container-padding-desktop);
+    }
+}

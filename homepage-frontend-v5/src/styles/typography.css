@@ -1,0 +1,89 @@
+/*
+ * ==========================================================================
+ * TYPOGRAPHY
+ * ==========================================================================
+ *
+ * Establishes the portfolio's global typographic behavior.
+ *
+ * Space Grotesk provides the primary editorial/interface voice.
+ * IBM Plex Mono is reserved for technical information and metadata.
+ * ==========================================================================
+ */
+
+body {
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-body);
+
+    color: var(--color-text-primary);
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/*
+ * Headings inherit their actual size from their section/component.
+ *
+ * Removing browser defaults here gives sections complete control over their
+ * editorial hierarchy without fighting user-agent styles.
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-heading);
+}
+
+
+/*
+ * Body copy uses the secondary text level by default. Individual components
+ * can promote important copy to --color-text-primary when needed.
+ */
+
+p {
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * Technical metadata utility.
+ *
+ * Intended for content such as:
+ *
+ * PROJECT / 01
+ * STATUS  / PRODUCTION
+ * ROUTE   / /ws/chat/
+ *
+ * This controls typography only. Layout remains the responsibility of the
+ * component using it.
+ */
+
+.text-mono {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-body);
+    letter-spacing: var(--letter-spacing-mono);
+
+    text-transform: uppercase;
+}
+
+
+/*
+ * Preserve the mono typeface for genuine code-oriented HTML elements while
+ * allowing component styles to determine their presentation.
+ */
+
+code,
+pre,
+kbd,
+samp {
+    font-family: var(--font-family-mono);
+}

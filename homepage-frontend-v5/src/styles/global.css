@@ -1,0 +1,115 @@
+/*
+ * ==========================================================================
+ * GLOBAL STYLES
+ * ==========================================================================
+ *
+ * Defines document-level behavior shared throughout the portfolio.
+ *
+ * Section-specific layouts and visual treatments should remain inside their
+ * respective section stylesheets.
+ * ==========================================================================
+ */
+
+html {
+    background: var(--color-background-primary);
+}
+
+
+/*
+ * Establish the primary document surface and prevent decorative technical
+ * elements from accidentally creating horizontal page scrolling.
+ */
+
+body {
+    min-width: 20rem;
+    min-height: 100vh;
+
+    color: var(--color-text-primary);
+    background: var(--color-background-primary);
+
+    overflow-x: hidden;
+}
+
+
+/*
+ * React's application root should always occupy at least the viewport height.
+ */
+
+#root {
+    min-height: 100vh;
+}
+
+
+/*
+ * Provide a consistent keyboard-focus treatment without forcing focus rings
+ * onto pointer interactions.
+ *
+ * :focus-visible is native browser/CSS behavior.
+ */
+
+:focus-visible {
+    outline: 0.125rem solid var(--color-accent-secondary);
+    outline-offset: 0.25rem;
+}
+
+
+/*
+ * Keep text selection consistent with the portfolio identity.
+ */
+
+::selection {
+    color: var(--color-background-primary);
+    background: var(--color-accent-primary);
+}
+
+
+/*
+ * Global link transitions establish basic interaction feedback.
+ *
+ * More sophisticated link treatments remain component-specific.
+ */
+
+a {
+    transition:
+        color var(--duration-base) var(--ease-standard),
+        opacity var(--duration-base) var(--ease-standard);
+}
+
+
+/*
+ * Disabled controls should communicate their state consistently.
+ */
+
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.5;
+}
+
+
+/*
+ * Respect the operating system's reduced-motion preference.
+ *
+ * This does not replace animation-specific React/GSAP handling. When we begin
+ * building GSAP timelines, we will also prevent or simplify those animations
+ * when reduced motion is requested.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
