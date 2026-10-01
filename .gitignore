@@ -33,6 +33,7 @@ resume-analyzer-app/node_modules/
 ragspace-frontend/node_modules/
 chat-frontend/node_modules/
 showcase-frontend/node_modules/
+homepage-frontend-v5/node_modules/
 
 # Uncomment these later if GitHub Actions will build React
 # homepage-frontend/build/
