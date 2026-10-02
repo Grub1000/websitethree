@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import {Routes, Route} from "react-router-dom"
 
-import HomePage from "./sections/HomePage/HomePage.tsx"
+import HomePage from "./pages/HomePage/HomePage.tsx"
 
 function App() {
   const [count, setCount] = useState(0)

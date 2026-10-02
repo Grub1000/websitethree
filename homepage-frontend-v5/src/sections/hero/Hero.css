@@ -1,0 +1,1107 @@
+/*
+ * ==========================================================================
+ * HERO
+ * ==========================================================================
+ *
+ * Portfolio V2 editorial Hero.
+ *
+ * VISUAL PRINCIPLES
+ * --------------------------------------------------------------------------
+ *
+ * - Identity first.
+ * - Large editorial typography.
+ * - Significant negative space.
+ * - Minimal conventional interface chrome.
+ * - Orange functions primarily as punctuation.
+ * - Cyan represents information moving through a technical system.
+ * - Architecture remains quieter than the primary typography.
+ *
+ *
+ * RESPONSIVE STRATEGY
+ * --------------------------------------------------------------------------
+ *
+ * This stylesheet is mobile-first.
+ *
+ * The approved visual composition is preserved across breakpoints.
+ *
+ * Responsive behavior focuses primarily on HEIGHT management:
+ *
+ * - The Hero owns exactly one small viewport height.
+ * - The container owns the viewport below the header allowance.
+ * - Primary text and footer retain their natural dimensions.
+ * - The architecture absorbs the remaining vertical space.
+ * - Space is reserved inside the architecture region for node labels.
+ * - Short-height devices progressively tighten vertical spacing.
+ * - Width breakpoints retain the existing tablet/desktop composition.
+ *
+ *
+ * CSS PROPERTY ORDER
+ * --------------------------------------------------------------------------
+ *
+ * 1.  Display / layout
+ * 2.  Position
+ * 3.  Flex / grid
+ * 4.  Dimensions
+ * 5.  Padding
+ * 6.  Border
+ * 7.  Margin
+ * 8.  Typography
+ * 9.  Color / background
+ * 10. Effects
+ * 11. Transform
+ * 12. Interaction
+ * 13. Transition / animation
+ * ==========================================================================
+ */
+
+
+/*
+ * ==========================================================================
+ * ROOT
+ * ==========================================================================
+ *
+ * 100svh acts as the hard Hero composition boundary.
+ *
+ * `svh` is native CSS.
+ *
+ * Unlike min-height alone, height: 100svh prevents the Hero from growing
+ * beyond the intended first-screen composition.
+ */
+
+.hero {
+    position: relative;
+
+    height: 100svh;
+    min-height: 0;
+
+    padding-top: 6rem;
+
+    background: var(--color-background-primary);
+
+    overflow: hidden;
+}
+
+
+/*
+ * The container receives exactly the viewport space remaining beneath the
+ * header allowance.
+ *
+ * min-height: 0 allows flex descendants to shrink when viewport height becomes
+ * constrained.
+ */
+
+.hero__container {
+    display: flex;
+
+    flex-direction: column;
+
+    height: calc(100svh - 6rem);
+    min-height: 0;
+}
+
+
+/*
+ * ==========================================================================
+ * EDITORIAL META
+ * ==========================================================================
+ */
+
+.hero__meta {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+
+    padding-top: var(--space-md);
+    padding-bottom: var(--space-xl);
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+
+.hero__index,
+.hero__year {
+    color: var(--color-text-muted);
+}
+
+
+.hero__year {
+    text-align: right;
+}
+
+
+/*
+ * ==========================================================================
+ * PRIMARY CONTENT
+ * ==========================================================================
+ *
+ * Mobile retains the existing vertical reading order.
+ */
+
+.hero__content {
+    display: grid;
+
+    flex: 0 0 auto;
+
+    gap: var(--space-2xl);
+
+    padding-top: var(--space-3xl);
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * NAME
+ * --------------------------------------------------------------------------
+ */
+
+.hero__title {
+    position: relative;
+    z-index: var(--z-content);
+
+    max-width: 100%;
+
+    font-size: clamp(4.25rem, 20vw, 7rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.76;
+    letter-spacing: -0.065em;
+
+    color: var(--color-text-primary);
+}
+
+
+.hero__title-line {
+    display: block;
+}
+
+
+.hero__title-mark {
+    color: var(--color-accent-primary);
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * ENGINEERING IDENTITY
+ * --------------------------------------------------------------------------
+ */
+
+.hero__identity {
+    display: grid;
+
+    gap: var(--space-md);
+
+    max-width: 22rem;
+}
+
+
+.hero__role {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-tight);
+
+    color: var(--color-text-primary);
+}
+
+
+.hero__disciplines {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+
+.hero__discipline {
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * TECHNICAL VISUAL REGION
+ * ==========================================================================
+ *
+ * The architecture is the elastic portion of the Hero.
+ *
+ * flex:
+ * Native Flexbox allows this region to consume whatever viewport height
+ * remains after the primary content and footer.
+ *
+ * min-height: 0:
+ * Allows the architecture region to surrender height on shorter displays.
+ *
+ * padding-bottom:
+ * Reserves physical space INSIDE the visual region for the building labels.
+ *
+ * This is important because the labels extend below the architecture baseline.
+ * Without this reserved space they visually collide with the Hero footer.
+ *
+ * We intentionally do NOT use margin-bottom here. A margin would consume
+ * additional space outside the flexible visual region and work against the
+ * 100svh layout.
+ */
+
+.hero__visual {
+    position: relative;
+
+    flex: 1 1 auto;
+
+    min-height: 0;
+
+    padding-bottom: 1.75rem;
+
+    margin-bottom: 0;
+}
+
+
+/*
+ * ==========================================================================
+ * HERO SKYLINE
+ * ==========================================================================
+ *
+ * The skyline stops 1.75rem above the bottom of the visual region.
+ *
+ * That creates a dedicated label zone beneath the skyline baseline while
+ * keeping the entire architecture inside the flexible Hero region.
+ */
+
+.hero-skyline {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 1.75rem;
+    left: 0;
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * SKYLINE CAPTION
+ * --------------------------------------------------------------------------
+ */
+
+.hero-skyline__label {
+    display: flex;
+
+    position: absolute;
+    top: var(--space-md);
+    left: 0;
+
+    align-items: center;
+    gap: var(--space-sm);
+
+    color: var(--color-text-muted);
+}
+
+
+.hero-skyline__label-index {
+    color: var(--color-accent-primary);
+}
+
+
+.hero-skyline__label-text {
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * SKYLINE SCENE
+ * --------------------------------------------------------------------------
+ */
+
+.hero-skyline__scene {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    height: 68%;
+}
+
+
+/*
+ * Shared architectural ground line.
+ *
+ * Native CSS.
+ */
+
+.hero-skyline__baseline {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    height: var(--border-width-thin);
+
+    background: var(--color-border-primary);
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * BUILDINGS
+ * --------------------------------------------------------------------------
+ */
+
+.hero-skyline__building {
+    display: flex;
+
+    position: absolute;
+    bottom: 0;
+
+    flex-direction: column;
+    align-items: center;
+
+    width: 2.75rem;
+
+    border-top: var(--border-width-thin) solid var(--color-border-subtle);
+    border-right: var(--border-width-thin) solid var(--color-border-subtle);
+    border-left: var(--border-width-thin) solid var(--color-border-subtle);
+
+    background: var(--color-background-primary);
+}
+
+
+.hero-skyline__building--client {
+    left: 7%;
+
+    height: 35%;
+}
+
+
+.hero-skyline__building--application {
+    left: 40%;
+
+    height: 72%;
+}
+
+
+.hero-skyline__building--data {
+    right: 29%;
+
+    height: 49%;
+}
+
+
+.hero-skyline__building--cloud {
+    right: 6%;
+
+    height: 84%;
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * SYSTEM NODES
+ * --------------------------------------------------------------------------
+ */
+
+.hero-skyline__node {
+    display: grid;
+
+    position: absolute;
+    top: -1rem;
+    left: 50%;
+
+    place-items: center;
+
+    width: 2rem;
+    height: 2rem;
+
+    border: var(--border-width-thin) solid var(--color-border-primary);
+    border-radius: var(--radius-pill);
+
+    color: var(--color-text-secondary);
+    background: var(--color-background-primary);
+
+    transform: translateX(-50%);
+}
+
+
+.hero-skyline__node-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+
+/*
+ * Labels intentionally remain beneath each architecture structure.
+ *
+ * Their existing placement is preserved.
+ *
+ * The visual region now reserves space for them rather than forcing us to
+ * move the labels into a different visual position.
+ */
+
+.hero-skyline__node-label {
+    position: absolute;
+    top: calc(100% + var(--space-sm));
+    left: 50%;
+
+    font-size: 0.625rem;
+
+    color: var(--color-text-muted);
+
+    white-space: nowrap;
+
+    transform: translateX(-50%);
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * CONNECTIONS
+ * --------------------------------------------------------------------------
+ */
+
+.hero-skyline__connection {
+    position: absolute;
+
+    height: var(--border-width-thin);
+}
+
+
+/*
+ * Client → Application
+ */
+
+.hero-skyline__connection--client-application {
+    bottom: 35%;
+    left: calc(7% + 2.75rem);
+
+    width: calc(33% - 2.75rem);
+}
+
+
+/*
+ * Application → Data
+ */
+
+.hero-skyline__connection--application-data {
+    right: calc(29% + 2.75rem);
+    bottom: 49%;
+
+    width: calc(31% - 2.75rem);
+}
+
+
+/*
+ * Data → Cloud
+ */
+
+.hero-skyline__connection--data-cloud {
+    right: calc(6% + 2.75rem);
+    bottom: 49%;
+
+    width: calc(23% - 2.75rem);
+}
+
+
+.hero-skyline__connection-line {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    background: var(--color-border-subtle);
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * DATA SIGNAL
+ * --------------------------------------------------------------------------
+ *
+ * Cyan is reserved for system activity.
+ *
+ * GSAP controls runtime visibility and horizontal movement.
+ */
+
+.hero-skyline__signal {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: var(--z-content);
+
+    width: 0.3125rem;
+    height: 0.3125rem;
+
+    border-radius: var(--radius-pill);
+
+    background: var(--color-accent-secondary);
+
+    box-shadow: 0 0 0.5rem rgb(53 213 229 / 35%);
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+
+    opacity: 0;
+}
+
+
+/*
+ * ==========================================================================
+ * HERO FOOTER
+ * ==========================================================================
+ *
+ * The approved horizontal footer composition is preserved.
+ *
+ * The architecture now ends before reaching this region, including the
+ * building labels.
+ */
+
+.hero__footer {
+    display: flex;
+
+    flex: 0 0 auto;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-lg);
+
+    width: 100%;
+
+    padding-block: var(--space-lg);
+
+    border-top: var(--border-width-thin) solid var(--color-border-primary);
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * SOCIAL LINKS
+ * --------------------------------------------------------------------------
+ */
+
+.hero__socials {
+    display: flex;
+
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+}
+
+
+.hero__social-link {
+    display: inline-flex;
+
+    align-items: center;
+    gap: var(--space-xs);
+
+    color: var(--color-text-muted);
+
+    transition: color var(--duration-base) var(--ease-standard);
+}
+
+
+.hero__social-icon {
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+
+.hero__social-link:hover,
+.hero__social-link:focus-visible {
+    color: var(--color-text-primary);
+}
+
+
+.hero__social-link:hover .hero__social-icon,
+.hero__social-link:focus-visible .hero__social-icon {
+    transform: translate(0.125rem, -0.125rem);
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * SELECTED WORK LINK
+ * --------------------------------------------------------------------------
+ */
+
+.hero__scroll {
+    display: inline-flex;
+
+    align-items: center;
+    gap: var(--space-xs);
+
+    color: var(--color-text-secondary);
+
+    transition: color var(--duration-base) var(--ease-standard);
+}
+
+
+.hero__scroll-icon {
+    color: var(--color-accent-primary);
+
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+
+.hero__scroll:hover,
+.hero__scroll:focus-visible {
+    color: var(--color-text-primary);
+}
+
+
+.hero__scroll:hover .hero__scroll-icon,
+.hero__scroll:focus-visible .hero__scroll-icon {
+    transform: translateY(0.1875rem);
+}
+
+
+/*
+ * ==========================================================================
+ * SHORT MOBILE HEIGHT
+ * ==========================================================================
+ *
+ * Short phones receive reduced vertical whitespace without changing the
+ * approved composition.
+ */
+
+@media (max-width: 47.999rem) and (max-height: 50rem) {
+    .hero__meta {
+        padding-top: var(--space-sm);
+        padding-bottom: var(--space-md);
+    }
+
+
+    .hero__content {
+        gap: var(--space-lg);
+
+        padding-top: var(--space-xl);
+    }
+
+
+    .hero__identity {
+        gap: var(--space-sm);
+    }
+
+
+    .hero__disciplines {
+        gap: var(--space-2xs);
+    }
+
+
+    .hero-skyline__label {
+        top: var(--space-sm);
+    }
+
+
+    .hero__footer {
+        padding-block: var(--space-md);
+    }
+}
+
+
+/*
+ * ==========================================================================
+ * VERY SHORT MOBILE HEIGHT
+ * ==========================================================================
+ *
+ * Extremely short mobile displays require another small reduction in
+ * surrounding whitespace.
+ */
+
+@media (max-width: 47.999rem) and (max-height: 43rem) {
+    .hero {
+        padding-top: 5rem;
+    }
+
+
+    .hero__container {
+        height: calc(100svh - 5rem);
+    }
+
+
+    .hero__meta {
+        padding-top: var(--space-xs);
+        padding-bottom: var(--space-sm);
+    }
+
+
+    .hero__content {
+        gap: var(--space-md);
+
+        padding-top: var(--space-lg);
+    }
+
+
+    .hero__identity {
+        gap: var(--space-sm);
+    }
+
+
+    .hero__role {
+        font-size: var(--font-size-md);
+    }
+
+
+    .hero__discipline {
+        font-size: var(--font-size-xs);
+    }
+
+
+    .hero-skyline__label {
+        top: var(--space-xs);
+    }
+
+
+    .hero__footer {
+        padding-block: var(--space-sm);
+    }
+}
+
+
+/*
+ * ==========================================================================
+ * NARROW MOBILE WIDTH
+ * ==========================================================================
+ *
+ * Extremely narrow screens receive slightly tighter footer typography and
+ * spacing while retaining the same horizontal composition.
+ */
+
+@media (max-width: 24rem) {
+    .hero__footer {
+        gap: var(--space-sm);
+    }
+
+
+    .hero__socials {
+        gap: var(--space-md);
+    }
+
+
+    .hero__social-link,
+    .hero__scroll {
+        font-size: var(--font-size-xs);
+    }
+}
+
+
+/*
+ * ==========================================================================
+ * TABLET
+ * ==========================================================================
+ *
+ * The existing tablet composition is preserved.
+ */
+
+@media (min-width: 48rem) {
+    .hero {
+        padding-top: 7rem;
+    }
+
+
+    .hero__container {
+        height: calc(100svh - 7rem);
+    }
+
+
+    .hero__meta {
+        padding-top: var(--space-lg);
+        padding-bottom: var(--space-lg);
+    }
+
+
+    .hero__content {
+        grid-template-columns: minmax(0, 1fr) 15rem;
+        align-items: end;
+        gap: var(--space-2xl);
+
+        padding-top: var(--space-4xl);
+    }
+
+
+    .hero__title {
+        font-size: clamp(6rem, 15vw, 10rem);
+    }
+
+
+    .hero__identity {
+        align-self: end;
+
+        padding-bottom: var(--space-sm);
+    }
+
+
+    .hero__visual {
+        min-height: 8rem;
+    }
+
+
+    .hero-skyline__scene {
+        height: 72%;
+    }
+
+
+    .hero-skyline__building {
+        width: 3.25rem;
+    }
+
+
+    .hero-skyline__building--client {
+        left: 10%;
+    }
+
+
+    .hero-skyline__building--application {
+        left: 41%;
+    }
+
+
+    .hero-skyline__building--data {
+        right: 28%;
+    }
+
+
+    .hero-skyline__building--cloud {
+        right: 7%;
+    }
+
+
+    .hero-skyline__connection--client-application {
+        left: calc(10% + 3.25rem);
+
+        width: calc(31% - 3.25rem);
+    }
+
+
+    .hero-skyline__connection--application-data {
+        right: calc(28% + 3.25rem);
+
+        width: calc(31% - 3.25rem);
+    }
+
+
+    .hero-skyline__connection--data-cloud {
+        right: calc(7% + 3.25rem);
+
+        width: calc(21% - 3.25rem);
+    }
+
+
+    .hero__footer {
+        padding-block: var(--space-xl);
+    }
+}
+
+
+/*
+ * ==========================================================================
+ * SHORT TABLET / LANDSCAPE
+ * ==========================================================================
+ */
+
+@media (min-width: 48rem) and (max-height: 50rem) {
+    .hero__meta {
+        padding-top: var(--space-sm);
+        padding-bottom: var(--space-md);
+    }
+
+
+    .hero__content {
+        gap: var(--space-xl);
+
+        padding-top: var(--space-xl);
+    }
+
+
+    .hero__visual {
+        min-height: 5.5rem;
+    }
+
+
+    .hero__footer {
+        padding-block: var(--space-md);
+    }
+}
+
+
+/*
+ * ==========================================================================
+ * DESKTOP
+ * ==========================================================================
+ *
+ * The approved large-screen layout remains unchanged:
+ *
+ * - Jorge Ramirez dominates the left.
+ * - Engineering identity sits independently on the right.
+ * - Architecture spans beneath both areas.
+ */
+
+@media (min-width: 64rem) {
+    .hero__content {
+        grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.28fr);
+        align-items: center;
+        gap: var(--space-3xl);
+
+        padding-top: var(--space-4xl);
+    }
+
+
+    .hero__title {
+        font-size: clamp(8rem, 14vw, 13rem);
+        line-height: 0.73;
+    }
+
+
+    .hero__identity {
+        align-self: center;
+
+        padding-bottom: 0;
+    }
+
+
+    .hero__role {
+        font-size: var(--font-size-lg);
+    }
+
+
+    .hero__visual {
+        min-height: 9rem;
+    }
+
+
+    .hero-skyline__scene {
+        height: 76%;
+    }
+
+
+    .hero-skyline__building {
+        width: 3.75rem;
+    }
+
+
+    .hero-skyline__node {
+        top: -1.125rem;
+
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+
+
+    .hero-skyline__building--client {
+        left: 12%;
+    }
+
+
+    .hero-skyline__building--application {
+        left: 42%;
+    }
+
+
+    .hero-skyline__building--data {
+        right: 29%;
+    }
+
+
+    .hero-skyline__building--cloud {
+        right: 8%;
+    }
+
+
+    .hero-skyline__connection--client-application {
+        left: calc(12% + 3.75rem);
+
+        width: calc(30% - 3.75rem);
+    }
+
+
+    .hero-skyline__connection--application-data {
+        right: calc(29% + 3.75rem);
+
+        width: calc(29% - 3.75rem);
+    }
+
+
+    .hero-skyline__connection--data-cloud {
+        right: calc(8% + 3.75rem);
+
+        width: calc(21% - 3.75rem);
+    }
+}
+
+
+/*
+ * ==========================================================================
+ * SHORT DESKTOP
+ * ==========================================================================
+ *
+ * Wide but vertically constrained displays receive tighter vertical spacing.
+ */
+
+@media (min-width: 64rem) and (max-height: 50rem) {
+    .hero__meta {
+        padding-top: var(--space-sm);
+        padding-bottom: var(--space-md);
+    }
+
+
+    .hero__content {
+        gap: var(--space-2xl);
+
+        padding-top: var(--space-xl);
+    }
+
+
+    .hero__title {
+        font-size: clamp(7rem, 12vw, 10rem);
+    }
+
+
+    .hero__visual {
+        min-height: 5rem;
+    }
+
+
+    .hero__footer {
+        padding-block: var(--space-md);
+    }
+}
+
+
+/*
+ * ==========================================================================
+ * LARGE DESKTOP
+ * ==========================================================================
+ *
+ * Large displays regain the original breathing room when enough HEIGHT is
+ * available as well as enough width.
+ */
+
+@media (min-width: 90rem) and (min-height: 56rem) {
+    .hero__content {
+        padding-top: var(--space-5xl);
+    }
+
+
+    .hero__visual {
+        min-height: 13rem;
+    }
+}
+
+
+/*
+ * ==========================================================================
+ * REDUCED MOTION
+ * ==========================================================================
+ *
+ * prefers-reduced-motion is native CSS.
+ *
+ * Hero.tsx separately prevents GSAP timelines from being created for users
+ * requesting reduced motion.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-skyline__signal {
+        display: none;
+    }
+
+
+    .hero__social-icon,
+    .hero__scroll-icon {
+        transition: none;
+    }
+}

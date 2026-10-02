@@ -1,0 +1,251 @@
+/*
+ * ==========================================================================
+ * SITE HEADER
+ * ==========================================================================
+ *
+ * Primary portfolio navigation.
+ *
+ * Mobile-first:
+ * The initial small-screen treatment keeps the brand and contact action
+ * visible while hiding the full navigation until enough horizontal space
+ * becomes available.
+ *
+ * The header currently uses native CSS only. Scroll-driven header behavior
+ * may be introduced later once the hero and page structure are established.
+ * ==========================================================================
+ */
+
+.site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: var(--z-navigation);
+
+    width: 100%;
+}
+
+
+.site-header__container {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 5rem;
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * BRAND
+ * --------------------------------------------------------------------------
+ */
+
+.site-header__brand {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-sm);
+
+    color: var(--color-text-primary);
+}
+
+
+.site-header__brand-mark {
+    display: grid;
+
+    place-items: center;
+
+    width: 2rem;
+    height: 2rem;
+
+    border: var(--border-width-thin) solid var(--color-accent-primary);
+
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-none);
+    letter-spacing: var(--letter-spacing-normal);
+
+    color: var(--color-accent-primary);
+
+    transition:
+        color var(--duration-base) var(--ease-standard),
+        background-color var(--duration-base) var(--ease-standard);
+}
+
+
+.site-header__brand-name {
+    display: none;
+
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-none);
+}
+
+
+/*
+ * The brand interaction is intentionally restrained. The orange outline
+ * becomes filled rather than introducing decorative movement.
+ */
+
+.site-header__brand:hover .site-header__brand-mark {
+    color: var(--color-background-primary);
+    background: var(--color-accent-primary);
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * PRIMARY NAVIGATION
+ * --------------------------------------------------------------------------
+ *
+ * Hidden on smaller screens for now.
+ *
+ * We will build the actual mobile navigation separately rather than squeezing
+ * the desktop links into an unusably narrow row.
+ */
+
+.site-header__navigation {
+    display: none;
+}
+
+
+.site-header__navigation-list {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+
+.site-header__navigation-link {
+    position: relative;
+
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-none);
+    letter-spacing: var(--letter-spacing-mono);
+
+    color: var(--color-text-secondary);
+
+    text-transform: uppercase;
+
+    transition: color var(--duration-base) var(--ease-standard);
+}
+
+
+/*
+ * Native CSS pseudo-element.
+ *
+ * The underline grows from the left on hover/focus. This is basic interaction
+ * feedback rather than part of the site's technical storytelling animation.
+ */
+
+.site-header__navigation-link::after {
+    content: "";
+
+    position: absolute;
+    right: 0;
+    bottom: -0.5rem;
+    left: 0;
+
+    height: var(--border-width-thin);
+
+    background: var(--color-accent-primary);
+
+    transform: scaleX(0);
+    transform-origin: right center;
+
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+
+.site-header__navigation-link:hover,
+.site-header__navigation-link:focus-visible {
+    color: var(--color-text-primary);
+}
+
+
+.site-header__navigation-link:hover::after,
+.site-header__navigation-link:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * CONTACT
+ * --------------------------------------------------------------------------
+ */
+
+.site-header__contact {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-xs);
+
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-none);
+    letter-spacing: var(--letter-spacing-mono);
+
+    color: var(--color-text-secondary);
+
+    text-transform: uppercase;
+
+    transition: color var(--duration-base) var(--ease-standard);
+}
+
+
+.site-header__contact-status {
+    width: 0.375rem;
+    height: 0.375rem;
+
+    border-radius: var(--radius-pill);
+
+    background: var(--color-accent-secondary);
+}
+
+
+.site-header__contact:hover,
+.site-header__contact:focus-visible {
+    color: var(--color-text-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * TABLET
+ * ==========================================================================
+ */
+
+@media (min-width: 48rem) {
+    .site-header__container {
+        min-height: 6rem;
+    }
+
+    .site-header__brand-name {
+        display: block;
+    }
+}
+
+
+/*
+ * ==========================================================================
+ * DESKTOP
+ * ==========================================================================
+ *
+ * The full primary navigation becomes available only when there is enough
+ * horizontal space for the links to breathe naturally.
+ * ==========================================================================
+ */
+
+@media (min-width: 64rem) {
+    .site-header__navigation {
+        display: block;
+    }
+}

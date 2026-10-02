@@ -1,0 +1,15 @@
+/*
+ * ==========================================================================
+ * HOME PAGE
+ * ==========================================================================
+ *
+ * The homepage owns section composition only.
+ *
+ * Individual sections remain responsible for their own internal layouts,
+ * presentation, and responsive behavior.
+ * ==========================================================================
+ */
+
+.home-page {
+    min-height: 100vh;
+}
