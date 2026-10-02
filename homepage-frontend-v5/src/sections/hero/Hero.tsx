@@ -806,7 +806,7 @@ function Hero() {
                     <div className="hero__socials">
                         <a
                             className="hero__social-link text-mono"
-                            href="https://github.com/"
+                            href="https://github.com/Grub1000"
                             target="_blank"
                             rel="noreferrer"
                         >
@@ -824,7 +824,7 @@ function Hero() {
 
                         <a
                             className="hero__social-link text-mono"
-                            href="https://www.linkedin.com/"
+                            href="https://www.linkedin.com/in/jorge-ramirez-02363a18b"
                             target="_blank"
                             rel="noreferrer"
                         >
