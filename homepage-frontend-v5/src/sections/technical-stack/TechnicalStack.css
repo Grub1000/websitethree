@@ -1,0 +1,557 @@
+/*
+ * ==========================================================================
+ * TECHNICAL STACK
+ * ==========================================================================
+ *
+ * Section 04 of the homepage.
+ *
+ * PURPOSE
+ * --------------------------------------------------------------------------
+ *
+ * Technical Stack presents the technologies central to Jorge's current
+ * production work.
+ *
+ * It intentionally avoids:
+ *
+ * - technology-logo clouds
+ * - individual skill cards
+ * - proficiency meters
+ * - excessive badges
+ *
+ * Technology names themselves become the visual content.
+ *
+ *
+ * VISUAL RHYTHM
+ * --------------------------------------------------------------------------
+ *
+ * About intentionally reduces information density.
+ *
+ * Technical Stack increases density again through typography and structure,
+ * then closes with one large statement before the portfolio moves into the
+ * Education section.
+ *
+ *
+ * RESPONSIVE STRATEGY
+ * --------------------------------------------------------------------------
+ *
+ * Mobile:
+ * - Four capability groups form one vertical matrix.
+ *
+ * Tablet / Desktop:
+ * - Groups become a 2 × 2 matrix.
+ * - Larger typography creates the primary visual hierarchy.
+ *
+ *
+ * ANIMATION
+ * --------------------------------------------------------------------------
+ *
+ * CSS contains NO hidden initial states.
+ *
+ * GSAP creates temporary entrance states only when JavaScript is active and
+ * prefers-reduced-motion allows animation.
+ */
+
+
+/*
+ * ==========================================================================
+ * SECTION
+ * ==========================================================================
+ */
+
+.technical-stack {
+    position: relative;
+
+    padding-block: var(--section-padding-mobile);
+    padding-top: var(--space-xl);
+
+    background: var(--color-background-primary);
+}
+
+
+.technical-stack__container {
+    display: grid;
+
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION METADATA
+ * ==========================================================================
+ */
+
+.technical-stack__meta {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-sm);
+
+    padding-bottom: var(--space-md);
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+
+.technical-stack__section-index {
+    color: var(--color-accent-primary);
+}
+
+
+.technical-stack__label {
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION HEADER
+ * ==========================================================================
+ */
+
+.technical-stack__header {
+    display: grid;
+
+    gap: var(--space-xl);
+}
+
+
+/*
+ * overflow clips the title lines while GSAP translates them upward during
+ * the section entrance.
+ *
+ * overflow is native CSS.
+ */
+
+.technical-stack__title {
+    overflow: hidden;
+
+    padding-top: var(--space-xl);
+
+    font-size: var(--font-size-heading-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.88;
+    letter-spacing: var(--letter-spacing-tight);
+
+    color: var(--color-text-primary);
+}
+
+
+.technical-stack__title-line {
+    display: block;
+
+    will-change: transform, opacity;
+}
+
+
+.technical-stack__title-mark {
+    color: var(--color-accent-primary);
+}
+
+
+.technical-stack__introduction {
+    display: grid;
+
+    gap: var(--space-sm);
+
+    max-width: 30rem;
+}
+
+
+.technical-stack__introduction-label {
+    font-size: var(--font-size-xs);
+
+    color: var(--color-accent-primary);
+}
+
+
+.technical-stack__introduction-copy {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-body);
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * PRIMARY STACK MATRIX
+ * ==========================================================================
+ *
+ * One outer border defines the complete stack.
+ *
+ * Internal borders divide the four layers.
+ *
+ * This is intentionally one continuous technical surface rather than four
+ * independent cards.
+ */
+
+.technical-stack__matrix {
+    display: grid;
+
+    border: var(--border-width-thin) solid var(--color-border-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * CAPABILITY GROUP
+ * ==========================================================================
+ */
+
+.technical-stack__group {
+    display: grid;
+
+    gap: var(--space-xl);
+
+    min-width: 0;
+
+    padding: var(--space-xl);
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+}
+
+
+.technical-stack__group:last-child {
+    border-bottom: none;
+}
+
+
+/*
+ * ==========================================================================
+ * GROUP METADATA
+ * ==========================================================================
+ */
+
+.technical-stack__group-meta {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-xs);
+
+    font-size: 0.5625rem;
+}
+
+
+.technical-stack__group-index {
+    color: var(--color-accent-primary);
+}
+
+
+.technical-stack__group-title {
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * TECHNOLOGIES
+ * ==========================================================================
+ *
+ * Technology names function as the primary graphic content.
+ *
+ * Large plain typography communicates confidence and keeps the stack aligned
+ * with the editorial / engineering language used throughout the portfolio.
+ */
+
+.technical-stack__technologies {
+    display: grid;
+
+    gap: var(--space-xs);
+
+    padding: 0;
+
+    margin: 0;
+
+    list-style: none;
+}
+
+
+.technical-stack__technology {
+    font-size: clamp(1.25rem, 6vw, 1.75rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.05;
+    letter-spacing: var(--letter-spacing-heading);
+
+    color: var(--color-text-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * CAPABILITY DESCRIPTION
+ * ==========================================================================
+ */
+
+.technical-stack__group-description {
+    max-width: 30rem;
+
+    font-size: 0.75rem;
+    line-height: 1.6;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION FOOTER
+ * ==========================================================================
+ *
+ * The closing statement summarizes the actual capability demonstrated by the
+ * matrix:
+ *
+ *     FROM INTERFACE
+ *     TO INFRASTRUCTURE.
+ *
+ * With the secondary Technology Index removed, this becomes the definitive
+ * closing statement for Section 04.
+ */
+
+.technical-stack__footer {
+    display: grid;
+
+    gap: var(--space-xl);
+
+    padding-top: var(--space-xl);
+
+    border-top: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+
+/*
+ * overflow clips each line while GSAP translates the statement into view.
+ */
+
+.technical-stack__statement {
+    overflow: hidden;
+
+    margin: 0;
+
+    font-size: clamp(1.75rem, 8vw, 3rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.95;
+    letter-spacing: var(--letter-spacing-heading);
+
+    color: var(--color-text-primary);
+}
+
+
+.technical-stack__statement-line {
+    display: block;
+
+    will-change: transform, opacity;
+}
+
+
+.technical-stack__statement-mark {
+    color: var(--color-accent-primary);
+}
+
+
+.technical-stack__footer-meta {
+    justify-self: end;
+
+    font-size: 0.5rem;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * TABLET
+ * ==========================================================================
+ */
+
+@media (min-width: 48rem) {
+
+    .technical-stack {
+        padding-block: var(--section-padding-tablet);
+        padding-top: var(--space-xl);
+    }
+
+
+    .technical-stack__container {
+        gap: var(--space-4xl);
+    }
+
+
+    /*
+     * The large section identity remains on the left while supporting context
+     * moves into a narrower right-hand column.
+     */
+
+    .technical-stack__header {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(18rem, 0.45fr);
+        align-items: end;
+        gap: var(--space-3xl);
+    }
+
+    .technical-stack__title {
+        padding-top: 0;
+    }
+
+    .technical-stack__introduction {
+        justify-self: end;
+
+        padding-bottom: var(--space-xs);
+    }
+
+
+    /*
+     * The four production layers become a 2 × 2 matrix.
+     *
+     * CSS Grid is used because the relationship is two-dimensional.
+     */
+
+    .technical-stack__matrix {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+
+    .technical-stack__group {
+        padding: var(--space-2xl);
+    }
+
+
+    /*
+     * Groups 1 and 3 create the center vertical divider.
+     */
+
+    .technical-stack__group:nth-child(odd) {
+        border-right: var(--border-width-thin) solid var(--color-border-primary);
+    }
+
+
+    /*
+     * Groups 3 and 4 form the final matrix row.
+     *
+     * Group 4 already has no bottom border through :last-child.
+     * Group 3 therefore removes its own bottom border here.
+     */
+
+    .technical-stack__group:nth-child(3) {
+        border-bottom: none;
+    }
+
+
+    .technical-stack__technology {
+        font-size: clamp(1.5rem, 3.25vw, 2rem);
+    }
+
+
+    /*
+     * The closing statement and metadata share one horizontal row once enough
+     * width becomes available.
+     */
+
+    .technical-stack__footer {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+        gap: var(--space-2xl);
+    }
+
+
+    .technical-stack__statement {
+        font-size: clamp(2.25rem, 5vw, 4rem);
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 64rem) {
+
+    .technical-stack {
+        padding-block: var(--section-padding-desktop);
+        padding-top: var(--space-xl);
+    }
+
+
+    /*
+     * Desktop gives each capability group enough vertical room for the
+     * technology names to become the dominant graphic element.
+     *
+     * The middle 1fr row consumes remaining vertical space, keeping the
+     * description aligned toward the bottom of each group.
+     *
+     * This is native CSS Grid behavior.
+     */
+
+    .technical-stack__title {
+        padding-top: 0;
+    }
+
+    .technical-stack__group {
+        grid-template-rows: auto 1fr auto;
+
+        min-height: 23rem;
+
+        padding: var(--space-3xl);
+    }
+
+
+    .technical-stack__technologies {
+        align-content: start;
+    }
+
+
+    .technical-stack__technology {
+        font-size: clamp(1.75rem, 2.4vw, 2.5rem);
+    }
+
+
+    .technical-stack__statement {
+        font-size: clamp(3rem, 5vw, 5rem);
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * LARGE DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 90rem) {
+
+    .technical-stack__group {
+        min-height: 25rem;
+    }
+
+
+    .technical-stack__technology {
+        font-size: 2.5rem;
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * REDUCED MOTION
+ * ==========================================================================
+ *
+ * GSAP does not create the entrance timeline when reduced motion is
+ * requested.
+ *
+ * No additional fallback visibility rules are necessary because CSS never
+ * hides the section in the first place.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .technical-stack__title-line,
+    .technical-stack__statement-line {
+        will-change: auto;
+    }
+
+}

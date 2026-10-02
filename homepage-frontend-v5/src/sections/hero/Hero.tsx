@@ -644,7 +644,7 @@ function Hero() {
                 signalTimeline.to(destinationNode, {
                     scale: 1.18,
                     borderColor: "#35d5e5",
-                    duration: 0.12,
+                    duration: 0.60,
                     ease: "power2.out",
                 });
 
@@ -658,7 +658,7 @@ function Hero() {
                  */
                 signalTimeline.to(destinationNode, {
                     scale: 1,
-                    duration: 0.18,
+                    duration: 0.60,
                     ease: "power2.out",
                     borderColor: "#292929"
                 });

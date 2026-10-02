@@ -1,0 +1,1318 @@
+/*
+ * ==========================================================================
+ * FEATURED PROJECTS — ENGINEERING BOARD
+ * ==========================================================================
+ *
+ * The board behaves like one technical artifact containing three project
+ * regions and one editorial legend.
+ *
+ * Each project now communicates:
+ *
+ * 1. Project identity.
+ * 2. Product appearance.
+ * 3. Technical/system behavior.
+ * 4. Languages and technologies.
+ * 5. A clear exploration action.
+ *
+ *
+ * COLOR SEMANTICS
+ * --------------------------------------------------------------------------
+ *
+ * Orange = identity / interaction.
+ * Cyan   = data / system activity.
+ * White  = primary content.
+ * Gray   = architecture / metadata.
+ *
+ *
+ * RESPONSIVE STRATEGY
+ * --------------------------------------------------------------------------
+ *
+ * Mobile:
+ * - Board regions stack.
+ * - Product images and diagrams remain readable.
+ *
+ * Tablet:
+ * - Two-column board.
+ *
+ * Desktop:
+ * - Asymmetric 12-column engineering board.
+ *
+ *
+ * ANIMATION RESPONSIBILITIES
+ * --------------------------------------------------------------------------
+ *
+ * CSS:
+ * - CTA line movement.
+ * - CTA secondary-label reveal.
+ * - Arrow movement.
+ * - Basic hover/focus states.
+ *
+ * GSAP:
+ * - NOT USED YET.
+ * - Later handles actual system/data-flow animations.
+ * ==========================================================================
+ */
+
+
+/*
+ * ==========================================================================
+ * SECTION
+ * ==========================================================================
+ */
+
+.featured-projects {
+    position: relative;
+
+    padding-block: var(--section-padding-mobile);
+
+    background: var(--color-background-primary);
+}
+
+
+.featured-projects__container {
+    display: grid;
+
+    gap: var(--space-3xl);
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION METADATA
+ * ==========================================================================
+ */
+
+.featured-projects__meta {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-sm);
+
+    padding-bottom: var(--space-md);
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+
+.featured-projects__index {
+    color: var(--color-accent-primary);
+}
+
+
+.featured-projects__label {
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION HEADER
+ * ==========================================================================
+ */
+
+.featured-projects__header {
+    display: grid;
+
+    gap: var(--space-xl);
+}
+
+
+.featured-projects__title {
+    font-size: var(--font-size-heading-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.88;
+    letter-spacing: var(--letter-spacing-tight);
+
+    color: var(--color-text-primary);
+
+    overflow: hidden;
+}
+
+
+.featured-projects__title-line {
+    display: block;
+
+    will-change: transform, opacity;
+}
+
+
+.featured-projects__title-mark {
+    color: var(--color-accent-primary);
+}
+
+
+.featured-projects__introduction {
+    display: grid;
+
+    gap: var(--space-sm);
+
+    max-width: 30rem;
+}
+
+
+.featured-projects__introduction-label {
+    font-size: var(--font-size-xs);
+
+    color: var(--color-accent-primary);
+}
+
+
+.featured-projects__introduction-copy {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-body);
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT BOARD
+ * ==========================================================================
+ */
+
+.project-board {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr);
+
+    border: var(--border-width-thin) solid var(--color-border-primary);
+
+    background: var(--color-surface-primary);
+}
+
+/*
+ * ==========================================================================
+ * GSAP BOARD REVEAL SUPPORT
+ * ==========================================================================
+ *
+ * clip-path is native CSS.
+ *
+ * GSAP temporarily animates this property during the one-time section
+ * entrance. The board and project visuals return to their normal static
+ * state when the entrance finishes.
+ */
+
+.project-board,
+.project-board__visual {
+    will-change: clip-path;
+}
+
+
+/*
+ * ==========================================================================
+ * SHARED PROJECT REGION
+ * ==========================================================================
+ */
+
+.project-board__card {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--space-lg);
+
+    min-width: 0;
+
+    padding: var(--space-lg);
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+
+    background: var(--color-surface-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT HEADER
+ * ==========================================================================
+ */
+
+.project-board__card-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+}
+
+
+.project-board__card-index-group {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-xs);
+
+    font-size: 0.625rem;
+}
+
+
+.project-board__card-index {
+    color: var(--color-accent-primary);
+}
+
+
+.project-board__card-category {
+    color: var(--color-text-muted);
+}
+
+
+.project-board__status {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-xs);
+
+    font-size: 0.5625rem;
+
+    color: var(--color-text-muted);
+}
+
+
+.project-board__status-dot {
+    width: 0.375rem;
+    height: 0.375rem;
+
+    border-radius: var(--radius-pill);
+
+    background: var(--color-accent-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT IDENTITY
+ * ==========================================================================
+ */
+
+.project-board__identity {
+    display: grid;
+
+    gap: var(--space-sm);
+}
+
+
+.project-board__title {
+    font-size: clamp(2.5rem, 11vw, 4rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.88;
+    letter-spacing: var(--letter-spacing-tight);
+
+    color: var(--color-text-primary);
+}
+
+
+.project-board__title-mark {
+    color: var(--color-accent-primary);
+}
+
+
+.project-board__description {
+    max-width: 34rem;
+
+    font-size: 0.8125rem;
+    line-height: 1.5;
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * PRODUCT + TECHNICAL VISUAL
+ * ==========================================================================
+ */
+
+.project-board__visual {
+    display: grid;
+
+    gap: var(--space-md);
+
+    min-width: 0;
+}
+
+
+/*
+ * Relay has enough width on larger screens to eventually place its product
+ * image beside its architecture.
+ */
+
+.project-board__visual--relay {
+    align-items: stretch;
+}
+
+
+/*
+ * ==========================================================================
+ * PRODUCT IMAGE
+ * ==========================================================================
+ *
+ * object-fit: cover is native CSS.
+ *
+ * The image occupies its frame without distorting its intrinsic proportions.
+ */
+
+.project-board__image-frame {
+    display: grid;
+
+    position: relative;
+
+    min-width: 0;
+    height: 9rem;
+
+    border: var(--border-width-thin) solid var(--color-border-subtle);
+
+    margin: 0;
+
+    background: var(--color-background-primary);
+
+    overflow: hidden;
+}
+
+
+.project-board__image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: top center;
+
+    opacity: 0.88;
+
+    transition:
+        opacity var(--duration-base) var(--ease-standard),
+        transform var(--duration-slow) var(--ease-out);
+}
+
+
+.project-board__image-caption {
+    position: absolute;
+    bottom: var(--space-xs);
+    left: var(--space-xs);
+
+    padding: 0.25rem 0.375rem;
+
+    font-size: 0.5rem;
+
+    color: var(--color-text-secondary);
+    background: rgb(10 10 10 / 82%);
+}
+
+
+.project-board__card:hover .project-board__image {
+    opacity: 1;
+
+    transform: scale(1.015);
+}
+
+
+/*
+ * ==========================================================================
+ * RELAY SYSTEM
+ * ==========================================================================
+ *
+ * The Relay schematic stays intentionally static.
+ *
+ * Each primary node contains:
+ *
+ *     ○
+ *   CLIENT
+ *
+ * The horizontal connection must therefore align with the NODE DOT rather
+ * than the vertical center of the complete dot + label group.
+ *
+ * We preserve the existing JSX and compensate for that geometry here.
+ */
+
+.relay-card__system {
+    display: grid;
+
+    align-content: center;
+    gap: var(--space-md);
+
+    min-height: 7rem;
+
+    padding: var(--space-md);
+
+    border: var(--border-width-thin) solid var(--color-border-subtle);
+
+    background: var(--color-background-primary);
+}
+
+
+.relay-card__system-header {
+    font-size: 0.5rem;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * PRIMARY PATH
+ * --------------------------------------------------------------------------
+ *
+ * All five children occupy one grid row:
+ *
+ * NODE — LINE — NODE — LINE — NODE
+ *
+ * align-items: start is important.
+ *
+ * We no longer center the connection against the entire node component,
+ * because the text label beneath each dot changes that component's height.
+ */
+
+.relay-card__primary-path {
+    display: grid;
+
+    grid-template-columns:
+        auto
+        minmax(1rem, 1fr)
+        auto
+        minmax(1rem, 1fr)
+        auto;
+    align-items: start;
+}
+
+
+.relay-card__node {
+    display: grid;
+
+    justify-items: center;
+    gap: var(--space-xs);
+
+    color: var(--color-text-muted);
+}
+
+
+.relay-card__node-dot {
+    width: 0.4375rem;
+    height: 0.4375rem;
+
+    border: var(--border-width-thin) solid currentColor;
+    border-radius: var(--radius-pill);
+
+    background: var(--color-background-primary);
+}
+
+
+.relay-card__node-label {
+    font-size: 0.5rem;
+    line-height: 1;
+
+    color: currentColor;
+}
+
+
+/*
+ * The dot is 0.4375rem tall.
+ *
+ * Half of that height is 0.21875rem, so the connection is positioned at
+ * that same vertical center.
+ *
+ * This is ordinary CSS geometry — no transform/GSAP behavior is involved.
+ */
+
+.relay-card__connection {
+    width: 100%;
+    height: var(--border-width-thin);
+
+    margin-top: 0.21875rem;
+
+    background: var(--color-border-primary);
+}
+
+
+/*
+ * --------------------------------------------------------------------------
+ * REDIS / MYSQL BRANCH
+ * --------------------------------------------------------------------------
+ *
+ * The branch remains independent from the primary path.
+ *
+ * This avoids implying that the horizontal primary line itself is a single
+ * literal end-to-end message sequence.
+ */
+
+.relay-card__branch {
+    display: grid;
+
+    justify-self: end;
+
+    width: 48%;
+}
+
+
+.relay-card__branch-stem {
+    justify-self: center;
+
+    width: var(--border-width-thin);
+    height: 0.75rem;
+
+    background: var(--color-border-primary);
+}
+
+
+.relay-card__branch-targets {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+
+.relay-card__branch-node {
+    display: grid;
+
+    justify-items: center;
+    gap: var(--space-xs);
+
+    padding-top: var(--space-xs);
+
+    border-top: var(--border-width-thin) solid var(--color-border-primary);
+
+    color: var(--color-text-muted);
+}
+
+
+.relay-card__branch-dot {
+    width: 0.3125rem;
+    height: 0.3125rem;
+
+    border-radius: var(--radius-pill);
+
+    background: var(--color-border-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * RAGSPACE SYSTEM
+ * ==========================================================================
+ *
+ * Every retrieval stage uses the same two-row internal geometry:
+ *
+ *     01        02        •••        04
+ *     DOC     CHUNKS     EMBED     QDRANT
+ *
+ * The first row has an explicit height so every pipeline connection can
+ * align to the exact same Y coordinate.
+ */
+
+.ragspace-card__system {
+    display: grid;
+
+    gap: var(--space-md);
+
+    padding: var(--space-md);
+
+    border: var(--border-width-thin) solid var(--color-border-subtle);
+
+    background: var(--color-background-primary);
+}
+
+
+.ragspace-card__system-header {
+    font-size: 0.5rem;
+
+    color: var(--color-text-muted);
+}
+
+
+.ragspace-card__pipeline {
+    display: grid;
+
+    grid-template-columns:
+        auto
+        minmax(0.5rem, 1fr)
+        auto
+        minmax(0.5rem, 1fr)
+        auto
+        minmax(0.5rem, 1fr)
+        auto;
+    align-items: start;
+}
+
+
+/*
+ * Every stage gets the same top-row geometry.
+ */
+
+.ragspace-card__stage {
+    display: grid;
+
+    grid-template-rows: 0.5rem auto;
+    justify-items: center;
+    gap: var(--space-2xs);
+}
+
+
+.ragspace-card__stage-index {
+    align-self: center;
+
+    font-size: 0.4375rem;
+    line-height: 1;
+
+    color: var(--color-accent-primary);
+}
+
+
+.ragspace-card__stage-label {
+    font-size: 0.4375rem;
+    line-height: 1;
+    text-align: center;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * The first visual row is 0.5rem tall.
+ *
+ * Half of that is 0.25rem, which gives the pipeline line the exact same
+ * center axis as the stage markers.
+ */
+
+.ragspace-card__pipeline-line {
+    width: 100%;
+    height: var(--border-width-thin);
+
+    margin-top: 0.25rem;
+
+    background: var(--color-border-primary);
+}
+
+
+.ragspace-card__vectors {
+    display: flex;
+
+    align-self: center;
+    align-items: center;
+    gap: 0.1875rem;
+}
+
+
+.ragspace-card__vector {
+    width: 0.3125rem;
+    height: 0.3125rem;
+
+    border-radius: var(--radius-pill);
+
+    background: var(--color-accent-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * RESUSCAN SYSTEM
+ * ==========================================================================
+ *
+ * Unlike Relay and RAGspace, each ResuScan workflow node is represented by
+ * the ENTIRE bordered block.
+ *
+ * Therefore the arrow should remain vertically centered against the block,
+ * not against only the index or label.
+ */
+
+.resuscan-card__system {
+    display: grid;
+
+    gap: var(--space-md);
+
+    padding: var(--space-md);
+
+    border: var(--border-width-thin) solid var(--color-border-subtle);
+
+    background: var(--color-background-primary);
+}
+
+
+.resuscan-card__system-header {
+    font-size: 0.5rem;
+
+    color: var(--color-text-muted);
+}
+
+
+.resuscan-card__workflow {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        minmax(0, 1fr)
+        auto
+        minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+
+.resuscan-card__node {
+    display: grid;
+
+    grid-template-rows: 0.5rem auto;
+    justify-items: center;
+    align-items: center;
+    gap: var(--space-2xs);
+
+    min-height: 2.25rem;
+
+    padding-block: var(--space-xs);
+
+    border-top: var(--border-width-thin) solid var(--color-border-primary);
+    border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+}
+
+
+.resuscan-card__node-index {
+    font-size: 0.4375rem;
+    line-height: 1;
+
+    color: var(--color-accent-primary);
+}
+
+
+.resuscan-card__node-label {
+    font-size: 0.4375rem;
+    line-height: 1;
+
+    color: var(--color-text-secondary);
+}
+
+
+.resuscan-card__arrow {
+    align-self: center;
+
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-xs);
+    line-height: 1;
+
+    color: var(--color-text-muted);
+}
+
+
+.resuscan-card__states {
+    display: flex;
+
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+
+.resuscan-card__state {
+    padding: 0.1875rem 0.3125rem;
+
+    border: var(--border-width-thin) solid var(--color-border-subtle);
+
+    font-size: 0.4375rem;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * TECHNOLOGY MATRIX
+ * ==========================================================================
+ *
+ * A definition list is used because each row explicitly associates a
+ * technology category with its values.
+ */
+
+.project-board__technologies {
+    display: grid;
+
+    margin: 0;
+}
+
+
+.project-board__technology-row {
+    display: grid;
+
+    grid-template-columns: 5rem minmax(0, 1fr);
+    gap: var(--space-md);
+
+    padding-block: var(--space-xs);
+
+    border-top: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+
+.project-board__technology-row:last-child {
+    border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+
+.project-board__technology-label {
+    font-size: 0.5rem;
+
+    color: var(--color-accent-primary);
+}
+
+
+.project-board__technology-value {
+    margin: 0;
+
+    font-size: 0.5rem;
+    line-height: 1.5;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT ACTION
+ * ==========================================================================
+ *
+ * The entire strip is interactive.
+ *
+ * This replaces the previous small circular button.
+ *
+ * CSS handles:
+ * - Orange line expansion.
+ * - Secondary text reveal.
+ * - Arrow translation.
+ *
+ * No GSAP is needed for this interaction.
+ */
+
+.project-board__action {
+    display: grid;
+
+    position: relative;
+
+    margin-top: auto;
+
+    color: var(--color-text-primary);
+
+    overflow: hidden;
+}
+
+
+/*
+ * Base line remains subtle.
+ */
+
+.project-board__action::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    height: var(--border-width-thin);
+
+    background: var(--color-border-primary);
+
+    content: "";
+}
+
+
+/*
+ * Orange interaction line begins collapsed.
+ */
+
+.project-board__action-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: var(--border-width-thin);
+
+    background: var(--color-accent-primary);
+
+    transform: scaleX(0);
+    transform-origin: left center;
+
+    transition: transform var(--duration-slow) var(--ease-out);
+}
+
+
+.project-board__action-content {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: var(--space-md);
+
+    min-height: 3.25rem;
+
+    padding-inline: var(--space-xs);
+}
+
+
+.project-board__action-label {
+    font-size: 0.625rem;
+
+    color: var(--color-text-primary);
+}
+
+
+.project-board__action-secondary {
+    font-size: 0.5625rem;
+
+    color: var(--color-accent-primary);
+
+    opacity: 0;
+
+    transform: translateX(-0.5rem);
+
+    transition:
+        opacity var(--duration-base) var(--ease-standard),
+        transform var(--duration-base) var(--ease-out);
+}
+
+
+.project-board__action-icon {
+    color: var(--color-text-secondary);
+
+    transition:
+        color var(--duration-base) var(--ease-standard),
+        transform var(--duration-base) var(--ease-out);
+}
+
+
+.project-board__action:hover .project-board__action-line,
+.project-board__action:focus-visible .project-board__action-line {
+    transform: scaleX(1);
+}
+
+
+.project-board__action:hover .project-board__action-secondary,
+.project-board__action:focus-visible .project-board__action-secondary {
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+
+.project-board__action:hover .project-board__action-icon,
+.project-board__action:focus-visible .project-board__action-icon {
+    color: var(--color-accent-primary);
+
+    transform: translate(0.1875rem, -0.1875rem);
+}
+
+
+/*
+ * ==========================================================================
+ * BOARD LEGEND
+ * ==========================================================================
+ */
+
+.project-board__legend {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-2xl);
+
+    min-height: 17rem;
+
+    padding: var(--space-lg);
+
+    background: var(--color-background-primary);
+}
+
+
+.project-board__legend-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+
+    font-size: 0.625rem;
+}
+
+
+.project-board__legend-index {
+    color: var(--color-accent-primary);
+}
+
+
+.project-board__legend-year {
+    color: var(--color-text-muted);
+}
+
+
+.project-board__legend-content {
+    display: grid;
+
+    gap: var(--space-md);
+}
+
+
+.project-board__legend-kicker {
+    font-size: 0.625rem;
+
+    color: var(--color-text-muted);
+}
+
+
+.project-board__legend-disciplines {
+    font-size: clamp(1.4rem, 6vw, 2.25rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.05;
+    letter-spacing: var(--letter-spacing-heading);
+
+    color: var(--color-text-primary);
+}
+
+
+.project-board__legend-footer {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+
+    padding-top: var(--space-md);
+
+    border-top: var(--border-width-thin) solid var(--color-border-subtle);
+
+    font-size: 0.5625rem;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * TABLET
+ * ==========================================================================
+ */
+
+@media (min-width: 48rem) {
+    .featured-projects {
+        padding-block: var(--section-padding-tablet);
+    }
+
+
+    .featured-projects__container {
+        gap: var(--space-4xl);
+    }
+
+
+    .featured-projects__header {
+        grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.45fr);
+        align-items: end;
+        gap: var(--space-3xl);
+    }
+
+
+    .featured-projects__introduction {
+        justify-self: end;
+
+        padding-bottom: var(--space-xs);
+    }
+
+
+    .project-board {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+
+    .project-board__card--relay,
+    .project-board__card--resuscan {
+        border-right: var(--border-width-thin) solid var(--color-border-primary);
+    }
+
+
+    .project-board__image-frame {
+        height: 10rem;
+    }
+
+
+    .project-board__legend {
+        min-height: 20rem;
+    }
+}
+
+
+/*
+ * ==========================================================================
+ * DESKTOP
+ * ==========================================================================
+ *
+ * Asymmetric 12-column engineering board.
+ *
+ * RELAY:
+ * 7 columns.
+ *
+ * RAGSPACE:
+ * 5 columns.
+ *
+ * RESUSCAN:
+ * 5 columns.
+ *
+ * LEGEND:
+ * 7 columns.
+ */
+
+@media (min-width: 64rem) {
+    .featured-projects {
+        padding-block: var(--section-padding-desktop);
+    }
+
+
+    .project-board {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * RELAY
+     * ----------------------------------------------------------------------
+     */
+
+    .project-board__card--relay {
+        grid-column: 1 / span 7;
+        grid-row: 1;
+
+        border-right: var(--border-width-thin) solid var(--color-border-primary);
+        border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+    }
+
+
+    /*
+     * Relay has the largest footprint, so product and architecture can sit
+     * beside one another.
+     */
+
+    .project-board__visual--relay {
+        grid-template-columns: minmax(0, 1.45fr) minmax(12rem, 0.75fr);
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * RAGSPACE
+     * ----------------------------------------------------------------------
+     */
+
+    .project-board__card--ragspace {
+        grid-column: 8 / span 5;
+        grid-row: 1;
+
+        border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * RESUSCAN
+     * ----------------------------------------------------------------------
+     */
+
+    .project-board__card--resuscan {
+        grid-column: 1 / span 5;
+        grid-row: 2;
+
+        border-right: var(--border-width-thin) solid var(--color-border-primary);
+        border-bottom: 0;
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * LEGEND
+     * ----------------------------------------------------------------------
+     */
+
+    .project-board__legend {
+        grid-column: 6 / span 7;
+        grid-row: 2;
+
+        min-height: 0;
+    }
+
+
+    /*
+     * Compact desktop sizing.
+     *
+     * We intentionally avoid large fixed heights. Content determines the
+     * board's required height while the individual visual areas remain
+     * constrained.
+     */
+
+    .project-board__card,
+    .project-board__legend {
+        padding: var(--space-xl);
+    }
+
+
+    .project-board__title {
+        font-size: clamp(2.75rem, 3.5vw, 4rem);
+    }
+
+
+    .project-board__image-frame {
+        height: 9.5rem;
+    }
+
+
+    .project-board__card--relay .project-board__image-frame {
+        height: 100%;
+        min-height: 9rem;
+    }
+
+
+    .project-board__legend-disciplines {
+        font-size: clamp(1.75rem, 2.5vw, 3rem);
+    }
+}
+
+
+/*
+ * ==========================================================================
+ * LARGE DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 90rem) {
+    .project-board__card,
+    .project-board__legend {
+        padding: var(--space-2xl);
+    }
+
+
+    .project-board__image-frame {
+        height: 11rem;
+    }
+
+
+    .project-board__card--relay .project-board__image-frame {
+        height: 100%;
+    }
+
+
+    .project-board__technology-row {
+        grid-template-columns: 5.75rem minmax(0, 1fr);
+    }
+}
+
+
+/*
+ * ==========================================================================
+ * REDUCED MOTION
+ * ==========================================================================
+ *
+ * Native prefers-reduced-motion media query.
+ *
+ * The image and CTA remain fully usable but stop performing decorative
+ * transition movement.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+    .project-board__image,
+    .project-board__action-line,
+    .project-board__action-secondary,
+    .project-board__action-icon {
+        transition: none;
+    }
+}

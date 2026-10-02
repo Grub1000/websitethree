@@ -441,6 +441,10 @@
     top: calc(100% + var(--space-sm));
     left: 50%;
 
+    /* padding-bottom: var(--space-lg);
+     */
+    /* margin-bottom: var(--space-sm); */
+
     font-size: 0.625rem;
 
     color: var(--color-text-muted);
@@ -565,6 +569,7 @@
     width: 100%;
 
     padding-block: var(--space-lg);
+    margin-top: var(--space-md);
 
     border-top: var(--border-width-thin) solid var(--color-border-primary);
 }

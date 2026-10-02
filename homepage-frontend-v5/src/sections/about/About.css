@@ -1,0 +1,493 @@
+/*
+ * ==========================================================================
+ * ABOUT
+ * ==========================================================================
+ *
+ * Section 03 of the homepage.
+ *
+ * PURPOSE
+ * --------------------------------------------------------------------------
+ *
+ * Selected Systems is intentionally dense and technical.
+ *
+ * About provides the visual reset immediately afterward:
+ *
+ * - fewer borders
+ * - fewer technical graphics
+ * - larger negative space
+ * - more editorial typography
+ * - a human focal point
+ *
+ *
+ * RESPONSIVE STRATEGY
+ * --------------------------------------------------------------------------
+ *
+ * Mobile:
+ * - Single-column editorial flow.
+ * - Lead statement appears first.
+ * - Portrait follows the introduction.
+ * - Supporting copy and profile information finish the section.
+ *
+ * Desktop:
+ * - Content becomes an asymmetric two-column composition.
+ * - Written content occupies the larger left side.
+ * - Portrait and structured profile information occupy the right side.
+ */
+
+
+/*
+ * ==========================================================================
+ * SECTION
+ * ==========================================================================
+ */
+
+.about {
+    position: relative;
+
+    padding-block: var(--section-padding-mobile);
+
+    background: var(--color-background-primary);
+
+    padding-top: var(--space-lg);
+}
+
+
+.about__container {
+    display: grid;
+
+    gap: var(--space-3xl);
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION METADATA
+ * ==========================================================================
+ */
+
+.about__meta {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-sm);
+
+    padding-bottom: var(--space-md);
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+
+.about__index {
+    color: var(--color-accent-primary);
+}
+
+
+.about__label {
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION HEADING
+ * ==========================================================================
+ */
+
+.about__title {
+    font-size: var(--font-size-heading-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.88;
+    letter-spacing: var(--letter-spacing-tight);
+
+    color: var(--color-text-primary);
+}
+
+
+.about__title-line {
+    display: block;
+}
+
+
+.about__title-mark {
+    color: var(--color-accent-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * CONTENT
+ * ==========================================================================
+ */
+
+.about__content {
+    display: grid;
+
+    gap: var(--space-2xl);
+}
+
+
+/*
+ * ==========================================================================
+ * PRIMARY INTRODUCTION
+ * ==========================================================================
+ */
+
+.about__introduction {
+    max-width: 46rem;
+}
+
+
+.about__lead {
+    font-size: clamp(1.5rem, 7vw, 2.25rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.15;
+    letter-spacing: var(--letter-spacing-heading);
+
+    color: var(--color-text-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * PORTRAIT
+ * ==========================================================================
+ *
+ * The image is intentionally treated more like an editorial photograph than
+ * a UI card. The frame has no rounded corners, shadow, or elevated surface.
+ */
+
+.about__portrait {
+    display: grid;
+
+    gap: var(--space-sm);
+
+    margin: 0;
+}
+
+
+.about__portrait-frame {
+    position: relative;
+
+    aspect-ratio: 4 / 5;
+
+    overflow: hidden;
+}
+
+
+.about__portrait-image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/*
+ * Registration marks provide a very small amount of the technical visual
+ * language used elsewhere on the site without turning the portrait into
+ * another architecture diagram.
+ */
+
+.about__registration-mark {
+    position: absolute;
+
+    width: 1.25rem;
+    height: 1.25rem;
+
+    pointer-events: none;
+}
+
+
+.about__registration-mark--top {
+    top: var(--space-sm);
+    left: var(--space-sm);
+
+    border-top: var(--border-width-thin) solid var(--color-accent-primary);
+    border-left: var(--border-width-thin) solid var(--color-accent-primary);
+}
+
+
+.about__registration-mark--bottom {
+    right: var(--space-sm);
+    bottom: var(--space-sm);
+
+    border-right: var(--border-width-thin) solid var(--color-accent-primary);
+    border-bottom: var(--border-width-thin) solid var(--color-accent-primary);
+}
+
+
+.about__portrait-caption {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+
+    font-size: 0.5rem;
+}
+
+
+.about__portrait-id {
+    color: var(--color-accent-primary);
+}
+
+
+.about__portrait-location {
+    text-align: right;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * SUPPORTING COPY
+ * ==========================================================================
+ */
+
+.about__body {
+    display: grid;
+
+    gap: var(--space-md);
+
+    max-width: 42rem;
+}
+
+
+.about__paragraph {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * ENGINEERING PROFILE
+ * ==========================================================================
+ *
+ * Definition-list markup is used because each label describes the value
+ * directly beneath it.
+ */
+
+.about__profile {
+    display: grid;
+
+    margin: 0;
+}
+
+
+.about__profile-item {
+    display: grid;
+
+    gap: var(--space-xs);
+
+    padding-block: var(--space-md);
+
+    border-top: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+
+.about__profile-item:last-child {
+    border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+
+.about__profile-label {
+    font-size: 0.5rem;
+
+    color: var(--color-accent-primary);
+}
+
+
+.about__profile-value {
+    margin: 0;
+
+    font-size: 0.8125rem;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.02em;
+
+    color: var(--color-text-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * TABLET
+ * ==========================================================================
+ */
+
+@media (min-width: 48rem) {
+
+    .about {
+        padding-block: var(--section-padding-tablet);
+
+        padding-top: var(--space-lg);
+    }
+
+
+    .about__container {
+        gap: var(--space-4xl);
+    }
+
+
+    /*
+     * Portrait and text begin sharing horizontal space on tablet while
+     * maintaining a strong reading hierarchy.
+     */
+    .about__content {
+        grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.7fr);
+        column-gap: var(--space-3xl);
+        row-gap: var(--space-2xl);
+        align-items: start;
+    }
+
+
+    .about__introduction {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+
+    .about__portrait {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+    }
+
+
+    .about__body {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+
+    .about__profile {
+        grid-column: 1 / -1;
+        grid-row: 3;
+
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+
+    .about__profile-item {
+        padding: var(--space-md);
+        border-top: var(--border-width-thin) solid var(--color-border-subtle);
+        border-right: var(--border-width-thin) solid var(--color-border-subtle);
+    }
+
+
+    .about__profile-item:first-child {
+        border-left: var(--border-width-thin) solid var(--color-border-subtle);
+    }
+
+
+    .about__profile-item:last-child {
+        border-bottom: none;
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 64rem) {
+
+    .about {
+        padding-block: var(--section-padding-desktop);
+
+        padding-top: var(--space-lg);
+    }
+
+
+    /*
+     * Desktop gives the section substantially more negative space than the
+     * project section before it.
+     *
+     * This change in density is intentional and establishes the About section
+     * as a visual pause in the homepage narrative.
+     */
+    .about__content {
+        grid-template-columns: minmax(0, 1.3fr) minmax(20rem, 0.65fr);
+        column-gap: clamp(4rem, 8vw, 8rem);
+        row-gap: var(--space-3xl);
+    }
+
+
+    .about__lead {
+        max-width: 50rem;
+
+        font-size: clamp(2rem, 3.25vw, 3.5rem);
+    }
+
+
+    .about__portrait {
+        max-width: 26rem;
+
+        justify-self: end;
+    }
+
+
+    .about__body {
+        max-width: 38rem;
+    }
+
+
+    /*
+     * On desktop the profile belongs beneath the portrait rather than
+     * stretching across the entire section. This creates a quiet right-hand
+     * information column opposite the primary written narrative.
+     */
+    .about__profile {
+        grid-column: 2;
+        grid-row: 3;
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .about__profile-item {
+        padding: var(--space-md) 0;
+
+        border-right: none;
+    }
+
+
+    .about__profile-item:first-child {
+        border-left: none;
+    }
+
+
+    .about__profile-item:last-child {
+        border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * LARGE DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 90rem) {
+
+    .about__content {
+        grid-template-columns: minmax(0, 1.45fr) minmax(22rem, 0.6fr);
+        column-gap: clamp(6rem, 10vw, 10rem);
+    }
+
+
+    .about__portrait {
+        max-width: 28rem;
+    }
+
+}

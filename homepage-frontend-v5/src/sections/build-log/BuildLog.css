@@ -1,0 +1,713 @@
+/*
+ * ==========================================================================
+ * BUILD LOG
+ * ==========================================================================
+ *
+ * Section 03.
+ *
+ * VISUAL ROLE
+ * --------------------------------------------------------------------------
+ *
+ * Selected Systems behaves like an engineering board.
+ *
+ * Build Log behaves like an engineering RECORD.
+ *
+ * The continuous left rail and dated entries make the section feel temporal
+ * and process-oriented rather than like another collection of project cards.
+ *
+ *
+ * COLOR SEMANTICS
+ * --------------------------------------------------------------------------
+ *
+ * Orange = identity / important engineering metadata.
+ * Cyan   = active system / central infrastructure.
+ * White  = primary engineering decisions.
+ * Gray   = supporting architecture and explanation.
+ *
+ *
+ * RESPONSIVE STRATEGY
+ * --------------------------------------------------------------------------
+ *
+ * Mobile:
+ * - Single-column log.
+ * - Date metadata remains above each entry.
+ * - Technical diagrams remain horizontally readable.
+ *
+ * Desktop:
+ * - Date/index information occupies a narrow left column.
+ * - Engineering content occupies the main column.
+ * - A vertical rail visually connects the entries.
+ */
+
+
+/*
+ * ==========================================================================
+ * SECTION
+ * ==========================================================================
+ */
+
+.build-log {
+    position: relative;
+
+    padding-block: var(--section-padding-mobile);
+
+    background: var(--color-background-primary);
+}
+
+
+.build-log__container {
+    display: grid;
+
+    gap: var(--space-3xl);
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION METADATA
+ * ==========================================================================
+ */
+
+.build-log__meta {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-sm);
+
+    padding-bottom: var(--space-md);
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+
+.build-log__index {
+    color: var(--color-accent-primary);
+}
+
+
+.build-log__label {
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION HEADER
+ * ==========================================================================
+ */
+
+.build-log__header {
+    display: grid;
+
+    gap: var(--space-xl);
+}
+
+
+.build-log__title {
+    font-size: var(--font-size-heading-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.88;
+    letter-spacing: var(--letter-spacing-tight);
+
+    color: var(--color-text-primary);
+}
+
+
+.build-log__title-line {
+    display: block;
+}
+
+
+.build-log__title-mark {
+    color: var(--color-accent-primary);
+}
+
+
+.build-log__introduction {
+    display: grid;
+
+    gap: var(--space-sm);
+
+    max-width: 30rem;
+}
+
+
+.build-log__introduction-label {
+    font-size: var(--font-size-xs);
+
+    color: var(--color-accent-primary);
+}
+
+
+.build-log__introduction-copy {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-body);
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * LOG
+ * ==========================================================================
+ *
+ * The left border is the continuous engineering-log rail.
+ *
+ * Individual entries do not receive independent card backgrounds because the
+ * section should read as one connected record.
+ */
+
+.build-log__entries {
+    display: grid;
+
+    position: relative;
+
+    border-left: var(--border-width-thin) solid var(--color-border-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * ENTRY
+ * ==========================================================================
+ */
+
+.build-log__entry {
+    display: grid;
+
+    position: relative;
+
+    gap: var(--space-lg);
+
+    padding: var(--space-xl) 0 var(--space-xl) var(--space-lg);
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+}
+
+
+/*
+ * Small cyan point where each entry meets the log rail.
+ */
+
+.build-log__entry::before {
+    position: absolute;
+    top: var(--space-xl);
+    left: -0.21875rem;
+
+    width: 0.375rem;
+    height: 0.375rem;
+
+    border: var(--border-width-thin) solid var(--color-background-primary);
+    border-radius: var(--radius-pill);
+
+    background: var(--color-accent-secondary);
+
+    content: "";
+}
+
+
+.build-log__entry:first-child {
+    border-top: var(--border-width-thin) solid var(--color-border-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * ENTRY METADATA
+ * ==========================================================================
+ */
+
+.build-log__entry-meta {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+
+    font-size: 0.5625rem;
+}
+
+
+.build-log__entry-index {
+    color: var(--color-accent-primary);
+}
+
+
+.build-log__entry-date {
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * ENTRY CONTENT
+ * ==========================================================================
+ */
+
+.build-log__entry-content {
+    display: grid;
+
+    gap: var(--space-lg);
+
+    min-width: 0;
+}
+
+
+.build-log__entry-heading {
+    display: grid;
+
+    gap: var(--space-sm);
+}
+
+
+.build-log__entry-classification {
+    display: flex;
+
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs);
+
+    font-size: 0.5625rem;
+}
+
+
+.build-log__entry-project {
+    color: var(--color-accent-primary);
+}
+
+
+.build-log__entry-separator {
+    color: var(--color-text-muted);
+}
+
+
+.build-log__entry-category {
+    color: var(--color-text-muted);
+}
+
+
+.build-log__entry-title {
+    max-width: 46rem;
+
+    font-size: clamp(1.35rem, 7vw, 2rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.05;
+    letter-spacing: var(--letter-spacing-heading);
+
+    color: var(--color-text-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * ENTRY VISUAL
+ * ==========================================================================
+ *
+ * This is deliberately not styled as a floating card.
+ *
+ * It behaves like a technical figure embedded directly inside an engineering
+ * log entry.
+ */
+
+.build-log__entry-visual {
+    min-width: 0;
+
+    padding: var(--space-md);
+
+    border-top: var(--border-width-thin) solid var(--color-border-subtle);
+    border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+
+    background: var(--color-surface-primary);
+
+    overflow-x: auto;
+}
+
+
+.build-log__diagram {
+    min-width: 28rem;
+}
+
+
+/*
+ * ==========================================================================
+ * SHARED DIAGRAM TYPOGRAPHY
+ * ==========================================================================
+ */
+
+.build-log__diagram-index {
+    font-size: 0.4375rem;
+
+    color: var(--color-accent-primary);
+}
+
+
+.build-log__diagram-node {
+    font-size: 0.5625rem;
+
+    color: var(--color-text-secondary);
+}
+
+
+.build-log__diagram-detail {
+    font-size: 0.4375rem;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * RELAY DIAGRAM
+ * ==========================================================================
+ */
+
+.build-log__diagram--relay {
+    display: grid;
+
+    grid-template-columns:
+        minmax(6rem, 1fr)
+        minmax(2rem, 0.5fr)
+        auto
+        minmax(2rem, 0.5fr)
+        minmax(6rem, 1fr);
+    align-items: center;
+}
+
+
+.build-log__socket {
+    display: grid;
+
+    justify-items: center;
+    gap: var(--space-2xs);
+
+    padding-block: var(--space-sm);
+
+    border-top: var(--border-width-thin) solid var(--color-border-primary);
+    border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+}
+
+
+.build-log__diagram-connector {
+    width: 100%;
+    height: var(--border-width-thin);
+
+    background: var(--color-border-primary);
+}
+
+
+.build-log__hub {
+    display: grid;
+
+    justify-items: center;
+    gap: var(--space-xs);
+}
+
+
+.build-log__hub-dot {
+    width: 0.4375rem;
+    height: 0.4375rem;
+
+    border-radius: var(--radius-pill);
+
+    background: var(--color-accent-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * RAGSPACE PIPELINE
+ * ==========================================================================
+ */
+
+.build-log__diagram--pipeline {
+    display: flex;
+
+    align-items: center;
+}
+
+
+.build-log__pipeline-group {
+    display: flex;
+
+    flex: 1;
+    align-items: center;
+}
+
+
+.build-log__pipeline-stage {
+    display: grid;
+
+    justify-items: center;
+    gap: var(--space-2xs);
+
+    min-width: 3rem;
+}
+
+
+.build-log__pipeline-arrow {
+    flex: 1;
+
+    min-width: 1rem;
+
+    text-align: center;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * RESUSCAN WORKFLOW
+ * ==========================================================================
+ */
+
+.build-log__diagram--workflow {
+    display: grid;
+
+    grid-template-columns:
+        minmax(5rem, 1fr)
+        auto
+        minmax(5rem, 1fr)
+        auto
+        minmax(5rem, 1fr);
+    align-items: center;
+    gap: var(--space-md);
+}
+
+
+.build-log__workflow-node {
+    display: grid;
+
+    justify-items: center;
+    gap: var(--space-2xs);
+
+    padding-block: var(--space-sm);
+
+    border-top: var(--border-width-thin) solid var(--color-border-primary);
+    border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+}
+
+
+.build-log__workflow-arrow {
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * DESCRIPTION
+ * ==========================================================================
+ */
+
+.build-log__entry-description {
+    max-width: 48rem;
+
+    font-size: 0.8125rem;
+    line-height: 1.6;
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * TECHNOLOGIES
+ * ==========================================================================
+ */
+
+.build-log__technologies {
+    display: flex;
+
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+
+    padding: 0;
+
+    margin: 0;
+
+    list-style: none;
+}
+
+
+.build-log__technology {
+    padding: 0.25rem 0.375rem;
+
+    border: var(--border-width-thin) solid var(--color-border-subtle);
+
+    font-size: 0.4375rem;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * TABLET
+ * ==========================================================================
+ */
+
+@media (min-width: 48rem) {
+
+    .build-log {
+        padding-block: var(--section-padding-tablet);
+    }
+
+
+    .build-log__container {
+        gap: var(--space-4xl);
+    }
+
+
+    .build-log__header {
+        grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.45fr);
+        align-items: end;
+        gap: var(--space-3xl);
+    }
+
+
+    .build-log__introduction {
+        justify-self: end;
+
+        padding-bottom: var(--space-xs);
+    }
+
+
+    /*
+     * The date/index column becomes independent from the engineering content
+     * once sufficient horizontal space exists.
+     */
+    .build-log__entry {
+        grid-template-columns: 7rem minmax(0, 1fr);
+        gap: var(--space-xl);
+
+        padding-left: var(--space-xl);
+    }
+
+
+    .build-log__entry-meta {
+        display: grid;
+
+        align-content: start;
+        justify-content: initial;
+        gap: var(--space-xs);
+    }
+
+
+    .build-log__entry-date {
+        white-space: nowrap;
+    }
+
+
+    .build-log__entry-title {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 64rem) {
+
+    .build-log {
+        padding-block: var(--section-padding-desktop);
+    }
+
+
+    /*
+     * More breathing room is added to each record on desktop while the
+     * continuous timeline remains visually restrained.
+     */
+    .build-log__entry {
+        grid-template-columns: 8rem minmax(0, 1fr);
+        gap: var(--space-2xl);
+
+        padding: var(--space-2xl) 0 var(--space-2xl) var(--space-xl);
+    }
+
+
+    .build-log__entry::before {
+        top: var(--space-2xl);
+    }
+
+
+    /*
+     * The engineering content becomes a two-column internal layout.
+     *
+     * Heading spans the full width.
+     * Technical visual receives the larger column.
+     * Description and technologies form the supporting information column.
+     */
+    .build-log__entry-content {
+        grid-template-columns: minmax(0, 1.6fr) minmax(16rem, 0.7fr);
+        column-gap: var(--space-2xl);
+    }
+
+
+    .build-log__entry-heading {
+        grid-column: 1 / -1;
+    }
+
+
+    .build-log__entry-visual {
+        grid-column: 1;
+        grid-row: 2 / span 2;
+    }
+
+
+    .build-log__entry-description {
+        grid-column: 2;
+        grid-row: 2;
+
+        align-self: start;
+    }
+
+
+    .build-log__technologies {
+        grid-column: 2;
+        grid-row: 3;
+
+        align-self: end;
+    }
+
+
+    .build-log__entry-title {
+        max-width: 52rem;
+
+        font-size: clamp(2rem, 2.75vw, 3rem);
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * LARGE DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 90rem) {
+
+    .build-log__entry {
+        grid-template-columns: 9rem minmax(0, 1fr);
+        gap: var(--space-3xl);
+
+        padding-block: var(--space-3xl);
+    }
+
+
+    .build-log__entry::before {
+        top: var(--space-3xl);
+    }
+
+
+    .build-log__entry-content {
+        column-gap: var(--space-3xl);
+    }
+
+}

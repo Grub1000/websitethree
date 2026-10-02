@@ -1,11 +1,12 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 
 import {Routes, Route} from "react-router-dom"
 
 import HomePage from "./pages/HomePage/HomePage.tsx"
 
+
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
   return (
     <Routes>
