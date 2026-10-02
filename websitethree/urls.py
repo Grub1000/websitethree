@@ -20,8 +20,9 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', TemplateView.as_view(template_name= 'homepage-frontend/build/index.html')),
-    path('', TemplateView.as_view(template_name= 'homepage-react-frontend-parallax-semantic/build/index.html')),
+    path('home-v3/', TemplateView.as_view(template_name= 'homepage-frontend/build/index.html')),
+    path('home-v4/', TemplateView.as_view(template_name= 'homepage-react-frontend-parallax-semantic/build/index.html')),
+    path('', TemplateView.as_view(template_name= 'homepage-frontend-v5/dist/index.html')),
 
 
     # Resume Analyzer Api
@@ -90,12 +91,12 @@ urlpatterns = [
 
 
     # Showcase React App
-        path(
-            "showcase/",
-            TemplateView.as_view(
-                template_name="showcase-frontend/dist/index.html"
-            )
-        ),
+    path(
+        "showcase/",
+        TemplateView.as_view(
+            template_name="showcase-frontend/dist/index.html"
+        )
+    ),
 
     # Showcase React App (Catch-all route for React Router)
     path(
@@ -104,5 +105,9 @@ urlpatterns = [
             template_name="showcase-frontend/dist/index.html"
         )
     ),
+
+
+
+
 
 ]

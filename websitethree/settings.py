@@ -153,6 +153,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'ragspace-frontend/dist'),
     os.path.join(BASE_DIR, 'chat-frontend/dist'),
     os.path.join(BASE_DIR, 'showcase-frontend/dist'),
+    os.path.join(BASE_DIR, 'homepage-frontend-v5/dist')
 ]
 
 REST_FRAMEWORK = { 
