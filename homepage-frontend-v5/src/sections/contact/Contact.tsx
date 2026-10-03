@@ -976,7 +976,7 @@ function Contact() {
                             </span>
 
                             <span className="contact__footer-value">
-                                PORTFOLIO V2
+                                PORTFOLIO V5
                             </span>
 
                             <span className="contact__footer-detail text-mono">

@@ -2,10 +2,10 @@ import "./header.css";
 
 const navigationItems = [
     { label: "Work", href: "#work" },
-    { label: "Build Log", href: "#build-log" },
+    { label: "Archive", href: "#project-archive" },
     { label: "Stack", href: "#stack" },
     { label: "About", href: "#about" },
-    { label: "Lab", href: "#lab" },
+    { label: "Lab", href: "#frontend-showcase" },
 ];
 
 function Header() {
