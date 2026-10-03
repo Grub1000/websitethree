@@ -150,7 +150,9 @@
 }
 
 
-.technical-stack__introduction {
+.technical-stack__introduction { 
+    padding-bottom: var(--space-md);
+
     display: grid;
 
     gap: var(--space-sm);
@@ -160,6 +162,7 @@
 
 
 .technical-stack__introduction-label {
+    
     font-size: var(--font-size-xs);
 
     color: var(--color-accent-primary);
@@ -167,6 +170,7 @@
 
 
 .technical-stack__introduction-copy {
+    
     font-size: var(--font-size-sm);
     line-height: var(--line-height-body);
 

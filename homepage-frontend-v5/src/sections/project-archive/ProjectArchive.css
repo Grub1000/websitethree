@@ -1,0 +1,1596 @@
+/*
+ * ==========================================================================
+ * PROJECT ARCHIVE
+ * ==========================================================================
+ *
+ * SECTION 06 — YEARS / OF BUILDING.
+ *
+ * Mobile-first.
+ *
+ * MOTION SPLIT
+ * --------------------------------------------------------------------------
+ *
+ * GSAP:
+ * - entrance choreography
+ * - clip-path reveals
+ * - project scan-line entrances
+ * - Show More project entrances
+ * - expanded project reveal
+ *
+ * CSS:
+ * - hover interactions
+ * - button fills
+ * - row wash
+ * - icon movement
+ *
+ * This separation is intentional:
+ *
+ * GSAP handles finite sequences.
+ * CSS handles immediate user interaction.
+ */
+
+
+/*
+ * ==========================================================================
+ * SECTION
+ * ==========================================================================
+ */
+
+.project-archive {
+    position: relative;
+
+    overflow: clip;
+
+    padding-block: var(--section-padding-mobile);
+
+    background: var(--color-background-primary);
+}
+
+
+.project-archive__container {
+    display: grid;
+
+    gap: var(--space-3xl);
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION META
+ * ==========================================================================
+ */
+
+.project-archive__meta {
+    display: grid;
+
+    gap: var(--space-md);
+}
+
+
+.project-archive__meta-copy {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+
+.project-archive__section-index {
+    color: var(--color-accent-primary);
+}
+
+
+.project-archive__section-label {
+    color: var(--color-text-muted);
+}
+
+
+.project-archive__meta-line {
+    display: block;
+
+    width: 100%;
+    height: var(--border-width-thin);
+
+    background: var(--color-border-subtle);
+
+    transform-origin: left center;
+}
+
+
+/*
+ * ==========================================================================
+ * HEADER
+ * ==========================================================================
+ */
+
+.project-archive__header {
+    display: grid;
+
+    gap: var(--space-xl);
+}
+
+
+/*
+ * ==========================================================================
+ * TITLE
+ * ==========================================================================
+ *
+ * Each line acts as a native CSS clipping mask.
+ *
+ * GSAP moves `.project-archive__title-line-inner` from yPercent: 110 to 0.
+ */
+
+.project-archive__title {
+    margin: 0;
+
+    font-size: var(--font-size-heading-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.88;
+    letter-spacing: var(--letter-spacing-tight);
+
+    color: var(--color-text-primary);
+}
+
+
+.project-archive__title-line {
+    display: block;
+
+    overflow: hidden;
+}
+
+
+.project-archive__title-line-inner {
+    display: block;
+
+    will-change: transform;
+}
+
+
+.project-archive__title-mark {
+    color: var(--color-accent-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * INTRODUCTION
+ * ==========================================================================
+ */
+
+.project-archive__introduction {
+    display: grid;
+
+    gap: var(--space-sm);
+
+    max-width: 31rem;
+}
+
+
+.project-archive__introduction-label {
+    font-size: var(--font-size-xs);
+
+    color: var(--color-accent-primary);
+}
+
+
+.project-archive__introduction-copy {
+    margin: 0;
+
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-body);
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * ARCHIVE INDEX
+ * ==========================================================================
+ */
+
+.project-archive__index {
+    display: grid;
+
+    gap: 0;
+}
+
+
+/*
+ * ==========================================================================
+ * COLUMN LABELS
+ * ==========================================================================
+ */
+
+.project-archive__columns {
+    display: none;
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT LIST
+ * ==========================================================================
+ */
+
+.project-archive__list {
+    display: grid;
+
+    border-top: var(--border-width-thin) solid var(--color-border-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT
+ * ==========================================================================
+ */
+
+.project-archive__project {
+    display: grid;
+
+    position: relative;
+
+    overflow: hidden;
+
+    gap: var(--space-lg);
+
+    padding-block: var(--space-xl);
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+
+    isolation: isolate;
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT HOVER WASH
+ * ==========================================================================
+ *
+ * Native CSS hover effect.
+ *
+ * The orange wash enters from the left using scaleX rather than changing the
+ * project's entire background abruptly.
+ */
+
+.project-archive__project-hover {
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 107, 26, 0.075) 0%,
+            rgba(255, 107, 26, 0.025) 42%,
+            rgba(255, 107, 26, 0) 72%
+        );
+
+    transform: scaleX(0);
+    transform-origin: left center;
+
+    pointer-events: none;
+
+    transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.project-archive__project:hover
+.project-archive__project-hover {
+    transform: scaleX(1);
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT SCAN LINE
+ * ==========================================================================
+ *
+ * This is animated ONCE by GSAP during entrance.
+ *
+ * It is not a continuously moving decorative effect.
+ */
+
+.project-archive__project-scan-line {
+    position: absolute;
+    right: 0;
+    bottom: -0.0625rem;
+    left: 0;
+
+    z-index: 1;
+
+    height: 0.0625rem;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--color-accent-primary) 0%,
+            var(--color-accent-secondary) 22%,
+            var(--color-border-primary) 48%,
+            transparent 100%
+        );
+
+    transform-origin: left center;
+
+    pointer-events: none;
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT SUMMARY
+ * ==========================================================================
+ */
+
+.project-archive__project-summary {
+    display: grid;
+
+    position: relative;
+
+    z-index: 2;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+    gap: var(--space-lg);
+    align-items: start;
+}
+
+
+/*
+ * ==========================================================================
+ * INDEX
+ * ==========================================================================
+ */
+
+.project-archive__project-index {
+    display: flex;
+
+    grid-column: 1;
+    align-items: baseline;
+    gap: 0.35rem;
+}
+
+
+.project-archive__project-number {
+    font-size: 0.5rem;
+
+    color: var(--color-accent-primary);
+
+    transition: color 180ms ease;
+}
+
+
+.project-archive__project-year {
+    font-size: 0.4375rem;
+
+    color: var(--color-text-muted);
+
+    transition: color 180ms ease;
+}
+
+
+.project-archive__project:hover
+.project-archive__project-year {
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT IDENTITY
+ * ==========================================================================
+ */
+
+.project-archive__project-identity {
+    display: grid;
+
+    grid-column: 1 / -1;
+    gap: 0.35rem;
+}
+
+
+.project-archive__project-context {
+    font-size: 0.4375rem;
+
+    color: var(--color-accent-secondary);
+}
+
+
+.project-archive__project-title-mask {
+    overflow: hidden;
+}
+
+
+.project-archive__project-title {
+    margin: 0;
+
+    font-size: clamp(1.35rem, 7vw, 2rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.95;
+    letter-spacing: var(--letter-spacing-heading);
+
+    color: var(--color-text-primary);
+
+    will-change: clip-path;
+}
+
+
+.project-archive__project-title-mark {
+    color: var(--color-accent-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * CATEGORY
+ * ==========================================================================
+ */
+
+.project-archive__project-category {
+    display: grid;
+
+    grid-column: 1;
+    gap: 0.25rem;
+}
+
+
+.project-archive__project-category-label {
+    font-size: 0.375rem;
+
+    color: var(--color-text-muted);
+}
+
+
+.project-archive__project-category-value {
+    font-size: 0.4375rem;
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT TOGGLE
+ * ==========================================================================
+ *
+ * The button has a native CSS clip-path hover fill.
+ *
+ * The fill starts as a narrow diagonal slice and expands across the button.
+ */
+
+.project-archive__project-toggle {
+    display: inline-flex;
+
+    position: relative;
+
+    overflow: hidden;
+
+    z-index: 1;
+
+    grid-column: 2;
+    grid-row: 1;
+    align-items: center;
+    gap: var(--space-sm);
+
+    padding: 0.45rem 0.45rem 0.45rem 0.7rem;
+
+    border: var(--border-width-thin) solid var(--color-border-primary);
+
+    font: inherit;
+
+    color: var(--color-text-secondary);
+    background: transparent;
+
+    cursor: pointer;
+
+    transition:
+        border-color 220ms ease,
+        color 220ms ease;
+}
+
+
+.project-archive__project-toggle-background {
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    background: var(--color-accent-primary);
+
+    clip-path: polygon(
+        0 0,
+        0 0,
+        0 100%,
+        0 100%
+    );
+
+    pointer-events: none;
+
+    transition: clip-path 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.project-archive__project-toggle:hover,
+.project-archive__project-toggle:focus-visible {
+    border-color: var(--color-accent-primary);
+
+    color: var(--color-background-primary);
+}
+
+
+.project-archive__project-toggle:hover
+.project-archive__project-toggle-background,
+.project-archive__project-toggle:focus-visible
+.project-archive__project-toggle-background {
+    clip-path: polygon(
+        0 0,
+        92% 0,
+        100% 100%,
+        0 100%
+    );
+}
+
+
+.project-archive__project-toggle-label {
+    position: relative;
+
+    z-index: 2;
+
+    font-size: 0.4375rem;
+}
+
+
+.project-archive__project-toggle-icon-frame {
+    display: grid;
+
+    position: relative;
+
+    z-index: 2;
+
+    place-items: center;
+
+    width: 1.25rem;
+    height: 1.25rem;
+
+    border: var(--border-width-thin) solid currentColor;
+
+    transform: rotate(0deg);
+
+    transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.project-archive__project-toggle:hover
+.project-archive__project-toggle-icon-frame,
+.project-archive__project-toggle:focus-visible
+.project-archive__project-toggle-icon-frame {
+    transform: rotate(90deg);
+}
+
+
+.project-archive__project-toggle-icon {
+    width: 0.7rem;
+    height: 0.7rem;
+}
+
+
+/*
+ * ==========================================================================
+ * TECHNOLOGIES
+ * ==========================================================================
+ */
+
+.project-archive__technologies {
+    display: flex;
+
+    position: relative;
+
+    z-index: 2;
+
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem 1rem;
+
+    min-width: 0;
+
+    padding: 0;
+
+    margin: 0;
+
+    list-style: none;
+}
+
+
+.project-archive__technology {
+    display: inline-flex;
+
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.4rem;
+
+    white-space: nowrap;
+}
+
+
+/*
+ * ==========================================================================
+ * TECHNOLOGY ICON
+ * ==========================================================================
+ *
+ * The icon receives the technology's recognizable brand color.
+ *
+ * The technology name does NOT.
+ */
+
+.project-archive__technology-icon {
+    display: inline-grid;
+
+    flex: 0 0 1.1rem;
+    place-items: center;
+
+    width: 1.1rem;
+    height: 1.1rem;
+
+    transform: translateY(0);
+
+    transition: transform 180ms ease;
+}
+
+
+.project-archive__technology:hover
+.project-archive__technology-icon {
+    transform: translateY(-0.125rem);
+}
+
+
+.project-archive__technology-svg {
+    display: block;
+
+    width: 0.95rem;
+    height: 0.95rem;
+
+    color: var(--color-text-secondary);
+}
+
+
+.project-archive__technology-name {
+    font-size: 0.4375rem;
+    line-height: 1;
+
+    color: var(--color-text-muted);
+
+    transition: color 180ms ease;
+}
+
+
+.project-archive__technology:hover
+.project-archive__technology-name {
+    color: var(--color-text-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * EXPANDED PROJECT
+ * ==========================================================================
+ */
+
+.project-archive__project--expanded {
+    padding-bottom: 0;
+
+    background: var(--color-surface-primary);
+}
+
+
+.project-archive__project--expanded
+.project-archive__project-summary,
+.project-archive__project--expanded
+.project-archive__technologies {
+    padding-inline: var(--space-md);
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT DETAILS
+ * ==========================================================================
+ */
+
+.project-archive__project-details {
+    position: relative;
+
+    z-index: 2;
+
+    padding-top: var(--space-md);
+}
+
+
+.project-archive__details {
+    overflow: hidden;
+
+    border-top: var(--border-width-thin) solid var(--color-border-primary);
+
+    will-change: clip-path;
+}
+
+
+.project-archive__details-layout {
+    display: grid;
+}
+
+
+/*
+ * ==========================================================================
+ * DETAILS VISUAL
+ * ==========================================================================
+ */
+
+.project-archive__details-visual {
+    position: relative;
+
+    overflow: hidden;
+
+    max-height: 18rem;
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+
+    background: var(--color-background-secondary);
+}
+
+
+.project-archive__details-image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+    max-height: 18rem;
+
+    object-fit: cover;
+    object-position: center;
+
+    will-change: clip-path, transform;
+}
+
+
+/*
+ * ==========================================================================
+ * IMAGE CORNERS
+ * ==========================================================================
+ *
+ * Small technical registration marks.
+ *
+ * Static decoration — no continuous motion.
+ */
+
+.project-archive__details-corner {
+    position: absolute;
+
+    z-index: 3;
+
+    width: 1.25rem;
+    height: 1.25rem;
+
+    pointer-events: none;
+}
+
+
+.project-archive__details-corner--top-left {
+    top: var(--space-sm);
+    left: var(--space-sm);
+
+    border-top: var(--border-width-thin) solid var(--color-accent-primary);
+    border-left: var(--border-width-thin) solid var(--color-accent-primary);
+}
+
+
+.project-archive__details-corner--bottom-right {
+    right: var(--space-sm);
+    bottom: var(--space-sm);
+
+    border-right: var(--border-width-thin) solid var(--color-accent-secondary);
+    border-bottom: var(--border-width-thin) solid var(--color-accent-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * DETAILS CONTENT
+ * ==========================================================================
+ */
+
+.project-archive__details-content {
+    display: grid;
+
+    gap: var(--space-lg);
+
+    padding: var(--space-lg);
+}
+
+
+.project-archive__details-heading {
+    display: grid;
+
+    grid-template-columns: auto minmax(2rem, 1fr);
+    align-items: center;
+    gap: var(--space-md);
+}
+
+
+.project-archive__details-label {
+    font-size: 0.4375rem;
+
+    color: var(--color-accent-primary);
+}
+
+
+.project-archive__details-heading-line {
+    height: var(--border-width-thin);
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--color-border-primary),
+            transparent
+        );
+}
+
+
+/*
+ * ==========================================================================
+ * ENGINEERING NOTES
+ * ==========================================================================
+ */
+
+.project-archive__details-points {
+    display: grid;
+
+    gap: var(--space-md);
+
+    padding: 0;
+
+    margin: 0;
+
+    list-style: none;
+}
+
+
+.project-archive__details-point {
+    display: grid;
+
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-sm);
+}
+
+
+.project-archive__details-point-marker {
+    width: 0.35rem;
+    height: 0.35rem;
+
+    margin-top: 0.5rem;
+
+    border-radius: 50%;
+
+    background: var(--color-accent-secondary);
+}
+
+
+.project-archive__details-copy {
+    max-width: 48rem;
+
+    margin: 0;
+
+    font-size: 0.75rem;
+    line-height: 1.65;
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT DESTINATION BUTTON
+ * ==========================================================================
+ */
+
+.project-archive__details-link {
+    display: inline-flex;
+
+    position: relative;
+
+    overflow: hidden;
+
+    z-index: 1;
+
+    justify-self: start;
+    align-items: center;
+    gap: var(--space-lg);
+
+    padding: 0.65rem 0.65rem 0.65rem 0.85rem;
+
+    border: var(--border-width-thin) solid var(--color-border-primary);
+
+    text-decoration: none;
+
+    color: var(--color-text-primary);
+    background: transparent;
+
+    transition:
+        border-color 220ms ease,
+        color 220ms ease;
+}
+
+
+.project-archive__details-link-background {
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    background: var(--color-accent-secondary);
+
+    clip-path: polygon(
+        0 0,
+        0 0,
+        0 100%,
+        0 100%
+    );
+
+    transition: clip-path 340ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.project-archive__details-link:hover,
+.project-archive__details-link:focus-visible {
+    border-color: var(--color-accent-secondary);
+
+    color: var(--color-background-primary);
+}
+
+
+.project-archive__details-link:hover
+.project-archive__details-link-background,
+.project-archive__details-link:focus-visible
+.project-archive__details-link-background {
+    clip-path: polygon(
+        0 0,
+        90% 0,
+        100% 100%,
+        0 100%
+    );
+}
+
+
+.project-archive__details-link-label {
+    position: relative;
+
+    z-index: 2;
+
+    font-size: 0.5rem;
+}
+
+
+.project-archive__details-link-icon-frame {
+    display: grid;
+
+    position: relative;
+
+    z-index: 2;
+
+    place-items: center;
+
+    width: 1.5rem;
+    height: 1.5rem;
+
+    border: var(--border-width-thin) solid currentColor;
+
+    transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.project-archive__details-link:hover
+.project-archive__details-link-icon-frame,
+.project-archive__details-link:focus-visible
+.project-archive__details-link-icon-frame {
+    transform: translate(0.125rem, -0.125rem);
+}
+
+
+.project-archive__details-link-icon {
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+
+/*
+ * ==========================================================================
+ * SHOW MORE
+ * ==========================================================================
+ */
+
+.project-archive__more {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-md);
+}
+
+
+.project-archive__more-rule {
+    height: var(--border-width-thin);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--color-border-primary),
+            transparent
+        );
+}
+
+
+/*
+ * ==========================================================================
+ * SHOW MORE BUTTON
+ * ==========================================================================
+ *
+ * More prominent than VIEW DETAILS because this controls the depth of the
+ * entire archive.
+ */
+
+.project-archive__more-button {
+    display: flex;
+
+    position: relative;
+
+    overflow: hidden;
+
+    z-index: 1;
+
+    align-items: center;
+    gap: var(--space-lg);
+
+    min-width: min(100%, 18rem);
+
+    padding: var(--space-sm) var(--space-md);
+
+    border: var(--border-width-thin) solid var(--color-border-primary);
+
+    text-align: left;
+
+    color: var(--color-text-primary);
+    background: transparent;
+
+    cursor: pointer;
+
+    transition:
+        border-color 240ms ease,
+        color 240ms ease,
+        transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.project-archive__more-button-background {
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    background:
+        linear-gradient(
+            110deg,
+            var(--color-accent-primary) 0%,
+            var(--color-accent-primary) 72%,
+            var(--color-accent-secondary) 100%
+        );
+
+    clip-path: polygon(
+        0 0,
+        0 0,
+        0 100%,
+        0 100%
+    );
+
+    pointer-events: none;
+
+    transition: clip-path 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.project-archive__more-button:hover,
+.project-archive__more-button:focus-visible {
+    border-color: var(--color-accent-primary);
+
+    color: var(--color-background-primary);
+
+    transform: translateY(-0.125rem);
+}
+
+
+.project-archive__more-button:hover
+.project-archive__more-button-background,
+.project-archive__more-button:focus-visible
+.project-archive__more-button-background {
+    clip-path: polygon(
+        0 0,
+        94% 0,
+        100% 100%,
+        0 100%
+    );
+}
+
+
+.project-archive__more-content {
+    display: grid;
+
+    position: relative;
+
+    z-index: 2;
+
+    flex: 1;
+    gap: 0.2rem;
+}
+
+
+.project-archive__more-eyebrow {
+    font-size: 0.375rem;
+
+    color: var(--color-accent-primary);
+
+    transition: color 240ms ease;
+}
+
+
+.project-archive__more-button:hover
+.project-archive__more-eyebrow,
+.project-archive__more-button:focus-visible
+.project-archive__more-eyebrow {
+    color: var(--color-background-primary);
+}
+
+
+.project-archive__more-label {
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-medium);
+
+    color: currentColor;
+}
+
+
+.project-archive__more-icon-frame {
+    display: grid;
+
+    position: relative;
+
+    z-index: 2;
+
+    flex: 0 0 auto;
+    place-items: center;
+
+    width: 2rem;
+    height: 2rem;
+
+    border: var(--border-width-thin) solid currentColor;
+
+    color: currentColor;
+
+    transform: translateY(0);
+
+    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.project-archive__more-button:hover
+.project-archive__more-icon-frame,
+.project-archive__more-button:focus-visible
+.project-archive__more-icon-frame {
+    transform: translateY(0.125rem);
+}
+
+
+.project-archive__more-icon {
+    width: 0.85rem;
+    height: 0.85rem;
+}
+
+
+/*
+ * ==========================================================================
+ * TABLET
+ * ==========================================================================
+ */
+
+@media (min-width: 48rem) {
+
+    .project-archive {
+        padding-block: var(--section-padding-tablet);
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * HEADER
+     * ----------------------------------------------------------------------
+     */
+
+    .project-archive__header {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(18rem, 0.45fr);
+        align-items: end;
+        gap: var(--space-3xl);
+    }
+
+
+    .project-archive__introduction {
+        justify-self: end;
+
+        padding-bottom: var(--space-xs);
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * PROJECT SUMMARY
+     * ----------------------------------------------------------------------
+     */
+
+    .project-archive__project-summary {
+        grid-template-columns:
+            4.5rem
+            minmax(0, 1fr)
+            minmax(10rem, 0.45fr)
+            auto;
+        align-items: center;
+        gap: var(--space-lg);
+    }
+
+
+    .project-archive__project-index {
+        grid-column: 1;
+    }
+
+
+    .project-archive__project-identity {
+        grid-column: 2;
+    }
+
+
+    .project-archive__project-category {
+        grid-column: 3;
+    }
+
+
+    .project-archive__project-toggle {
+        grid-column: 4;
+        grid-row: auto;
+    }
+
+
+    .project-archive__project-title {
+        font-size: clamp(1.25rem, 3vw, 1.75rem);
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * TECHNOLOGIES
+     * ----------------------------------------------------------------------
+     */
+
+    .project-archive__technologies {
+        padding-left: calc(4.5rem + var(--space-lg));
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * EXPANDED PROJECT
+     * ----------------------------------------------------------------------
+     */
+
+    .project-archive__project--expanded
+    .project-archive__project-summary {
+        padding-inline: var(--space-lg);
+    }
+
+
+    .project-archive__project--expanded
+    .project-archive__technologies {
+        padding-right: var(--space-lg);
+        padding-left: calc(4.5rem + var(--space-lg) + var(--space-lg));
+    }
+
+
+    .project-archive__details-layout {
+        grid-template-columns:
+            minmax(0, 0.8fr)
+            minmax(0, 1.2fr);
+    }
+
+
+    .project-archive__details-visual {
+        max-height: none;
+
+        border-right: var(--border-width-thin) solid var(--color-border-primary);
+        border-bottom: 0;
+    }
+
+
+    .project-archive__details-image {
+        height: 100%;
+        max-height: none;
+
+        object-fit: cover;
+    }
+
+
+    .project-archive__details-content {
+        padding: var(--space-2xl);
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 64rem) {
+
+    .project-archive {
+        padding-block: var(--section-padding-desktop);
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * COLUMN LABELS
+     * ----------------------------------------------------------------------
+     */
+
+    .project-archive__columns {
+        display: grid;
+
+        grid-template-columns:
+            5rem
+            minmax(0, 1fr)
+            minmax(12rem, 0.38fr)
+            7rem;
+        gap: var(--space-xl);
+
+        padding-bottom: var(--space-sm);
+    }
+
+
+    .project-archive__column-label {
+        font-size: 0.375rem;
+
+        color: var(--color-text-muted);
+    }
+
+
+    .project-archive__column-label--index {
+        grid-column: 1;
+    }
+
+
+    .project-archive__column-label--project {
+        grid-column: 2;
+    }
+
+
+    .project-archive__column-label--discipline {
+        grid-column: 3;
+    }
+
+
+    .project-archive__column-label--action {
+        grid-column: 4;
+
+        text-align: right;
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * PROJECT
+     * ----------------------------------------------------------------------
+     */
+
+    .project-archive__project {
+        gap: var(--space-md);
+
+        padding-block: var(--space-lg);
+    }
+
+
+    .project-archive__project-summary {
+        grid-template-columns:
+            5rem
+            minmax(0, 1fr)
+            minmax(12rem, 0.38fr)
+            7rem;
+        gap: var(--space-xl);
+    }
+
+
+    .project-archive__project-title {
+        font-size: clamp(1.25rem, 1.8vw, 1.8rem);
+    }
+
+
+    .project-archive__project-toggle {
+        justify-self: end;
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * DESKTOP ROW HOVER
+     * ----------------------------------------------------------------------
+     *
+     * Only desktop gets the slight identity shift because hover is actually
+     * meaningful here.
+     */
+
+    .project-archive__project:hover
+    .project-archive__project-title {
+        transform: translateX(0.25rem);
+    }
+
+
+    .project-archive__project-title {
+        transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * TECHNOLOGIES
+     * ----------------------------------------------------------------------
+     */
+
+    .project-archive__technologies {
+        gap: 0.65rem 1.15rem;
+
+        padding-left: calc(5rem + var(--space-xl));
+
+        cursor: default;
+    }
+
+
+    .project-archive__technology-icon {
+        flex-basis: 1.15rem;
+
+        width: 1.15rem;
+        height: 1.15rem;
+
+    }
+
+
+    .project-archive__technology-svg {
+        width: 1rem;
+        height: 1rem;
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * EXPANDED PROJECT
+     * ----------------------------------------------------------------------
+     */
+
+    .project-archive__project--expanded
+    .project-archive__technologies {
+        padding-left: calc(5rem + var(--space-xl) + var(--space-lg));
+    }
+
+
+    .project-archive__details-layout {
+        grid-template-columns:
+            minmax(0, 0.9fr)
+            minmax(0, 1.1fr);
+    }
+
+
+    .project-archive__details-visual {
+        max-height: 25rem;
+    }
+
+
+    .project-archive__details-image {
+        max-height: 25rem;
+
+        object-fit: contain;
+
+        background: var(--color-background-secondary);
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * SHOW MORE
+     * ----------------------------------------------------------------------
+     */
+
+    .project-archive__more {
+        gap: var(--space-xl);
+    }
+
+
+    .project-archive__more-button {
+        min-width: 21rem;
+
+        padding: 0.8rem 0.8rem 0.8rem 1rem;
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * LARGE DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 90rem) {
+
+    .project-archive__project {
+        padding-block: 1.35rem;
+    }
+
+
+    .project-archive__project-title {
+        font-size: 1.65rem;
+    }
+
+
+    .project-archive__details-visual,
+    .project-archive__details-image {
+        max-height: 24rem;
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * REDUCED MOTION
+ * ==========================================================================
+ *
+ * GSAP effects are skipped in the React component when reduced motion is
+ * enabled.
+ *
+ * These rules additionally remove the CSS hover movement.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .project-archive__project-hover,
+    .project-archive__project-title,
+    .project-archive__project-toggle,
+    .project-archive__project-toggle-background,
+    .project-archive__project-toggle-icon-frame,
+    .project-archive__technology-icon,
+    .project-archive__technology-name,
+    .project-archive__details-link,
+    .project-archive__details-link-background,
+    .project-archive__details-link-icon-frame,
+    .project-archive__more-button,
+    .project-archive__more-button-background,
+    .project-archive__more-eyebrow,
+    .project-archive__more-icon-frame {
+        transition: none;
+    }
+
+}

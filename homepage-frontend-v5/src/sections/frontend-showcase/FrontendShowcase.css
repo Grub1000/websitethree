@@ -1,0 +1,1241 @@
+/*
+ * ==========================================================================
+ * FRONTEND SHOWCASE
+ * ==========================================================================
+ *
+ * SECTION 07 — DESIGNED / TO MOVE.
+ *
+ * Mobile-first.
+ *
+ * The screenshots are expected to be approximately 2:1 / 16:8.
+ *
+ * DESIGN PRINCIPLE
+ * --------------------------------------------------------------------------
+ * These are not project cards.
+ *
+ * Each entry is a large editorial showcase composition. The repeated visual
+ * language keeps the section coherent while layout variants prevent five
+ * entries from feeling like duplicated cards.
+ */
+
+
+/*
+ * ==========================================================================
+ * SECTION
+ * ==========================================================================
+ */
+
+.frontend-showcase {
+    position: relative;
+
+    overflow: clip;
+
+    padding-block: var(--section-padding-mobile);
+
+
+    background: var(--color-background-primary);
+}
+
+
+.frontend-showcase__container {
+    display: grid;
+
+    gap: var(--space-3xl);
+
+    padding-top: var(--space-2xl);
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION META
+ * ==========================================================================
+ */
+
+.frontend-showcase__section-meta {
+    display: grid;
+
+    gap: var(--space-md);
+    
+}
+
+
+.frontend-showcase__section-meta-copy {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+
+.frontend-showcase__section-index {
+    color: var(--color-accent-primary);
+}
+
+
+.frontend-showcase__section-label {
+    color: var(--color-text-muted);
+}
+
+
+.frontend-showcase__section-line {
+    display: block;
+
+    width: 100%;
+    height: var(--border-width-thin);
+
+    background: var(--color-border-subtle);
+
+    transform-origin: left center;
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION HEADER
+ * ==========================================================================
+ */
+
+.frontend-showcase__header {
+    display: grid;
+
+    gap: var(--space-xl);
+}
+
+
+.frontend-showcase__title {
+    margin: 0;
+
+    font-size: var(--font-size-heading-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.88;
+    letter-spacing: var(--letter-spacing-tight);
+
+    color: var(--color-text-primary);
+}
+
+
+.frontend-showcase__title-line {
+    display: block;
+
+    overflow: hidden;
+}
+
+
+.frontend-showcase__title-line-inner {
+    display: block;
+
+    will-change: transform;
+}
+
+
+.frontend-showcase__title-mark {
+    color: var(--color-accent-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * INTRODUCTION
+ * ==========================================================================
+ */
+
+.frontend-showcase__introduction {
+    display: grid;
+
+    gap: var(--space-sm);
+
+    max-width: 31rem;
+}
+
+
+.frontend-showcase__introduction-label {
+    font-size: var(--font-size-xs);
+
+    color: var(--color-accent-secondary);
+}
+
+
+.frontend-showcase__introduction-copy {
+    margin: 0;
+
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-body);
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT COLLECTION
+ * ==========================================================================
+ */
+
+.frontend-showcase__projects {
+    display: grid;
+
+    gap: clamp(6rem, 14vw, 11rem);
+}
+
+
+/*
+ * ==========================================================================
+ * SHOWCASE PROJECT
+ * ==========================================================================
+ */
+
+.frontend-showcase__project {
+    display: grid;
+
+    position: relative;
+
+    gap: var(--space-lg);
+}
+
+
+/*
+ * ==========================================================================
+ * PROJECT META
+ * ==========================================================================
+ */
+
+.frontend-showcase__project-meta {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+
+.frontend-showcase__project-index-group {
+    display: flex;
+
+    align-items: center;
+    gap: 0.4rem;
+}
+
+
+.frontend-showcase__project-index {
+    font-size: 0.5rem;
+
+    color: var(--color-accent-primary);
+}
+
+
+.frontend-showcase__project-index-divider {
+    font-size: 0.4375rem;
+
+    color: var(--color-border-primary);
+}
+
+
+.frontend-showcase__project-eyebrow,
+.frontend-showcase__project-year {
+    font-size: 0.4375rem;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * CONSTRUCTION LINE
+ * ==========================================================================
+ */
+
+.frontend-showcase__project-line {
+    display: block;
+
+    width: 100%;
+    height: var(--border-width-thin);
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--color-accent-primary) 0%,
+            var(--color-accent-secondary) 10%,
+            var(--color-border-primary) 32%,
+            var(--color-border-subtle) 100%
+        );
+
+    transform-origin: left center;
+}
+
+
+/*
+ * ==========================================================================
+ * COMPOSITION
+ * ==========================================================================
+ *
+ * Mobile:
+ * Content first, visual second.
+ *
+ * Desktop:
+ * Individual modifier classes rearrange these two blocks.
+ */
+
+.frontend-showcase__composition {
+    display: grid;
+
+    gap: var(--space-xl);
+}
+
+
+/*
+ * ==========================================================================
+ * CONTENT
+ * ==========================================================================
+ */
+
+.frontend-showcase__content {
+    display: grid;
+
+    align-content: center;
+    gap: var(--space-lg);
+}
+
+
+.frontend-showcase__title-mask {
+    overflow: hidden;
+}
+
+
+.frontend-showcase__project-title {
+    margin: 0;
+
+    font-size: clamp(2rem, 10vw, 4rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.9;
+    letter-spacing: var(--letter-spacing-tight);
+
+    color: var(--color-text-primary);
+
+    will-change: clip-path;
+}
+
+
+.frontend-showcase__project-title-mark {
+    color: var(--color-accent-primary);
+}
+
+
+.frontend-showcase__description {
+    max-width: 32rem;
+
+    margin: 0;
+
+    font-size: 0.875rem;
+    line-height: 1.65;
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * HIGHLIGHTS
+ * ==========================================================================
+ */
+
+.frontend-showcase__highlights {
+    display: grid;
+
+    gap: 0.55rem;
+
+    padding: 0;
+
+    margin: 0;
+
+    list-style: none;
+}
+
+
+.frontend-showcase__highlight {
+    display: flex;
+
+    align-items: center;
+    gap: 0.55rem;
+
+    font-size: 0.4375rem;
+
+    color: var(--color-text-muted);
+}
+
+
+.frontend-showcase__highlight-marker {
+    display: block;
+
+    width: 0.3rem;
+    height: 0.3rem;
+
+    border-radius: 50%;
+
+    background: var(--color-accent-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * TECHNOLOGIES
+ * ==========================================================================
+ */
+
+.frontend-showcase__technologies {
+    display: flex;
+
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+
+    padding: 0;
+
+    margin: 0;
+
+    list-style: none;
+}
+
+
+.frontend-showcase__technology {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 0.4rem;
+
+    cursor: default;
+}
+
+
+.frontend-showcase__technology-icon {
+    width: 1rem;
+    height: 1rem;
+
+    transform: translateY(0);
+
+    transition: transform 180ms ease;
+}
+
+
+.frontend-showcase__technology-name {
+    font-size: 0.4375rem;
+
+    color: var(--color-text-muted);
+
+    transition: color 180ms ease;
+}
+
+
+.frontend-showcase__technology:hover
+.frontend-showcase__technology-icon {
+    transform: translateY(-0.125rem);
+}
+
+
+.frontend-showcase__technology:hover
+.frontend-showcase__technology-name {
+    color: var(--color-text-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * ACTION
+ * ==========================================================================
+ */
+
+.frontend-showcase__action {
+    display: inline-flex;
+
+    position: relative;
+
+    overflow: hidden;
+
+    z-index: 1;
+
+    justify-self: start;
+    align-items: center;
+    gap: var(--space-lg);
+
+    padding: 0.65rem 0.65rem 0.65rem 0.85rem;
+
+    border: var(--border-width-thin) solid var(--color-border-primary);
+
+    text-decoration: none;
+
+    color: var(--color-text-primary);
+    background: transparent;
+
+    cursor: pointer;
+
+    transition:
+        border-color 220ms ease,
+        color 220ms ease;
+}
+
+
+.frontend-showcase__action-background {
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    background: var(--color-accent-secondary);
+
+    clip-path: polygon(
+        0 0,
+        0 0,
+        0 100%,
+        0 100%
+    );
+
+    pointer-events: none;
+
+    transition: clip-path 340ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.frontend-showcase__action:hover,
+.frontend-showcase__action:focus-visible {
+    border-color: var(--color-accent-secondary);
+
+    color: var(--color-background-primary);
+}
+
+
+.frontend-showcase__action:hover
+.frontend-showcase__action-background,
+.frontend-showcase__action:focus-visible
+.frontend-showcase__action-background {
+    clip-path: polygon(
+        0 0,
+        90% 0,
+        100% 100%,
+        0 100%
+    );
+}
+
+
+.frontend-showcase__action-label {
+    position: relative;
+
+    z-index: 2;
+
+    font-size: 0.5rem;
+}
+
+
+.frontend-showcase__action-icon-frame {
+    display: grid;
+
+    position: relative;
+
+    z-index: 2;
+
+    place-items: center;
+
+    width: 1.5rem;
+    height: 1.5rem;
+
+    border: var(--border-width-thin) solid currentColor;
+
+    transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.frontend-showcase__action:hover
+.frontend-showcase__action-icon-frame,
+.frontend-showcase__action:focus-visible
+.frontend-showcase__action-icon-frame {
+    transform: translate(0.125rem, -0.125rem);
+}
+
+
+.frontend-showcase__action-icon {
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+
+/*
+ * ==========================================================================
+ * VISUAL
+ * ==========================================================================
+ */
+
+.frontend-showcase__visual {
+    display: block;
+
+    min-width: 0;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    cursor: pointer;
+
+    will-change: clip-path;
+}
+
+
+/*
+ * ==========================================================================
+ * VISUAL FRAME
+ * ==========================================================================
+ */
+
+.frontend-showcase__visual-frame {
+    display: grid;
+
+    overflow: hidden;
+
+    border: var(--border-width-thin) solid var(--color-border-primary);
+
+    background: var(--color-surface-primary);
+
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.18);
+
+    transition:
+        border-color 280ms ease,
+        box-shadow 280ms ease,
+        transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.frontend-showcase__visual:hover
+.frontend-showcase__visual-frame,
+.frontend-showcase__visual:focus-visible
+.frontend-showcase__visual-frame {
+    border-color: rgba(53, 213, 229, 0.65);
+
+    box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.28);
+
+    transform: translateY(-0.25rem);
+}
+
+
+/*
+ * ==========================================================================
+ * VISUAL TOOLBAR
+ * ==========================================================================
+ */
+
+.frontend-showcase__visual-toolbar {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+
+    min-height: 2.25rem;
+
+    padding-inline: var(--space-sm);
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+
+    background: var(--color-background-secondary);
+}
+
+
+.frontend-showcase__visual-toolbar-left {
+    display: flex;
+
+    align-items: center;
+    gap: 0.45rem;
+}
+
+
+.frontend-showcase__visual-status-dot {
+    width: 0.35rem;
+    height: 0.35rem;
+
+    border-radius: 50%;
+
+    background: var(--color-text-muted);
+
+    transition:
+        background 220ms ease,
+        box-shadow 220ms ease;
+}
+
+
+.frontend-showcase__visual:hover
+.frontend-showcase__visual-status-dot,
+.frontend-showcase__visual:focus-visible
+.frontend-showcase__visual-status-dot {
+    background: var(--color-accent-secondary);
+
+    box-shadow: 0 0 0.75rem rgba(53, 213, 229, 0.45);
+}
+
+
+.frontend-showcase__visual-status,
+.frontend-showcase__visual-count {
+    font-size: 0.375rem;
+
+    color: var(--color-text-muted);
+}
+
+
+.frontend-showcase__visual-status {
+    transition: color 220ms ease;
+}
+
+
+.frontend-showcase__visual:hover
+.frontend-showcase__visual-status,
+.frontend-showcase__visual:focus-visible
+.frontend-showcase__visual-status {
+    color: var(--color-accent-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * SCREENSHOT
+ * ==========================================================================
+ *
+ * aspect-ratio: 2 / 1 corresponds to the user's approximately 16:8 crops.
+ */
+
+.frontend-showcase__image-mask {
+    position: relative;
+
+    overflow: hidden;
+
+    aspect-ratio: 2 / 1;
+
+    background: var(--color-background-secondary);
+}
+
+
+.frontend-showcase__image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transform: scale(1);
+
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.frontend-showcase__visual:hover
+.frontend-showcase__image,
+.frontend-showcase__visual:focus-visible
+.frontend-showcase__image {
+    transform: scale(1.025);
+}
+
+
+/*
+ * ==========================================================================
+ * SCREENSHOT OVERLAY
+ * ==========================================================================
+ */
+
+.frontend-showcase__image-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 107, 26, 0.06),
+            transparent 28%,
+            transparent 72%,
+            rgba(53, 213, 229, 0.06)
+        );
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 280ms ease;
+}
+
+
+.frontend-showcase__visual:hover
+.frontend-showcase__image-overlay,
+.frontend-showcase__visual:focus-visible
+.frontend-showcase__image-overlay {
+    opacity: 1;
+}
+
+
+/*
+ * ==========================================================================
+ * REGISTRATION CORNERS
+ * ==========================================================================
+ */
+
+.frontend-showcase__corner {
+    position: absolute;
+
+    z-index: 2;
+
+    width: 1.25rem;
+    height: 1.25rem;
+
+    opacity: 0.65;
+
+    pointer-events: none;
+
+    transition:
+        width 280ms ease,
+        height 280ms ease,
+        opacity 280ms ease;
+}
+
+
+.frontend-showcase__corner--top-left {
+    top: var(--space-sm);
+    left: var(--space-sm);
+
+    border-top: var(--border-width-thin) solid var(--color-accent-primary);
+    border-left: var(--border-width-thin) solid var(--color-accent-primary);
+}
+
+
+.frontend-showcase__corner--bottom-right {
+    right: var(--space-sm);
+    bottom: var(--space-sm);
+
+    border-right: var(--border-width-thin) solid var(--color-accent-secondary);
+    border-bottom: var(--border-width-thin) solid var(--color-accent-secondary);
+}
+
+
+.frontend-showcase__visual:hover
+.frontend-showcase__corner,
+.frontend-showcase__visual:focus-visible
+.frontend-showcase__corner {
+    width: 1.75rem;
+    height: 1.75rem;
+
+    opacity: 1;
+}
+
+
+/*
+ * ==========================================================================
+ * VISUAL FOOTER
+ * ==========================================================================
+ */
+
+.frontend-showcase__visual-footer {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+
+    min-height: 2.25rem;
+
+    padding-inline: var(--space-sm);
+
+    border-top: var(--border-width-thin) solid var(--color-border-subtle);
+
+    background: var(--color-background-secondary);
+}
+
+
+.frontend-showcase__visual-footer-label,
+.frontend-showcase__visual-footer-action {
+    font-size: 0.375rem;
+
+    color: var(--color-text-muted);
+}
+
+
+.frontend-showcase__visual-footer-action {
+    transition:
+        color 220ms ease,
+        transform 220ms ease;
+}
+
+
+.frontend-showcase__visual:hover
+.frontend-showcase__visual-footer-action,
+.frontend-showcase__visual:focus-visible
+.frontend-showcase__visual-footer-action {
+    color: var(--color-accent-secondary);
+
+    transform: translateX(0.125rem);
+}
+
+
+/*
+ * ==========================================================================
+ * TABLET
+ * ==========================================================================
+ */
+
+@media (min-width: 48rem) {
+
+    .frontend-showcase {
+        padding-block: var(--section-padding-tablet);
+    }
+
+    .frontend-showcase__container{
+        padding-top: var(--space-xl);
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * HEADER
+     * ----------------------------------------------------------------------
+     */
+
+    .frontend-showcase__header {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(18rem, 0.45fr);
+        align-items: end;
+        gap: var(--space-3xl);
+    }
+
+
+    .frontend-showcase__introduction {
+        justify-self: end;
+
+        padding-bottom: var(--space-xs);
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * PROJECT
+     * ----------------------------------------------------------------------
+     */
+
+    .frontend-showcase__project {
+        gap: var(--space-xl);
+    }
+
+
+    .frontend-showcase__project-title {
+        font-size: clamp(2.5rem, 7vw, 5rem);
+    }
+
+
+    .frontend-showcase__description {
+        font-size: 0.9375rem;
+    }
+
+
+    .frontend-showcase__visual-toolbar,
+    .frontend-showcase__visual-footer {
+        min-height: 2.5rem;
+
+        padding-inline: var(--space-md);
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 64rem) {
+
+    .frontend-showcase {
+        padding-block: var(--section-padding-desktop);
+    }
+
+
+    .frontend-showcase__projects {
+        gap: clamp(8rem, 12vw, 12rem);
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * DEFAULT SPLIT COMPOSITION
+     * ----------------------------------------------------------------------
+     */
+
+    .frontend-showcase__composition {
+        grid-template-columns:
+            minmax(15rem, 0.68fr)
+            minmax(0, 1.65fr);
+        align-items: center;
+        gap: clamp(2rem, 5vw, 5rem);
+    }
+
+
+    .frontend-showcase__project-title {
+        font-size: clamp(3rem, 4.8vw, 5.5rem);
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * 01 — VISUAL RIGHT
+     * ----------------------------------------------------------------------
+     *
+     * Classic editorial split.
+     *
+     * Text occupies the smaller left column.
+     * Screenshot dominates the right.
+     */
+
+    .frontend-showcase__project--visual-right
+    .frontend-showcase__content {
+        grid-column: 1;
+    }
+
+
+    .frontend-showcase__project--visual-right
+    .frontend-showcase__visual {
+        grid-column: 2;
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * 02 — VISUAL LEFT
+     * ----------------------------------------------------------------------
+     *
+     * Reverses the visual rhythm without changing DOM order.
+     */
+
+    .frontend-showcase__project--visual-left
+    .frontend-showcase__composition {
+        grid-template-columns:
+            minmax(0, 1.65fr)
+            minmax(15rem, 0.68fr);
+    }
+
+
+    .frontend-showcase__project--visual-left
+    .frontend-showcase__content {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+
+    .frontend-showcase__project--visual-left
+    .frontend-showcase__visual {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * 03 — WIDE
+     * ----------------------------------------------------------------------
+     *
+     * The screenshot becomes almost poster-like.
+     *
+     * Content remains above it rather than beside it.
+     */
+
+    .frontend-showcase__project--visual-wide
+    .frontend-showcase__composition {
+        grid-template-columns:
+            minmax(0, 0.75fr)
+            minmax(0, 1.25fr);
+        align-items: end;
+    }
+
+
+    .frontend-showcase__project--visual-wide
+    .frontend-showcase__content {
+        grid-column: 1 / -1;
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(18rem, 0.65fr);
+        align-items: end;
+    }
+
+
+    .frontend-showcase__project--visual-wide
+    .frontend-showcase__title-mask {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+
+    .frontend-showcase__project--visual-wide
+    .frontend-showcase__description {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+
+    .frontend-showcase__project--visual-wide
+    .frontend-showcase__highlights {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+
+    .frontend-showcase__project--visual-wide
+    .frontend-showcase__technologies {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+
+    .frontend-showcase__project--visual-wide
+    .frontend-showcase__action {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+
+    .frontend-showcase__project--visual-wide
+    .frontend-showcase__visual {
+        grid-column: 1 / -1;
+
+        margin-top: var(--space-xl);
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * 04 — OFFSET
+     * ----------------------------------------------------------------------
+     *
+     * The screenshot stays dominant but is intentionally narrower and shifted
+     * to create a different silhouette from entries 01–03.
+     */
+
+    .frontend-showcase__project--visual-offset
+    .frontend-showcase__composition {
+        grid-template-columns:
+            minmax(15rem, 0.65fr)
+            minmax(0, 1.5fr);
+    }
+
+
+    .frontend-showcase__project--visual-offset
+    .frontend-showcase__content {
+        grid-column: 1;
+    }
+
+
+    .frontend-showcase__project--visual-offset
+    .frontend-showcase__visual {
+        grid-column: 2;
+
+        width: 90%;
+
+        margin-left: auto;
+    }
+
+
+    /*
+     * ----------------------------------------------------------------------
+     * 05 — FINALE
+     * ----------------------------------------------------------------------
+     *
+     * Returns to a large composition but gives the final visual more weight.
+     */
+
+    .frontend-showcase__project--visual-finale
+    .frontend-showcase__composition {
+        grid-template-columns:
+            minmax(0, 1.75fr)
+            minmax(15rem, 0.65fr);
+    }
+
+
+    .frontend-showcase__project--visual-finale
+    .frontend-showcase__content {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+
+    .frontend-showcase__project--visual-finale
+    .frontend-showcase__visual {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * LARGE DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 90rem) {
+
+    .frontend-showcase__composition {
+        gap: clamp(4rem, 6vw, 7rem);
+    }
+
+
+    .frontend-showcase__project-title {
+        font-size: 5.25rem;
+    }
+
+
+    /*
+     * Give the first showcase a slight extra emphasis.
+     */
+
+    .frontend-showcase__project--visual-right
+    .frontend-showcase__visual {
+        width: 104%;
+    }
+
+
+    /*
+     * Pull the final showcase slightly left to make the closing composition
+     * feel broader without changing the container itself.
+     */
+
+    .frontend-showcase__project--visual-finale
+    .frontend-showcase__visual {
+        width: 104%;
+
+        margin-left: -4%;
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * REDUCED MOTION
+ * ==========================================================================
+ *
+ * The React component skips GSAP completely for reduced-motion users.
+ *
+ * CSS hover movement is also removed here.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .frontend-showcase__technology-icon,
+    .frontend-showcase__technology-name,
+    .frontend-showcase__action,
+    .frontend-showcase__action-background,
+    .frontend-showcase__action-icon-frame,
+    .frontend-showcase__visual-frame,
+    .frontend-showcase__visual-status-dot,
+    .frontend-showcase__visual-status,
+    .frontend-showcase__image,
+    .frontend-showcase__image-overlay,
+    .frontend-showcase__corner,
+    .frontend-showcase__visual-footer-action {
+        transition: none;
+    }
+
+}

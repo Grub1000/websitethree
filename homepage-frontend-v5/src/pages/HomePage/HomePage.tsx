@@ -5,6 +5,8 @@ import FeaturedProjects from "../../sections/featured-projects/FeaturedProjects.
 import About from "../../sections/about/About.tsx"
 import TechnicalStack from "../../sections/technical-stack/TechnicalStack.tsx";
 import Education from "../../sections/education/Education.tsx";
+import ProjectArchive from "../../sections/project-archive/ProjectArchive.tsx";
+import FrontendShowcase from "../../sections/frontend-showcase/FrontendShowcase.tsx";
 
 
 import "./HomePage.css";
@@ -22,6 +24,8 @@ function HomePage() {
                 <About />
                 <TechnicalStack />
                 <Education />
+                <ProjectArchive />
+                <FrontendShowcase />
             </main>
         </div>
     );
