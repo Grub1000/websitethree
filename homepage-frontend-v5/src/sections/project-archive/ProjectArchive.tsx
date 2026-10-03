@@ -878,7 +878,7 @@ const archiveProjects: ArchiveProject[] = [
         description: [
             "Designed and developed version 2.0 of my personal full-stack software development portfolio.",
             "Built with Django and React and deployed using an Apache2 web server.",
-            "Served as the predecessor to the current version 3.0 of my portfolio.",
+            "Served as a predecessor to the current version 5.0 of my portfolio.",
         ],
 
         destination: {
