@@ -1,0 +1,829 @@
+/*
+ * ==========================================================================
+ * EDUCATION + CERTIFICATIONS
+ * ==========================================================================
+ *
+ * Section 05.
+ *
+ * PURPOSE
+ * --------------------------------------------------------------------------
+ *
+ * This section presents two different qualification types in parallel:
+ *
+ * EDUCATION
+ * - Academic degrees.
+ *
+ * CERTIFICATIONS
+ * - Professional certifications.
+ *
+ * On desktop and tablet, both categories remain immediately visible.
+ *
+ * This prevents certifications from becoming secondary information that the
+ * visitor must discover only after scrolling through large academic records.
+ *
+ *
+ * VISUAL DIRECTION
+ * --------------------------------------------------------------------------
+ *
+ * The previous Technical Stack section uses a dense 2 × 2 matrix.
+ *
+ * Education changes the rhythm using:
+ *
+ * - more negative space
+ * - horizontal rules
+ * - editorial typography
+ * - compact qualification records
+ * - two parallel information columns
+ *
+ *
+ * RESPONSIVE STRATEGY
+ * --------------------------------------------------------------------------
+ *
+ * Mobile:
+ * - Education appears first.
+ * - Certifications follow immediately.
+ * - Records remain compact.
+ *
+ * Tablet / Desktop:
+ * - Education and Certifications sit side-by-side.
+ * - Both categories are visible within the same section viewport area.
+ *
+ *
+ * ANIMATION
+ * --------------------------------------------------------------------------
+ *
+ * CSS contains no hidden initial states.
+ *
+ * GSAP creates temporary animation states only when JavaScript is active and
+ * the user has not requested reduced motion.
+ */
+
+
+/*
+ * ==========================================================================
+ * SECTION
+ * ==========================================================================
+ */
+
+.education {
+    position: relative;
+
+    padding-block: var(--section-padding-mobile);
+
+    background: var(--color-background-primary);
+}
+
+
+.education__container {
+    display: grid;
+
+    gap: var(--space-3xl);
+
+    padding-top: var(--space-xl);
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION METADATA
+ * ==========================================================================
+ */
+
+.education__meta {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-sm);
+
+    padding-bottom: var(--space-md);
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+
+.education__section-index {
+    color: var(--color-accent-primary);
+}
+
+
+.education__section-label {
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION HEADER
+ * ==========================================================================
+ */
+
+.education__header {
+    display: grid;
+
+    gap: var(--space-xl);
+}
+
+
+/*
+ * overflow:
+ * - Native CSS.
+ * - Clips title lines while GSAP translates them into their final position.
+ */
+
+.education__title {
+    overflow: hidden;
+
+    margin: 0;
+
+    font-size: var(--font-size-heading-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.88;
+    letter-spacing: var(--letter-spacing-tight);
+
+    color: var(--color-text-primary);
+}
+
+
+.education__title-line {
+    display: block;
+
+    will-change: transform, opacity;
+}
+
+
+.education__title-mark {
+    color: var(--color-accent-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * INTRODUCTION
+ * ==========================================================================
+ */
+
+.education__introduction {
+    display: grid;
+
+    gap: var(--space-sm);
+
+    max-width: 31rem;
+}
+
+
+.education__introduction-label {
+    font-size: var(--font-size-xs);
+
+    color: var(--color-accent-primary);
+}
+
+
+.education__introduction-copy {
+    margin: 0;
+
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-body);
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * QUALIFICATIONS BODY
+ * ==========================================================================
+ *
+ * The body contains the two primary information categories:
+ *
+ * Education
+ * Certifications
+ *
+ * Mobile stacks them naturally.
+ *
+ * Tablet and larger screens convert this into a two-column layout.
+ */
+
+.education__body {
+    display: grid;
+
+    position: relative;
+
+    gap: var(--space-3xl);
+
+    padding-top: var(--space-xl);
+}
+
+
+/*
+ * Main structural rule.
+ *
+ * Native CSS:
+ * - Absolute positioning.
+ * - transform-origin.
+ *
+ * GSAP:
+ * - Animates scaleX from 0 → 1.
+ */
+
+.education__body-rule {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: var(--border-width-thin);
+
+    background: var(--color-border-primary);
+
+    transform-origin: left center;
+
+    will-change: transform;
+}
+
+
+/*
+ * ==========================================================================
+ * QUALIFICATION COLUMN
+ * ==========================================================================
+ */
+
+.education__column {
+    display: grid;
+
+    align-content: start;
+    gap: var(--space-xl);
+
+    min-width: 0;
+}
+
+
+/*
+ * Mobile separator between Education and Certifications.
+ *
+ * This disappears when the columns move side-by-side.
+ */
+
+.education__column--certifications {
+    padding-top: var(--space-2xl);
+
+    border-top: var(--border-width-thin) solid var(--color-border-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * COLUMN HEADER
+ * ==========================================================================
+ */
+
+.education__column-header {
+    display: grid;
+
+    gap: var(--space-sm);
+
+    padding-bottom: var(--space-md);
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+
+.education__column-identity {
+    display: flex;
+
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-sm);
+}
+
+
+.education__column-index {
+    font-size: 0.5625rem;
+
+    color: var(--color-accent-primary);
+}
+
+
+.education__column-title {
+    margin: 0;
+
+    font-size: clamp(1.35rem, 6vw, 2rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    letter-spacing: var(--letter-spacing-heading);
+
+    color: var(--color-text-primary);
+}
+
+
+.education__column-mark {
+    color: var(--color-accent-primary);
+}
+
+
+.education__column-count {
+    font-size: 0.5rem;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * DEGREE LIST
+ * ==========================================================================
+ */
+
+.education__degree-list {
+    display: grid;
+}
+
+
+/*
+ * ==========================================================================
+ * DEGREE RECORD
+ * ==========================================================================
+ *
+ * Degree records are deliberately compact.
+ *
+ * We do not use the oversized record numbers from the previous concept
+ * because they added vertical length without adding meaningful information.
+ */
+
+.education__degree-item {
+    display: grid;
+
+    gap: var(--space-lg);
+
+    padding-block: var(--space-xl);
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+
+.education__degree-item:first-child {
+    padding-top: 0;
+}
+
+
+.education__degree-item:last-child {
+    border-bottom: none;
+}
+
+
+/*
+ * ==========================================================================
+ * DEGREE METADATA
+ * ==========================================================================
+ */
+
+.education__degree-meta {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+
+    font-size: 0.4375rem;
+}
+
+
+.education__degree-index {
+    color: var(--color-accent-primary);
+}
+
+
+.education__degree-type {
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * DEGREE NAME
+ * ==========================================================================
+ */
+
+.education__degree-name {
+    overflow: hidden;
+
+    margin: 0;
+
+    font-size: clamp(1.35rem, 6vw, 2rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.98;
+    letter-spacing: var(--letter-spacing-heading);
+
+    color: var(--color-text-primary);
+}
+
+
+.education__degree-name-line {
+    display: block;
+}
+
+
+.education__degree-mark {
+    color: var(--color-accent-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * DEGREE DETAILS
+ * ==========================================================================
+ */
+
+.education__degree-details {
+    display: grid;
+
+    gap: var(--space-md);
+}
+
+
+.education__degree-detail {
+    display: grid;
+
+    gap: var(--space-xs);
+}
+
+
+.education__degree-detail-label {
+    font-size: 0.4375rem;
+
+    color: var(--color-text-muted);
+}
+
+
+.education__degree-detail-value {
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.45;
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * CERTIFICATION LIST
+ * ==========================================================================
+ */
+
+.education__certification-list {
+    display: grid;
+}
+
+
+/*
+ * ==========================================================================
+ * CERTIFICATION RECORD
+ * ==========================================================================
+ */
+
+.education__certification {
+    display: grid;
+
+    gap: var(--space-lg);
+
+    padding-block: var(--space-xl);
+
+    border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+
+.education__certification:first-child {
+    padding-top: 0;
+}
+
+
+.education__certification:last-child {
+    border-bottom: none;
+}
+
+
+/*
+ * ==========================================================================
+ * CERTIFICATION METADATA
+ * ==========================================================================
+ */
+
+.education__certification-meta {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+
+    font-size: 0.4375rem;
+}
+
+
+.education__certification-index {
+    color: var(--color-accent-primary);
+}
+
+
+.education__certification-type {
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * CERTIFICATION CONTENT
+ * ==========================================================================
+ */
+
+.education__certification-content {
+    display: grid;
+
+    gap: var(--space-xs);
+}
+
+
+.education__certification-issuer {
+    font-size: clamp(1.35rem, 6vw, 2rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+
+    color: var(--color-text-primary);
+}
+
+
+.education__certification-name {
+    max-width: 28rem;
+
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.45;
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * TABLET
+ * ==========================================================================
+ */
+
+@media (min-width: 48rem) {
+
+    .education {
+        padding-block: var(--section-padding-tablet);
+    }
+
+
+    .education__container {
+        gap: var(--space-4xl);
+
+        padding-top: var(--space-xl);
+    }
+
+
+    /*
+     * Match the broad section-header structure already established by
+     * Technical Stack.
+     */
+
+    .education__header {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(18rem, 0.45fr);
+        align-items: end;
+        gap: var(--space-3xl);
+    }
+
+
+    .education__introduction {
+        justify-self: end;
+
+        padding-bottom: var(--space-xs);
+    }
+
+
+    /*
+     * --------------------------------------------------------------
+     * PARALLEL QUALIFICATION LAYOUT
+     * --------------------------------------------------------------
+     *
+     * Both qualification types now become visible at the same vertical
+     * position.
+     *
+     * Slightly more width is allocated to Education because the master's
+     * record contains specialization information.
+     */
+
+    .education__body {
+        grid-template-columns:
+            minmax(0, 1.08fr)
+            minmax(0, 0.92fr);
+        gap: 0;
+
+        padding-top: var(--space-xl);
+    }
+
+
+    .education__column {
+        padding-inline: var(--space-xl);
+    }
+
+
+    .education__column--degrees {
+        padding-left: 0;
+
+        border-right: var(--border-width-thin) solid var(--color-border-primary);
+    }
+
+
+    /*
+     * Remove the mobile horizontal separator.
+     *
+     * The center vertical rule now separates the categories instead.
+     */
+
+    .education__column--certifications {
+        padding-top: 0;
+        padding-right: 0;
+
+        border-top: none;
+    }
+
+
+    /*
+     * Column metadata can share one horizontal line.
+     */
+
+    .education__column-header {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+        gap: var(--space-lg);
+    }
+
+
+    .education__column-count {
+        padding-bottom: 0.15rem;
+
+        text-align: right;
+    }
+
+
+    .education__degree-name {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+    }
+
+
+    .education__certification-issuer {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 64rem) {
+
+    .education {
+        padding-block: var(--section-padding-desktop);
+    }
+
+
+    /*
+     * Desktop adds breathing room inside the two-column dossier while
+     * retaining the compact overall section height.
+     */
+
+    .education__body {
+        grid-template-columns:
+            minmax(0, 1.05fr)
+            minmax(0, 0.95fr);
+    }
+
+
+    .education__column {
+        padding-inline: var(--space-3xl);
+    }
+
+
+    .education__column--degrees {
+        padding-left: 0;
+    }
+
+
+    .education__column--certifications {
+        padding-right: 0;
+    }
+
+
+    .education__degree-item {
+        gap: var(--space-xl);
+
+        padding-block: var(--space-2xl);
+    }
+
+
+    .education__degree-item:first-child {
+        padding-top: 0;
+    }
+
+
+    .education__degree-name {
+        font-size: clamp(1.75rem, 2.7vw, 2.75rem);
+    }
+
+
+    /*
+     * Master's focus and institution can share a row when space permits.
+     *
+     * auto-fit keeps the bachelor's record correct even though it only has
+     * one detail item.
+     */
+
+    .education__degree-details {
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(12rem, 1fr)
+        );
+        gap: var(--space-xl);
+    }
+
+
+    .education__certification {
+        gap: var(--space-xl);
+
+        padding-block: var(--space-2xl);
+    }
+
+
+    .education__certification:first-child {
+        padding-top: 0;
+    }
+
+
+    .education__certification-issuer {
+        font-size: clamp(1.75rem, 2.7vw, 2.75rem);
+    }
+
+
+    .education__certification-name {
+        font-size: 0.8125rem;
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * LARGE DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 90rem) {
+
+    .education__column {
+        padding-inline: var(--space-4xl);
+    }
+
+
+    .education__column--degrees {
+        padding-left: 0;
+    }
+
+
+    .education__column--certifications {
+        padding-right: 0;
+    }
+
+
+    .education__degree-name,
+    .education__certification-issuer {
+        font-size: 2.75rem;
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * REDUCED MOTION
+ * ==========================================================================
+ *
+ * GSAP does not initialize the entrance timeline when reduced motion is
+ * requested.
+ *
+ * Content remains visible because CSS never applies hidden initial states.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .education__title-line,
+    .education__body-rule {
+        will-change: auto;
+    }
+
+}

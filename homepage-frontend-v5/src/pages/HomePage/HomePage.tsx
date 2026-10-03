@@ -4,6 +4,7 @@ import FeaturedProjects from "../../sections/featured-projects/FeaturedProjects.
 // import BuildLog from "../../sections/build-log/BuildLog.tsx";
 import About from "../../sections/about/About.tsx"
 import TechnicalStack from "../../sections/technical-stack/TechnicalStack.tsx";
+import Education from "../../sections/education/Education.tsx";
 
 
 import "./HomePage.css";
@@ -20,6 +21,7 @@ function HomePage() {
                 {/* <BuildLog /> */}
                 <About />
                 <TechnicalStack />
+                <Education />
             </main>
         </div>
     );

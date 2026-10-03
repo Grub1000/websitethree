@@ -154,8 +154,7 @@ const stackGroups = [
             "AWS cloud architecture, identity and access management, compute, storage, deployment, and production application infrastructure.",
         technologies: [
             "AWS",
-            "EC2 / EC2",
-            "S3",
+            "EC2 / S3",
             "REDIS",
             "APACHE / DAPHNE",
         ],
