@@ -1,0 +1,959 @@
+/*
+ * ==========================================================================
+ * CONTACT
+ * ==========================================================================
+ *
+ * Section 08 — final homepage section.
+ *
+ *
+ * DESIGN ROLE
+ * --------------------------------------------------------------------------
+ *
+ * Contact serves two jobs:
+ *
+ * 1. Provide direct, obvious ways to reach Jorge.
+ * 2. Visually conclude the Portfolio V2 engineering workspace.
+ *
+ * This is why the section includes the site's final footer rather than
+ * separating the footer into an unrelated visual block.
+ *
+ *
+ * RESPONSIBILITY SPLIT
+ * --------------------------------------------------------------------------
+ *
+ * NATIVE CSS:
+ * - Layout.
+ * - Responsive behavior.
+ * - Typography.
+ * - Clipping.
+ * - Hover/focus interactions.
+ * - Structural lines.
+ *
+ * GSAP:
+ * - One finite entrance sequence.
+ * - Temporary opacity / transform states.
+ * - Structural-line construction.
+ *
+ * No content is hidden by CSS by default.
+ */
+
+
+/*
+ * ==========================================================================
+ * SECTION
+ * ==========================================================================
+ */
+
+.contact {
+    position: relative;
+
+    overflow: clip;
+
+    min-height: 100svh;
+
+    padding-top: var(--section-padding-mobile);
+
+    background: var(--color-background-primary);
+}
+
+
+.contact__container {
+    display: grid;
+
+    gap: var(--space-4xl);
+
+    padding-top: var(--space-xl);
+}
+
+
+/*
+ * ==========================================================================
+ * SECTION METADATA
+ * ==========================================================================
+ */
+
+.contact__meta {
+    display: grid;
+
+    gap: var(--space-md);
+}
+
+
+.contact__meta-content {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+
+.contact__section-index {
+    color: var(--color-accent-primary);
+}
+
+
+.contact__section-label {
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * Structural line:
+ *
+ * Native CSS creates the line.
+ * GSAP temporarily controls scaleX during entrance.
+ */
+
+.contact__meta-rule {
+    display: block;
+
+    width: 100%;
+    height: var(--border-width-thin);
+
+    background: linear-gradient(
+        90deg,
+        var(--color-accent-primary) 0%,
+        var(--color-accent-primary) 10%,
+        var(--color-border-subtle) 10%,
+        var(--color-border-subtle) 100%
+    );
+
+    transform-origin: left center;
+
+    will-change: transform;
+}
+
+
+/*
+ * ==========================================================================
+ * HEADER
+ * ==========================================================================
+ */
+
+.contact__header {
+    display: grid;
+
+    gap: var(--space-3xl);
+}
+
+
+.contact__heading-group {
+    display: grid;
+
+    gap: var(--space-lg);
+}
+
+
+.contact__eyebrow {
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.08em;
+
+    color: var(--color-accent-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * TITLE
+ * ==========================================================================
+ *
+ * The title intentionally occupies substantial visual space.
+ *
+ * This is the homepage's closing statement, not merely a section label.
+ */
+
+.contact__title {
+    margin: 0;
+
+    font-size: clamp(4rem, 22vw, 8rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 0.78;
+    letter-spacing: var(--letter-spacing-tight);
+
+    color: var(--color-text-primary);
+}
+
+
+/*
+ * Native CSS clipping window.
+ *
+ * GSAP moves .contact__title-line vertically through this wrapper using
+ * yPercent.
+ */
+
+.contact__title-mask {
+    display: block;
+
+    overflow: hidden;
+
+    padding-bottom: 0.08em;
+}
+
+
+.contact__title-line {
+    display: block;
+
+    will-change: transform;
+}
+
+
+.contact__title-mark {
+    color: var(--color-accent-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * INTRODUCTION
+ * ==========================================================================
+ */
+
+.contact__intro {
+    display: grid;
+
+    align-content: end;
+    gap: var(--space-xl);
+
+    max-width: 34rem;
+}
+
+
+.contact__statement {
+    margin: 0;
+
+    font-size: clamp(1rem, 4.6vw, 1.25rem);
+    line-height: 1.6;
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * AVAILABILITY
+ * ==========================================================================
+ *
+ * The status marker is intentionally static.
+ *
+ * It does NOT pulse.
+ *
+ * A continuous pulse would imply live system state even though this is simply
+ * portfolio metadata.
+ */
+
+.contact__availability {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-md);
+
+    width: fit-content;
+
+    padding: var(--space-sm) var(--space-md);
+
+    border: var(--border-width-thin) solid var(--color-border-primary);
+}
+
+
+.contact__availability-marker {
+    width: 0.5rem;
+    height: 0.5rem;
+
+    background: var(--color-accent-secondary);
+}
+
+
+.contact__availability-content {
+    display: grid;
+
+    gap: 0.2rem;
+}
+
+
+.contact__availability-label {
+    font-size: 0.4375rem;
+    letter-spacing: 0.08em;
+
+    color: var(--color-text-muted);
+}
+
+
+.contact__availability-value {
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.04em;
+
+    color: var(--color-text-primary);
+}
+
+
+/*
+ * ==========================================================================
+ * CONTACT BODY
+ * ==========================================================================
+ */
+
+.contact__body {
+    display: grid;
+
+    position: relative;
+
+    gap: var(--space-xl);
+
+    padding-top: var(--space-xl);
+}
+
+
+.contact__body-rule {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: var(--border-width-thin);
+
+    background: var(--color-border-primary);
+
+    transform-origin: left center;
+
+    will-change: transform;
+}
+
+
+/*
+ * ==========================================================================
+ * CONTACT DIRECTORY HEADER
+ * ==========================================================================
+ */
+
+.contact__channels-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+
+.contact__channels-label,
+.contact__channels-note {
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
+}
+
+
+.contact__channels-label {
+    color: var(--color-accent-primary);
+}
+
+
+.contact__channels-note {
+    display: none;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * CONTACT CHANNELS
+ * ==========================================================================
+ */
+
+.contact__channels {
+    display: grid;
+}
+
+
+/*
+ * ==========================================================================
+ * CONTACT CHANNEL
+ * ==========================================================================
+ *
+ * Each channel is a semantic <a>.
+ *
+ * The entire record is intentionally clickable because every piece of
+ * information inside the row describes the same destination.
+ *
+ * This differs from Education credentials, where only the explicit
+ * verification action should navigate away.
+ */
+
+.contact__channel {
+    display: grid;
+
+    position: relative;
+
+    gap: var(--space-lg);
+
+    padding-block: var(--space-xl);
+
+    text-decoration: none;
+
+    color: inherit;
+
+    cursor: pointer;
+}
+
+
+/*
+ * ==========================================================================
+ * CHANNEL IDENTITY
+ * ==========================================================================
+ */
+
+.contact__channel-identity {
+    display: grid;
+
+    grid-template-columns: auto auto minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-md);
+}
+
+
+.contact__channel-index {
+    font-size: 0.5rem;
+
+    color: var(--color-accent-primary);
+}
+
+
+.contact__channel-icon-frame {
+    display: grid;
+
+    place-items: center;
+
+    width: 2rem;
+    height: 2rem;
+
+    border: var(--border-width-thin) solid var(--color-border-primary);
+
+    transition:
+        border-color 180ms ease,
+        background-color 180ms ease,
+        transform 220ms ease;
+}
+
+
+.contact__channel-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+
+    color: var(--color-text-secondary);
+
+    transition:
+        color 180ms ease,
+        transform 220ms ease;
+}
+
+
+.contact__channel-label {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    letter-spacing: var(--letter-spacing-heading);
+
+    color: var(--color-text-primary);
+
+    transition:
+        color 180ms ease,
+        transform 220ms ease;
+}
+
+
+/*
+ * ==========================================================================
+ * CHANNEL VALUE
+ * ==========================================================================
+ */
+
+.contact__channel-value {
+    overflow-wrap: anywhere;
+
+    font-size: 0.5625rem;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+
+    color: var(--color-text-muted);
+
+    transition: color 180ms ease;
+}
+
+
+/*
+ * ==========================================================================
+ * CHANNEL ACTION
+ * ==========================================================================
+ */
+
+.contact__channel-action {
+    display: flex;
+
+    align-items: center;
+    gap: var(--space-xs);
+
+    width: fit-content;
+}
+
+
+.contact__channel-action-label {
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
+
+    color: var(--color-text-secondary);
+
+    transition: color 180ms ease;
+}
+
+
+.contact__channel-arrow {
+    width: 0.875rem;
+    height: 0.875rem;
+
+    color: var(--color-text-secondary);
+
+    transition:
+        color 180ms ease,
+        transform 220ms ease;
+}
+
+
+/*
+ * ==========================================================================
+ * CHANNEL RULE
+ * ==========================================================================
+ *
+ * The rule serves two purposes:
+ *
+ * Entrance:
+ * - GSAP constructs it with scaleX.
+ *
+ * Interaction:
+ * - Native CSS changes its color when the link responds to the visitor.
+ */
+
+.contact__channel-rule {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    height: var(--border-width-thin);
+
+    background: var(--color-border-subtle);
+
+    transform-origin: left center;
+
+    transition: background-color 180ms ease;
+
+    will-change: transform;
+}
+
+
+/*
+ * ==========================================================================
+ * CHANNEL HOVER
+ * ==========================================================================
+ *
+ * Cyan is used as the portfolio's system-response color.
+ *
+ * Orange remains the persistent identity/navigation accent.
+ */
+
+.contact__channel:hover .contact__channel-icon-frame {
+    border-color: var(--color-accent-secondary);
+
+    transform: translateY(-0.125rem);
+}
+
+
+.contact__channel:hover .contact__channel-icon {
+    color: var(--color-accent-secondary);
+
+    transform: translate(0.0625rem, -0.0625rem);
+}
+
+
+.contact__channel:hover .contact__channel-label {
+    color: var(--color-accent-secondary);
+
+    transform: translateX(0.25rem);
+}
+
+
+.contact__channel:hover .contact__channel-value {
+    color: var(--color-text-secondary);
+}
+
+
+.contact__channel:hover .contact__channel-action-label,
+.contact__channel:hover .contact__channel-arrow {
+    color: var(--color-accent-secondary);
+}
+
+
+.contact__channel:hover .contact__channel-arrow {
+    transform: translate(0.125rem, -0.125rem);
+}
+
+
+.contact__channel:hover .contact__channel-rule {
+    background: var(--color-accent-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * KEYBOARD FOCUS
+ * ==========================================================================
+ *
+ * :focus-visible is native CSS.
+ *
+ * This gives keyboard users a visible indication without forcing the same
+ * outline during normal pointer interaction.
+ */
+
+.contact__channel:focus-visible {
+    outline: var(--border-width-thin) solid var(--color-accent-secondary);
+    outline-offset: 0.375rem;
+}
+
+
+.contact__channel:focus-visible .contact__channel-icon-frame {
+    border-color: var(--color-accent-secondary);
+}
+
+
+.contact__channel:focus-visible .contact__channel-label,
+.contact__channel:focus-visible .contact__channel-action-label,
+.contact__channel:focus-visible .contact__channel-arrow {
+    color: var(--color-accent-secondary);
+}
+
+
+.contact__channel:focus-visible .contact__channel-rule {
+    background: var(--color-accent-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * FINAL FOOTER
+ * ==========================================================================
+ */
+
+.contact__footer {
+    display: grid;
+
+    gap: var(--space-xl);
+
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-2xl);
+}
+
+
+.contact__footer-rule {
+    display: block;
+
+    width: 100%;
+    height: var(--border-width-thin);
+
+    background: linear-gradient(
+        90deg,
+        var(--color-accent-primary) 0%,
+        var(--color-accent-primary) 8%,
+        var(--color-border-primary) 8%,
+        var(--color-border-primary) 100%
+    );
+
+    transform-origin: left center;
+
+    will-change: transform;
+}
+
+
+.contact__footer-grid {
+    display: grid;
+
+    gap: var(--space-xl);
+}
+
+
+.contact__footer-item {
+    display: grid;
+
+    gap: var(--space-xs);
+}
+
+
+.contact__footer-label {
+    font-size: 0.4375rem;
+    letter-spacing: 0.08em;
+
+    color: var(--color-text-muted);
+}
+
+
+.contact__footer-value {
+    font-size: 0.8125rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.3;
+    letter-spacing: 0.03em;
+
+    color: var(--color-text-primary);
+}
+
+
+.contact__footer-detail {
+    font-size: 0.5rem;
+    line-height: 1.4;
+    letter-spacing: 0.06em;
+
+    color: var(--color-text-muted);
+}
+
+
+/*
+ * ==========================================================================
+ * TABLET
+ * ==========================================================================
+ */
+
+@media (min-width: 48rem) {
+
+    .contact {
+        padding-top: var(--section-padding-tablet);
+    }
+
+
+    .contact__container {
+        gap: var(--space-4xl);
+
+        padding-top: var(--space-xl);
+    }
+
+
+    /*
+     * Closing statement and supporting information now share the width.
+     */
+
+    .contact__header {
+        grid-template-columns:
+            minmax(0, 1.35fr)
+            minmax(18rem, 0.65fr);
+        align-items: end;
+        gap: var(--space-3xl);
+    }
+
+
+    .contact__intro {
+        justify-self: end;
+
+        padding-bottom: var(--space-sm);
+    }
+
+
+    .contact__title {
+        font-size: clamp(6rem, 14vw, 10rem);
+    }
+
+
+    .contact__channels-note {
+        display: inline;
+    }
+
+
+    /*
+     * Contact rows become horizontal directories.
+     *
+     * Grid:
+     *
+     * IDENTITY | DESCRIPTION | ACTION
+     */
+
+    .contact__channel {
+        grid-template-columns:
+            minmax(15rem, 1fr)
+            minmax(10rem, 0.7fr)
+            auto;
+        align-items: center;
+        gap: var(--space-xl);
+    }
+
+
+    .contact__channel-value {
+        text-align: left;
+    }
+
+
+    .contact__channel-action {
+        justify-self: end;
+    }
+
+
+    /*
+     * Footer becomes a three-part system record.
+     */
+
+    .contact__footer-grid {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr)
+            auto;
+        gap: var(--space-2xl);
+    }
+
+
+    .contact__footer-item--portfolio {
+        text-align: right;
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 64rem) {
+
+    .contact {
+        padding-top: var(--section-padding-desktop);
+    }
+
+
+    .contact__container {
+        gap: 5rem;
+    }
+
+
+    /*
+     * Desktop allows the final title to become intentionally oversized.
+     *
+     * clamp() remains native CSS.
+     */
+
+    .contact__title {
+        font-size: clamp(8rem, 13vw, 13rem);
+    }
+
+
+    .contact__statement {
+        font-size: 1.125rem;
+    }
+
+
+    .contact__body {
+        gap: var(--space-2xl);
+
+        padding-top: var(--space-2xl);
+    }
+
+
+    .contact__channel {
+        grid-template-columns:
+            minmax(18rem, 1fr)
+            minmax(14rem, 0.8fr)
+            auto;
+        gap: var(--space-3xl);
+
+        padding-block: var(--space-2xl);
+    }
+
+
+    .contact__channel-label {
+        font-size: clamp(2rem, 3vw, 3.25rem);
+    }
+
+
+    .contact__channel-icon-frame {
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+
+
+    .contact__footer {
+        padding-top: var(--space-2xl);
+        padding-bottom: var(--space-3xl);
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * LARGE DESKTOP
+ * ==========================================================================
+ */
+
+@media (min-width: 90rem) {
+
+    .contact__header {
+        grid-template-columns:
+            minmax(0, 1.45fr)
+            minmax(20rem, 0.55fr);
+        gap: var(--space-4xl);
+    }
+
+
+    .contact__channel {
+        grid-template-columns:
+            minmax(22rem, 1fr)
+            minmax(18rem, 0.75fr)
+            auto;
+    }
+
+
+    .contact__channel-label {
+        font-size: 3.25rem;
+    }
+
+}
+
+
+/*
+ * ==========================================================================
+ * REDUCED MOTION
+ * ==========================================================================
+ *
+ * JavaScript completely skips the GSAP sequence when reduced motion is
+ * requested.
+ *
+ * These rules additionally remove CSS interaction movement.
+ *
+ * Color changes remain because they communicate state without requiring
+ * spatial motion.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .contact__title-line,
+    .contact__meta-rule,
+    .contact__body-rule,
+    .contact__channel-rule,
+    .contact__footer-rule {
+        will-change: auto;
+    }
+
+
+    .contact__channel-icon-frame,
+    .contact__channel-icon,
+    .contact__channel-label,
+    .contact__channel-value,
+    .contact__channel-action-label,
+    .contact__channel-arrow,
+    .contact__channel-rule {
+        transition: none;
+    }
+
+
+    .contact__channel:hover .contact__channel-icon-frame,
+    .contact__channel:hover .contact__channel-icon,
+    .contact__channel:hover .contact__channel-label,
+    .contact__channel:hover .contact__channel-arrow {
+        transform: none;
+    }
+
+}

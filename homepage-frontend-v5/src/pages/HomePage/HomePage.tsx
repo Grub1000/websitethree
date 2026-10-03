@@ -7,6 +7,7 @@ import TechnicalStack from "../../sections/technical-stack/TechnicalStack.tsx";
 import Education from "../../sections/education/Education.tsx";
 import ProjectArchive from "../../sections/project-archive/ProjectArchive.tsx";
 import FrontendShowcase from "../../sections/frontend-showcase/FrontendShowcase.tsx";
+import Contact from "../../sections/contact/Contact.tsx";
 
 
 import "./HomePage.css";
@@ -26,6 +27,7 @@ function HomePage() {
                 <Education />
                 <ProjectArchive />
                 <FrontendShowcase />
+                <Contact />
             </main>
         </div>
     );

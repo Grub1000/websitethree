@@ -8,54 +8,45 @@
  * PURPOSE
  * --------------------------------------------------------------------------
  *
- * This section presents two different qualification types in parallel:
- *
- * EDUCATION
- * - Academic degrees.
- *
- * CERTIFICATIONS
- * - Professional certifications.
- *
- * On desktop and tablet, both categories remain immediately visible.
- *
- * This prevents certifications from becoming secondary information that the
- * visitor must discover only after scrolling through large academic records.
+ * This stylesheet preserves the existing Education section's editorial
+ * structure while adding richer qualification metadata and credential
+ * interactions.
  *
  *
- * VISUAL DIRECTION
+ * RESPONSIBILITY SPLIT
  * --------------------------------------------------------------------------
  *
- * The previous Technical Stack section uses a dense 2 × 2 matrix.
+ * NATIVE CSS:
+ * - Layout.
+ * - Responsive behavior.
+ * - Typography.
+ * - Structural rules.
+ * - Clipping containers.
+ * - Credential hover/focus interactions.
+ * - Reduced-motion interaction overrides.
  *
- * Education changes the rhythm using:
+ * GSAP:
+ * - Finite entrance sequence only.
+ * - Temporary transforms / opacity.
+ * - Temporary clip-path animation values.
  *
- * - more negative space
- * - horizontal rules
- * - editorial typography
- * - compact qualification records
- * - two parallel information columns
+ * REACT:
+ * - Does not control visual animation states.
+ * - React only renders the data-driven records and owns component lifecycle.
  *
  *
- * RESPONSIVE STRATEGY
+ * IMPORTANT
  * --------------------------------------------------------------------------
  *
- * Mobile:
- * - Education appears first.
- * - Certifications follow immediately.
- * - Records remain compact.
+ * CSS never hides content by default.
  *
- * Tablet / Desktop:
- * - Education and Certifications sit side-by-side.
- * - Both categories are visible within the same section viewport area.
+ * GSAP creates temporary initial states after JavaScript initializes.
  *
+ * Therefore:
  *
- * ANIMATION
- * --------------------------------------------------------------------------
- *
- * CSS contains no hidden initial states.
- *
- * GSAP creates temporary animation states only when JavaScript is active and
- * the user has not requested reduced motion.
+ * - content remains visible without JavaScript
+ * - content remains visible with reduced motion
+ * - animation remains progressive enhancement
  */
 
 
@@ -67,6 +58,8 @@
 
 .education {
     position: relative;
+
+    overflow: clip;
 
     padding-block: var(--section-padding-mobile);
 
@@ -87,17 +80,31 @@
  * ==========================================================================
  * SECTION METADATA
  * ==========================================================================
+ *
+ * The original metadata border has been separated into a real structural
+ * element.
+ *
+ * Why?
+ *
+ * A border itself cannot visually "construct" from left to right in the same
+ * controlled way as a dedicated line element.
+ *
+ * .education__meta-rule therefore gives GSAP a meaningful structural element
+ * whose native CSS scale transform can be animated.
  */
 
 .education__meta {
+    display: grid;
+
+    gap: var(--space-md);
+}
+
+
+.education__meta-content {
     display: flex;
 
     align-items: center;
     gap: var(--space-sm);
-
-    padding-bottom: var(--space-md);
-
-    border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
 }
 
 
@@ -108,6 +115,26 @@
 
 .education__section-label {
     color: var(--color-text-muted);
+}
+
+
+.education__meta-rule {
+    display: block;
+
+    width: 100%;
+    height: var(--border-width-thin);
+
+    background: linear-gradient(
+        90deg,
+        var(--color-accent-primary) 0%,
+        var(--color-accent-primary) 12%,
+        var(--color-border-subtle) 12%,
+        var(--color-border-subtle) 100%
+    );
+
+    transform-origin: left center;
+
+    will-change: transform;
 }
 
 
@@ -125,14 +152,19 @@
 
 
 /*
- * overflow:
- * - Native CSS.
- * - Clips title lines while GSAP translates them into their final position.
+ * ==========================================================================
+ * MAIN TITLE
+ * ==========================================================================
+ *
+ * .education__title-mask:
+ *
+ * Native CSS overflow clipping.
+ *
+ * GSAP moves .education__title-line vertically through this clipping window
+ * using its yPercent convenience.
  */
 
 .education__title {
-    overflow: hidden;
-
     margin: 0;
 
     font-size: var(--font-size-heading-sm);
@@ -144,10 +176,17 @@
 }
 
 
+.education__title-mask {
+    display: block;
+
+    overflow: hidden;
+}
+
+
 .education__title-line {
     display: block;
 
-    will-change: transform, opacity;
+    will-change: transform;
 }
 
 
@@ -193,14 +232,16 @@
  * QUALIFICATIONS BODY
  * ==========================================================================
  *
- * The body contains the two primary information categories:
+ * Mobile:
  *
- * Education
- * Certifications
+ *     EDUCATION
+ *     CERTIFICATIONS
  *
- * Mobile stacks them naturally.
+ * Tablet / Desktop:
  *
- * Tablet and larger screens convert this into a two-column layout.
+ *     EDUCATION | CERTIFICATIONS
+ *
+ * CSS Grid owns this layout.
  */
 
 .education__body {
@@ -218,11 +259,11 @@
  * Main structural rule.
  *
  * Native CSS:
- * - Absolute positioning.
- * - transform-origin.
+ * - absolute positioning
+ * - transform-origin
  *
  * GSAP:
- * - Animates scaleX from 0 → 1.
+ * - temporarily animates scaleX from 0 → 1
  */
 
 .education__body-rule {
@@ -233,7 +274,13 @@
     width: 100%;
     height: var(--border-width-thin);
 
-    background: var(--color-border-primary);
+    background: linear-gradient(
+        90deg,
+        var(--color-accent-primary) 0%,
+        var(--color-accent-primary) 8%,
+        var(--color-border-primary) 8%,
+        var(--color-border-primary) 100%
+    );
 
     transform-origin: left center;
 
@@ -258,9 +305,9 @@
 
 
 /*
- * Mobile separator between Education and Certifications.
+ * Mobile separator.
  *
- * This disappears when the columns move side-by-side.
+ * This horizontal separator disappears once the layout becomes two columns.
  */
 
 .education__column--certifications {
@@ -342,11 +389,6 @@
  * ==========================================================================
  * DEGREE RECORD
  * ==========================================================================
- *
- * Degree records are deliberately compact.
- *
- * We do not use the oversized record numbers from the previous concept
- * because they added vertical length without adding meaningful information.
  */
 
 .education__degree-item {
@@ -357,6 +399,8 @@
     padding-block: var(--space-xl);
 
     border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+
+    will-change: transform, opacity;
 }
 
 
@@ -401,6 +445,10 @@
  * ==========================================================================
  * DEGREE NAME
  * ==========================================================================
+ *
+ * clip-path is native CSS.
+ *
+ * GSAP temporarily changes the clip-path during the entrance sequence.
  */
 
 .education__degree-name {
@@ -414,6 +462,8 @@
     letter-spacing: var(--letter-spacing-heading);
 
     color: var(--color-text-primary);
+
+    will-change: clip-path;
 }
 
 
@@ -449,6 +499,7 @@
 
 .education__degree-detail-label {
     font-size: 0.4375rem;
+    letter-spacing: 0.08em;
 
     color: var(--color-text-muted);
 }
@@ -488,6 +539,8 @@
     padding-block: var(--space-xl);
 
     border-bottom: var(--border-width-thin) solid var(--color-border-subtle);
+
+    will-change: transform, opacity;
 }
 
 
@@ -541,12 +594,24 @@
 }
 
 
+/*
+ * clip-path:
+ *
+ * Native CSS property.
+ *
+ * GSAP interpolates it during the finite entrance sequence.
+ */
+
 .education__certification-issuer {
+    width: fit-content;
+
     font-size: clamp(1.35rem, 6vw, 2rem);
     font-weight: var(--font-weight-medium);
     line-height: 1;
 
     color: var(--color-text-primary);
+
+    will-change: clip-path;
 }
 
 
@@ -558,6 +623,258 @@
     line-height: 1.45;
 
     color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * CREDENTIAL IDENTIFIER
+ * ==========================================================================
+ *
+ * The credential ID is informational.
+ *
+ * It deliberately does NOT receive pointer behavior.
+ *
+ * The explicit credential action below is the interactive element.
+ */
+
+.education__credential-row {
+    display: grid;
+
+    gap: var(--space-xs);
+
+    min-width: 0;
+}
+
+
+.education__credential-label {
+    font-size: 0.4375rem;
+    letter-spacing: 0.08em;
+
+    color: var(--color-text-muted);
+}
+
+
+.education__credential-value {
+    overflow-wrap: anywhere;
+
+    font-size: 0.5625rem;
+    line-height: 1.5;
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * CERTIFICATION PERIOD
+ * ==========================================================================
+ */
+
+.education__certification-period {
+    display: grid;
+
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(7rem, 1fr)
+    );
+    gap: var(--space-md);
+}
+
+
+.education__certification-date {
+    display: grid;
+
+    gap: var(--space-xs);
+}
+
+
+.education__certification-date-label {
+    font-size: 0.4375rem;
+    letter-spacing: 0.08em;
+
+    color: var(--color-text-muted);
+}
+
+
+.education__certification-date-value {
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.4;
+
+    color: var(--color-text-secondary);
+}
+
+
+/*
+ * ==========================================================================
+ * CREDENTIAL ACTION
+ * ==========================================================================
+ *
+ * This is a native HTML anchor.
+ *
+ * The browser therefore owns:
+ *
+ * - keyboard activation
+ * - pointer activation
+ * - destination/status behavior
+ * - opening the URL
+ *
+ * No React onClick handler is necessary.
+ *
+ *
+ * INTERACTION LANGUAGE
+ * --------------------------------------------------------------------------
+ *
+ * Orange:
+ * - remains the portfolio's identity color.
+ *
+ * Cyan:
+ * - communicates system response.
+ *
+ * Therefore the credential action moves toward cyan when the user interacts
+ * with it.
+ */
+
+.education__credential-link {
+    display: grid;
+
+    grid-template-columns: auto minmax(1rem, 1fr) auto;
+    align-items: center;
+    gap: var(--space-sm);
+
+    width: 100%;
+    max-width: 24rem;
+
+    padding-block: var(--space-xs);
+
+    border-radius: 0.125rem;
+
+    font-size: 0.5rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+
+    color: var(--color-text-secondary);
+
+    cursor: pointer;
+
+    transition:
+        color 180ms ease,
+        outline-color 180ms ease;
+}
+
+
+.education__credential-link-label {
+    white-space: nowrap;
+}
+
+
+/*
+ * This line provides a visual connection between the action label and arrow.
+ *
+ * transform is native CSS.
+ *
+ * On hover/focus, CSS scales the line horizontally.
+ */
+
+.education__credential-link-line {
+    display: block;
+
+    width: 100%;
+    height: var(--border-width-thin);
+
+    background: var(--color-border-primary);
+
+    transform: scaleX(0.72);
+    transform-origin: left center;
+
+    transition:
+        background-color 180ms ease,
+        transform 220ms ease;
+}
+
+
+.education__credential-link-icon-frame {
+    display: grid;
+
+    place-items: center;
+
+    width: 1.75rem;
+    height: 1.75rem;
+
+    border: var(--border-width-thin) solid var(--color-border-primary);
+
+    transition:
+        border-color 180ms ease,
+        background-color 180ms ease,
+        transform 220ms ease;
+}
+
+
+.education__credential-link-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+
+    transition: transform 220ms ease;
+}
+
+
+/*
+ * Native CSS :hover.
+ *
+ * No GSAP is needed for a small deterministic interaction like this.
+ */
+
+.education__credential-link:hover {
+    color: var(--color-accent-secondary);
+}
+
+
+.education__credential-link:hover .education__credential-link-line {
+    background: var(--color-accent-secondary);
+
+    transform: scaleX(1);
+}
+
+
+.education__credential-link:hover .education__credential-link-icon-frame {
+    border-color: var(--color-accent-secondary);
+
+    transform: translate(0.1rem, -0.1rem);
+}
+
+
+.education__credential-link:hover .education__credential-link-icon {
+    transform: translate(0.0625rem, -0.0625rem);
+}
+
+
+/*
+ * :focus-visible is native CSS.
+ *
+ * Unlike :focus, it generally appears when the browser determines a visible
+ * focus indicator is appropriate, such as keyboard navigation.
+ */
+
+.education__credential-link:focus-visible {
+    outline: var(--border-width-thin) solid var(--color-accent-secondary);
+    outline-offset: 0.35rem;
+
+    color: var(--color-accent-secondary);
+}
+
+
+.education__credential-link:focus-visible .education__credential-link-line {
+    background: var(--color-accent-secondary);
+
+    transform: scaleX(1);
+}
+
+
+.education__credential-link:focus-visible .education__credential-link-icon-frame {
+    border-color: var(--color-accent-secondary);
 }
 
 
@@ -582,8 +899,7 @@
 
 
     /*
-     * Match the broad section-header structure already established by
-     * Technical Stack.
+     * Header changes from vertical stacking to a broad editorial split.
      */
 
     .education__header {
@@ -603,15 +919,15 @@
 
 
     /*
-     * --------------------------------------------------------------
+     * ----------------------------------------------------------------------
      * PARALLEL QUALIFICATION LAYOUT
-     * --------------------------------------------------------------
+     * ----------------------------------------------------------------------
      *
-     * Both qualification types now become visible at the same vertical
+     * Both qualification categories become visible at the same vertical
      * position.
      *
-     * Slightly more width is allocated to Education because the master's
-     * record contains specialization information.
+     * Education receives slightly more room because the master's record
+     * includes specialization information.
      */
 
     .education__body {
@@ -637,9 +953,7 @@
 
 
     /*
-     * Remove the mobile horizontal separator.
-     *
-     * The center vertical rule now separates the categories instead.
+     * The center vertical rule replaces the mobile horizontal separator.
      */
 
     .education__column--certifications {
@@ -649,10 +963,6 @@
         border-top: none;
     }
 
-
-    /*
-     * Column metadata can share one horizontal line.
-     */
 
     .education__column-header {
         grid-template-columns: minmax(0, 1fr) auto;
@@ -694,8 +1004,8 @@
 
 
     /*
-     * Desktop adds breathing room inside the two-column dossier while
-     * retaining the compact overall section height.
+     * Desktop preserves the two-column dossier while increasing breathing
+     * room around the records.
      */
 
     .education__body {
@@ -738,16 +1048,23 @@
 
 
     /*
-     * Master's focus and institution can share a row when space permits.
+     * auto-fit is native CSS Grid behavior.
      *
-     * auto-fit keeps the bachelor's record correct even though it only has
-     * one detail item.
+     * It lets:
+     *
+     * Master's:
+     *     FOCUS | INSTITUTION | PERIOD
+     *
+     * Bachelor's:
+     *     INSTITUTION | PERIOD
+     *
+     * share available horizontal space without requiring separate markup.
      */
 
     .education__degree-details {
         grid-template-columns: repeat(
             auto-fit,
-            minmax(12rem, 1fr)
+            minmax(9rem, 1fr)
         );
         gap: var(--space-xl);
     }
@@ -772,6 +1089,23 @@
 
     .education__certification-name {
         font-size: 0.8125rem;
+    }
+
+
+    /*
+     * Credential metadata gains slightly more separation on desktop while
+     * remaining subordinate to the actual certification title.
+     */
+
+    .education__credential-row {
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: baseline;
+        gap: var(--space-md);
+    }
+
+
+    .education__credential-value {
+        text-align: right;
     }
 
 }
@@ -813,17 +1147,45 @@
  * REDUCED MOTION
  * ==========================================================================
  *
- * GSAP does not initialize the entrance timeline when reduced motion is
- * requested.
+ * JavaScript already avoids constructing the GSAP entrance timeline when the
+ * user requests reduced motion.
  *
- * Content remains visible because CSS never applies hidden initial states.
+ * This media query additionally removes CSS interaction movement.
+ *
+ * Color changes remain because they communicate interaction state without
+ * requiring spatial motion.
  */
 
 @media (prefers-reduced-motion: reduce) {
 
     .education__title-line,
-    .education__body-rule {
+    .education__meta-rule,
+    .education__body-rule,
+    .education__degree-item,
+    .education__degree-name,
+    .education__certification,
+    .education__certification-issuer {
         will-change: auto;
+    }
+
+
+    .education__credential-link,
+    .education__credential-link-line,
+    .education__credential-link-icon-frame,
+    .education__credential-link-icon {
+        transition: none;
+    }
+
+
+    .education__credential-link:hover .education__credential-link-line,
+    .education__credential-link:focus-visible .education__credential-link-line {
+        transform: none;
+    }
+
+
+    .education__credential-link:hover .education__credential-link-icon-frame,
+    .education__credential-link:hover .education__credential-link-icon {
+        transform: none;
     }
 
 }
