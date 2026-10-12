@@ -1,0 +1,46 @@
+/* ========================================
+   ATLAS / ANALYTICS GLOBAL STYLES
+   ======================================== */
+
+.analytics {
+    min-height: 100vh;
+
+    font-family: var(--analytics-font-sans);
+    font-size: var(--analytics-text-base);
+    line-height: 1.5;
+
+    color: var(--analytics-color-text);
+    background: var(--analytics-color-background);
+
+    -webkit-font-smoothing: antialiased;
+}
+
+
+.analytics :focus-visible {
+    outline: 0.125rem solid var(--analytics-color-primary);
+    outline-offset: 0.1875rem;
+}
+
+
+/*
+ * The dashboard contains tables, metrics, and numeric comparisons.
+ *
+ * tabular-nums ensures digits occupy consistent widths, preventing values
+ * from appearing misaligned as they update.
+ */
+.analytics .analytics-tabular {
+    font-variant-numeric: tabular-nums;
+}
+
+
+/*
+ * Reduced-motion preference:
+ *
+ * Motion should never be necessary to understand dashboard data.
+ * Component-specific animations will also respect this preference.
+ */
+@media (prefers-reduced-motion: reduce) {
+    .analytics {
+        scroll-behavior: auto;
+    }
+}
