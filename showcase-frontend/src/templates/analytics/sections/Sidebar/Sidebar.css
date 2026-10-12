@@ -1,0 +1,445 @@
+/* ========================================
+   ATLAS / SIDEBAR
+   ======================================== */
+
+
+/*
+ * BASE / MOBILE:
+ *
+ * The sidebar behaves as an off-canvas drawer.
+ *
+ * transform: translateX(-100%) moves it left by its own width.
+ * This is native CSS transform behavior, not GSAP.
+ *
+ * The z-index places it above the backdrop (40).
+ */
+.analytics-sidebar {
+    display: flex;
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+
+    flex-direction: column;
+
+    width: min(19rem, 88vw);
+    height: 100dvh;
+
+    padding: var(--analytics-space-5);
+    border-right: 1px solid var(--analytics-color-border);
+
+    background: var(--analytics-color-surface);
+
+    box-shadow: 0.5rem 0 2rem rgba(32, 37, 34, 0.08);
+
+    transform: translateX(-100%);
+
+    visibility: hidden;
+
+    transition:
+        transform var(--analytics-duration-base) ease,
+        visibility var(--analytics-duration-base) ease;
+}
+
+
+.analytics-sidebar--open {
+    transform: translateX(0);
+
+    visibility: visible;
+}
+
+
+/* ========================================
+   BRAND
+   ======================================== */
+
+
+.analytics-sidebar__header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--analytics-space-3);
+
+    min-height: 2.75rem;
+}
+
+
+.analytics-sidebar__identity {
+    display: flex;
+
+    align-items: center;
+    gap: var(--analytics-space-3);
+}
+
+
+.analytics-sidebar__symbol {
+    display: grid;
+
+    place-items: center;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    border-radius: var(--analytics-radius-md);
+
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1;
+
+    color: #ffffff;
+    background: var(--analytics-color-primary);
+}
+
+
+.analytics-sidebar__brand-group {
+    display: flex;
+
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+
+.analytics-sidebar__brand {
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.08em;
+}
+
+
+.analytics-sidebar__brand-caption {
+    font-size: 0.575rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.18em;
+
+    color: var(--analytics-color-text-muted);
+}
+
+
+.analytics-sidebar__close {
+    display: grid;
+
+    place-items: center;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    border-radius: var(--analytics-radius-sm);
+
+    color: var(--analytics-color-text-secondary);
+
+    cursor: pointer;
+}
+
+
+.analytics-sidebar__close-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+
+/* ========================================
+   WORKSPACE SELECTOR
+   ======================================== */
+
+
+.analytics-sidebar__workspace {
+    display: flex;
+
+    align-items: center;
+    gap: var(--analytics-space-3);
+
+    min-width: 0;
+
+    padding: var(--analytics-space-3);
+    border: 1px solid var(--analytics-color-border);
+    border-radius: var(--analytics-radius-md);
+    margin-top: var(--analytics-space-8);
+
+    background: var(--analytics-color-background);
+}
+
+
+.analytics-sidebar__workspace-avatar {
+    display: grid;
+
+    flex-shrink: 0;
+    place-items: center;
+
+    width: 2rem;
+    height: 2rem;
+
+    border-radius: var(--analytics-radius-sm);
+
+    font-size: 0.875rem;
+    font-weight: 700;
+
+    color: var(--analytics-color-primary);
+    background: var(--analytics-color-primary-soft);
+}
+
+
+.analytics-sidebar__workspace-details {
+    display: flex;
+
+    flex: 1;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+
+.analytics-sidebar__workspace-name {
+    overflow: hidden;
+
+    font-size: var(--analytics-text-sm);
+    font-weight: 700;
+    line-height: 1.3;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.analytics-sidebar__workspace-plan {
+    overflow: hidden;
+
+    font-size: 0.675rem;
+    line-height: 1.4;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--analytics-color-text-secondary);
+}
+
+
+.analytics-sidebar__workspace-chevron {
+    flex-shrink: 0;
+
+    width: 0.9rem;
+    height: 0.9rem;
+
+    color: var(--analytics-color-text-secondary);
+}
+
+
+/* ========================================
+   MAIN NAVIGATION
+   ======================================== */
+
+
+.analytics-sidebar__navigation {
+    margin-top: var(--analytics-space-10);
+}
+
+
+.analytics-sidebar__navigation-label {
+    padding: 0 var(--analytics-space-3);
+    margin: 0 0 var(--analytics-space-3);
+
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+
+    color: var(--analytics-color-text-muted);
+}
+
+
+.analytics-sidebar__navigation-list {
+    display: flex;
+
+    flex-direction: column;
+    gap: 0.2rem;
+
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+}
+
+
+.analytics-sidebar__link {
+    display: flex;
+
+    align-items: center;
+    gap: var(--analytics-space-3);
+
+    min-height: 2.65rem;
+
+    padding: 0 var(--analytics-space-3);
+    border-radius: var(--analytics-radius-sm);
+
+    font-size: var(--analytics-text-sm);
+    font-weight: 500;
+
+    color: var(--analytics-color-text-secondary);
+
+    transition:
+        color var(--analytics-duration-fast) ease,
+        background var(--analytics-duration-fast) ease;
+}
+
+
+.analytics-sidebar__link:hover {
+    color: var(--analytics-color-text);
+    background: var(--analytics-color-background);
+}
+
+
+.analytics-sidebar__link--active {
+    font-weight: 700;
+
+    color: var(--analytics-color-primary);
+    background: var(--analytics-color-primary-soft);
+}
+
+
+.analytics-sidebar__link-icon {
+    flex-shrink: 0;
+
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+
+/* ========================================
+   BOTTOM NAVIGATION / PROFILE
+   ======================================== */
+
+
+.analytics-sidebar__bottom {
+    margin-top: auto;
+}
+
+
+.analytics-sidebar__utility {
+    padding-bottom: var(--analytics-space-5);
+    border-bottom: 1px solid var(--analytics-color-border);
+}
+
+
+.analytics-sidebar__utility-link {
+    display: flex;
+
+    align-items: center;
+    gap: var(--analytics-space-3);
+
+    min-height: 2.5rem;
+
+    padding: 0 var(--analytics-space-3);
+
+    font-size: var(--analytics-text-sm);
+
+    color: var(--analytics-color-text-secondary);
+}
+
+
+.analytics-sidebar__utility-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+
+.analytics-sidebar__profile {
+    display: flex;
+
+    align-items: center;
+    gap: var(--analytics-space-3);
+
+    padding-top: var(--analytics-space-5);
+}
+
+
+.analytics-sidebar__profile-avatar {
+    display: grid;
+
+    flex-shrink: 0;
+    place-items: center;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    border-radius: 50%;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    color: var(--analytics-color-primary);
+    background: var(--analytics-color-primary-soft);
+}
+
+
+.analytics-sidebar__profile-details {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.analytics-sidebar__profile-name {
+    font-size: var(--analytics-text-sm);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+
+.analytics-sidebar__profile-role {
+    font-size: 0.7rem;
+    line-height: 1.4;
+
+    color: var(--analytics-color-text-secondary);
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 64rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * position: sticky replaces fixed positioning.
+     *
+     * The sidebar now occupies the first Grid column of analytics-shell.
+     * It remains visible while the workspace scrolls.
+     *
+     * transform is reset because the sidebar is no longer off-canvas.
+     */
+    .analytics-sidebar {
+        position: sticky;
+        top: 0;
+        bottom: auto;
+
+        width: var(--analytics-sidebar-width);
+        height: 100vh;
+
+        box-shadow: none;
+
+        transform: none;
+
+        visibility: visible;
+    }
+
+
+    .analytics-sidebar__close {
+        display: none;
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+
+@media (prefers-reduced-motion: reduce) {
+    .analytics-sidebar,
+    .analytics-sidebar__link {
+        transition: none;
+    }
+}

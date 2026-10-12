@@ -1,0 +1,106 @@
+/* ========================================
+   ATLAS / OVERVIEW
+   ======================================== */
+
+
+.analytics-overview {
+    width: 100%;
+}
+
+
+.analytics-overview__header {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--analytics-space-4);
+
+    margin-bottom: var(--analytics-space-8);
+}
+
+
+.analytics-overview__heading {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--analytics-space-2);
+}
+
+
+.analytics-overview__eyebrow {
+    font-size: var(--analytics-text-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+
+    color: var(--analytics-color-text-muted);
+}
+
+
+.analytics-overview__title {
+    font-size: var(--analytics-text-2xl);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+}
+
+
+.analytics-overview__description {
+    max-width: 40rem;
+
+    font-size: var(--analytics-text-sm);
+
+    color: var(--analytics-color-text-secondary);
+}
+
+
+.analytics-overview__placeholder {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--analytics-space-3);
+
+    min-height: 20rem;
+
+    padding: var(--analytics-space-8);
+    border: 1px dashed var(--analytics-color-border-strong);
+    border-radius: var(--analytics-radius-lg);
+
+    text-align: center;
+
+    background: var(--analytics-color-surface);
+}
+
+
+.analytics-overview__placeholder-label {
+    font-size: var(--analytics-text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+
+    color: var(--analytics-color-primary);
+}
+
+
+.analytics-overview__placeholder-description {
+    max-width: 25rem;
+
+    font-size: var(--analytics-text-sm);
+
+    color: var(--analytics-color-text-secondary);
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 48rem) {
+    /*
+     * The title grows once the content region has more available width.
+     * The remainder of the mobile layout continues unchanged.
+     */
+    .analytics-overview__title {
+        font-size: var(--analytics-text-3xl);
+    }
+}

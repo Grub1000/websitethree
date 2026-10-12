@@ -1,0 +1,311 @@
+/* ========================================
+   ATLAS / TOPBAR
+   ======================================== */
+
+
+.analytics-topbar {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--analytics-space-3);
+
+    min-height: var(--analytics-topbar-height);
+
+    padding: 0 var(--analytics-space-4);
+    border-bottom: 1px solid var(--analytics-color-border);
+
+    background: var(--analytics-color-surface);
+}
+
+
+/* ========================================
+   LEFT / BREADCRUMB
+   ======================================== */
+
+
+.analytics-topbar__left {
+    display: flex;
+
+    align-items: center;
+    gap: var(--analytics-space-3);
+
+    min-width: 0;
+}
+
+
+.analytics-topbar__menu {
+    display: grid;
+
+    flex-shrink: 0;
+    place-items: center;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    border-radius: var(--analytics-radius-sm);
+
+    color: var(--analytics-color-text);
+
+    cursor: pointer;
+}
+
+
+.analytics-topbar__menu-icon {
+    width: 1.3rem;
+    height: 1.3rem;
+}
+
+
+.analytics-topbar__breadcrumb {
+    display: flex;
+
+    align-items: center;
+    gap: var(--analytics-space-2);
+
+    min-width: 0;
+}
+
+
+.analytics-topbar__breadcrumb-parent,
+.analytics-topbar__breadcrumb-separator {
+    display: none;
+
+    font-size: var(--analytics-text-sm);
+
+    color: var(--analytics-color-text-muted);
+}
+
+
+.analytics-topbar__breadcrumb-current {
+    overflow: hidden;
+
+    font-size: var(--analytics-text-sm);
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   RIGHT / ACTIONS
+   ======================================== */
+
+
+.analytics-topbar__right {
+    display: flex;
+
+    align-items: center;
+    gap: var(--analytics-space-2);
+}
+
+
+.analytics-topbar__search {
+    display: grid;
+
+    place-items: center;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    border-radius: var(--analytics-radius-sm);
+
+    color: var(--analytics-color-text-secondary);
+
+    cursor: pointer;
+}
+
+
+.analytics-topbar__search-icon,
+.analytics-topbar__date-icon,
+.analytics-topbar__notification-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+
+.analytics-topbar__search-label,
+.analytics-topbar__search-shortcut {
+    display: none;
+}
+
+
+.analytics-topbar__date {
+    display: none;
+
+    align-items: center;
+    gap: var(--analytics-space-2);
+
+    min-height: 2.25rem;
+
+    padding: 0 var(--analytics-space-3);
+    border: 1px solid var(--analytics-color-border);
+    border-radius: var(--analytics-radius-sm);
+
+    font-size: var(--analytics-text-sm);
+
+    color: var(--analytics-color-text-secondary);
+    background: var(--analytics-color-surface);
+
+    cursor: pointer;
+}
+
+
+.analytics-topbar__date-chevron {
+    width: 0.9rem;
+    height: 0.9rem;
+}
+
+
+.analytics-topbar__notification {
+    display: grid;
+
+    position: relative;
+
+    place-items: center;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    border-radius: var(--analytics-radius-sm);
+
+    color: var(--analytics-color-text-secondary);
+
+    cursor: pointer;
+}
+
+
+.analytics-topbar__notification-indicator {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.45rem;
+
+    width: 0.35rem;
+    height: 0.35rem;
+
+    border: 0.125rem solid var(--analytics-color-surface);
+    border-radius: 50%;
+
+    background: var(--analytics-color-negative);
+}
+
+
+.analytics-topbar__avatar {
+    display: grid;
+
+    flex-shrink: 0;
+    place-items: center;
+
+    width: 2rem;
+    height: 2rem;
+
+    border-radius: 50%;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    color: var(--analytics-color-primary);
+    background: var(--analytics-color-primary-soft);
+
+    cursor: pointer;
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 48rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Larger horizontal padding matches the content container.
+     * Breadcrumb context and date controls become visible.
+     */
+    .analytics-topbar {
+        padding: 0 var(--analytics-space-8);
+    }
+
+
+    .analytics-topbar__breadcrumb-parent,
+    .analytics-topbar__breadcrumb-separator {
+        display: inline;
+    }
+
+
+    .analytics-topbar__date {
+        display: flex;
+    }
+}
+
+
+/* ========================================
+   64REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 64rem) {
+    /*
+     * Desktop uses the persistent sidebar.
+     * The mobile menu button is therefore unnecessary.
+     */
+    .analytics-topbar__menu {
+        display: none;
+    }
+
+
+    /*
+     * Search becomes a wider utility control on large screens.
+     */
+    .analytics-topbar__search {
+        display: flex;
+
+        align-items: center;
+        gap: var(--analytics-space-3);
+
+        width: 14rem;
+
+        padding: 0 var(--analytics-space-3);
+        border: 1px solid var(--analytics-color-border);
+    }
+
+
+    .analytics-topbar__search-label {
+        display: inline;
+
+        flex: 1;
+
+        font-size: var(--analytics-text-sm);
+        text-align: left;
+    }
+
+
+    .analytics-topbar__search-shortcut {
+        display: inline;
+
+        padding: 0.15rem 0.35rem;
+        border: 1px solid var(--analytics-color-border);
+        border-radius: 0.25rem;
+
+        font-size: 0.65rem;
+        font-weight: 600;
+
+        color: var(--analytics-color-text-muted);
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+
+@media (prefers-reduced-motion: reduce) {
+    .analytics-topbar__menu,
+    .analytics-topbar__search,
+    .analytics-topbar__date,
+    .analytics-topbar__notification {
+        transition: none;
+    }
+}
