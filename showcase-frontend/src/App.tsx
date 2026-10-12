@@ -64,7 +64,7 @@ import ShowcaseHome from "./showcase/ShowcaseHome.tsx";
 import SaaSApp from "./templates/saas/SaaSApp.tsx";
 import AgencyApp from "./templates/agency/AgencyApp.tsx";
 // import AgencyApp from "./templates/agency/AgencyApp";
-// import AnalyticsApp from "./templates/analytics/AnalyticsApp";
+import AnalyticsApp from "./templates/analytics/AnalyticsApp.tsx";
 // import EcommerceApp from "./templates/ecommerce/EcommerceApp";
 // import MobileApp from "./templates/mobile/MobileApp";
 
@@ -74,6 +74,7 @@ function App() {
             <Route path="/showcase/" element={<ShowcaseHome />} />
             <Route path="/showcase/saas/*" element={<SaaSApp />} />
             <Route path="/showcase/agency/*" element={<AgencyApp />}/>
+            <Route path="/showcase/analytics/*" element={<AnalyticsApp/>}/>
             {/* <Route path="/agency/*" element={<AgencyApp />} />
             <Route path="/analytics/*" element={<AnalyticsApp />} />
             <Route path="/ecommerce/*" element={<EcommerceApp />} />
