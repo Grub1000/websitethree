@@ -24,7 +24,7 @@
 
     flex-direction: column;
 
-    width: min(19rem, 88vw);
+    width: min(19rem, 88vw); /* A CSS function that compares two or more values and applies the smallest one. */
     height: 100dvh;
 
     padding: var(--analytics-space-5);

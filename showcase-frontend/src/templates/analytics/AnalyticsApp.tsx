@@ -38,6 +38,11 @@ export default function AnalyticsApp() {
      */
     const [previousPathname, setPreviousPathname] = useState(location.pathname);
 
+    /* 
+     * A function-scoped conditional will always be re-evaluated on each state change in this component. 
+     *
+     * This is how this runs on each state change of previousPathname.
+     */
     if (location.pathname !== previousPathname) {
         setPreviousPathname(location.pathname);
         setIsSidebarOpen(false);
