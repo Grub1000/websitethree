@@ -1,16 +1,49 @@
+import {
+    CheckCircle2,
+    CircleDollarSign,
+    PackageCheck,
+    TrendingUp,
+} from "lucide-react";
+
+import MetricCard from "../../components/data-display/MetricCard/MetricCard";
+import { overviewData } from "../../data/overviewData";
+import { calculateOverviewMetrics } from "../../utils/overviewMetrics";
+
 import "./Overview.css";
 
 
+/*
+ * The dataset currently contains seven fixed demonstration days.
+ *
+ * calculateOverviewMetrics() derives all four values from the same
+ * records. Later, the date filter will select which records to pass in.
+ */
 export default function Overview() {
+    const metrics = calculateOverviewMetrics(overviewData);
+
+    /*
+     * Intl.NumberFormat is a native JavaScript internationalization API.
+     *
+     * It handles currency symbols, thousands separators, and decimals
+     * without manually building formatted strings.
+     */
+    const currencyFormatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0,
+    });
+
+    const numberFormatter = new Intl.NumberFormat("en-US");
+
     return (
         <section
             className="analytics-overview"
             aria-labelledby="analytics-overview-title"
         >
-            <div className="analytics-overview__header">
+            <header className="analytics-overview__header">
                 <div className="analytics-overview__heading">
                     <p className="analytics-overview__eyebrow">
-                        MONDAY, OCTOBER 12, 2026
+                        OPERATIONS INTELLIGENCE
                     </p>
 
                     <h1
@@ -21,21 +54,40 @@ export default function Overview() {
                     </h1>
 
                     <p className="analytics-overview__description">
-                        Monitor your operations and financial performance
-                        from one workspace.
+                        Monitor operational efficiency and financial
+                        performance from one workspace.
                     </p>
                 </div>
-            </div>
+            </header>
 
-            <div className="analytics-overview__placeholder">
-                <p className="analytics-overview__placeholder-label">
-                    DASHBOARD OVERVIEW
-                </p>
+            <div className="analytics-overview__metrics">
+                <MetricCard
+                    label="Operating Profit"
+                    value={currencyFormatter.format(metrics.netRevenue)}
+                    description="Revenue after operating expenses"
+                    icon={CircleDollarSign}
+                />
 
-                <p className="analytics-overview__placeholder-description">
-                    Your operational metrics, financial insights, and
-                    performance charts will appear here.
-                </p>
+                <MetricCard
+                    label="Orders Processed"
+                    value={numberFormatter.format(metrics.ordersProcessed)}
+                    description="Successfully fulfilled orders"
+                    icon={PackageCheck}
+                />
+
+                <MetricCard
+                    label="Operating Margin"
+                    value={`${metrics.operatingMargin.toFixed(1)}%`}
+                    description="Operating profit as a share of revenue"
+                    icon={TrendingUp}
+                />
+
+                <MetricCard
+                    label="Fulfillment Rate"
+                    value={`${metrics.fulfillmentRate.toFixed(1)}%`}
+                    description="Percentage of received orders fulfilled"
+                    icon={CheckCircle2}
+                />
             </div>
         </section>
     );

@@ -1,0 +1,117 @@
+/* ========================================
+   ATLAS / METRIC CARD
+   ======================================== */
+
+
+/*
+ * BASE / MOBILE:
+ *
+ * Each card fills its parent Grid cell.
+ * min-width: 0 allows content to shrink within the Grid instead
+ * of forcing the dashboard wider than the viewport.
+ */
+.analytics-metric {
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--analytics-space-4);
+
+    min-width: 0;
+
+    padding: var(--analytics-space-5);
+    border: 1px solid var(--analytics-color-border);
+    border-radius: var(--analytics-radius-md);
+
+    background: var(--analytics-color-surface);
+}
+
+
+.analytics-metric__header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--analytics-space-3);
+}
+
+
+.analytics-metric__label {
+    font-size: var(--analytics-text-sm);
+    font-weight: 500;
+
+    color: var(--analytics-color-text-secondary);
+}
+
+
+.analytics-metric__icon-wrapper {
+    display: grid;
+
+    flex-shrink: 0;
+    place-items: center;
+
+    width: 2rem;
+    height: 2rem;
+
+    border-radius: var(--analytics-radius-sm);
+
+    color: var(--analytics-color-primary);
+    background: var(--analytics-color-primary-soft);
+}
+
+
+.analytics-metric__icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+
+.analytics-metric__value {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+
+    color: var(--analytics-color-text);
+}
+
+
+/*
+ * clamp() is a native CSS function that constrains a preferred value
+ * between a minimum and maximum.
+ *
+ * Here:
+ * - 1.5rem is the smallest allowed font size.
+ * - 5vw is the preferred size, equal to 5% of viewport width.
+ * - 2rem is the largest allowed font size.
+ *
+ * The metric grows with the viewport while remaining readable
+ * on small screens and controlled on large displays.
+ */
+
+
+.analytics-metric__description {
+    font-size: var(--analytics-text-xs);
+    line-height: 1.5;
+
+    color: var(--analytics-color-text-muted);
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 48rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Larger padding provides additional breathing room when metric
+     * cards are displayed side by side.
+     *
+     * All other card properties continue through the cascade.
+     */
+    .analytics-metric {
+        padding: var(--analytics-space-6);
+    }
+}

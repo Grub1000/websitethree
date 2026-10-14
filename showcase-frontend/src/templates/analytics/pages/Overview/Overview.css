@@ -91,6 +91,69 @@
 
 
 /* ========================================
+   OVERVIEW / METRIC GRID
+   ======================================== */
+
+
+/*
+ * BASE / MOBILE:
+ *
+ * One column keeps metrics readable on narrow screens.
+ *
+ * minmax(0, 1fr) creates a flexible track with a zero minimum.
+ * This prevents long content from imposing its intrinsic minimum
+ * width on the entire dashboard.
+ */
+.analytics-overview__metrics {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--analytics-space-4);
+}
+
+
+/* ========================================
+   48REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 48rem) {
+    /*
+     * OVERRIDES BASE / MOBILE:
+     *
+     * Two equal columns replace the single-column layout.
+     * Each card receives half the available Grid space,
+     * excluding the gap between columns.
+     */
+    .analytics-overview__metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* ========================================
+   80REM AND LARGER
+   ======================================== */
+
+
+@media (min-width: 80rem) {
+    /*
+     * OVERRIDES 48REM+:
+     *
+     * Four columns display all KPIs in one row.
+     *
+     * We use 80REM instead of 64REM because the persistent sidebar
+     * already consumes 16REM of horizontal space.
+     *
+     * The larger breakpoint gives each metric sufficient room.
+     */
+    .analytics-overview__metrics {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+
+/* ========================================
    48REM AND LARGER
    ======================================== */
 
